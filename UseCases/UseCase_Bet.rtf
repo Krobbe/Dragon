@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf230
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf320
 {\fonttbl\f0\froman\fcharset0 Times-Roman;}
 {\colortbl;\red255\green255\blue255;}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
@@ -12,18 +12,18 @@
 \i\b0 Bet\
 \pard\pardeftab709\sa120\pardirnatural
 
-\i0 \cf0 Short description: A player gets to bet (either call, raise, all-in)\
+\i0 \cf0 Short description: A player places a bet either by calling (see UC Call), raising (see UC Call) or by going all-in (see UC All-in). The smallest allowed bet is generally as large as the big blind (see UC Big Blind), except for the small blind (see UC Small Blind) which is compulsory. \
 Priority: high\
-Extends or Includes: Extends UserAction\
+Extends or Includes: Includes UserAction\
 Participating actors\
 \pard\tx220\tx720\pardeftab709\li720\fi-720\sa120\pardirnatural
-\ls1\ilvl0\cf0 {\listtext	\'95	}Actual Player (AP)\
+\ls1\ilvl0\cf0 {\listtext	\'95	}A Player (P)\
 \pard\pardeftab709\sa120\pardirnatural
 \cf0 Normal flow of events\
 \pard\tx220\tx720\pardeftab709\li720\fi-720\sa120\pardirnatural
-\ls2\ilvl0\cf0 {\listtext	\'95	}AP chooses how to bet\
+\ls2\ilvl0\cf0 {\listtext	\'95	}AP places a bet\
 {\listtext	\'95	}		That bet is removed from AP's balance\
 \pard\pardeftab709\sa120\pardirnatural
 \cf0 Alternate flow: AP hasn't enough money\
-	If AP's balance is less than the "current bid" the action call automatically turns into "All In"\
+	If AP's balance is less than the "current bid" during a call the action automatically turns into an all-in\
 Exceptional flow: No exception}
