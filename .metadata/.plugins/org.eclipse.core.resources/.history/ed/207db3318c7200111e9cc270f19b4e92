@@ -1,0 +1,26 @@
+package Game;
+
+public class Pot {
+	private int pot;
+	
+	public Pot() {
+		this(0);
+	}
+	
+	public Pot(int x) {
+		pot = x;
+	}
+
+	public int getPot() {
+		return pot;
+	}
+
+	public void addToPot(int pot) {
+		this.pot = pot;
+	}
+	
+	public void emptyPot() {
+		pot = 0;
+	}
+	
+}
