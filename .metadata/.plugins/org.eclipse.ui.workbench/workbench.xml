@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="25" version="2.0">
+<workbench progressCount="24" version="2.0">
 <workbenchAdvisor/>
-<window height="685" width="1024" x="21" y="22">
+<window height="685" maximized="true" width="1249" x="0" y="22">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -13,9 +13,11 @@
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="100" y="22"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="62" y="22"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="84" y="22"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="98" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="152" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -24,14 +26,58 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Balance.java" partName="Balance.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/Player/Balance.java" title="Balance.java" tooltip="ProjectDragon/src/Player/Balance.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/Player/Balance.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="260" selectionTopPixel="257"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Account.java" partName="Account.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/Player/Account.java" title="Account.java" tooltip="ProjectDragon/src/Player/Account.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/Player/Account.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="170" selectionTopPixel="10"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Pot.java" partName="Pot.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/Game/Pot.java" title="Pot.java" tooltip="ProjectDragon/src/Game/Pot.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/Game/Pot.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="202" selectionTopPixel="272"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BettingRound.java" partName="BettingRound.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/Game/BettingRound.java" title="BettingRound.java" tooltip="ProjectDragon/src/Game/BettingRound.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/Game/BettingRound.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="160" selectionTopPixel="137"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Round.java" partName="Round.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/Game/Round.java" title="Round.java" tooltip="ProjectDragon/src/Game/Round.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/Game/Round.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="434" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Bet.java" partName="Bet.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/Player/Bet.java" title="Bet.java" tooltip="ProjectDragon/src/Player/Bet.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/Player/Bet.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="626" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Card.java" partName="Card.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/Game/Card.java" title="Card.java" tooltip="ProjectDragon/src/Game/Card.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/Game/Card.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="892" selectionTopPixel="322"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Deck.java" partName="Deck.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/Game/Deck.java" title="Deck.java" tooltip="ProjectDragon/src/Game/Deck.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/Game/Deck.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="536" selectionTopPixel="0"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Warnings (1 item)"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -67,23 +113,6 @@
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.SyntheticMembersFilter" isEnabled="true"/>
 </xmlDefinedFilters>
 </customFilters>
-</viewState>
-</view>
-<view id="org.eclipse.mylyn.tasks.ui.views.tasks" partName="Task List">
-<viewState linkWithEditor="true" presentation="org.eclipse.mylyn.tasks.ui.categorized">
-<sorter groupBy="CATEGORY_QUERY">
-<sorter>
-<sort0 sortDirection="1" sortKey="PRIORITY"/>
-<sort1 sortDirection="1" sortKey="RANK"/>
-<sort2 sortDirection="1" sortKey="DATE_CREATED"/>
-<sort3 sortDirection="1" sortKey="NONE"/>
-<sort4 sortDirection="1" sortKey="NONE"/>
-<sort5 sortDirection="1" sortKey="NONE"/>
-<sort6 sortDirection="1" sortKey="NONE"/>
-<sort7 sortDirection="1" sortKey="NONE"/>
-</sorter>
-</sorter>
-<filteredTreeFindHistory/>
 </viewState>
 </view>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
@@ -151,7 +180,6 @@
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
-<view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -192,12 +220,10 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1080f38" ratio="0.7493438" ratioLeft="571" ratioRight="191" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.mylyn.tasks.ui.views.tasks" appearance="2" expanded="2">
-<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1080f38" ratio="0.90346086" ratioLeft="992" ratioRight="106" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="right" ratio="0.5" ratioLeft="225" ratioRight="225" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1080f38">
@@ -215,7 +241,169 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/Player/Balance.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/Player/Account.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/Game/Pot.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/Player/iHand.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/Game/BettingRound.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/Game/Round.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/Player/Bet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/Game/Card.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/Game/Deck.java"/>
+</editors>
+<item historyLabel="Account.java" index="1">
+<position info="not_deleted" x="170" y="0"/>
+</item>
+<item historyLabel="Pot.java" index="2">
+<position info="not_deleted" x="202" y="0"/>
+</item>
+<item historyLabel="Account.java" index="1">
+<position info="not_deleted" x="170" y="0"/>
+</item>
+<item historyLabel="Balance.java" index="0">
+<position info="not_deleted" x="260" y="0"/>
+</item>
+<item historyLabel="Account.java" index="1">
+<position info="not_deleted" x="170" y="0"/>
+</item>
+<item historyLabel="Pot.java" index="2">
+<position info="not_deleted" x="202" y="0"/>
+</item>
+<item historyLabel="iHand.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="iHand.java" index="3">
+<position info="not_deleted" x="232" y="0"/>
+</item>
+<item historyLabel="iHand.java" index="3">
+<position info="not_deleted" x="440" y="0"/>
+</item>
+<item historyLabel="iHand.java" index="3">
+<position info="not_deleted" x="325" y="0"/>
+</item>
+<item historyLabel="iHand.java" index="3">
+<position info="not_deleted" x="296" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="310" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="392" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="577" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="160" y="0"/>
+</item>
+<item historyLabel="iHand.java" index="3">
+<position info="not_deleted" x="296" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="160" y="0"/>
+</item>
+<item historyLabel="iHand.java" index="3">
+<position info="not_deleted" x="296" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="160" y="0"/>
+</item>
+<item historyLabel="Round.java" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Round.java" index="5">
+<position info="not_deleted" x="285" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="160" y="0"/>
+</item>
+<item historyLabel="Round.java" index="5">
+<position info="not_deleted" x="434" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="160" y="0"/>
+</item>
+<item historyLabel="Round.java" index="5">
+<position info="not_deleted" x="434" y="0"/>
+</item>
+<item historyLabel="BettingRound.java" index="4">
+<position info="not_deleted" x="160" y="0"/>
+</item>
+<item historyLabel="Round.java" index="5">
+<position info="not_deleted" x="434" y="0"/>
+</item>
+<item historyLabel="Bet.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Bet.java" index="6">
+<position info="not_deleted" x="688" y="0"/>
+</item>
+<item historyLabel="Bet.java" index="6">
+<position info="not_deleted" x="558" y="0"/>
+</item>
+<item historyLabel="Bet.java" index="6">
+<position info="not_deleted" x="626" y="0"/>
+</item>
+<item historyLabel="Card.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Card.java" index="7">
+<position info="not_deleted" x="390" y="0"/>
+</item>
+<item historyLabel="Card.java" index="7">
+<position info="not_deleted" x="746" y="0"/>
+</item>
+<item historyLabel="Card.java" index="7">
+<position info="not_deleted" x="823" y="0"/>
+</item>
+<item historyLabel="Card.java" index="7">
+<position info="not_deleted" x="892" y="0"/>
+</item>
+<item historyLabel="iHand.java" index="3">
+<position info="not_deleted" x="405" y="0"/>
+</item>
+<item historyLabel="Card.java" index="7">
+<position info="not_deleted" x="892" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="308" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="258" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="521" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="342" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="694" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="768" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="459" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="764" y="0"/>
+</item>
+<item historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="761" y="0"/>
+</item>
+<item active="true" historyLabel="Deck.java" index="8">
+<position info="not_deleted" x="256" y="0"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -232,5 +420,33 @@
 </trimArea>
 </trimLayout>
 </window>
-<mruList/>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Deck.java" tooltip="ProjectDragon/src/Game/Deck.java">
+<persistable path="/ProjectDragon/src/Game/Deck.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Card.java" tooltip="ProjectDragon/src/Game/Card.java">
+<persistable path="/ProjectDragon/src/Game/Card.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Bet.java" tooltip="ProjectDragon/src/Player/Bet.java">
+<persistable path="/ProjectDragon/src/Player/Bet.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Round.java" tooltip="ProjectDragon/src/Game/Round.java">
+<persistable path="/ProjectDragon/src/Game/Round.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BettingRound.java" tooltip="ProjectDragon/src/Game/BettingRound.java">
+<persistable path="/ProjectDragon/src/Game/BettingRound.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="iHand.java" tooltip="ProjectDragon/src/Player/iHand.java">
+<persistable path="/ProjectDragon/src/Player/iHand.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Pot.java" tooltip="ProjectDragon/src/Game/Pot.java">
+<persistable path="/ProjectDragon/src/Game/Pot.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Account.java" tooltip="ProjectDragon/src/Player/Account.java">
+<persistable path="/ProjectDragon/src/Player/Account.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Balance.java" tooltip="ProjectDragon/src/Player/Balance.java">
+<persistable path="/ProjectDragon/src/Player/Balance.java"/>
+</file>
+</mruList>
 </workbench>

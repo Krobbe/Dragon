@@ -42,11 +42,4 @@ public class Deck {
 			cards.add(new Card(suite, i));
 		}
 	}
-	
-	public Card popCard() {
-		Card tmp = cards.get(0);
-		cards.remove(0);
-		
-		return tmp;
-	}
 }

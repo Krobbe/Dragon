@@ -43,10 +43,7 @@ public class Deck {
 		}
 	}
 	
-	public Card popCard() {
-		Card tmp = cards.get(0);
-		cards.remove(0);
-		
-		return tmp;
+	public List<Card> getDeck() {
+		return cards;
 	}
 }

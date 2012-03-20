@@ -1,5 +1,6 @@
 package Game;
 
+import java.util.NoSuchElementException;
 
 /**
  * A class that represents a Card. 
@@ -21,7 +22,7 @@ public class Card {
 	
 	public Card(Suite suite, int value) {
 		if(!validValue(value)) {
-			throw new IllegalArgumentException("The value must be between 1 and 13.");
+			throw new NoSuchElementException("The value must be between 1 and 13.");
 		}
 		this.value = value;
 		this.suite = suite;
