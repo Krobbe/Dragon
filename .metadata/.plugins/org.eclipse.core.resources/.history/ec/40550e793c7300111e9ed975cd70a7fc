@@ -44,6 +44,9 @@ public class Deck {
 	}
 	
 	public Card popCard() {
-		return cards.remove(0);
+		Card tmp = cards.get(0);
+		cards.remove(0);
+		
+		return tmp;
 	}
 }
