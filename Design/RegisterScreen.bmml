@@ -19,12 +19,12 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="12" controlTypeID="com.balsamiq.mockups::TextInput" x="569" y="203" w="163" h="-1" measuredW="157" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::TextInput" x="569" y="267" w="163" h="-1" measuredW="157" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Choose%20an%20account%20name</text>
       </controlProperties>
     </control>
-    <control controlID="13" controlTypeID="com.balsamiq.mockups::TextInput" x="569" y="245" w="162" h="-1" measuredW="126" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::TextInput" x="569" y="309" w="162" h="-1" measuredW="126" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Choose%20a%20password</text>
       </controlProperties>
@@ -34,14 +34,24 @@
         <text>Back</text>
       </controlProperties>
     </control>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="941" y="558" w="76" h="27" measuredW="73" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="941" y="558" w="76" h="27" measuredW="74" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Register</text>
       </controlProperties>
     </control>
-    <control controlID="18" controlTypeID="com.balsamiq.mockups::TextInput" x="569" y="287" w="162" h="-1" measuredW="134" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::TextInput" x="569" y="351" w="162" h="-1" measuredW="134" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Choose%20a%20user%20name</text>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::TextInput" x="569" y="225" w="163" h="-1" measuredW="74" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Last%20name</text>
+      </controlProperties>
+    </control>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::TextInput" x="569" y="183" w="163" h="-1" measuredW="74" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>First%20name</text>
       </controlProperties>
     </control>
   </controls>
