@@ -7,7 +7,7 @@ package Game;
  * A card has a suite and a value, where value is between 1 and 13. 
  * Ace has the value 1.
  * 
- * @author lisastenberg
+ * @author lisastenberg and forssenm
  *
  */
 
@@ -51,5 +51,44 @@ public class Card {
 	 */
 	public Suite getSuite() {
 		return suite;
+	}
+	
+	/**
+	 * Equals class for a card
+	 * @author forssenm
+	 * @param o is the object you will compare with
+	 * @return true if suite and value are the same for both cards
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if(this == o) {
+			return true;
+		}
+		else if (!(o instanceof Card)) {
+			return false;
+		}
+		else {
+			Card card = (Card)o;
+			return (this.suite == card.suite && this.value == card.value);
+		}
+	}
+	
+	/**
+	 * @author forssenm
+	 * toString method for the card class
+	 * @return returns a string in the form of "3 of spades"
+	 */
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.value + " of " + this.suite);
+		return result.toString();
+	}
+	
+	//Since we at the current state aren't planning on using any hashtables this code was added
+	//for the cause of good practice
+	public int hashCode() {
+		  assert false : "hashCode not designed";
+		  return 42; // any arbitrary constant will do
 	}
 }
