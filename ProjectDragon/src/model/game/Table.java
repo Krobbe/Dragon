@@ -98,7 +98,7 @@ public class Table {
 	 * A help method that decides how much chips each player will get
 	 */
 	private void distributeChips() {
-		List<Player> winners = round.decideWinners();
+		List<Player> winners = round.getWinners();
 	}
 	
 	/**

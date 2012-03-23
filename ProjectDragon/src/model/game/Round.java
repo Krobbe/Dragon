@@ -40,7 +40,7 @@ public class Round {
 	 * 
 	 * @return A list of the players who has won the current round
 	 */
-	public List<Player> decideWinners() {
+	public List<Player> getWinners() {
 		//TODO poker hand eveluator?
 		return null;
 	}
