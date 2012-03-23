@@ -18,16 +18,4 @@ public interface iPlayer {
 	 * @param b true if you want to set the player active. 
 	 */
 	public void setActive(boolean b);
-	
-	/**
-	 * @author lisastenberg
-	 * @return the balance of the player.
-	 */
-	public Balance getBalance();
-	
-	@Override
-	public boolean equals(Object o);
-	
-	@Override
-	public String toString();
 }

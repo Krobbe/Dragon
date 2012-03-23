@@ -5,11 +5,7 @@ import static org.junit.Assert.*;
 import model.player.Balance;
 
 import org.junit.Test;
-/**
- * Test for balance.
- * @author lisastenberg
- *
- */
+
 public class BalanceTest {
 	
 	@Test

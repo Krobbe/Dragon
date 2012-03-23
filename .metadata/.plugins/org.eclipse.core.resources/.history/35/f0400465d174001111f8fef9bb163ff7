@@ -5,18 +5,14 @@ import static org.junit.Assert.*;
 import model.player.Balance;
 
 import org.junit.Test;
-/**
- * Test for balance.
- * @author lisastenberg
- *
- */
+
 public class BalanceTest {
 	
 	@Test
 	public void testAddToBalance() {
 		Balance b = new Balance();
 		b.addToBalance(10);
-		assertTrue(b.getValue() == 10);
+		assertTrue(b.getBalance() == 10);
 	}
 
 	@Test
@@ -24,7 +20,7 @@ public class BalanceTest {
 		Balance b = new Balance();
 		b.addToBalance(20);
 		b.removeFromBalance(10);
-		assertTrue(b.getValue() == 10);
+		assertTrue(b.getBalance() == 10);
 		
 	}
 	

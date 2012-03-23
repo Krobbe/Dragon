@@ -6,11 +6,7 @@ import model.player.Account;
 import model.player.Balance;
 
 import org.junit.Test;
-/**
- * Test for Account.
- * @author lisastenberg
- *
- */
+
 public class AccountTest {
 	Account a = new Account("a", "b", "c", "d");
 	Account b = new Account("b1", "b2", "b3", "b4");
@@ -66,7 +62,7 @@ public class AccountTest {
 	@Test
 	public void testGetBalance() {
 		Balance bal = b.getBalance();
-		System.out.println(bal.getValue());
+		System.out.println(bal.getBalance());
 		Balance bal2 = new Balance(0);
 		assertTrue(bal.equals(bal2));
 	}

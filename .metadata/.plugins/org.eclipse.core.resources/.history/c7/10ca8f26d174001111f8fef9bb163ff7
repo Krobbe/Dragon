@@ -21,7 +21,7 @@ public class Balance {
 	}
 	
 	/**
-	 * @author lisastenberg
+	 * 
 	 * @return the value of the balance.
 	 */
 	public int getValue() {
@@ -29,7 +29,6 @@ public class Balance {
 	}
 	
 	/**
-	 * @author lisastenberg
 	 * Add x to the balance.
 	 * @param x	the value you want to add to the balance.
 	 */
@@ -38,7 +37,6 @@ public class Balance {
 	}
 	
 	/**
-	 * @author lisastenberg
 	 * Remove x from balance. 
 	 * @param x the value you want to remove from the balance. 
 	 */
@@ -65,7 +63,7 @@ public class Balance {
 		}
 		else {
 			Balance tmp = (Balance)o;
-			return this.value == tmp.value;
+			return this.balance == tmp.balance;
 		}
 	}
 }

@@ -1,0 +1,26 @@
+package model.player;
+
+public class User implements iPlayer{
+	Balance balance = new Balance();
+	
+	public User() {
+		
+	}
+
+	@Override
+	public iHand getHand() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setActive(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	public Balance getBalance() {
+		return balance;
+	}
+}

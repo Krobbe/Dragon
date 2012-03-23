@@ -3,11 +3,7 @@ package game;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-/**
- * A test for round. 
- * @author lisastenberg
- *
- */
+
 public class RoundTest {
 
 	@Test

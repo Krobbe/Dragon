@@ -5,11 +5,7 @@ import static org.junit.Assert.*;
 import model.game.Card;
 
 import org.junit.Test;
-/**
- * A test for Card.
- * @author lisastenberg
- *
- */
+
 public class CardTest {
 	Card c = new Card(Card.Suite.SPADES, 2);
 	Card d = new Card(Card.Suite.SPADES, 2);

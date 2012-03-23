@@ -10,43 +10,41 @@ import model.game.Card;
  */
 
 public class Balance {
-	private int value;
+	private int balance;
 	
 	public Balance() {
 		this(0);
 	}
 	
-	public Balance(int val) {
-		value = val;
+	public Balance(int bal) {
+		balance = bal;
 	}
 	
 	/**
-	 * @author lisastenberg
+	 * 
 	 * @return the value of the balance.
 	 */
-	public int getValue() {
-		return value;
+	public int getBalance() {
+		return balance;
 	}
 	
 	/**
-	 * @author lisastenberg
 	 * Add x to the balance.
 	 * @param x	the value you want to add to the balance.
 	 */
 	public void addToBalance(int x) {
-		value = value + x;
+		balance = balance + x;
 	}
 	
 	/**
-	 * @author lisastenberg
 	 * Remove x from balance. 
 	 * @param x the value you want to remove from the balance. 
 	 */
 	public void removeFromBalance(int x) {
-		if(x > value) {
+		if(x > balance) {
 			throw new IllegalArgumentException("You do not have enough money to remove " + x  + " from your balance");
 		}
-		value = value - x;
+		balance = balance - x;
 	}
 	
 	/**
@@ -65,7 +63,7 @@ public class Balance {
 		}
 		else {
 			Balance tmp = (Balance)o;
-			return this.value == tmp.value;
+			return this.balance == tmp.balance;
 		}
 	}
 }

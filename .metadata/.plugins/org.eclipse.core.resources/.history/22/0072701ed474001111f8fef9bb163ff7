@@ -38,10 +38,4 @@ public interface iHand {
 	 * @param b a boolean.
 	 */
 	public void setVisible(boolean b);
-	
-	@Override
-	public boolean equals(Object o);
-	
-	@Override
-	public String toString();
 }

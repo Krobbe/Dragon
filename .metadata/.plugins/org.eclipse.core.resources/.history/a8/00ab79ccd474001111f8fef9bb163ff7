@@ -6,11 +6,7 @@ import model.player.Account;
 import model.player.Balance;
 
 import org.junit.Test;
-/**
- * Test for Account.
- * @author lisastenberg
- *
- */
+
 public class AccountTest {
 	Account a = new Account("a", "b", "c", "d");
 	Account b = new Account("b1", "b2", "b3", "b4");

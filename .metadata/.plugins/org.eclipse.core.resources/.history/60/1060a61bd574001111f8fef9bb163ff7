@@ -7,11 +7,6 @@ import model.game.Deck;
 
 import org.junit.Test;
 
-/**
- * A test for Deck.
- * @author lisastenberg
- *
- */
 public class DeckTest {
 
 	@Test
