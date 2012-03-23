@@ -31,14 +31,15 @@ public class Table {
 	}
 	
 	/**
-	 * Adds a player to the table (if there aren't already 10 players at the table)
+	 * Adds a player to the table.
 	 * @param p The player that will be added to the list of players
+	 * @throws IllegalArgumentException if there are all ready ten players at the table
 	 */
-	public void addPlayer(Player p) {
+	public void addPlayer(Player p) throws IllegalArgumentException {
 		if (players.size() < 10) {
 			players.add(p);
 		} else {
-			//TODO kasta nŒt exception?
+			throw new IllegalArgumentException();
 		}
 	}
 	
@@ -62,14 +63,15 @@ public class Table {
 	}
 	
 	/**
-	 * Adds a card to the "table cards" (if there aren't already five cards)
+	 * Adds a card to the "table cards" 
 	 * @param c The card which will be added
+	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
-	public void addTableCard(Card c) {
+	public void addTableCard(Card c) throws IllegalArgumentException {
 		if (tableCards.size() < 5) {
 			tableCards.add(c);
 		} else {
-			//TODO kasta nŒt exeption?
+			throw new IllegalArgumentException();
 		}
 	}
 	
@@ -88,4 +90,5 @@ public class Table {
 	public Dealer getDealer() {
 		return dealer;
 	}
+	
 }
