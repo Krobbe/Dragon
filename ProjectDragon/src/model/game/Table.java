@@ -92,22 +92,17 @@ public class Table {
 		p.getHand().setVisible(true); //TODO bättre att göra en metod i Player makeHandVisble för att undvika långa rader av metodanrop?
 	}
 	
-	public void distributePot() {
+	/**
+	 * Calculates the amount of chips the winner(s) will get and distributes it to him.
+	 */
+	public void distributePot() { //TODO Ev dela upp i två metoder?
 		List<iPlayer> winners = round.getWinners();
 		int winnerAmount = round.getPot().getValue() / winners.size();
 		for (iPlayer p: winners) {
 			if (players.contains(p)) {
-				
+				p.getBalance().addToValue(winnerAmount);
 			}
 		}
-	}
-	
-	/**
-	 * A help method that decides how much chips each player will get
-	 */
-	private List<Integer> distributeChips() {
-		List<iPlayer> winners = round.getWinners();
-		return 
 	}
 	
 	/**
