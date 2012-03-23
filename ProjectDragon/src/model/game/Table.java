@@ -76,6 +76,32 @@ public class Table {
 	}
 	
 	/**
+	 * Clears all "table cards" from the table.
+	 */
+	public void clearTableCards() {
+		tableCards.clear();
+	}
+	
+	/**
+	 * Makes a players cards visible
+	 * @param p The player which cards will be set visible
+	 */
+	public void makeHandVisible(Player p) {
+		p.getHand().setVisible(true); //TODO bättre att göra en metod i Player makeHandVisble för att undvika långa rader av metodanrop?
+	}
+	
+	public void distributePot() {
+		
+	}
+	
+	/**
+	 * A help method that decides how much chips each player will get
+	 */
+	private void distributeChips() {
+		List<Player> winners = round.decideWinners();
+	}
+	
+	/**
 	 * 
 	 * @return The current round
 	 */

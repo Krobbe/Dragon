@@ -1,5 +1,7 @@
 package model.game;
 
+import java.util.List;
+
 /**
  * A class that simulates a Round in a pokergame. 
  * 
@@ -32,6 +34,15 @@ public class Round {
 	 */
 	public Pot getPot() {
 		return pot;
+	}
+	
+	/**
+	 * 
+	 * @return A list of the players who has won the current round
+	 */
+	public List<Player> decideWinners() {
+		//TODO poker hand eveluator?
+		return null;
 	}
 	
 	
