@@ -6,3 +6,18 @@
 1332247586041	Encapsulate field 'pot'
 1332249502209	Encapsulate field 'bettingRound'
 1332249512533	Encapsulate field 'pot'
+1332426785534	Copy package
+1332426794527	Delete element
+1332427121770	Rename package 'Model'
+1332427133340	Rename package 'Player'
+1332427206364	Rename package 'Game'
+1332427216104	Rename package 'Database'
+1332427233245	Rename package 'game'
+1332427244745	Rename package 'database'
+1332427266160	Rename package 'GUI'
+1332427490880	Delete element
+1332427508146	Rename package 'player'
+1332427524395	Delete element
+1332427571384	Delete element
+1332427796530	Delete element
+1332429562817	Rename type 'Bet'
