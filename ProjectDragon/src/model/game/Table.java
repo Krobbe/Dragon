@@ -100,7 +100,7 @@ public class Table {
 		int winnerAmount = round.getPot().getValue() / winners.size();
 		for (iPlayer p: winners) {
 			if (players.contains(p)) {
-				p.getBalance().addToValue(winnerAmount);
+				p.getBalance().addToBalance(winnerAmount);
 			}
 		}
 	}
@@ -119,6 +119,14 @@ public class Table {
 	 */
 	public Dealer getDealer() {
 		return dealer;
+	}
+	
+	/**
+	 * This method is used only for testing of the class.
+	 * @return A list of players at the table.
+	 */
+	public List<iPlayer> getPlayers() {
+		return players;
 	}
 	
 }
