@@ -7,7 +7,7 @@ import model.player.Balance;
 import org.junit.Test;
 
 public class BalanceTest {
-
+	
 	@Test
 	public void testAddToBalance() {
 		Balance b = new Balance();
@@ -28,5 +28,18 @@ public class BalanceTest {
      public void testGetBadIndex() {
          Balance b = new Balance();
          b.removeFromBalance(10);//Should give exception!
+	 }
+	 
+	 @Test
+	 public void equalsTest() {
+			Balance b1 = new Balance();
+			Balance b2 = new Balance(0);
+			Balance b3 = new Balance();
+			
+			assertTrue(b1.equals(b1));
+			assertTrue(b1.equals(b2));
+			if(b2.equals(b3)) {
+				assertTrue(b1.equals(b3));
+			}
 	 }
 }

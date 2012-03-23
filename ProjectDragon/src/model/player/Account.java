@@ -16,6 +16,8 @@ public class Account {
 		setLastName(lName);
 		setUserName(user);
 		setPassWord(pass);
+		
+		balance = new Balance(0);
 	}
 
 	/**
@@ -92,5 +94,14 @@ public class Account {
 	 */
 	public Balance getBalance() {
 		return balance;
+	}
+	
+	/**
+	 * @author lisastenberg
+	 * Set balance to x
+	 * @param x the value you want to set balance to.
+	 */
+	public void addToBalance(int x) {
+		balance.addToBalance(x);
 	}
 }

@@ -1,9 +1,6 @@
 package player;
 
 import static org.junit.Assert.*;
-
-import model.player.Account;
-
 import org.junit.Test;
 
 public class BetTest {

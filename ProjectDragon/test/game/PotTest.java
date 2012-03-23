@@ -15,6 +15,7 @@ public class PotTest {
 		assertTrue(p.getPot() == 10);
 	}
 	
+	@Test
 	public void testEmptyPot() {
 		Pot p = new Pot();
 		p.addToPot(10);

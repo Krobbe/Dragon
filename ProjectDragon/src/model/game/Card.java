@@ -56,7 +56,7 @@ public class Card {
 	}
 	
 	/**
-	 * Equals class for a card
+	 * Equals-method for a card
 	 * @author forssenm
 	 * @param o is the object you will compare with
 	 * @return true if suite and value are the same for both cards

@@ -3,12 +3,37 @@ package player;
 import static org.junit.Assert.*;
 
 import model.player.Account;
+import model.player.Balance;
 
 import org.junit.Test;
 
 public class AccountTest {
 	Account a = new Account("a", "b", "c", "d");
 	Account b = new Account("b1", "b2", "b3", "b4");
+	
+	@Test
+	public void testGetFirstName() {
+		String s = b.getFirstName();
+		assertTrue(s.equals("b1"));
+	}
+	
+	@Test
+	public void testGetLastName() {
+		String s = b.getLastName();
+		assertTrue(s.equals("b2"));
+	}
+	
+	@Test
+	public void testGetUserName() {
+		String s = b.getUserName();
+		assertTrue(s.equals("b3"));
+	}
+	
+	@Test
+	public void testGetPassWord() {
+		String s = b.getPassWord();
+		assertTrue(s.equals("b4"));
+	}
 	
 	@Test
 	public void testSetFirstName() {
@@ -35,27 +60,17 @@ public class AccountTest {
 	}
 	
 	@Test
-	public void testGetFirstName() {
-		String s = b.getFirstName();
-		assertTrue(s.equals("b1"));
+	public void testGetBalance() {
+		Balance bal = b.getBalance();
+		System.out.println(bal.getBalance());
+		Balance bal2 = new Balance(0);
+		assertTrue(bal.equals(bal2));
 	}
 	
 	@Test
-	public void testGetLastName() {
-		String s = b.getLastName();
-		assertTrue(s.equals("b2"));
-	}
-	
-	@Test
-	public void testGetUserName() {
-		String s = b.getUserName();
-		assertTrue(s.equals("b3"));
-	}
-	
-	@Test
-	public void testGetPassWord() {
-		String s = b.getPassWord();
-		assertTrue(s.equals("b4"));
+	public void testSetBalance() {
+		b.addToBalance(10);
+		assertTrue(b.getBalance().getBalance() == 10);
 	}
 
 }
