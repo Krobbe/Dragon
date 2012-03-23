@@ -1,0 +1,31 @@
+package Database;
+import java.sql.*;
+
+
+public class DatabaseCommunicator {
+	private static DatabaseCommunicator dbc;
+	Connection conn;
+	
+	private DatabaseCommunicator() {
+		try{
+		    Class.forName("org.postgresql.Driver");
+		    } catch (ClassNotFoundException cnfe){
+		      System.out.println("Could not find the JDBC driver!");
+		      System.exit(1);
+		    }
+		try {
+		    conn = DriverManager.getConnection
+		                   (String url, String user, String password);
+		     } catch (SQLException sqle) {
+		       System.out.println("Could not connect");
+		       System.exit(1);
+		     }
+	}
+	
+	public static DatabaseCommunicator getInstance() {
+		if(dbc == null) {
+			dbc = new DatabaseCommunicator();
+		}
+		return dbc;
+	}
+}

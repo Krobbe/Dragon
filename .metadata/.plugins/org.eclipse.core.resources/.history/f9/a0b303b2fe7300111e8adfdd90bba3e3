@@ -1,0 +1,16 @@
+package Database;
+
+public class DatabaseCommunicator {
+	private static DatabaseCommunicator dbc;
+	
+	private DatabaseCommunicator() {
+		
+	}
+	
+	public static DatabaseCommunicator getInstance() {
+		if(dbc == null) {
+			dbc = new DatabaseCommunicator();
+		}
+		return dbc;
+	}
+}

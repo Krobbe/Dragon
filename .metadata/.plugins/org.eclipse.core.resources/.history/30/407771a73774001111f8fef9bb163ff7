@@ -1,0 +1,21 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import model.game.Card;
+import model.game.Deck;
+
+import org.junit.Test;
+
+public class DeckTest {
+
+	@Test
+	public void testPopCard() {
+		Deck d = new Deck();
+		Card c1 = d.popCard();
+		Card c2 = d.popCard();
+		
+		assertTrue(!c1.equals(c2));
+	}
+
+}
