@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Player;
+package player;
 
 /**
  * A class that simulates a bet.

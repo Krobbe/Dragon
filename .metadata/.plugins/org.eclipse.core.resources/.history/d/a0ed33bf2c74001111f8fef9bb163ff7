@@ -1,8 +1,9 @@
-package Player;
+package player;
+
+import game.Card;
 
 import java.util.List;
 
-import Game.Card;
 
 /**
  * An interface for a hand in a poker game. 

@@ -1,9 +1,10 @@
-package Game;
+package game;
+
+import game.Card.Suite;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import Game.Card.Suite;
 
 /**
  * A class that represents a Deck.
