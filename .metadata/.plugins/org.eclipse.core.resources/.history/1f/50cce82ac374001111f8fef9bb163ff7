@@ -9,12 +9,6 @@ import org.junit.Test;
 public class CardTest {
 	Card c = new Card(Card.Suite.SPADES, 2);
 	Card d = new Card(Card.Suite.SPADES, 2);
-	Card e = new Card(Card.Suite.SPADES, 2);
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testBadIndex() {
-		Card card = new Card(Card.Suite.SPADES, 14);
-	}
 	
 	@Test
 	public void testGetValue() {
@@ -29,11 +23,7 @@ public class CardTest {
 
 	@Test
 	public void testEquals() {
-		assertTrue(c.equals(c));
 		assertTrue(c.equals(d));
-		if(d.equals(e)) {
-			assertTrue(c.equals(e));
-		}
 	}
 	
 	@Test

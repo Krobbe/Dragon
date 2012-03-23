@@ -37,25 +37,25 @@ public class AccountTest {
 	@Test
 	public void testGetFirstName() {
 		String s = b.getFirstName();
-		assertTrue(s.equals("b1"));
+		assertTrue(a.getFirstName().equals("first"));
 	}
 	
 	@Test
 	public void testGetLastName() {
-		String s = b.getLastName();
-		assertTrue(s.equals("b2"));
+		a.setLastName("last");
+		assertTrue(a.getLastName().equals("last"));
 	}
 	
 	@Test
 	public void testGetUserName() {
-		String s = b.getUserName();
-		assertTrue(s.equals("b3"));
+		a.setUserName("user");
+		assertTrue(a.getUserName().equals("user"));
 	}
 	
 	@Test
 	public void testGetPassWord() {
-		String s = b.getPassWord();
-		assertTrue(s.equals("b4"));
+		a.setPassWord("pass");
+		assertTrue(a.getPassWord().equals("pass"));
 	}
 
 }

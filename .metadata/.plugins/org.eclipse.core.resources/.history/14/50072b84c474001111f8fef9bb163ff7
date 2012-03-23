@@ -10,6 +10,7 @@ public class CardTest {
 	Card c = new Card(Card.Suite.SPADES, 2);
 	Card d = new Card(Card.Suite.SPADES, 2);
 	Card e = new Card(Card.Suite.SPADES, 2);
+	Card f = new Card(Card.Suite.SPADES, 3);
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testBadIndex() {
@@ -34,6 +35,7 @@ public class CardTest {
 		if(d.equals(e)) {
 			assertTrue(c.equals(e));
 		}
+		assertTrue(!c.equals(f));
 	}
 	
 	@Test

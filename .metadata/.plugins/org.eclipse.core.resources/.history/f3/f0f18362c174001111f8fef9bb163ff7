@@ -48,13 +48,13 @@ public class AccountTest {
 	
 	@Test
 	public void testGetUserName() {
-		String s = b.getUserName();
+		a.setUserName("user");
 		assertTrue(s.equals("b3"));
 	}
 	
 	@Test
 	public void testGetPassWord() {
-		String s = b.getPassWord();
+		a.setPassWord("pass");
 		assertTrue(s.equals("b4"));
 	}
 

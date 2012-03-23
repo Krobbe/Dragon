@@ -11,11 +11,6 @@ public class CardTest {
 	Card d = new Card(Card.Suite.SPADES, 2);
 	Card e = new Card(Card.Suite.SPADES, 2);
 	
-	@Test(expected=IllegalArgumentException.class)
-	public void testBadIndex() {
-		Card card = new Card(Card.Suite.SPADES, 14);
-	}
-	
 	@Test
 	public void testGetValue() {
 		c.getValue();
