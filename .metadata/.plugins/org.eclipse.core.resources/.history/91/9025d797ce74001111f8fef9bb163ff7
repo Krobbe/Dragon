@@ -3,8 +3,6 @@ package model.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.player.iPlayer;
-
 /**
  * A class that represent table at which a poker game takes place. This class has a central
  * roll in Dragon. It has access to all the other classes in the application and is the 
@@ -37,7 +35,7 @@ public class Table {
 	 * @param p The player that will be added to the list of players
 	 * @throws IllegalArgumentException if there are all ready ten players at the table
 	 */
-	public void addPlayer(iPlayer p) throws IllegalArgumentException {
+	public void addPlayer(Player p) throws IllegalArgumentException {
 		if (players.size() < 10) {
 			players.add(p);
 		} else {
@@ -60,7 +58,7 @@ public class Table {
 	 * 
 	 * @return The player who's turn it currently is
 	 */
-	public iPlayer getCurrentPlayer() {
+	public Player getCurrentPlayer() {
 		return players.get(indexOfCurrentPlayer);
 	}
 	
@@ -88,7 +86,7 @@ public class Table {
 	 * Makes a players cards visible
 	 * @param p The player which cards will be set visible
 	 */
-	public void makeHandVisible(iPlayer p) {
+	public void makeHandVisible(Player p) {
 		p.getHand().setVisible(true); //TODO bŠttre att gšra en metod i Player makeHandVisble fšr att undvika lŒnga rader av metodanrop?
 	}
 	
@@ -100,7 +98,7 @@ public class Table {
 	 * A help method that decides how much chips each player will get
 	 */
 	private void distributeChips() {
-		List<iPlayer> winners = round.getWinners();
+		List<Player> winners = round.getWinners();
 	}
 	
 	/**

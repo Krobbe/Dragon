@@ -66,5 +66,11 @@ public class AccountTest {
 		Balance bal2 = new Balance(0);
 		assertTrue(bal.equals(bal2));
 	}
+	
+	@Test
+	public void testSetBalance() {
+		b.addToBalance(10);
+		assertTrue(b.getBalance().getBalance() == 10);
+	}
 
 }
