@@ -93,14 +93,21 @@ public class Table {
 	}
 	
 	public void distributePot() {
-		
+		List<iPlayer> winners = round.getWinners();
+		int winnerAmount = round.getPot().getValue() / winners.size();
+		for (iPlayer p: winners) {
+			if (players.contains(p)) {
+				
+			}
+		}
 	}
 	
 	/**
 	 * A help method that decides how much chips each player will get
 	 */
-	private void distributeChips() {
+	private List<Integer> distributeChips() {
 		List<iPlayer> winners = round.getWinners();
+		return 
 	}
 	
 	/**
