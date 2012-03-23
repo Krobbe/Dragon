@@ -6,21 +6,21 @@ package model.game;
  */
 
 public class Pot {
-	private int pot;
+	private int value;
 	
 	/**
 	 * Constructs a pot that contains no money.
 	 */
 	public Pot() {
-		pot = 0;
+		value = 0;
 	}
 
 	/**
 	 * 
 	 * @return the value of the pot (in reality: how much's in the pot).
 	 */
-	public int getPot() {
-		return pot;
+	public int getValue() {
+		return value;
 	}
 
 	/**
@@ -28,7 +28,7 @@ public class Pot {
 	 * @param x	the 
 	 */
 	public void addToPot(int x) {
-		pot = pot + x;
+		value = value + x;
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class Pot {
 	 * and the pot is set to 0.
 	 */
 	public void emptyPot() {
-		pot = 0;
+		value = 0;
 	}
 	
 }
