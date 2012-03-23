@@ -12,6 +12,12 @@ import model.player.iPlayer;
 
 import org.junit.Test;
 
+/**
+ * A test of the Table-class
+ * @author mattiashenriksson
+ *
+ */
+
 public class TableTest {
 
 	@Test
