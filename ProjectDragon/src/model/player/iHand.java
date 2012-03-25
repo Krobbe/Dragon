@@ -39,6 +39,12 @@ public interface iHand {
 	 */
 	public void setVisible(boolean b);
 	
+	/**
+	 * @author mattiashenriksson
+	 * @return A boolean that tells if the hand is currently visible
+	 */
+	public boolean isVisible();
+	
 	@Override
 	public boolean equals(Object o);
 	

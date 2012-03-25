@@ -24,6 +24,13 @@ public class Table {
 	/**
 	 * Creates a new Table.
 	 */
+	public Table() {
+		this(new Round(),new Dealer());
+	}
+	
+	/**
+	 * Creates a new Table.
+	 */
 	public Table(Round round, Dealer dealer) {
 		this.round = round;
 		this.dealer = dealer;
@@ -127,6 +134,14 @@ public class Table {
 	 */
 	public List<iPlayer> getPlayers() {
 		return players;
+	}
+	
+	/**
+	 * This method is used only for testing of the class.
+	 * @return The "table cards" represented as a list of cards.
+	 */
+	public List<Card> getTableCards() {
+		return tableCards;
 	}
 	
 }
