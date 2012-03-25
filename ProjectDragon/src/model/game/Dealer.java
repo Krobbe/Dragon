@@ -5,7 +5,8 @@ import java.util.List;
 
 /**
  * A class that represents a dealer. 
- * @author lisastenberg
+ * @author lisastenberg 
+ * @author forssenm
  *
  */
 
