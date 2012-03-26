@@ -7,7 +7,7 @@ import model.player.iPlayer;
 
 /**
  * A class that represent table at which a poker game takes place. This class has a central
- * roll in Dragon. It has access to all the other classes in the application and is the 
+ * role in Dragon. It has access to all the other classes in the application and is the 
  * class through which the game is controlled.
  * 
  * @author Mattias Henriksson
