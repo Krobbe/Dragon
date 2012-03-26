@@ -106,9 +106,7 @@ public class Table {
 		List<iPlayer> winners = round.getWinners();
 		int winnerAmount = round.getPot().getValue() / winners.size();
 		for (iPlayer p: winners) {
-			if (players.contains(p)) {
-				p.getBalance().addToBalance(winnerAmount);
-			}
+			p.getBalance().addToBalance(winnerAmount);
 		}
 	}
 	
@@ -142,6 +140,12 @@ public class Table {
 	 */
 	public List<Card> getTableCards() {
 		return tableCards;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		//TODO
+		return true;
 	}
 	
 }

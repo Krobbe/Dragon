@@ -98,6 +98,10 @@ public class TableTest {
 		p.getHand().setVisible(false);
 		t.makeHandVisible(p);
 		assertTrue(p.getHand().isVisible());
-		
+	}
+	
+	@Test
+	public void testDistributePot() {
+		//TODO kan implementeras när getWinners implementerats
 	}
 }
