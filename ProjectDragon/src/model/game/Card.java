@@ -66,7 +66,7 @@ public class Card {
 		if(this == o) {
 			return true;
 		}
-		else if (!(o instanceof Card)) {
+		else if (o.getClass() != this.getClass()) {
 			return false;
 		}
 		else {

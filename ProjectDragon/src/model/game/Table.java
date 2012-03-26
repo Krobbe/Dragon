@@ -144,7 +144,7 @@ public class Table {
 	
 	@Override
 	public boolean equals(Object o) {
-		//TODO
+		//TODO jämför om samma objekt
 		return true;
 	}
 	

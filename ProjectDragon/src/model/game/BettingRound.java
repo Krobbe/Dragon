@@ -44,7 +44,7 @@ public class BettingRound {
 		if(this == o) {
 			return true;
 		}
-		else if (!(o instanceof BettingRound)) {
+		else if (o.getClass() != this.getClass()) {
 			return false;
 		}
 		else {

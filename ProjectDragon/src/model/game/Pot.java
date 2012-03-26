@@ -53,7 +53,7 @@ public class Pot {
 		if(this == o) {
 			return true;
 		}
-		else if (!(o instanceof Pot)) {
+		else if (o.getClass() != this.getClass()) {
 			return false;
 		}
 		else {

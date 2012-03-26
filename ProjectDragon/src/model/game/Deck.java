@@ -74,7 +74,7 @@ public class Deck {
 		if(this == o) {
 			return true;
 		}
-		else if (!(o instanceof Deck)) {
+		else if (o.getClass() != this.getClass()) {
 			return false;
 		}
 		else {
