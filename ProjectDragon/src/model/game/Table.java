@@ -143,9 +143,31 @@ public class Table {
 	}
 	
 	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append("Players:" + "\n");
+		//TODO Lista skall inte innehålla iPlayers utan Players väl? Finns ingen Player-klass
+		for(Player p : this.players) {
+			result.append(p.getName() + "\n");
+		}
+		result.append("Current player is " + this.players.indexOf(this.indexOfCurrentPlayer).getName() + "\n");
+		result.append("Shown cards are:" + "\n");
+		for(Card c : this.tableCards) {
+			result.append(c.toString());
+		}
+		return result.toString();
+	}
+	
+	@Override
 	public boolean equals(Object o) {
-		//TODO jämför om samma objekt
-		return true;
+		return (o == this);
+	}
+	
+	//Since we at the current state aren't planning on using any hashtables this code was added
+	//for the cause of good practice
+	public int hashCode() {
+		  assert false : "hashCode not designed";
+		  return 42; // any arbitrary constant will do
 	}
 	
 }

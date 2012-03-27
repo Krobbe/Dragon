@@ -49,6 +49,11 @@ public class Balance {
 		value = value - x;
 	}
 	
+	public String toString() {
+		String result = Integer.toString(value);
+		return result;
+	}
+	
 	/**
 	 * Equals-method for a balance
 	 * @author lisastenberg
@@ -67,5 +72,12 @@ public class Balance {
 			Balance tmp = (Balance)o;
 			return this.value == tmp.value;
 		}
+	}
+	
+	//Since we at the current state aren't planning on using any hashtables this code was added
+	//for the cause of good practice
+	public int hashCode() {
+		  assert false : "hashCode not designed";
+		  return 42; // any arbitrary constant will do
 	}
 }

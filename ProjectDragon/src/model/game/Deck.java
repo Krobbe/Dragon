@@ -81,19 +81,12 @@ public class Deck {
 		}
 		else {
 			Deck deck = (Deck)o;
-			Boolean isDeck = false;
-			//This is probably not the most efficient way to compare the decks
-			for(Card c1 : this.cards) {
-				for(Card c2 : deck.cards) {
-					if(c1.equals(c2)) {
-						isDeck = true;
-					}
-				}
-				if(!isDeck) {
-					return isDeck;
+			while(deck.popCard() != null && this.popCard() != null) {
+				if(!this.popCard().equals(deck.popCard())) {
+					return false;
 				}
 			}
-			return isDeck;
+			return true;
 		}
 	}
 	

@@ -1,22 +1,24 @@
 package model.player;
 
 /**
- * A class that simulates an account. 
+ * A class that simulates an account.
  * 
- * Contains firstname, lastname, username, password for a person. And a balance for that persons account. 
+ * Contains firstname, lastname, username, password for a person. And a balance
+ * for that persons account.
+ * 
  * @author lisastenberg
- *
+ * 
  */
 public class Account {
 	private String firstName, lastName, userName, passWord;
 	private Balance balance;
-	
+
 	public Account(String fName, String lName, String user, String pass) {
 		setFirstName(fName);
 		setLastName(lName);
 		setUserName(user);
 		setPassWord(pass);
-		
+
 		balance = new Balance(0);
 	}
 
@@ -29,9 +31,9 @@ public class Account {
 	}
 
 	/**
-	 * @author lisastenberg
-	 * Set the firstName of the account.
-	 * @param firstName what you want to set firstName to.
+	 * @author lisastenberg Set the firstName of the account.
+	 * @param firstName
+	 *            what you want to set firstName to.
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -46,9 +48,9 @@ public class Account {
 	}
 
 	/**
-	 * @author lisastenberg
-	 * Set the lastName of the account.
-	 * @param lastName what you want to set lastName to.
+	 * @author lisastenberg Set the lastName of the account.
+	 * @param lastName
+	 *            what you want to set lastName to.
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
@@ -63,9 +65,9 @@ public class Account {
 	}
 
 	/**
-	 * @author lisastenberg
-	 * Set the username of the account.
-	 * @param userName what you want to set userName to.
+	 * @author lisastenberg Set the username of the account.
+	 * @param userName
+	 *            what you want to set userName to.
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
@@ -80,9 +82,9 @@ public class Account {
 	}
 
 	/**
-	 * @author lisastenberg
-	 * Set the passWord of the account.
-	 * @param passWord what you want to set passWord to.
+	 * @author lisastenberg Set the passWord of the account.
+	 * @param passWord
+	 *            what you want to set passWord to.
 	 */
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
@@ -94,5 +96,25 @@ public class Account {
 	 */
 	public Balance getBalance() {
 		return balance;
+	}
+
+	public String toString() {
+		String result = ("Firstname " + this.firstName + "\n" + "Lastname "
+				+ this.lastName + "\n" + "Username " + this.userName + "\n"
+				+ "Balance " + this.balance);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return (this == o);
+	}
+
+	// Since we at the current state aren't planning on using any hashtables
+	// this code was added
+	// for the cause of good practice
+	public int hashCode() {
+		assert false : "hashCode not designed";
+		return 42; // any arbitrary constant will do
 	}
 }
