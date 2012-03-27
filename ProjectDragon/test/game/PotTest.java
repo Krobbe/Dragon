@@ -16,7 +16,7 @@ public class PotTest {
 	public void testAddToPot() {
 		Pot p = new Pot();
 		p.addToPot(10);
-		assertTrue(p.getPot() == 10);
+		assertTrue(p.getValue() == 10);
 	}
 	
 	@Test
@@ -24,7 +24,7 @@ public class PotTest {
 		Pot p = new Pot();
 		p.addToPot(10);
 		p.emptyPot();
-		assertTrue(p.getPot() == 0);
+		assertTrue(p.getValue() == 0);
 	}
 
 }

@@ -9,4 +9,11 @@
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="Database.DatabaseCommunicator"/>
+<fullyQualifiedTypeName name="model.player.Account"/>
+<fullyQualifiedTypeName name="model.game.Deck"/>
+<fullyQualifiedTypeName name="model.game.Card"/>
+<fullyQualifiedTypeName name="model.game.Pot"/>
+<fullyQualifiedTypeName name="model.game.Card.Suite"/>
+<fullyQualifiedTypeName name="model.player.Balance"/>
+<fullyQualifiedTypeName name="model.player.iPlayer"/>
 </qualifiedTypeNameHistroy>

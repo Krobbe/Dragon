@@ -1,0 +1,52 @@
+package Main;
+
+import java.util.Scanner;
+
+import model.database.DatabaseCommunicator;
+<<<<<<< HEAD
+import model.game.Table;
+import model.player.User;
+import model.player.iPlayer;
+import ctrl.game.GameController;
+
+public class Main {
+	public static void main(String[] args) {
+		DatabaseCommunicator db = DatabaseCommunicator.getInstance();	
+	}
+	
+	/* pŒbšrjad metod som kan anvŠndas nŠr vi vill kšra vŒr textbaserade Dragon-variant pŒ torsdag /mattias h */
+	public void run() {
+		Table table = new Table();
+		GameController gc = new GameController(table);
+		iPlayer player = new User();
+		
+		table.addPlayer(player);
+		
+		Scanner in = new Scanner(System.in);
+=======
+import model.game.Deck;
+
+public class Main {
+	public static void main(String[] args) {
+		Deck d = new Deck();
+>>>>>>> Har gjort ett interface iDealer som Dealer implements. Dessutom en compareTo i Card
+		
+		while(true) {
+			System.out.println(table);
+			System.out.println('>');
+			String cmd = in.nextLine();
+			
+			if (cmd.equals("n")) {
+				if (table.getTableCards().size() == 0) {
+					gc.showFlop();
+				} else {
+					gc.showRiver();
+				}	
+			} else {
+				System.out.println("Command not supported..");
+			}
+			
+		}
+	}
+	
+}

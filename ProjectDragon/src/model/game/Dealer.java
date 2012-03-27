@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 
-public class Dealer {
+public class Dealer implements iDealer {
 	private Deck d;
 	
 	public Dealer() {

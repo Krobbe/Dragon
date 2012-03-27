@@ -10,7 +10,7 @@ import ctrl.game.GameController;
 
 public class Main {
 	public static void main(String[] args) {
-		DatabaseCommunicator db = DatabaseCommunicator.getInstance();	
+		
 	}
 	
 	/* påbörjad metod som kan användas när vi vill köra vår textbaserade Dragon-variant på torsdag /mattias h */

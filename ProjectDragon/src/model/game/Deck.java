@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import model.game.Card.Rank;
 import model.game.Card.Suite;
 
 /**
@@ -21,10 +22,7 @@ public class Deck {
 	 * Creates a new deck.
 	 */
 	public Deck() {
-		createSuite(Card.Suite.CLUBS);
-		createSuite(Card.Suite.DIAMONDS);
-		createSuite(Card.Suite.HEARTS);
-		createSuite(Card.Suite.SPADES);
+		createSuite();
 		shuffle();
 	}
 	
@@ -39,9 +37,13 @@ public class Deck {
 	 * A help method that creates a suite with all 13 cards in the deck.
 	 * @param suite
 	 */
-	private void createSuite(Suite suite) {
-		for(int i = 1; i <= 13; i++) {
-			cards.add(new Card(suite, i));
+	private void createSuite() {
+		for(int i = 0; i <= 12; i++) {
+			for(int j = 0; j < 4; j++) {
+				Suite suite = Suite.class.getEnumConstants()[j];
+				Rank rank = Rank.class.getEnumConstants()[i];
+				cards.add(new Card(suite, rank));
+			}
 		}
 	}
 	
@@ -58,7 +60,7 @@ public class Deck {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		for(Card c : this.cards) {
-			result.append(c.getValue() + " of " + c.getSuite() + "\n");
+			result.append(c.getRank() + " of " + c.getSuite() + "\n");
 		}
 		return result.toString();
 	}

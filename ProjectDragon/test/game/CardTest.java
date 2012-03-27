@@ -11,19 +11,14 @@ import org.junit.Test;
  *
  */
 public class CardTest {
-	Card c = new Card(Card.Suite.SPADES, 2);
-	Card d = new Card(Card.Suite.SPADES, 2);
-	Card e = new Card(Card.Suite.SPADES, 2);
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testBadIndex() {
-		Card card = new Card(Card.Suite.SPADES, 14);
-	}
+	Card c = new Card(Card.Suite.SPADES, Card.Rank.TWO);
+	Card d = new Card(Card.Suite.SPADES, Card.Rank.TWO);
+	Card e = new Card(Card.Suite.SPADES, Card.Rank.TWO);
 	
 	@Test
 	public void testGetValue() {
-		c.getValue();
-		assertTrue(c.getValue() == 2);
+		c.getRank();
+		assertTrue(c.getRank().equals(Card.Rank.TWO));
 	}
 	
 	@Test
@@ -42,6 +37,6 @@ public class CardTest {
 	
 	@Test
 	public void testToString() {
-		assertTrue(c.toString().equals("2 of SPADES"));
+		assertTrue(c.toString().equals("TWO of SPADES"));
 	}
 }

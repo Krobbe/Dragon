@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="AccountTest" project="ProjectDragon" tests="4" started="4" failures="0" errors="0" ignored="0">
-  <testsuite name="test.AccountTest" time="0.0">
-    <testcase name="testSetFirstName" classname="test.AccountTest" time="0.0"/>
-    <testcase name="testSetLastName" classname="test.AccountTest" time="0.0"/>
-    <testcase name="testSetUserName" classname="test.AccountTest" time="0.0"/>
-    <testcase name="testSetPassWord" classname="test.AccountTest" time="0.0"/>
-  </testsuite>
-</testrun>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="BalanceTest" project="ProjectDragon" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="test.BalanceTest" time="0.001">
-    <testcase name="testAddToBalance" classname="test.BalanceTest" time="0.001"/>
-    <testcase name="testRemoveFromBalance" classname="test.BalanceTest" time="0.0"/>
-    <testcase name="testGetBadIndex" classname="test.BalanceTest" time="0.0"/>
-  </testsuite>
-</testrun>

@@ -17,34 +17,24 @@ public class Card {
 		SPADES, HEARTS, DIAMONDS, CLUBS;
 	}
 	
-	private int value;
-	private Suite suite;
-	
-	public Card(Suite suite, int value) {
-		if(!validValue(value)) {
-			throw new IllegalArgumentException("The value must be between 1 and 13.");
-		}
-		this.value = value;
-		this.suite = suite;
+	public enum Rank {
+		ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING; 
 	}
 	
-	/**
-	 * @author lisastenberg
-	 * The value is valid if it's between 1 and 13.
-	 * 
-	 * @param value
-	 * @return true if the value is valid
-	 */
-	private boolean validValue(int value) {
-		return value >= 1 && value <= 13;
+	private Rank rank;
+	private Suite suite;
+	
+	public Card(Suite suite, Rank rank) {
+		this.rank = rank;
+		this.suite = suite;
 	}
 	
 	/**
 	 * @author lisastenberg
 	 * @return the value of the card.
 	 */
-	public int getValue() {
-		return value;
+	public Rank getRank() {
+		return rank;
 	}
 	
 	/**
@@ -53,6 +43,16 @@ public class Card {
 	 */
 	public Suite getSuite() {
 		return suite;
+	}
+	
+	/**
+	 * @author lisastenberg
+	 * Compare two card's rank. 
+	 * @param card the card you want to compare with. 
+	 * @return > 0 if this.rank is higher than card.rank
+	 */
+	public int compareTo(Card card) {
+		return this.getRank().compareTo(card.getRank());
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class Card {
 		}
 		else {
 			Card card = (Card)o;
-			return (this.suite == card.suite && this.value == card.value);
+			return (this.suite == card.suite && this.rank == card.rank);
 		}
 	}
 	
@@ -83,7 +83,7 @@ public class Card {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		result.append(this.value + " of " + this.suite);
+		result.append(this.rank + " of " + this.suite);
 		return result.toString();
 	}
 	
