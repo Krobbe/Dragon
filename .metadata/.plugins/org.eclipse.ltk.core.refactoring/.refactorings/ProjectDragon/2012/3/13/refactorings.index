@@ -2,3 +2,7 @@
 1332772437042	Rename local variable 'value'
 1332772474293	Rename local variable 'value'
 1332772577675	Rename method 'getValue'
+1332872387729	Rename type 'Suite'
+1332872438867	Rename local variable 'suite'
+1332872458389	Rename method 'getSuite'
+1332872473917	Rename field 'suite'

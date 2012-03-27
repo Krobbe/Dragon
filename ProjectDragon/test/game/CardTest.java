@@ -11,9 +11,9 @@ import org.junit.Test;
  *
  */
 public class CardTest {
-	Card c = new Card(Card.Suite.SPADES, Card.Rank.TWO);
-	Card d = new Card(Card.Suite.SPADES, Card.Rank.TWO);
-	Card e = new Card(Card.Suite.SPADES, Card.Rank.TWO);
+	Card c = new Card(Card.Suit.SPADES, Card.Rank.TWO);
+	Card d = new Card(Card.Suit.SPADES, Card.Rank.TWO);
+	Card e = new Card(Card.Suit.SPADES, Card.Rank.TWO);
 	
 	@Test
 	public void testGetValue() {
@@ -23,7 +23,7 @@ public class CardTest {
 	
 	@Test
 	public void testSuite() {
-		assertTrue(c.getSuite().equals(Card.Suite.SPADES));
+		assertTrue(c.getSuit().equals(Card.Suit.SPADES));
 	}	
 
 	@Test

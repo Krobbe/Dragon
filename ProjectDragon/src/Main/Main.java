@@ -3,6 +3,7 @@ package Main;
 import java.util.Scanner;
 
 import model.database.DatabaseCommunicator;
+import model.game.Card;
 import model.game.Table;
 import model.player.User;
 import model.player.iPlayer;
@@ -10,7 +11,6 @@ import ctrl.game.GameController;
 
 public class Main {
 	public static void main(String[] args) {
-		
 	}
 	
 	/* påbörjad metod som kan användas när vi vill köra vår textbaserade Dragon-variant på torsdag /mattias h */

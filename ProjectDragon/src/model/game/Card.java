@@ -13,20 +13,23 @@ package model.game;
  */
 
 public class Card {
-	public enum Suite {
+	public static final int NO_OF_RANKS = 13;
+	public static final int NO_OF_SUITS = 4;
+	
+	public enum Suit {
 		SPADES, HEARTS, DIAMONDS, CLUBS;
 	}
 	
 	public enum Rank {
-		ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING; 
+		TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE; 
 	}
 	
 	private Rank rank;
-	private Suite suite;
+	private Suit suit;
 	
-	public Card(Suite suite, Rank rank) {
+	public Card(Suit suit, Rank rank) {
 		this.rank = rank;
-		this.suite = suite;
+		this.suit = suit;
 	}
 	
 	/**
@@ -41,8 +44,8 @@ public class Card {
 	 * @author lisastenberg
 	 * @return the suite of the card.
 	 */
-	public Suite getSuite() {
-		return suite;
+	public Suit getSuit() {
+		return suit;
 	}
 	
 	/**
@@ -71,7 +74,7 @@ public class Card {
 		}
 		else {
 			Card card = (Card)o;
-			return (this.suite == card.suite && this.rank == card.rank);
+			return (this.suit == card.suit && this.rank == card.rank);
 		}
 	}
 	
@@ -83,7 +86,7 @@ public class Card {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		result.append(this.rank + " of " + this.suite);
+		result.append(this.rank + " of " + this.suit);
 		return result.toString();
 	}
 	

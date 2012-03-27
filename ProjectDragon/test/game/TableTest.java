@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import model.game.Card;
-import model.game.Card.Suite;
+import model.game.Card.Suit;
 import model.game.Dealer;
 import model.game.Round;
 import model.game.Table;
@@ -67,7 +67,7 @@ public class TableTest {
 	@Test
 	public void testAddTableCard() {
 		Table t = new Table();
-		Card c = new Card(Suite.SPADES, Card.Rank.TWO);
+		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
 		t.addTableCard(c);
 		List<Card> tableCards = t.getTableCards();
 		assertTrue(tableCards.get(0).equals(c));
@@ -76,7 +76,7 @@ public class TableTest {
 	@Test(expected=IllegalArgumentException.class) 
 	public void testTableCardsFull() {
 		Table t = new Table(new Round(), new Dealer());
-		Card c = new Card(Suite.SPADES, Card.Rank.TWO);
+		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
 		for (int i = 0; i <= 5; i++) {
 			t.addTableCard(c);
 		}	
@@ -85,7 +85,7 @@ public class TableTest {
 	@Test
 	public void testClearTableCards() {
 		Table t = new Table();
-		Card c = new Card(Suite.SPADES, Card.Rank.TWO);
+		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
 		t.addTableCard(c);
 		t.clearTableCards();
 		assertTrue(t.getTableCards().size() == 0);

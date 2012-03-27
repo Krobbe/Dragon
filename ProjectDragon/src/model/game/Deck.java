@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import model.game.Card.Rank;
-import model.game.Card.Suite;
+import model.game.Card.Suit;
 
 /**
  * A class that represents a Deck.
@@ -40,7 +40,7 @@ public class Deck {
 	private void createSuite() {
 		for(int i = 0; i <= 12; i++) {
 			for(int j = 0; j < 4; j++) {
-				Suite suite = Suite.class.getEnumConstants()[j];
+				Suit suite = Suit.class.getEnumConstants()[j];
 				Rank rank = Rank.class.getEnumConstants()[i];
 				cards.add(new Card(suite, rank));
 			}
@@ -60,7 +60,7 @@ public class Deck {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		for(Card c : this.cards) {
-			result.append(c.getRank() + " of " + c.getSuite() + "\n");
+			result.append(c.getRank() + " of " + c.getSuit() + "\n");
 		}
 		return result.toString();
 	}
