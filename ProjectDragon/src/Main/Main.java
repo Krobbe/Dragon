@@ -6,16 +6,19 @@ import model.database.DatabaseCommunicator;
 import model.game.Table;
 import model.player.User;
 import model.player.iPlayer;
+import ctrl.game.GameController;
 
 public class Main {
 	public static void main(String[] args) {
 		DatabaseCommunicator db = DatabaseCommunicator.getInstance();	
 	}
 	
-	/* pŒbšrjad metod som kan kšras nŠr vi vill kšra vŒr textbaserade Dragon-variant pŒ torsdag*/
+	/* pŒbšrjad metod som kan anvŠndas nŠr vi vill kšra vŒr textbaserade Dragon-variant pŒ torsdag /mattias h */
 	public void run() {
 		Table table = new Table();
+		GameController gc = new GameController(table);
 		iPlayer player = new User();
+		
 		table.addPlayer(player);
 		
 		Scanner in = new Scanner(System.in);
@@ -24,8 +27,13 @@ public class Main {
 			System.out.println(table);
 			System.out.println('>');
 			String cmd = in.nextLine();
+			
 			if (cmd.equals("n")) {
-				// showflop osv.
+				if (table.getTableCards().size() == 0) {
+					gc.showFlop();
+				} else {
+					gc.showRiver();
+				}	
 			} else {
 				System.out.println("Command not supported..");
 			}

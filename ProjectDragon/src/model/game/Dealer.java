@@ -41,4 +41,12 @@ public class Dealer {
 		
 		return flop;
 	}
+	
+	/**
+	 * @author mattiashenriksson
+	 * @return the top card of the deck
+	 */
+	public Card getRiver() {
+		return d.popCard();
+	}
 }
