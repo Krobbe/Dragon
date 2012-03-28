@@ -15,6 +15,7 @@ import model.player.hand.*;
  * 
  * @author Mattias Henriksson
  * @author lisastenberg
+ * @author robinandersson
  * 
  */
 
@@ -24,6 +25,7 @@ public class Table {
 	private List<Card> tableCards;
 	private List<iPlayer> players;
 	private int indexOfCurrentPlayer;
+	private int indexOfDealerButton;
 	
 	/**
 	 * Creates a new Table.
@@ -41,6 +43,7 @@ public class Table {
 		tableCards = new ArrayList<Card>();
 		players = new ArrayList<iPlayer>();
 		indexOfCurrentPlayer = 0;
+		indexOfDealerButton = 0;
 	}
 	
 	/**
@@ -68,12 +71,46 @@ public class Table {
 	}
 	
 	/**
+	 * Increases the dealer button index to the next remaining player
+	 * 
+	 * @author robinandersson
+	 */
+	//TODO Test nextDealerButtonPlayer()
+	//TODO Discuss and implement a possible better solution to dealer button
+	public void nextDealerButtonIndex() {
+		
+		// Reset the index if it is at the end of the player-list
+		if (indexOfDealerButton == players.size() - 1) {
+			indexOfCurrentPlayer = 0;
+		}
+		
+		indexOfDealerButton++;
+		// TODO Determine what happens if a player has lost recently.
+		// If the dealer button only should be set to players still in the game
+		// or if lost players should be ghosts
+		
+		// The dealer button is set to a player that is still in the game.
+		while(!players.get(indexOfDealerButton).isStillInGame()){
+			indexOfDealerButton++;
+		}
+	}
+	
+	/**
 	 * 
 	 * @return The player who's turn it currently is
 	 */
 	public iPlayer getCurrentPlayer() {
 		return players.get(indexOfCurrentPlayer);
 	}
+	
+	/**
+	 * 
+	 * @return The player who's turn it currently is
+	 */
+	public int getDealerButtonIndex() {
+		return indexOfDealerButton;
+	}
+	
 	
 	/**
 	 * Adds a card to the "table cards" 

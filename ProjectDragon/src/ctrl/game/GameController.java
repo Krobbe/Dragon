@@ -46,6 +46,8 @@ public class GameController {
 		}
 	}
 
+	
+	// TODO Write test to distribute cards
 	/**
 	 * Distributes the cards to all remaining players in the round
 	 * 
@@ -56,8 +58,15 @@ public class GameController {
 		List<iPlayer> players = table.getPlayers();
 		Dealer dealer = table.getDealer();
 
-		// Prepares the list of players to simplify the distribution of cards
-		prepareList(players);
+		/*
+		 * Prepares the list of players to simplify the distribution of cards.
+		 * The list of players is ordered so that the first player in the list
+		 * gets the first card (this is the player directly after the dealer
+		 * button)
+		 */
+		for(int i = 0 ; i <= table.getDealerButtonIndex() ; i++){
+			players.add(players.remove(0));
+		}
 
 		/*
 		 * Every (active) player gets two cards where the first is distributed
@@ -75,33 +84,10 @@ public class GameController {
 		}
 
 		// Restores the list to the previous state before it was prepared
-		restoreList(players);
+		for(int i = 0 ; i <= table.getDealerButtonIndex() ; i++){
+			players.add(0, players.remove(players.size() -1));
+		}
 
-	}
-
-	/*
-	 * Short method for rearranging the list to simplify the distribution of
-	 * cards.
-	 * 
-	 * @author robinandersson
-	 */
-	private void prepareList(List<iPlayer> players) {
-		players.add(players.remove(0));
-		players.add(players.remove(0));
-	}
-
-	/*
-	 * Short method to reset the list to the previous order of players before it
-	 * was arranged to the distribution of cards.
-	 * 
-	 * @author robinandersson
-	 */
-	private void restoreList(List<iPlayer> players) {
-		iPlayer player = players.remove(players.size() - 1);
-		players.add(0, player);
-
-		player = players.remove(players.size() - 1);
-		players.add(0, player);
 	}
 
 	

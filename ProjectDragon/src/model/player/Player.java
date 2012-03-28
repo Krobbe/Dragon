@@ -16,11 +16,13 @@ public class Player implements iPlayer {
 	private boolean active = false;
 	private String name;
 	private Balance balance;
+	private boolean stillInGame;
 	
 	public Player(iHand hand, String name, Balance balance) {
 		this.hand = hand;
 		this.name = name;
 		this.balance = balance;
+		stillInGame = true;
 	}
 
 	@Override
@@ -32,6 +34,11 @@ public class Player implements iPlayer {
 	public void setActive(boolean b) {
 		active = b;
 	}
+	
+	@Override
+	public void setStillInGame(boolean b) {
+		stillInGame = b;
+	}
 
 	@Override
 	public Balance getBalance() {
@@ -41,6 +48,11 @@ public class Player implements iPlayer {
 	@Override
 	public boolean isActive() {
 		return active;
+	}
+	
+	@Override
+	public boolean isStillInGame() {
+		return stillInGame;
 	}
 
 	@Override
@@ -91,4 +103,5 @@ public class Player implements iPlayer {
 		assert false : "hashCode not designed";
 		return 42; // any arbitrary constant will do
 	}
+
 }

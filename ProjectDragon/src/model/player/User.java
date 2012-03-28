@@ -32,6 +32,12 @@ public class User implements iPlayer {
 	}
 	
 	@Override
+	public void setStillInGame(boolean b) {
+		this.player.setStillInGame(b);
+		
+	}
+	
+	@Override
 	public Balance getBalance() {
 		return player.getBalance();
 	}
@@ -39,6 +45,11 @@ public class User implements iPlayer {
 	@Override
 	public boolean isActive() {
 		return player.isActive();
+	}
+	
+	@Override
+	public boolean isStillInGame() {
+		return this.player.isStillInGame();
 	}
 
 	@Override
