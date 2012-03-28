@@ -64,5 +64,17 @@ public class TexasHoldemHand implements iHand {
 	public boolean isVisible() {
 		return isVisible;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		//TODO Write equals in TexasHoldemHand
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		//TODO Write toString in TexasHoldemHand
+		return null;
+	}
 
 }

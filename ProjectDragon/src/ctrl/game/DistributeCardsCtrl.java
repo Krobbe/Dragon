@@ -18,6 +18,7 @@ import model.player.iPlayer;
 public class DistributeCardsCtrl {
 
 	Table table;
+	Dealer dealer;
 	
 	/**
 	 * Creates the controller to handle the distribution of the player-specific
@@ -26,6 +27,7 @@ public class DistributeCardsCtrl {
 	 */
 	public DistributeCardsCtrl(Table table){
 		this.table = table;
+		dealer = table.getDealer();
 	}
 	
 	/**
@@ -33,26 +35,23 @@ public class DistributeCardsCtrl {
 	 */
 	public void doDistributeCards() {
 		
-		Dealer d = table.getDealer();
 		List<iPlayer> players = table.getPlayers();
 		
 		// Prepares the list of players to simplify the distribution of cards
 		prepareList(players);
-		
+
 		/*
 		 *  Every player gets two cards where the first is distributed directly,
 		 *  and the second after everyone else has gotten their first card 
 		 */
-		
 		for(int i = 1 ; i <= 2 ; i++) {
 			
 			for(iPlayer player : players){
+
 				if(player.isActive()){
-					player.getHand().addCard(d.popCard());
+					player.addCard(dealer.popCard());
 				}
-				
 			}
-			
 		}
 		
 		// Restores the list to the previous state before it was prepared
@@ -71,7 +70,7 @@ public class DistributeCardsCtrl {
 	
 	/*
 	 * Short method to reset the list to the previous order of players before
-	 * the distribution of cards.
+	 * it was arranged to the distribution of cards.
 	 */
 	private void restoreList(List<iPlayer> players) {
 		iPlayer player = players.remove(players.size() - 1);

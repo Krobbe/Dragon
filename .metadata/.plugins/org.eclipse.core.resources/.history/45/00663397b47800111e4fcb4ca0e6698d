@@ -38,7 +38,7 @@ public interface iHand {
 	 * Makes the cards visible to other players.
 	 * @param b a boolean.
 	 */
-	public void setVisible(boolean b);
+	public void setVisability(boolean b);
 	
 	/**
 	 * @author mattiashenriksson
