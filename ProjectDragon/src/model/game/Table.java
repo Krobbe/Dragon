@@ -212,22 +212,21 @@ public class Table {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		result.append("Players:" + "\n");
-		//TODO Lista skall inte innehålla iPlayers utan Players väl? Finns ingen Player-klass
+		result.append("Players at table: ");
 		for(iPlayer p : this.players) {
-			result.append(p.getName() + "\n");
+			result.append(p.getName() + "\t\t");
 		}
-		result.append("Cards:" + "\n");
+		result.append("\nCards: ");
 		for(iPlayer p: players) {
 			List<Card> hand = p.getHand().getCards();
 			for(Card c : hand) {
-				result.append(c.toString());
+				result.append(c.toString() + "\t");
 			}
 		}
-		result.append("Current player is " + getCurrentPlayer().getName() + "\n");
-		result.append("Shown cards are:" + "\n");
+		result.append("\nCurrent player is " + getCurrentPlayer().getName() + "\n");
+		result.append("Table cards are:" + "\n");
 		for(Card c : this.tableCards) {
-			result.append(c.toString());
+			result.append(c.toString() + "\t\t");
 		}
 		return result.toString();
 	}

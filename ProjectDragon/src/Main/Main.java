@@ -12,6 +12,7 @@ import ctrl.game.GameController;
 
 public class Main {
 	public static void main(String[] args) {
+		new Main().run();
 	}
 	
 	/* påbörjad metod som kan användas när vi vill köra vår textbaserade 
@@ -23,6 +24,7 @@ public class Main {
 		iPlayer player = new User(new Player(new TexasHoldemHand(true),
 				"Mattias", new Balance()));
 		table.addPlayer(player);
+		player.setActive(true);
 		gc.distributeCards();
 		Scanner in = new Scanner(System.in);
 		

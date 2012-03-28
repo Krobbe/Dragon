@@ -11,10 +11,10 @@ import model.player.hand.iHand;
  */
 public class Player implements iPlayer {
 	
-	iHand hand;
-	boolean active;
-	String name;
-	Balance balance;
+	private iHand hand;
+	private boolean active = false;
+	private String name;
+	private Balance balance;
 	
 	public Player(iHand hand, String name, Balance balance) {
 		this.hand = hand;
