@@ -142,6 +142,23 @@ public class Table {
         return null;
     }
     
+
+    //TODO Lösa så att den även returnerar "värdet" på den vinnande handen
+//    public Map<HandValueType, List<iPlayer>> doShowdown() {
+//        // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
+//        Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers();
+//        for (HandValue handValue : rankedPlayers.keySet()) {
+//            // Get players with winning hand value.
+//            List<iPlayer> winners = rankedPlayers.get(handValue);
+//            distributePot(winners);
+//            TreeMap<HandValueType, List<iPlayer>> winnerType = new TreeMap<HandValueType, List<iPlayer>>();
+////            winnerType.put(, winners);
+//            return winnerType;
+//        }
+//        // No person is the winner. This should never happen.
+//        return null;
+//    }
+    
     /**
      * @author Oscar Stigter
      * @author lisastenberg
