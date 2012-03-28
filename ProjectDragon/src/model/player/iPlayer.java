@@ -1,5 +1,6 @@
 package model.player;
 
+import model.game.Card;
 import model.player.hand.iHand;
 
 /**
@@ -39,6 +40,12 @@ public interface iPlayer {
 	 * @return The name of the player.
 	 */
 	public String getName();
+	
+	/**
+	 * Gives the player a card which he can add to his hand
+	 * @author mattiashenriksson
+	 */
+	public void addCard(Card c);
 	
 	@Override
 	public boolean equals(Object o);

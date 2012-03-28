@@ -1,5 +1,6 @@
 package model.player;
 
+import model.game.Card;
 import model.player.hand.iHand;
 
 /**
@@ -44,6 +45,12 @@ public class Player implements iPlayer {
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public void addCard(Card c) {
+		hand.addCard(c);
+		
 	}
 
 }

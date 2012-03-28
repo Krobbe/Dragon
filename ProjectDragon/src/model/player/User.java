@@ -1,5 +1,6 @@
 package model.player;
 
+import model.game.Card;
 import model.player.hand.iHand;
 
 /**
@@ -49,5 +50,11 @@ public class User implements iPlayer {
 	 */
 	public void call() {
 		//TODO
+	}
+
+	@Override
+	public void addCard(Card c) {
+		player.addCard(c);
+		
 	}
 }
