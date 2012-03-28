@@ -13,13 +13,13 @@ public class DatabaseCommunicator {
 		      System.out.println("Could not find the JDBC driver!");
 		      System.exit(1);
 		    }
-		/*try {
+		try {
 		    conn = DriverManager.getConnection
 		                   ("jdbc:postgresql://localhost:5432/Dragon", "admin", "dragon");
 		     } catch (SQLException sqle) {
 		    	 System.out.println("Could not connect");
 		       System.exit(1);
-		     }*/
+		     }
 	}
 	
 	public static DatabaseCommunicator getInstance() {
