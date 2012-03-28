@@ -215,11 +215,7 @@ public class Table {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-<<<<<<< HEAD
 		result.append("Players at table: ");
-=======
-		result.append("Players:" + "\n");
->>>>>>> Changes to many equals and tostring methods and their documentation
 		for(iPlayer p : this.players) {
 			result.append(p.getName() + "\t\t");
 		}
