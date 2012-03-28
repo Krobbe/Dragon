@@ -129,11 +129,8 @@ public class Table {
      * Performs the Showdown.
      */
 	
-<<<<<<< HEAD
+
     public List<iPlayer> doShowdown() {
-=======
-    public void doShowdown() {
->>>>>>> lagt till doShowdown i gc
         // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
         Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers();
         for (HandValue handValue : rankedPlayers.keySet()) {

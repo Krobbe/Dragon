@@ -1,5 +1,6 @@
 package Main;
 
+import java.util.List;
 import java.util.Scanner;
 
 import model.game.Table;
@@ -40,11 +41,16 @@ public class Main {
 					gc.showFlop();
 				} else if (table.getTableCards().size() == 3){
 					gc.showRiver();
-				} else {
+				} else if (table.getTableCards().size() == 4){
 					gc.showRiver();
+				} else {
+					List<iPlayer> list = gc.doShowdown();
+					for (iPlayer p : list) {
+						System.out.println("Winner: " + p.getName());
+					}
+					System.out.println("\nRound ended...");
+					break;
 				}
-			} else if (cmd.equals("showdown")){
-			
 			} else {
 				System.out.println("Command not supported..");
 			}

@@ -116,8 +116,8 @@ public class GameController {
 	/**
 	 * Performs a showdown.
 	 */
-	public void doShowdown() {
-		table.doShowdown();
+	public List<iPlayer> doShowdown() {
+		return table.doShowdown();
 	}
 
 }
