@@ -43,21 +43,15 @@ public class FullTHHand implements iHand {
 		Collections.sort(cards, new CardComparator());
 	}
 	
-	/**
-	 * Add cards to the list of cards from the list c.
-	 * @param c the list with card you want to add.
-	 */
 	public void addCards(List<Card> c) {
 		cards.addAll(c);
 		Collections.sort(cards, new CardComparator());
 	}
 	
-	/**
-	 * Add cards to the list of cards from hand.
-	 * @param hand the hand you want to add.
-	 */
 	public void addCards(iHand hand) {
-		addCards(hand.getCards());
+		for(Card card : hand.getCards()) {
+			addCard(card);
+		}
 	}
 
 	@Override

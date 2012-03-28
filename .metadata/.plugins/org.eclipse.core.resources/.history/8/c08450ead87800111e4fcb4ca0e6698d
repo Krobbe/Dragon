@@ -5,16 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import model.game.Card;
 import model.game.CardComparator;
-/**
- * A class that simulates a full Texas Hold'em Hand. 
- * 
- * FullTHHand contains 7 cards (a players cards and the cards laying on the
- * table). All cards in the hand are sorted by rank, with the card with the
- * highest rank first. 
- * 
- * @author lisastenberg
- *
- */
+
 public class FullTHHand implements iHand {
 	private List<Card> cards;
 	private boolean isVisible = true;
@@ -43,21 +34,15 @@ public class FullTHHand implements iHand {
 		Collections.sort(cards, new CardComparator());
 	}
 	
-	/**
-	 * Add cards to the list of cards from the list c.
-	 * @param c the list with card you want to add.
-	 */
 	public void addCards(List<Card> c) {
 		cards.addAll(c);
 		Collections.sort(cards, new CardComparator());
 	}
 	
-	/**
-	 * Add cards to the list of cards from hand.
-	 * @param hand the hand you want to add.
-	 */
 	public void addCards(iHand hand) {
-		addCards(hand.getCards());
+		for(Card card : hand.getCards()) {
+			addCard(card);
+		}
 	}
 
 	@Override

@@ -34,7 +34,6 @@ public class BalanceTest {
          b.removeFromBalance(10);//Should give exception!
 	 }
 	 
-	 //Testar symmetri, reflexivitet och transitivitet.
 	 @Test
 	 public void equalsTest() {
 			Balance b1 = new Balance();
