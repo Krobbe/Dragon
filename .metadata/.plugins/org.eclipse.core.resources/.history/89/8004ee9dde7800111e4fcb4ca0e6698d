@@ -9,9 +9,9 @@ import model.player.iPlayer;
 import model.player.hand.*;
 
 /**
- * A class that represent table at which a poker game takes place. This class 
- * has a central role in Dragon. It has access to all the other classes in the 
- * application and is the class through which the game is controlled.
+ * A class that represent table at which a poker game takes place. This class has a central
+ * role in Dragon. It has access to all the other classes in the application and is the 
+ * class through which the game is controlled.
  * 
  * @author Mattias Henriksson
  * @author lisastenberg
@@ -128,7 +128,6 @@ public class Table {
      * Performs the Showdown.
      */
 	
-
     public List<iPlayer> doShowdown() {
         // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
         Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers();

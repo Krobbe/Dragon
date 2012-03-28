@@ -93,8 +93,8 @@ public class Card {
 		return result.toString();
 	}
 	
-	//Since we at the current state aren't planning on using any hashtables 
-	//this code was added for the cause of good practice
+	//Since we at the current state aren't planning on using any hashtables this code was added
+	//for the cause of good practice
 	public int hashCode() {
 		  assert false : "hashCode not designed";
 		  return 42; // any arbitrary constant will do
