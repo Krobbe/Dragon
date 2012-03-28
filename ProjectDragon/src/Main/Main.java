@@ -2,22 +2,26 @@ package Main;
 
 import java.util.Scanner;
 
-import model.database.DatabaseCommunicator;
-import model.game.Card;
 import model.game.Table;
+import model.player.Balance;
+import model.player.Player;
 import model.player.User;
 import model.player.iPlayer;
+import model.player.hand.TexasHoldemHand;
 import ctrl.game.GameController;
 
 public class Main {
 	public static void main(String[] args) {
 	}
 	
-	/* påbörjad metod som kan användas när vi vill köra vår textbaserade Dragon-variant på torsdag /mattias h */
+	/* påbörjad metod som kan användas när vi vill köra vår textbaserade 
+	 * Dragon-variant på torsdag /mattias h 
+	 */
 	public void run() {
 		Table table = new Table();
 		GameController gc = new GameController(table);
-		iPlayer player = new User();
+		iPlayer player = new User(new Player(new TexasHoldemHand(true),
+				"Mattias", new Balance()));
 		table.addPlayer(player);
 		
 		Scanner in = new Scanner(System.in);
