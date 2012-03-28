@@ -138,7 +138,6 @@ public class Table {
             distributePot(winners);
             return winners;
         }
-        // No person is the winner. This should never happen.
         return null;
     }
     

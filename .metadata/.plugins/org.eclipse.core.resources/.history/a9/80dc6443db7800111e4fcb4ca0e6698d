@@ -129,17 +129,15 @@ public class Table {
      * Performs the Showdown.
      */
 	
-    public List<iPlayer> doShowdown() {
+    private void doShowdown() {
         // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
         Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers();
         for (HandValue handValue : rankedPlayers.keySet()) {
             // Get players with winning hand value.
             List<iPlayer> winners = rankedPlayers.get(handValue);
             distributePot(winners);
-            return winners;
+            break;
         }
-        // No person is the winner. This should never happen.
-        return null;
     }
     
     /**
