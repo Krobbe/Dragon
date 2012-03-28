@@ -30,6 +30,7 @@ public interface iHand {
 	 * Add a new card to the hand.
 	 * @param c the card you want to add.
 	 */
+
 	public void addCard(Card c);
 	
 	/**
@@ -50,4 +51,5 @@ public interface iHand {
 	
 	@Override
 	public String toString();
+
 }
