@@ -1,6 +1,7 @@
 package model.player;
 
 import model.game.Card;
+import model.player.hand.TexasHoldemHand;
 import model.player.hand.iHand;
 
 /**
@@ -13,7 +14,7 @@ public class User implements iPlayer {
 	Player player;
 
 	public User() {
-		//TODO
+		this(new Player(new TexasHoldemHand(false), "Default", new Balance()));
 	}
 	
 	public User(Player player) {
