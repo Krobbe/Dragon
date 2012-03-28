@@ -64,4 +64,10 @@ public class TexasHoldemHand implements iHand {
 	public boolean isVisible() {
 		return isVisible;
 	}
+
+	@Override
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
 }
