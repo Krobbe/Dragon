@@ -3,9 +3,11 @@
  */
 package ctrl.game;
 
-import model.game.Card;
+import java.util.List;
+
 import model.game.Dealer;
 import model.game.Table;
+import model.player.iPlayer;
 
 /**
  *
@@ -47,8 +49,8 @@ public class DistributeCardsCtrl {
 			
 			for(iPlayer player : players){
 				
-				if(player.isActive){
-					player.getHand.addCard(d.popCard());
+				if(player.isActive()){
+					player.getHand().addCard(d.popCard());
 				}
 				
 			}

@@ -1,7 +1,10 @@
 package model.player;
 
+import model.player.hand.iHand;
+
 /**
- * This class contains common methods and variables for all classes implementing iPlayer.
+ * This class contains common methods and variables for all classes 
+ * implementing iPlayer.
  * @author mattiashenriksson
  *
  */

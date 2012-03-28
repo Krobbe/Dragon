@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import model.player.HandValue;
+import model.player.hand.HandValue;
 import model.player.iPlayer;
 
 /**
