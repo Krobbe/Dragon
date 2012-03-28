@@ -30,12 +30,8 @@ public class FullTHHandTest {
 		list.add(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
 		list.add(new Card(Card.Suit.CLUBS, Card.Rank.NINE));
 		list.add(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
-		System.out.println(list.toString());
 		hand.addCards(list);
-		System.out.println(hand.getCards().toString());
-		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-		System.out.println(hand.getCards().toString());
-
+		
 		Card c = hand.getCards().get(0);
 		assertTrue(c.getRank() == Card.Rank.ACE && c.getSuit() == Card.Suit.CLUBS);
 	}

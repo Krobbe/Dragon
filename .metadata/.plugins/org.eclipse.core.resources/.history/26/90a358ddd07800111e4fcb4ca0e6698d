@@ -35,8 +35,9 @@ public class FullTHHand implements iHand {
 	}
 	
 	public void addCards(List<Card> c) {
-		cards.addAll(c);
-		Collections.sort(cards, new CardComparator());
+		for(Card card : c) {
+			addCard(card);
+		}
 	}
 	
 	public void addCards(iHand hand) {

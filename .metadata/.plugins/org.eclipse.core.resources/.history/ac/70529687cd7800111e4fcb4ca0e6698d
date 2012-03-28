@@ -1,0 +1,20 @@
+package model.player.hand;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+/**
+ * A test class for FullTHHand (Full Texas Hold'Em Hand)
+ * @author lisastenberg
+ *
+ */
+
+public class FullTHHandTest {
+	FullTHHandTest hand = new FullTHHandTest();
+	
+	@Test
+	public void testGetCard() {
+		
+	}
+
+}

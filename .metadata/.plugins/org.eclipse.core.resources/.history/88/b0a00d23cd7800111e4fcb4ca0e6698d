@@ -14,7 +14,6 @@ import model.player.hand.*;
  * class through which the game is controlled.
  * 
  * @author Mattias Henriksson
- * @author lisastenberg
  * 
  */
 

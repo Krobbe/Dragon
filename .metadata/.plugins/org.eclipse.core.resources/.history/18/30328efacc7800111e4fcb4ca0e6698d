@@ -14,16 +14,15 @@ import model.player.hand.*;
  * class through which the game is controlled.
  * 
  * @author Mattias Henriksson
- * @author lisastenberg
  * 
  */
 
 public class Table {
-	private Round round;
-	private Dealer dealer;
-	private List<Card> tableCards;
-	private List<iPlayer> players;
-	private int indexOfCurrentPlayer;
+	Round round;
+	Dealer dealer;
+	List<Card> tableCards;
+	List<iPlayer> players;
+	int indexOfCurrentPlayer;
 	
 	/**
 	 * Creates a new Table.
