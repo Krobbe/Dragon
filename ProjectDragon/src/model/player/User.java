@@ -5,35 +5,49 @@ import model.player.hand.iHand;
 /**
  * A class that simulates the local player.
  * @author lisastenberg
- *
+ * @author mattiashenriksson
  */
-public class User implements iPlayer{
-	private Balance balance;
-	private iHand hand;
-	private boolean isActive;
+public class User implements iPlayer {
+	
+	Player player;
 
 	public User() {
-		this(new Balance());
+		//TODO
 	}
 	
-	public User(Balance bal) {
-		balance = bal;
-		isActive = true;
-		//TODO: hand = new UserHand;
+	public User(Player player) {
+		this.player = player;
 	}
 
 	@Override
 	public iHand getHand() {
-		return hand;
+		return player.getHand();
 	}
 
 	@Override
 	public void setActive(boolean b) {
-		isActive = b;
+		player.setActive(b);
 	}
 	
 	@Override
 	public Balance getBalance() {
-		return balance;
+		return player.getBalance();
+	}
+
+	@Override
+	public boolean isActive() {
+		return player.isActive();
+	}
+
+	@Override
+	public String getName() {
+		return player.getName();
+	}
+	
+	/**
+	 * This method preforms a call
+	 */
+	public void call() {
+		//TODO
 	}
 }

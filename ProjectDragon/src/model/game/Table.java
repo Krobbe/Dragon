@@ -209,7 +209,7 @@ public class Table {
 		for(iPlayer p : this.players) {
 			result.append(p.getName() + "\n");
 		}
-		result.append("Current player is " + this.players.indexOf(this.indexOfCurrentPlayer).getName() + "\n");
+		result.append("Current player is " + getCurrentPlayer().getName() + "\n");
 		result.append("Shown cards are:" + "\n");
 		for(Card c : this.tableCards) {
 			result.append(c.toString());

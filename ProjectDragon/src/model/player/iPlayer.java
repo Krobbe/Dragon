@@ -5,7 +5,7 @@ import model.player.hand.iHand;
 /**
  * An interface that represents a player.
  * @author lisastenberg
- *
+ * @author mattiashenriksson
  */
 public interface iPlayer {
 
@@ -27,6 +27,18 @@ public interface iPlayer {
 	 * @return the balance of the player.
 	 */
 	public Balance getBalance();
+	
+	/**
+	 * @author mattiashenriksson
+	 * @return A boolean telling if the player is active.
+	 */
+	public boolean isActive();
+	
+	/**
+	 * @author mattiashenriksson
+	 * @return The name of the player.
+	 */
+	public String getName();
 	
 	@Override
 	public boolean equals(Object o);
