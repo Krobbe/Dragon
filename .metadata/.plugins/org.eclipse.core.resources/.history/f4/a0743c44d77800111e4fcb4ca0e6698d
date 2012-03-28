@@ -18,19 +18,7 @@ public class BetTest {
 	
 	@Test
 	public void testGetOwner() {
-		User u = new User();
-		Bet b = new Bet(u, 10);
-		assertTrue(b.getOwner() == u);
+		fail("Not yet implemented");
 	}	
-	
-	@Test
-	public void testEquals() {
-		fail("not yet implemented");
-	}
-	
-	@Test
-	public void testToString() {
-		fail("not yet implemented");
-	}
 
 }

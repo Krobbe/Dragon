@@ -22,15 +22,5 @@ public class BetTest {
 		Bet b = new Bet(u, 10);
 		assertTrue(b.getOwner() == u);
 	}	
-	
-	@Test
-	public void testEquals() {
-		fail("not yet implemented");
-	}
-	
-	@Test
-	public void testToString() {
-		fail("not yet implemented");
-	}
 
 }
