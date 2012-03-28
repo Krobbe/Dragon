@@ -11,7 +11,7 @@ import model.game.Card;
 /**
  * A class representing a standard Texas Hold'em hand
  * 
- * @author Robin
+ * @author robinandersson
  *
  */
 public class TexasHoldemHand implements iHand {
@@ -50,24 +50,19 @@ public class TexasHoldemHand implements iHand {
 	}
 	
 	/**
-	 * Sets the visability of the card
+	 * Sets the visibility of the card
 	 * @param isVisible True if visible
 	 */
-	public void setVisability(boolean isVisible) {
+	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
 	}
 	
 	/**
+	 * Returns the visibility of the Hand - if a player is able to see the hand
 	 * 
 	 * @return if the hand is visible (true) or not (false)
 	 */
 	public boolean isVisible() {
 		return isVisible;
-	}
-
-	@Override
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-		
 	}
 }

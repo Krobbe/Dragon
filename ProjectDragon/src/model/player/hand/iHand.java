@@ -9,6 +9,7 @@ import model.game.Card;
 /**
  * An interface for a hand in a poker game. 
  * @author lisastenberg
+ * @author robinandersson
  *
  */
 public interface iHand {
