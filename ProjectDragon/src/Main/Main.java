@@ -18,7 +18,6 @@ public class Main {
 		Table table = new Table();
 		GameController gc = new GameController(table);
 		iPlayer player = new User();
-		
 		table.addPlayer(player);
 		
 		Scanner in = new Scanner(System.in);
