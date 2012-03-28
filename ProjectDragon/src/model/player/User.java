@@ -49,7 +49,7 @@ public class User implements iPlayer {
 	/**
 	 * This method preforms a call
 	 */
-	public void call() {
+	public void call(int currentBet) {
 		//TODO
 	}
 

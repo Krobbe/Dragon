@@ -14,6 +14,7 @@ public class CardTest {
 	Card c = new Card(Card.Suit.SPADES, Card.Rank.TWO);
 	Card d = new Card(Card.Suit.SPADES, Card.Rank.TWO);
 	Card e = new Card(Card.Suit.SPADES, Card.Rank.TWO);
+
 	
 	@Test
 	public void testGetValue() {
@@ -28,6 +29,7 @@ public class CardTest {
 
 	@Test
 	public void testEquals() {
+		assertFalse(c.equals(null));
 		assertTrue(c.equals(c));
 		assertTrue(c.equals(d));
 		if(d.equals(e)) {

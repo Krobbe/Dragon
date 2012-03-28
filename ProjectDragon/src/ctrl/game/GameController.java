@@ -4,8 +4,11 @@ import java.util.List;
 
 import model.game.Card;
 import model.game.Dealer;
+import model.game.Pot;
 import model.game.Table;
 import model.player.iPlayer;
+import model.player.User;
+
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -98,6 +101,16 @@ public class GameController {
 		
 		player = players.remove(players.size() - 1);
 		players.add(0, player);
+	}
+	
+	public void call() {
+		int currentBet = table.getRound().getBettingRound().getCurrentBet();
+		User currentPlayer = (User)table.getCurrentPlayer();
+		currentPlayer.call(currentBet);
+		currentPlayer.getBalance().removeFromBalance(currentBet);
+		Pot currentPot = table.getRound().getPot();
+		currentPot.addToPot(currentBet);
+
 	}
 
 }

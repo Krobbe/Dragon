@@ -66,7 +66,10 @@ public class Card {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		if(this == o) {
+		if(o == null) {
+			return false;
+		}
+		else if(this == o) {
 			return true;
 		}
 		else if (o.getClass() != this.getClass()) {

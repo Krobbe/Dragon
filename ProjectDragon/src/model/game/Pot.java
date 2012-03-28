@@ -50,7 +50,10 @@ public class Pot {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		if(this == o) {
+		if(o == null) {
+			return false;
+		}
+		else if(this == o) {
 			return true;
 		}
 		else if (o.getClass() != this.getClass()) {
@@ -58,7 +61,7 @@ public class Pot {
 		}
 		else {
 			Pot pot = (Pot)o;
-			return (this.value == pot.value && this.value == pot.value);
+			return (this.value == pot.value);
 		}
 	}
 	
