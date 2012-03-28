@@ -112,5 +112,12 @@ public class GameController {
 		currentPot.addToPot(currentBet);
 
 	}
+	
+	/**
+	 * Performs a showdown.
+	 */
+	public void doShowdown() {
+		table.doShowdown();
+	}
 
 }
