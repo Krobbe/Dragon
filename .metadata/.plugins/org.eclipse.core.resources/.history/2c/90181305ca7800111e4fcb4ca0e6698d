@@ -41,12 +41,6 @@ public class FullTHHand implements iHand {
 			addCard(card);
 		}
 	}
-	
-	public void addCards(iHand hand) {
-		for(Card card : hand.getCards()) {
-			addCard(card);
-		}
-	}
 
 	@Override
 	public void setVisible(boolean b) {

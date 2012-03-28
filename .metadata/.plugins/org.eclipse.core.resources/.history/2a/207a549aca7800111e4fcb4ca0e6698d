@@ -1,10 +1,10 @@
 package model.game;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
 import model.player.iPlayer;
 import model.player.hand.*;
 
@@ -159,9 +159,10 @@ public class Table {
 				// Store the player together with other players with the same
 				// hand value.
 				HandValue handValue = new HandValue(hand);
-				List<iPlayer> playerList = winners.get(handValue);
+				System.out.format("%s: %s\n", player, handValue);
+				List<Player> playerList = winners.get(handValue);
 				if (playerList == null) {
-					playerList = new LinkedList<iPlayer>();
+					playerList = new LinkedList<Player>();
 				}
 				playerList.add(player);
 				winners.put(handValue, playerList);
@@ -211,7 +212,7 @@ public class Table {
 		for(iPlayer p : this.players) {
 			result.append(p.getName() + "\n");
 		}
-		result.append("Current player is " + getCurrentPlayer().getName() + "\n");
+		result.append("Current player is " + this.players.indexOf(this.indexOfCurrentPlayer).getName() + "\n");
 		result.append("Shown cards are:" + "\n");
 		for(Card c : this.tableCards) {
 			result.append(c.toString());

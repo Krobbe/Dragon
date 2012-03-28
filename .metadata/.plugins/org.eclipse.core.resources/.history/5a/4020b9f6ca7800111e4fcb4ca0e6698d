@@ -5,6 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+<<<<<<< HEAD
+import model.player.hand.HandValue;
+=======
+>>>>>>> Table har fått förhoppningsvis fungerade metoder doShowDown och en privat hjälpmetod getRankedPlayers
 import model.player.iPlayer;
 import model.player.hand.*;
 

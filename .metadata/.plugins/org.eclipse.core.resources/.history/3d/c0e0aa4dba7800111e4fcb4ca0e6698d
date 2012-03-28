@@ -1,7 +1,6 @@
 package model.player.hand;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 import model.game.Card;
@@ -10,14 +9,6 @@ import model.game.CardComparator;
 public class FullTHHand implements iHand {
 	private List<Card> cards;
 	private boolean isVisible = true;
-	
-	public FullTHHand() {
-		this(new LinkedList<Card>());
-	}
-	
-	public FullTHHand(List<Card> cards) {
-		this.cards = cards;
-	}
 	
 	@Override
 	public void discard() {
@@ -41,21 +32,17 @@ public class FullTHHand implements iHand {
 			addCard(card);
 		}
 	}
-	
-	public void addCards(iHand hand) {
-		for(Card card : hand.getCards()) {
-			addCard(card);
-		}
-	}
 
 	@Override
 	public void setVisible(boolean b) {
-		isVisible = b;
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public boolean isVisible() {
-		return isVisible;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
