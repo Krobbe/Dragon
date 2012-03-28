@@ -204,6 +204,11 @@ public class Table {
 		return tableCards;
 	}
 	
+	/**
+	 * @author Mattias Forssen
+	 * @author mattiashenriksson
+	 * 
+	 */
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
@@ -211,6 +216,13 @@ public class Table {
 		//TODO Lista skall inte innehålla iPlayers utan Players väl? Finns ingen Player-klass
 		for(iPlayer p : this.players) {
 			result.append(p.getName() + "\n");
+		}
+		result.append("Cards:" + "\n");
+		for(iPlayer p: players) {
+			List<Card> hand = p.getHand().getCards();
+			for(Card c : hand) {
+				result.append(c.toString());
+			}
 		}
 		result.append("Current player is " + getCurrentPlayer().getName() + "\n");
 		result.append("Shown cards are:" + "\n");

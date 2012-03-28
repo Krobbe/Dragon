@@ -23,7 +23,7 @@ public class Main {
 		iPlayer player = new User(new Player(new TexasHoldemHand(true),
 				"Mattias", new Balance()));
 		table.addPlayer(player);
-		
+		gc.distributeCards();
 		Scanner in = new Scanner(System.in);
 		
 		while(true) {
