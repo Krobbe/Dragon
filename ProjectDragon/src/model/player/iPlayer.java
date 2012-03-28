@@ -47,6 +47,13 @@ public interface iPlayer {
 	 */
 	public void addCard(Card c);
 	
+	/**
+	 * Removes amount from iPlayer's Balance
+	 * @param amount The amount to remove
+	 * @author mattiashenriksson
+	 */
+	public void removeFromBalance(int amount);
+	
 	@Override
 	public boolean equals(Object o);
 	

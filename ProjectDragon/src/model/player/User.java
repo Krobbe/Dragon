@@ -47,16 +47,22 @@ public class User implements iPlayer {
 	}
 	
 	/**
-	 * This method preforms a call
+	 * This method performs a call
 	 */
 	public void call(int currentBet) {
 		//TODO
 	}
+	
 
 	@Override
 	public void addCard(Card c) {
 		player.addCard(c);
 		
+	}
+	
+	@Override
+	public void removeFromBalance(int amount) {
+		player.removeFromBalance(amount);
 	}
 	
 	/**
@@ -87,4 +93,5 @@ public class User implements iPlayer {
 		  assert false : "hashCode not designed";
 		  return 42; // any arbitrary constant will do
 	}
+
 }

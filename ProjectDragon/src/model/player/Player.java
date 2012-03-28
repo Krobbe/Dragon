@@ -51,7 +51,11 @@ public class Player implements iPlayer {
 	@Override
 	public void addCard(Card c) {
 		hand.addCard(c);
-
+	}
+	
+	@Override
+	public void removeFromBalance(int amount) {
+		balance.removeFromBalance(amount);
 	}
 
 	/**

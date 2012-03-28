@@ -1,36 +1,44 @@
 package model.game;
 
+import model.player.Balance;
+import model.player.Bet;
+import model.player.Player;
+import model.player.hand.TexasHoldemHand;
+
 /**
  * A class that simulates a betting-round.
  * 
  * A betting-round ends when all active players have either checked or called the current bet.
  * @author lisastenberg and forssenm
- *
+ * @author mattiashenriksson
  */
 public class BettingRound {
-	private int currentBet;
+	private Bet currentBet;
 	
 	/**
 	 * Creates a new betting-round
+	 * @author lisastenberg
+	 * @author mattiashenriksson
 	 */
 	public BettingRound() {
-		currentBet = 0;
+		currentBet = new Bet(new Player(new TexasHoldemHand(false),"Default",
+				new Balance()), 0);
 	}
 	
 	/**
 	 * 
 	 * @return the current bet.
 	 */
-	public int getCurrentBet() {
+	public Bet getCurrentBet() {
 		return currentBet;
 	}
 	
 	/**
-	 * Set the current bet to x.
-	 * @param x	the value you want to set the current bet to.
+	 * Set the current bet to b.
+	 * @param b	the bet you want to set the current bet to.
 	 */
-	public void setCurrentBet(int x) {
-		currentBet = x;
+	public void setCurrentBet(Bet b) {
+		currentBet = b;
 	}
 	
 	/**

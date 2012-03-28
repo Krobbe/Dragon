@@ -6,8 +6,9 @@ import model.game.Card;
 import model.game.Dealer;
 import model.game.Pot;
 import model.game.Table;
-import model.player.iPlayer;
+import model.player.Bet;
 import model.player.User;
+import model.player.iPlayer;
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -103,17 +104,18 @@ public class GameController {
 		players.add(0, player);
 	}
 
+	
 	/**
 	 * @author forssenm Method for handling the call scenario
 	 */
 	public void call() {
-		int currentBet = table.getRound().getBettingRound().getCurrentBet();
-		User currentPlayer = (User) table.getCurrentPlayer();
-		currentPlayer.call(currentBet);
-		currentPlayer.getBalance().removeFromBalance(currentBet);
+		Bet currentBet = table.getRound().getBettingRound().getCurrentBet();
+		User currentPlayer = (User)table.getCurrentPlayer();
+		currentPlayer.call(currentBet.getValue());
+		//TODO ska följande vara här eller i User.call()?
+		currentPlayer.getBalance().removeFromBalance(currentBet.getValue());
 		Pot currentPot = table.getRound().getPot();
-		currentPot.addToPot(currentBet);
-
+		currentPot.addToPot(currentBet.getValue());
 	}
 	
 	/**
@@ -121,6 +123,13 @@ public class GameController {
 	 */
 	public List<iPlayer> doShowdown() {
 		return table.doShowdown();
+	}
+	
+	public void raise(int amount) {
+		table.getCurrentPlayer().removeFromBalance(amount);
+		table.getRound().getPot().addToPot(amount);
+		table.getRound().getBettingRound().setCurrentBet(
+				new Bet(table.getCurrentPlayer(),amount));
 	}
 
 }
