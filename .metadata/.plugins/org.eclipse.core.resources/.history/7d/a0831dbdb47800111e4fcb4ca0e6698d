@@ -1,7 +1,4 @@
 package model.player;
-
-import model.player.hand.iHand;
-
 /**
  * An interface that represents a player.
  * @author lisastenberg

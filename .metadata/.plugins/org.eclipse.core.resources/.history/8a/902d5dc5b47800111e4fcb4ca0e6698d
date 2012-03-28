@@ -1,7 +1,5 @@
 package model.player;
 
-import model.player.hand.iHand;
-
 /**
  * A class that simulates the local player.
  * @author lisastenberg

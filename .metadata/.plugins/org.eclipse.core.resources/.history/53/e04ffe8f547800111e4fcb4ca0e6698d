@@ -2,10 +2,7 @@ package model.game;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
-import model.player.HandValue;
 import model.player.iPlayer;
 
 /**
@@ -103,71 +100,16 @@ public class Table {
 	}
 	
 	/**
-	 * @author Mattias Henriksson
-	 * @author lisastenberg
-	 * 
 	 * Calculates the amount of chips the winner(s) will get and distributes it to him.
-	 * After the pot is distributed equally among the winner(s), the pot is emptied. 
 	 */
-	public void distributePot(List<iPlayer> winners) {
-		// This assumes that the pot can be distributed equally.
-		// TODO: How to do?
+	public void distributePot() { //TODO Ev dela upp i två metoder?
+		List<iPlayer> winners = round.getWinners();
 		int winnerAmount = round.getPot().getValue() / winners.size();
-		
+		round.getPot().emptyPot();
 		for (iPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);
 		}
-		round.getPot().emptyPot();
 	}
-	
-	
-    /**
-     * @author Oscar Stigter
-     * @author lisastenberg
-     * 
-     * Performs the Showdown.
-     */
-	
-    private void doShowdown() {
-        // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
-        Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers();
-        for (HandValue handValue : rankedPlayers.keySet()) {
-            // Get players with winning hand value.
-            List<iPlayer> winners = rankedPlayers.get(handValue);
-            distributePot(winners);
-            break;
-        }
-    }
-    
-    /**
-     * @author Oscar Stigter
-     * @author lisastenberg
-     * Returns the active players mapped and sorted by their hand value.
-     * 
-     * The players are sorted in descending order (highest value first).
-     * 
-     * @return The active players mapped by their hand value (sorted). 
-     */
-    private Map<HandValue, List<iPlayer>> getRankedPlayers() {
-        Map<HandValue, List<iPlayer>> winners = new TreeMap<HandValue, List<iPlayer>>();
-        for (iPlayer player : activePlayers) {
-        	
-            // Create a hand with the community cards and the player's hole cards.
-            Hand hand = new Hand(board);
-            hand.addCards(player.getCards());
-            // Store the player together with other players with the same hand value.
-            HandValue handValue = new HandValue(hand);
-            System.out.format("%s: %s\n", player, handValue);
-            List<Player> playerList = winners.get(handValue);
-            if (playerList == null) {
-                playerList = new LinkedList<Player>();
-            }
-            playerList.add(player);
-            winners.put(handValue, playerList);
-        }
-        return winners;
-    }
-    
 	
 	/**
 	 * 

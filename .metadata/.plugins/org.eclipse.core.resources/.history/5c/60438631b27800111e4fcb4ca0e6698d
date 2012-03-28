@@ -103,21 +103,15 @@ public class Table {
 	}
 	
 	/**
-	 * @author Mattias Henriksson
-	 * @author lisastenberg
-	 * 
 	 * Calculates the amount of chips the winner(s) will get and distributes it to him.
-	 * After the pot is distributed equally among the winner(s), the pot is emptied. 
 	 */
-	public void distributePot(List<iPlayer> winners) {
-		// This assumes that the pot can be distributed equally.
-		// TODO: How to do?
+	public void distributePot() { //TODO Ev dela upp i två metoder?
+		List<iPlayer> winners = round.getWinners();
 		int winnerAmount = round.getPot().getValue() / winners.size();
-		
+		round.getPot().emptyPot();
 		for (iPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);
 		}
-		round.getPot().emptyPot();
 	}
 	
 	
@@ -127,21 +121,64 @@ public class Table {
      * 
      * Performs the Showdown.
      */
-	
+	/*
     private void doShowdown() {
-        // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
-        Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers();
+    	/*
+        System.out.print("Board: ");
+        for (Card card : board) {
+            System.out.print(card + " ");
+        }
+        System.out.println();
+        */
+        // Look at each hand value, sorted from highest to lowest.
+        Map<HandValue, List<Player>> rankedPlayers = getRankedPlayers();
         for (HandValue handValue : rankedPlayers.keySet()) {
             // Get players with winning hand value.
-            List<iPlayer> winners = rankedPlayers.get(handValue);
-            distributePot(winners);
-            break;
+            List<Player> winners = rankedPlayers.get(handValue);
+            if (winners.size() == 1) {
+                // Single winner.
+                Player winner = winners.get(0);
+                winner.win(pot);
+                notifyBoardUpdated();
+                notifyPlayersUpdated(true);
+                notifyMessage("%s wins the pot.", winner);
+                break;
+            } else {
+                // Tie; share the pot amongs winners.
+                int tempPot = pot;
+                StringBuilder sb = new StringBuilder("Tie: ");
+                for (Player player : winners) {
+                    // Determine the player's share of the pot.
+                    int potShare = player.getAllInPot();
+                    if (potShare == 0) {
+                        // Player is not all-in, so he competes for the whole pot.
+                        potShare = pot / winners.size();
+                    }
+                    // Give the player his share of the pot.
+                    player.win(potShare);
+                    tempPot -= potShare;
+                    if (sb.length() > 0) {
+                        sb.append(", ");
+                    }
+                    sb.append(String.format("%s wins $%d\n", player, potShare));
+                    // If there is no more pot to divide, we're done.
+                    if (tempPot == 0) {
+                        break;
+                    }
+                }
+                notifyBoardUpdated();
+                notifyPlayersUpdated(true);
+                notifyMessage(sb.append('.').toString());
+                if (tempPot > 0) {
+                    throw new IllegalStateException("Pot not empty after sharing between winners");
+                }
+                break;
+            }
         }
     }
+	*/
     
     /**
-     * @author Oscar Stigter
-     * @author lisastenberg
      * Returns the active players mapped and sorted by their hand value.
      * 
      * The players are sorted in descending order (highest value first).
@@ -151,7 +188,6 @@ public class Table {
     private Map<HandValue, List<iPlayer>> getRankedPlayers() {
         Map<HandValue, List<iPlayer>> winners = new TreeMap<HandValue, List<iPlayer>>();
         for (iPlayer player : activePlayers) {
-        	
             // Create a hand with the community cards and the player's hole cards.
             Hand hand = new Hand(board);
             hand.addCards(player.getCards());
@@ -167,7 +203,7 @@ public class Table {
         }
         return winners;
     }
-    
+    */
 	
 	/**
 	 * 

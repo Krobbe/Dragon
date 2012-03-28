@@ -138,10 +138,9 @@ public class Table {
             break;
         }
     }
+	
     
     /**
-     * @author Oscar Stigter
-     * @author lisastenberg
      * Returns the active players mapped and sorted by their hand value.
      * 
      * The players are sorted in descending order (highest value first).
@@ -151,7 +150,6 @@ public class Table {
     private Map<HandValue, List<iPlayer>> getRankedPlayers() {
         Map<HandValue, List<iPlayer>> winners = new TreeMap<HandValue, List<iPlayer>>();
         for (iPlayer player : activePlayers) {
-        	
             // Create a hand with the community cards and the player's hole cards.
             Hand hand = new Hand(board);
             hand.addCards(player.getCards());

@@ -37,4 +37,15 @@ public class Round {
 	public Pot getPot() {
 		return pot;
 	}
+	
+	/**
+	 * 
+	 * @return A list of the players who has won the current round
+	 */
+	public List<iPlayer> getWinners() {
+		//TODO poker hand eveluator?
+		return null;
+	}
+	
+	
 }

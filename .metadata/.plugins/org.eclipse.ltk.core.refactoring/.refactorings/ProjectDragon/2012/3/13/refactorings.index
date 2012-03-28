@@ -6,3 +6,5 @@
 1332872438867	Rename local variable 'suite'
 1332872458389	Rename method 'getSuite'
 1332872473917	Rename field 'suite'
+1332925271345	Copy compilation units
+1332925282411	Delete elements
