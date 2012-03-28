@@ -37,7 +37,6 @@ public class FullTHHandTest {
 		assertTrue(c.getRank() == Card.Rank.TEN && c.getSuit() == Card.Suit.CLUBS);
 	}
 	
-	@Test
 	public void testAddCardsFromHand() {
 		FullTHHand fhand = new FullTHHand();
 		iHand hand = new TexasHoldemHand(true);

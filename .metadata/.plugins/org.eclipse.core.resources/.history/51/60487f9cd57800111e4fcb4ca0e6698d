@@ -54,30 +54,5 @@ public class FullTHHand implements iHand {
 	public boolean isVisible() {
 		return isVisible;
 	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if(this == o) {
-			return true;
-		}
-		else if (o.getClass() != this.getClass()) {
-			return false;
-		}
-		else {
-			FullTHHand tmp = (FullTHHand)o;
-			return (this.getCards().equals(tmp.getCards()));
-		}
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder result = new StringBuilder();
-		result.append("Full hand: +\n");
-		for(Card c : cards) {
-			result.append(c.toString() + "\n");
-		}
-		
-		return result.toString();
-	}
 
 }

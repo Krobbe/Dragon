@@ -71,13 +71,7 @@ public class FullTHHand implements iHand {
 	
 	@Override
 	public String toString() {
-		StringBuilder result = new StringBuilder();
-		result.append("Full hand: +\n");
-		for(Card c : cards) {
-			result.append(c.toString() + "\n");
-		}
 		
-		return result.toString();
 	}
 
 }
