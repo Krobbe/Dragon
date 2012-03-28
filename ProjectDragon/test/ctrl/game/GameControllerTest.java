@@ -21,20 +21,21 @@ public class GameControllerTest {
 	public void testShowFlop() {
 		Table t = new Table();
 		GameController gc = new GameController(t);
-		List<Card> tableCardsT0 = t.getTableCards();
+		int tableCardsLengthT0 = t.getTableCards().size();
 		gc.showFlop();
 		List<Card> tableCardsT = t.getTableCards();
-		assertTrue(tableCardsT.size() - tableCardsT0.size() == 3);
+		int tableCardsLengthT = t.getTableCards().size();
+		assertTrue(tableCardsLengthT - tableCardsLengthT0 == 3);
 	}
 	
 	@Test
 	public void testShowRiver() {
 		Table t = new Table();
 		GameController gc = new GameController(t);
-		List<Card> tableCardsT0 = t.getTableCards();
-		gc.showFlop();
-		List<Card> tableCardsT = t.getTableCards();
-		assertTrue(tableCardsT.size() - tableCardsT0.size() == 1);
+		int tableCardsLengthT0 = t.getTableCards().size();
+		gc.showRiver();
+		int tableCardsLengthT = t.getTableCards().size();
+		assertTrue(tableCardsLengthT - tableCardsLengthT0 == 1);
 	}
 
 }
