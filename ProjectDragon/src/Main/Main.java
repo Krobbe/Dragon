@@ -23,6 +23,8 @@ public class Main {
 		GameController gc = new GameController(table);
 		iPlayer player = new User(new Player(new TexasHoldemHand(true),
 				"Mattias", new Balance()));
+		/* iPlayer player2 = new User(new Player(new TexasHoldemHand(true),
+				"Lisa", new Balance())); */
 		table.addPlayer(player);
 		player.setActive(true);
 		gc.distributeCards();
@@ -33,12 +35,16 @@ public class Main {
 			System.out.println('>');
 			String cmd = in.nextLine();
 			
-			if (cmd.equals("n")) {
+			if (cmd.equals("check")) {
 				if (table.getTableCards().size() == 0) {
 					gc.showFlop();
+				} else if (table.getTableCards().size() == 3){
+					gc.showRiver();
 				} else {
 					gc.showRiver();
-				}	
+				}
+			} else if (cmd.equals("showdown")){
+			
 			} else {
 				System.out.println("Command not supported..");
 			}
