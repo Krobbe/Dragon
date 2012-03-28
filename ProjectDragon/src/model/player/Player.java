@@ -4,10 +4,11 @@ import model.game.Card;
 import model.player.hand.iHand;
 
 /**
- * This class contains common methods and variables for all classes 
- * implementing iPlayer.
+ * This class contains common methods and variables for all classes implementing
+ * iPlayer.
+ * 
  * @author mattiashenriksson
- *
+ * 
  */
 public class Player implements iPlayer {
 	
@@ -50,7 +51,40 @@ public class Player implements iPlayer {
 	@Override
 	public void addCard(Card c) {
 		hand.addCard(c);
-		
+
 	}
 
+	/**
+	 * Equals method for the User class
+	 * 
+	 * @author forssenm
+	 * @param Object to compare with
+	 * @return returns true if they are the same object
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return (this == o);
+	}
+
+	/**
+	 * Tostring method for the Player class
+	 * @author forssenm
+	 * @return returns a string containing the name, balance, hand and if the
+	 *         user is active or not
+	 */
+	@Override
+	public String toString() {
+		String result = ("Name: " + getName() + " , " + "Balance: "
+				+ getBalance() + " , " + "Active: " + isActive() + " , "
+				+ "Hand: " + getHand().toString());
+		return result;
+	}
+
+	// Since we at the current state aren't planning on using any hashtables
+	// this code was added
+	// for the cause of good practice
+	public int hashCode() {
+		assert false : "hashCode not designed";
+		return 42; // any arbitrary constant will do
+	}
 }

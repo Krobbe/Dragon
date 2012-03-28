@@ -66,8 +66,8 @@ public class Pot {
 	}
 	
 	/**
-	 * @author forssenm
 	 * toString method for the Pot class
+	 * @author forssenm
 	 * @return returns a string containing the value of the pot
 	 */
 	@Override

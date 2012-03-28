@@ -41,11 +41,22 @@ public class Bet {
 		return owner;
 	}
 	
+	/**
+	 * Equals method for the Bet class
+	 * @author forssenm
+	 * @param Object to compare with
+	 * @return returns true if they are the same object
+	 */
 	@Override
 	public boolean equals(Object o) {
 		return (this == o);
 	}
 	
+	/**
+	 * toString method for the Bet class
+	 * @author forssenm
+	 * @return returns a string conting the value of the bet
+	 */
 	@Override
 	public String toString() {
 		String result = Integer.toString(value);

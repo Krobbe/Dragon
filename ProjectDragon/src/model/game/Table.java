@@ -206,14 +206,20 @@ public class Table {
 	}
 	
 	/**
+	 * Tostring method for the Table class
 	 * @author Mattias Forssen
 	 * @author mattiashenriksson
-	 * 
+	 * @return Returns a string containing the names of all players, cards, who the current player is
+	 * and what cards are shown
 	 */
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
+<<<<<<< HEAD
 		result.append("Players at table: ");
+=======
+		result.append("Players:" + "\n");
+>>>>>>> Changes to many equals and tostring methods and their documentation
 		for(iPlayer p : this.players) {
 			result.append(p.getName() + "\t\t");
 		}
@@ -232,6 +238,12 @@ public class Table {
 		return result.toString();
 	}
 	
+	/**
+	 * Equals method for the Table class
+	 * @author forssenm
+	 * @param Object to compare with
+	 * @return returns true if they are the same object otherwise false
+	 */
 	@Override
 	public boolean equals(Object o) {
 		return (o == this);

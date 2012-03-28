@@ -34,8 +34,8 @@ public class BettingRound {
 	}
 	
 	/**
-	 * @author forssenm
 	 * Equals method for the BettingRound class
+	 * @author forssenm
 	 * @param o is the object you will compare with
 	 * @return true if o is the same object or if o has the same currentBet
 	 */
@@ -57,8 +57,8 @@ public class BettingRound {
 	}
 	
 	/**
-	 * @author forssenm
 	 * toString method for the BettingRound class
+	 * @author forssenm
 	 * @return a string with the form "Current bet is ..."
 	 */
 	@Override

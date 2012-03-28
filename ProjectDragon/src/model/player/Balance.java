@@ -49,6 +49,11 @@ public class Balance {
 		value = value - x;
 	}
 	
+	/**
+	 * To string method for the Balance class
+	 * @author forssenm
+	 * @return returns a string containing the current value
+	 */
 	public String toString() {
 		String result = Integer.toString(value);
 		return result;

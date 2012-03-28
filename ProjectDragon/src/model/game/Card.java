@@ -82,8 +82,8 @@ public class Card {
 	}
 	
 	/**
-	 * @author forssenm
 	 * toString method for the card class
+	 * @author forssenm
 	 * @return returns a string in the form of "3 of spades"
 	 */
 	@Override

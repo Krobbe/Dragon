@@ -58,4 +58,33 @@ public class User implements iPlayer {
 		player.addCard(c);
 		
 	}
+	
+	/**
+	 * Equals method for the User class
+	 * @author forssenm
+	 * @param Object to compare with
+	 * @return returns true if they are the same object
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return (this == o);
+	}
+	
+	/**
+	 * Tostring method for the User class
+	 * @author forssenm
+	 * @return returns a string in the form of "Name: Charles , Balance: 1200"
+	 */
+	@Override
+	public String toString() {
+		String result = ("Name: " + getName() + " , " + "Balance: " + getBalance());
+		return result;
+	}
+	
+	//Since we at the current state aren't planning on using any hashtables this code was added
+	//for the cause of good practice
+	public int hashCode() {
+		  assert false : "hashCode not designed";
+		  return 42; // any arbitrary constant will do
+	}
 }

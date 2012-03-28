@@ -52,8 +52,8 @@ public class Deck {
 	}
 	
 	/**
-	 * @author forssenm
 	 * toString method for the Deck class
+	 * @author forssenm
 	 * @return returns a string containing all of the cards that are in the deck
 	 */
 	@Override
