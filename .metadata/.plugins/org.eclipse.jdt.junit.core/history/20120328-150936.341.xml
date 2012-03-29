@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="BetTest" project="ProjectDragon" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="model.player.BetTest" time="0.0">
+    <testcase name="testGetValue" classname="model.player.BetTest" time="0.0"/>
+    <testcase name="testGetOwner" classname="model.player.BetTest" time="0.0"/>
+  </testsuite>
+</testrun>

@@ -33,9 +33,7 @@ public class BetTest {
 	
 	@Test
 	public void testToString() {
-		User u = new User();
-		Bet b = new Bet(u, 10);
-		assertTrue(b.toString().equals("" + 10));
+		fail("not yet implemented");
 	}
 
 }

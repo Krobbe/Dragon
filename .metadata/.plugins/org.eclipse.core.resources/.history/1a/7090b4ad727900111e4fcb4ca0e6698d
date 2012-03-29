@@ -42,11 +42,14 @@ public class Bet {
 	}
 	
 	/**
-	 * Equals method for the Bet class.
-	 * A bet A compared to another bet B is only equal if A = B.
+<<<<<<< HEAD
+	 * Equals method for the Bet class
 	 * @author forssenm
 	 * @param Object to compare with
 	 * @return returns true if they are the same object
+=======
+	 * A bet A compared to another bet B is only equal if A = B.
+>>>>>>> forrtsatt lite på tester
 	 */
 	@Override
 	public boolean equals(Object o) {

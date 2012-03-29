@@ -70,12 +70,5 @@ public class AccountTest {
 		Balance bal2 = new Balance(0);
 		assertTrue(bal.equals(bal2));
 	}
-	
-	@Test
-	public void testEquals() {
-		Account c = new Account("a", "b", "c", "d");
-		assertTrue(a.equals(a));
-		assertTrue(!a.equals(c));
-	}
 
 }

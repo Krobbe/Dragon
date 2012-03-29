@@ -97,25 +97,14 @@ public class Account {
 	public Balance getBalance() {
 		return balance;
 	}
-	
-	/**
-	 * toString method for the Account class
-	 * @author forssenm
-	 * @return returns a string containing the first name, last name, username and balance
-	 */
+
 	public String toString() {
-		String result = ("Firstname: " + this.firstName + "\n" + "Lastname: "
-				+ this.lastName + "\n" + "Username: " + this.userName + "\n"
-				+ "Balance: " + this.balance);
+		String result = ("Firstname " + this.firstName + "\n" + "Lastname "
+				+ this.lastName + "\n" + "Username " + this.userName + "\n"
+				+ "Balance " + this.balance);
 		return result;
 	}
-	
-	/**
-	 * Equals method for the account class
-	 * @author forssenm
-	 * @param the object to compare with
-	 * @return returns true if they are the same object
-	 */
+
 	@Override
 	public boolean equals(Object o) {
 		return (this == o);

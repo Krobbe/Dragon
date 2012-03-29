@@ -34,8 +34,9 @@ public class BetTest {
 	@Test
 	public void testToString() {
 		User u = new User();
-		Bet b = new Bet(u, 10);
-		assertTrue(b.toString().equals("" + 10));
+		Bet b = new Bet(new User(), 10);
+		String s = b.toString();
+		assertTrue(s.equals());
 	}
 
 }
