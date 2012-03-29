@@ -19,7 +19,8 @@ public class Round {
 	 * Creates a new Round.
 	 */
 	public Round() {
-		pot = new Pot(); 
+		pot = new Pot();
+		bettingRound = new BettingRound();
 	}
 	
 	/**
