@@ -141,7 +141,12 @@ public class GameController {
 	}
 	
 	public void nextRound() {
-		
+		//TODO distribute pot? , discard winners?
+		List<iPlayer> players = table.getPlayers();
+		for (iPlayer p : players) {
+			p.setActive(true);
+		}
+		distributeCards();
 	}
 
 }
