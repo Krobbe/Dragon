@@ -103,7 +103,11 @@ public class GameController {
 		currentPot.addToPot(currentBet.getValue());
 		table.nextPlayer();
 	}
-		
+	
+	/**
+	 * Performs a raise
+	 * @param amount The amount to raise the pot with.
+	 */
 	public void raise(int amount) {
 		table.getCurrentPlayer().removeFromBalance(amount);
 		table.getRound().getPot().addToPot(amount);
@@ -134,6 +138,10 @@ public class GameController {
 	 */
 	public List<iPlayer> doShowdown() {
 		return table.doShowdown();
+	}
+	
+	public void nextRound() {
+		
 	}
 
 }

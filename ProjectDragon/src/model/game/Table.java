@@ -137,7 +137,7 @@ public class Table {
 	 * @param p The player which cards will be set visible
 	 */
 	public void makeHandVisible(iPlayer p) {
-		p.getHand().setVisible(true); //TODO bättre att göra en metod i Player makeHandVisble för att undvika långa rader av metodanrop?
+		p.getHand().setVisible(true);
 	}
 	
 	/**
@@ -150,7 +150,7 @@ public class Table {
 	public void distributePot(List<iPlayer> winners) {
 		// This assumes that the pot can be distributed equally.
 		// TODO: How to do?
-		int winnerAmount = round.getPot().getValue() / winners.size();
+		int winnerAmount = round.getPotValue() / winners.size();
 		
 		for (iPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);

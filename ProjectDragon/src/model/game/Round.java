@@ -34,4 +34,12 @@ public class Round {
 	public Pot getPot() {
 		return pot;
 	}
+	
+	/**
+	 * @author mattiashenriksson
+	 * @return The value of the round's current Pot
+	 */
+	public int getPotValue() {
+		return pot.getValue();
+	}
 }
