@@ -277,10 +277,20 @@ public class Table {
 		for(iPlayer p: players) {
 			List<Card> hand = p.getHand().getCards();
 			result.append(hand.toString() + "\t");
+			/*
+			for(Card c : hand) {
+				result.append(c.toString() + "\t");
+			}
+			*/
 		}
 		result.append("\nCurrent player is " + getCurrentPlayer().getName() + "\n");
 		result.append("Table cards are:" + "\n");
 		result.append(tableCards.toString());
+		/*
+		for(Card c : this.tableCards) {
+			result.append(c.toString() + "\t\t");
+		}
+		*/
 		return result.toString();
 	}
 	
