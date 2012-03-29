@@ -45,10 +45,10 @@ public class Main {
 					gc.showRiver();
 				} else {
 					List<iPlayer> list = gc.doShowdown();
+					System.out.println("Round ended...");
 					for (iPlayer p : list) {
-						System.out.println("Winner: " + p.getName());
+						System.out.println("\nWinner: " + p.getName());
 					}
-					System.out.println("\nRound ended...");
 					break;
 				}
 			} else {
