@@ -118,5 +118,13 @@ public class GameController {
 		table.getRound().getBettingRound().setCurrentBet(
 				new Bet(table.getCurrentPlayer(),amount));
 	}
+	
+	/**
+	 * Performs a fold.
+	 */
+	public void fold() {
+		table.getCurrentPlayer().getHand().discard();
+		table.getCurrentPlayer().setActive(false);
+	}
 
 }
