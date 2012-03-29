@@ -1,0 +1,33 @@
+/**
+ * 
+ */
+package model.player.hand;
+
+import static org.junit.Assert.*;
+
+import model.game.Card;
+import model.player.hand.TexasHoldemHand;
+
+import org.junit.Test;
+
+/**
+ * Test for TexasHoldemHand
+ * 
+ * @author lisastenberg
+ *
+ */
+public class TexasHoldemHandTest {
+
+	//TODO Write tests for TexasHoldemTest
+	/**
+	 * author Robin Andersson
+	 */
+	@Test
+	public void testVisible() {
+		iHand hand = new TexasHoldemHand(true);
+		assertTrue(hand.isVisible());
+		
+		hand.setVisible(false);
+		assertTrue(!hand.isVisible());
+	}
+}

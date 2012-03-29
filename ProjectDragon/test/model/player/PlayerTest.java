@@ -10,10 +10,32 @@ import org.junit.Test;
 /**
  * A test of the class "Player".
  * @author mattiashenriksson
+ * @author lisastenberg
  *
  */
 public class PlayerTest {
 
+	@Test
+	public void testIsActive() {
+		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		assertTrue(!p.isActive());
+	}
+	
+	@Test
+	public void testIsStillInGame() {
+		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		assertTrue(p.isStillInGame());
+	}
+	
+	@Test
+	public void testGetName() {
+		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		assertTrue(p.getName().equals("Mattias"));
+	}
+	
 	@Test
 	public void testSetActive() {
 		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
@@ -31,7 +53,57 @@ public class PlayerTest {
 		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		p.addCard(c);
 		assertTrue(thh.getCards().get(0).equals(c));
-		
 	}
-
+	
+	@Test
+	public void testGetHand() {
+		TexasHoldemHand thh = new TexasHoldemHand(true);
+		Player p = new Player(thh, "Mattias", new Balance());
+		assertTrue(p.getHand().equals(thh));
+	}
+	
+	@Test
+	public void testSetStillInGame() {
+		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		assertTrue(p.isStillInGame());
+		p.setStillInGame(false);
+		assertTrue(!p.isStillInGame());
+	}
+	
+	@Test
+	public void testGetBalance() {
+		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		assertTrue(p.getBalance().getValue() == 0);
+	}
+	
+	@Test
+	public void testEquals() {
+		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		assertTrue(p.equals(p));
+		Player p2 = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		assertTrue(!p.equals(p2));
+	}
+	
+	@Test
+	public void testCompareTo() {
+		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		assertTrue(p.compareTo(p) == 0);
+		Player p2 = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		assertTrue(p.compareTo(p2) == 0);
+	}
+	
+	@Test
+	public void testToString() {
+		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
+				new Balance());
+		String s = p.toString();
+		String expected = "Name : Mattias , Balance: 0 , Active: false , " +
+				"Hand: ";
+	}
 }

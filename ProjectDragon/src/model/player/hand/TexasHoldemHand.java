@@ -3,7 +3,7 @@
  */
 package model.player.hand;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import model.game.Card;
@@ -19,9 +19,16 @@ public class TexasHoldemHand implements iHand {
 	private List<Card> cards;
 	private boolean isVisible;
 	
+	/**
+	 * author lisastenberg
+	 */
+	public TexasHoldemHand() {
+		this(false);
+	}
+	
 	public TexasHoldemHand(boolean isVisible){
 		 this.isVisible = isVisible;
-		 cards = new ArrayList<Card>(7);
+		 cards = new LinkedList<Card>();
 	}
 	
 	/**
@@ -66,26 +73,14 @@ public class TexasHoldemHand implements iHand {
 		return isVisible;
 	}
 	
-	/**
-	 * Returns a string describing the hand
-	 * 
-	 * @return "'card1 value' of 'card1 suite', 'card2 value' of 'card2 suite' and so on
-	 * ending with 'card3 value' of 'card3 suite'"
-	 * 
-	 */
 	@Override
 	public String toString() {
-		
-		StringBuilder stringB = new StringBuilder();
-		
-		for(int i = 0 ; i < cards.size() -1 ; i++){
-			stringB.append(cards.get(i).toString());
+		StringBuilder result = new StringBuilder();
+		result.append("Texas Hold'em hand: \n");
+		for(Card c : cards) {
+			result.append(c.toString() + "\n");
 		}
-		
-		stringB.append(" and " + cards.get(cards.size()-1));
-		
-		return stringB.toString();
-		
+		return result.toString();
 	}	
 	
 	/**
@@ -133,7 +128,6 @@ public class TexasHoldemHand implements iHand {
 					if(card.equals(otherCards.get(i))){
 						sameCards = true;
 					}
-				
 					i++;
 				}
 				
@@ -143,12 +137,9 @@ public class TexasHoldemHand implements iHand {
 				if(!sameCards){
 					return false;
 				}
-
 			}
 			return true;
-
 		}
-		
 	}
 	
 	//Since we at the current state aren't planning on using any hashtables this code was added

@@ -77,5 +77,12 @@ public class AccountTest {
 		assertTrue(a.equals(a));
 		assertTrue(!a.equals(c));
 	}
+	
+	@Test
+	public void testToString() {
+		String s = a.toString();
+		String expected = "Firstname: a\nLastname: b\nUsername: c\nBalance: 0";
+		assertTrue(s.equals(expected));
+	}
 
 }

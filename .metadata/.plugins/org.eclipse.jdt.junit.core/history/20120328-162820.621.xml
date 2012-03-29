@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="AccountTest (2)" project="ProjectDragon" tests="10" started="10" failures="0" errors="0" ignored="0">
+  <testsuite name="model.player.AccountTest" time="0.001">
+    <testcase name="testGetFirstName" classname="model.player.AccountTest" time="0.001"/>
+    <testcase name="testGetLastName" classname="model.player.AccountTest" time="0.0"/>
+    <testcase name="testGetUserName" classname="model.player.AccountTest" time="0.0"/>
+    <testcase name="testGetPassWord" classname="model.player.AccountTest" time="0.0"/>
+    <testcase name="testSetFirstName" classname="model.player.AccountTest" time="0.0"/>
+    <testcase name="testSetLastName" classname="model.player.AccountTest" time="0.0"/>
+    <testcase name="testSetUserName" classname="model.player.AccountTest" time="0.0"/>
+    <testcase name="testSetPassWord" classname="model.player.AccountTest" time="0.0"/>
+    <testcase name="testGetBalance" classname="model.player.AccountTest" time="0.0"/>
+    <testcase name="testEquals" classname="model.player.AccountTest" time="0.0"/>
+  </testsuite>
+</testrun>

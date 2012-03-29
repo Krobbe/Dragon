@@ -71,7 +71,8 @@ public class Player implements iPlayer {
 	}
 
 	/**
-	 * Equals method for the User class
+	 * Equals method for the User class. A user A is equal to a user
+	 * B if and only if A = B.
 	 * 
 	 * @author forssenm
 	 * @param Object to compare with
@@ -104,9 +105,11 @@ public class Player implements iPlayer {
 		return 42; // any arbitrary constant will do
 	}
 
+	/**
+	 * Compare a player against another player by their names. 
+	 */
 	@Override
 	public int compareTo(iPlayer p) {
 		return this.getName().compareTo(p.getName());
 	}
-
 }

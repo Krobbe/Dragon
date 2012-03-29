@@ -97,6 +97,9 @@ public class User implements iPlayer {
 		  return 42; // any arbitrary constant will do
 	}
 
+	/**
+	 * Compare a player against another player by their names. 
+	 */
 	@Override
 	public int compareTo(iPlayer p) {
 		return this.getName().compareTo(p.getName());

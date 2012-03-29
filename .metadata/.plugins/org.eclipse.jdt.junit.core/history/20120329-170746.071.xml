@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="FullTHHandTest" project="ProjectDragon" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="model.player.hand.FullTHHandTest" time="0.0">
+    <testcase name="testGetCards" classname="model.player.hand.FullTHHandTest" time="0.0"/>
+    <testcase name="testAddCard" classname="model.player.hand.FullTHHandTest" time="0.0"/>
+    <testcase name="testAddCardsFromList" classname="model.player.hand.FullTHHandTest" time="0.0"/>
+    <testcase name="testAddCardsFromHand" classname="model.player.hand.FullTHHandTest" time="0.0"/>
+    <testcase name="testDiscard" classname="model.player.hand.FullTHHandTest" time="0.0"/>
+  </testsuite>
+</testrun>
