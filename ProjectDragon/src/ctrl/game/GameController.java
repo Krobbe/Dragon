@@ -106,6 +106,7 @@ public class GameController {
 	
 	/**
 	 * Performs a showdown.
+	 * @return a list of the winning players of the current round.
 	 */
 	public List<iPlayer> doShowdown() {
 		return table.doShowdown();
