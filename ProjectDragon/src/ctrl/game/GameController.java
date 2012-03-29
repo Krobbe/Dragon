@@ -90,33 +90,26 @@ public class GameController {
 
 	}
 
-	
+	//TODO: Koden i call, raise, check, fold är lite lik. refactor?
 	/**
 	 * @author forssenm Method for handling the call scenario
+	 * @author mattiashenriksson
 	 */
 	public void call() {
 		Bet currentBet = table.getRound().getBettingRound().getCurrentBet();
-		User currentPlayer = (User)table.getCurrentPlayer();
-		currentPlayer.call(currentBet.getValue());
-		//TODO ska följande vara här eller i User.call()?
+		iPlayer currentPlayer = table.getCurrentPlayer();
 		currentPlayer.getBalance().removeFromBalance(currentBet.getValue());
 		Pot currentPot = table.getRound().getPot();
 		currentPot.addToPot(currentBet.getValue());
+		table.nextPlayer();
 	}
-	
-	/**
-	 * Performs a showdown.
-	 * @return a list of the winning players of the current round.
-	 */
-	public List<iPlayer> doShowdown() {
-		return table.doShowdown();
-	}
-	
+		
 	public void raise(int amount) {
 		table.getCurrentPlayer().removeFromBalance(amount);
 		table.getRound().getPot().addToPot(amount);
 		table.getRound().getBettingRound().setCurrentBet(
 				new Bet(table.getCurrentPlayer(),amount));
+		table.nextPlayer();
 	}
 	
 	/**
@@ -125,6 +118,22 @@ public class GameController {
 	public void fold() {
 		table.getCurrentPlayer().getHand().discard();
 		table.getCurrentPlayer().setActive(false);
+		table.nextPlayer();
+	}
+	
+	/**
+	 * Performs a check.
+	 */
+	public void check() {
+		table.nextPlayer();
+	}
+	
+	/**
+	 * Performs a showdown.
+	 * @return a list of the winning players of the current round.
+	 */
+	public List<iPlayer> doShowdown() {
+		return table.doShowdown();
 	}
 
 }

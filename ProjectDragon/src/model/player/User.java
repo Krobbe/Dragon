@@ -57,14 +57,6 @@ public class User implements iPlayer {
 		return player.getName();
 	}
 	
-	/**
-	 * This method performs a call
-	 */
-	public void call(int currentBet) {
-		//TODO
-	}
-	
-
 	@Override
 	public void addCard(Card c) {
 		player.addCard(c);
