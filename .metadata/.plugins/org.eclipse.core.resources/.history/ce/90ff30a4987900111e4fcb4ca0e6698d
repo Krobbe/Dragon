@@ -53,7 +53,7 @@ public class Main {
 						System.out.println("\nWinner: " + p.getName());
 						HandValueType hvt = table.getHandTypes().get(p);
 						System.out.print(hvt);
-						System.out.println(table.getHandTypes().toString());
+						//System.out.println(table.getHandTypes().toString());
 					}
 					break;
 				}

@@ -139,7 +139,7 @@ public class Table {
 	 * @param p The player which cards will be set visible
 	 */
 	public void makeHandVisible(iPlayer p) {
-		p.getHand().setVisible(true);
+		p.getHand().setVisible(true); //TODO bŠttre att gšra en metod i Player makeHandVisble fšr att undvika lŒnga rader av metodanrop?
 	}
 	
 	/**
@@ -152,7 +152,7 @@ public class Table {
 	public void distributePot(List<iPlayer> winners) {
 		// This assumes that the pot can be distributed equally.
 		// TODO: How to do?
-		int winnerAmount = round.getPotValue() / winners.size();
+		int winnerAmount = round.getPot().getValue() / winners.size();
 		
 		for (iPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);
@@ -174,6 +174,25 @@ public class Table {
             List<iPlayer> winners = rankedPlayers.get(handValue);
             distributePot(winners);
             return winners;
+        }
+        // No person is the winner. This should never happen.
+        return null;
+    }
+    
+
+    //TODO Lösa så att den även returnerar "värdet" på den vinnande handen
+    public Map<HandValueType, List<iPlayer>> doShowdown2() {
+        // Look at each hand value (calculated in HandEvaluator), sorted from 
+    	// highest to lowest.
+        Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers();
+        for (HandValue handValue : rankedPlayers.keySet()) {
+            // Get players with winning hand value.
+            List<iPlayer> winners = rankedPlayers.get(handValue);
+            distributePot(winners);
+            TreeMap<HandValueType, List<iPlayer>> winnerType = 
+            		new TreeMap<HandValueType, List<iPlayer>>();
+            //winnerType.put(, winners);
+            return winnerType;
         }
         // No person is the winner. This should never happen.
         return null;
@@ -211,8 +230,6 @@ public class Table {
 				}
 				playerList.add(player);
 				winners.put(handValue, playerList);
-				
-				hand.discard();
 			}
 		}
         return winners;
@@ -251,15 +268,6 @@ public class Table {
 	}
 	
 	/**
-	 * This method is only used when the showDown is done and you want we want
-	 * to show the winners handtype.
-	 * @return A map containing a player with the type of his hand.
-	 */
-	public Map<iPlayer, HandValueType> getHandTypes() {
-		return handTypes;
-	}
-	
-	/**
 	 * Tostring method for the Table class
 	 * @author Mattias Forssen
 	 * @author mattiashenriksson
@@ -276,21 +284,15 @@ public class Table {
 		result.append("\nCards: ");
 		for(iPlayer p: players) {
 			List<Card> hand = p.getHand().getCards();
-			result.append(hand.toString() + "\t");
-			/*
 			for(Card c : hand) {
 				result.append(c.toString() + "\t");
 			}
-			*/
 		}
 		result.append("\nCurrent player is " + getCurrentPlayer().getName() + "\n");
 		result.append("Table cards are:" + "\n");
-		result.append(tableCards.toString());
-		/*
 		for(Card c : this.tableCards) {
 			result.append(c.toString() + "\t\t");
 		}
-		*/
 		return result.toString();
 	}
 	

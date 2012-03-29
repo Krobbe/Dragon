@@ -104,9 +104,4 @@ public class Player implements iPlayer {
 		return 42; // any arbitrary constant will do
 	}
 
-	@Override
-	public int compareTo(iPlayer p) {
-		return this.getName().compareTo(p.getName());
-	}
-
 }

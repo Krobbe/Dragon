@@ -16,15 +16,15 @@ import model.game.CardComparator;
  *
  */
 public class FullTHHand implements iHand {
-	private List<Card> cards = new LinkedList<Card>();
+	private List<Card> cards;
 	private boolean isVisible = true;
 	
 	public FullTHHand() {
-		
+		this(new LinkedList<Card>());
 	}
 	
 	public FullTHHand(List<Card> cards) {
-		addCards(cards);
+		this.cards = cards;
 	}
 	
 	@Override

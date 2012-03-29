@@ -23,14 +23,12 @@ public class Main {
 	public void run() {
 		Table table = new Table();
 		GameController gc = new GameController(table);
-		iPlayer player1 = new User(new Player(new TexasHoldemHand(true),
+		iPlayer player = new User(new Player(new TexasHoldemHand(true),
 				"Mattias", new Balance()));
-		iPlayer player2 = new User(new Player(new TexasHoldemHand(true),
-				"Lisa", new Balance()));
-		table.addPlayer(player1);
-		table.addPlayer(player2);
-		player1.setActive(true);
-		player2.setActive(true);
+		/* iPlayer player2 = new User(new Player(new TexasHoldemHand(true),
+				"Lisa", new Balance())); */
+		table.addPlayer(player);
+		player.setActive(true);
 		gc.distributeCards();
 		Scanner in = new Scanner(System.in);
 		
