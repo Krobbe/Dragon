@@ -12,34 +12,42 @@ import model.game.Card;
 public interface iHand {
 
 	/**
-	 * @author lisastenberg
 	 * Removes all cards from a hand.
+	 * @author lisastenberg
 	 */
 	public void discard();
 	
 	/**
 	 * @author lisastenberg
-	 * @return a List of the cards in the hand.
+	 * @author robinandersson
+	 * @return a List of the hand's cards.
 	 */
 	public List<Card> getCards();
 	
 	/**
-	 * @author lisastenberg
 	 * Add a new card to the hand.
-	 * @param c the card you want to add.
-	 */
-	public void addCard(Card c);
-	
-	/**
 	 * @author lisastenberg
-	 * Makes the cards visible to other players.
-	 * @param b a boolean.
+	 * @author robinandersson
+	 * @param card The card you want to add.
 	 */
-	public void setVisible(boolean b);
+	public void addCard(Card card);
 	
 	/**
+	 * Makes the cards visible to other players.
+	 * @author lisastenberg
+	 * @author robinandersson
+	 * @param isVisible The boolean that sets the visibility.
+	 */
+	public void setVisible(boolean isVisible);
+	
+	// TODO Remove isVisible()- and setVisible() methods from the iHand interf.
+	// This means adapting other classes, table and player for example, to allow
+	// for such a change. The visibility is a Texas-Holdem specific property
+	// Remember to edit the Hand and HandTest classes to match these changes.
+	/**
+	 * Indicates if a card is visible or not
 	 * @author mattiashenriksson
-	 * @return A boolean that tells if the hand is currently visible
+	 * @return A boolean that tells if the hand is visible
 	 */
 	public boolean isVisible();
 	

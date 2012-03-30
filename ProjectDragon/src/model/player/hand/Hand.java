@@ -9,72 +9,56 @@ import java.util.List;
 import model.game.Card;
 
 /**
- * A class representing a standard Texas Hold'em hand
- * 
  * @author robinandersson
- *
+ * A class that the hand classes for different games can delegate similar
+ * functionality to
  */
-public class TexasHoldemHand implements iHand {
+public class Hand implements iHand {
+
+	private List<Card> cards;
+	private boolean isVisible;
 	
-	private Hand hand;
-	
-	/**
-	 * author lisastenberg
+	/*
+	 * This constructor isn't really needed. The next one is always used.
 	 */
-	public TexasHoldemHand() {
+	public Hand(){
 		this(false);
 	}
 	
-	public TexasHoldemHand(boolean isVisible){
-		 hand = new Hand(isVisible);
+	public Hand(boolean isVisible){
+		cards = new LinkedList<Card>();
+		this.isVisible = isVisible;
 	}
 	
-	/**
-	 * Throws away the hand's cards
-	 */
 	@Override
 	public void discard() {
-		hand.discard();
+		cards.clear();
 	}
 
-	/**
-	 * Returns the hand's cards
-	 */
 	@Override
 	public List<Card> getCards() {
-		return hand.getCards();
+		return cards;
 	}
 
-	/**
-	 * Adds a card to the hand
-	 * @param card The card to be added
-	 */
 	@Override
 	public void addCard(Card card) {
-		hand.addCard(card);
+		cards.add(card);
 	}
-	
-	/**
-	 * Sets the visibility of the card
-	 * @param isVisible True if visible
-	 */
+
+	@Override
 	public void setVisible(boolean isVisible) {
-		hand.setVisible(isVisible);
+		this.isVisible = isVisible;
 	}
-	
-	/**
-	 * Returns the visibility of the Hand - if a player is able to see the hand
-	 * 
-	 * @return if the hand is visible (true) or not (false)
-	 */
+
+	@Override
 	public boolean isVisible() {
-		return hand.isVisible();
+		return isVisible;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("Texas Hold'em hand: \n");
+		stringBuilder.append("Hand: \n");
 		for(Card card : getCards()){
 			stringBuilder.append(card.toString());
 		}
@@ -83,8 +67,7 @@ public class TexasHoldemHand implements iHand {
 	}	
 	
 	/**
-	 * Determines if this hand is equal to another hand. Visibility does not
-	 * matter
+	 * Determines if this hand is equal to another hand.
 	 * 
 	 * @return Two hands are equal if they are the same object or if they have
 	 * the same cards, the order of the cards doesn't matter
@@ -102,15 +85,16 @@ public class TexasHoldemHand implements iHand {
 		}
 		
 		/*
-		 * Compares the size of this and the foreign TexasHoldemHand
+		 * Compares the size of this and the foreign hand so that it is not
+		 * needed later in the tests
 		 */
-		else if (this.getCards().size() !=
-						((TexasHoldemHand) o).getCards().size()){
+		else if (this.getCards().size() != ((Hand) o).getCards().size()){
 			return false;
 		}
 		
 		/*
-		 * If the classes are the same the cards in each hand is compared
+		 * If the classes are similar up to this point the cards in each hand
+		 * is compared
 		 */
 		else {
 			
@@ -121,9 +105,9 @@ public class TexasHoldemHand implements iHand {
 			 * of a duplicate card flagging for equals more than once. It would
 			 * also be faster because every entry in the second list wouldn't be
 			 * compared each time
-			*/
+			 */
 			
-			List<Card> otherCards = ((TexasHoldemHand) o).getCards();
+			List<Card> otherCards = ((Hand) o).getCards();
 			
 			//Every card in this hand is compared to the other Hand's cards
 			for(Card card : this.getCards()){
@@ -141,16 +125,23 @@ public class TexasHoldemHand implements iHand {
 					i++;
 				}
 				
-				/* If no match is found for this hand's cards then the two hands
-				 * are not equal
+				/* If no match is found for one of this hand's cards then the
+				 * two hands are not equal
 				 */
 				if(!sameCards){
 					return false;
 				}
-			}
+				
+			} // for(Card card : this.getCards())
+			
+			/* 
+			 * If every card in this hand found a match then the hand's are
+			 * deemed equal
+			 */
 			return true;
 		}
-	}
+		
+	} // equals
 	
 	/* 
 	 * Since we at the current state aren't planning on using any hashtables
@@ -158,7 +149,7 @@ public class TexasHoldemHand implements iHand {
 	 */
 	public int hashCode() {
 		  assert false : "hashCode not designed";
-		  return 44; // any arbitrary constant will do
+		  return 43; // any arbitrary constant will do
 	}
 	
 }

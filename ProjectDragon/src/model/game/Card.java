@@ -10,6 +10,7 @@ package model.game;
  * @author lisastenberg
  * @author forssenm
  * @author mattiashenriksson
+ * @author robinandersson
  */
 
 public class Card {
@@ -92,7 +93,8 @@ public class Card {
 	/**
 	 * toString method for the card class
 	 * @author forssenm
-	 * @return returns a string in the form of "3 of spades"
+	 * @autohr robinandersson
+	 * @return returns a string in the format of "'Rank' of 'Suit'"
 	 */
 	@Override
 	public String toString() {
