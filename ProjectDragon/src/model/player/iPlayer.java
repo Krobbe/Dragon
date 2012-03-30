@@ -56,18 +56,12 @@ public interface iPlayer extends Comparable<iPlayer> {
 	 */
 	public String getName();
 	
+	//TODO ska vi ha kvar denna metod ? law of demeters
 	/**
 	 * Gives the player a card which he can add to his hand
 	 * @author mattiashenriksson
 	 */
 	public void addCard(Card c);
-	
-	/**
-	 * Removes amount from iPlayer's Balance
-	 * @param amount The amount to remove
-	 * @author mattiashenriksson
-	 */
-	public void removeFromBalance(int amount);
 	
 	@Override
 	public boolean equals(Object o);

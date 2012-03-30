@@ -64,11 +64,6 @@ public class Player implements iPlayer {
 	public void addCard(Card c) {
 		hand.addCard(c);
 	}
-	
-	@Override
-	public void removeFromBalance(int amount) {
-		balance.removeFromBalance(amount);
-	}
 
 	/**
 	 * Equals method for the User class. A user A is equal to a user

@@ -109,7 +109,7 @@ public class GameController {
 	 * @param amount The amount to raise the pot with.
 	 */
 	public void raise(int amount) {
-		table.getCurrentPlayer().removeFromBalance(amount);
+		table.getCurrentPlayer().getBalance().removeFromBalance(amount);
 		table.getRound().getPot().addToPot(amount);
 		table.getRound().getBettingRound().setCurrentBet(
 				new Bet(table.getCurrentPlayer(),amount));
@@ -140,8 +140,12 @@ public class GameController {
 		return table.doShowdown();
 	}
 	
+	/**
+	 * Performs actions required for starting a new round
+	 */
 	public void nextRound() {
-		//TODO distribute pot? , discard winners?
+		//TODO distribute pot?
+		
 		List<iPlayer> players = table.getPlayers();
 		for (iPlayer p : players) {
 			p.setActive(true);

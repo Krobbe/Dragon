@@ -152,7 +152,7 @@ public class Table {
 	public void distributePot(List<iPlayer> winners) {
 		// This assumes that the pot can be distributed equally.
 		// TODO: How to do?
-		int winnerAmount = round.getPotValue() / winners.size();
+		int winnerAmount = round.getPot().getValue() / winners.size();
 		
 		for (iPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);

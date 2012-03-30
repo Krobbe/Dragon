@@ -63,11 +63,6 @@ public class User implements iPlayer {
 		
 	}
 	
-	@Override
-	public void removeFromBalance(int amount) {
-		player.removeFromBalance(amount);
-	}
-	
 	/**
 	 * Equals method for the User class
 	 * @author forssenm
