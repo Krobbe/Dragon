@@ -18,8 +18,8 @@ public interface iPlayer extends Comparable<iPlayer> {
 	public iHand getHand();
 	
 	/**
+	 * A method that can set the player active or unactive. An active player is one who has chips left and has not yet folded.
 	 * @author lisastenberg
-	 * A method that can set a player active or unactive. 
 	 * @param b true if you want to set the player active. 
 	 */
 	public void setActive(boolean b);
@@ -38,8 +38,9 @@ public interface iPlayer extends Comparable<iPlayer> {
 	public Balance getBalance();
 	
 	/**
+	 * Shows if the player has folded or is still in competition for the pot.
 	 * @author mattiashenriksson
-	 * @return A boolean telling if the player is active.
+	 * @return True if the player is still in competition, false if he has folded.
 	 */
 	public boolean isActive();
 	
@@ -51,6 +52,7 @@ public interface iPlayer extends Comparable<iPlayer> {
 	public boolean isStillInGame();
 	
 	/**
+	 * Shows the name of the player
 	 * @author mattiashenriksson
 	 * @return The name of the player.
 	 */
@@ -58,7 +60,7 @@ public interface iPlayer extends Comparable<iPlayer> {
 	
 	//TODO ska vi ha kvar denna metod ? law of demeters
 	/**
-	 * Gives the player a card which he can add to his hand
+	 * Gives the player a card which is added to the player's hand
 	 * @author mattiashenriksson
 	 */
 	public void addCard(Card c);

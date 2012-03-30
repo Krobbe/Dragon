@@ -71,7 +71,7 @@ public class Table {
 	}
 	
 	/**
-	 * Increases the dealer button index to the next remaining player
+	 * Increases the dealer button index to the next player still in the game
 	 * 
 	 * @author robinandersson
 	 */
@@ -87,7 +87,7 @@ public class Table {
 		indexOfDealerButton++;
 		// TODO Determine what happens if a player has lost recently.
 		// If the dealer button only should be set to players still in the game
-		// or if lost players should be ghosts
+		// or if lost players should be "ghosts"
 		
 		// The dealer button is set to a player that is still in the game.
 		while(!players.get(indexOfDealerButton).isStillInGame()){
@@ -97,7 +97,7 @@ public class Table {
 	
 	/**
 	 * 
-	 * @return The player who's turn it currently is
+	 * @return The player who's turn it currently is to bet, fold, raise or check
 	 */
 	public iPlayer getCurrentPlayer() {
 		return players.get(indexOfCurrentPlayer);
