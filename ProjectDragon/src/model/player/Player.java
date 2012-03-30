@@ -1,6 +1,7 @@
 package model.player;
 
 import model.game.Card;
+import model.player.hand.TexasHoldemHand;
 import model.player.hand.iHand;
 
 /**
@@ -17,6 +18,11 @@ public class Player implements iPlayer {
 	private String name;
 	private Balance balance;
 	private boolean stillInGame;
+	
+	public Player() {
+		this(new TexasHoldemHand(false),"Default",
+				new Balance());
+	}
 	
 	public Player(iHand hand, String name, Balance balance) {
 		this.hand = hand;

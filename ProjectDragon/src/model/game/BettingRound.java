@@ -21,8 +21,11 @@ public class BettingRound {
 	 * @author mattiashenriksson
 	 */
 	public BettingRound() {
-		currentBet = new Bet(new Player(new TexasHoldemHand(false),"Default",
-				new Balance()), 0);
+		currentBet = new Bet(new Player(), 0);
+	}
+	
+	public BettingRound(Bet b) {
+		currentBet = b;
 	}
 	
 	/**

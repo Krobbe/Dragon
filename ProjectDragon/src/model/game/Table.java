@@ -5,8 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
 import model.player.iPlayer;
-import model.player.hand.*;
+import model.player.hand.FullTHHand;
+import model.player.hand.HandValue;
+import model.player.hand.HandValueType;
+import utilities.PlayersFullException;
+import utilities.TableCardsFullException;
 
 /**
  * A class that represent table at which a poker game takes place. This class 
@@ -33,15 +38,8 @@ public class Table {
 	 * Creates a new Table.
 	 */
 	public Table() {
-		this(new Round(),new Dealer());
-	}
-	
-	/**
-	 * Creates a new Table.
-	 */
-	public Table(Round round, Dealer dealer) {
-		this.round = round;
-		this.dealer = dealer;
+		round = new Round();
+		dealer = new Dealer();
 		tableCards = new ArrayList<Card>();
 		players = new ArrayList<iPlayer>();
 		indexOfCurrentPlayer = 0;
@@ -53,11 +51,11 @@ public class Table {
 	 * @param p The player that will be added to the list of players
 	 * @throws IllegalArgumentException if there are all ready ten players at the table
 	 */
-	public void addPlayer(iPlayer p) throws IllegalArgumentException {
+	public void addPlayer(iPlayer p) throws PlayersFullException {
 		if (players.size() < 10) {
 			players.add(p);
 		} else {
-			throw new IllegalArgumentException();
+			throw new PlayersFullException();
 		}
 	}
 	
@@ -119,11 +117,11 @@ public class Table {
 	 * @param c The card which will be added
 	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
-	public void addTableCard(Card c) throws IllegalArgumentException {
+	public void addTableCard(Card c) throws TableCardsFullException {
 		if (tableCards.size() < 5) {
 			tableCards.add(c);
 		} else {
-			throw new IllegalArgumentException();
+			throw new TableCardsFullException();
 		}
 	}
 	

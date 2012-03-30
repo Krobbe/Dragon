@@ -14,7 +14,7 @@ public class User implements iPlayer {
 	Player player;
 
 	public User() {
-		this(new Player(new TexasHoldemHand(false), "Default", new Balance()));
+		this(new Player());
 	}
 	
 	public User(Player player) {

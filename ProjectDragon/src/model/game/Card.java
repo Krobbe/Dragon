@@ -9,7 +9,7 @@ package model.game;
  * 
  * @author lisastenberg
  * @author forssenm
- *
+ * @author mattiashenriksson
  */
 
 public class Card {
@@ -26,6 +26,14 @@ public class Card {
 	
 	private Rank rank;
 	private Suit suit;
+	
+	/**
+	 * @author mattiashenriksson
+	 */
+	public Card() {
+		this.rank = Rank.ACE;
+		this.suit = Suit.HEARTS;
+	}
 	
 	public Card(Suit suit, Rank rank) {
 		this.rank = rank;

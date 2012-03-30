@@ -2,12 +2,14 @@ package ctrl.game;
 
 import java.util.List;
 
+import utilities.TableCardsFullException;
+
 import model.game.Card;
 import model.game.Dealer;
 import model.game.Pot;
+import model.game.Round;
 import model.game.Table;
 import model.player.Bet;
-import model.player.User;
 import model.player.iPlayer;
 
 /**
@@ -28,8 +30,9 @@ public class GameController {
 
 	/**
 	 * Adds a new card to the "table cards"
+	 * @throws TableCardsFullException 
 	 */
-	public void showRiver() {
+	public void showRiver() throws TableCardsFullException {
 		Dealer dealer = table.getDealer();
 		Card c = dealer.getRiver();
 		table.addTableCard(c);
@@ -37,8 +40,9 @@ public class GameController {
 
 	/**
 	 * Adds three new cards to the "table cards"
+	 * @throws TableCardsFullException 
 	 */
-	public void showFlop() {
+	public void showFlop() throws TableCardsFullException {
 		Dealer dealer = table.getDealer();
 		List<Card> flop = dealer.getFlop();
 		for (Card c : flop) {
@@ -145,11 +149,14 @@ public class GameController {
 	 */
 	public void nextRound() {
 		//TODO distribute pot?
-		
 		List<iPlayer> players = table.getPlayers();
 		for (iPlayer p : players) {
+			p.getHand().discard();
 			p.setActive(true);
 		}
+		Round r = table.getRound();
+		r.getPot().emptyPot();
+		r.getBettingRound().setCurrentBet(new Bet());
 		distributeCards();
 	}
 

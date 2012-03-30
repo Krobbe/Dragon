@@ -4,15 +4,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import model.game.Card;
 import model.game.Card.Suit;
-import model.game.Dealer;
-import model.game.Round;
-import model.game.Table;
 import model.player.User;
 import model.player.iPlayer;
 
 import org.junit.Test;
+
+import utilities.PlayersFullException;
+import utilities.TableCardsFullException;
 
 /**
  * A test of the Table-class
@@ -23,7 +22,7 @@ import org.junit.Test;
 public class TableTest {
 
 	@Test
-	public void testAddPlayer() {
+	public void testAddPlayer() throws PlayersFullException {
 		Table t = new Table();
 		iPlayer p1 = new User();
 		iPlayer p2 = new User();
@@ -33,8 +32,8 @@ public class TableTest {
 		assertTrue(players.size() == 2);
 	}
 	
-	@Test(expected=IllegalArgumentException.class) 
-	public void testTableFull() {
+	@Test(expected=PlayersFullException.class) 
+	public void testTableFull() throws PlayersFullException {
 		Table t = new Table();
 		iPlayer p1 = new User(), p2 = new User(), p3 = new User(), p4 = new User(), p5 = new User(), 
 				p6 = new User(), p7 = new User(), p8 = new User(), p9 = new User(), p10 = new User(), 
@@ -44,7 +43,7 @@ public class TableTest {
 	}
 
 	@Test
-	public void testNextPlayer() {
+	public void testNextPlayer() throws PlayersFullException {
 		Table t = new Table();
 		iPlayer p1 = new User();
 		iPlayer p2 = new User();
@@ -57,7 +56,7 @@ public class TableTest {
 	}
 	
 	@Test
-	public void testGetCurrentPlayer() {
+	public void testGetCurrentPlayer() throws PlayersFullException {
 		Table t = new Table();
 		iPlayer p1 = new User();
 		t.addPlayer(p1);
@@ -65,7 +64,7 @@ public class TableTest {
 	}
 
 	@Test
-	public void testAddTableCard() {
+	public void testAddTableCard() throws TableCardsFullException {
 		Table t = new Table();
 		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
 		t.addTableCard(c);
@@ -73,8 +72,8 @@ public class TableTest {
 		assertTrue(tableCards.get(0).equals(c));
 	}
 	
-	@Test(expected=IllegalArgumentException.class) 
-	public void testTableCardsFull() {
+	@Test(expected=TableCardsFullException.class) 
+	public void testTableCardsFull() throws TableCardsFullException {
 		Table t = new Table(new Round(), new Dealer());
 		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
 		for (int i = 0; i <= 5; i++) {
@@ -83,7 +82,7 @@ public class TableTest {
 	}
 	
 	@Test
-	public void testClearTableCards() {
+	public void testClearTableCards() throws TableCardsFullException {
 		Table t = new Table();
 		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
 		t.addTableCard(c);

@@ -9,11 +9,20 @@ package model.player;
  * A bet has a value and a person (that placed the bet).
  * 
  * @author lisastenberg
- *
+ * @author mattiashenriksson
  */
 public class Bet {
 	private int value;
 	private iPlayer owner;
+	
+	/**
+	 * Creates a bet with a "default" player and the value 0
+	 * @author mattiashenriksson
+	 */
+	public Bet() {
+		this.owner = new User();
+		this.value = 0;
+	}
 	
 	/**
 	 * Creates a Bet with a value and an owner to the bet. 

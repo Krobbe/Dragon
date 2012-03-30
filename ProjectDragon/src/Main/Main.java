@@ -3,6 +3,9 @@ package Main;
 import java.util.List;
 import java.util.Scanner;
 
+import utilities.PlayersFullException;
+import utilities.TableCardsFullException;
+
 import model.game.Table;
 import model.player.Balance;
 import model.player.Player;
@@ -14,13 +17,19 @@ import ctrl.game.GameController;
 
 public class Main {
 	public static void main(String[] args) {
-		new Main().run();
+		try {
+			new Main().run();
+		} catch (PlayersFullException e) {
+			e.printStackTrace();
+		} catch (TableCardsFullException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/* påbörjad metod som kan användas när vi vill köra vår textbaserade 
 	 * Dragon-variant på torsdag /mattias h 
 	 */
-	public void run() {
+	public void run() throws PlayersFullException, TableCardsFullException {
 		Table table = new Table();
 		GameController gc = new GameController(table);
 		iPlayer player1 = new User(new Player(new TexasHoldemHand(true),
