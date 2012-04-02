@@ -292,6 +292,29 @@ public class Table {
 	}
 	
 	/**
+	 * 
+	 * @return The players-list index of the current player
+	 */
+	public int getIndexOfCurrentPlayer() {
+		return indexOfCurrentPlayer;
+	}
+	
+	/**
+	 * 
+	 * @return The amount of players at the table that are active (that 
+	 * 			hasn't folded)
+	 */
+	public int getNumberOfActivePlayers() {
+		int activePlayers = 0;
+		for (iPlayer p : players) {
+			if (p.isActive()) {
+				activePlayers++;
+			}
+		}
+		return activePlayers;
+	}
+	
+	/**
 	 * Equals method for the Table class
 	 * @author forssenm
 	 * @param Object to compare with

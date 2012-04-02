@@ -9,6 +9,7 @@ import model.game.Card.Rank;
 import model.game.Card.Suit;
 import model.game.Table;
 import model.player.Balance;
+import model.player.Bet;
 import model.player.Player;
 import model.player.User;
 import model.player.iPlayer;
@@ -88,16 +89,31 @@ public class GameControllerTest {
 	public void testNextRound() throws PlayersFullException {
 		Table t = new Table();
 		GameController gc = new GameController(t);
-		iPlayer u1 = new User(), u2 = new User(), u3 = new User();
-		t.addPlayer(u1); t.addPlayer(u2); t.addPlayer(u3);		
+		iPlayer u1 = new User(), u2 = new User(), u3 = new User(), u4 = new User();
+		t.addPlayer(u1); t.addPlayer(u2); t.addPlayer(u3); t.addPlayer(u4);	
 		List<iPlayer> players = t.getPlayers();
 		for (iPlayer p : players) {
 			p.addCard(new Card());
 			p.setActive(false);
 		}
 		t.getRound().getPot().addToPot(33);
-		//TODO gšr klart
+		t.getRound().getBettingRound().setCurrentBet(new Bet(u1,22));
+		int previousIndexOfDealerButton = t.getDealerButtonIndex();
 		gc.nextRound();
+		
+		for (iPlayer p : players) {
+			assertTrue(p.getHand().getCards().size() == 2);
+			assertTrue(p.isActive());
+		}
+		assertTrue(t.getRound().getPot().getValue() == 0);
+		assertTrue(t.getRound().getBettingRound().getCurrentBet()
+				.getValue() == 0);
+		assertTrue(previousIndexOfDealerButton + 1% t.getPlayers().size() == 
+				t.getDealerButtonIndex());
+		assertTrue(t.getDealerButtonIndex() + 3 % t.getPlayers().size() == 
+				t.getIndexOfCurrentPlayer());
+		System.out.println("" + (t.getIndexOfCurrentPlayer() - t.getDealerButtonIndex()
+				% t.getPlayers().size()));
 		
 		
 	}

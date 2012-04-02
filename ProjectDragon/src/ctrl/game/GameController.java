@@ -32,6 +32,7 @@ public class GameController {
 	 * Adds a new card to the "table cards"
 	 * @throws TableCardsFullException 
 	 */
+	//TODO private?
 	public void showRiver() throws TableCardsFullException {
 		Dealer dealer = table.getDealer();
 		Card c = dealer.getRiver();
@@ -42,6 +43,7 @@ public class GameController {
 	 * Adds three new cards to the "table cards"
 	 * @throws TableCardsFullException 
 	 */
+	//TODO private?
 	public void showFlop() throws TableCardsFullException {
 		Dealer dealer = table.getDealer();
 		List<Card> flop = dealer.getFlop();
@@ -147,6 +149,7 @@ public class GameController {
 	/**
 	 * Performs actions required for starting a new round
 	 */
+	//TODO Bättre java-doc?
 	public void nextRound() {
 		//TODO distribute pot?
 		List<iPlayer> players = table.getPlayers();
@@ -158,11 +161,30 @@ public class GameController {
 		r.getPot().emptyPot();
 		r.getBettingRound().setCurrentBet(new Bet());
 		distributeCards();
-		//TODO kolla då detta inte görs nån annan stans..
+		//TODO kolla så detta inte görs nån annan stans..
 		table.nextDealerButtonIndex();
 		//TODO funkar för två spelare?
 		table.setIndexOfCurrentPlayer(table.getDealerButtonIndex() + 3 % 
 				table.getPlayers().size());
 	}
+	
+	/**
+	 * Performs actions required for starting a new betting round
+	 * @throws TableCardsFullException 
+	 */
+	//TODO Bättre java-doc och förklarande kommentarer?
+	//TODO övergripande metod = annat namn?
+	public void nextBettingRound() throws TableCardsFullException {
+		table.getRound().getBettingRound().setCurrentBet(new Bet());
+		if (table.getTableCards().size() == 5 || 
+				table.getNumberOfActivePlayers() == 1) {
+			doShowdown();
+		} else if (table.getTableCards().size() == 0) {
+			showFlop();
+		} else { //TODO ett till alternativ för showTurn?
+			showRiver();
+		}
+	}
+	
 
 }
