@@ -88,10 +88,17 @@ public class GameControllerTest {
 	public void testNextRound() throws PlayersFullException {
 		Table t = new Table();
 		GameController gc = new GameController(t);
-		iPlayer u1 = new User();
-		iPlayer u2 = new User();
-		t.addPlayer(u1);
-		t.addPlayer(u2);
+		iPlayer u1 = new User(), u2 = new User(), u3 = new User();
+		t.addPlayer(u1); t.addPlayer(u2); t.addPlayer(u3);		
+		List<iPlayer> players = t.getPlayers();
+		for (iPlayer p : players) {
+			p.addCard(new Card());
+			p.setActive(false);
+		}
+		t.getRound().getPot().addToPot(33);
+		//TODO gšr klart
+		gc.nextRound();
+		
 		
 	}
 

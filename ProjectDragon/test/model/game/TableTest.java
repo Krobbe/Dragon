@@ -74,7 +74,7 @@ public class TableTest {
 	
 	@Test(expected=TableCardsFullException.class) 
 	public void testTableCardsFull() throws TableCardsFullException {
-		Table t = new Table(new Round(), new Dealer());
+		Table t = new Table();
 		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
 		for (int i = 0; i <= 5; i++) {
 			t.addTableCard(c);

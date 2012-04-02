@@ -158,6 +158,11 @@ public class GameController {
 		r.getPot().emptyPot();
 		r.getBettingRound().setCurrentBet(new Bet());
 		distributeCards();
+		//TODO kolla då detta inte görs nån annan stans..
+		table.nextDealerButtonIndex();
+		//TODO funkar för två spelare?
+		table.setIndexOfCurrentPlayer(table.getDealerButtonIndex() + 3 % 
+				table.getPlayers().size());
 	}
 
 }

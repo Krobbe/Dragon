@@ -62,6 +62,7 @@ public class Table {
 	/**
 	 * Sets the turn to the next player in order.
 	 */
+	//TODO mod-lšsning snyggare?
 	public void nextPlayer() {
 		if (indexOfCurrentPlayer < players.size() - 1) {
 			indexOfCurrentPlayer++;
@@ -280,6 +281,14 @@ public class Table {
 		result.append("Table cards are:" + "\n");
 		result.append(tableCards.toString());
 		return result.toString();
+	}
+	
+	/**
+	 * 
+	 * @param index The index indexOfCurrentPlayer should be set to.
+	 */
+	public void setIndexOfCurrentPlayer(int index) {
+		indexOfCurrentPlayer = index;
 	}
 	
 	/**
