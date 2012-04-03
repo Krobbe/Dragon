@@ -18,6 +18,8 @@ public class Player implements iPlayer {
 	private String name;
 	private Balance balance;
 	private boolean stillInGame;
+	private int ownCurrentBet = -1; //TODO döpa -1 till typ "NO_BET" ? 
+								   //TODO ska -1 sättas i konstruktorn?
 	
 	public Player() {
 		this(new TexasHoldemHand(false),"Default",
@@ -69,6 +71,16 @@ public class Player implements iPlayer {
 	@Override
 	public void addCard(Card c) {
 		hand.addCard(c);
+	}
+	
+	@Override
+	public int getOwnCurrentBet() {
+		return ownCurrentBet;
+	}
+	
+	@Override
+	public void setOwnCurrentBet(int value) {
+		ownCurrentBet = value;
 	}
 
 	/**

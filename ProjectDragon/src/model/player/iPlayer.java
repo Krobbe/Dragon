@@ -65,6 +65,21 @@ public interface iPlayer extends Comparable<iPlayer> {
 	 */
 	public void addCard(Card c);
 	
+	/**
+	 * @author mattiashenriksson
+	 * @return The value of the last bet the player placed during the current 
+	 * betting round. Returns -1 if the player hasn't yet placed a bet.
+	 */
+	//TODO bättre returnera Bet?
+	public int getOwnCurrentBet();
+	
+	/**
+	 * Sets the value of the last bet the player placed? 
+	 * //TODO sets lastBetValue ist?
+	 * @author mattiashenriksson
+	 */
+	public void setOwnCurrentBet(int value);
+	
 	@Override
 	public boolean equals(Object o);
 	

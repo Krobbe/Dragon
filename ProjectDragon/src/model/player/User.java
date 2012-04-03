@@ -60,7 +60,16 @@ public class User implements iPlayer {
 	@Override
 	public void addCard(Card c) {
 		player.addCard(c);
-		
+	}
+	
+	@Override
+	public int getOwnCurrentBet() {
+		return player.getOwnCurrentBet();
+	}
+
+	@Override
+	public void setOwnCurrentBet(int value) {
+		player.setOwnCurrentBet(value);
 	}
 	
 	/**

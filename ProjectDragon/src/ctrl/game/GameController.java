@@ -2,8 +2,6 @@ package ctrl.game;
 
 import java.util.List;
 
-import utilities.TableCardsFullException;
-
 import model.game.Card;
 import model.game.Dealer;
 import model.game.Pot;
@@ -11,6 +9,8 @@ import model.game.Round;
 import model.game.Table;
 import model.player.Bet;
 import model.player.iPlayer;
+import utilities.IllegalCheckException;
+import utilities.TableCardsFullException;
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -107,6 +107,7 @@ public class GameController {
 		currentPlayer.getBalance().removeFromBalance(currentBet.getValue());
 		Pot currentPot = table.getRound().getPot();
 		currentPot.addToPot(currentBet.getValue());
+		currentPlayer.setOwnCurrentBet(currentPot.getValue());
 		table.nextPlayer();
 	}
 	
@@ -114,11 +115,17 @@ public class GameController {
 	 * Performs a raise
 	 * @param amount The amount to raise the pot with.
 	 */
+	//TODO delvis otestad
 	public void raise(int amount) {
-		table.getCurrentPlayer().getBalance().removeFromBalance(amount);
+		iPlayer currentPlayer = table.getCurrentPlayer();
+		currentPlayer.getBalance().removeFromBalance(amount);
 		table.getRound().getPot().addToPot(amount);
 		table.getRound().getBettingRound().setCurrentBet(
 				new Bet(table.getCurrentPlayer(),amount));
+		if (currentPlayer.getOwnCurrentBet() == -1) {
+			currentPlayer.setOwnCurrentBet(0);
+		}
+		currentPlayer.setOwnCurrentBet(amount + currentPlayer.getOwnCurrentBet());
 		table.nextPlayer();
 	}
 	
@@ -133,8 +140,18 @@ public class GameController {
 	
 	/**
 	 * Performs a check.
+	 * @throws IllegalCheckException 
 	 */
-	public void check() {
+	//TODO otestat: exception, setOwncurrentBet
+	public void check() throws IllegalCheckException {
+		iPlayer currentPlayer = table.getCurrentPlayer();
+		if (currentPlayer.getOwnCurrentBet() == -1) {
+			currentPlayer.setOwnCurrentBet(0);
+		}
+		if (currentPlayer.getOwnCurrentBet() < table.getRound()
+				.getBettingRound().getCurrentBet().getValue()) {
+			throw new IllegalCheckException();
+		}
 		table.nextPlayer();
 	}
 	
@@ -156,6 +173,7 @@ public class GameController {
 		for (iPlayer p : players) {
 			p.getHand().discard();
 			p.setActive(true);
+			p.setOwnCurrentBet(-1);
 		}
 		Round r = table.getRound();
 		r.getPot().emptyPot();
@@ -176,6 +194,12 @@ public class GameController {
 	//TODO švergripande metod = annat namn?
 	public void nextBettingRound() throws TableCardsFullException {
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
+		List<iPlayer> players = table.getPlayers();
+		for (iPlayer p : players) {
+			if(p.isActive()) {
+				p.setOwnCurrentBet(-1);
+			}
+		}
 		if (table.getTableCards().size() == 5 || 
 				table.getNumberOfActivePlayers() == 1) {
 			doShowdown();
