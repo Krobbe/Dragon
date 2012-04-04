@@ -1,5 +1,6 @@
 package Main;
 
+import java.util.List;
 import java.util.Scanner;
 
 import model.game.Table;
@@ -7,6 +8,7 @@ import model.player.Balance;
 import model.player.Player;
 import model.player.User;
 import model.player.iPlayer;
+import model.player.hand.HandValueType;
 import model.player.hand.TexasHoldemHand;
 import utilities.IllegalCheckException;
 import utilities.PlayersFullException;
@@ -26,24 +28,26 @@ public class Main {
 		}
 	}
 	
-	/* påbörjad metod som kan användas när vi vill köra vår textbaserade 
-	 * Dragon-variant på torsdag /mattias h 
-	 */
-	public void run() throws PlayersFullException, TableCardsFullException, IllegalCheckException {
+	public void run() throws PlayersFullException, TableCardsFullException, 
+	IllegalCheckException {
 		Table table = new Table();
 		GameController gc = new GameController(table);
 		iPlayer player1 = new User(new Player(new TexasHoldemHand(true),
-				"Mattias", new Balance(100)));
+				"Mattias H", new Balance(100)));
 		iPlayer player2 = new User(new Player(new TexasHoldemHand(true),
 				"Lisa", new Balance(100)));
 		iPlayer player3 = new User(new Player(new TexasHoldemHand(true),
-				"Lisa", new Balance(100)));
-		table.addPlayer(player1); table.addPlayer(player2); table.addPlayer(player3);
+				"Robin", new Balance(100)));
+		iPlayer player4 = new User(new Player(new TexasHoldemHand(true),
+				"Mattias F", new Balance(100)));
+		table.addPlayer(player1); table.addPlayer(player2); 
+		table.addPlayer(player3); table.addPlayer(player4);
 		
 		Scanner in = new Scanner(System.in);
 		while(true) {
 			gc.nextRound();
 			while(true) {
+				List<iPlayer> winners = null;
 				System.out.println(table);
 				System.out.println('>');
 				String cmd = in.nextLine();
@@ -56,14 +60,30 @@ public class Main {
 					gc.fold();
 				} else if (cmd.equals("ca")) {
 					gc.call();
+				} else {
+					System.out.println("Command not supported..");
 				}
-				//if ()
-			}
-			
-			/*else {
-					List<iPlayer> list = gc.doShowdown();
+				
+				boolean isBettingDone = true;
+				List<iPlayer> players = table.getPlayers();
+				for (iPlayer p: players) {
+					if (p.isActive()) {
+						if (table.getCurrentPlayer().getOwnCurrentBet()
+								!= p.getOwnCurrentBet()) {
+							isBettingDone = false;
+						}
+						if (p.getOwnCurrentBet() == -1) {
+							isBettingDone = false;
+						}
+					}
+				}
+				
+				if (isBettingDone) {
+					winners = gc.nextBettingRound();
+				}
+				if (winners != null) {
 					System.out.println("Round ended...");
-					for (iPlayer p : list) {
+					for (iPlayer p : winners) {
 						System.out.println("\nWinner: " + p.getName());
 						HandValueType hvt = table.getHandTypes().get(p);
 						System.out.print(hvt);
@@ -71,11 +91,9 @@ public class Main {
 					}
 					break;
 				}
-			} else {
-				System.out.println("Command not supported..");
-			}*/
-			
+			}
 		}
 	}
+	
 	
 }

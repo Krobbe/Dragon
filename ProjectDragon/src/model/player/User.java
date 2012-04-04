@@ -86,12 +86,12 @@ public class User implements iPlayer {
 	/**
 	 * Tostring method for the User class
 	 * @author forssenm
+	 * @author mattiashenriksson
 	 * @return returns a string in the form of "Name: Charles , Balance: 1200"
 	 */
 	@Override
 	public String toString() {
-		String result = ("Name: " + getName() + " , " + "Balance: " + getBalance());
-		return result;
+		return player.toString();
 	}
 	
 	//Since we at the current state aren't planning on using any hashtables this code was added

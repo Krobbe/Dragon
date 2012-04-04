@@ -3,6 +3,7 @@
  */
 package model.player.hand;
 
+import java.applet.AudioClip;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -71,14 +72,17 @@ public class TexasHoldemHand implements iHand {
 		return hand.isVisible();
 	}
 	
+	/**
+	 * @author
+	 * @author mattiashenriksson
+	 */
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("Texas Hold'em hand: \n");
+		stringBuilder.append("Texas Hold'em hand: ");
 		for(Card card : getCards()){
-			stringBuilder.append(card.toString());
+			stringBuilder.append("[" + card.toString() + "] ");
 		}
-		stringBuilder.append("\n");
 		return stringBuilder.toString();
 	}	
 	

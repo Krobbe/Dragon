@@ -108,14 +108,10 @@ public class GameControllerTest {
 		assertTrue(t.getRound().getPot().getValue() == 0);
 		assertTrue(t.getRound().getBettingRound().getCurrentBet()
 				.getValue() == 0);
-		assertTrue(previousIndexOfDealerButton + 1% t.getPlayers().size() == 
+		assertTrue((previousIndexOfDealerButton + 1)% t.getPlayers().size() == 
 				t.getDealerButtonIndex());
-		assertTrue(t.getDealerButtonIndex() + 3 % t.getPlayers().size() == 
-				t.getIndexOfCurrentPlayer());
-		System.out.println("" + (t.getIndexOfCurrentPlayer() - t.getDealerButtonIndex()
-				% t.getPlayers().size()));
-		
-		
+		assertTrue((t.getDealerButtonIndex() + 3) % t.getPlayers().size() == 
+				t.getIndexOfCurrentPlayer());	
 	}
 
 }

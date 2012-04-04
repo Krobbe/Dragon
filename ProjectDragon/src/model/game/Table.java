@@ -268,18 +268,18 @@ public class Table {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		result.append("Players at table: ");
+		result.append("Players at table: " + "\n");
 		for(iPlayer p : this.players) {
-			result.append(p.getName() + "\t\t");
+			result.append(p.toString() + "\n");
 		}
-		result.append("\nCards: ");
-		for(iPlayer p: players) {
-			List<Card> hand = p.getHand().getCards();
-			result.append(hand.toString() + "\t");
-		}
-		result.append("\nCurrent player is " + getCurrentPlayer().getName() + "\n");
-		result.append("Table cards are:" + "\n");
-		result.append(tableCards.toString());
+		result.append("\n" + "Current player is " + getCurrentPlayer().getName() + "\n");
+		result.append("Player with Dealer button is: " + 
+				(players.get(getDealerButtonIndex())).getName() + "\n");
+		result.append("Table cards are:" + "\n" + tableCards.toString() + "\n");
+		result.append("Pot is: " + round.getPot().getValue() + "\n");
+		result.append("Current bet is: " + 
+				round.getBettingRound().getCurrentBet().getValue() + "\n");
+		
 		return result.toString();
 	}
 	

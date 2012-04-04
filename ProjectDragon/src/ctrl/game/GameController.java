@@ -107,7 +107,7 @@ public class GameController {
 		currentPlayer.getBalance().removeFromBalance(currentBet.getValue());
 		Pot currentPot = table.getRound().getPot();
 		currentPot.addToPot(currentBet.getValue());
-		currentPlayer.setOwnCurrentBet(currentPot.getValue());
+		currentPlayer.setOwnCurrentBet(currentBet.getValue());
 		table.nextPlayer();
 	}
 	
@@ -179,10 +179,10 @@ public class GameController {
 		r.getPot().emptyPot();
 		r.getBettingRound().setCurrentBet(new Bet());
 		distributeCards();
-		//TODO kolla så detta inte görs nån annan stans..
+		//TODO kolla så detta inte görs nån annanstans..
 		table.nextDealerButtonIndex();
 		//TODO funkar för två spelare?
-		table.setIndexOfCurrentPlayer(table.getDealerButtonIndex() + 3 % 
+		table.setIndexOfCurrentPlayer((table.getDealerButtonIndex() + 3) % 
 				table.getPlayers().size());
 	}
 	
@@ -192,22 +192,23 @@ public class GameController {
 	 */
 	//TODO Bättre java-doc och förklarande kommentarer?
 	//TODO övergripande metod = annat namn?
-	public void nextBettingRound() throws TableCardsFullException {
+	//TODO List<iPlayer> winners ful lösning?
+	public List<iPlayer> nextBettingRound() throws TableCardsFullException {
+		List<iPlayer> winners = null;
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
 		List<iPlayer> players = table.getPlayers();
 		for (iPlayer p : players) {
-			if(p.isActive()) {
-				p.setOwnCurrentBet(-1);
-			}
+			p.setOwnCurrentBet(-1);
 		}
 		if (table.getTableCards().size() == 5 || 
 				table.getNumberOfActivePlayers() == 1) {
-			doShowdown();
+			winners = doShowdown();
 		} else if (table.getTableCards().size() == 0) {
 			showFlop();
 		} else { //TODO ett till alternativ för showTurn?
 			showRiver();
 		}
+		return winners;
 	}
 	
 

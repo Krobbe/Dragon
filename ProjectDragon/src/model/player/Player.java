@@ -99,6 +99,7 @@ public class Player implements iPlayer {
 	/**
 	 * Tostring method for the Player class
 	 * @author forssenm
+	 * @author mattiashenriksson
 	 * @return returns a string containing the name, balance, hand and if the
 	 *         user is active or not
 	 */
@@ -106,7 +107,8 @@ public class Player implements iPlayer {
 	public String toString() {
 		String result = ("Name: " + getName() + " , " + "Balance: "
 				+ getBalance() + " , " + "Active: " + isActive() + " , "
-				+ "Hand: " + getHand().toString());
+				+ "Hand: " + getHand().toString()) + " , " + "Own current bet: "
+				+ getOwnCurrentBet();
 		return result;
 	}
 
