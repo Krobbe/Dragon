@@ -17,6 +17,7 @@ import model.player.hand.TexasHoldemHand;
 
 import org.junit.Test;
 
+import utilities.IllegalRaiseException;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
 
@@ -50,7 +51,7 @@ public class GameControllerTest {
 	}
 	
 	@Test
-	public void testRaise() throws PlayersFullException {
+	public void testRaise() throws PlayersFullException, IllegalRaiseException {
 		Table t = new Table();
 		GameController gc = new GameController(t);
 		iPlayer u1 = new User(new Player(new TexasHoldemHand(false),"Mattias"

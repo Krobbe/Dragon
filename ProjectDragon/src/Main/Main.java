@@ -10,7 +10,9 @@ import model.player.User;
 import model.player.iPlayer;
 import model.player.hand.HandValueType;
 import model.player.hand.TexasHoldemHand;
+import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
+import utilities.IllegalRaiseException;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
 import ctrl.game.GameController;
@@ -25,11 +27,15 @@ public class Main {
 			e.printStackTrace();
 		} catch (IllegalCheckException e) {
 			e.printStackTrace();
+		} catch (IllegalCallException e) {
+			e.printStackTrace();
+		} catch (IllegalRaiseException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	public void run() throws PlayersFullException, TableCardsFullException, 
-	IllegalCheckException {
+	IllegalCheckException, IllegalCallException, IllegalRaiseException {
 		Table table = new Table();
 		GameController gc = new GameController(table);
 		iPlayer player1 = new User(new Player(new TexasHoldemHand(true),

@@ -62,12 +62,15 @@ public class Table {
 	/**
 	 * Sets the turn to the next player in order.
 	 */
-	//TODO mod-lšsning snyggare?
+	//TODO mod-lšsning snyggare?, otestat
 	public void nextPlayer() {
 		if (indexOfCurrentPlayer < players.size() - 1) {
 			indexOfCurrentPlayer++;
 		} else {
 			indexOfCurrentPlayer = 0;
+		}
+		if (!getCurrentPlayer().isActive()) {
+			nextPlayer();
 		}
 	}
 	

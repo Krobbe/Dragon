@@ -2,6 +2,7 @@ package ctrl.game;
 
 import java.util.List;
 
+import model.game.BettingRound;
 import model.game.Card;
 import model.game.Dealer;
 import model.game.Pot;
@@ -9,7 +10,9 @@ import model.game.Round;
 import model.game.Table;
 import model.player.Bet;
 import model.player.iPlayer;
+import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
+import utilities.IllegalRaiseException;
 import utilities.TableCardsFullException;
 
 /**
@@ -100,13 +103,22 @@ public class GameController {
 	/**
 	 * @author forssenm Method for handling the call scenario
 	 * @author mattiashenriksson
+	 * @throws IllegalCallException 
 	 */
-	public void call() {
+	public void call() throws IllegalCallException {
 		Bet currentBet = table.getRound().getBettingRound().getCurrentBet();
+		if (currentBet.getValue() == -1 || currentBet.getValue() == 0) {
+			throw new IllegalCallException();
+		}
 		iPlayer currentPlayer = table.getCurrentPlayer();
-		currentPlayer.getBalance().removeFromBalance(currentBet.getValue());
+		if (currentPlayer.getOwnCurrentBet() == -1) { //TODO dessa två rader görs ofta, refactor?
+			currentPlayer.setOwnCurrentBet(0);
+		}
+		currentPlayer.getBalance().removeFromBalance(currentBet.getValue() 
+				- currentPlayer.getOwnCurrentBet());
 		Pot currentPot = table.getRound().getPot();
-		currentPot.addToPot(currentBet.getValue());
+		currentPot.addToPot(currentBet.getValue() 
+				- currentPlayer.getOwnCurrentBet());
 		currentPlayer.setOwnCurrentBet(currentBet.getValue());
 		table.nextPlayer();
 	}
@@ -114,17 +126,23 @@ public class GameController {
 	/**
 	 * Performs a raise
 	 * @param amount The amount to raise the pot with.
+	 * @throws IllegalRaiseException 
 	 */
 	//TODO delvis otestad
-	public void raise(int amount) {
+	public void raise(int amount) throws IllegalRaiseException {
 		iPlayer currentPlayer = table.getCurrentPlayer();
-		currentPlayer.getBalance().removeFromBalance(amount);
-		table.getRound().getPot().addToPot(amount);
-		table.getRound().getBettingRound().setCurrentBet(
-				new Bet(table.getCurrentPlayer(),amount));
+		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
 		if (currentPlayer.getOwnCurrentBet() == -1) {
 			currentPlayer.setOwnCurrentBet(0);
 		}
+		if(amount + currentPlayer.getOwnCurrentBet() <= 
+				currentBettingRound.getCurrentBet().getValue()) {
+			throw new IllegalRaiseException();
+		}
+		currentPlayer.getBalance().removeFromBalance(amount);
+		table.getRound().getPot().addToPot(amount);
+		currentBettingRound.setCurrentBet(
+				new Bet(table.getCurrentPlayer(),amount));
 		currentPlayer.setOwnCurrentBet(amount + currentPlayer.getOwnCurrentBet());
 		table.nextPlayer();
 	}
@@ -159,6 +177,7 @@ public class GameController {
 	 * Performs a showdown.
 	 * @return a list of the winning players of the current round.
 	 */
+	//TODO nödvändig?
 	public List<iPlayer> doShowdown() {
 		return table.doShowdown();
 	}
@@ -170,6 +189,7 @@ public class GameController {
 	public void nextRound() {
 		//TODO distribute pot?
 		List<iPlayer> players = table.getPlayers();
+		table.clearTableCards();
 		for (iPlayer p : players) {
 			p.getHand().discard();
 			p.setActive(true);
@@ -177,13 +197,35 @@ public class GameController {
 		}
 		Round r = table.getRound();
 		r.getPot().emptyPot();
-		r.getBettingRound().setCurrentBet(new Bet());
 		distributeCards();
 		//TODO kolla så detta inte görs nån annanstans..
 		table.nextDealerButtonIndex();
+		postBlinds();
 		//TODO funkar för två spelare?
 		table.setIndexOfCurrentPlayer((table.getDealerButtonIndex() + 3) % 
 				table.getPlayers().size());
+	}
+	
+	/**
+	 * Makes the players who's turn it is to post the big and small blind to do 
+	 * so.
+	 */
+	//TODO ska denna vara här? likt raise = refactor?
+	private void postBlinds() {
+		int bigBlind = 20, smallBlind = bigBlind / 2; //TODO ska detta göras i "parameters"?
+		int dealerButtonIndex = table.getDealerButtonIndex();
+		int smallBlindIndex = (dealerButtonIndex + 1) % table.getPlayers().size();
+		int bigBlindIndex = (dealerButtonIndex + 2) % table.getPlayers().size();
+		List<iPlayer> players = table.getPlayers();
+		iPlayer smallBlindPlayer = players.get(smallBlindIndex);
+		iPlayer bigBlindPlayer = players.get(bigBlindIndex);
+		smallBlindPlayer.getBalance().removeFromBalance(smallBlind);
+		bigBlindPlayer.getBalance().removeFromBalance(bigBlind);
+		smallBlindPlayer.setOwnCurrentBet(smallBlind);
+		bigBlindPlayer.setOwnCurrentBet(bigBlind);
+		table.getRound().getPot().addToPot(smallBlind + bigBlind);
+		table.getRound().getBettingRound().setCurrentBet(
+				new Bet(bigBlindPlayer,bigBlind));
 	}
 	
 	/**
