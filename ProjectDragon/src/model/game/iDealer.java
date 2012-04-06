@@ -13,4 +13,10 @@ public interface iDealer {
 	 * @return the top card of the Deck(s).
 	 */
 	public Card popCard();
+	
+	/**
+	 * Creates a new full and shuffled deck for the dealer.
+	 * @author mattiashenriksson
+	 */
+	public void newDeck();
 }

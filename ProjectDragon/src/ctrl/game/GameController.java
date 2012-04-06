@@ -197,6 +197,7 @@ public class GameController {
 		}
 		Round r = table.getRound();
 		r.getPot().emptyPot();
+		table.getDealer().newDeck();
 		distributeCards();
 		//TODO kolla så detta inte görs nån annanstans..
 		table.nextDealerButtonIndex();

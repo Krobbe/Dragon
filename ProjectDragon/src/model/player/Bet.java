@@ -79,4 +79,12 @@ public class Bet {
 		  assert false : "hashCode not designed";
 		  return 42; // any arbitrary constant will do
 	}
+	
+	/**
+	 * @author mattiashenriksson
+	 */
+	@Override
+	public Bet clone() {
+		return new Bet(owner, value);
+	}
 }

@@ -85,4 +85,12 @@ public class BettingRound {
 		  assert false : "hashCode not designed";
 		  return 42; // any arbitrary constant will do
 	}
+	
+	/**
+	 * @author mattiashenriksson
+	 */
+	@Override
+	public BettingRound clone() {
+		return new BettingRound(currentBet.clone());
+	}
 }

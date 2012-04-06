@@ -78,17 +78,18 @@ public class Table {
 	 * Increases the dealer button index to the next player still in the game
 	 * 
 	 * @author robinandersson
+	 * @author mattiashenriksson
 	 */
 	//TODO Test nextDealerButtonPlayer()
 	//TODO Discuss and implement a possible better solution to dealer button
 	public void nextDealerButtonIndex() {
-		
+
+		indexOfDealerButton++;
 		// Reset the index if it is at the end of the player-list
-		if (indexOfDealerButton == players.size() - 1) {
-			indexOfCurrentPlayer = 0;
+		if (indexOfDealerButton == players.size()) {
+			indexOfDealerButton = 0;
 		}
 		
-		indexOfDealerButton++;
 		// TODO Determine what happens if a player has lost recently.
 		// If the dealer button only should be set to players still in the game
 		// or if lost players should be "ghosts"

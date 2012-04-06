@@ -3,6 +3,7 @@ package model.game;
  * A class that simulates a pot
  * @author lisastenberg
  * @author forssenm
+ * @author mattiashenriksson
  *
  */
 
@@ -14,6 +15,14 @@ public class Pot {
 	 */
 	public Pot() {
 		value = 0;
+	}
+	
+	/**
+	 * @author mattiashenriksson
+	 * @param value The initial money the pot should contain.
+	 */
+	public Pot(int value) {
+		this.value = value;
 	}
 
 	/**
@@ -81,5 +90,14 @@ public class Pot {
 	public int hashCode() {
 		  assert false : "hashCode not designed";
 		  return 42; // any arbitrary constant will do
+	}
+	
+	/**
+	 * @author mattiashenriksson
+	 */
+	//TODO rätt gjord?
+	@Override
+	public Pot clone() {
+		return new Pot(value);
 	}
 }

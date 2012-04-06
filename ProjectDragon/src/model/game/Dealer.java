@@ -7,6 +7,7 @@ import java.util.List;
  * A class that represents a dealer. 
  * @author lisastenberg 
  * @author forssenm
+ * @author mattiashenriksson
  *
  */
 
@@ -23,6 +24,14 @@ public class Dealer implements iDealer {
 	 */
 	public Card popCard() {
 		return d.popCard();
+	}
+	
+	/**
+	 * Creates a new full and shuffled deck for the dealer
+	 * @author mattiashenriksson
+	 */
+	public void newDeck() {
+		d = new Deck();
 	}
 	
 	/**

@@ -1,8 +1,10 @@
 package Main;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import model.game.Round;
 import model.game.Table;
 import model.player.Balance;
 import model.player.Player;
@@ -60,8 +62,12 @@ public class Main {
 
 				if (cmd.equals("ch")) {
 					gc.check();
-				} else if (cmd.equals("r")) {
+				} else if (cmd.equals("r10")) {
 					gc.raise(10);
+				} else if (cmd.equals("r50")) {
+					gc.raise(50);
+				} else if (cmd.equals("r100")) {
+					gc.raise(100);
 				} else if (cmd.equals("f")) {
 					gc.fold();
 				} else if (cmd.equals("ca")) {
@@ -87,6 +93,15 @@ public class Main {
 				if (isBettingDone) {
 					winners = gc.nextBettingRound();
 				}
+				
+				for (iPlayer p : players) {
+					if (p.isActive()) {
+						List<Round> oldRounds = new ArrayList<Round>();
+						oldRounds.add(table.getRound().clone());
+						//setActive(false)
+					}
+				}
+				
 				if (winners != null) {
 					System.out.println("Round ended...");
 					for (iPlayer p : winners) {
