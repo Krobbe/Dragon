@@ -42,6 +42,14 @@ public class Pot {
 	}
 	
 	/**
+	 * @author mattiashenriksson
+	 * @param x The amount removed from the pot.
+	 */
+	public void removeFromPot(int x) {
+		value -= x;
+	}
+	
+	/**
 	 * Clears the pot. 
 	 * 
 	 * For example when a person wins a round, that person gets what's in the pot

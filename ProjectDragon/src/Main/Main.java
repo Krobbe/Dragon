@@ -1,12 +1,15 @@
 package Main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import model.game.Round;
+import model.game.Pot;
+import model.game.SidePotHandler;
 import model.game.Table;
 import model.player.Balance;
+import model.player.OwnCurrentBetComparator;
 import model.player.Player;
 import model.player.User;
 import model.player.iPlayer;
@@ -76,12 +79,13 @@ public class Main {
 					System.out.println("Command not supported..");
 				}
 				
+				/* dags för ny bettinground? */
 				boolean isBettingDone = true;
 				List<iPlayer> players = table.getPlayers();
 				for (iPlayer p: players) {
 					if (p.isActive()) {
 						if (table.getCurrentPlayer().getOwnCurrentBet()
-								!= p.getOwnCurrentBet()) {
+								!= p.getOwnCurrentBet() && p.getBalance().getValue() != 0) {
 							isBettingDone = false;
 						}
 						if (p.getOwnCurrentBet() == -1) {
@@ -91,17 +95,28 @@ public class Main {
 				}
 				
 				if (isBettingDone) {
+					/*hantera all-in 
+					List<iPlayer> allInPlayers = new ArrayList<iPlayer>();
+					for (iPlayer p : players) {
+						if (p.getBalance().getValue() == 0) {
+							allInPlayers.add(p);
+						}
+					}
+					Collections.sort(allInPlayers, new OwnCurrentBetComparator());
+					List<SidePotHandler> sidePots = new ArrayList<SidePotHandler>();
+					for (iPlayer p : allInPlayers) {
+							List<iPlayer> activePlayers = table.getActivePlayers();
+							int sidePotValue = p.getOwnCurrentBet() * activePlayers.size();
+							table.getRound().getPot().removeFromPot(sidePotValue);
+							Pot sidePot = new Pot(sidePotValue);
+							sidePots.add(new SidePotHandler(table.getPlayers(), sidePot));
+							p.setActive(false);
+					} */
+					//Sen utföra showdowns för dessa.
 					winners = gc.nextBettingRound();
 				}
 				
-				for (iPlayer p : players) {
-					if (p.isActive()) {
-						List<Round> oldRounds = new ArrayList<Round>();
-						oldRounds.add(table.getRound().clone());
-						//setActive(false)
-					}
-				}
-				
+				/* slut på rundan ? */
 				if (winners != null) {
 					System.out.println("Round ended...");
 					for (iPlayer p : winners) {

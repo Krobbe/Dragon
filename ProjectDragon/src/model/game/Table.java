@@ -246,6 +246,20 @@ public class Table {
 	}
 	
 	/**
+	 * 
+	 * @return A list of the players at the table who are currently active
+	 */
+	public List<iPlayer> getActivePlayers() {
+		List<iPlayer> activePlayers = new ArrayList<iPlayer>();
+		for (iPlayer p : players) {
+			if (p.isActive()) {
+				activePlayers.add(p);
+			}
+		}
+		return activePlayers;
+	}
+	
+	/**
 	 * This method is used only for testing of the class.
 	 * @return The "table cards" represented as a list of cards.
 	 */
