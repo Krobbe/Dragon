@@ -7,13 +7,16 @@ import model.game.Card;
 import model.game.Dealer;
 import model.game.Pot;
 import model.game.Round;
+import model.game.SidePotHandler;
 import model.game.Table;
 import model.player.Bet;
 import model.player.iPlayer;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
+import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
+import Main.Main;
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -177,7 +180,7 @@ public class GameController {
 	 * Performs a showdown.
 	 * @return a list of the winning players of the current round.
 	 */
-	//TODO nödvändig?
+	//TODO nödvändig här? den finns ju redan i table..
 	public List<iPlayer> doShowdown() {
 		return table.doShowdown();
 	}
@@ -232,11 +235,12 @@ public class GameController {
 	/**
 	 * Performs actions required for starting a new betting round
 	 * @throws TableCardsFullException 
+	 * @throws PlayersFullException 
 	 */
 	//TODO Bättre java-doc och förklarande kommentarer?
 	//TODO övergripande metod = annat namn?
 	//TODO List<iPlayer> winners ful lösning?
-	public List<iPlayer> nextBettingRound() throws TableCardsFullException {
+	public List<iPlayer> nextBettingRound() throws TableCardsFullException, PlayersFullException {
 		List<iPlayer> winners = null;
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
 		List<iPlayer> players = table.getPlayers();
@@ -246,6 +250,25 @@ public class GameController {
 		if (table.getTableCards().size() == 5 || 
 				table.getNumberOfActivePlayers() == 1) {
 			winners = doShowdown();
+			
+			/* hantera all-in fall*/
+			List<SidePotHandler> sidePots = new Main().getSidePots();
+			if (sidePots != null) {
+				for (SidePotHandler sph : sidePots) {
+					List<iPlayer> sphPlayers = sph.getPlayers();
+					Pot sphPot = sph.getPot();
+					for (iPlayer p : sphPlayers) {
+						if (!table.getPlayers().contains(p)) {
+							table.addPlayer(p);
+							p.setActive(true);
+						}
+					}
+					// TODO skulle kunna göras med ny metod setPot(Pot p) i pot
+					table.getRound().getPot().emptyPot();
+					table.getRound().getPot().addToPot(sphPot.getValue());
+				}
+			}
+			
 		} else if (table.getTableCards().size() == 0) {
 			showFlop();
 		} else { //TODO ett till alternativ för showTurn?

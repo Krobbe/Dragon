@@ -20,4 +20,11 @@ public class SidePotHandler {
 		this.pot = pot;
 	}
 	
+	public List<iPlayer> getPlayers() {
+		return players;
+	}
+	
+	public Pot getPot() {
+		return pot;
+	}
 }

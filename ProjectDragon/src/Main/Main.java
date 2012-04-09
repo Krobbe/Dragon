@@ -23,6 +23,15 @@ import utilities.TableCardsFullException;
 import ctrl.game.GameController;
 
 public class Main {
+	
+	/* temporär lösning */
+	List<SidePotHandler> sidePots;
+	
+	/* temporär lösning */
+	public List<SidePotHandler> getSidePots() {
+		return sidePots;
+	}
+	
 	public static void main(String[] args) {
 		try {
 			new Main().run();
@@ -81,38 +90,38 @@ public class Main {
 				
 				/* dags för ny bettinground? */
 				boolean isBettingDone = true;
-				List<iPlayer> players = table.getPlayers();
-				for (iPlayer p: players) {
-					if (p.isActive()) {
-						if (table.getCurrentPlayer().getOwnCurrentBet()
-								!= p.getOwnCurrentBet() && p.getBalance().getValue() != 0) {
-							isBettingDone = false;
-						}
-						if (p.getOwnCurrentBet() == -1) {
-							isBettingDone = false;
-						}
+				List<iPlayer> activePlayers = table.getActivePlayers();
+				for (iPlayer p: activePlayers) {
+					if (table.getCurrentPlayer().getOwnCurrentBet() != p.getOwnCurrentBet() 
+							&& p.getBalance().getValue() != 0) {
+						isBettingDone = false;
+					}
+					if (p.getOwnCurrentBet() == -1) {
+						isBettingDone = false;
 					}
 				}
-				
+		
 				if (isBettingDone) {
-					/*hantera all-in 
+					/*hantera all-in (funkar inte riktigt än)*/
+					
+					/* vilka är all-in? */
 					List<iPlayer> allInPlayers = new ArrayList<iPlayer>();
-					for (iPlayer p : players) {
+					for (iPlayer p : activePlayers) {
 						if (p.getBalance().getValue() == 0) {
 							allInPlayers.add(p);
 						}
 					}
+					/* lägg undan i sidePotHandlers */
 					Collections.sort(allInPlayers, new OwnCurrentBetComparator());
-					List<SidePotHandler> sidePots = new ArrayList<SidePotHandler>();
+					sidePots = new ArrayList<SidePotHandler>();
 					for (iPlayer p : allInPlayers) {
-							List<iPlayer> activePlayers = table.getActivePlayers();
 							int sidePotValue = p.getOwnCurrentBet() * activePlayers.size();
 							table.getRound().getPot().removeFromPot(sidePotValue);
 							Pot sidePot = new Pot(sidePotValue);
 							sidePots.add(new SidePotHandler(table.getPlayers(), sidePot));
 							p.setActive(false);
-					} */
-					//Sen utföra showdowns för dessa.
+					} 
+					/* vid showdown hanteras alla sidPots */
 					winners = gc.nextBettingRound();
 				}
 				
