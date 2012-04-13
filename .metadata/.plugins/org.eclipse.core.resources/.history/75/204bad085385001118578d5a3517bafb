@@ -1,0 +1,22 @@
+package model.game;
+
+import static org.junit.Assert.*;
+
+import java.util.List;
+
+import org.junit.Test;
+/**
+ * A test for Dealer.
+ * @author lisastenberg
+ *
+ */
+public class DealerTest {
+
+	@Test
+	public void testGetFlop() {
+		Dealer d = new Dealer();
+		List<Card> list = d.getFlop();
+		assertTrue(list.size() == 3);
+	}
+
+}

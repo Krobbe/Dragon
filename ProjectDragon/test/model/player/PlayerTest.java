@@ -103,7 +103,8 @@ public class PlayerTest {
 		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
 				new Balance());
 		String s = p.toString();
-		String expected = "Name : Mattias , Balance: 0 , Active: false , " +
-				"Hand: ";
+		String expected = "Name: Mattias , Balance: 0 , Active: false , " +
+				"Hand: Texas Hold'em hand: []";
+		assertTrue(s.equals(expected));
 	}
 }

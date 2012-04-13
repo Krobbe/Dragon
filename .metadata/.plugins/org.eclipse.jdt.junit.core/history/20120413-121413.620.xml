@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="CardTest (2)" project="ProjectDragon" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="model.game.CardTest" time="0.001">
+    <testcase name="testGetValue" classname="model.game.CardTest" time="0.001"/>
+    <testcase name="testGetSuite" classname="model.game.CardTest" time="0.0"/>
+    <testcase name="testEquals" classname="model.game.CardTest" time="0.0"/>
+    <testcase name="testToString" classname="model.game.CardTest" time="0.0"/>
+    <testcase name="testCompareTo" classname="model.game.CardTest" time="0.0"/>
+  </testsuite>
+</testrun>

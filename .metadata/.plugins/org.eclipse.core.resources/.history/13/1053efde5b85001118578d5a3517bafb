@@ -1,0 +1,15 @@
+package model.game;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class BettingRoundTest {
+
+	@Test
+	public void testGetCurrentBet() {
+		BettingRound b = new BettingRound();
+		assertTrue(b.getCurrentBet().getValue() == 0);
+	}
+
+}

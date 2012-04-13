@@ -17,4 +17,5 @@
 <fullyQualifiedTypeName name="model.player.iPlayer"/>
 <fullyQualifiedTypeName name="model.game.Deck"/>
 <fullyQualifiedTypeName name="model.game.Card.Rank"/>
+<fullyQualifiedTypeName name="model.player.hand.TexasHoldemHand"/>
 </qualifiedTypeNameHistroy>

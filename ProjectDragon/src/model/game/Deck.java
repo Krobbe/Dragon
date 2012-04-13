@@ -60,7 +60,7 @@ public class Deck {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		for(Card c : this.cards) {
-			result.append(c.getRank() + " of " + c.getSuit() + "\n");
+			result.append(c.toString() + "\n");
 		}
 		return result.toString();
 	}

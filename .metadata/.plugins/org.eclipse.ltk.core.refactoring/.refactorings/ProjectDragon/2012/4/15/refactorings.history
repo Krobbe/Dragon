@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;deck&apos; in &apos;model.game.Dealer.equals(...)&apos; to &apos;dealer&apos;&#x0A;- Original project: &apos;ProjectDragon&apos;&#x0A;- Original element: &apos;model.game.Dealer.equals(Object).deck&apos;&#x0A;- Renamed element: &apos;deck&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;deck&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;model.game{Dealer.java[Dealer~equals~QObject;@deck!1526!1549!1533!1536!QDealer;!0!false" name="dealer" references="true" stamp="1334313223266" version="1.0"/>
+</session>

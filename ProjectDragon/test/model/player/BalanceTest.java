@@ -11,6 +11,11 @@ import org.junit.Test;
  *
  */
 public class BalanceTest {
+	@Test
+	public void testGetValue() {
+		Balance b = new Balance();
+		assertTrue(b.getValue() == 0);
+	}
 	
 	@Test
 	public void testAddToBalance() {
@@ -34,15 +39,20 @@ public class BalanceTest {
          b.removeFromBalance(10);//Should give exception!
 	 }
 	 
-	 //Testar symmetri, reflexivitet och transitivitet.
-	 @Test
+	//Testar symmetri, reflexivitet och transitivitet.
+	@Test
 	public void testEquals() {
 		Balance b1 = new Balance();
 		Balance b2 = new Balance(0);
 		Balance b3 = new Balance();
 
+		assertFalse(b1.equals(null));
+		//Reflexivity
 		assertTrue(b1.equals(b1));
+		//Symmetry
 		assertTrue(b1.equals(b2));
+		assertTrue(b2.equals(b1));
+		//Transitivity
 		if (b2.equals(b3)) {
 			assertTrue(b1.equals(b3));
 		}

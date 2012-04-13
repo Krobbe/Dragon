@@ -13,6 +13,11 @@ import org.junit.Test;
 public class PotTest {
 
 	@Test
+	public void testGetValue() {
+		Pot p = new Pot();
+		assertTrue(p.getValue() == 0);
+	}
+	@Test
 	public void testAddToPot() {
 		Pot p = new Pot();
 		p.addToPot(10);
@@ -25,6 +30,30 @@ public class PotTest {
 		p.addToPot(10);
 		p.emptyPot();
 		assertTrue(p.getValue() == 0);
+	}
+	
+	@Test
+	public void testEquals() {
+		Pot p1 = new Pot();
+		Pot p2 = new Pot();
+		Pot p3 = new Pot();
+		
+		assertFalse(p1.equals(null));
+		
+		//Reflexivity
+		assertTrue(p1.equals(p2));
+		//Symmetry
+		assertTrue(p1.equals(p2) && p2.equals(p1));
+		//Transitivity
+		if(p2.equals(p3)) {
+			assertTrue(p1.equals(p3));
+		}
+	}
+	
+	@Test
+	public void testToString() {
+		Pot p = new Pot();
+		assertTrue(p.toString().equals("0"));
 	}
 
 }

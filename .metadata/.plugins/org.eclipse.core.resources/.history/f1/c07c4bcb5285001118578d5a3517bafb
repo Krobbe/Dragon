@@ -1,0 +1,19 @@
+package model.game;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+/**
+ * A test for Dealer.
+ * @author lisastenberg
+ *
+ */
+public class DealerTest {
+
+	@Test
+	public void testGetFlop() {
+		Dealer d = new Dealer();
+		d.getFlop();
+	}
+
+}

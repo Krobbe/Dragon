@@ -80,29 +80,6 @@ public class TexasHoldemHandTest {
 	}
 	
 	/**
-	 * Tests the toString() method
-	 * @author robinandersson
-	 */
-	@Test
-	public void testToString() {
-		iHand hand1 = new TexasHoldemHand(true);
-		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
-		hand1.addCard(card1);
-		
-		String string1 = hand1.toString();
-		String expected1 = "Texas Hold'em hand: \n" + card1.toString() + "\n";
-		assertTrue(string1.equals(expected1));
-		
-		iHand hand2 = new TexasHoldemHand(true);
-		Card card2 = new Card(Card.Suit.DIAMONDS, Card.Rank.KING);
-		hand2.addCard(card2);
-		
-		String string2 = hand2.toString();
-		String expected2 = "Texas Hold'em hand: \n" + card2.toString() + "\n";
-		assertTrue(string2.equals(expected2));			
-	}
-	
-	/**
 	 * Tests the hand's equals method
 	 * @author lisastenberg
 	 * @author robinandersson
@@ -164,5 +141,15 @@ public class TexasHoldemHandTest {
 	public void hashTest(){
 		iHand hand = new TexasHoldemHand();
 		assertTrue(hand.hashCode() == 44);
+	}
+	
+	@Test
+	public void testToString() {
+		iHand hand1 = new TexasHoldemHand(true);
+		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
+		hand1.addCard(c);
+		String s = hand1.toString();
+		String expected = "Texas Hold'em hand: [ACE of CLUBS]";
+		assertTrue(s.equals(expected));
 	}
 }

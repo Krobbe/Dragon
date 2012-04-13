@@ -2,6 +2,9 @@ package model.player;
 
 /**
  * A test of the class "User"
+ * 
+ * A User has a player, and doesn't have any methods of its own,
+ * thus we do not find it necessarily to test User to the fully.
  * @author mattiashenriksson
  */
 

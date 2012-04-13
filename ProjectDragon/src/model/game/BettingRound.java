@@ -9,7 +9,8 @@ import model.player.hand.TexasHoldemHand;
  * A class that simulates a betting-round.
  * 
  * A betting-round ends when all active players have either checked or called the current bet.
- * @author lisastenberg and forssenm
+ * @author lisastenberg
+ * @author forssenm
  * @author mattiashenriksson
  */
 public class BettingRound {
@@ -63,7 +64,7 @@ public class BettingRound {
 		}
 		else {
 			BettingRound br = (BettingRound)o;
-			return (this.currentBet == br.currentBet);
+			return (this.currentBet.equals(br.currentBet));
 		}
 	}
 	

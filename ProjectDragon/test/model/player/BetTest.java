@@ -13,7 +13,6 @@ public class BetTest {
 	public void testGetValue() {
 		Bet b = new Bet(new User(), 10);
 		assertTrue(b.getValue() == 10);
-		
 	}
 	
 	@Test

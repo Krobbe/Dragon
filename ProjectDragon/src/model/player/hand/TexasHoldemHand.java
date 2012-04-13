@@ -73,8 +73,9 @@ public class TexasHoldemHand implements iHand {
 	}
 	
 	/**
-	 * @author
+	 * ToString method for the texasholdem-class.
 	 * @author mattiashenriksson
+	 * @author lisastenberg
 	 */
 	@Override
 	public String toString() {

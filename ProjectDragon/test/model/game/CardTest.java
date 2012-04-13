@@ -23,15 +23,19 @@ public class CardTest {
 	}
 	
 	@Test
-	public void testSuite() {
+	public void testGetSuite() {
 		assertTrue(c.getSuit().equals(Card.Suit.SPADES));
 	}	
 
 	@Test
 	public void testEquals() {
 		assertFalse(c.equals(null));
+		//Reflexivity
 		assertTrue(c.equals(c));
+		//Symmetry
 		assertTrue(c.equals(d));
+		assertTrue(d.equals(c));
+		//Transitivity
 		if(d.equals(e)) {
 			assertTrue(c.equals(e));
 		}
@@ -40,5 +44,10 @@ public class CardTest {
 	@Test
 	public void testToString() {
 		assertTrue(c.toString().equals("TWO of SPADES"));
+	}
+	
+	@Test
+	public void testCompareTo() {
+		assertTrue(c.compareTo(d) == 0);
 	}
 }

@@ -26,6 +26,7 @@ public class Player implements iPlayer {
 				new Balance());
 	}
 	
+	//TODO: Ska inte player ha ett account? 
 	public Player(iHand hand, String name, Balance balance) {
 		this.hand = hand;
 		this.name = name;
