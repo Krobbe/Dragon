@@ -21,7 +21,6 @@ public class RoundTest {
 		assertTrue(r.getPot().getValue() == 0);
 	}
 	
-	//TODO: Implement testClone
 	@Test
 	public void testClone() {
 		fail("Not yet implemented");
