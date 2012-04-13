@@ -102,7 +102,7 @@ public class FullTHHandTest {
 		FullTHHand hand1 = new FullTHHand();
 		hand1.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
 		String s = hand1.toString();
-		String expected = "Full hand: [ACE of CLUBS]";
+		String expected = "Full hand: \nACE of CLUBS\n";
 		assertTrue(s.equals(expected));
 	}
 }

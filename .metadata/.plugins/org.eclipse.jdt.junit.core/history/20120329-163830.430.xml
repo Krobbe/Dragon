@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="PlayerTest" project="ProjectDragon" tests="4" started="4" failures="0" errors="0" ignored="0">
-  <testsuite name="model.player.PlayerTest" time="0.0">
-    <testcase name="testSetActive" classname="model.player.PlayerTest" time="0.0"/>
-    <testcase name="testAddCard" classname="model.player.PlayerTest" time="0.0"/>
-    <testcase name="testGetHand" classname="model.player.PlayerTest" time="0.0"/>
-    <testcase name="testSetStillInGame" classname="model.player.PlayerTest" time="0.0"/>
-  </testsuite>
-</testrun>

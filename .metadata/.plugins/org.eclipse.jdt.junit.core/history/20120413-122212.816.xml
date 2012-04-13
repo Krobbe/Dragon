@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="DeckTest (2)" project="ProjectDragon" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="model.game.DeckTest" time="0.0">
-    <testcase name="testPopCard" classname="model.game.DeckTest" time="0.0"/>
-  </testsuite>
-</testrun>

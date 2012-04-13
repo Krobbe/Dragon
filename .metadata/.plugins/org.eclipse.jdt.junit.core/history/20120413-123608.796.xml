@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="DealerTest" project="ProjectDragon" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="model.game.DealerTest" time="0.001">
-    <testcase name="testGetFlop" classname="model.game.DealerTest" time="0.0"/>
-    <testcase name="testGetRiver" classname="model.game.DealerTest" time="0.0"/>
-    <testcase name="testToString" classname="model.game.DealerTest" time="0.001"/>
-  </testsuite>
-</testrun>

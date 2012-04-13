@@ -58,8 +58,11 @@ public class Hand implements iHand {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("Hand: ");
-		stringBuilder.append(cards.toString());
+		stringBuilder.append("Hand: \n");
+		for(Card card : getCards()){
+			stringBuilder.append(card.toString());
+		}
+		stringBuilder.append("\n");
 		return stringBuilder.toString();
 	}	
 	

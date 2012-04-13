@@ -77,10 +77,8 @@ public class TexasHoldemHand implements iHand {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("Texas Hold'em hand: ");
-		for(Card card : getCards()){
-			stringBuilder.append("[" + card.toString() + "] ");
-		}
+		stringBuilder.append("Texas Hold'em ");
+		stringBuilder.append(hand.toString());
 		return stringBuilder.toString();
 	}	
 	

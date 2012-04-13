@@ -4,11 +4,8 @@
 package model.player.hand;
 
 import static org.junit.Assert.*;
-
 import java.util.LinkedList;
-
 import model.game.Card;
-
 import org.junit.Test;
 
 /**
@@ -76,30 +73,28 @@ public class HandTest {
 		assertTrue(hand.getCards().size() == 2);
 		assertTrue(hand.getCards().get(0).equals(card1));
 		assertTrue(hand.getCards().get(1).equals(card2));
-		
+	}
+	
+	@Test
+	public void testDiscard() {
+		iHand hand = new Hand();
+		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
+		hand.addCard(card1);
+		hand.discard();
+		assertTrue(hand.getCards().equals(new LinkedList<Card>()));
 	}
 	
 	/**
 	 * Tests the toString() method
+	 * @author lisastenberg
 	 */
 	@Test
 	public void testToString() {
-		iHand hand1 = new Hand(true);
-		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
-		hand1.addCard(card1);
-		
-		String string1 = hand1.toString();
-		String expected1 = "Hand: \n" + card1.toString() + "\n";
-		assertTrue(string1.equals(expected1));
-		
-		iHand hand2 = new Hand(true);
-		Card card2 = new Card(Card.Suit.DIAMONDS, Card.Rank.KING);
-		hand2.addCard(card2);
-		
-		String string2 = hand2.toString();
-		String expected2 = "Hand: \n" + card2.toString() + "\n";
-		assertTrue(string2.equals(expected2));		
-		
+		iHand hand1 = new Hand();
+		hand1.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+		String s = hand1.toString();
+		String expected = "Full hand: [ACE of CLUBS]";
+		assertTrue(s.equals(expected));
 	}
 	
 	/**

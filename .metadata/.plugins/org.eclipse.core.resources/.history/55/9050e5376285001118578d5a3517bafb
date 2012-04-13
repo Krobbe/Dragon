@@ -149,7 +149,7 @@ public class TexasHoldemHandTest {
 		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		hand1.addCard(c);
 		String s = hand1.toString();
-		String expected = "Texas Hold'em Hand: [ACE of CLUBS]";
+		String expected = "Texas Hold'em hand: [ACE of CLUBS]";
 		assertTrue(s.equals(expected));
 	}
 }

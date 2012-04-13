@@ -1,6 +1,0 @@
-package Game;
-
-public class Pot {
-	private int pot;
-	
-}
