@@ -163,6 +163,46 @@ public class Table {
 		round.getPot().emptyPot();
 	}
 	
+	// TODO Write test for distribute cards-method
+	/**
+	 * Distributes the two "personal cards" to all remaining players in the
+	 * round
+	 * 
+	 * @author robinandersson
+	 */
+	public void distributeCards() {
+
+		/*
+		 * Prepares the list of players to simplify the distribution of cards.
+		 * The list of players is ordered so that the first player in the list
+		 * gets the first card (this is the player directly after the dealer
+		 * button)
+		 */
+		for(int i = 0 ; i <= getDealerButtonIndex() ; i++){
+			players.add(players.remove(0));
+		}
+
+		/*
+		 * Every (active) player gets two cards where the first is distributed
+		 * directly, and the second after everyone else has gotten their first
+		 * card
+		 */
+		for (int i = 1; i <= 2; i++) {
+
+			for (iPlayer player : players) {
+
+				if (player.isActive()) {
+					player.addCard(dealer.popCard());
+				}
+			}
+		}
+
+		// Restores the list to the previous state before it was prepared
+		for(int i = 0 ; i <= getDealerButtonIndex() ; i++){
+			players.add(0, players.remove(players.size() -1));
+		}
+	}
+	
     /**
      * @author Oscar Stigter
      * @author lisastenberg
@@ -331,6 +371,8 @@ public class Table {
 		}
 		return activePlayers;
 	}
+	
+
 	
 	/**
 	 * Equals method for the Table class
