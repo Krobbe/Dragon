@@ -52,7 +52,6 @@ public class Main {
 	IllegalCheckException, IllegalCallException, IllegalRaiseException {
 		Table table = new Table();
 		GameController gc = new GameController(table);
-
 		iPlayer player1 = new User(new Player(new TexasHoldemHand(true),
 				"Mattias H", new Balance(100)));
 		iPlayer player2 = new User(new Player(new TexasHoldemHand(true),
