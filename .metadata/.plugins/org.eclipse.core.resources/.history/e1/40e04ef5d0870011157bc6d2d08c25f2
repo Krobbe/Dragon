@@ -93,7 +93,7 @@ public class HandTest {
 		iHand hand1 = new Hand();
 		hand1.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
 		String s = hand1.toString();
-		String expected = "Hand: [ACE of CLUBS]";
+		String expected = "Full hand: [ACE of CLUBS]";
 		assertTrue(s.equals(expected));
 	}
 	

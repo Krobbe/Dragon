@@ -45,7 +45,7 @@ public class HandValueTest {
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
 		
 		h = new HandValue(hand);
-		assertTrue(h.getValue() == 2225178);
+		assertTrue(h.getValue() == 9);
 	}
 	
 	@Test
@@ -80,33 +80,12 @@ public class HandValueTest {
 		
 		h = new HandValue(hand);
 		String tmp = h.toString();
-		String expected = "Flush (2225178)";
+		String expected = String.format("%s (%d)", "Royal Flush", 9);
 		assertTrue(tmp.equals(expected));
 	}
 	
 	@Test
 	public void testCompareTo() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
-		
-		h = new HandValue(hand);
-		HandValue h2 = new HandValue(hand);
-		assertTrue(h.compareTo(h2) == 0);
-		
-		FullTHHand hand2 = new FullTHHand();
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
-		
-		HandValue h3 = new HandValue(hand2);
-		
-		System.out.println(h.getValue());
-		System.out.println(h3.getValue());
-		assertTrue(h.compareTo(h3) < 0);
+		fail("Not yet implemented");
 	}
 }

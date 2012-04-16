@@ -1,0 +1,42 @@
+package model.player.hand;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+import model.game.Card;
+/**
+ * A test for HandValue
+ * @author lisastenberg
+ *
+ */
+public class HandValueTest {
+
+	@Test
+	public void testGetType() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testGetDescription() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testGetValue() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testEquals() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testToString() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testCompareTo() {
+		fail("Not yet implemented");
+	}
+}

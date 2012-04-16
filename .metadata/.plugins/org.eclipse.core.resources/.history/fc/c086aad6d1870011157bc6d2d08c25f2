@@ -6,29 +6,30 @@ package model.player.hand;
 import static org.junit.Assert.*;
 import java.util.LinkedList;
 import model.game.Card;
+import model.player.hand.TexasHoldemHand;
 import org.junit.Test;
 
 /**
- * Test for the Hand class.
- * @author robinandersson
+ * Test for TexasHoldemHand
+ * 
  * @author lisastenberg
+ * @author robinandersson
+ *
  */
-public class HandTest {
+public class TexasHoldemHandTest {
 
 	/**
 	 * Tests that the visibility is set to correct values by the constructors
 	 * and methods
-	 * 
 	 * @author lisastenberg
 	 * @author robinandersson
 	 */
 	@Test
 	public void testVisible() {
-		
-		iHand hand = new Hand();
+		iHand hand = new TexasHoldemHand();
 		assertTrue(!hand.isVisible());
-		assertTrue(new Hand(true).isVisible());
-		assertTrue(!(new Hand(false).isVisible()));
+		assertTrue(new TexasHoldemHand(true).isVisible());
+		assertTrue(!(new TexasHoldemHand(false).isVisible()));
 		
 		/*
 		 *  The hand should be false by default (constructor with no parameter)
@@ -49,18 +50,18 @@ public class HandTest {
 	 */
 	@Test
 	public void testGetCards() {
-		iHand hand = new Hand();
+		iHand hand = new TexasHoldemHand(true);
 		assertTrue(hand.getCards().equals(new LinkedList<Card>()));
 	}
 	
 	/**
-	 * Tests the hands functionality to add cards to it's hand
+	 * Tests the hand's functionality to add cards to it's hand
 	 * @author lisastenberg
 	 * @author robinandersson
 	 */
 	@Test
 	public void testAddCard() {
-		iHand hand = new Hand();
+		iHand hand = new TexasHoldemHand();
 		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		hand.addCard(card1);
 		
@@ -75,37 +76,15 @@ public class HandTest {
 		assertTrue(hand.getCards().get(1).equals(card2));
 	}
 	
-	@Test
-	public void testDiscard() {
-		iHand hand = new Hand();
-		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
-		hand.addCard(card1);
-		hand.discard();
-		assertTrue(hand.getCards().equals(new LinkedList<Card>()));
-	}
-	
 	/**
-	 * Tests the toString() method
-	 * @author lisastenberg
-	 */
-	@Test
-	public void testToString() {
-		iHand hand1 = new Hand();
-		hand1.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-		String s = hand1.toString();
-		String expected = "Hand: [ACE of CLUBS]";
-		assertTrue(s.equals(expected));
-	}
-	
-	/**
-	 * Tests the hands equals method
+	 * Tests the hand's equals method
 	 * @author lisastenberg
 	 * @author robinandersson
 	 */
 	@Test
 	public void testEquals() {
-		iHand hand1 = new Hand();
-		iHand hand2 = new Hand(true); //Visibility should not matter
+		iHand hand1 = new TexasHoldemHand();
+		iHand hand2 = new TexasHoldemHand(true); //Visibility should not matter
 		
 		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.EIGHT);
@@ -122,7 +101,7 @@ public class HandTest {
 		assertTrue(hand1.equals(hand2));
 		assertTrue(hand2.equals(hand1));
 		
-		iHand hand3 = new Hand(false);
+		iHand hand3 = new TexasHoldemHand(false);
 		hand3.addCard(card1);
 		hand3.addCard(card2);
 		
@@ -133,7 +112,7 @@ public class HandTest {
 		
 		// Some tests where the hands are not equal
 		
-		iHand hand4 = new Hand();
+		iHand hand4 = new TexasHoldemHand();
 		
 		assertTrue(!hand1.equals(hand4));
 		assertTrue(!hand4.equals(hand1));
@@ -157,7 +136,17 @@ public class HandTest {
 	 */
 	@Test
 	public void hashTest(){
-		iHand hand = new Hand();
-		assertTrue(hand.hashCode() == 43);
+		iHand hand = new TexasHoldemHand();
+		assertTrue(hand.hashCode() == 44);
+	}
+	
+	@Test
+	public void testToString() {
+		iHand hand1 = new TexasHoldemHand(true);
+		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
+		hand1.addCard(c);
+		String s = hand1.toString();
+		String expected = "Texas Hold'em Hand: [ACE of CLUBS]";
+		assertTrue(s.equals(expected));
 	}
 }

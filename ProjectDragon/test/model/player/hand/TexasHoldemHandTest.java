@@ -4,16 +4,16 @@
 package model.player.hand;
 
 import static org.junit.Assert.*;
-
 import java.util.LinkedList;
-
 import model.game.Card;
 import model.player.hand.TexasHoldemHand;
-
 import org.junit.Test;
 
 /**
- * Test for TexasHoldemHand
+ * Test for TexasHoldemHand.
+ * 
+ * This class does not need to be properly tested if the Hand class is tested
+ * correctly. This because TexasHoldemHand doesn't have any methods of its own.
  * 
  * @author lisastenberg
  * @author robinandersson
