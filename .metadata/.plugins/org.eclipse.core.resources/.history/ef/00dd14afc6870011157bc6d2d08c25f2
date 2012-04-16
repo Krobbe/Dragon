@@ -72,9 +72,7 @@ public class FullTHHand implements iHand {
 	
 	@Override
 	public boolean equals(Object o) {
-		if(this == null) {
-			return false;
-		} else if(this == o) {
+		if(this == o) {
 			return true;
 		}
 		else if (o.getClass() != this.getClass()) {

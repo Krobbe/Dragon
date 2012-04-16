@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="HandEvaluatorTest" project="ProjectDragon" tests="10" started="10" failures="0" errors="0" ignored="0">
+  <testsuite name="model.player.hand.HandEvaluatorTest" time="0.001">
+    <testcase name="testIsFlush" classname="model.player.hand.HandEvaluatorTest" time="0.0"/>
+    <testcase name="testIsStraight" classname="model.player.hand.HandEvaluatorTest" time="0.0"/>
+    <testcase name="testIsOnePair" classname="model.player.hand.HandEvaluatorTest" time="0.0"/>
+    <testcase name="testIsTwoPairs" classname="model.player.hand.HandEvaluatorTest" time="0.0"/>
+    <testcase name="testIsThreeOfAKind" classname="model.player.hand.HandEvaluatorTest" time="0.0"/>
+    <testcase name="testIsFullHouse" classname="model.player.hand.HandEvaluatorTest" time="0.0"/>
+    <testcase name="testIsFourOfAKind" classname="model.player.hand.HandEvaluatorTest" time="0.001"/>
+    <testcase name="testIsRoyalFlush" classname="model.player.hand.HandEvaluatorTest" time="0.0"/>
+    <testcase name="testIsStraightFlush" classname="model.player.hand.HandEvaluatorTest" time="0.0"/>
+    <testcase name="testCalculateHighCard" classname="model.player.hand.HandEvaluatorTest" time="0.0"/>
+  </testsuite>
+</testrun>

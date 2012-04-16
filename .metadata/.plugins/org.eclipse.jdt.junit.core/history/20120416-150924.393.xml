@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="TexasHoldemHandTest" project="ProjectDragon" tests="6" started="6" failures="0" errors="0" ignored="0">
+  <testsuite name="model.player.hand.TexasHoldemHandTest" time="0.0">
+    <testcase name="testVisible" classname="model.player.hand.TexasHoldemHandTest" time="0.0"/>
+    <testcase name="testGetCards" classname="model.player.hand.TexasHoldemHandTest" time="0.0"/>
+    <testcase name="testAddCard" classname="model.player.hand.TexasHoldemHandTest" time="0.0"/>
+    <testcase name="testEquals" classname="model.player.hand.TexasHoldemHandTest" time="0.0"/>
+    <testcase name="hashTest" classname="model.player.hand.TexasHoldemHandTest" time="0.0"/>
+    <testcase name="testToString" classname="model.player.hand.TexasHoldemHandTest" time="0.0"/>
+  </testsuite>
+</testrun>

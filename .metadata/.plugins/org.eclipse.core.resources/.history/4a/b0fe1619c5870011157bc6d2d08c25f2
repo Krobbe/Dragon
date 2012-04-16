@@ -203,6 +203,7 @@ public class HandEvaluator {
 	 * the same rank.
 	 */
 	private void findDuplicates() {
+		System.out.println(Arrays.toString(rankDist) + "\n");
 		// Find quads, triples and pairs.
 		for (int i = Card.NO_OF_RANKS - 1; i >= 0; i--) {
 			if (rankDist[i] == 4) {
