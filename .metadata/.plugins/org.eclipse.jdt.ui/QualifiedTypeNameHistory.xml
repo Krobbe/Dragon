@@ -31,4 +31,6 @@
 <fullyQualifiedTypeName name="model.player.Bet"/>
 <fullyQualifiedTypeName name="model.player.Player"/>
 <fullyQualifiedTypeName name="model.game.Card.Rank"/>
+<fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>

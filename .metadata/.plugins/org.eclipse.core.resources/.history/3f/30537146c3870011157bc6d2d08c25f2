@@ -208,7 +208,7 @@ public class HandEvaluator {
 		for (int i = Card.NO_OF_RANKS - 1; i >= 0; i--) {
 			if (rankDist[i] == 4) {
 				quadRank = i;
-				break;
+				//break;
 			} else if (rankDist[i] == 3) {
 				if(tripleRank != -1) {
 					System.out.println("3");

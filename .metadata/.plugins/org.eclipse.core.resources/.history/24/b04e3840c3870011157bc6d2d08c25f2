@@ -211,7 +211,7 @@ public class HandEvaluator {
 				break;
 			} else if (rankDist[i] == 3) {
 				if(tripleRank != -1) {
-					System.out.println("3");
+					System.out.println("in");
 					tripleRank = i;
 				}
 			} else if (rankDist[i] == 2) {

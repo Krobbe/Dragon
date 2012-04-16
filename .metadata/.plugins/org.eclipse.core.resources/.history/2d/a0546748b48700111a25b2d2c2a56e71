@@ -1,6 +1,5 @@
 package model.player.hand;
 
-import java.util.Arrays;
 import java.util.List;
 
 import model.game.Card;
@@ -203,7 +202,6 @@ public class HandEvaluator {
 	 * the same rank.
 	 */
 	private void findDuplicates() {
-		System.out.println(Arrays.toString(rankDist) + "\n");
 		// Find quads, triples and pairs.
 		for (int i = Card.NO_OF_RANKS - 1; i >= 0; i--) {
 			if (rankDist[i] == 4) {
@@ -211,7 +209,6 @@ public class HandEvaluator {
 				break;
 			} else if (rankDist[i] == 3) {
 				if(tripleRank != -1) {
-					System.out.println("3");
 					tripleRank = i;
 				}
 			} else if (rankDist[i] == 2) {

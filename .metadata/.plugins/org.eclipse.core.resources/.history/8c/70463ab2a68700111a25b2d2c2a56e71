@@ -65,11 +65,11 @@ public class HandEvaluatorTest {
 	
 	@Test
 	public void testIsThreeOfAKind() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
+		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
+		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
+		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.THREE_OF_A_KIND));	
@@ -79,13 +79,11 @@ public class HandEvaluatorTest {
 	public void testIsFullHouse() {
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
 		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
 		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.JACK));
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
+		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
 		
-		System.out.println("nu");
 		HandEvaluator h = new HandEvaluator(hand);
-		System.out.println(h.getType());
 		assertTrue(h.getType().equals(HandValueType.FULL_HOUSE));	
 	}
 	
@@ -101,28 +99,13 @@ public class HandEvaluatorTest {
 		assertTrue(h.getType().equals(HandValueType.FOUR_OF_A_KIND));	
 	}
 	
-	/**
-	 * A test for the method isStraightFlush()
-	 */
 	@Test
-	public void testIsRoyalFlush() {
+	public void testIsStraightFlush() {
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
 		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
-		
-		HandEvaluator h = new HandEvaluator(hand);
-		assertTrue(h.getType().equals(HandValueType.ROYAL_FLUSH));
-	}
-	
-	@Test
-	public void testIsStraightFlush() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.STRAIGHT_FLUSH));
