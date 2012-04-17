@@ -199,7 +199,8 @@ public class TableTest {
 		winners.add(p1);
 		winners.add(p2);
 		t.getRound().getPot().addToPot(100);
-		t.distributePot(winners, t.getRound().getPot().getValue());
+		t.distributePot(t.getPlayers(), t.getRound().getPot().getValue());
+		System.out.println(t.getRound.getPot());
 		assertTrue(p1.getBalance().getValue() == 50);
 	}
 	
@@ -271,6 +272,7 @@ public class TableTest {
 			System.out.println("The table is full");
 			e.printStackTrace();
 		}
+		System.out.println(t.toString());
 		String tmp = t.toString();
 		String expected = "Players at table:\n" +
 				"Name: Default , Balance: 0 , Active: true , Hand: Texas " +

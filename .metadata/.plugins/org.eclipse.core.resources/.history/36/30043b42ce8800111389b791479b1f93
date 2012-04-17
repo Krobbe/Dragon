@@ -163,7 +163,6 @@ public class Table {
 		for (iPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);
 		}
-		//TODO: Remove money from the pot!
 	}
 	
 	/**

@@ -199,7 +199,8 @@ public class TableTest {
 		winners.add(p1);
 		winners.add(p2);
 		t.getRound().getPot().addToPot(100);
-		t.distributePot(winners, t.getRound().getPot().getValue());
+		t.distributePot(t.getPlayers(), t.getRound().getPot().getValue());
+		System.out.println(t.getRound().getPot().getValue());
 		assertTrue(p1.getBalance().getValue() == 50);
 	}
 	

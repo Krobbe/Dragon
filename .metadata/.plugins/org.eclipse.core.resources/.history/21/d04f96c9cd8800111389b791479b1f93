@@ -84,6 +84,22 @@ public class TableTest {
 	}
 	
 	@Test
+	public void testGetNumberOfActivePlayers() {
+		iPlayer p1 = new User();
+		iPlayer p2 = new User();
+		p1.setActive(true);
+		p2.setActive(true);
+		try {
+			t.addPlayer(p1);
+			t.addPlayer(p2);
+		} catch (PlayersFullException e) {
+			System.out.println("The table is full");
+			e.printStackTrace();
+		}
+		assertTrue(t.getNumberOfActivePlayers() == 2);
+	}
+	
+	@Test
 	public void testAddPlayer() {
 		iPlayer p1 = new User();
 		iPlayer p2 = new User();
@@ -199,7 +215,7 @@ public class TableTest {
 		winners.add(p1);
 		winners.add(p2);
 		t.getRound().getPot().addToPot(100);
-		t.distributePot(winners, t.getRound().getPot().getValue());
+		t.distributePot(t.getPlayers(), t.getRound().getPot().getValue());
 		assertTrue(p1.getBalance().getValue() == 50);
 	}
 	
@@ -257,7 +273,7 @@ public class TableTest {
 		t.getRound().getPot().addToPot(10);
 		p1.getHand().addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
 		p2.getHand().addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
-		t.doShowdown(t.getPlayers(), t.getRound().getPot().getValue());
+		t.doShowdown();
 		assertTrue(t.getHandTypes().get(p1).equals(HandValueType.HIGH_CARD));
 	}
 	
@@ -271,6 +287,7 @@ public class TableTest {
 			System.out.println("The table is full");
 			e.printStackTrace();
 		}
+		System.out.println(t.toString());
 		String tmp = t.toString();
 		String expected = "Players at table:\n" +
 				"Name: Default , Balance: 0 , Active: true , Hand: Texas " +
