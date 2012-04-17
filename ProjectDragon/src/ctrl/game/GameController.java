@@ -213,6 +213,7 @@ public class GameController {
 	//TODO Bättre java-doc och förklarande kommentarer?
 	//TODO övergripande metod = annat namn?
 	//TODO List<iPlayer> winners ful lösning?
+	//TODO Ge rätt spelare turen..
 	public List<iPlayer> nextBettingRound() throws TableCardsFullException, PlayersFullException {
 		List<iPlayer> winners = null;
 		table.getRound().getBettingRound().setCurrentBet(new Bet());

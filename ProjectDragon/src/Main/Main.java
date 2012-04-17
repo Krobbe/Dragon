@@ -121,7 +121,7 @@ public class Main {
 							sidePots.add(new SidePotHandler(table.getPlayers(), sidePot));
 							p.setActive(false);
 					} 
-					/* vid showdown hanteras alla sidPots */
+					/* vid showdown hanteras alla sidePots */
 					winners = gc.nextBettingRound();
 				}
 				
