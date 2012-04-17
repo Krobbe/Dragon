@@ -21,6 +21,9 @@ import javax.swing.JTextPane;
 import java.awt.CardLayout;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.ListSelectionModel;
 
 public class MenuView {
 
@@ -97,7 +100,7 @@ public class MenuView {
 		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JLabel lblDontHaveAn = new JLabel("Don't have an account?" + "\n" + "");
-		lblDontHaveAn.setBounds(447, 386, 113, 20);
+		lblDontHaveAn.setBounds(447, 386, 113, 14);
 		loginPanel.add(lblDontHaveAn);
 		
 		JButton newUserButton = new JButton("Register");
@@ -221,6 +224,32 @@ public class MenuView {
 		
 		JPanel joinTablePanel = new JPanel();
 		frame.getContentPane().add(joinTablePanel, "name_200411312977830");
+		joinTablePanel.setLayout(null);
+		
+		JButton button = new JButton("Back");
+		button.setBounds(10, 683, 108, 36);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		joinTablePanel.add(button);
+		
+		JButton btnJoinTable = new JButton("Join table");
+		btnJoinTable.setBounds(890, 683, 108, 36);
+		btnJoinTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		joinTablePanel.add(btnJoinTable);
+		
+		JList list = new JList();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list.setBounds(192, 111, 623, 507);
+		joinTablePanel.add(list);
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
