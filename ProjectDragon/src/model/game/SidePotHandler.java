@@ -1,6 +1,5 @@
 package model.game;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.player.iPlayer;

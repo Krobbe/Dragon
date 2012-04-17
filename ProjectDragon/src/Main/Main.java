@@ -24,14 +24,6 @@ import ctrl.game.GameController;
 
 public class Main {
 	
-	/* temporär lösning */
-	List<SidePotHandler> sidePots;
-	
-	/* temporär lösning */
-	public List<SidePotHandler> getSidePots() {
-		return sidePots;
-	}
-	
 	public static void main(String[] args) {
 		try {
 			new Main().run();
@@ -92,15 +84,17 @@ public class Main {
 				boolean isBettingDone = true;
 				List<iPlayer> activePlayers = table.getActivePlayers();
 				for (iPlayer p: activePlayers) {
-					if (table.getCurrentPlayer().getOwnCurrentBet() != p.getOwnCurrentBet() 
-							&& p.getBalance().getValue() != 0) {
-						isBettingDone = false;
+					if (table.getCurrentPlayer().getOwnCurrentBet() != p.getOwnCurrentBet()) {
+						if (p.getBalance().getValue() != 0) {
+							isBettingDone = false;
+						}
 					}
 					if (p.getOwnCurrentBet() == -1) {
 						isBettingDone = false;
 					}
 				}
-		
+				
+				System.out.println("\n\n--------" + isBettingDone + "\n\n");
 				if (isBettingDone) {
 					/*hantera all-in (funkar inte riktigt än)*/
 					
@@ -113,9 +107,12 @@ public class Main {
 					}
 					/* lägg undan i sidePotHandlers */
 					Collections.sort(allInPlayers, new OwnCurrentBetComparator());
-					sidePots = new ArrayList<SidePotHandler>();
+					List<SidePotHandler> sidePots = table.getSidePots();
 					for (iPlayer p : allInPlayers) {
 							int sidePotValue = p.getOwnCurrentBet() * activePlayers.size();
+							for (iPlayer ap : activePlayers) {
+								ap.setOwnCurrentBet(ap.getOwnCurrentBet() - p.getOwnCurrentBet());
+							}
 							table.getRound().getPot().removeFromPot(sidePotValue);
 							Pot sidePot = new Pot(sidePotValue);
 							sidePots.add(new SidePotHandler(table.getPlayers(), sidePot));

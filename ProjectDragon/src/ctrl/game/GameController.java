@@ -6,7 +6,6 @@ import model.game.BettingRound;
 import model.game.Card;
 import model.game.Dealer;
 import model.game.Pot;
-import model.game.Round;
 import model.game.SidePotHandler;
 import model.game.Table;
 import model.player.Bet;
@@ -16,7 +15,6 @@ import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
-import Main.Main;
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -117,8 +115,8 @@ public class GameController {
 		}
 		currentPlayer.getBalance().removeFromBalance(amount);
 		table.getRound().getPot().addToPot(amount);
-		currentBettingRound.setCurrentBet(
-				new Bet(table.getCurrentPlayer(),amount));
+		currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
+						amount + currentPlayer.getOwnCurrentBet()));
 		currentPlayer.setOwnCurrentBet(amount + currentPlayer.getOwnCurrentBet());
 		table.nextPlayer();
 	}
@@ -154,8 +152,8 @@ public class GameController {
 	 * @return a list of the winning players of the current round.
 	 */
 	//TODO nödvändig här? den finns ju redan i table..
-	public List<iPlayer> doShowdown() {
-		return table.doShowdown();
+	public List<iPlayer> doShowdown(List<iPlayer> plrs, int potAmount) {
+		return table.doShowdown(plrs, potAmount);
 	}
 	
 	/**
@@ -165,14 +163,14 @@ public class GameController {
 	public void nextRound() {
 		//TODO distribute pot?
 		List<iPlayer> players = table.getPlayers();
+		table.getRound().getPot().emptyPot();
 		table.clearTableCards();
 		for (iPlayer p : players) {
 			p.getHand().discard();
 			p.setActive(true);
 			p.setOwnCurrentBet(-1);
 		}
-		Round r = table.getRound();
-		r.getPot().emptyPot();
+		table.getRound().getPot().emptyPot();
 		table.getDealer().newDeck();
 		distributeCards();
 		//TODO kolla så detta inte görs nån annanstans..
@@ -222,26 +220,16 @@ public class GameController {
 			p.setOwnCurrentBet(-1);
 		}
 		if (table.getTableCards().size() == 5 || 
-				table.getNumberOfActivePlayers() == 1) {
-			winners = doShowdown();
+				table.getActivePlayers().size() == 1) {
 			
-			/* hantera all-in fall*/
-			List<SidePotHandler> sidePots = new Main().getSidePots();
+			List<SidePotHandler> sidePots = table.getSidePots();
 			if (sidePots != null) {
 				for (SidePotHandler sph : sidePots) {
-					List<iPlayer> sphPlayers = sph.getPlayers();
-					Pot sphPot = sph.getPot();
-					for (iPlayer p : sphPlayers) {
-						if (!table.getPlayers().contains(p)) {
-							table.addPlayer(p);
-							p.setActive(true);
-						}
-					}
-					// TODO skulle kunna göras med ny metod setPot(Pot p) i pot
-					table.getRound().getPot().emptyPot();
-					table.getRound().getPot().addToPot(sphPot.getValue());
+					doShowdown(sph.getPlayers(),sph.getPot().getValue());
 				}
-			}
+			}	
+			winners = doShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
+			sidePots.clear();
 			
 		} else if (table.getTableCards().size() == 0) {
 			showFlop();

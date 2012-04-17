@@ -33,6 +33,7 @@ public class Table {
 	private int indexOfDealerButton;
 	private Map<iPlayer, HandValueType> handTypes = 
 			new TreeMap<iPlayer, HandValueType>();
+	private List<SidePotHandler> sidePots = new ArrayList<SidePotHandler>();
 	
 	/**
 	 * Creates a new Table.
@@ -152,15 +153,14 @@ public class Table {
 	 * Calculates the amount of chips the winner(s) will get and distributes it to him.
 	 * After the pot is distributed equally among the winner(s), the pot is emptied. 
 	 */
-	public void distributePot(List<iPlayer> winners) {
+	public void distributePot(List<iPlayer> winners, int potAmount) {
 		// This assumes that the pot can be distributed equally.
 		// TODO: How to do?
-		int winnerAmount = round.getPot().getValue() / winners.size();
+		int winnerAmount = potAmount / winners.size();
 		
 		for (iPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);
 		}
-		round.getPot().emptyPot();
 	}
 	
 	// TODO Write test for distribute cards-method
@@ -206,16 +206,17 @@ public class Table {
     /**
      * @author Oscar Stigter
      * @author lisastenberg
+     * @author mattiashenriksson
      * 
      * Performs the Showdown.
      */
-    public List<iPlayer> doShowdown() {
+    public List<iPlayer> doShowdown(List<iPlayer> plrs, int potAmount) {
         // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
-        Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers();
+        Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers(plrs);
         for (HandValue handValue : rankedPlayers.keySet()) {
             // Get players with winning hand value.
             List<iPlayer> winners = rankedPlayers.get(handValue);
-            distributePot(winners);
+            distributePot(winners, potAmount);
             return winners;
         }
         // No person is the winner. This should never happen.
@@ -225,17 +226,17 @@ public class Table {
     /**
      * @author Oscar Stigter
      * @author lisastenberg
+     * @author mattiashenriksson
      * Returns the active players mapped and sorted by their hand value.
      * 
      * The players are sorted in descending order (highest value first).
      * 
      * @return The active players mapped by their hand value (sorted). 
      */
-    private Map<HandValue, List<iPlayer>> getRankedPlayers() {
+    private Map<HandValue, List<iPlayer>> getRankedPlayers(List<iPlayer> plrs) {
         Map<HandValue, List<iPlayer>> winners = 
         		new TreeMap<HandValue, List<iPlayer>>();
-		for (iPlayer player : players) {
-			if (player.isActive()) {
+		for (iPlayer player : plrs) {
 				// Create a hand with the community cards and the player's hole
 				// cards.
 				FullTHHand hand = new FullTHHand(tableCards);
@@ -256,7 +257,6 @@ public class Table {
 				winners.put(handValue, playerList);
 				
 				hand.discard();
-			}
 		}
         return winners;
     }
@@ -317,6 +317,14 @@ public class Table {
 	}
 	
 	/**
+	 * 
+	 * @return Possible "side pots" a table might contain.
+	 */
+	public List<SidePotHandler> getSidePots() {
+		return sidePots;
+	}
+	
+	/**
 	 * Tostring method for the Table class
 	 * @author Mattias Forssen
 	 * @author mattiashenriksson
@@ -357,22 +365,6 @@ public class Table {
 		return indexOfCurrentPlayer;
 	}
 	
-	/**
-	 * 
-	 * @return The amount of players at the table that are active (that 
-	 * 			hasn't folded)
-	 */
-	public int getNumberOfActivePlayers() {
-		int activePlayers = 0;
-		for (iPlayer p : players) {
-			if (p.isActive()) {
-				activePlayers++;
-			}
-		}
-		return activePlayers;
-	}
-	
-
 	
 	/**
 	 * Equals method for the Table class
