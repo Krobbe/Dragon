@@ -61,29 +61,30 @@ public class Table {
 	}
 	
 	/**
-	 * Sets the turn to the next player in order.
+	 * Set the turn to the next player in order, and returns that player.
+	 * 
+	 * @return the next (active) player
+	 * @author lisastenberg
 	 */
-	//TODO mod-lšsning snyggare?, otestat
-	public void nextPlayer() {
-		if (indexOfCurrentPlayer < players.size() - 1) {
-			indexOfCurrentPlayer++;
-		} else {
-			indexOfCurrentPlayer = 0;
+	public iPlayer nextPlayer() {
+		indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % players.size();
+
+		if (getCurrentPlayer().isActive()) {
+			return getCurrentPlayer();
 		}
-		if (!getCurrentPlayer().isActive()) {
-			nextPlayer();
-		}
+		return nextPlayer();
 	}
 	
 	/**
 	 * Increases the dealer button index to the next player still in the game
 	 * 
+	 * @return the next dealer button index. 
 	 * @author robinandersson
 	 * @author mattiashenriksson
 	 */
 	//TODO Test nextDealerButtonPlayer()
 	//TODO Discuss and implement a possible better solution to dealer button
-	public void nextDealerButtonIndex() {
+	public int nextDealerButtonIndex() {
 
 		indexOfDealerButton++;
 		// Reset the index if it is at the end of the player-list
@@ -99,6 +100,7 @@ public class Table {
 		while(!players.get(indexOfDealerButton).isStillInGame()){
 			indexOfDealerButton++;
 		}
+		return indexOfDealerButton;
 	}
 	
 	/**
@@ -163,7 +165,6 @@ public class Table {
 		}
 	}
 	
-	// TODO Write test for distribute cards-method
 	/**
 	 * Distributes the two "personal cards" to all remaining players in the
 	 * round
@@ -308,8 +309,8 @@ public class Table {
 	}
 	
 	/**
-	 * This method is only used when the showDown is done and you want we want
-	 * to show the winners handtype.
+	 * This method is only used when the showDown is done and we want
+	 * to show the winners handtype(s).
 	 * @return A map containing a player with the type of his hand.
 	 */
 	public Map<iPlayer, HandValueType> getHandTypes() {
@@ -334,7 +335,7 @@ public class Table {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		result.append("Players at table: " + "\n");
+		result.append("Players at table:\n");
 		for(iPlayer p : this.players) {
 			result.append(p.toString() + "\n");
 		}

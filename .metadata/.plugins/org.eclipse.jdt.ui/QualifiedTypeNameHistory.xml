@@ -23,7 +23,6 @@
 <fullyQualifiedTypeName name="model.game.CardComparator"/>
 <fullyQualifiedTypeName name="model.player.hand.FullTHHand"/>
 <fullyQualifiedTypeName name="model.game.Card"/>
-<fullyQualifiedTypeName name="model.player.hand.HandValueType"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="model.player.hand.TexasHoldemHand"/>
 <fullyQualifiedTypeName name="java.util.List"/>
@@ -33,4 +32,5 @@
 <fullyQualifiedTypeName name="model.game.Card.Rank"/>
 <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="model.player.hand.HandValueType"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="TableTest (1)" project="ProjectDragon" tests="23" started="23" failures="1" errors="0" ignored="0">
+  <testsuite name="model.game.TableTest" time="0.002">
+    <testcase name="testGetRound" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testGetPlayers" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testGetActivePlayers" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testGetTableCards" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testGetIndexOfCurrentPlayer" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testSetIndexOfCurrentPlayer" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testGetNumberOfActivePlayers" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testAddPlayer" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testTableFull" classname="model.game.TableTest" time="0.001"/>
+    <testcase name="testGetCurrentPlayer" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testNextPlayer" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testGetDealerButtonIndex" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testNextDealerButtonIndex" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testAddTableCard" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testTableCardsFull" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testClearTableCards" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testMakeHandVisible" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testDistributePot" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testDistributeCards" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testDoShowdown" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testGetHandTypes" classname="model.game.TableTest" time="0.0"/>
+    <testcase name="testToString" classname="model.game.TableTest" time="0.0">
+      <failure>java.lang.AssertionError: 
+	at org.junit.Assert.fail(Assert.java:91)
+	at org.junit.Assert.assertTrue(Assert.java:43)
+	at org.junit.Assert.assertTrue(Assert.java:54)
+	at model.game.TableTest.testToString(TableTest.java:300)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.junit.runners.BlockJUnit4ClassRunner.runNotIgnored(BlockJUnit4ClassRunner.java:79)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:71)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:49)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+
+</failure>
+    </testcase>
+    <testcase name="testEquals" classname="model.game.TableTest" time="0.0"/>
+  </testsuite>
+</testrun>

@@ -104,9 +104,6 @@ public class HandValueTest {
 		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
 		
 		HandValue h3 = new HandValue(hand2);
-		
-		System.out.println(h.getValue());
-		System.out.println(h3.getValue());
 		assertTrue(h.compareTo(h3) < 0);
 	}
 }
