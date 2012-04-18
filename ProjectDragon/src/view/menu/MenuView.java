@@ -24,18 +24,23 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Observable;
 
-public class MenuView {
+public class MenuView extends Observable {
 
 	private JFrame frame;
-	private JTextField userNameField;
-	private JPasswordField passwordField;
-	private JTextField userNameTextField;
-	private JPasswordField regPassword;
-	private JPasswordField regPasswordAgain;
-	private JTextField tableNameField;
-	private JPasswordField createTablePassword;
-	private JComboBox numberOfPlayers;
+	private JTextField loginNameField;
+	private JPasswordField loginPasswordField;
+	private JTextField registerNameField;
+	private JPasswordField registerPassword;
+	private JPasswordField registerPasswordAgainField;
+	private JTextField createTableNameField;
+	private JPasswordField createTablePasswordField;
+	private JComboBox createTablePlayersSpinner;
 
 	/**
 	 * Launch the application.
@@ -73,173 +78,241 @@ public class MenuView {
 		frame.getContentPane().add(loginPanel);
 		loginPanel.setLayout(null);
 		
-		JLabel userNameLabel_1 = new JLabel("User name");
-		userNameLabel_1.setBounds(447, 274, 108, 14);
-		loginPanel.add(userNameLabel_1);
-		userNameLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		JLabel loginNameLabel = new JLabel("User name");
+		loginNameLabel.setBounds(447, 274, 108, 14);
+		loginPanel.add(loginNameLabel);
+		loginNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		userNameField = new JTextField();
-		userNameField.setBounds(447, 299, 113, 20);
-		loginPanel.add(userNameField);
-		userNameField.setToolTipText("Type in your account name here\r\n");
-		userNameField.setColumns(10);
-		userNameLabel_1.setLabelFor(userNameField);
+		loginNameField = new JTextField();
+		loginNameField.setBounds(447, 299, 113, 20);
+		loginPanel.add(loginNameField);
+		loginNameField.setToolTipText("Type in your account name here\r\n");
+		loginNameField.setColumns(10);
+		loginNameLabel.setLabelFor(loginNameField);
 		
-		JLabel passwordLabel = new JLabel("Password\r\n");
-		passwordLabel.setBounds(447, 330, 108, 14);
-		loginPanel.add(passwordLabel);
-		passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		JLabel loginPasswordLabel = new JLabel("Password\r\n");
+		loginPasswordLabel.setBounds(447, 330, 108, 14);
+		loginPanel.add(loginPasswordLabel);
+		loginPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(447, 355, 113, 20);
-		loginPanel.add(passwordField);
+		loginPasswordField = new JPasswordField();
+		loginPasswordField.setBounds(447, 355, 113, 20);
+		loginPanel.add(loginPasswordField);
 		
 		JButton loginButton = new JButton("Login");
+		loginButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				notifyAll();
+			}
+		});
 		loginButton.setBounds(890, 683, 108, 36);
 		loginPanel.add(loginButton);
 		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JLabel lblDontHaveAn = new JLabel("Don't have an account?" + "\n" + "");
-		lblDontHaveAn.setBounds(447, 386, 113, 14);
-		loginPanel.add(lblDontHaveAn);
+		JLabel noAccountLabel = new JLabel("Don't have an account?" + "\n" + "");
+		noAccountLabel.setBounds(447, 386, 113, 14);
+		loginPanel.add(noAccountLabel);
 		
-		JButton newUserButton = new JButton("Register");
-		newUserButton.setBounds(447, 401, 113, 23);
-		loginPanel.add(newUserButton);
+		JButton loginRegisterButton = new JButton("Register");
+		loginRegisterButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		loginRegisterButton.setBounds(447, 401, 113, 23);
+		loginPanel.add(loginRegisterButton);
 		
 		JPanel registerPanel = new JPanel();
 		frame.getContentPane().add(registerPanel, "name_176451557173287");
 		registerPanel.setLayout(null);
 		
-		JLabel userNameLabel = new JLabel("User name\r\n");
-		userNameLabel.setBounds(461, 284, 110, 14);
-		userNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		registerPanel.add(userNameLabel);
+		JLabel registerNameLabel = new JLabel("User name\r\n");
+		registerNameLabel.setBounds(461, 284, 110, 14);
+		registerNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		registerPanel.add(registerNameLabel);
 		
-		userNameTextField = new JTextField();
-		userNameTextField.setBounds(461, 309, 110, 20);
-		registerPanel.add(userNameTextField);
-		userNameTextField.setColumns(10);
+		registerNameField = new JTextField();
+		registerNameField.setBounds(461, 309, 110, 20);
+		registerPanel.add(registerNameField);
+		registerNameField.setColumns(10);
 		
-		JLabel regPasswordLabel = new JLabel("Password");
-		regPasswordLabel.setBounds(461, 340, 110, 14);
-		regPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		registerPanel.add(regPasswordLabel);
+		JLabel registerPasswordLabel = new JLabel("Password");
+		registerPasswordLabel.setBounds(461, 340, 110, 14);
+		registerPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		registerPanel.add(registerPasswordLabel);
 		
-		regPassword = new JPasswordField();
-		regPassword.setBounds(461, 365, 110, 20);
-		registerPanel.add(regPassword);
+		registerPassword = new JPasswordField();
+		registerPassword.setBounds(461, 365, 110, 20);
+		registerPanel.add(registerPassword);
 		
-		JLabel lblPasswordAgain = new JLabel("Password again");
-		lblPasswordAgain.setBounds(461, 396, 110, 20);
-		lblPasswordAgain.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		registerPanel.add(lblPasswordAgain);
+		JLabel registerPasswordAgainLabel = new JLabel("Password again");
+		registerPasswordAgainLabel.setBounds(461, 396, 110, 20);
+		registerPasswordAgainLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		registerPanel.add(registerPasswordAgainLabel);
 		
-		regPasswordAgain = new JPasswordField();
-		regPasswordAgain.setBounds(461, 427, 110, 20);
-		registerPanel.add(regPasswordAgain);
+		registerPasswordAgainField = new JPasswordField();
+		registerPasswordAgainField.setBounds(461, 427, 110, 20);
+		registerPanel.add(registerPasswordAgainField);
 		
-		JButton registerButton = new JButton("Register");
-		registerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JButton registerRegisterButton = new JButton("Register");
+		registerRegisterButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
 			}
 		});
-		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		registerButton.setBounds(890, 683, 108, 36);
-		registerPanel.add(registerButton);
+		registerRegisterButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		registerRegisterButton.setBounds(890, 683, 108, 36);
+		registerPanel.add(registerRegisterButton);
 		
-		JButton backButton = new JButton("Back");
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		backButton.setBounds(10, 683, 108, 36);
-		registerPanel.add(backButton);
+		JButton registerBackButton = new JButton("Back");
+		registerBackButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		registerBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		registerBackButton.setBounds(10, 683, 108, 36);
+		registerPanel.add(registerBackButton);
 		
 		JPanel mainPanel = new JPanel();
 		frame.getContentPane().add(mainPanel, "name_183956866615909");
 		mainPanel.setLayout(null);
 		
-		JButton logOutButton = new JButton("Log out");
-		logOutButton.setBounds(10, 683, 108, 36);
-		logOutButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		mainPanel.add(logOutButton);
+		JButton mainLogoutButton = new JButton("Log out");
+		mainLogoutButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		mainLogoutButton.setBounds(10, 683, 108, 36);
+		mainLogoutButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		mainPanel.add(mainLogoutButton);
 		
-		JButton btnNewButton = new JButton("Join table");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(420, 292, 167, 146);
-		mainPanel.add(btnNewButton);
+		JButton mainJoinTableButton = new JButton("Join table");
+		mainJoinTableButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		mainJoinTableButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		mainJoinTableButton.setBounds(420, 292, 167, 146);
+		mainPanel.add(mainJoinTableButton);
 		
-		JButton btnCreateTable = new JButton("Create table");
-		btnCreateTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnCreateTable.setBounds(128, 292, 167, 146);
-		mainPanel.add(btnCreateTable);
+		JButton mainCreateTableButton = new JButton("Create table");
+		mainCreateTableButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		mainCreateTableButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		mainCreateTableButton.setBounds(128, 292, 167, 146);
+		mainPanel.add(mainCreateTableButton);
 		
-		JButton btnViewStatistics = new JButton("View statistics");
-		btnViewStatistics.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnViewStatistics.setBounds(704, 292, 167, 146);
-		mainPanel.add(btnViewStatistics);
+		JButton mainViewStatisticsButton = new JButton("View statistics");
+		mainViewStatisticsButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		mainViewStatisticsButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		mainViewStatisticsButton.setBounds(704, 292, 167, 146);
+		mainPanel.add(mainViewStatisticsButton);
 		
 		JPanel createTablePanel = new JPanel();
 		frame.getContentPane().add(createTablePanel, "name_197255274162820");
 		createTablePanel.setLayout(null);
 		
-		JLabel lblChoseATable = new JLabel("Choose a table name");
-		lblChoseATable.setBounds(416, 262, 176, 20);
-		lblChoseATable.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		createTablePanel.add(lblChoseATable);
+		JLabel createTableNameLabel = new JLabel("Choose a table name");
+		createTableNameLabel.setBounds(416, 262, 176, 20);
+		createTableNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		createTablePanel.add(createTableNameLabel);
 		
-		tableNameField = new JTextField();
-		tableNameField.setBounds(416, 293, 176, 20);
-		createTablePanel.add(tableNameField);
-		tableNameField.setColumns(10);
+		createTableNameField = new JTextField();
+		createTableNameField.setBounds(416, 293, 176, 20);
+		createTablePanel.add(createTableNameField);
+		createTableNameField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Choose a table password");
-		lblNewLabel.setBounds(416, 324, 176, 20);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		createTablePanel.add(lblNewLabel);
+		JLabel createTablePasswordLabel = new JLabel("Choose a table password");
+		createTablePasswordLabel.setBounds(416, 324, 176, 20);
+		createTablePasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		createTablePanel.add(createTablePasswordLabel);
 		
-		createTablePassword = new JPasswordField();
-		createTablePassword.setBounds(416, 355, 176, 20);
-		createTablePanel.add(createTablePassword);
+		createTablePasswordField = new JPasswordField();
+		createTablePasswordField.setBounds(416, 355, 176, 20);
+		createTablePanel.add(createTablePasswordField);
 		
-		JLabel lblNewLabel_1 = new JLabel("Number of players");
-		lblNewLabel_1.setBounds(416, 386, 176, 20);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		createTablePanel.add(lblNewLabel_1);
+		JLabel createTablePlayersLabel = new JLabel("Number of players");
+		createTablePlayersLabel.setBounds(416, 386, 176, 20);
+		createTablePlayersLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		createTablePanel.add(createTablePlayersLabel);
 		
-		numberOfPlayers = new JComboBox();
-		numberOfPlayers.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
-		numberOfPlayers.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		numberOfPlayers.setMaximumRowCount(10);
-		numberOfPlayers.setBounds(416, 417, 49, 26);
-		createTablePanel.add(numberOfPlayers);
+		createTablePlayersSpinner = new JComboBox();
+		createTablePlayersSpinner.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
+		createTablePlayersSpinner.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		createTablePlayersSpinner.setMaximumRowCount(10);
+		createTablePlayersSpinner.setBounds(416, 417, 49, 26);
+		createTablePanel.add(createTablePlayersSpinner);
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnBack.setBounds(10, 683, 108, 36);
-		createTablePanel.add(btnBack);
+		JButton createTableBackButton = new JButton("Back");
+		createTableBackButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		createTableBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		createTableBackButton.setBounds(10, 683, 108, 36);
+		createTablePanel.add(createTableBackButton);
 		
-		JButton createTableButton = new JButton("Create table");
-		createTableButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		createTableButton.setBounds(881, 683, 117, 36);
-		createTablePanel.add(createTableButton);
+		JButton createTableCreateButton = new JButton("Create table");
+		createTableCreateButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		createTableCreateButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		createTableCreateButton.setBounds(881, 683, 117, 36);
+		createTablePanel.add(createTableCreateButton);
 		
 		JPanel joinTablePanel = new JPanel();
 		frame.getContentPane().add(joinTablePanel, "name_200411312977830");
 		joinTablePanel.setLayout(null);
 		
-		JButton button = new JButton("Back");
-		button.setBounds(10, 683, 108, 36);
-		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		joinTablePanel.add(button);
+		JButton joinTableBackButton = new JButton("Back");
+		joinTableBackButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		joinTableBackButton.setBounds(10, 683, 108, 36);
+		joinTableBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		joinTablePanel.add(joinTableBackButton);
 		
-		JButton btnJoinTable = new JButton("Join table");
-		btnJoinTable.setBounds(890, 683, 108, 36);
-		btnJoinTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		joinTablePanel.add(btnJoinTable);
+		JButton joinTableJoinButton = new JButton("Join table");
+		joinTableJoinButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				notifyAll();
+			}
+		});
+		joinTableJoinButton.setBounds(890, 683, 108, 36);
+		joinTableJoinButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		joinTablePanel.add(joinTableJoinButton);
 		
-		JList list = new JList();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		list.setModel(new AbstractListModel() {
+		JList joinTableList = new JList();
+		joinTableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		joinTableList.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		joinTableList.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
 			public int getSize() {
 				return values.length;
@@ -248,11 +321,19 @@ public class MenuView {
 				return values[index];
 			}
 		});
-		list.setBounds(192, 111, 623, 507);
-		joinTablePanel.add(list);
+		joinTableList.setBounds(192, 111, 623, 507);
+		joinTablePanel.add(joinTableList);
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
 	}
 }
