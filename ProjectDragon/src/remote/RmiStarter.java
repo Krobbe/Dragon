@@ -20,9 +20,6 @@ public abstract class RmiStarter {
     	String urlString = clazzToAddToServerCodebase
                 .getProtectionDomain().getCodeSource().getLocation().toString();
     	
-    	
-    	System.out.println(urlString);
-    	
         System.setProperty("java.rmi.server.codebase", urlString);
         
         System.setProperty("java.security.policy", PolicyFileLocator.getLocationOfPolicyFile());
