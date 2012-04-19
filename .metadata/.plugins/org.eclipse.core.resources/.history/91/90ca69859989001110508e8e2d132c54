@@ -28,8 +28,4 @@ public class DatabaseCommunicator {
 		}
 		return dbc;
 	}
-	
-	public static void main(String[] args) {
-		DatabaseCommunicator.getInstance();
-	}
 }

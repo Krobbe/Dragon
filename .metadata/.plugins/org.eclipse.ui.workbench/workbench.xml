@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="35" version="2.0">
+<workbench progressCount="30" version="2.0">
 <workbenchAdvisor/>
 <window height="685" maximized="true" width="1249" x="0" y="22">
 <fastViewData fastViewLocation="1024"/>
@@ -24,17 +24,8 @@
 </coolbarLayout>
 <page aggregateWorkingSetId="Aggregate for window 1332145329119" focus="true" label="Workspace - Java">
 <editors>
-<editorArea activeWorkbook="org.eclipse.ui.internal.EditorStack@1f70401">
-<info part="org.eclipse.ui.internal.EditorStack@b99c20">
-<folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-<part id="1"/>
-<part id="2"/>
-</presentation>
-</folder>
-</info>
-<info part="org.eclipse.ui.internal.EditorStack@1f70401" ratio="0.5" ratioLeft="514" ratioRight="514" relationship="2" relative="org.eclipse.ui.internal.EditorStack@b99c20">
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
@@ -42,21 +33,9 @@
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HandValueTest.java" partName="HandValueTest.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/test/model/player/hand/HandValueTest.java" title="HandValueTest.java" tooltip="ProjectDragon/test/model/player/hand/HandValueTest.java" workbook="org.eclipse.ui.internal.EditorStack@b99c20">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/test/model/player/hand/HandValueTest.java"/>
-<editorState selectionHorizontalPixel="22" selectionLength="0" selectionOffset="3317" selectionTopPixel="1184"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HandValueType.java" partName="HandValueType.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/player/hand/HandValueType.java" title="HandValueType.java" tooltip="ProjectDragon/src/model/player/hand/HandValueType.java" workbook="org.eclipse.ui.internal.EditorStack@b99c20">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/model/player/hand/HandValueType.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="887" selectionTopPixel="493"/>
-</editor>
-<editor focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TableTest.java" partName="TableTest.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/test/model/game/TableTest.java" title="TableTest.java" tooltip="ProjectDragon/test/model/game/TableTest.java" workbook="org.eclipse.ui.internal.EditorStack@b99c20">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/test/model/game/TableTest.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="31"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Table.java" partName="Table.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/game/Table.java" title="Table.java" tooltip="ProjectDragon/src/model/game/Table.java" workbook="org.eclipse.ui.internal.EditorStack@1f70401">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/model/game/Table.java"/>
-<editorState selectionHorizontalPixel="20" selectionLength="0" selectionOffset="0" selectionTopPixel="3522"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" partName="DatabaseCommunicator.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/database/DatabaseCommunicator.java" title="DatabaseCommunicator.java" tooltip="ProjectDragon/src/model/database/DatabaseCommunicator.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="525" selectionTopPixel="104"/>
 </editor>
 </editors>
 <views>
@@ -65,9 +44,6 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings (13 items)"/>
-</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -245,166 +221,160 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/test/model/player/hand/TexasHoldemHandTest.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/hand/TexasHoldemHand.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/hand/Hand.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/hand/HandValue.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/test/model/player/hand/HandValueTest.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/test/model/player/hand/HandEvaluatorTest.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/hand/HandValueType.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/hand/HandEvaluator.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/Table.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/test/model/game/TableTest.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/Table.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
 </editors>
-<item historyLabel="TexasHoldemHandTest.java" index="0">
-<position info="not_deleted" x="335" y="0"/>
-</item>
-<item historyLabel="HandValue.java" index="3">
+<item historyLabel="Table.java" index="0">
 <position/>
 </item>
-<item historyLabel="TexasHoldemHandTest.java" index="0">
-<position info="not_deleted" x="335" y="0"/>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="915" y="0"/>
 </item>
-<item historyLabel="TexasHoldemHand.java" index="1">
-<position info="not_deleted" x="517" y="0"/>
-</item>
-<item historyLabel="Hand.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
+<item historyLabel="TableTest.java" index="1">
 <position/>
 </item>
-<item historyLabel="HandValue.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="280" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="724" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="1156" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="1575" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="2217" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="247" y="0"/>
-</item>
-<item historyLabel="HandEvaluatorTest.java" index="5">
-<position info="not_deleted" x="213" y="35"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="247" y="0"/>
-</item>
-<item historyLabel="HandEvaluatorTest.java" index="5">
-<position info="not_deleted" x="291" y="307"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="247" y="0"/>
-</item>
-<item historyLabel="HandEvaluatorTest.java" index="5">
-<position info="not_deleted" x="291" y="307"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="247" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="679" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="648" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="679" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="1115" y="0"/>
-</item>
-<item historyLabel="HandValueType.java" index="6">
-<position info="not_deleted" x="887" y="11"/>
-</item>
-<item historyLabel="HandEvaluatorTest.java" index="5">
-<position info="not_deleted" x="644" y="0"/>
-</item>
-<item historyLabel="HandValueType.java" index="6">
-<position info="not_deleted" x="887" y="11"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="1113" y="0"/>
-</item>
-<item historyLabel="HandValueType.java" index="6">
-<position info="not_deleted" x="887" y="11"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="1113" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="2012" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="2178" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="2121" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="2141" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="2178" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="2174" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="2587" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="2663" y="0"/>
-</item>
-<item historyLabel="HandValue.java" index="3">
-<position info="not_deleted" x="2442" y="54"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
+<item historyLabel="TableTest.java" index="1">
 <position/>
 </item>
-<item historyLabel="HandValueType.java" index="6">
-<position info="not_deleted" x="887" y="11"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="3074" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="3161" y="0"/>
-</item>
-<item historyLabel="HandValueTest.java" index="4">
+<item historyLabel="TableTest.java" index="1">
 <position/>
 </item>
-<item historyLabel="HandValueTest.java" index="4">
+<item historyLabel="TableTest.java" index="1">
 <position/>
 </item>
-<item historyLabel="HandEvaluator.java" index="7">
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="Table.java" index="0">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="6121" y="0"/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="Table.java" index="0">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="Table.java" index="0">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="Table.java" index="0">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="7437" y="0"/>
+</item>
+<item historyLabel="Table.java" index="0">
+<position info="not_deleted" x="9039" y="0"/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="5887" y="0"/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="2111" y="0"/>
+</item>
+<item historyLabel="Table.java" index="0">
+<position info="not_deleted" x="4139" y="0"/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="1771" y="0"/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="4626" y="17"/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="6811" y="0"/>
+</item>
+<item historyLabel="Table.java" index="0">
+<position info="not_deleted" x="4426" y="0"/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="4944" y="0"/>
+</item>
+<item historyLabel="TableTest.java" index="1">
+<position info="not_deleted" x="4896" y="0"/>
+</item>
+<item historyLabel="Table.java" index="2">
+<position info="not_deleted" x="4426" y="0"/>
+</item>
+<item historyLabel="DatabaseCommunicator.java" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="HandValue.java" index="3">
-<position info="not_deleted" x="2699" y="0"/>
+<item historyLabel="DatabaseCommunicator.java" index="3">
+<position/>
 </item>
-<item historyLabel="Table.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="DatabaseCommunicator.java" index="3">
+<position/>
 </item>
-<item historyLabel="HandValueTest.java" index="4">
-<position info="not_deleted" x="3317" y="0"/>
-</item>
-<item historyLabel="TableTest.java" index="9">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item active="true" historyLabel="Table.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
+<item active="true" historyLabel="DatabaseCommunicator.java" index="3">
+<position info="not_deleted" x="525" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -424,6 +394,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" tooltip="ProjectDragon/src/model/database/DatabaseCommunicator.java">
+<persistable path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TableTest.java" tooltip="ProjectDragon/test/model/game/TableTest.java">
 <persistable path="/ProjectDragon/test/model/game/TableTest.java"/>
 </file>
@@ -465,9 +438,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="ProjectDragon/src/server/main/Main.java">
 <persistable path="/ProjectDragon/src/server/main/Main.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Constants.java" tooltip="ProjectDragon/rmi/rmi/Constants.java">
-<persistable path="/ProjectDragon/rmi/rmi/Constants.java"/>
 </file>
 </mruList>
 </workbench>
