@@ -15,10 +15,8 @@ public class DatabaseCommunicator {
 		    }
 		try {
 		    conn = DriverManager.getConnection
-		                   ("jdbc:postgresql://djupfeldt.se:5432/tda367dragon",
-		                		   "tda367dragon", "tda367dragon");
+		                   ("jdbc:postgresql://djupfeldt.se:5432/tda367dragon", "tda367dragon", "tda367dragon");
 		     } catch (SQLException sqle) {
-		    	 sqle.printStackTrace();
 		    	 System.out.println("Could not connect");
 		       System.exit(1);
 		     }

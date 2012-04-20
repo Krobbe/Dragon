@@ -1,0 +1,12 @@
+package model.database;
+
+public interface IDBConnector {
+
+	public void loadAccount(String account);
+	
+	public void saveAccount(String account);
+	
+	public void saveGame(String gameID, String date);
+	
+	public void savePlacement(String gameID, String player, String placement);
+}

@@ -6,7 +6,6 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="Database.DatabaseCommunicator"/>
-<fullyQualifiedTypeName name="model.player.Account"/>
 <fullyQualifiedTypeName name="model.game.Pot"/>
 <fullyQualifiedTypeName name="model.game.Card.Suite"/>
 <fullyQualifiedTypeName name="model.player.Balance"/>
@@ -33,4 +32,5 @@
 <fullyQualifiedTypeName name="model.player.Player"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="model.player.hand.HandValueType"/>
+<fullyQualifiedTypeName name="model.player.Account"/>
 </qualifiedTypeNameHistroy>

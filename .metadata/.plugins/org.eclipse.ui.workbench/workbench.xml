@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="30" version="2.0">
+<workbench progressCount="35" version="2.0">
 <workbenchAdvisor/>
-<window height="685" maximized="true" width="1249" x="0" y="22">
+<window height="685" maximized="true" width="1366" x="-26" y="22">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -29,13 +29,18 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" partName="DatabaseCommunicator.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/database/DatabaseCommunicator.java" title="DatabaseCommunicator.java" tooltip="ProjectDragon/src/model/database/DatabaseCommunicator.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" partName="DatabaseCommunicator.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/database/DatabaseCommunicator.java" title="DatabaseCommunicator.java" tooltip="ProjectDragon/src/model/database/DatabaseCommunicator.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="525" selectionTopPixel="104"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="617" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IDBConnector.java" partName="IDBConnector.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/database/IDBConnector.java" title="IDBConnector.java" tooltip="ProjectDragon/src/model/database/IDBConnector.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/model/database/IDBConnector.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="352" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -181,7 +186,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.1402214" ratioLeft="190" ratioRight="1165" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.7788945" ratioLeft="465" ratioRight="132" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.7872697" ratioLeft="470" ratioRight="127" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -225,43 +230,13 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/test/model/game/TableTest.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/Table.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/Server.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/iRemote.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/RmiStarter.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/IDBConnector.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/Account.java"/>
 </editors>
-<item historyLabel="Table.java" index="0">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position info="not_deleted" x="915" y="0"/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="Table.java" index="0">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
 <item historyLabel="TableTest.java" index="1">
 <position info="not_deleted" x="6121" y="0"/>
 </item>
@@ -373,8 +348,44 @@
 <item historyLabel="DatabaseCommunicator.java" index="3">
 <position/>
 </item>
-<item active="true" historyLabel="DatabaseCommunicator.java" index="3">
+<item historyLabel="DatabaseCommunicator.java" index="3">
 <position info="not_deleted" x="525" y="0"/>
+</item>
+<item historyLabel="DatabaseCommunicator.java" index="3">
+<position info="not_deleted" x="516" y="0"/>
+</item>
+<item historyLabel="Server.java" index="4">
+<position info="not_deleted" x="265" y="0"/>
+</item>
+<item historyLabel="iRemote.java" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RmiStarter.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DatabaseCommunicator.java" index="7">
+<position info="not_deleted" x="617" y="0"/>
+</item>
+<item historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="400" y="0"/>
+</item>
+<item historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="352" y="0"/>
+</item>
+<item historyLabel="Account.java" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="352" y="0"/>
+</item>
+<item historyLabel="DatabaseCommunicator.java" index="7">
+<position info="not_deleted" x="617" y="0"/>
+</item>
+<item active="true" historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="352" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -394,6 +405,21 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Account.java" tooltip="ProjectDragon/src/model/player/Account.java">
+<persistable path="/ProjectDragon/src/model/player/Account.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IDBConnector.java" tooltip="ProjectDragon/src/model/database/IDBConnector.java">
+<persistable path="/ProjectDragon/src/model/database/IDBConnector.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RmiStarter.java" tooltip="ProjectDragon/src/remote/RmiStarter.java">
+<persistable path="/ProjectDragon/src/remote/RmiStarter.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="iRemote.java" tooltip="ProjectDragon/src/remote/iRemote.java">
+<persistable path="/ProjectDragon/src/remote/iRemote.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Server.java" tooltip="ProjectDragon/src/server/main/Server.java">
+<persistable path="/ProjectDragon/src/server/main/Server.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" tooltip="ProjectDragon/src/model/database/DatabaseCommunicator.java">
 <persistable path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
 </file>
@@ -423,21 +449,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Account.java" tooltip="ProjectDragon/src/client/model/player/Account.java">
 <persistable path="/ProjectDragon/src/client/model/player/Account.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Balance.java" tooltip="ProjectDragon/src/model/player/Balance.java">
-<persistable path="/ProjectDragon/src/model/player/Balance.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" tooltip="ProjectDragon/src/model/player/Player.java">
-<persistable path="/ProjectDragon/src/model/player/Player.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FullTHHand.java" tooltip="ProjectDragon/src/model/player/hand/FullTHHand.java">
-<persistable path="/ProjectDragon/src/model/player/hand/FullTHHand.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TexasHoldemHandTest.java" tooltip="ProjectDragon/test/model/player/hand/TexasHoldemHandTest.java">
-<persistable path="/ProjectDragon/test/model/player/hand/TexasHoldemHandTest.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="ProjectDragon/src/server/main/Main.java">
-<persistable path="/ProjectDragon/src/server/main/Main.java"/>
 </file>
 </mruList>
 </workbench>
