@@ -11,27 +11,28 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Observable;
 
 public class TableView {
 
 	private JFrame frame;
 	private JTextField userBetField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TableView window = new TableView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					TableView window = new TableView();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -55,12 +56,6 @@ public class TableView {
 		tablePanel.setLayout(null);
 		
 		JButton leaveTableButton = new JButton("Leave table");
-		leaveTableButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		leaveTableButton.setBounds(10, 683, 111, 36);
 		tablePanel.add(leaveTableButton);
@@ -76,34 +71,16 @@ public class TableView {
 		callPanel.add(userAvailableCreditsLabel);
 		
 		JButton userFoldButton = new JButton("Fold");
-		userFoldButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		userFoldButton.setBounds(232, 108, 100, 40);
 		callPanel.add(userFoldButton);
 		userFoldButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JButton userCheckButton = new JButton("Check");
-		userCheckButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		userCheckButton.setBounds(0, 108, 100, 40);
 		callPanel.add(userCheckButton);
 		userCheckButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JButton userRaiseButton = new JButton("Raise");
-		userRaiseButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		userRaiseButton.setBounds(116, 108, 100, 40);
 		callPanel.add(userRaiseButton);
 		userRaiseButton.setFont(new Font("Tahoma", Font.PLAIN, 16));

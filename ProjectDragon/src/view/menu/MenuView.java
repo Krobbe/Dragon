@@ -4,20 +4,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.JInternalFrame;
-import java.awt.Insets;
 import javax.swing.JPasswordField;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import javax.swing.JTextPane;
 import java.awt.CardLayout;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -25,12 +18,11 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.AbstractAction;
-import javax.swing.Action;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 
-public class MenuView extends Observable {
+public class MenuView {
 
 	private JFrame frame;
 	private JTextField loginNameField;
@@ -42,21 +34,21 @@ public class MenuView extends Observable {
 	private JPasswordField createTablePasswordField;
 	private JComboBox createTablePlayersSpinner;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuView window = new MenuView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MenuView window = new MenuView();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -100,12 +92,6 @@ public class MenuView extends Observable {
 		loginPanel.add(loginPasswordField);
 		
 		JButton loginButton = new JButton("Login");
-		loginButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				notifyAll();
-			}
-		});
 		loginButton.setBounds(890, 683, 108, 36);
 		loginPanel.add(loginButton);
 		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -115,12 +101,6 @@ public class MenuView extends Observable {
 		loginPanel.add(noAccountLabel);
 		
 		JButton loginRegisterButton = new JButton("Register");
-		loginRegisterButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		loginRegisterButton.setBounds(447, 401, 113, 23);
 		loginPanel.add(loginRegisterButton);
 		
@@ -157,23 +137,11 @@ public class MenuView extends Observable {
 		registerPanel.add(registerPasswordAgainField);
 		
 		JButton registerRegisterButton = new JButton("Register");
-		registerRegisterButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		registerRegisterButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		registerRegisterButton.setBounds(890, 683, 108, 36);
 		registerPanel.add(registerRegisterButton);
 		
 		JButton registerBackButton = new JButton("Back");
-		registerBackButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		registerBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		registerBackButton.setBounds(10, 683, 108, 36);
 		registerPanel.add(registerBackButton);
@@ -183,45 +151,21 @@ public class MenuView extends Observable {
 		mainPanel.setLayout(null);
 		
 		JButton mainLogoutButton = new JButton("Log out");
-		mainLogoutButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		mainLogoutButton.setBounds(10, 683, 108, 36);
 		mainLogoutButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		mainPanel.add(mainLogoutButton);
 		
 		JButton mainJoinTableButton = new JButton("Join table");
-		mainJoinTableButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		mainJoinTableButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		mainJoinTableButton.setBounds(420, 292, 167, 146);
 		mainPanel.add(mainJoinTableButton);
 		
 		JButton mainCreateTableButton = new JButton("Create table");
-		mainCreateTableButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		mainCreateTableButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		mainCreateTableButton.setBounds(128, 292, 167, 146);
 		mainPanel.add(mainCreateTableButton);
 		
 		JButton mainViewStatisticsButton = new JButton("View statistics");
-		mainViewStatisticsButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		mainViewStatisticsButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		mainViewStatisticsButton.setBounds(704, 292, 167, 146);
 		mainPanel.add(mainViewStatisticsButton);
@@ -262,23 +206,11 @@ public class MenuView extends Observable {
 		createTablePanel.add(createTablePlayersSpinner);
 		
 		JButton createTableBackButton = new JButton("Back");
-		createTableBackButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		createTableBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTableBackButton.setBounds(10, 683, 108, 36);
 		createTablePanel.add(createTableBackButton);
 		
 		JButton createTableCreateButton = new JButton("Create table");
-		createTableCreateButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		createTableCreateButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTableCreateButton.setBounds(881, 683, 117, 36);
 		createTablePanel.add(createTableCreateButton);
@@ -288,23 +220,11 @@ public class MenuView extends Observable {
 		joinTablePanel.setLayout(null);
 		
 		JButton joinTableBackButton = new JButton("Back");
-		joinTableBackButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		joinTableBackButton.setBounds(10, 683, 108, 36);
 		joinTableBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTablePanel.add(joinTableBackButton);
 		
 		JButton joinTableJoinButton = new JButton("Join table");
-		joinTableJoinButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				notifyAll();
-			}
-		});
 		joinTableJoinButton.setBounds(890, 683, 108, 36);
 		joinTableJoinButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTablePanel.add(joinTableJoinButton);
@@ -323,17 +243,5 @@ public class MenuView extends Observable {
 		});
 		joinTableList.setBounds(192, 111, 623, 507);
 		joinTablePanel.add(joinTableList);
-		loginButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-	}
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
 	}
 }

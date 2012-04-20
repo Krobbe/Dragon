@@ -1,6 +1,8 @@
 package ctrl.game;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import model.game.BettingRound;
 import model.game.Card;
@@ -238,6 +240,4 @@ public class GameController {
 		}
 		return winners;
 	}
-	
-
 }
