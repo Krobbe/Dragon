@@ -67,6 +67,12 @@ public class Table {
 	 * @author lisastenberg
 	 */
 	public iPlayer nextPlayer() {
+		
+		/* if none is active at the table, do nothing */
+		if (getActivePlayers().size() == 0) {
+			return getCurrentPlayer();
+		}
+		
 		indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % players.size();
 
 		if (getCurrentPlayer().isActive()) {
@@ -219,6 +225,22 @@ public class Table {
             // Get players with winning hand value.
             List<iPlayer> winners = rankedPlayers.get(handValue);
             distributePot(winners, potAmount);
+            
+            /* utskrift fšr kontroll */
+            System.out.println("\n\n-------------------------------\n" + 
+            "SHOWDOWN RESULT:\n");
+            for (iPlayer p : winners) {
+				System.out.println("\nWinner: " + p.getName());
+				HandValueType hvt = getHandTypes().get(p);
+				System.out.print(hvt);
+				System.out.println(getHandTypes().toString());
+			}
+            System.out.println("potamount: " + potAmount);
+            System.out.println("Players:");
+            for (iPlayer p : plrs ) {
+            	System.out.println(p.getName());
+            }
+            System.out.println("\n-----------------------------------\n");
             return winners;
         }
         // No person is the winner. This should never happen.

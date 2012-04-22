@@ -96,7 +96,6 @@ public class GameController {
 		currentPot.addToPot(currentBet.getValue() 
 				- currentPlayer.getOwnCurrentBet());
 		currentPlayer.setOwnCurrentBet(currentBet.getValue());
-		table.nextPlayer();
 	}
 	
 	/**
@@ -120,7 +119,6 @@ public class GameController {
 		currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
 						amount + currentPlayer.getOwnCurrentBet()));
 		currentPlayer.setOwnCurrentBet(amount + currentPlayer.getOwnCurrentBet());
-		table.nextPlayer();
 	}
 	
 	/**
@@ -129,7 +127,6 @@ public class GameController {
 	public void fold() {
 		table.getCurrentPlayer().getHand().discard();
 		table.getCurrentPlayer().setActive(false);
-		table.nextPlayer();
 	}
 	
 	/**
@@ -146,7 +143,6 @@ public class GameController {
 				.getBettingRound().getCurrentBet().getValue()) {
 			throw new IllegalCheckException();
 		}
-		table.nextPlayer();
 	}
 	
 	/**

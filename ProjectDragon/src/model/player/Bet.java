@@ -80,11 +80,4 @@ public class Bet {
 		  return 42; // any arbitrary constant will do
 	}
 	
-	/**
-	 * @author mattiashenriksson
-	 */
-	@Override
-	public Bet clone() {
-		return new Bet(owner, value);
-	}
 }

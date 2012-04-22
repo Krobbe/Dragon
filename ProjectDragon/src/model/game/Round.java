@@ -45,9 +45,4 @@ public class Round {
 		return pot;
 	}
 	
-	@Override
-	public Round clone() {
-		return new Round(pot.clone(),bettingRound.clone());
-	}
-	
 }

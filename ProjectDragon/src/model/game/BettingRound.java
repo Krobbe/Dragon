@@ -87,11 +87,4 @@ public class BettingRound {
 		  return 42; // any arbitrary constant will do
 	}
 	
-	/**
-	 * @author mattiashenriksson
-	 */
-	@Override
-	public BettingRound clone() {
-		return new BettingRound(currentBet.clone());
-	}
 }

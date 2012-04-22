@@ -100,12 +100,4 @@ public class Pot {
 		  return 42; // any arbitrary constant will do
 	}
 	
-	/**
-	 * @author mattiashenriksson
-	 */
-	//TODO rätt gjord?
-	@Override
-	public Pot clone() {
-		return new Pot(value);
-	}
 }
