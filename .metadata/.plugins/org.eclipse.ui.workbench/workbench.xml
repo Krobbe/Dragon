@@ -29,18 +29,13 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" partName="DatabaseCommunicator.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/database/DatabaseCommunicator.java" title="DatabaseCommunicator.java" tooltip="ProjectDragon/src/model/database/DatabaseCommunicator.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" partName="DatabaseCommunicator.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/database/DatabaseCommunicator.java" title="DatabaseCommunicator.java" tooltip="ProjectDragon/src/model/database/DatabaseCommunicator.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="617" selectionTopPixel="0"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IDBConnector.java" partName="IDBConnector.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/database/IDBConnector.java" title="IDBConnector.java" tooltip="ProjectDragon/src/model/database/IDBConnector.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/model/database/IDBConnector.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="352" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -49,6 +44,9 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Warnings (33 items)"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -236,34 +234,10 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/IDBConnector.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/Account.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/Placement.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/Table.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
 </editors>
-<item historyLabel="TableTest.java" index="1">
-<position info="not_deleted" x="6121" y="0"/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
-<item historyLabel="TableTest.java" index="1">
-<position/>
-</item>
 <item historyLabel="TableTest.java" index="1">
 <position/>
 </item>
@@ -384,8 +358,35 @@
 <item historyLabel="DatabaseCommunicator.java" index="7">
 <position info="not_deleted" x="617" y="0"/>
 </item>
-<item active="true" historyLabel="IDBConnector.java" index="8">
-<position info="not_deleted" x="352" y="0"/>
+<item historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="1484" y="0"/>
+</item>
+<item historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="IDBConnector.java" index="8">
+<position/>
+</item>
+<item historyLabel="Placement.java" index="10">
+<position info="not_deleted" x="140" y="0"/>
+</item>
+<item historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="913" y="0"/>
+</item>
+<item historyLabel="Table.java" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="1479" y="0"/>
+</item>
+<item historyLabel="Table.java" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="IDBConnector.java" index="8">
+<position info="not_deleted" x="586" y="0"/>
+</item>
+<item active="true" historyLabel="DatabaseCommunicator.java" index="12">
+<position info="not_deleted" x="617" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -405,6 +406,12 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Table.java" tooltip="ProjectDragon/src/model/game/Table.java">
+<persistable path="/ProjectDragon/src/model/game/Table.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Placement.java" tooltip="ProjectDragon/src/model/game/Placement.java">
+<persistable path="/ProjectDragon/src/model/game/Placement.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Account.java" tooltip="ProjectDragon/src/model/player/Account.java">
 <persistable path="/ProjectDragon/src/model/player/Account.java"/>
 </file>
@@ -426,9 +433,6 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TableTest.java" tooltip="ProjectDragon/test/model/game/TableTest.java">
 <persistable path="/ProjectDragon/test/model/game/TableTest.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Table.java" tooltip="ProjectDragon/src/model/game/Table.java">
-<persistable path="/ProjectDragon/src/model/game/Table.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HandEvaluator.java" tooltip="ProjectDragon/src/model/player/hand/HandEvaluator.java">
 <persistable path="/ProjectDragon/src/model/player/hand/HandEvaluator.java"/>
 </file>
@@ -446,9 +450,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Hand.java" tooltip="ProjectDragon/src/model/player/hand/Hand.java">
 <persistable path="/ProjectDragon/src/model/player/hand/Hand.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Account.java" tooltip="ProjectDragon/src/client/model/player/Account.java">
-<persistable path="/ProjectDragon/src/client/model/player/Account.java"/>
 </file>
 </mruList>
 </workbench>

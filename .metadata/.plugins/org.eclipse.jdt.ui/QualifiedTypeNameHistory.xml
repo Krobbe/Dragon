@@ -10,7 +10,6 @@
 <fullyQualifiedTypeName name="model.game.Card.Suite"/>
 <fullyQualifiedTypeName name="model.player.Balance"/>
 <fullyQualifiedTypeName name="model.game.Deck"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="model.player.HandValue"/>
 <fullyQualifiedTypeName name="java.util.TreeMap"/>
 <fullyQualifiedTypeName name="model.player.hand.HandValue"/>
@@ -29,8 +28,9 @@
 <fullyQualifiedTypeName name="model.game.Card.Rank"/>
 <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
-<fullyQualifiedTypeName name="model.player.Player"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="model.player.hand.HandValueType"/>
 <fullyQualifiedTypeName name="model.player.Account"/>
+<fullyQualifiedTypeName name="model.player.Player"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
 </qualifiedTypeNameHistroy>
