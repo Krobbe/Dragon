@@ -80,6 +80,18 @@ public interface iPlayer extends Comparable<iPlayer> {
 	 */
 	public void setOwnCurrentBet(int value);
 	
+	/**
+	 * Sets the varible doneFirstTurn.
+	 * @param value
+	 */
+	public void setDoneFirstTurn(boolean value);
+	
+	/**
+	 * 
+	 * @return the variable doneFirstTurn.
+	 */
+	public boolean getDoneFirstBet();
+	
 	@Override
 	public boolean equals(Object o);
 	

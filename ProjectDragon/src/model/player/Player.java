@@ -20,6 +20,7 @@ public class Player implements iPlayer {
 	private boolean stillInGame;
 	private int ownCurrentBet = -1; //TODO döpa -1 till typ "NO_BET" ? 
 								   //TODO ska -1 sättas i konstruktorn?
+	private boolean doneFirstTurn;
 	
 	public Player() {
 		this(new TexasHoldemHand(false),"Default",
@@ -32,6 +33,7 @@ public class Player implements iPlayer {
 		this.name = name;
 		this.balance = balance;
 		stillInGame = true;
+		doneFirstTurn = false;
 	}
 
 	@Override
@@ -109,7 +111,7 @@ public class Player implements iPlayer {
 		String result = ("Name: " + getName() + " , " + "Balance: "
 				+ getBalance() + " , " + "Active: " + isActive() + " , "
 				+ "Hand: " + getHand().toString()) + " , " + "Own current bet: "
-				+ getOwnCurrentBet();
+				+ getOwnCurrentBet() + " , "+ "Done first bet?: " + getDoneFirstBet();
 		return result;
 	}
 
@@ -127,5 +129,16 @@ public class Player implements iPlayer {
 	@Override
 	public int compareTo(iPlayer p) {
 		return this.getName().compareTo(p.getName());
+	}
+
+	@Override
+	public void setDoneFirstTurn(boolean value) {
+		doneFirstTurn = value;
+		
+	}
+
+	@Override
+	public boolean getDoneFirstBet() {
+		return doneFirstTurn;
 	}
 }

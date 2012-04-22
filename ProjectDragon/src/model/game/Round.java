@@ -10,6 +10,7 @@ package model.game;
 public class Round {
 	private BettingRound bettingRound;
 	private Pot pot;
+	private Pot preBettingPot;
 	
 	/**
 	 * Creates a new Round.
@@ -17,6 +18,7 @@ public class Round {
 	public Round() {
 		pot = new Pot();
 		bettingRound = new BettingRound();
+		preBettingPot = new Pot();
 	}
 	
 	/**
@@ -24,9 +26,10 @@ public class Round {
 	 * @param pot The pot the new round should contain
 	 * @param bettingRound The pot the new round should contain
 	 */
-	public Round(Pot pot, BettingRound bettingRound) {
+	public Round(Pot pot, Pot preBettingPot, BettingRound bettingRound) {
 		this.pot = pot;
 		this.bettingRound = bettingRound;
+		this.preBettingPot = preBettingPot;
 	}
 	
 	/**
@@ -44,5 +47,14 @@ public class Round {
 	public Pot getPot() {
 		return pot;
 	}
+	
+	/**
+	 * 
+	 * @return the "pre betting pot"
+	 */
+	public Pot getPreBettingPot() {
+		return preBettingPot;
+	}
+		
 	
 }

@@ -367,6 +367,7 @@ public class Table {
 				(players.get(getDealerButtonIndex())).getName() + "\n");
 		result.append("Table cards are:" + "\n" + tableCards.toString() + "\n");
 		result.append("Pot is: " + round.getPot().getValue() + "\n");
+		result.append("Pre-betting pot is: " + round.getPreBettingPot().getValue() + "\n");
 		result.append("Current bet is: " + 
 				round.getBettingRound().getCurrentBet().getValue() + "\n");
 		

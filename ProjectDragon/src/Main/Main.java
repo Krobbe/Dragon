@@ -13,7 +13,6 @@ import model.player.OwnCurrentBetComparator;
 import model.player.Player;
 import model.player.User;
 import model.player.iPlayer;
-import model.player.hand.HandValueType;
 import model.player.hand.TexasHoldemHand;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
@@ -92,7 +91,7 @@ public class Main {
 							isBettingDone = false;
 						}
 					}
-					if (p.getOwnCurrentBet() == -1) {
+					if (!p.getDoneFirstBet()) {
 						isBettingDone = false;
 					}
 				}

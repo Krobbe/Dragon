@@ -87,15 +87,13 @@ public class GameController {
 			throw new IllegalCallException();
 		}
 		iPlayer currentPlayer = table.getCurrentPlayer();
-		if (currentPlayer.getOwnCurrentBet() == -1) { //TODO dessa två rader görs ofta, refactor?
-			currentPlayer.setOwnCurrentBet(0);
-		}
 		currentPlayer.getBalance().removeFromBalance(currentBet.getValue() 
 				- currentPlayer.getOwnCurrentBet());
 		Pot currentPot = table.getRound().getPot();
 		currentPot.addToPot(currentBet.getValue() 
 				- currentPlayer.getOwnCurrentBet());
 		currentPlayer.setOwnCurrentBet(currentBet.getValue());
+		currentPlayer.setDoneFirstTurn(true);
 	}
 	
 	/**
@@ -107,9 +105,6 @@ public class GameController {
 	public void raise(int amount) throws IllegalRaiseException {
 		iPlayer currentPlayer = table.getCurrentPlayer();
 		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
-		if (currentPlayer.getOwnCurrentBet() == -1) {
-			currentPlayer.setOwnCurrentBet(0);
-		}
 		if(amount + currentPlayer.getOwnCurrentBet() <= 
 				currentBettingRound.getCurrentBet().getValue()) {
 			throw new IllegalRaiseException();
@@ -119,14 +114,17 @@ public class GameController {
 		currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
 						amount + currentPlayer.getOwnCurrentBet()));
 		currentPlayer.setOwnCurrentBet(amount + currentPlayer.getOwnCurrentBet());
+		currentPlayer.setDoneFirstTurn(true);
 	}
 	
 	/**
 	 * Performs a fold.
 	 */
+	//TODO Delvis otestad
 	public void fold() {
 		table.getCurrentPlayer().getHand().discard();
 		table.getCurrentPlayer().setActive(false);
+		table.getCurrentPlayer().setDoneFirstTurn(true);
 	}
 	
 	/**
@@ -136,13 +134,11 @@ public class GameController {
 	//TODO otestat: exception, setOwncurrentBet
 	public void check() throws IllegalCheckException {
 		iPlayer currentPlayer = table.getCurrentPlayer();
-		if (currentPlayer.getOwnCurrentBet() == -1) {
-			currentPlayer.setOwnCurrentBet(0);
-		}
 		if (currentPlayer.getOwnCurrentBet() < table.getRound()
 				.getBettingRound().getCurrentBet().getValue()) {
 			throw new IllegalCheckException();
 		}
+		currentPlayer.setDoneFirstTurn(true);
 	}
 	
 	/**
@@ -162,11 +158,14 @@ public class GameController {
 		//TODO distribute pot?
 		List<iPlayer> players = table.getPlayers();
 		table.getRound().getPot().emptyPot();
+		table.getRound().getPreBettingPot().emptyPot();
 		table.clearTableCards();
+		table.getSidePots().clear();
 		for (iPlayer p : players) {
 			p.getHand().discard();
 			p.setActive(true);
-			p.setOwnCurrentBet(-1);
+			p.setOwnCurrentBet(0);
+			p.setDoneFirstTurn(false);
 		}
 		table.getRound().getPot().emptyPot();
 		table.getDealer().newDeck();
@@ -209,14 +208,21 @@ public class GameController {
 	//TODO Bättre java-doc och förklarande kommentarer?
 	//TODO övergripande metod = annat namn?
 	//TODO List<iPlayer> winners ful lösning?
-	//TODO Ge rätt spelare turen..
 	public List<iPlayer> nextBettingRound() throws TableCardsFullException, PlayersFullException {
 		List<iPlayer> winners = null;
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
 		List<iPlayer> players = table.getPlayers();
 		for (iPlayer p : players) {
-			p.setOwnCurrentBet(-1);
+			p.setOwnCurrentBet(0);
+			p.setDoneFirstTurn(false);
 		}
+		
+		/* Give right player the turn */
+		table.setIndexOfCurrentPlayer(table.getDealerButtonIndex());
+		for (int i = 0; i < 2; i++) {
+			table.nextPlayer();
+		}
+		
 		if (table.getTableCards().size() == 5 || 
 				table.getActivePlayers().size() == 1) {
 			
@@ -227,12 +233,13 @@ public class GameController {
 				}
 			}	
 			winners = doShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
-			sidePots.clear();
 			
 		} else if (table.getTableCards().size() == 0) {
 			showFlop();
+			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
 		} else { //TODO ett till alternativ för showTurn?
 			showRiver();
+			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
 		}
 		return winners;
 	}

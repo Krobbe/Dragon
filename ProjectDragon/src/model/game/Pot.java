@@ -32,11 +32,20 @@ public class Pot {
 	public int getValue() {
 		return value;
 	}
+	
+	/**
+	 * @author mattiashenriksson
+	 * @param value the value the pots value should be set to
+	 */
+	public void setValue(int value) {
+		this.value = value;
+	}
 
 	/**
 	 * Add x to the pot.
 	 * @param x	the 
 	 */
+	//TODO setValue ist?
 	public void addToPot(int x) {
 		value = value + x;
 	}

@@ -1,7 +1,6 @@
 package model.player;
 
 import model.game.Card;
-import model.player.hand.TexasHoldemHand;
 import model.player.hand.iHand;
 
 /**
@@ -107,6 +106,17 @@ public class User implements iPlayer {
 	@Override
 	public int compareTo(iPlayer p) {
 		return this.getName().compareTo(p.getName());
+	}
+
+	@Override
+	public void setDoneFirstTurn(boolean value) {
+		player.setDoneFirstTurn(value);
+		
+	}
+
+	@Override
+	public boolean getDoneFirstBet() {
+		return player.getDoneFirstBet();
 	}
 
 }
