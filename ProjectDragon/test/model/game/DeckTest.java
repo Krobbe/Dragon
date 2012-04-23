@@ -2,8 +2,8 @@ package model.game;
 
 import static org.junit.Assert.*;
 
-import model.game.Card;
-import model.game.Deck;
+import model.card.Card;
+import model.card.Deck;
 
 import org.junit.Test;
 

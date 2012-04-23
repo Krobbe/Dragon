@@ -6,7 +6,7 @@ package model.player.hand;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.game.Card;
+import model.card.Card;
 
 /**
  * @author robinandersson

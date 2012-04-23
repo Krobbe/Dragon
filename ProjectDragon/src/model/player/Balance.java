@@ -1,6 +1,6 @@
 package model.player;
 
-import model.game.Card;
+import model.card.Card;
 
 /**
  * A class for balance. 

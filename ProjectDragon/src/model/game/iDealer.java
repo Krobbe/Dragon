@@ -1,5 +1,7 @@
 package model.game;
 
+import model.card.Card;
+
 /**
  * An interface that represents a Dealer. 
  * 

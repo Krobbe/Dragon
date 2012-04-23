@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import model.card.Card;
+
 import org.junit.Test;
 /**
  * A test for Dealer.

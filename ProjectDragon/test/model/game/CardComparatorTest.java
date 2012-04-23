@@ -2,6 +2,8 @@ package model.game;
 
 import static org.junit.Assert.*;
 
+import model.card.Card;
+
 import org.junit.Test;
 /**
  * A test for CardComparator.

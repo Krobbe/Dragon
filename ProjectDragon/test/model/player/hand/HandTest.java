@@ -5,7 +5,9 @@ package model.player.hand;
 
 import static org.junit.Assert.*;
 import java.util.LinkedList;
-import model.game.Card;
+
+import model.card.Card;
+
 import org.junit.Test;
 
 /**

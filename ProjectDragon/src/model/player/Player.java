@@ -1,6 +1,6 @@
 package model.player;
 
-import model.game.Card;
+import model.card.Card;
 import model.player.hand.TexasHoldemHand;
 import model.player.hand.iHand;
 

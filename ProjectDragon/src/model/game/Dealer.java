@@ -3,6 +3,9 @@ package model.game;
 import java.util.LinkedList;
 import java.util.List;
 
+import model.card.Card;
+import model.card.Deck;
+
 /**
  * A class that represents a dealer. 
  * 

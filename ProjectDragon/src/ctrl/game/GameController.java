@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import model.card.Card;
 import model.game.BettingRound;
-import model.game.Card;
 import model.game.Dealer;
 import model.game.Pot;
 import model.game.SidePotHandler;

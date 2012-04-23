@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.game.Card.Suit;
+import model.card.Card;
+import model.card.Card.Suit;
 import model.player.User;
 import model.player.iPlayer;
 import model.player.hand.HandValueType;

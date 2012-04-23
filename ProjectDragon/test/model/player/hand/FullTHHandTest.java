@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.game.Card;
+import model.card.Card;
 
 import org.junit.Test;
 /**

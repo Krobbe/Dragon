@@ -1,7 +1,8 @@
 package model.player.hand;
 
 import java.util.List;
-import model.game.Card;
+
+import model.card.Card;
 
 /**
  * An interface for a hand in a poker game. 

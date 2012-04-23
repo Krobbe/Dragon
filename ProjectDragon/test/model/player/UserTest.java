@@ -10,7 +10,7 @@ package model.player;
 
 import static org.junit.Assert.*;
 
-import model.game.Card;
+import model.card.Card;
 import model.player.hand.TexasHoldemHand;
 
 import org.junit.Test;

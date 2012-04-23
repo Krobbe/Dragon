@@ -3,7 +3,8 @@ package model.player.hand;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import model.game.Card;
+
+import model.card.Card;
 import model.game.CardComparator;
 /**
  * A class that simulates a full Texas Hold'em Hand. 

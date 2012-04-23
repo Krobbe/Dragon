@@ -2,6 +2,8 @@ package model.game;
 
 import java.util.Comparator;
 
+import model.card.Card;
+
 /**
  * A Comparator for card. Compares on a cards rank in descending order,
  * (the highest value first).

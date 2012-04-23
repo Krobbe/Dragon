@@ -2,7 +2,7 @@ package model.player.hand;
 
 import static org.junit.Assert.*;
 
-import model.game.Card;
+import model.card.Card;
 
 import org.junit.Test;
 /**
