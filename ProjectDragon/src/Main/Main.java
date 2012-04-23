@@ -87,7 +87,7 @@ public class Main {
 				for (iPlayer ap: activePlayers) {
 					if (activePlayers.get(0).getOwnCurrentBet() != ap.getOwnCurrentBet()) {
 						//TODO slå ihop två if-metoder till en med && ?
-						if (activePlayers.get(0).getOwnCurrentBet() != 0) {
+						if (ap.getBalance().getValue() != 0) {
 							isBettingDone = false;
 						}
 					}

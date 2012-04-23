@@ -84,17 +84,24 @@ public class GameController {
 	 * @throws IllegalCallException 
 	 */
 	public void call() throws IllegalCallException {
-		Bet currentBet = table.getRound().getBettingRound().getCurrentBet();
-		if (currentBet.getValue() == -1 || currentBet.getValue() == 0) {
+		iPlayer currentPlayer = table.getCurrentPlayer();
+		Pot currentPot = table.getRound().getPot();
+		int currentBetValue = table.getRound().getBettingRound().getCurrentBet().getValue();
+		
+		if (currentBetValue == -1 //TODO nšdvŠndig?
+				|| currentBetValue == 0) {
 			throw new IllegalCallException();
 		}
-		iPlayer currentPlayer = table.getCurrentPlayer();
-		currentPlayer.getBalance().removeFromBalance(currentBet.getValue() 
+		
+		if (currentBetValue > currentPlayer.getBalance().getValue()) {
+			currentBetValue = currentPlayer.getBalance().getValue();
+		}
+		
+		currentPlayer.getBalance().removeFromBalance(currentBetValue 
 				- currentPlayer.getOwnCurrentBet());
-		Pot currentPot = table.getRound().getPot();
-		currentPot.addToPot(currentBet.getValue() 
+		currentPot.addToPot(currentBetValue 
 				- currentPlayer.getOwnCurrentBet());
-		currentPlayer.setOwnCurrentBet(currentBet.getValue());
+		currentPlayer.setOwnCurrentBet(currentBetValue);
 		currentPlayer.setDoneFirstTurn(true);
 	}
 	
