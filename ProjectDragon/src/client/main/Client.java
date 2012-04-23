@@ -20,6 +20,7 @@ public class Client {
 	    	
 	        Registry registry = LocateRegistry.getRegistry(null);
 	        iRemote stub = (iRemote) registry.lookup(iRemote.SERVICE_NAME);
+	        
 	        String response = stub.sayHello();
 	        System.out.println("response: " + response);
 	        

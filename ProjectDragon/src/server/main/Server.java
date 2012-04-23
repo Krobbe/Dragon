@@ -25,7 +25,8 @@ public class Server extends RmiStarter implements iRemote {
             iRemote stub = (iRemote) UnicastRemoteObject.exportObject(this, 0);
             
             Registry registry = LocateRegistry.getRegistry();
-            registry.bind(iRemote.SERVICE_NAME, stub);
+            //TODO Okej med rebind istället för bind? Verkar lösa några problem
+            registry.rebind(iRemote.SERVICE_NAME, stub);
 
             System.out.println("Server ready");
             
