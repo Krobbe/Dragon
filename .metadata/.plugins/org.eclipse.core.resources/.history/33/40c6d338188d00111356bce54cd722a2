@@ -17,6 +17,7 @@ public class DatabaseCommunicator {
 		    conn = DriverManager.getConnection
 		                   ("jdbc:postgresql://djupfeldt.se:5432/tda367dragon",
 		                		   "tda367dragon", "tda367dragon");
+		    System.out.println("fungerade!");
 		     } catch (SQLException sqle) {
 		    	 sqle.printStackTrace();
 		    	 System.out.println("Could not connect");
@@ -29,5 +30,9 @@ public class DatabaseCommunicator {
 			dbc = new DatabaseCommunicator();
 		}
 		return dbc;
+	}
+	
+	public static void main(String[] args) {
+		DatabaseCommunicator.getInstance();
 	}
 }
