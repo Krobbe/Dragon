@@ -91,21 +91,22 @@ public class Table {
 	//TODO Test nextDealerButtonPlayer()
 	//TODO Discuss and implement a possible better solution to dealer button
 	public int nextDealerButtonIndex() {
-
-		indexOfDealerButton++;
-		// Reset the index if it is at the end of the player-list
-		if (indexOfDealerButton == players.size()) {
-			indexOfDealerButton = 0;
-		}
+		do {
+			indexOfDealerButton++;
+			// Reset the index if it is at the end of the player-list
+			if (indexOfDealerButton == players.size()) {
+				indexOfDealerButton = 0;
+			}
+		} while (!players.get(indexOfDealerButton).isActive());
 		
 		// TODO Determine what happens if a player has lost recently.
 		// If the dealer button only should be set to players still in the game
 		// or if lost players should be "ghosts"
 		
 		// The dealer button is set to a player that is still in the game.
-		while(!players.get(indexOfDealerButton).isStillInGame()){
+		/*while(!players.get(indexOfDealerButton).isStillInGame()){
 			indexOfDealerButton++;
-		}
+		}*/
 		return indexOfDealerButton;
 	}
 	

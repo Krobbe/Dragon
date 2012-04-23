@@ -205,21 +205,50 @@ public class GameController {
 	 */
 	//TODO ska denna vara här? likt raise = refactor?
 	private void postBlinds() {
+		List<iPlayer> players = table.getPlayers();
 		int bigBlind = 20, smallBlind = bigBlind / 2; //TODO ska detta göras i "parameters"?
 		int dealerButtonIndex = table.getDealerButtonIndex();
-		int smallBlindIndex = (dealerButtonIndex + 1) % table.getPlayers().size();
-		int bigBlindIndex = (dealerButtonIndex + 2) % table.getPlayers().size();
-		List<iPlayer> players = table.getPlayers();
+		
+		/* calculate smallBlindIndex */
+		int smallBlindIndex;
+		int count = 1;
+		do {
+			smallBlindIndex = (dealerButtonIndex + count) % table.getPlayers().size();
+			count++;
+		} while (!players.get(smallBlindIndex).isActive());
+		
+		/* calculate bigBlindIndex */
+		int bigBlindIndex;
+		count = 1;
+		do {
+			bigBlindIndex = (smallBlindIndex + count) % table.getPlayers().size();
+			count++;
+		} while (!players.get(bigBlindIndex).isActive());
+		
 		iPlayer smallBlindPlayer = players.get(smallBlindIndex);
 		iPlayer bigBlindPlayer = players.get(bigBlindIndex);
 		
+		/* post blinds */
+		if (smallBlindPlayer.getBalance().getValue() < smallBlind) {
+			smallBlind = smallBlindPlayer.getBalance().getValue();
+		}
 		smallBlindPlayer.getBalance().removeFromBalance(smallBlind);
-		bigBlindPlayer.getBalance().removeFromBalance(bigBlind);
 		smallBlindPlayer.setOwnCurrentBet(smallBlind);
+		
+		if (bigBlindPlayer.getBalance().getValue() < bigBlind) {
+			bigBlind = bigBlindPlayer.getBalance().getValue();
+		}
+		bigBlindPlayer.getBalance().removeFromBalance(bigBlind);
 		bigBlindPlayer.setOwnCurrentBet(bigBlind);
+
 		table.getRound().getPot().addToPot(smallBlind + bigBlind);
-		table.getRound().getBettingRound().setCurrentBet(
+		if (bigBlind >= smallBlind) {
+			table.getRound().getBettingRound().setCurrentBet(
 				new Bet(bigBlindPlayer,bigBlind));
+		} else {
+			table.getRound().getBettingRound().setCurrentBet(
+					new Bet(smallBlindPlayer,smallBlind));
+		}
 	}
 	
 	/**
