@@ -84,14 +84,14 @@ public class Main {
 				/* dags för ny bettinground? */
 				boolean isBettingDone = true;
 				List<iPlayer> activePlayers = table.getActivePlayers();
-				for (iPlayer p: activePlayers) {
-					if (table.getCurrentPlayer().getOwnCurrentBet() != p.getOwnCurrentBet()) {
+				for (iPlayer ap: activePlayers) {
+					if (activePlayers.get(0).getOwnCurrentBet() != ap.getOwnCurrentBet()) {
 						//TODO slå ihop två if-metoder till en med && ?
-						if (table.getCurrentPlayer().getOwnCurrentBet() != 0) {
+						if (activePlayers.get(0).getOwnCurrentBet() != 0) {
 							isBettingDone = false;
 						}
 					}
-					if (!p.getDoneFirstBet()) {
+					if (!ap.getDoneFirstBet()) {
 						isBettingDone = false;
 					}
 				}
@@ -101,9 +101,9 @@ public class Main {
 					
 					/* vilka är all-in? */
 					List<iPlayer> allInPlayers = new ArrayList<iPlayer>();
-					for (iPlayer p : activePlayers) {
-						if (p.getBalance().getValue() == 0) {
-							allInPlayers.add(p);
+					for (iPlayer ap : activePlayers) {
+						if (ap.getBalance().getValue() == 0) {
+							allInPlayers.add(ap);
 						}
 					}
 					/* lägg undan i sidePotHandlers */
@@ -111,11 +111,12 @@ public class Main {
 					List<SidePotHandler> sidePots = table.getSidePots();
 					for (iPlayer p : allInPlayers) {
 							int allInAmount = p.getOwnCurrentBet();
-							int sidePotValue = allInAmount * activePlayers.size();
+							int sidePotValue = allInAmount * activePlayers.size() 
+									+ table.getRound().getPreBettingPot().getValue();
 							for (iPlayer ap : activePlayers) {
 								ap.setOwnCurrentBet(ap.getOwnCurrentBet() - allInAmount);
-								System.out.println(ap.getName() + ": " + ap.getOwnCurrentBet());
 							}
+							table.getRound().getPreBettingPot().emptyPot();
 							table.getRound().getPot().removeFromPot(sidePotValue);
 							Pot sidePot = new Pot(sidePotValue);
 							sidePots.add(new SidePotHandler(table.getActivePlayers(), sidePot));

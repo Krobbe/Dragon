@@ -39,6 +39,7 @@ public class GameController {
 	 * @throws TableCardsFullException 
 	 */
 	//TODO private?
+	//TODO skulle kunna vara i table?
 	public void showRiver() throws TableCardsFullException {
 		Dealer dealer = table.getDealer();
 		Card c = dealer.getRiver();
@@ -50,6 +51,7 @@ public class GameController {
 	 * @throws TableCardsFullException 
 	 */
 	//TODO private?
+	//TODO skulle kunna vara i table?
 	public void showFlop() throws TableCardsFullException {
 		Dealer dealer = table.getDealer();
 		List<Card> flop = dealer.getFlop();
@@ -144,9 +146,26 @@ public class GameController {
 	/**
 	 * Performs a showdown.
 	 * @return a list of the winning players of the current round.
+	 * @throws TableCardsFullException 
 	 */
-	//TODO nödvändig här? den finns ju redan i table..
-	public List<iPlayer> doShowdown(List<iPlayer> plrs, int potAmount) {
+	//TODO nödvändig här? den finns ju redan i table. dock lite annorulunda nu..
+	//TODO snygga till?
+	public List<iPlayer> preformShowdown(List<iPlayer> plrs, int potAmount) throws TableCardsFullException {
+		
+		/* put the rigth amount of table cards on the table */
+		int tableCardsSize = table.getTableCards().size();
+		if (tableCardsSize == 0) {
+			showFlop();
+			showRiver();
+			showRiver();
+		} else if (tableCardsSize == 3) {
+			showRiver();
+			showRiver();
+		} else if (tableCardsSize == 4) {
+			showRiver();
+		}
+		
+		/* showdown */
 		return table.doShowdown(plrs, potAmount);
 	}
 	
@@ -163,9 +182,11 @@ public class GameController {
 		table.getSidePots().clear();
 		for (iPlayer p : players) {
 			p.getHand().discard();
-			p.setActive(true);
 			p.setOwnCurrentBet(0);
-			p.setDoneFirstTurn(false);
+			p.setDoneFirstTurn(false);			
+			if (p.getBalance().getValue() != 0) {
+				p.setActive(true);
+			}
 		}
 		table.getRound().getPot().emptyPot();
 		table.getDealer().newDeck();
@@ -191,6 +212,7 @@ public class GameController {
 		List<iPlayer> players = table.getPlayers();
 		iPlayer smallBlindPlayer = players.get(smallBlindIndex);
 		iPlayer bigBlindPlayer = players.get(bigBlindIndex);
+		
 		smallBlindPlayer.getBalance().removeFromBalance(smallBlind);
 		bigBlindPlayer.getBalance().removeFromBalance(bigBlind);
 		smallBlindPlayer.setOwnCurrentBet(smallBlind);
@@ -224,16 +246,19 @@ public class GameController {
 		}
 		
 		if (table.getTableCards().size() == 5 || 
-				table.getActivePlayers().size() == 1) {
+				table.getActivePlayers().size() == 1 || 
+				table.getActivePlayers().size() == 0) {
 			
 			List<SidePotHandler> sidePots = table.getSidePots();
 			if (sidePots != null) {
 				for (SidePotHandler sph : sidePots) {
-					doShowdown(sph.getPlayers(),sph.getPot().getValue());
+					winners = preformShowdown(sph.getPlayers(),sph.getPot().getValue());
 				}
-			}	
-			winners = doShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
+			}
 			
+			if (table.getActivePlayers().size() != 0) { /* om alla spelare var all-in ska inte denna göras */
+				winners = preformShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
+			}
 		} else if (table.getTableCards().size() == 0) {
 			showFlop();
 			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
