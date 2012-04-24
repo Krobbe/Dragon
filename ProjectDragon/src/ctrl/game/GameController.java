@@ -88,7 +88,7 @@ public class GameController {
 		Pot currentPot = table.getRound().getPot();
 		int currentBetValue = table.getRound().getBettingRound().getCurrentBet().getValue();
 		
-		if (currentBetValue == -1 //TODO nödvändig?
+		if (currentBetValue == -1 //TODO -1 nödvändig?
 				|| currentBetValue == 0) {
 			throw new IllegalCallException();
 		}
