@@ -8,7 +8,19 @@ package event;
 public class Event {
     // All possible events listed
     public enum Tag {
-    	//TODO Add events here, MAKE_BET
+    	LOGIN,
+    	LOGOUT,
+    	GO_TO_REGISTER,
+    	GO_TO_JOINTABLE,
+    	GO_TO_CREATETABLE,
+    	GO_TO_STATISTICS,
+    	REGISTER_BACK,
+    	REGISTER_ACCOUNT,
+    	CREATE_TABLE,
+    	JOIN_TABLE,
+    	MAKE_BET,
+    	DO_CALL,
+    	DO_FOLD
     }
     private final Tag tag;
     // The new value 
