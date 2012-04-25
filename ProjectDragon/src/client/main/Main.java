@@ -4,6 +4,11 @@ import java.util.List;
 
 import client.model.game.SidePotHandler;
 
+
+/**
+ * @author robinandersson
+ *
+ */
 public class Main {
 	
 	/* temporär lösning */

@@ -29,6 +29,14 @@ import utilities.TableCardsFullException;
 public class GameController {
 
 	private Table table;
+	
+	/**
+	 * @author robinandersson
+	 *
+	 */
+	public GameController() {
+		this(new Table());
+	}
 
 	public GameController(Table table) {
 		this.table = table;

@@ -7,14 +7,22 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- * @author Robin
+ * @author robinandersson
  *
  */
 public interface iRemote extends Remote {
 	
 	public static final String SERVICE_NAME = "Server";
 	
-	public String sayHello() throws RemoteException;
+	/**
+	 * 
+	 * Returns the stub for the server's game methods
+	 * @return the stub for the server's game methods
+	 *
+	 */
+	public iServerGame getIServerGame() throws RemoteException;
+	
+	
 	
 
 }
