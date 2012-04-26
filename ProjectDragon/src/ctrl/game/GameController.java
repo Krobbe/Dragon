@@ -213,11 +213,12 @@ public class GameController {
 		/* set the turn to the right player */
 		//TODO funkar för två spelare?, detta görs på ett flertal ställen = 
 		//		refactor? 
+
 		int indexOfCurrentPlayer = table.getDealerButtonIndex();
 		for (int i = 0; i < 3; i++) {
 			do {
 				indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % table.getPlayers().size();
-			} while (!table.getCurrentPlayer().isActive());
+			} while (!players.get(indexOfCurrentPlayer).isActive());
 		}
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
 	}
