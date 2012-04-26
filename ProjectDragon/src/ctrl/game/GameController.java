@@ -101,8 +101,8 @@ public class GameController {
 			throw new IllegalCallException();
 		}
 		
-		if (currentBetValue > currentPlayer.getBalance().getValue()) {
-			currentBetValue = currentPlayer.getBalance().getValue();
+		if (currentBetValue > currentPlayer.getBalance().getValue() + currentPlayer.getOwnCurrentBet()) {
+			currentBetValue = currentPlayer.getBalance().getValue() + currentPlayer.getOwnCurrentBet();
 		}
 		
 		currentPlayer.getBalance().removeFromBalance(currentBetValue 
@@ -209,9 +209,17 @@ public class GameController {
 		//TODO kolla så detta inte görs nån annanstans..
 		table.nextDealerButtonIndex();
 		postBlinds();
-		//TODO funkar för två spelare?
-		table.setIndexOfCurrentPlayer((table.getDealerButtonIndex() + 3) % 
-				table.getPlayers().size());
+		
+		/* set the turn to the right player */
+		//TODO funkar för två spelare?, detta görs på ett flertal ställen = 
+		//		refactor? 
+		int indexOfCurrentPlayer = table.getDealerButtonIndex();
+		for (int i = 0; i < 3; i++) {
+			do {
+				indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % table.getPlayers().size();
+			} while (!table.getCurrentPlayer().isActive());
+		}
+		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
 	}
 	
 	/**
@@ -263,6 +271,15 @@ public class GameController {
 		} else {
 			table.getRound().getBettingRound().setCurrentBet(
 					new Bet(smallBlindPlayer,smallBlind));
+		}
+		
+		/* if a player has gone all-in they shall not be able to act */
+		//TODO ska denna vara här?
+		if (bigBlindPlayer.getBalance().getValue() == 0) {
+			bigBlindPlayer.setDoneFirstTurn(true);
+		}
+		if (smallBlindPlayer.getBalance().getValue() == 0) {
+			smallBlindPlayer.setDoneFirstTurn(true);
 		}
 	}
 	

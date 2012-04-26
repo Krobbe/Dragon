@@ -78,7 +78,7 @@ public class Main {
 				} else if (cmd.equals("ca")) {
 					gc.call();
 				} else {
-					System.out.println("Command not supported..");
+					throw new IllegalArgumentException("Command not supported!!");
 				}
 				
 				/* dags fšr ny bettinground? */
