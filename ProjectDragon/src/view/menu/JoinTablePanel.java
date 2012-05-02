@@ -44,21 +44,21 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void init() {
-		JPanel joinTablePanel = new JPanel();
+//		JPanel joinTablePanel = new JPanel();
 		// frame.getContentPane().add(joinTablePanel);
-		joinTablePanel.setLayout(null);
+		this.setLayout(null);
 
 		joinTableBackButton = new JButton("Back");
 		joinTableBackButton.setBounds(10, 683, 108, 36);
 		joinTableBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTableBackButton.addActionListener(this);
-		joinTablePanel.add(joinTableBackButton);
+		this.add(joinTableBackButton);
 
 		joinTableJoinButton = new JButton("Join table");
 		joinTableJoinButton.setBounds(890, 683, 108, 36);
 		joinTableJoinButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTableJoinButton.addActionListener(this);
-		joinTablePanel.add(joinTableJoinButton);
+		this.add(joinTableJoinButton);
 
 		joinTableList = new JList<Object>();
 		joinTableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -75,6 +75,6 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 			}
 		});
 		joinTableList.setBounds(192, 111, 623, 507);
-		joinTablePanel.add(joinTableList);
+		this.add(joinTableList);
 	}
 }

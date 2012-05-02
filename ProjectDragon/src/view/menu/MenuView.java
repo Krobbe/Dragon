@@ -61,6 +61,21 @@ public class MenuView implements EventHandler {
 		else if(evt.getTag().equals(Event.Tag.GO_TO_CREATETABLE)) {
 			layout.show(frame.getContentPane(), "createTablePanel");
 		}
+		else if(evt.getTag().equals(Event.Tag.CREATETABLE_BACK)) {
+			layout.show(frame.getContentPane(), "mainMenuPanel");
+		}
+		else if(evt.getTag().equals(Event.Tag.JOINTABLE_BACK)) {
+			layout.show(frame.getContentPane(), "mainMenuPanel");
+		}
+		else if(evt.getTag().equals(Event.Tag.REGISTER_BACK)) {
+			layout.show(frame.getContentPane(), "loginPanel");
+		}
+		else if(evt.getTag().equals(Event.Tag.STATISTICS_BACK)) {
+			layout.show(frame.getContentPane(), "mainMenuPanel");
+		}
+		else if(evt.getTag().equals(Event.Tag.LOGOUT)) {
+			layout.show(frame.getContentPane(), "loginPanel");
+		}
 	}
 
 }

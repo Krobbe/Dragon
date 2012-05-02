@@ -45,49 +45,49 @@ public class RegisterPanel extends JPanel implements ActionListener,
 	}
 
 	private void init() {
-		JPanel registerPanel = new JPanel();
+//		JPanel registerPanel = new JPanel();
 		// frame.getContentPane().add(registerPanel);
-		registerPanel.setLayout(null);
+		this.setLayout(null);
 
 		JLabel registerNameLabel = new JLabel("User name\r\n");
 		registerNameLabel.setBounds(461, 284, 110, 14);
 		registerNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		registerPanel.add(registerNameLabel);
+		this.add(registerNameLabel);
 
 		registerNameField = new JTextField();
 		registerNameField.setBounds(461, 309, 110, 20);
-		registerPanel.add(registerNameField);
+		this.add(registerNameField);
 		registerNameField.setColumns(10);
 
 		JLabel registerPasswordLabel = new JLabel("Password");
 		registerPasswordLabel.setBounds(461, 340, 110, 14);
 		registerPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		registerPanel.add(registerPasswordLabel);
+		this.add(registerPasswordLabel);
 
 		registerPassword = new JPasswordField();
 		registerPassword.setBounds(461, 365, 110, 20);
-		registerPanel.add(registerPassword);
+		this.add(registerPassword);
 
 		JLabel registerPasswordAgainLabel = new JLabel("Password again");
 		registerPasswordAgainLabel.setBounds(461, 396, 110, 20);
 		registerPasswordAgainLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		registerPanel.add(registerPasswordAgainLabel);
+		this.add(registerPasswordAgainLabel);
 
 		registerPasswordAgainField = new JPasswordField();
 		registerPasswordAgainField.setBounds(461, 427, 110, 20);
-		registerPanel.add(registerPasswordAgainField);
+		this.add(registerPasswordAgainField);
 
 		registerRegisterButton = new JButton("Register");
 		registerRegisterButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		registerRegisterButton.setBounds(890, 683, 108, 36);
 		registerRegisterButton.addActionListener(this);
-		registerPanel.add(registerRegisterButton);
+		this.add(registerRegisterButton);
 
 		registerBackButton = new JButton("Back");
 		registerBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		registerBackButton.setBounds(10, 683, 108, 36);
 		registerBackButton.addActionListener(this);
-		registerPanel.add(registerBackButton);
+		this.add(registerBackButton);
 	}
 
 }

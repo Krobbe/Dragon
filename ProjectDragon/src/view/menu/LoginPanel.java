@@ -43,43 +43,43 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler {
 	}
 
 	private void init() {
-		JPanel loginPanel = new JPanel();
-		loginPanel.setLayout(null);
+//		JPanel loginPanel = new JPanel();
+		this.setLayout(null);
 
 		JLabel loginNameLabel = new JLabel("User name");
 		loginNameLabel.setBounds(447, 274, 108, 14);
-		loginPanel.add(loginNameLabel);
+		this.add(loginNameLabel);
 		loginNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		loginNameField = new JTextField();
 		loginNameField.setBounds(447, 299, 113, 20);
-		loginPanel.add(loginNameField);
+		this.add(loginNameField);
 		loginNameField.setToolTipText("Type in your account name here\r\n");
 		loginNameField.setColumns(10);
 		loginNameLabel.setLabelFor(loginNameField);
 
 		JLabel loginPasswordLabel = new JLabel("Password\r\n");
 		loginPasswordLabel.setBounds(447, 330, 108, 14);
-		loginPanel.add(loginPasswordLabel);
+		this.add(loginPasswordLabel);
 		loginPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		loginPasswordField = new JPasswordField();
 		loginPasswordField.setBounds(447, 355, 113, 20);
-		loginPanel.add(loginPasswordField);
+		this.add(loginPasswordField);
 
 		loginButton = new JButton("Login");
 		loginButton.setBounds(890, 683, 108, 36);
 		loginButton.addActionListener(this);
-		loginPanel.add(loginButton);
+		this.add(loginButton);
 		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JLabel noAccountLabel = new JLabel("Don't have an account?" + "\n" + "");
 		noAccountLabel.setBounds(447, 386, 113, 14);
-		loginPanel.add(noAccountLabel);
+		this.add(noAccountLabel);
 
 		loginRegisterButton = new JButton("Register");
 		loginRegisterButton.setBounds(447, 401, 113, 23);
 		loginRegisterButton.addActionListener(this);
-		loginPanel.add(loginRegisterButton);
+		this.add(loginRegisterButton);
 	}
 }

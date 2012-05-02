@@ -47,33 +47,33 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	}
 
 	private void init() {
-		JPanel createTablePanel = new JPanel();
+//		JPanel createTablePanel = new JPanel();
 		// frame.getContentPane().add(createTablePanel);
-		createTablePanel.setLayout(null);
+		this.setLayout(null);
 
 		JLabel createTableNameLabel = new JLabel("Choose a table name");
 		createTableNameLabel.setBounds(416, 262, 176, 20);
 		createTableNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		createTablePanel.add(createTableNameLabel);
+		this.add(createTableNameLabel);
 
 		createTableNameField = new JTextField();
 		createTableNameField.setBounds(416, 293, 176, 20);
-		createTablePanel.add(createTableNameField);
+		this.add(createTableNameField);
 		createTableNameField.setColumns(10);
 
 		JLabel createTablePasswordLabel = new JLabel("Choose a table password");
 		createTablePasswordLabel.setBounds(416, 324, 176, 20);
 		createTablePasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		createTablePanel.add(createTablePasswordLabel);
+		this.add(createTablePasswordLabel);
 
 		createTablePasswordField = new JPasswordField();
 		createTablePasswordField.setBounds(416, 355, 176, 20);
-		createTablePanel.add(createTablePasswordField);
+		this.add(createTablePasswordField);
 
 		JLabel createTablePlayersLabel = new JLabel("Number of players");
 		createTablePlayersLabel.setBounds(416, 386, 176, 20);
 		createTablePlayersLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		createTablePanel.add(createTablePlayersLabel);
+		this.add(createTablePlayersLabel);
 
 		createTablePlayersSpinner = new JComboBox<Integer>();
 		createTablePlayersSpinner.setModel(new DefaultComboBoxModel<Integer>(
@@ -81,18 +81,18 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 		createTablePlayersSpinner.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTablePlayersSpinner.setMaximumRowCount(10);
 		createTablePlayersSpinner.setBounds(416, 417, 49, 26);
-		createTablePanel.add(createTablePlayersSpinner);
+		this.add(createTablePlayersSpinner);
 
 		createTableBackButton = new JButton("Back");
 		createTableBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTableBackButton.setBounds(10, 683, 108, 36);
 		createTableBackButton.addActionListener(this);
-		createTablePanel.add(createTableBackButton);
+		this.add(createTableBackButton);
 
 		createTableCreateButton = new JButton("Create table");
 		createTableCreateButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTableCreateButton.setBounds(881, 683, 117, 36);
 		createTableCreateButton.addActionListener(this);
-		createTablePanel.add(createTableCreateButton);
+		this.add(createTableCreateButton);
 	}
 }

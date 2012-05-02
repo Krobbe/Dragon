@@ -26,7 +26,7 @@ import ctrl.game.GameController;
 public class Main {
 	
 	public static void main(String[] args) {
-		new TableView();
+		new MenuView();
 		try {
 			new Main().run();
 		} catch (PlayersFullException e) {
