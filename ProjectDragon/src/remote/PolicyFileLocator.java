@@ -11,6 +11,7 @@ import java.io.InputStream;
  * class to locate our most "secure" policy file
  *
  * @author srasul
+ * @author robinandersson
  *
  */
 public class PolicyFileLocator {

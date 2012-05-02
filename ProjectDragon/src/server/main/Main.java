@@ -3,7 +3,7 @@ package server.main;
 import java.rmi.RemoteException;
 
 import ctrl.game.GameController;
-import ctrl.game.RemoteController;
+import ctrl.game.RemoteNetworkController;
 
 
 
@@ -15,7 +15,7 @@ public class Main {
 		
 		try {
 			
-			RemoteController remoteController = new RemoteController();
+			RemoteNetworkController remoteController = new RemoteNetworkController();
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();

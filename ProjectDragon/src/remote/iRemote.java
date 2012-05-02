@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
  */
 public interface iRemote extends Remote {
 	
-	public static final String SERVICE_NAME = "Server";
+	public static final String REMOTE_NAME = "Server";
 	
 	/**
 	 * Returns the stub for the server's game methods.
@@ -21,7 +21,7 @@ public interface iRemote extends Remote {
 	 */
 	public iServerGame getIServerGame() throws RemoteException;
 	
-	
+	public void registerClient(iClient client) throws RemoteException;
 	
 
 }

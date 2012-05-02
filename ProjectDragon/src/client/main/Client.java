@@ -24,7 +24,7 @@ public class Client {
 	    try {
 	    	
 	        Registry registry = LocateRegistry.getRegistry(null);
-	        stub = (iRemote) registry.lookup(iRemote.SERVICE_NAME);	        
+	        stub = (iRemote) registry.lookup(iRemote.REMOTE_NAME);	        
 	    }
 	    
 	    catch (Exception e) {

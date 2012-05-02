@@ -3,22 +3,22 @@
  */
 package ctrl.game;
 
-import java.rmi.RemoteException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 
 import remote.RmiStarter;
 import remote.iRemote;
 
 
 /**
- * @author Robin
+ * @author robinandersson
  *
  */
-public class Server extends RmiStarter {
+public class ServerStarter extends RmiStarter implements ActionListener{
 
-	public Server(iRemote stub) {
+	public ServerStarter(iRemote stub) {
 		
 	    super(iRemote.class);
 		
@@ -26,7 +26,7 @@ public class Server extends RmiStarter {
 			
             Registry registry = LocateRegistry.getRegistry();
             //TODO Okej med rebind istället för bind? Verkar lösa några problem
-            registry.rebind(iRemote.SERVICE_NAME, stub);
+            registry.rebind(iRemote.REMOTE_NAME, stub);
 
             System.out.println("Server ready");
             
@@ -34,6 +34,12 @@ public class Server extends RmiStarter {
             System.err.println("Server exception: " + e.toString());
             e.printStackTrace();
         }
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+		
 	}
 	
 

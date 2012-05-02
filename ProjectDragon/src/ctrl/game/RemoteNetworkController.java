@@ -14,24 +14,30 @@ import remote.iServerGame;
  * @author robinandersson
  *
  */
-public class RemoteController extends UnicastRemoteObject implements iRemote{
-
-	public RemoteController() throws RemoteException {
+public class RemoteNetworkController extends UnicastRemoteObject implements
+		iRemote {
+	
+	public RemoteNetworkController() throws RemoteException {
 		super();
-		
-        //iRemote stub = (iRemote) UnicastRemoteObject.exportObject(this, 0);
 		new ServerStarter(this);
 	}
 
+	/* (non-Javadoc)
+	 * @see remote.iRemote#getIServerGame()
+	 */
 	@Override
 	public iServerGame getIServerGame() throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see remote.iRemote#registerClient(remote.iClient)
+	 */
 	@Override
 	public void registerClient(iClient client) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

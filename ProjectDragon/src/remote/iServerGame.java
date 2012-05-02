@@ -11,6 +11,8 @@ import utilities.*;
  */
 public interface iServerGame extends Remote {
 
+	public static final String SERVERGAME_NAME = "Game";
+	
 	/**
 	 * Performs a call.
 	 * 
