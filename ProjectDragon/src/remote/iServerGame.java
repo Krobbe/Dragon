@@ -2,6 +2,8 @@ package remote;
 
 import java.rmi.Remote;
 
+import model.player.Bet;
+
 import utilities.*;
 /**
  * Interface for method calls concerning game-functions to Server. 
@@ -16,16 +18,18 @@ public interface iServerGame extends Remote {
 	/**
 	 * Performs a call.
 	 * 
+	 * @param bet A bet object containing the bet's amount and user information
+	 * (to verify that the correct player tried to invoka the call method)
 	 * @throws IllegalCallException
 	 */
-	public void call() throws IllegalCallException;
+	public boolean call(Bet bet) throws IllegalCallException;
 	
 	/**.
 	 * Performs a check
 	 * 
 	 * @throws IllegalCheckException
 	 */
-	public void check() throws IllegalCheckException;
+	public boolean check() throws IllegalCheckException;
 	
 	/**
 	 * Performs a raise.
@@ -33,10 +37,10 @@ public interface iServerGame extends Remote {
 	 * @param amount The amount to raise the pot with.
 	 * @throws IllegalRaiseException
 	 */
-	public void raise(int amount) throws IllegalRaiseException;
+	public boolean raise(int amount) throws IllegalRaiseException;
 	
 	/**
 	 * Performs fold.
 	 */
-	public void fold();
+	public boolean fold();
 }

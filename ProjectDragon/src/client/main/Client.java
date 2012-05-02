@@ -7,19 +7,20 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import remote.iClient;
 import remote.iRemote;
 
 /**
  * @author robinandersson
  *
  */
-public class Client {
+
+// TODO Move the iClient implementation to the client-controller
+public class Client implements iClient {
 	
 	iRemote stub;
 	
 	public Client(){
-		
-		
 		
 	    try {
 	    	
@@ -39,6 +40,12 @@ public class Client {
 			e.printStackTrace();
 		}
 	    
+	}
+	
+	@Override
+	public void setActive(boolean active) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

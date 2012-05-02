@@ -6,8 +6,8 @@ package ctrl.game;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import remote.iClient;
-import remote.iRemote;
+import model.player.Bet;
+
 import remote.iServerGame;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
@@ -21,32 +21,41 @@ import utilities.IllegalRaiseException;
  */
 public class RemoteGameController extends UnicastRemoteObject implements iServerGame{
 
+	GameController gameController;
+	
 	public RemoteGameController() throws RemoteException {
-		
+		this(new GameController());
+	}
+	
+	public RemoteGameController(GameController gameController) throws RemoteException {
 		super();
+		this.gameController = gameController;
 	}
 
 
 	@Override
-	public void call() throws IllegalCallException {
+	public boolean call(Bet bet) throws IllegalCallException {
+		return gameController.call(bet);
+		
+	}
+
+	@Override
+	public boolean check() throws IllegalCheckException {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void check() throws IllegalCheckException {
+	public boolean raise(int amount) throws IllegalRaiseException {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void raise(int amount) throws IllegalRaiseException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void fold() {
+	public boolean fold() {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}

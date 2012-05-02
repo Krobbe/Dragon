@@ -17,18 +17,28 @@ import remote.iServerGame;
 public class RemoteNetworkController extends UnicastRemoteObject implements
 		iRemote {
 	
+	iServerGame serverGame;
+	
+	RemoteGameController remoteGameController = new RemoteGameController();
+	
 	public RemoteNetworkController() throws RemoteException {
-		super();
+		this(new RemoteGameController());
 		new ServerStarter(this);
 	}
+	
+	public RemoteNetworkController(iServerGame serverGame) throws RemoteException {
+		super();
+		new ServerStarter(this);
+		this.serverGame = serverGame;
+	}
+
 
 	/* (non-Javadoc)
 	 * @see remote.iRemote#getIServerGame()
 	 */
 	@Override
 	public iServerGame getIServerGame() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return serverGame;
 	}
 
 	/* (non-Javadoc)

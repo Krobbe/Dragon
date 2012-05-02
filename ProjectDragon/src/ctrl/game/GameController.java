@@ -113,6 +113,17 @@ public class GameController {
 		currentPlayer.setDoneFirstTurn(true);
 	}
 	
+	public boolean call(Bet bet) {
+		
+		boolean validCall = true;
+		
+		if(!table.getCurrentPlayer().equals(bet.getOwner())){
+			validCall = false;
+		}
+		
+		return validCall;
+	}
+	
 	/**
 	 * Performs a raise.
 	 * @param amount The amount to raise the pot with.

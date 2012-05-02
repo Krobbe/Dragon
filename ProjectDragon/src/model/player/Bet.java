@@ -3,6 +3,8 @@
  */
 package model.player;
 
+import java.io.Serializable;
+
 /**
  * A class that simulates a bet.
  * 
@@ -11,7 +13,7 @@ package model.player;
  * @author lisastenberg
  * @author mattiashenriksson
  */
-public class Bet {
+public class Bet implements Serializable {
 	private int value;
 	private iPlayer owner;
 	
