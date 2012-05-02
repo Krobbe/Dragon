@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.card.Card;
-import model.card.CardComparator;
+import model.game.CardComparator;
 /**
  * A class that simulates a full Texas Hold'em Hand. 
  * 

@@ -33,4 +33,6 @@
 <fullyQualifiedTypeName name="model.player.Account"/>
 <fullyQualifiedTypeName name="model.player.Player"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="utilities.IllegalRaiseException"/>
+<fullyQualifiedTypeName name="utilities.IllegalCallException"/>
 </qualifiedTypeNameHistroy>

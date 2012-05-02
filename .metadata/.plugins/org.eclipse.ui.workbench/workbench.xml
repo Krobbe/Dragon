@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="35" version="2.0">
+<workbench progressCount="32" version="2.0">
 <workbenchAdvisor/>
 <window height="685" maximized="true" width="1366" x="-26" y="22">
 <fastViewData fastViewLocation="1024"/>
@@ -35,16 +35,16 @@
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="iRemote.java" partName="iRemote.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/remote/iRemote.java" title="iRemote.java" tooltip="ProjectDragon/src/remote/iRemote.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/remote/iRemote.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="15" selectionOffset="247" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteController.java" partName="RemoteController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/RemoteController.java" title="RemoteController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteController.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/RemoteController.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="440" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Server.java" partName="Server.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/server/main/Server.java" title="Server.java" tooltip="ProjectDragon/src/server/main/Server.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/server/main/Server.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameController.java" partName="GameController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/GameController.java" title="GameController.java" tooltip="ProjectDragon/src/ctrl/game/GameController.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/GameController.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="699" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ServerStarter.java" partName="ServerStarter.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/server/main/ServerStarter.java" title="ServerStarter.java" tooltip="ProjectDragon/src/server/main/ServerStarter.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/server/main/ServerStarter.java"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Server.java" partName="Server.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/Server.java" title="Server.java" tooltip="ProjectDragon/src/ctrl/game/Server.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/Server.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
@@ -55,7 +55,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (34 items)"/>
+<category IMemento.internal.id="Warnings (26 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -107,7 +107,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -234,20 +234,8 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/IDBConnector.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/Table.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/iRemote.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/PolicyFileLocator.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/RmiStarter.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/main/Client.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/Server.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/ServerStarter.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/Main.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/event/Event.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/event/EventBus.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/hand/HandEvaluator.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/iRemote.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/main/Client.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/main/Main.java"/>
@@ -255,156 +243,173 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/PolicyFileLocator.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/ServerStarter.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/Server.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/RemoteController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/GameController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/iServerGame.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/RmiStarter.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/PolicyFileLocator.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/iRemote.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/main/Client.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/Table.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/Round.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/OwnCurrentBetComparator.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/iServerGame.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/ctrl/game/GameController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/Main.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/RemoteController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/GameController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/Server.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/Server.java"/>
 </editors>
-<item historyLabel="Table.java" index="1">
+<item historyLabel="RmiStarter.java" index="0">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="IDBConnector.java" index="0">
-<position info="not_deleted" x="1479" y="0"/>
-</item>
-<item historyLabel="Table.java" index="1">
+<item historyLabel="HandEvaluator.java" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="IDBConnector.java" index="0">
-<position info="not_deleted" x="586" y="0"/>
-</item>
-<item historyLabel="DatabaseCommunicator.java" index="2">
-<position info="not_deleted" x="617" y="0"/>
-</item>
-<item historyLabel="DatabaseCommunicator.java" index="2">
-<position info="not_deleted" x="835" y="0"/>
-</item>
-<item historyLabel="iRemote.java" index="3">
+<item historyLabel="RmiStarter.java" index="0">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PolicyFileLocator.java" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="iRemote.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RmiStarter.java" index="5">
-<position/>
-</item>
-<item historyLabel="iRemote.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Client.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="iRemote.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ServerStarter.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Main.java" index="9">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RmiStarter.java" index="5">
-<position/>
-</item>
-<item historyLabel="Server.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ServerStarter.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RmiStarter.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="DatabaseCommunicator.java" index="2">
-<position info="not_deleted" x="835" y="0"/>
-</item>
-<item historyLabel="Event.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="EventBus.java" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Event.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="iRemote.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RmiStarter.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="iRemote.java" index="3">
+<item historyLabel="iRemote.java" index="2">
 <position info="not_deleted" x="247" y="15"/>
 </item>
-<item historyLabel="Server.java" index="7">
+<item historyLabel="Client.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Client.java" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="RmiStarter.java" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="HandEvaluator.java" index="12">
-<position/>
-</item>
-<item historyLabel="RmiStarter.java" index="5">
+<item historyLabel="Client.java" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DatabaseCommunicator.java" index="13">
+<item historyLabel="PolicyFileLocator.java" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="RmiStarter.java" index="5">
+<item historyLabel="Client.java" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="HandEvaluator.java" index="12">
+<item historyLabel="ServerStarter.java" index="7">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="RmiStarter.java" index="5">
+<item historyLabel="Server.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Server.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RemoteController.java" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="GameController.java" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="iServerGame.java" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="iServerGame.java" index="11">
+<position info="not_deleted" x="252" y="0"/>
+</item>
+<item historyLabel="iServerGame.java" index="11">
+<position info="not_deleted" x="561" y="0"/>
+</item>
+<item historyLabel="iServerGame.java" index="11">
+<position info="not_deleted" x="642" y="0"/>
+</item>
+<item historyLabel="iServerGame.java" index="11">
+<position info="not_deleted" x="290" y="0"/>
+</item>
+<item historyLabel="GameController.java" index="10">
+<position info="not_deleted" x="2990" y="0"/>
+</item>
+<item historyLabel="iServerGame.java" index="11">
+<position info="not_deleted" x="82" y="0"/>
+</item>
+<item historyLabel="RemoteController.java" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="GameController.java" index="10">
+<position info="not_deleted" x="699" y="0"/>
+</item>
+<item historyLabel="RemoteController.java" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RmiStarter.java" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RemoteController.java" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Server.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PolicyFileLocator.java" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Server.java" index="8">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="iRemote.java" index="14">
-<position info="not_deleted" x="247" y="15"/>
+<position info="not_deleted" x="279" y="0"/>
 </item>
 <item historyLabel="Client.java" index="15">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Main.java" index="16">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Client.java" index="15">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RmiStarter.java" index="17">
+<item historyLabel="Table.java" index="16">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="Client.java" index="15">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PolicyFileLocator.java" index="18">
+<item historyLabel="Round.java" index="17">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="Client.java" index="15">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="ServerStarter.java" index="19">
+<item historyLabel="OwnCurrentBetComparator.java" index="18">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Server.java" index="20">
+<item historyLabel="Client.java" index="15">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="Server.java" index="20">
+<item historyLabel="iServerGame.java" index="19">
+<position info="not_deleted" x="121" y="0"/>
+</item>
+<item historyLabel="Client.java" index="15">
+<position info="not_deleted" x="228" y="0"/>
+</item>
+<item historyLabel="GameController.java" index="20">
 <position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Client.java" index="15">
+<position info="not_deleted" x="228" y="0"/>
+</item>
+<item historyLabel="Main.java" index="21">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RemoteController.java" index="22">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="GameController.java" index="23">
+<position info="not_deleted" x="699" y="0"/>
+</item>
+<item historyLabel="RemoteController.java" index="22">
+<position info="not_deleted" x="467" y="0"/>
+</item>
+<item historyLabel="Server.java" index="24">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Server.java" index="25">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="GameController.java" index="23">
+<position info="not_deleted" x="699" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -424,50 +429,50 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Server.java" tooltip="ProjectDragon/src/server/main/Server.java">
+<persistable path="/ProjectDragon/src/server/main/Server.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="ProjectDragon/src/server/main/Main.java">
+<persistable path="/ProjectDragon/src/server/main/Main.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameController.java" tooltip="ProjectDragon/src/client/ctrl/game/GameController.java">
+<persistable path="/ProjectDragon/src/client/ctrl/game/GameController.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OwnCurrentBetComparator.java" tooltip="ProjectDragon/src/model/player/OwnCurrentBetComparator.java">
+<persistable path="/ProjectDragon/src/model/player/OwnCurrentBetComparator.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Round.java" tooltip="ProjectDragon/src/model/game/Round.java">
+<persistable path="/ProjectDragon/src/model/game/Round.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Table.java" tooltip="ProjectDragon/src/model/game/Table.java">
+<persistable path="/ProjectDragon/src/model/game/Table.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Client.java" tooltip="ProjectDragon/src/client/main/Client.java">
+<persistable path="/ProjectDragon/src/client/main/Client.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PolicyFileLocator.java" tooltip="ProjectDragon/src/remote/PolicyFileLocator.java">
 <persistable path="/ProjectDragon/src/remote/PolicyFileLocator.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RmiStarter.java" tooltip="ProjectDragon/src/remote/RmiStarter.java">
 <persistable path="/ProjectDragon/src/remote/RmiStarter.java"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="iServerGame.java" tooltip="ProjectDragon/src/remote/iServerGame.java">
+<persistable path="/ProjectDragon/src/remote/iServerGame.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameController.java" tooltip="ProjectDragon/src/ctrl/game/GameController.java">
+<persistable path="/ProjectDragon/src/ctrl/game/GameController.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteController.java">
+<persistable path="/ProjectDragon/src/ctrl/game/RemoteController.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="ProjectDragon/src/client/main/Main.java">
 <persistable path="/ProjectDragon/src/client/main/Main.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Client.java" tooltip="ProjectDragon/src/client/main/Client.java">
-<persistable path="/ProjectDragon/src/client/main/Client.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HandEvaluator.java" tooltip="ProjectDragon/src/model/player/hand/HandEvaluator.java">
 <persistable path="/ProjectDragon/src/model/player/hand/HandEvaluator.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" tooltip="ProjectDragon/src/model/database/DatabaseCommunicator.java">
 <persistable path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EventBus.java" tooltip="ProjectDragon/src/event/EventBus.java">
-<persistable path="/ProjectDragon/src/event/EventBus.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Event.java" tooltip="ProjectDragon/src/event/Event.java">
-<persistable path="/ProjectDragon/src/event/Event.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ServerStarter.java" tooltip="ProjectDragon/src/server/main/ServerStarter.java">
-<persistable path="/ProjectDragon/src/server/main/ServerStarter.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="ProjectDragon/src/server/main/Main.java">
-<persistable path="/ProjectDragon/src/server/main/Main.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Server.java" tooltip="ProjectDragon/src/server/main/Server.java">
-<persistable path="/ProjectDragon/src/server/main/Server.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="iRemote.java" tooltip="ProjectDragon/src/remote/iRemote.java">
-<persistable path="/ProjectDragon/src/remote/iRemote.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Table.java" tooltip="ProjectDragon/src/model/game/Table.java">
-<persistable path="/ProjectDragon/src/model/game/Table.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Placement.java" tooltip="ProjectDragon/src/model/game/Placement.java">
-<persistable path="/ProjectDragon/src/model/game/Placement.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Account.java" tooltip="ProjectDragon/src/model/player/Account.java">
-<persistable path="/ProjectDragon/src/model/player/Account.java"/>
 </file>
 </mruList>
 </workbench>

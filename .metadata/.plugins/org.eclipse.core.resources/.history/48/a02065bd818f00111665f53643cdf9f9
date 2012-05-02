@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import remote.iRemote;
 import remote.iServerGame;
+import server.main.Server;
 
 /**
  * @author robinandersson

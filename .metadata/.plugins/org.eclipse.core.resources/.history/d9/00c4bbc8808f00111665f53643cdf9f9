@@ -3,7 +3,6 @@ package model.game;
 import static org.junit.Assert.*;
 
 import model.card.Card;
-import model.card.CardComparator;
 
 import org.junit.Test;
 /**
