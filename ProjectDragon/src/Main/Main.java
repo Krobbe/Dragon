@@ -20,12 +20,13 @@ import utilities.IllegalRaiseException;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
 import view.menu.MenuView;
+import view.table.TableView;
 import ctrl.game.GameController;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		new MenuView();
+		new TableView();
 		try {
 			new Main().run();
 		} catch (PlayersFullException e) {

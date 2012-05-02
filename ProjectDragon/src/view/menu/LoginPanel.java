@@ -36,7 +36,7 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == loginButton) {
-			EventBus.publish(new Event(Event.Tag.LOGIN, 1));
+			EventBus.publish(new Event(Event.Tag.LOGIN, ("loginNameField.getText() " + "loginPasswordField.getText()")));
 		} else if (e.getSource() == loginRegisterButton) {
 			EventBus.publish(new Event(Event.Tag.GO_TO_REGISTER, 1));
 		}
