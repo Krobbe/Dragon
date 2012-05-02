@@ -12,34 +12,41 @@ import event.EventBus;
 import event.EventHandler;
 
 @SuppressWarnings("serial")
-public class MainMenuPanel extends JPanel implements ActionListener, EventHandler{
-	
+public class MainMenuPanel extends JPanel implements ActionListener,
+		EventHandler {
+
 	private JButton mainLogoutButton;
 	private JButton mainJoinTableButton;
 	private JButton mainCreateTableButton;
-	private JButton mainViewStatisticsButton;
-	
-	
+	private JButton mainStatisticsButton;
+
 	public MainMenuPanel() {
 		init();
 		EventBus.register(this);
 	}
-	
+
 	@Override
 	public void onEvent(Event evt) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getSource() == mainJoinTableButton) {
+			EventBus.publish(new Event(Event.Tag.GO_TO_JOINTABLE, 1));
+		} else if (e.getSource() == mainCreateTableButton) {
+			EventBus.publish(new Event(Event.Tag.GO_TO_CREATETABLE, 1));
+		} else if (e.getSource() == mainStatisticsButton) {
+			EventBus.publish(new Event(Event.Tag.GO_TO_STATISTICS, 1));
+		} else if (e.getSource() == mainLogoutButton) {
+			EventBus.publish(new Event(Event.Tag.LOGOUT, 1));
+		}
 	}
-	
+
 	private void init() {
 		JPanel mainPanel = new JPanel();
-//		frame.getContentPane().add(mainPanel);
+		// frame.getContentPane().add(mainPanel);
 		mainPanel.setLayout(null);
 
 		mainLogoutButton = new JButton("Log out");
@@ -60,11 +67,11 @@ public class MainMenuPanel extends JPanel implements ActionListener, EventHandle
 		mainCreateTableButton.addActionListener(this);
 		mainPanel.add(mainCreateTableButton);
 
-		mainViewStatisticsButton = new JButton("View statistics");
-		mainViewStatisticsButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		mainViewStatisticsButton.setBounds(704, 292, 167, 146);
-		mainViewStatisticsButton.addActionListener(this);
-		mainPanel.add(mainViewStatisticsButton);
+		mainStatisticsButton = new JButton("View statistics");
+		mainStatisticsButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		mainStatisticsButton.setBounds(704, 292, 167, 146);
+		mainStatisticsButton.addActionListener(this);
+		mainPanel.add(mainStatisticsButton);
 	}
 
 }

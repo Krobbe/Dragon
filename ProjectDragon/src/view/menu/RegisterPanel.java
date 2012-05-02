@@ -15,35 +15,38 @@ import event.EventBus;
 import event.EventHandler;
 
 @SuppressWarnings("serial")
-public class RegisterPanel extends JPanel implements ActionListener, EventHandler{
-	
+public class RegisterPanel extends JPanel implements ActionListener,
+		EventHandler {
+
 	private JButton registerRegisterButton;
 	private JButton registerBackButton;
 	private JTextField registerNameField;
 	private JPasswordField registerPassword;
 	private JPasswordField registerPasswordAgainField;
-	
-	
+
 	public RegisterPanel() {
 		init();
 		EventBus.register(this);
 	}
-	
+
 	@Override
 	public void onEvent(Event evt) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getSource() == registerRegisterButton) {
+			EventBus.publish(new Event(Event.Tag.REGISTER_ACCOUNT, 1));
+		} else if (e.getSource() == registerBackButton) {
+			EventBus.publish(new Event(Event.Tag.REGISTER_BACK, 1));
+		}
 	}
-	
+
 	private void init() {
 		JPanel registerPanel = new JPanel();
-//		frame.getContentPane().add(registerPanel);
+		// frame.getContentPane().add(registerPanel);
 		registerPanel.setLayout(null);
 
 		JLabel registerNameLabel = new JLabel("User name\r\n");

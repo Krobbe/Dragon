@@ -15,7 +15,8 @@ import event.EventBus;
 import event.EventHandler;
 
 @SuppressWarnings("serial")
-public class JoinTablePanel extends JPanel implements ActionListener, EventHandler {
+public class JoinTablePanel extends JPanel implements ActionListener,
+		EventHandler {
 
 	private JButton joinTableBackButton;
 	private JButton joinTableJoinButton;
@@ -34,11 +35,14 @@ public class JoinTablePanel extends JPanel implements ActionListener, EventHandl
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+		if (e.getSource() == joinTableJoinButton) {
+			EventBus.publish(new Event(Event.Tag.JOIN_TABLE, 1));
+		} else if (e.getSource() == joinTableBackButton) {
+			EventBus.publish(new Event(Event.Tag.JOINTABLE_BACK, 1));
+		}
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked"})
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void init() {
 		JPanel joinTablePanel = new JPanel();
 		// frame.getContentPane().add(joinTablePanel);

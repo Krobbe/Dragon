@@ -17,7 +17,8 @@ import event.EventBus;
 import event.EventHandler;
 
 @SuppressWarnings("serial")
-public class CreateTablePanel extends JPanel implements ActionListener, EventHandler {
+public class CreateTablePanel extends JPanel implements ActionListener,
+		EventHandler {
 
 	private JTextField createTableNameField;
 	private JPasswordField createTablePasswordField;
@@ -32,14 +33,17 @@ public class CreateTablePanel extends JPanel implements ActionListener, EventHan
 
 	@Override
 	public void onEvent(Event evt) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+		if (e.getSource() == createTableCreateButton) {
+			EventBus.publish(new Event(Event.Tag.CREATE_TABLE, 1));
+			// TODO Skicka med antal spelare?
+		} else if (e.getSource() == createTableBackButton) {
+			EventBus.publish(new Event(Event.Tag.CREATETABLE_BACK, 1));
+		}
 	}
 
 	private void init() {

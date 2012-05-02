@@ -14,36 +14,36 @@ import event.Event;
 import event.EventBus;
 import event.EventHandler;
 
-
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel implements ActionListener, EventHandler {
-	
+
 	private JTextField loginNameField;
 	private JPasswordField loginPasswordField;
 	private JButton loginButton;
 	private JButton loginRegisterButton;
-	
-	
+
 	public LoginPanel() {
 		init();
 		EventBus.register(this);
 	}
-	
+
 	@Override
 	public void onEvent(Event evt) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getSource() == loginButton) {
+			EventBus.publish(new Event(Event.Tag.LOGIN, 1));
+		} else if (e.getSource() == loginRegisterButton) {
+			EventBus.publish(new Event(Event.Tag.GO_TO_REGISTER, 1));
+		}
 	}
-	
+
 	private void init() {
 		JPanel loginPanel = new JPanel();
-//		frame.getContentPane().add(loginPanel);
 		loginPanel.setLayout(null);
 
 		JLabel loginNameLabel = new JLabel("User name");
