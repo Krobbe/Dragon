@@ -44,8 +44,10 @@ public class Main {
 	
 	public void run() throws PlayersFullException, TableCardsFullException, 
 	IllegalCheckException, IllegalCallException, IllegalRaiseException {
+		
 		Table table = new Table();
 		GameController gc = new GameController(table);
+		
 		iPlayer player1 = new User(new Player(new TexasHoldemHand(true),
 				"Mattias H", new Balance(60)));
 		iPlayer player2 = new User(new Player(new TexasHoldemHand(true),
@@ -58,8 +60,11 @@ public class Main {
 		table.addPlayer(player3); table.addPlayer(player4);
 		
 		Scanner in = new Scanner(System.in);
+		
 		while(true) {
+		
 			gc.nextRound();
+			
 			while(true) {
 				List<iPlayer> winners = null;
 				System.out.println(table);
@@ -84,11 +89,11 @@ public class Main {
 					throw new IllegalArgumentException("Command not supported!!");
 				}
 				
-				List<iPlayer> activePlayers = table.getActivePlayers();
 				if (table.isBettingDone()) {
 					gc.handleAllIn();
 					winners = gc.nextBettingRound();
 				} 
+				
 				table.nextPlayer();
 				
 				/* slut på rundan ? */

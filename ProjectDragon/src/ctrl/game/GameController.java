@@ -89,29 +89,42 @@ public class GameController {
 
 	//TODO: Koden i call, raise, check, fold är lite lik. refactor?
 	/**
-	 * @author forssenm Method for handling the call scenario
+	 * Method for handling the call scenario
+	 * @author forssenm 
 	 * @author mattiashenriksson
 	 * @throws IllegalCallException 
 	 */
 	public void call() throws IllegalCallException {
 		iPlayer currentPlayer = table.getCurrentPlayer();
 		Pot currentPot = table.getRound().getPot();
-		int currentBetValue = table.getRound().getBettingRound().getCurrentBet().getValue();
+		int currentBetValue = 
+				table.getRound().getBettingRound().getCurrentBet().getValue();
 		
+		/* if there hasn't yet been any bets you should not be able to call*/
 		if (currentBetValue == -1 //TODO -1 nödvändig?
 				|| currentBetValue == 0) {
-			throw new IllegalCallException();
+			throw new IllegalCallException("There hasn't been any bets yet");
 		}
 		
-		if (currentBetValue > currentPlayer.getBalance().getValue() + currentPlayer.getOwnCurrentBet()) {
-			currentBetValue = currentPlayer.getBalance().getValue() + currentPlayer.getOwnCurrentBet();
+		/* if the player calls a bet which is bigger than his balance, the 
+		 * player will call with as much as his balance allows and move all-in
+		 */
+		if (currentBetValue > currentPlayer.getBalance().getValue() 
+				+ currentPlayer.getOwnCurrentBet()) {
+			currentBetValue = currentPlayer.getBalance().getValue() 
+				+ currentPlayer.getOwnCurrentBet();
 		}
 		
+		//TODO den här delen skulle kunna refactoreras kanske?
+		/* arrange the player's balance, bet and the pot according to the call 
+		 */
 		currentPlayer.getBalance().removeFromBalance(currentBetValue 
 				- currentPlayer.getOwnCurrentBet());
 		currentPot.addToPot(currentBetValue 
 				- currentPlayer.getOwnCurrentBet());
 		currentPlayer.setOwnCurrentBet(currentBetValue);
+		
+		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
 	}
 	
@@ -135,15 +148,25 @@ public class GameController {
 	public void raise(int amount) throws IllegalRaiseException {
 		iPlayer currentPlayer = table.getCurrentPlayer();
 		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
+		
+		/* you should not be able to raise a bigger amount than what you have
+		 * on your balance */
 		if(amount + currentPlayer.getOwnCurrentBet() <= 
 				currentBettingRound.getCurrentBet().getValue()) {
-			throw new IllegalRaiseException();
+			throw new IllegalRaiseException(
+					"Not enough money on balance to make that raise");
 		}
+		
+		/* arrange the player's balance, bet and the pot according to the raise 
+		 */
 		currentPlayer.getBalance().removeFromBalance(amount);
 		table.getRound().getPot().addToPot(amount);
 		currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
 						amount + currentPlayer.getOwnCurrentBet()));
-		currentPlayer.setOwnCurrentBet(amount + currentPlayer.getOwnCurrentBet());
+		currentPlayer.setOwnCurrentBet(
+				amount + currentPlayer.getOwnCurrentBet());
+		
+		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
 	}
 	
@@ -161,13 +184,18 @@ public class GameController {
 	 * Performs a check.
 	 * @throws IllegalCheckException 
 	 */
-	//TODO otestat: exception, setOwncurrentBet
+	//TODO otestad
 	public void check() throws IllegalCheckException {
 		iPlayer currentPlayer = table.getCurrentPlayer();
+		
+		/* if there is at bet bigger than your own current bet you should not
+		 * be able to check */
 		if (currentPlayer.getOwnCurrentBet() < table.getRound()
 				.getBettingRound().getCurrentBet().getValue()) {
-			throw new IllegalCheckException();
+			throw new IllegalCheckException(
+				"Your own current bet is lesser than the global current bet");
 		}
+		
 		currentPlayer.setDoneFirstTurn(true);
 	}
 	
