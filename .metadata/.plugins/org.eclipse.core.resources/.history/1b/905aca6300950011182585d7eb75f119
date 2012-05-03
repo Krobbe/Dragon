@@ -89,9 +89,14 @@ public class GameController {
 
 	//TODO: Koden i call, raise, check, fold Šr lite lik. refactor?
 	/**
+<<<<<<< HEAD
 	 * Method for handling the call scenario
-	 * 
 	 * @author forssenm 
+=======
+	 * Method for handling the call scenario.
+	 * 
+	 * @author forssenm
+>>>>>>> SDD tillagd
 	 * @author mattiashenriksson
 	 */
 	private void doCall() {
@@ -99,6 +104,15 @@ public class GameController {
 		Pot currentPot = table.getRound().getPot();
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
+<<<<<<< HEAD
+		
+		/* if there hasn't yet been any bets you should not be able to call*/
+		if (currentBetValue == -1 //TODO -1 nšdvŠndig?
+				|| currentBetValue == 0) {
+			throw new IllegalCallException("There hasn't been any bets yet");
+		}
+=======
+>>>>>>> SDD tillagd
 		
 		/* if the player calls a bet which is bigger than his balance, the 
 		 * player will call with as much as his balance allows and move all-in

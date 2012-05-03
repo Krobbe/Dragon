@@ -1,6 +1,5 @@
 package ctrl.game;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,7 +11,6 @@ import model.game.Pot;
 import model.game.SidePotHandler;
 import model.game.Table;
 import model.player.Bet;
-import model.player.OwnCurrentBetComparator;
 import model.player.iPlayer;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
@@ -89,63 +87,41 @@ public class GameController {
 
 	//TODO: Koden i call, raise, check, fold är lite lik. refactor?
 	/**
-	 * Method for handling the call scenario
-	 * 
-	 * @author forssenm 
+	 * @author forssenm Method for handling the call scenario
 	 * @author mattiashenriksson
+	 * @throws IllegalCallException 
 	 */
-	private void doCall() {
+	public void call() throws IllegalCallException {
 		iPlayer currentPlayer = table.getCurrentPlayer();
 		Pot currentPot = table.getRound().getPot();
-		int currentBetValue = 
-				table.getRound().getBettingRound().getCurrentBet().getValue();
+		int currentBetValue = table.getRound().getBettingRound().getCurrentBet().getValue();
 		
-		/* if the player calls a bet which is bigger than his balance, the 
-		 * player will call with as much as his balance allows and move all-in
-		 */
-		if (currentBetValue > currentPlayer.getBalance().getValue() 
-				+ currentPlayer.getOwnCurrentBet()) {
-			currentBetValue = currentPlayer.getBalance().getValue() 
-				+ currentPlayer.getOwnCurrentBet();
+		if (currentBetValue == -1 //TODO -1 nödvändig?
+				|| currentBetValue == 0) {
+			throw new IllegalCallException();
 		}
 		
-		//TODO den här delen skulle kunna refactoreras kanske?
-		/* arrange the player's balance, bet and the pot according to the call 
-		 */
+		if (currentBetValue > currentPlayer.getBalance().getValue() + currentPlayer.getOwnCurrentBet()) {
+			currentBetValue = currentPlayer.getBalance().getValue() + currentPlayer.getOwnCurrentBet();
+		}
+		
 		currentPlayer.getBalance().removeFromBalance(currentBetValue 
 				- currentPlayer.getOwnCurrentBet());
 		currentPot.addToPot(currentBetValue 
 				- currentPlayer.getOwnCurrentBet());
 		currentPlayer.setOwnCurrentBet(currentBetValue);
-		
-		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
 	}
 	
-	/**
-	 * Checks if a call is valid and does a call if it is valid.
-	 * 
-	 * @author lisastenberg
-	 * @param bet	The placed bet.
-	 * @return true if call is a valid action.
-	 * @throws IllegalCallException
-	 */
-	public boolean call(Bet bet) throws IllegalCallException{
-		//Gör call ovanför om call blir giltlig
-		int currentBetValue = 
-				table.getRound().getBettingRound().getCurrentBet().getValue();
-
-		if(!table.getCurrentPlayer().equals(bet.getOwner()) || 
-				currentBetValue != bet.getValue()){
-			return false;
-		} else if (currentBetValue == -1 //TODO -1 nödvändig? 
-				|| currentBetValue == 0) {
-			throw new IllegalCallException();
-		} else {
-			doCall();
-			//TODO: publish()
+	public boolean call(Bet bet) {
+		
+		boolean validCall = true;
+		
+		if(!table.getCurrentPlayer().equals(bet.getOwner())){
+			validCall = false;
 		}
-		return true;
+		
+		return validCall;
 	}
 	
 	/**
@@ -157,25 +133,15 @@ public class GameController {
 	public void raise(int amount) throws IllegalRaiseException {
 		iPlayer currentPlayer = table.getCurrentPlayer();
 		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
-		
-		/* you should not be able to raise a bigger amount than what you have
-		 * on your balance */
 		if(amount + currentPlayer.getOwnCurrentBet() <= 
 				currentBettingRound.getCurrentBet().getValue()) {
-			throw new IllegalRaiseException(
-					"Not enough money on balance to make that raise");
+			throw new IllegalRaiseException();
 		}
-		
-		/* arrange the player's balance, bet and the pot according to the raise 
-		 */
 		currentPlayer.getBalance().removeFromBalance(amount);
 		table.getRound().getPot().addToPot(amount);
 		currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
 						amount + currentPlayer.getOwnCurrentBet()));
-		currentPlayer.setOwnCurrentBet(
-				amount + currentPlayer.getOwnCurrentBet());
-		
-		/* the player has now done a move */
+		currentPlayer.setOwnCurrentBet(amount + currentPlayer.getOwnCurrentBet());
 		currentPlayer.setDoneFirstTurn(true);
 	}
 	
@@ -194,23 +160,13 @@ public class GameController {
 	 * @throws IllegalCheckException 
 	 */
 	//TODO otestat: exception, setOwncurrentBet
-	public boolean check(Bet bet) throws IllegalCheckException {
+	public void check() throws IllegalCheckException {
 		iPlayer currentPlayer = table.getCurrentPlayer();
-		
-		if(!currentPlayer.equals(bet.getOwner())) {
-			return false;
-		}
-		
-		/* if there is at bet bigger than your own current bet you should not
-		 * be able to check */
 		if (currentPlayer.getOwnCurrentBet() < table.getRound()
 				.getBettingRound().getCurrentBet().getValue()) {
-			throw new IllegalCheckException(
-				"Your own current bet is lesser than the global current bet");
+			throw new IllegalCheckException();
 		}
-		
 		currentPlayer.setDoneFirstTurn(true);
-		return true;
 	}
 	
 	/**
@@ -384,51 +340,5 @@ public class GameController {
 			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
 		}
 		return winners;
-	}
-	
-	/**
-	 * Performs the actions which occur when a player has gone all-in 
-	 */
-	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande?
-	public void handleAllIn() {
-		List<iPlayer> allInPlayers = table.getAllInPlayers();
-		List<iPlayer> activePlayers = table.getActivePlayers();
-		List<SidePotHandler> sidePots = table.getSidePots();
-		
-		/* sort allInPlayers so that the next task is performed in the correct
-		 * order */
-		Collections.sort(allInPlayers, new OwnCurrentBetComparator());
-		
-		/* for each player that has gone all-in a SidePotHandler containing '
-		 * info regarding that all-in case is created */
-		for (iPlayer p : allInPlayers) {
-			
-				/* calculate how big the all-in bet was and conduct neccesary 
-				 * changes according to this bet */
-				int allInAmount = p.getOwnCurrentBet();
-				int sidePotValue = allInAmount * activePlayers.size() 
-						+ table.getRound().getPreBettingPot().getValue();
-				for (iPlayer ap : activePlayers) {
-					ap.setOwnCurrentBet(ap.getOwnCurrentBet() - allInAmount);
-				}
-				table.getRound().getPreBettingPot().emptyPot();
-				table.getRound().getPot().removeFromPot(sidePotValue);
-				
-				/* create the sidepot */
-				Pot sidePot = new Pot(sidePotValue);
-				sidePots.add(new SidePotHandler(table.getActivePlayers(), sidePot));
-		
-				/* controll prints */
-	            System.out.println("\n\n-------------------------------\n" + 
-	            "SIDEPOT ADDED\n");
-	            System.out.println("sidePotValue: " + sidePotValue + "\n");
-	            System.out.println("ADDED PLAYERS:");
-	            for (iPlayer ap : table.getActivePlayers() )
-	            	System.out.println(ap.getName());
-	            System.out.println("\n-----------------------------------\n");
-				
-	            /* the all-in player should after this not longer be active */
-	            p.setActive(false);
-		} 
 	}
 }

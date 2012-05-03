@@ -42,7 +42,8 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 	@Override
 	public boolean check() throws IllegalCheckException {
 		return false;
-		//return gameController.check(bet));
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
