@@ -84,57 +84,9 @@ public class Main {
 					throw new IllegalArgumentException("Command not supported!!");
 				}
 				
-				/* dags för ny bettinground? */
-				boolean isBettingDone = true;
 				List<iPlayer> activePlayers = table.getActivePlayers();
-				for (iPlayer ap: activePlayers) {
-					if (activePlayers.get(0).getOwnCurrentBet() != ap.getOwnCurrentBet()) {
-						//TODO slå ihop två if-metoder till en med && ?
-						if (ap.getBalance().getValue() != 0) {
-							isBettingDone = false;
-						}
-					}
-					if (!ap.getDoneFirstBet()) {
-						isBettingDone = false;
-					}
-				}
-				
-				if (isBettingDone) {
-					/*hantera all-in */
-					
-					/* vilka är all-in? */
-					List<iPlayer> allInPlayers = new ArrayList<iPlayer>();
-					for (iPlayer ap : activePlayers) {
-						if (ap.getBalance().getValue() == 0) {
-							allInPlayers.add(ap);
-						}
-					}
-					/* lägg undan i sidePotHandlers */
-					Collections.sort(allInPlayers, new OwnCurrentBetComparator());
-					List<SidePotHandler> sidePots = table.getSidePots();
-					for (iPlayer p : allInPlayers) {
-							int allInAmount = p.getOwnCurrentBet();
-							int sidePotValue = allInAmount * activePlayers.size() 
-									+ table.getRound().getPreBettingPot().getValue();
-							for (iPlayer ap : activePlayers) {
-								ap.setOwnCurrentBet(ap.getOwnCurrentBet() - allInAmount);
-							}
-							table.getRound().getPreBettingPot().emptyPot();
-							table.getRound().getPot().removeFromPot(sidePotValue);
-							Pot sidePot = new Pot(sidePotValue);
-							sidePots.add(new SidePotHandler(table.getActivePlayers(), sidePot));
-					
-							/* utskrifter för kontroll.. */
-				            System.out.println("\n\n-------------------------------\n" + 
-				            "SIDEPOT ADDED\n");
-				            System.out.println("sidePotValue: " + sidePotValue + "\n");
-				            System.out.println("ADDED PLAYERS:");
-				            for (iPlayer ap : table.getActivePlayers() )
-				            	System.out.println(ap.getName());
-				            System.out.println("\n-----------------------------------\n");
-							p.setActive(false);
-					} 
-					/* vid showdown hanteras alla sidePots */
+				if (table.isBettingDone()) {
+					gc.handleAllIn();
 					winners = gc.nextBettingRound();
 				} 
 				table.nextPlayer();
@@ -142,12 +94,6 @@ public class Main {
 				/* slut på rundan ? */
 				if (winners != null) {
 					System.out.println("Round ended...");
-					/*for (iPlayer p : winners) {
-						System.out.println("\nWinner: " + p.getName());
-						HandValueType hvt = table.getHandTypes().get(p);
-						System.out.print(hvt);
-						System.out.println(table.getHandTypes().toString());
-					}*/
 					break;
 				}
 			}

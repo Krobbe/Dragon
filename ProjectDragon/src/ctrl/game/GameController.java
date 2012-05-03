@@ -1,5 +1,6 @@
 package ctrl.game;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -11,6 +12,7 @@ import model.game.Pot;
 import model.game.SidePotHandler;
 import model.game.Table;
 import model.player.Bet;
+import model.player.OwnCurrentBetComparator;
 import model.player.iPlayer;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
@@ -340,5 +342,51 @@ public class GameController {
 			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
 		}
 		return winners;
+	}
+	
+	/**
+	 * Performs the actions which occur when a player has gone all-in 
+	 */
+	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande?
+	public void handleAllIn() {
+		List<iPlayer> allInPlayers = table.getAllInPlayers();
+		List<iPlayer> activePlayers = table.getActivePlayers();
+		List<SidePotHandler> sidePots = table.getSidePots();
+		
+		/* sort allInPlayers so that the next task is performed in the correct
+		 * order */
+		Collections.sort(allInPlayers, new OwnCurrentBetComparator());
+		
+		/* for each player that has gone all-in a SidePotHandler containing '
+		 * info regarding that all-in case is created */
+		for (iPlayer p : allInPlayers) {
+			
+				/* calculate how big the all-in bet was and conduct neccesary 
+				 * changes according to this bet */
+				int allInAmount = p.getOwnCurrentBet();
+				int sidePotValue = allInAmount * activePlayers.size() 
+						+ table.getRound().getPreBettingPot().getValue();
+				for (iPlayer ap : activePlayers) {
+					ap.setOwnCurrentBet(ap.getOwnCurrentBet() - allInAmount);
+				}
+				table.getRound().getPreBettingPot().emptyPot();
+				table.getRound().getPot().removeFromPot(sidePotValue);
+				
+				/* create the sidepot */
+				Pot sidePot = new Pot(sidePotValue);
+				sidePots.add(new SidePotHandler(table.getActivePlayers(), sidePot));
+		
+				/* controll prints */
+	            System.out.println("\n\n-------------------------------\n" + 
+	            "SIDEPOT ADDED\n");
+	            System.out.println("sidePotValue: " + sidePotValue + "\n");
+	            System.out.println("ADDED PLAYERS:");
+	            for (iPlayer ap : table.getActivePlayers() )
+	            	System.out.println(ap.getName());
+	            System.out.println("\n-----------------------------------\n");
+				
+	            /* the all-in player should after this not longer be active */
+	            p.setActive(false);
+		} 
 	}
 }

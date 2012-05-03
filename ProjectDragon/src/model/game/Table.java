@@ -152,6 +152,7 @@ public class Table {
 	 * Makes a players cards visible
 	 * @param p The player which cards will be set visible
 	 */
+	//TODO denna i player ist? mindre beroende?
 	public void makeHandVisible(iPlayer p) {
 		p.getHand().setVisible(true);
 	}
@@ -285,6 +286,51 @@ public class Table {
 				hand.discard();
 		}
         return winners;
+    }
+    
+    /**
+     * This method checks if the players has all done their bets properly and 
+     * the betting for the current round is therefore done
+     * @return a boolean telling whether betting for the current round is done.
+     */
+    //TODO denna här eller i kontrollern?
+    public boolean isBettingDone() {
+    	boolean bettingDone = true;
+		List<iPlayer> activePlayers = getActivePlayers();
+		
+		for (iPlayer ap: activePlayers) {
+			
+			/* if all players hasn't posted the same bet the betting isn't done,
+			 * unless the players who hasn't done this is all-in */
+			if (activePlayers.get(0).getOwnCurrentBet() != ap.getOwnCurrentBet()
+					//TODO ändra till player.isAllIn?
+					&& ap.getBalance().getValue() != 0) {
+					bettingDone = false;
+			}
+			
+			/* if all players hasn't got the chance to make a move betting isn't
+			 * done */
+			if (!ap.getDoneFirstBet()) {
+				bettingDone = false;
+			}
+		}
+		return bettingDone;
+    }
+    
+    /**
+     * 
+     * @return a list containing the players who has currently gone all-in
+     */
+    public List<iPlayer> getAllInPlayers() {
+    	List<iPlayer> allInPlayers = new ArrayList<iPlayer>();
+    	
+		for (iPlayer ap : getActivePlayers()) {
+			//TODO ändra till player.isAllIn?
+			if (ap.getBalance().getValue() == 0) {
+				allInPlayers.add(ap);
+			}
+		}
+		return allInPlayers;
     }
 	
 	/**
