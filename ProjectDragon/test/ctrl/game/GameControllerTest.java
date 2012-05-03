@@ -28,7 +28,9 @@ import utilities.TableCardsFullException;
  */
 
 public class GameControllerTest {
-
+	
+	//TODO ta bort dessa? testar numera privata metoder
+	/*
 	@Test
 	public void testShowFlop() throws TableCardsFullException {
 		Table t = new Table();
@@ -49,7 +51,7 @@ public class GameControllerTest {
 		int tableCardsLengthT = t.getTableCards().size();
 		assertTrue(tableCardsLengthT - tableCardsLengthT0 == 1);
 	}
-	
+	*/
 	@Test
 	public void testRaise() throws PlayersFullException, IllegalRaiseException {
 		Table t = new Table();

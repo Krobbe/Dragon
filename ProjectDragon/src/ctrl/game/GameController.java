@@ -48,9 +48,8 @@ public class GameController {
 	 * Adds a new card to the "table cards"
 	 * @throws TableCardsFullException 
 	 */
-	//TODO private?
 	//TODO skulle kunna vara i table?
-	public void showRiver() throws TableCardsFullException {
+	private void showRiver() throws TableCardsFullException {
 		Dealer dealer = table.getDealer();
 		Card c = dealer.getRiver();
 		table.addTableCard(c);
@@ -60,9 +59,8 @@ public class GameController {
 	 * Adds three new cards to the "table cards"
 	 * @throws TableCardsFullException 
 	 */
-	//TODO private?
 	//TODO skulle kunna vara i table?
-	public void showFlop() throws TableCardsFullException {
+	private void showFlop() throws TableCardsFullException {
 		Dealer dealer = table.getDealer();
 		List<Card> flop = dealer.getFlop();
 		for (Card c : flop) {
@@ -220,9 +218,11 @@ public class GameController {
 	 */
 	//TODO nödvändig här? den finns ju redan i table. dock lite annorulunda nu..
 	//TODO snygga till?
-	public List<iPlayer> preformShowdown(List<iPlayer> plrs, int potAmount) throws TableCardsFullException {
+	//TODO bör distribute pot plockas ur denna och stå för sig själv?
+	//TODO en performShowdown och en doShowdown = snurrigt?
+	public List<iPlayer> performShowdown(List<iPlayer> plrs, int potAmount) throws TableCardsFullException {
 		
-		/* put the rigth amount of table cards on the table */
+		/* put all the community cards out on the table */
 		int tableCardsSize = table.getTableCards().size();
 		if (tableCardsSize == 0) {
 			showFlop();
@@ -235,7 +235,7 @@ public class GameController {
 			showRiver();
 		}
 		
-		/* showdown */
+		/* do showdown */
 		return table.doShowdown(plrs, potAmount);
 	}
 	
@@ -244,8 +244,10 @@ public class GameController {
 	 */
 	//TODO Bättre java-doc?
 	public void nextRound() {
-		//TODO distribute pot?
 		List<iPlayer> players = table.getPlayers();
+		
+		/* set the table in a "initial" mode, in other words clear all bets
+		 * and pots, discard all hands etc. */
 		table.getRound().getPot().emptyPot();
 		table.getRound().getPreBettingPot().emptyPot();
 		table.clearTableCards();
@@ -258,17 +260,18 @@ public class GameController {
 				p.setActive(true);
 			}
 		}
-		table.getRound().getPot().emptyPot();
+		
+		/* new cards for all active players*/
 		table.getDealer().newDeck();
 		distributeCards();
-		//TODO kolla så detta inte görs nån annanstans..
+
+		/* give dealer button to the right player*/
 		table.nextDealerButtonIndex();
 		postBlinds();
 		
 		/* set the turn to the right player */
 		//TODO funkar för två spelare?, detta görs på ett flertal ställen = 
 		//		refactor? 
-
 		int indexOfCurrentPlayer = table.getDealerButtonIndex();
 		for (int i = 0; i < 3; i++) {
 			do {
@@ -329,7 +332,7 @@ public class GameController {
 					new Bet(smallBlindPlayer,smallBlind));
 		}
 		
-		/* if a player has gone all-in they shall not be able to act */
+		/* if a player has gone all-in he shall not be able to act */
 		//TODO ska denna vara här?
 		if (bigBlindPlayer.getBalance().getValue() == 0) {
 			bigBlindPlayer.setDoneFirstTurn(true);
@@ -369,12 +372,12 @@ public class GameController {
 			List<SidePotHandler> sidePots = table.getSidePots();
 			if (sidePots != null) {
 				for (SidePotHandler sph : sidePots) {
-					winners = preformShowdown(sph.getPlayers(),sph.getPot().getValue());
+					winners = performShowdown(sph.getPlayers(),sph.getPot().getValue());
 				}
 			}
 			
 			if (table.getActivePlayers().size() != 0) { /* om alla spelare var all-in ska inte denna göras */
-				winners = preformShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
+				winners = performShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
 			}
 		} else if (table.getTableCards().size() == 0) {
 			showFlop();
@@ -431,4 +434,5 @@ public class GameController {
 	            p.setActive(false);
 		} 
 	}
+
 }

@@ -89,6 +89,7 @@ public class Table {
 	 * @author robinandersson
 	 * @author mattiashenriksson
 	 */
+	//TODO annat namn på denna?
 	//TODO Test nextDealerButtonPlayer()
 	//TODO Discuss and implement a possible better solution to dealer button
 	public int nextDealerButtonIndex() {
@@ -200,11 +201,9 @@ public class Table {
 		 */
 		for (int i = 1; i <= 2; i++) {
 
-			for (iPlayer player : players) {
+			for (iPlayer player : getActivePlayers()) {
 
-				if (player.isActive()) {
-					player.addCard(dealer.popCard());
-				}
+				player.addCard(dealer.popCard());
 			}
 		}
 
