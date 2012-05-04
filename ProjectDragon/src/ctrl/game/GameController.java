@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import event.Event;
+import event.EventBus;
+import event.EventHandler;
+
 import model.card.Card;
 import model.game.BettingRound;
 import model.game.Dealer;
@@ -28,7 +32,7 @@ import utilities.TableCardsFullException;
  * 
  */
 
-public class GameController {
+public class GameController implements EventHandler{
 
 	private Table table;
 	
@@ -38,6 +42,7 @@ public class GameController {
 	 */
 	public GameController() {
 		this(new Table());
+		EventBus.register(this);
 	}
 
 	public GameController(Table table) {
@@ -433,6 +438,12 @@ public class GameController {
 	            /* the all-in player should after this not longer be active */
 	            p.setActive(false);
 		} 
+	}
+
+	@Override
+	public void onEvent(Event evt) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
