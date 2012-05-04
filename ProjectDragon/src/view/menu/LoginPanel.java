@@ -75,6 +75,7 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler {
 
 		JLabel noAccountLabel = new JLabel("Don't have an account?" + "\n" + "");
 		noAccountLabel.setBounds(447, 386, 113, 14);
+		noAccountLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		this.add(noAccountLabel);
 
 		loginRegisterButton = new JButton("Register");
