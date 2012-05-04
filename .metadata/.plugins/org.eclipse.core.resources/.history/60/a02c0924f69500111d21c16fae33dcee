@@ -136,7 +136,8 @@ public class GameController implements EventHandler{
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
 
-		if(!table.getCurrentPlayer().equals(bet.getOwner())) {
+		if(!table.getCurrentPlayer().equals(bet.getOwner()) || 
+				currentBetValue != bet.getValue()){
 			return false;
 		} else if (currentBetValue == -1 //TODO -1 nödvändig? 
 				|| currentBetValue == 0) {
@@ -214,7 +215,7 @@ public class GameController implements EventHandler{
 			return false;
 		}
 		
-		/* if there is a bet bigger than your own current bet you should not
+		/* if there is at bet bigger than your own current bet you should not
 		 * be able to check */
 		if (currentPlayer.getOwnCurrentBet() < table.getRound()
 				.getBettingRound().getCurrentBet().getValue()) {

@@ -7,7 +7,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import model.player.Bet;
-import model.player.iPlayer;
 
 import remote.iServerGame;
 import utilities.IllegalCallException;
@@ -18,7 +17,6 @@ import utilities.IllegalRaiseException;
  * A class that manages all communication to and from the server
  * 
  * @author robinandersson
- * @author lisastenberg
  *
  */
 public class RemoteGameController extends UnicastRemoteObject implements iServerGame{
@@ -34,24 +32,31 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		this.gameController = gameController;
 	}
 
+
 	@Override
 	public boolean call(Bet bet) {
 		return gameController.call(bet);
+		
 	}
 
 	@Override
-	public boolean check(Bet bet) throws IllegalCheckException {
-		return gameController.check(bet);
+	public boolean check() throws IllegalCheckException {
+		return false;
+		//return gameController.check(bet));
 	}
 
 	@Override
-	public boolean raise(Bet bet) throws IllegalRaiseException {
-		return gameController.raise(bet);
+	public boolean raise(int amount) throws IllegalRaiseException {
+		return false;
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public boolean fold(iPlayer player) {
-		return gameController.fold(player);
+	public boolean fold() {
+		return false;
+		// TODO Auto-generated method stub
+		
 	}
 
 

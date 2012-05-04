@@ -136,7 +136,8 @@ public class GameController implements EventHandler{
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
 
-		if(!table.getCurrentPlayer().equals(bet.getOwner())) {
+		if(!table.getCurrentPlayer().equals(bet.getOwner()) || 
+				currentBetValue != bet.getValue()){
 			return false;
 		} else if (currentBetValue == -1 //TODO -1 nödvändig? 
 				|| currentBetValue == 0) {
@@ -154,19 +155,12 @@ public class GameController implements EventHandler{
 	 * @throws IllegalRaiseException 
 	 */
 	//TODO delvis otestad
-	public boolean raise(Bet bet) {
+	public void raise(int amount) {
 		iPlayer currentPlayer = table.getCurrentPlayer();
-		if(!currentPlayer.equals(bet.getOwner())) {
-			return false;
-		}
-		
-		//The amount the player wants to raise with
-		int amount = bet.getValue() - currentPlayer.getOwnCurrentBet();
 		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
 		
 		/* you should not be able to raise a bigger amount than what you have
 		 * on your balance */
-		//TODO: Betyder den här koden verkligen det?
 		if(amount + currentPlayer.getOwnCurrentBet() <= 
 				currentBettingRound.getCurrentBet().getValue()) {
 			throw new IllegalRaiseException(
@@ -184,22 +178,16 @@ public class GameController implements EventHandler{
 		
 		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
-		return true;
 	}
 	
 	/**
 	 * Performs a fold.
 	 */
 	//TODO Delvis otestad
-	public boolean fold(iPlayer player) {
-		//Check if the player is allowed to fold.
-		if(!table.getCurrentPlayer().equals(player)) {
-			return false;
-		}
-		player.getHand().discard();
-		player.setActive(false);
-		player.setDoneFirstTurn(true);
-		return true;
+	public void fold() {
+		table.getCurrentPlayer().getHand().discard();
+		table.getCurrentPlayer().setActive(false);
+		table.getCurrentPlayer().setDoneFirstTurn(true);
 	}
 	
 	/**
@@ -214,7 +202,7 @@ public class GameController implements EventHandler{
 			return false;
 		}
 		
-		/* if there is a bet bigger than your own current bet you should not
+		/* if there is at bet bigger than your own current bet you should not
 		 * be able to check */
 		if (currentPlayer.getOwnCurrentBet() < table.getRound()
 				.getBettingRound().getCurrentBet().getValue()) {
@@ -256,6 +244,7 @@ public class GameController implements EventHandler{
 	/**
 	 * Performs actions required for starting a new round
 	 */
+	//TODO Bättre java-doc?
 	public void nextRound() {
 		List<iPlayer> players = table.getPlayers();
 		
@@ -482,7 +471,7 @@ public class GameController implements EventHandler{
 
 			case DO_FOLD:
 				
-				fold(table.getCurrentPlayer());
+				fold();
 				progressTurn();
 				break;
 				

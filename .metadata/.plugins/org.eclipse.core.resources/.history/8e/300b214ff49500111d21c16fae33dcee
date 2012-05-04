@@ -18,7 +18,6 @@ import utilities.IllegalRaiseException;
  * A class that manages all communication to and from the server
  * 
  * @author robinandersson
- * @author lisastenberg
  *
  */
 public class RemoteGameController extends UnicastRemoteObject implements iServerGame{
@@ -34,9 +33,11 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		this.gameController = gameController;
 	}
 
+
 	@Override
 	public boolean call(Bet bet) {
 		return gameController.call(bet);
+		
 	}
 
 	@Override
@@ -46,7 +47,8 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 
 	@Override
 	public boolean raise(Bet bet) throws IllegalRaiseException {
-		return gameController.raise(bet);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
