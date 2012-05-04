@@ -1,6 +1,6 @@
 package utilities;
 
-public class PlayersFullException extends Exception {
+public class PlayersFullException extends RuntimeException {
 	
 	public PlayersFullException() {
 		super();

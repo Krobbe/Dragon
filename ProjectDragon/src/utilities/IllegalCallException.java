@@ -1,6 +1,6 @@
 package utilities;
 
-public class IllegalCallException extends Exception{
+public class IllegalCallException extends RuntimeException{
 
 	public IllegalCallException() {
 		super();

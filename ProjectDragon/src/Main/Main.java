@@ -89,18 +89,20 @@ public class Main {
 					throw new IllegalArgumentException("Command not supported!!");
 				}
 				
+				/*
 				if (table.isBettingDone()) {
 					gc.handleAllIn();
-					winners = gc.nextBettingRound();
+					gc.nextBettingRound();
 				} 
 				
 				table.nextPlayer();
 				
-				/* slut på rundan ? */
+				/* slut på rundan ? */ /*
 				if (winners != null) {
 					System.out.println("Round ended...");
 					break;
 				}
+				*/
 			}
 		}
 	}

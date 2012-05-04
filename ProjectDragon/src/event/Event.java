@@ -23,7 +23,8 @@ public class Event {
     	JOIN_TABLE,
     	MAKE_BET,
     	DO_CALL,
-    	DO_FOLD
+    	DO_FOLD,
+    	DO_CHECK
     }
     private final Tag tag;
     // The new value 

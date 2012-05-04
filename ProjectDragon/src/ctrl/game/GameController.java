@@ -51,10 +51,9 @@ public class GameController implements EventHandler{
 
 	/**
 	 * Adds a new card to the "table cards"
-	 * @throws TableCardsFullException 
 	 */
 	//TODO skulle kunna vara i table?
-	private void showRiver() throws TableCardsFullException {
+	private void showRiver() {
 		Dealer dealer = table.getDealer();
 		Card c = dealer.getRiver();
 		table.addTableCard(c);
@@ -62,10 +61,9 @@ public class GameController implements EventHandler{
 
 	/**
 	 * Adds three new cards to the "table cards"
-	 * @throws TableCardsFullException 
 	 */
 	//TODO skulle kunna vara i table?
-	private void showFlop() throws TableCardsFullException {
+	private void showFlop() {
 		Dealer dealer = table.getDealer();
 		List<Card> flop = dealer.getFlop();
 		for (Card c : flop) {
@@ -133,7 +131,7 @@ public class GameController implements EventHandler{
 	 * @return true if call is a valid action.
 	 * @throws IllegalCallException
 	 */
-	public boolean call(Bet bet) throws IllegalCallException{
+	public boolean call(Bet bet) {
 		//Gör call ovanför om call blir giltlig
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
@@ -157,7 +155,7 @@ public class GameController implements EventHandler{
 	 * @throws IllegalRaiseException 
 	 */
 	//TODO delvis otestad
-	public void raise(int amount) throws IllegalRaiseException {
+	public void raise(int amount) {
 		iPlayer currentPlayer = table.getCurrentPlayer();
 		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
 		
@@ -197,7 +195,7 @@ public class GameController implements EventHandler{
 	 * @throws IllegalCheckException 
 	 */
 	//TODO otestat: exception, setOwncurrentBet
-	public boolean check(Bet bet) throws IllegalCheckException {
+	public boolean check(Bet bet) {
 		iPlayer currentPlayer = table.getCurrentPlayer();
 		
 		if(!currentPlayer.equals(bet.getOwner())) {
@@ -219,13 +217,12 @@ public class GameController implements EventHandler{
 	/**
 	 * Performs a showdown.
 	 * @return a list of the winning players of the current round.
-	 * @throws TableCardsFullException 
 	 */
 	//TODO nödvändig här? den finns ju redan i table. dock lite annorulunda nu..
 	//TODO snygga till?
 	//TODO bör distribute pot plockas ur denna och stå för sig själv?
 	//TODO en performShowdown och en doShowdown = snurrigt?
-	public List<iPlayer> performShowdown(List<iPlayer> plrs, int potAmount) throws TableCardsFullException {
+	public void performShowdown(List<iPlayer> plrs, int potAmount) {
 		
 		/* put all the community cards out on the table */
 		int tableCardsSize = table.getTableCards().size();
@@ -241,7 +238,7 @@ public class GameController implements EventHandler{
 		}
 		
 		/* do showdown */
-		return table.doShowdown(plrs, potAmount);
+		table.doShowdown(plrs, potAmount);
 	}
 	
 	/**
@@ -253,6 +250,7 @@ public class GameController implements EventHandler{
 		
 		/* set the table in a "initial" mode, in other words clear all bets
 		 * and pots, discard all hands etc. */
+		table.setShowdownDone(false);
 		table.getRound().getPot().emptyPot();
 		table.getRound().getPreBettingPot().emptyPot();
 		table.clearTableCards();
@@ -349,14 +347,11 @@ public class GameController implements EventHandler{
 	
 	/**
 	 * Performs actions required for starting a new betting round
-	 * @throws TableCardsFullException 
-	 * @throws PlayersFullException 
 	 */
 	//TODO Bättre java-doc och förklarande kommentarer?
 	//TODO övergripande metod = annat namn?
 	//TODO List<iPlayer> winners ful lösning?
-	public List<iPlayer> nextBettingRound() throws TableCardsFullException, PlayersFullException {
-		List<iPlayer> winners = null;
+	public void nextBettingRound() {
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
 		List<iPlayer> players = table.getPlayers();
 		for (iPlayer p : players) {
@@ -377,13 +372,14 @@ public class GameController implements EventHandler{
 			List<SidePotHandler> sidePots = table.getSidePots();
 			if (sidePots != null) {
 				for (SidePotHandler sph : sidePots) {
-					winners = performShowdown(sph.getPlayers(),sph.getPot().getValue());
+					performShowdown(sph.getPlayers(),sph.getPot().getValue());
 				}
 			}
 			
 			if (table.getActivePlayers().size() != 0) { /* om alla spelare var all-in ska inte denna göras */
-				winners = performShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
+				performShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
 			}
+			
 		} else if (table.getTableCards().size() == 0) {
 			showFlop();
 			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
@@ -391,7 +387,6 @@ public class GameController implements EventHandler{
 			showRiver();
 			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
 		}
-		return winners;
 	}
 	
 	/**
@@ -439,10 +434,50 @@ public class GameController implements EventHandler{
 	            p.setActive(false);
 		} 
 	}
+	
+	/**
+	 * This method evaluates what measures has to be done to make the game 
+	 * progress after a player has done a turn, and perform these measures
+	 */
+	private void progressTurn() {
+		
+		/* if the betting is done possibly all-in case must be handled and then
+		 * a new betting round should take place */
+		if (table.isBettingDone()) {
+			handleAllIn();
+			nextBettingRound();
+		} 
+		
+		/* set the turn to the next player*/
+		table.nextPlayer();
+		
+		/* if a showdown has been done a new round should take place */
+		if (table.isShowdownDone()) {
+			nextRound();
+		}
+		
+	}
 
 	@Override
 	public void onEvent(Event evt) {
-		// TODO Auto-generated method stub
+		
+		switch (evt.getTag()) {
+			
+			case DO_CHECK:
+				
+				check(new Bet(table.getCurrentPlayer(), 0));
+				progressTurn();
+				break;
+
+			case DO_FOLD:
+				
+				fold();
+				progressTurn();
+				break;
+				
+			default:
+				break;
+		}
 		
 	}
 

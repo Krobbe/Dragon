@@ -1,6 +1,6 @@
 package utilities;
 
-public class IllegalCheckException extends Exception{
+public class IllegalCheckException extends RuntimeException{
 	
 	public IllegalCheckException() {
 		super();

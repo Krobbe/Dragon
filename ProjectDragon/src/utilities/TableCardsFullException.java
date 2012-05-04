@@ -1,6 +1,6 @@
 package utilities;
 
-public class TableCardsFullException extends Exception {
+public class TableCardsFullException extends RuntimeException {
 
 	public TableCardsFullException() {
 		super();

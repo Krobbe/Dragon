@@ -30,6 +30,7 @@ public class Table {
 	private Dealer dealer;
 	private List<Card> tableCards;
 	private List<iPlayer> players;
+	private boolean showdownDone;
 	private int indexOfCurrentPlayer;
 	private int indexOfDealerButton;
 	private Map<iPlayer, HandValueType> handTypes = 
@@ -53,7 +54,7 @@ public class Table {
 	 * @param p The player that will be added to the list of players
 	 * @throws IllegalArgumentException if there are all ready ten players at the table
 	 */
-	public void addPlayer(iPlayer p) throws PlayersFullException {
+	public void addPlayer(iPlayer p) {
 		if (players.size() < 10) {
 			players.add(p);
 		} else {
@@ -134,7 +135,7 @@ public class Table {
 	 * @param c The card which will be added
 	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
-	public void addTableCard(Card c) throws TableCardsFullException {
+	public void addTableCard(Card c) {
 		if (tableCards.size() < 5) {
 			tableCards.add(c);
 		} else {
@@ -220,13 +221,15 @@ public class Table {
      * 
      * Performs the Showdown.
      */
-    public List<iPlayer> doShowdown(List<iPlayer> plrs, int potAmount) {
+    public void doShowdown(List<iPlayer> plrs, int potAmount) {
         // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
         Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers(plrs);
         for (HandValue handValue : rankedPlayers.keySet()) {
             // Get players with winning hand value.
             List<iPlayer> winners = rankedPlayers.get(handValue);
             distributePot(winners, potAmount);
+            
+            setShowdownDone(true);
             
             /* utskrift fšr kontroll */
             System.out.println("\n\n-------------------------------\n" + 
@@ -243,10 +246,9 @@ public class Table {
             	System.out.println(p.getName());
             }
             System.out.println("\n-----------------------------------\n");
-            return winners;
+            
         }
-        // No person is the winner. This should never happen.
-        return null;
+
     }
     
     /**
@@ -431,12 +433,27 @@ public class Table {
 	
 	/**
 	 * 
-	 * @return The players-list index of the current player
+	 * @return The players list-index of the current player
 	 */
 	public int getIndexOfCurrentPlayer() {
 		return indexOfCurrentPlayer;
 	}
 	
+	/**
+	 * 
+	 * @return a list of the players who won the last round
+	 */
+	public boolean isShowdownDone() {
+		return showdownDone;
+	}
+	
+	/**
+	 * Sets the list of players who won the last round
+	 * @param winners
+	 */
+	public void setShowdownDone(boolean showdownDone) {
+		this.showdownDone = showdownDone;
+	}
 	
 	/**
 	 * Equals method for the Table class

@@ -1,6 +1,6 @@
 package utilities;
 
-public class IllegalRaiseException extends Exception {
+public class IllegalRaiseException extends RuntimeException {
 	
 	public IllegalRaiseException() {
 		super();

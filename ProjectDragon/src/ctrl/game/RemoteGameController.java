@@ -34,7 +34,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 
 
 	@Override
-	public boolean call(Bet bet) throws IllegalCallException {
+	public boolean call(Bet bet) {
 		return gameController.call(bet);
 		
 	}
