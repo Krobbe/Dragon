@@ -81,8 +81,8 @@ public class GameController implements EventHandler{
 	public void distributeCards() {
 
 		/* 
-		 * The  distribution is invoked by this control class and redirected
-		 * to the table class which makes more sense and also eliminates a bunch
+		 * The  distribution is invoked by this controller class and redirected
+		 * to the table class. This makes more sense and also eliminates a bunch
 		 * of unnecessary method calls between the two classes
 		 */
 		table.distributeCards();
@@ -127,6 +127,7 @@ public class GameController implements EventHandler{
 	 * Checks if a call is valid and does a call if it is valid.
 	 * 
 	 * @author lisastenberg
+	 * @author robinandersson
 	 * @param bet	The placed bet.
 	 * @return true if call is a valid action.
 	 * @throws IllegalCallException

@@ -3,17 +3,21 @@
  */
 package remote;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+import model.player.Player;
+
 /**
- * @author Robin
+ * @author robinandersson
  *
  */
-public interface iClient {
+public interface iClient extends Remote {
 	
 	/**
 	 * Method to set the player active to check, fold, raise etc.
 	 * 
 	 * @param active The boolean determining if it's the client's turn.
 	 */
-	public void setActive(boolean active);
-
+	public void setActive(boolean isActive) throws RemoteException;
 }

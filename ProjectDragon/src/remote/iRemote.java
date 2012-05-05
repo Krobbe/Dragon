@@ -21,7 +21,14 @@ public interface iRemote extends Remote {
 	 */
 	public iServerGame getIServerGame() throws RemoteException;
 	
-	public void registerClient(iClient client) throws RemoteException;
+	/** 
+	 * Registers a new client on the server.
+	 * 
+	 * @param client The client that are to be registered
+	 * @param accountName The account's name.
+	 * @param accountPassword The password assoicated with the account name.
+	 */
+	public boolean registerClient(iClient client, String accountName, String accountPassword) throws RemoteException;
 	
 
 }

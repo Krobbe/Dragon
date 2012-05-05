@@ -7,6 +7,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import model.player.Player;
+
 import remote.iClient;
 import remote.iRemote;
 

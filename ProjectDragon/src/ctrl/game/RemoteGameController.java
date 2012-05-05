@@ -31,6 +31,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 	
 	public RemoteGameController(GameController gameController) throws RemoteException {
 		super();
+		
 		this.gameController = gameController;
 	}
 

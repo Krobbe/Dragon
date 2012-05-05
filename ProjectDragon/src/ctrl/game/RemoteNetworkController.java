@@ -5,6 +5,10 @@ package ctrl.game;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
+import java.util.Map;
+
+import model.player.Player;
 
 import remote.iClient;
 import remote.iRemote;
@@ -18,36 +22,37 @@ public class RemoteNetworkController extends UnicastRemoteObject implements
 		iRemote {
 	
 	iServerGame serverGame;
+	Map<Player, iClient> clients;
 	
 	RemoteGameController remoteGameController = new RemoteGameController();
 	
 	public RemoteNetworkController() throws RemoteException {
 		this(new RemoteGameController());
-		new ServerStarter(this);
 	}
 	
 	public RemoteNetworkController(iServerGame serverGame) throws RemoteException {
 		super();
 		new ServerStarter(this);
 		this.serverGame = serverGame;
+		clients = new HashMap();
 	}
 
-
-	/* (non-Javadoc)
-	 * @see remote.iRemote#getIServerGame()
-	 */
 	@Override
 	public iServerGame getIServerGame() throws RemoteException {
 		return serverGame;
 	}
 
-	/* (non-Javadoc)
-	 * @see remote.iRemote#registerClient(remote.iClient)
-	 */
 	@Override
-	public void registerClient(iClient client) throws RemoteException {
-		// TODO Auto-generated method stub
-
+	public boolean registerClient(iClient client, String accountName, String accountPassword) throws RemoteException {
+		//TODO Connect to database to get the account information
+		/*
+		 * if(correctpassword){
+		 * 	clients.put(database.getPlayer(), client);
+		 * 	return true;
+		 * }
+		 */
+		return false;
+	
 	}
 
 }
