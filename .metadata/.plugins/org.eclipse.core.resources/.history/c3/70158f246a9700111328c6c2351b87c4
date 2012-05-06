@@ -112,23 +112,21 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		Statement myStmt;
 		try {
 			myStmt = conn.createStatement();
-			
-			//Accountinformation
-			String userName = account.getUserName();
-			String firstName = account.getFirstName();
-			String lastName = account.getLastName();
-			String passWord = account.getPassWord();
-			int balance = account.getBalance().getValue();
-			
-			String updateString = "INSERT INTO Accounts VALUES('" + userName + 
-					"', '" + firstName + "', '" + lastName + "', '" + 
-					passWord + "', '" + balance + "')";
-			int up =
-			myStmt.executeUpdate(updateString);
-			
-			if(up == 0) {
-				System.out.println("Account with userName " + userName + " " +
-						"already exists");
+			ResultSet rs =
+			myStmt.executeQuery("SELECT * FROM Accounts WHERE userName = '" + account + "'");
+			if (rs.next()) {
+				// Accountinformation
+				String firstName = rs.getString(1);
+				String lastName = rs.getString(2);
+				String passWord = rs.getString(3);
+				String balance = rs.getString(4);
+				int x = Integer.parseInt(balance);
+
+				Account a = new Account(firstName, lastName, account, passWord);
+				a.getBalance().addToBalance(x);
+				return a;
+			} else {
+				return null;
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

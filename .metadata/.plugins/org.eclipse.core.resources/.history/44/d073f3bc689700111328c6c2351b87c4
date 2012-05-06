@@ -98,42 +98,23 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				Account a = new Account(firstName, lastName, account, passWord);
 				a.getBalance().addToBalance(x);
 				return a;
+			} else {
+				return null;
 			}
+			//TODO: If rs.next() == null?
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
+		
+
 		return null;
 	}
 
 	@Override
 	public void saveAccount(Account account) {
-		Connection conn = dbc.getConnection();
-		Statement myStmt;
-		try {
-			myStmt = conn.createStatement();
-			
-			//Accountinformation
-			String userName = account.getUserName();
-			String firstName = account.getFirstName();
-			String lastName = account.getLastName();
-			String passWord = account.getPassWord();
-			int balance = account.getBalance().getValue();
-			
-			String updateString = "INSERT INTO Accounts VALUES('" + userName + 
-					"', '" + firstName + "', '" + lastName + "', '" + 
-					passWord + "', '" + balance + "')";
-			int up =
-			myStmt.executeUpdate(updateString);
-			
-			if(up == 0) {
-				System.out.println("Account with userName " + userName + " " +
-						"already exists");
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
+		
 	}
 
 
