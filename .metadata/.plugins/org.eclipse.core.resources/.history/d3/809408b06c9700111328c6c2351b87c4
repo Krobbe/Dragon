@@ -86,8 +86,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		try {
 			myStmt = conn.createStatement();
 			ResultSet rs =
-			myStmt.executeQuery("SELECT * FROM Accounts WHERE userName = '" 
-			+ account + "'");
+			myStmt.executeQuery("SELECT * FROM Accounts WHERE userName = '" + account + "'");
 			if (rs.next()) {
 				// Accountinformation
 				String firstName = rs.getString(1);
@@ -108,7 +107,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 
 	@Override
-	public boolean createAccount(Account account) {
+	public void saveAccount(Account account) {
 		Connection conn = dbc.getConnection();
 		Statement myStmt;
 		try {
@@ -130,53 +129,11 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			if(up == 0) {
 				System.out.println("Account with userName " + userName + " " +
 						"already exists");
-				return false;
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		return true;
-	}
-
-	@Override
-	public boolean updateAccount(Account account, String oldPassword) {
-		Connection conn = dbc.getConnection();
-		Statement myStmt;
-		try {
-			myStmt = conn.createStatement();
-			ResultSet rs =
-					myStmt.executeQuery("SELECT * FROM Accounts WHERE userName" +
-							" = '" + account.getUserName() + "'");
-			
-			if(rs.next()) {
-				if(!rs.getString(3).equals(oldPassword)) {
-					System.out.println("Wrong password!");
-					return false;
-				}
-			} else {
-				System.out.println("There exists no account with userName: " +
-						account.getUserName());
-				return false;
-			}
-			//Accountinformation
-			String userName = account.getUserName();
-			String firstName = account.getFirstName();
-			String lastName = account.getLastName();
-			String newPass = account.getPassWord();
-			int balance = account.getBalance().getValue();
-			
-			String updateString = "UPDATE Accounts SET firstName = '" + firstName + 
-					"', lastName = '" + lastName + "', passWord = '" + 
-					newPass + "', balance = '" + balance + "' WHERE userName = '"
-					+ userName + "'";
-			int up =
-			myStmt.executeUpdate(updateString);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		return true;
 	}
 
 

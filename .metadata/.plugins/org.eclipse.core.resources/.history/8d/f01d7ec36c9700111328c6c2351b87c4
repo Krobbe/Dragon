@@ -34,9 +34,7 @@ public interface IDBAccount {
 	 * Updates information about an account.
 	 * 
 	 * @param account The account you want to update
-	 * @param oldPassword	The oldPassword, in case you want to change your
-	 * 	password you have to type in your old one.
 	 * @return false if it's the wrong password according to the database.
 	 */
-	public boolean updateAccount(Account account, String oldPassword);
+	public boolean updateAccount(Account account);
 }

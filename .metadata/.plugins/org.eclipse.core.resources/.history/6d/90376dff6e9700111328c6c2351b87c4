@@ -147,7 +147,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			myStmt = conn.createStatement();
 			ResultSet rs =
 					myStmt.executeQuery("SELECT * FROM Accounts WHERE userName" +
-							" = '" + account.getUserName() + "'");
+							" = '" + account + "'");
 			
 			if(rs.next()) {
 				if(!rs.getString(3).equals(oldPassword)) {
@@ -166,12 +166,17 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			String newPass = account.getPassWord();
 			int balance = account.getBalance().getValue();
 			
-			String updateString = "UPDATE Accounts SET firstName = '" + firstName + 
-					"', lastName = '" + lastName + "', passWord = '" + 
-					newPass + "', balance = '" + balance + "' WHERE userName = '"
-					+ userName + "'";
+			String updateString = "UPDATE Accounts SET'" + userName + 
+					"', '" + firstName + "', '" + lastName + "', '" + 
+					newPass + "', '" + balance + "')";
 			int up =
 			myStmt.executeUpdate(updateString);
+			
+			if(up == 0) {
+				System.out.println("Account with userName " + userName + " " +
+						"already exists");
+				return false;
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
