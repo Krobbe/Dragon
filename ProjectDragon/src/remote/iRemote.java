@@ -33,7 +33,7 @@ public interface iRemote extends Remote {
 	 * @param accountName The account's name.
 	 * @param accountPassword The password assoicated with the account name.
 	 */
-	public boolean login(iClient client, String accountName, String accountPassword) throws RemoteException;
+	public Account login(iClient client, String accountName, String accountPassword) throws RemoteException;
 	
 
 	/** 

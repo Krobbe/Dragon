@@ -66,32 +66,29 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 
 	@Override
-	public boolean login(iClient client, String accountName,
+	public Account login(iClient client, String accountName,
 			String accountPassword) throws RemoteException {
-		// TODO Auto-generated method stub
 		
+		Account account = loadAccount(accountName);
 		
-		/*
-		 * if(correctpassword){
-		 * 	clients.put(database.getPlayer(), client);
-		 * 	return true;
-		 * }
-		 */
+		if(account != null && account.getPassWord() == accountPassword){
+			
+			//TODO A method in account to get a player object!
+			//clients.put(account.getPlayer(), client);
+		}
 		
-		//clients.put(player, client);
-		
-		return false;
+		return account;
 	}
 
 	@Override
-	public Account loadAccount(String account) {
+	public Account loadAccount(String accountName) {
 		Connection conn = dbc.getConnection();
 		Statement myStmt;
 		try {
 			myStmt = conn.createStatement();
 			ResultSet rs =
 			myStmt.executeQuery("SELECT * FROM Accounts WHERE userName = '" 
-			+ account + "'");
+			+ accountName + "'");
 			if (rs.next()) {
 				// Accountinformation
 				String firstName = rs.getString(1);
@@ -100,7 +97,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				String balance = rs.getString(4);
 				int x = Integer.parseInt(balance);
 
-				Account a = new Account(firstName, lastName, account, passWord);
+				Account a = new Account(firstName, lastName, accountName, passWord);
 				a.getBalance().addToBalance(x);
 				return a;
 			}

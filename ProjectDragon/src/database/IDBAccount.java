@@ -16,11 +16,11 @@ public interface IDBAccount {
 	/**
 	 * Loads information about an account in the database.
 	 * 
-	 * @param account the account you want to load information from.
+	 * @param accountName the account you want to load information from.
 	 * @return the accountinfo. Returns null if there is no account with 
 	 * 	userName "account".
 	 */
-	public Account loadAccount(String account);
+	public Account loadAccount(String accountName);
 	
 	/**
 	 * Saves accountinformation into the database.

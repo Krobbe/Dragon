@@ -11,6 +11,7 @@ import model.player.Player;
 
 import remote.iClient;
 import remote.iRemote;
+import remote.iServerGame;
 
 /**
  * @author robinandersson
@@ -21,6 +22,7 @@ import remote.iRemote;
 public class Client implements iClient {
 	
 	iRemote stub;
+	iServerGame serverGameController;
 	
 	public Client(){
 		
@@ -35,12 +37,13 @@ public class Client implements iClient {
 	        e.printStackTrace();
 	    }
 	    
+	    /*
 	    try {
-			System.out.println(stub.getIServerGame());
+			serverGameController = stub.getIServerGame(account);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 	    
 	}
 	

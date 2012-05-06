@@ -15,8 +15,6 @@ import utilities.*;
  *
  */
 public interface iServerGame extends Remote {
-
-	public static final String SERVERGAME_NAME = "Game";
 	
 	/**
 	 * Performs a call.
@@ -49,4 +47,13 @@ public interface iServerGame extends Remote {
 	 * @param player The player that wants to fold.
 	 */
 	public boolean fold(iPlayer player) throws RemoteException;
+	
+	/**
+	 * Tells the server that the player is ready to start the game or not
+	 * 
+	 * @param player The player that is ready or not
+	 * @param isReady Determines if the player is ready (true) or not (false)
+	 * @throws RemoteException
+	 */
+	public void playerIsReady(iPlayer player, boolean isReady) throws RemoteException;
 }

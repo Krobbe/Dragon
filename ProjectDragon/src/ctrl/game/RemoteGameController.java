@@ -54,5 +54,14 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		return gameController.fold(player);
 	}
 
+	@Override
+	public void playerIsReady(iPlayer player, boolean isReady)
+			throws RemoteException {
+		gameController.playerIsReady(player, isReady);
+		
+	}
+	
+	
+
 
 }
