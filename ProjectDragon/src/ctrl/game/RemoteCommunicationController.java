@@ -19,8 +19,8 @@ import remote.iServerGame;
  * @author robinandersson
  *
  */
-public class RemoteCommunicationController extends UnicastRemoteObject implements
-		iRemote {
+public class RemoteCommunicationController extends UnicastRemoteObject
+											implements iRemote {
 	
 	iServerGame serverGame;
 	Map<iPlayer, iClient> clients;
@@ -31,7 +31,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject implement
 		this(new RemoteGameController());
 	}
 	
-	public RemoteCommunicationController(iServerGame serverGame) throws RemoteException {
+	public RemoteCommunicationController(iServerGame serverGame)
+			throws RemoteException {
 		super();
 		new ServerStarter(this);
 		this.serverGame = serverGame;
@@ -44,10 +45,16 @@ public class RemoteCommunicationController extends UnicastRemoteObject implement
 	}
 
 	@Override
-	public void registerClient(iPlayer player, iClient client) throws RemoteException {
-		//TODO Connect to database to get the account information
-
+	public void registerClient(iPlayer player, iClient client)
+			throws RemoteException {
+		clients.put(player, client);
+	}
 	
+	@Override
+	public void unRegisterClient(iPlayer player)
+			throws RemoteException {
+		clients.remove(player);
+		
 	}
 
 	@Override
@@ -65,5 +72,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject implement
 		
 		return false;
 	}
+
+
 
 }

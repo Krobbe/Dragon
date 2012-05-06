@@ -40,5 +40,12 @@ public interface iRemote extends Remote {
 	 */
 	public void registerClient(iPlayer player, iClient client) throws RemoteException;
 	
+	/** 
+	 * Unregisters a client from the server.
+	 * 
+	 * @param player The Player-object associated to the client
+	 * @param client The client that are to be unregistered
+	 */
+	public void unRegisterClient(iPlayer player) throws RemoteException;
 
 }
