@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -29,14 +30,18 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler {
 
 	@Override
 	public void onEvent(Event evt) {
-		// TODO Auto-generated method stub
+		if(evt.getTag().equals(Event.Tag.LOGIN_FAILED)) {
+			JOptionPane.showMessageDialog(null, "Incorrect username or password");
+			//TODO A better solution to inform about a failed login, pop-ups are baaaaaad!
+		}
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == loginButton) {
-			EventBus.publish(new Event(Event.Tag.LOGIN, ("loginNameField.getText() " + "loginPasswordField.getText()")));
+			EventBus.publish(new Event(Event.Tag.TRY_LOGIN, loginNameField.getText()  + " " + loginPasswordField.getPassword()));
+			//TODO Security with passwords?
 		} else if (e.getSource() == loginRegisterButton) {
 			EventBus.publish(new Event(Event.Tag.GO_TO_REGISTER, 1));
 		}

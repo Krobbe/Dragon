@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -20,7 +21,9 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 	private JButton registerRegisterButton;
 	private JButton registerBackButton;
-	private JTextField registerNameField;
+	private JTextField registerUserNameField;
+	private JTextField registerFirstNameField;
+	private JTextField registerLastNameField;
 	private JPasswordField registerPassword;
 	private JPasswordField registerPasswordAgainField;
 
@@ -31,14 +34,19 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 	@Override
 	public void onEvent(Event evt) {
-		// TODO Auto-generated method stub
-
+		if(evt.getTag().equals(Event.Tag.REGISTER_FAILED)) {
+			JOptionPane.showMessageDialog(null, "Incorrect values");
+			//TODO Better solution is required to show what value was "bad"
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == registerRegisterButton) {
-			EventBus.publish(new Event(Event.Tag.REGISTER_ACCOUNT, 1));
+			EventBus.publish(new Event(Event.Tag.TRY_REGISTER, registerFirstNameField.getText() + " " + registerLastNameField.getText()
+								+ " " + registerUserNameField.getText() + " " + registerPassword.getPassword()
+								+ " " + registerPasswordAgainField.getPassword()));
+			//TODO Security with passwords?
 		} else if (e.getSource() == registerBackButton) {
 			EventBus.publish(new Event(Event.Tag.REGISTER_BACK, 1));
 		}
@@ -48,33 +56,53 @@ public class RegisterPanel extends JPanel implements ActionListener,
 //		JPanel registerPanel = new JPanel();
 		// frame.getContentPane().add(registerPanel);
 		this.setLayout(null);
+		
+		JLabel registerFirstNameLabel = new JLabel("First name\r\n");
+		registerFirstNameLabel.setBounds(447, 172, 110, 14);
+		registerFirstNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		this.add(registerFirstNameLabel);
 
-		JLabel registerNameLabel = new JLabel("User name\r\n");
-		registerNameLabel.setBounds(461, 284, 110, 14);
-		registerNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		this.add(registerNameLabel);
+		registerFirstNameField = new JTextField();
+		registerFirstNameField.setBounds(447, 197, 110, 20);
+		this.add(registerFirstNameField);
+		registerFirstNameField.setColumns(10);
+		
+		JLabel registerLastNameLabel = new JLabel("Last name\r\n");
+		registerLastNameLabel.setBounds(447, 228, 110, 14);
+		registerLastNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		this.add(registerLastNameLabel);
 
-		registerNameField = new JTextField();
-		registerNameField.setBounds(461, 309, 110, 20);
-		this.add(registerNameField);
-		registerNameField.setColumns(10);
+		registerLastNameField = new JTextField();
+		registerLastNameField.setBounds(447, 253, 110, 20);
+		this.add(registerLastNameField);
+		registerLastNameField.setColumns(10);
+
+		JLabel registerUserNameLabel = new JLabel("User name\r\n");
+		registerUserNameLabel.setBounds(447, 284, 110, 14);
+		registerUserNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		this.add(registerUserNameLabel);
+
+		registerUserNameField = new JTextField();
+		registerUserNameField.setBounds(447, 309, 110, 20);
+		this.add(registerUserNameField);
+		registerUserNameField.setColumns(10);
 
 		JLabel registerPasswordLabel = new JLabel("Password");
-		registerPasswordLabel.setBounds(461, 340, 110, 14);
+		registerPasswordLabel.setBounds(447, 340, 110, 14);
 		registerPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(registerPasswordLabel);
 
 		registerPassword = new JPasswordField();
-		registerPassword.setBounds(461, 365, 110, 20);
+		registerPassword.setBounds(447, 365, 110, 20);
 		this.add(registerPassword);
 
 		JLabel registerPasswordAgainLabel = new JLabel("Password again");
-		registerPasswordAgainLabel.setBounds(461, 396, 110, 20);
+		registerPasswordAgainLabel.setBounds(447, 396, 110, 20);
 		registerPasswordAgainLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(registerPasswordAgainLabel);
 
 		registerPasswordAgainField = new JPasswordField();
-		registerPasswordAgainField.setBounds(461, 427, 110, 20);
+		registerPasswordAgainField.setBounds(447, 427, 110, 20);
 		this.add(registerPasswordAgainField);
 
 		registerRegisterButton = new JButton("Register");

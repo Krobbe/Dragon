@@ -43,13 +43,14 @@ public class MenuView implements EventHandler {
 		frame.getContentPane().add(joinTablePanel, "joinTablePanel");
 		frame.getContentPane().add(createTablePanel, "createTablePanel");
 		frame.setVisible(true);
+		frame.setResizable(false);
 
 		//TODO Statistics panel
 	}
 
 	@Override
 	public void onEvent(Event evt) {
-		if(evt.getTag().equals(Event.Tag.LOGIN)) {
+		if(evt.getTag().equals(Event.Tag.LOGIN_SUCCESS) || evt.getTag().equals(Event.Tag.REGISTER_SUCCESS)) {
 			layout.show(frame.getContentPane(), "mainMenuPanel");
 		}
 		else if(evt.getTag().equals(Event.Tag.GO_TO_REGISTER)) {
