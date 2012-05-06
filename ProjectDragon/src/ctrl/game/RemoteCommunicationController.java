@@ -13,7 +13,6 @@ import database.DatabaseCommunicator;
 import database.IDBAccount;
 
 import model.player.Account;
-import model.player.Player;
 import model.player.iPlayer;
 
 import remote.iClient;
@@ -46,14 +45,17 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 
 	@Override
-	public iServerGame getIServerGame() throws RemoteException {
-		return serverGame;
-	}
-
-	@Override
-	public void registerClient(iPlayer player, iClient client)
-			throws RemoteException {
-		clients.put(player, client);
+	public iServerGame getIServerGame(Account account) throws RemoteException {
+		
+		/*
+		 * IF the supplied account has been successfully logged in the client
+		 * gains access to the gameController methods
+		 */
+		if(clients.containsKey(account)){
+			return serverGame;
+		}
+		
+		return null;
 	}
 	
 	@Override
@@ -75,6 +77,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		 * 	return true;
 		 * }
 		 */
+		
+		//clients.put(player, client);
 		
 		return false;
 	}
