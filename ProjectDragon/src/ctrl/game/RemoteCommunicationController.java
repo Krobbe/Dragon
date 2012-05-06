@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.player.Player;
+import model.player.iPlayer;
 
 import remote.iClient;
 import remote.iRemote;
@@ -18,19 +19,19 @@ import remote.iServerGame;
  * @author robinandersson
  *
  */
-public class RemoteNetworkController extends UnicastRemoteObject implements
+public class RemoteCommunicationController extends UnicastRemoteObject implements
 		iRemote {
 	
 	iServerGame serverGame;
-	Map<Player, iClient> clients;
+	Map<iPlayer, iClient> clients;
 	
 	RemoteGameController remoteGameController = new RemoteGameController();
 	
-	public RemoteNetworkController() throws RemoteException {
+	public RemoteCommunicationController() throws RemoteException {
 		this(new RemoteGameController());
 	}
 	
-	public RemoteNetworkController(iServerGame serverGame) throws RemoteException {
+	public RemoteCommunicationController(iServerGame serverGame) throws RemoteException {
 		super();
 		new ServerStarter(this);
 		this.serverGame = serverGame;
@@ -43,16 +44,26 @@ public class RemoteNetworkController extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public boolean registerClient(iClient client, String accountName, String accountPassword) throws RemoteException {
+	public void registerClient(iPlayer player, iClient client) throws RemoteException {
 		//TODO Connect to database to get the account information
+
+	
+	}
+
+	@Override
+	public boolean login(iClient client, String accountName,
+			String accountPassword) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+		
 		/*
 		 * if(correctpassword){
 		 * 	clients.put(database.getPlayer(), client);
 		 * 	return true;
 		 * }
 		 */
+		
 		return false;
-	
 	}
 
 }

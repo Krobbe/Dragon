@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 
 import ctrl.game.GameController;
 import ctrl.game.RemoteGameController;
-import ctrl.game.RemoteNetworkController;
+import ctrl.game.RemoteCommunicationController;
 
 
 
@@ -14,13 +14,13 @@ public class Main {
 	public static void main(String[] args) {
 		GameController gameController = new GameController();
 		RemoteGameController remoteGameController;
-		RemoteNetworkController remoteNetworkController;
+		RemoteCommunicationController remoteCommunicationController;
 		
 		try {
 			
 
 			remoteGameController = new RemoteGameController(gameController);
-			remoteNetworkController = new RemoteNetworkController(remoteGameController);
+			remoteCommunicationController = new RemoteCommunicationController(remoteGameController);
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
