@@ -83,7 +83,7 @@ public class GameControllerTest {
 		u1.addCard(c1);
 		u1.addCard(c2);
 		u1.setActive(true);
-		gc.fold(t.getCurrentPlayer());
+		gc.fold();
 		assertTrue(u1.getHand().getCards().size() == 0);
 		assertTrue(!u1.isActive());
 		assertTrue(t.getCurrentPlayer() == u2);
