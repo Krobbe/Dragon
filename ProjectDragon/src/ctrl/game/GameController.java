@@ -147,7 +147,8 @@ public class GameController implements EventHandler{
 			return false;
 		} else if (currentBetValue == -1 //TODO -1 nödvändig? 
 				|| currentBetValue == 0) {
-			throw new IllegalCallException();
+			throw new IllegalCallException(
+					"Not possible to call since no bet has been posted");
 		} else {
 			doCall();
 			//TODO: publish()
@@ -483,14 +484,29 @@ public class GameController implements EventHandler{
 			
 			case DO_CHECK:
 				
+				//TODO rätt argument i bet?
 				check(new Bet(table.getCurrentPlayer(), 0));
 				progressTurn();
 				break;
 
 			case DO_FOLD:
 				
+				//TODO rätt argument i bet?
 				fold(table.getCurrentPlayer());
 				progressTurn();
+				break;
+				
+			case DO_CALL:
+				
+				//TODO rätt argument i bet?
+				call(new Bet(table.getCurrentPlayer(),table.getRound()
+						.getBettingRound().getCurrentBet().getValue()));
+				progressTurn();
+				break;
+				
+			case DO_RAISE:
+				
+				//TODO ??
 				break;
 				
 			default:

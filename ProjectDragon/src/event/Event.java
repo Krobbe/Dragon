@@ -28,7 +28,9 @@ public class Event {
     	MAKE_BET,
     	DO_CALL,
     	DO_FOLD,
-    	DO_CHECK
+    	DO_CHECK,
+    	DO_RAISE,
+    	SHOWDOWN_DONE, //ej mottaget eller publicerat någonstans
     }
     private final Tag tag;
     // The new value 
