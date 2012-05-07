@@ -13,7 +13,7 @@ import model.player.iPlayer;
  * @author robinandersson
  *
  */
-public interface iRemote extends Remote {
+public interface iServer extends Remote {
 	
 	public static final String REMOTE_NAME = "Server";
 	

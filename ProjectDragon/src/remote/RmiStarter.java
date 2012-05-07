@@ -43,7 +43,7 @@ public abstract class RmiStarter {
 			    	
 			    	System.out.println("RMI-registry shutting down");
 			    	try {
-						registry.unbind(iRemote.REMOTE_NAME);
+						registry.unbind(iServer.REMOTE_NAME);
 						UnicastRemoteObject.unexportObject(registry, true);
 					} catch (AccessException e) {
 						e.printStackTrace();

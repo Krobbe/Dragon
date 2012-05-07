@@ -7,7 +7,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import remote.RmiStarter;
-import remote.iRemote;
+import remote.iServer;
 
 
 /**
@@ -16,15 +16,15 @@ import remote.iRemote;
  */
 public class ServerStarter extends RmiStarter{
 
-	public ServerStarter(iRemote stub) {
+	public ServerStarter(iServer stub) {
 		
-	    super(iRemote.class);
+	    super(iServer.class);
 		
 		try {
 			
             Registry registry = LocateRegistry.getRegistry();
             //TODO Okej med rebind istället för bind? Verkar lösa några problem
-            registry.rebind(iRemote.REMOTE_NAME, stub);
+            registry.rebind(iServer.REMOTE_NAME, stub);
 
             System.out.println("Server ready");
             

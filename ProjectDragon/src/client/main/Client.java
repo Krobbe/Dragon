@@ -10,7 +10,7 @@ import java.rmi.registry.Registry;
 import model.player.Player;
 
 import remote.iClient;
-import remote.iRemote;
+import remote.iServer;
 import remote.iServerGame;
 
 /**
@@ -21,7 +21,7 @@ import remote.iServerGame;
 // TODO Move the iClient implementation to the client-controller
 public class Client implements iClient {
 	
-	iRemote stub;
+	iServer stub;
 	iServerGame serverGameController;
 	
 	public Client(){
@@ -29,7 +29,7 @@ public class Client implements iClient {
 	    try {
 	    	
 	        Registry registry = LocateRegistry.getRegistry(null);
-	        stub = (iRemote) registry.lookup(iRemote.REMOTE_NAME);	        
+	        stub = (iServer) registry.lookup(iServer.REMOTE_NAME);	        
 	    }
 	    
 	    catch (Exception e) {

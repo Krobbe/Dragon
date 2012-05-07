@@ -16,7 +16,7 @@ import model.player.Account;
 import model.player.iPlayer;
 
 import remote.iClient;
-import remote.iRemote;
+import remote.iServer;
 import remote.iServerGame;
 
 /**
@@ -24,7 +24,7 @@ import remote.iServerGame;
  *
  */
 public class RemoteCommunicationController extends UnicastRemoteObject
-											implements iRemote, IDBAccount {
+											implements iServer, IDBAccount {
 	
 	iServerGame serverGame;
 	Map<iPlayer, iClient> clients;
