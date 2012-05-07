@@ -4,13 +4,15 @@ import java.sql.*;
 
 public class DatabaseCommunicator {
 	private static DatabaseCommunicator dbc;
-	Connection conn;
+	private Connection conn;
+	private String error = "";
 	
 	private DatabaseCommunicator() {
 		try{
 		    Class.forName("org.postgresql.Driver");
 		    } catch (ClassNotFoundException cnfe){
-		      System.out.println("Could not find the JDBC driver!");
+		    	error = "Could not find the JDBC driver!";
+		      System.out.println(error);
 		      System.exit(1);
 		    }
 		try {
@@ -19,7 +21,8 @@ public class DatabaseCommunicator {
 		                		   "tda367dragon", "tda367dragon");
 		     } catch (SQLException sqle) {
 		    	 sqle.printStackTrace();
-		    	 System.out.println("Could not connect");
+		    	 error = "Could not connect";
+		    	 System.out.println(error);
 		       System.exit(1);
 		     }
 	}
@@ -33,5 +36,13 @@ public class DatabaseCommunicator {
 	
 	public Connection getConnection() {
 		return conn;
+	}
+	
+	/**
+	 * Only for testing.
+	 * @return "" if there is no errors while connecting to the database.
+	 */
+	public String getError() {
+		return error;
 	}
 }

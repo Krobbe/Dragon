@@ -39,4 +39,13 @@ public interface IDBAccount {
 	 * @return false if it's the wrong password according to the database.
 	 */
 	public boolean updateAccount(Account account, String oldPassword);
+	
+	/**
+	 * Deletes information about an account in the database.
+	 * 
+	 * @param account	The account you want to delete.
+	 * @param oldPassword	The password for the account.
+	 * @return	true if the deletion went through successfully.
+	 */
+	public boolean deleteAccount(Account account, String oldPassword);
 }

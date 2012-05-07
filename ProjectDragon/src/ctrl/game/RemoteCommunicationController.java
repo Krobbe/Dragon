@@ -91,10 +91,10 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			+ accountName + "'");
 			if (rs.next()) {
 				// Accountinformation
-				String firstName = rs.getString(1);
-				String lastName = rs.getString(2);
-				String passWord = rs.getString(3);
-				String balance = rs.getString(4);
+				String firstName = rs.getString(2);
+				String lastName = rs.getString(3);
+				String passWord = rs.getString(4);
+				String balance = rs.getString(5);
 				int x = Integer.parseInt(balance);
 
 				Account a = new Account(firstName, lastName, accountName, passWord);
@@ -151,7 +151,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 							" = '" + account.getUserName() + "'");
 			
 			if(rs.next()) {
-				if(!rs.getString(3).equals(oldPassword)) {
+				if(!rs.getString(4).equals(oldPassword)) {
 					System.out.println("Wrong password!");
 					return false;
 				}
@@ -179,7 +179,35 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		}
 		return true;
 	}
-
-
-
+	
+	@Override
+	public boolean deleteAccount(Account account, String oldPassword) {
+		Connection conn = dbc.getConnection();
+		Statement myStmt;
+		try {
+			myStmt = conn.createStatement();
+			ResultSet rs =
+					myStmt.executeQuery("SELECT * FROM Accounts WHERE userName" +
+							" = '" + account.getUserName() + "'");
+			
+			if(rs.next()) {
+				if(!rs.getString(4).equals(oldPassword)) {
+					System.out.println("Wrong password!");
+					return false;
+				}
+			} else {
+				System.out.println("There exists no account with userName: " +
+						account.getUserName());
+				return false;
+			}
+			String updateString = "DELETE FROM Accounts WHERE userName = '"
+					+ account.getUserName() + "'";
+			int up =
+			myStmt.executeUpdate(updateString);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		return true;
+	}
 }
