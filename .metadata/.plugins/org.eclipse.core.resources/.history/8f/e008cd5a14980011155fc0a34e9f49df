@@ -5,8 +5,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import model.game.*;
-import model.player.*;
+import model.game.Pot;
+import model.game.SidePotHandler;
+import model.game.Table;
+import model.player.Balance;
+import model.player.OwnCurrentBetComparator;
+import model.player.Player;
+import model.player.User;
+import model.player.iPlayer;
 import model.player.hand.TexasHoldemHand;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
@@ -66,24 +72,19 @@ public class Main {
 				String cmd = in.nextLine();
 
 				if (cmd.equals("ch")) {
-					gc.check(new Bet(table.getCurrentPlayer(), 0));
+					gc.check();
 				} else if (cmd.equals("r10")) {
-					gc.raise(new Bet(table.getCurrentPlayer(), table.getRound().
-							getBettingRound().getCurrentBet().getValue() + 10));
+					gc.raise(10);
 				} else if (cmd.equals("r20")) {
-					gc.raise(new Bet(table.getCurrentPlayer(), table.getRound().
-							getBettingRound().getCurrentBet().getValue() + 20));
+					gc.raise(20);
 				} else if (cmd.equals("r50")) {
-					gc.raise(new Bet(table.getCurrentPlayer(), table.getRound().
-							getBettingRound().getCurrentBet().getValue() + 50));
+					gc.raise(50);
 				} else if (cmd.equals("r100")) {
-					gc.raise(new Bet(table.getCurrentPlayer(), table.getRound().
-							getBettingRound().getCurrentBet().getValue() + 100));
+					gc.raise(100);
 				} else if (cmd.equals("f")) {
-					gc.fold(table.getCurrentPlayer());
+					gc.fold();
 				} else if (cmd.equals("ca")) {
-					gc.call(new Bet(table.getCurrentPlayer(), table.getRound().
-							getBettingRound().getCurrentBet().getValue()));
+					gc.call();
 				} else {
 					throw new IllegalArgumentException("Command not supported!!");
 				}
