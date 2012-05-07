@@ -48,12 +48,4 @@ public interface iServerGame extends Remote {
 	 */
 	public boolean fold(iPlayer player) throws RemoteException;
 	
-	/**
-	 * Tells the server that the player is ready to start the game or not
-	 * 
-	 * @param player The player that is ready or not
-	 * @param isReady Determines if the player is ready (true) or not (false)
-	 * @throws RemoteException
-	 */
-	public void playerIsReady(iPlayer player, boolean isReady) throws RemoteException;
 }

@@ -41,7 +41,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		super();
 		new ServerStarter(this);
 		this.serverGame = serverGame;
-		clients = new HashMap();
+		clients = new HashMap<iPlayer, iClient>();
 	}
 
 	@Override
@@ -160,6 +160,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 						account.getUserName());
 				return false;
 			}
+			
 			//Accountinformation
 			String userName = account.getUserName();
 			String firstName = account.getFirstName();

@@ -3,8 +3,6 @@
  */
 package ctrl.game;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -16,7 +14,7 @@ import remote.iRemote;
  * @author robinandersson
  *
  */
-public class ServerStarter extends RmiStarter implements ActionListener{
+public class ServerStarter extends RmiStarter{
 
 	public ServerStarter(iRemote stub) {
 		
@@ -35,12 +33,5 @@ public class ServerStarter extends RmiStarter implements ActionListener{
             e.printStackTrace();
         }
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
-		
-	}
-	
 
 }

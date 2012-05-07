@@ -1,13 +1,7 @@
 package ctrl.game;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
-
-import remote.iClient;
 
 import event.Event;
 import event.EventBus;
@@ -26,8 +20,6 @@ import model.player.iPlayer;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
-import utilities.PlayersFullException;
-import utilities.TableCardsFullException;
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -40,7 +32,6 @@ import utilities.TableCardsFullException;
 public class GameController implements EventHandler{
 
 	private Table table;
-	private Map<iPlayer, Boolean> readyPlayers;
 	
 	/**
 	 * @author robinandersson
@@ -49,7 +40,6 @@ public class GameController implements EventHandler{
 	public GameController() {
 		this(new Table());
 		EventBus.register(this);
-		readyPlayers = new HashMap();
 	}
 
 	public GameController(Table table) {
@@ -530,16 +520,6 @@ public class GameController implements EventHandler{
 				break;
 		}
 		
-	}
-	
-	/**
-	 * This method stores a value from the player that indicates if the player
-	 * is ready to start the game 
-	 * @param player The player who is or is not ready
-	 * @param isReady True if the player is ready
-	 */
-	public void playerIsReady(iPlayer player, boolean isReady){
-		readyPlayers.put(player, isReady);
 	}
 
 }
