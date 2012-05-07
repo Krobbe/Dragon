@@ -1,11 +1,6 @@
 package view.menu;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.swing.JPanel;
 
@@ -20,7 +15,7 @@ import event.EventHandler;
 
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel implements EventHandler, IDBGame {
-	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
+	
 	
 	
 	public StatisticsPanel() {
@@ -51,26 +46,7 @@ public class StatisticsPanel extends JPanel implements EventHandler, IDBGame {
 
 	@Override
 	public Map<Integer, String> loadGamePlacements(String gameID) {
-		Connection conn = dbc.getConnection();
-		Statement myStmt;
-		try {
-			myStmt = conn.createStatement();
-			ResultSet rs =
-			myStmt.executeQuery("SELECT * FROM PlayedGames WHERE gameID = '" 
-			+ gameID + "'");
-			Map<Integer, String> placements = new TreeMap<Integer, String>();
-			while (rs.next()) {
-				String placement = rs.getString(3);
-				int tmp = Integer.parseInt(placement);
-				String player = rs.getString(2);
-				
-				placements.put(tmp, player);
-			}
-			return placements;
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

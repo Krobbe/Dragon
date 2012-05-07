@@ -491,18 +491,21 @@ public class GameController implements EventHandler{
 			
 			case DO_CHECK:
 				
+				//TODO rätt argument i bet?
 				check(new Bet(table.getCurrentPlayer(), 0));
 				progressTurn();
 				break;
 
 			case DO_FOLD:
 				
+				//TODO rätt argument i bet?
 				fold(table.getCurrentPlayer());
 				progressTurn();
 				break;
 				
 			case DO_CALL:
 				
+				//TODO rätt argument i bet?
 				call(new Bet(table.getCurrentPlayer(),table.getRound()
 						.getBettingRound().getCurrentBet().getValue()));
 				progressTurn();
@@ -510,8 +513,7 @@ public class GameController implements EventHandler{
 				
 			case DO_RAISE:
 				
-				//raise(new Bet(table.getCurrentPlayer(),table.getRound()
-				//	.getBettingRound().getCurrentBet().getValue()) + amount);
+				//TODO ??
 				break;
 				
 			default:
