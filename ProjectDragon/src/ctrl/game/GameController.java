@@ -16,6 +16,7 @@ import event.EventHandler;
 import model.card.Card;
 import model.game.BettingRound;
 import model.game.Dealer;
+import model.game.P;
 import model.game.Pot;
 import model.game.SidePotHandler;
 import model.game.Table;
@@ -239,7 +240,7 @@ public class GameController implements EventHandler{
 	 * @return a list of the winning players of the current round.
 	 */
 	//TODO nödvändig här? den finns ju redan i table. dock lite annorulunda nu..
-	//TODO snygga till?
+	//TODO snygga till/effektivisera?
 	//TODO bör distribute pot plockas ur denna och stå för sig själv?
 	//TODO en performShowdown och en doShowdown = snurrigt?
 	public void performShowdown(List<iPlayer> plrs, int potAmount) {
@@ -310,8 +311,12 @@ public class GameController implements EventHandler{
 	//TODO ska denna vara här? likt raise = refactor?
 	private void postBlinds() {
 		List<iPlayer> players = table.getPlayers();
-		int bigBlind = 20, smallBlind = bigBlind / 2; //TODO ska detta göras i "parameters"?
+
 		int dealerButtonIndex = table.getDealerButtonIndex();
+		
+		/* define the initial value of the blinds */ 
+		int bigBlind = P.INSTANCE.getBigBlindValue();
+		int smallBlind = bigBlind / 2;
 		
 		/* calculate smallBlindIndex */
 		int smallBlindIndex;
@@ -332,19 +337,23 @@ public class GameController implements EventHandler{
 		iPlayer smallBlindPlayer = players.get(smallBlindIndex);
 		iPlayer bigBlindPlayer = players.get(bigBlindIndex);
 		
-		/* post blinds */
+		/* define the definite value on the blinds (a player migth have to 
+		 * small balance to post the full blind) */
 		if (smallBlindPlayer.getBalance().getValue() < smallBlind) {
 			smallBlind = smallBlindPlayer.getBalance().getValue();
 		}
-		smallBlindPlayer.getBalance().removeFromBalance(smallBlind);
-		smallBlindPlayer.setOwnCurrentBet(smallBlind);
 		
 		if (bigBlindPlayer.getBalance().getValue() < bigBlind) {
 			bigBlind = bigBlindPlayer.getBalance().getValue();
 		}
+		
+		/* post blinds */
+		smallBlindPlayer.getBalance().removeFromBalance(smallBlind);
+		smallBlindPlayer.setOwnCurrentBet(smallBlind);
 		bigBlindPlayer.getBalance().removeFromBalance(bigBlind);
 		bigBlindPlayer.setOwnCurrentBet(bigBlind);
 
+		/* add blinds to pot and current bet */
 		table.getRound().getPot().addToPot(smallBlind + bigBlind);
 		if (bigBlind >= smallBlind) {
 			table.getRound().getBettingRound().setCurrentBet(
@@ -367,27 +376,30 @@ public class GameController implements EventHandler{
 	/**
 	 * Performs actions required for starting a new betting round
 	 */
-	//TODO Bättre java-doc och förklarande kommentarer?
+	//TODO Bättre javadoc
 	//TODO övergripande metod = annat namn?
-	//TODO List<iPlayer> winners ful lösning?
 	public void nextBettingRound() {
-		table.getRound().getBettingRound().setCurrentBet(new Bet());
 		List<iPlayer> players = table.getPlayers();
+		
+		/* the table should have the default settings for a new betting round */
+		table.getRound().getBettingRound().setCurrentBet(new Bet());
 		for (iPlayer p : players) {
 			p.setOwnCurrentBet(0);
 			p.setDoneFirstTurn(false);
 		}
 		
-		/* Give right player the turn */
+		/* give right player the turn */
 		table.setIndexOfCurrentPlayer(table.getDealerButtonIndex());
 		for (int i = 0; i < 2; i++) {
 			table.nextPlayer();
 		}
 		
+		/* check if it's time for showdown */
 		if (table.getTableCards().size() == 5 || 
 				table.getActivePlayers().size() == 1 || 
 				table.getActivePlayers().size() == 0) {
 			
+			/* if so, first perform showdown for possible sidepots */
 			List<SidePotHandler> sidePots = table.getSidePots();
 			if (sidePots != null) {
 				for (SidePotHandler sph : sidePots) {
@@ -395,14 +407,19 @@ public class GameController implements EventHandler{
 				}
 			}
 			
-			if (table.getActivePlayers().size() != 0) { /* om alla spelare var all-in ska inte denna göras */
+			/* then perfom showdown for the table's current state, unless all 
+			 * players has gone all-in */
+			if (table.getActivePlayers().size() != 0) { 
 				performShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
 			}
-			
+		
+		/* else, if it's time for flop, show flop */
 		} else if (table.getTableCards().size() == 0) {
 			showFlop();
 			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
-		} else { //TODO ett till alternativ för showTurn?
+			
+		/* if its time for river, show river */	
+		} else { //TODO ett till alternativ för showTurn?, ev tydligare
 			showRiver();
 			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
 		}
@@ -456,11 +473,11 @@ public class GameController implements EventHandler{
 	
 	/**
 	 * This method evaluates what measures has to be done to make the game 
-	 * progress after a player has done a turn, and perform these measures
+	 * progress after a player has done a turn, and then perform these measures
 	 */
 	private void progressTurn() {
 		
-		/* if the betting is done possibly all-in case must be handled and then
+		/* if the betting is done possible all-in case must be handled and then
 		 * a new betting round should take place */
 		if (table.isBettingDone()) {
 			handleAllIn();
