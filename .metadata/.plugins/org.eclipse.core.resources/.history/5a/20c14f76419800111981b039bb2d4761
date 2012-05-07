@@ -22,6 +22,7 @@ import event.EventHandler;
 public class StatisticsPanel extends JPanel implements EventHandler, IDBGame {
 	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
+	
 	public StatisticsPanel() {
 		init();
 		EventBus.register(this);
@@ -71,26 +72,5 @@ public class StatisticsPanel extends JPanel implements EventHandler, IDBGame {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	@Override
-	public int loadNbrOfWonGames(String userName) {
-		Connection conn = dbc.getConnection();
-		Statement myStmt;
-		try {
-			myStmt = conn.createStatement();
-			ResultSet rs =
-			myStmt.executeQuery("SELECT * FROM WonGames WHERE player = '" 
-			+ userName + "'");
-			if (rs.next()) {
-				String nbrOfWonGames = rs.getString(2);
-				int tmp = Integer.parseInt(nbrOfWonGames);
-				return tmp;
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		return -1;
 	}
 }

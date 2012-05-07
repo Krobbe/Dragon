@@ -91,6 +91,6 @@ public class StatisticsPanel extends JPanel implements EventHandler, IDBGame {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		return -1;
+		return 0;
 	}
 }

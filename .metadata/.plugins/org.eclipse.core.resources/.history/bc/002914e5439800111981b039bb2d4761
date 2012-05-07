@@ -43,8 +43,7 @@ public interface IDBGame {
 	 * Load number of one games.
 	 * @param userName the players username who you want to know the number of 
 	 * won games of.
-	 * @return the number of one games. If the account with "userName" as 
-	 * userName doesn't exist the method returns -1.
+	 * @return the number of one games.
 	 */
 	public int loadNbrOfWonGames(String userName);
 }
