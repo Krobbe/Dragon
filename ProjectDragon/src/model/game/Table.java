@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import event.Event;
+import event.EventBus;
+
 import model.card.Card;
 import model.player.iPlayer;
 import model.player.hand.FullTHHand;
@@ -80,6 +83,9 @@ public class Table {
 		if (getCurrentPlayer().isActive()) {
 			return getCurrentPlayer();
 		}
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,""));
+		
 		return nextPlayer();
 	}
 	

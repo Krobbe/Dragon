@@ -29,7 +29,7 @@ import utilities.IllegalRaiseException;
  * 
  */
 
-public class GameController implements EventHandler{
+public class GameController {
 
 	private Table table;
 	
@@ -142,7 +142,7 @@ public class GameController implements EventHandler{
 					"Not possible to call since no bet has been posted");
 		} else {
 			doCall();
-			//TODO: publish()
+			EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
 		}
 		return true;
 	}
@@ -183,6 +183,8 @@ public class GameController implements EventHandler{
 		
 		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
 		return true;
 	}
 	
@@ -198,6 +200,8 @@ public class GameController implements EventHandler{
 		player.getHand().discard();
 		player.setActive(false);
 		player.setDoneFirstTurn(true);
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_FOLD, player));
 		return true;
 	}
 	
@@ -222,6 +226,8 @@ public class GameController implements EventHandler{
 		}
 		
 		currentPlayer.setDoneFirstTurn(true);
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
 		return true;
 	}
 	
@@ -280,6 +286,7 @@ public class GameController implements EventHandler{
 
 		/* give dealer button to the right player*/
 		table.nextDealerButtonIndex();
+		
 		postBlinds();
 		
 		/* set the turn to the right player */
@@ -480,42 +487,6 @@ public class GameController implements EventHandler{
 		/* if a showdown has been done a new round should take place */
 		if (table.isShowdownDone()) {
 			nextRound();
-		}
-		
-	}
-
-	@Override
-	public void onEvent(Event evt) {
-		
-		switch (evt.getTag()) {
-			
-			case DO_CHECK:
-				
-				check(new Bet(table.getCurrentPlayer(), 0));
-				progressTurn();
-				break;
-
-			case DO_FOLD:
-				
-				fold(table.getCurrentPlayer());
-				progressTurn();
-				break;
-				
-			case DO_CALL:
-				
-				call(new Bet(table.getCurrentPlayer(),table.getRound()
-						.getBettingRound().getCurrentBet().getValue()));
-				progressTurn();
-				break;
-				
-			case DO_RAISE:
-				
-				//raise(new Bet(table.getCurrentPlayer(),table.getRound()
-				//	.getBettingRound().getCurrentBet().getValue()) + amount);
-				break;
-				
-			default:
-				break;
 		}
 		
 	}

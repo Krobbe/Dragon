@@ -26,11 +26,10 @@ public class Event {
     	CREATE_TABLE,
     	JOIN_TABLE,
     	MAKE_BET,
-    	DO_CALL,
-    	DO_FOLD,
-    	DO_CHECK,
-    	DO_RAISE,
     	SHOWDOWN_DONE, //ej mottaget eller publicerat någonstans
+    	SERVER_FOLD,
+    	SERVER_UPDATE_BET,
+    	SERVER_NEXT_TURN
     }
     private final Tag tag;
     // The new value 
