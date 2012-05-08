@@ -39,11 +39,11 @@ public class GameController implements EventHandler{
 	 */
 	public GameController() {
 		this(new Table());
-		EventBus.register(this);
 	}
 
 	public GameController(Table table) {
 		this.table = table;
+		EventBus.register(this);
 	}
 
 	/**

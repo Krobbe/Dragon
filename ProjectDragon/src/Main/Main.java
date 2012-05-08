@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import ctrl.game.GameController;
+
 import model.game.*;
 import model.player.*;
 import model.player.hand.TexasHoldemHand;
@@ -15,7 +17,6 @@ import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
 import view.menu.MenuView;
 import view.table.TableView;
-import ctrl.game.GameController;
 
 public class Main {
 	

@@ -35,6 +35,7 @@ public class Client implements iClient {
 	    catch (Exception e) {
 	        System.err.println("Client exception: " + e.toString());
 	        e.printStackTrace();
+	        System.exit(0);
 	    }
 	    
 	    /*

@@ -1,13 +1,11 @@
 /**
  * 
  */
-package ctrl.game;
+package remote;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import remote.RmiStarter;
-import remote.iServer;
 
 
 /**
