@@ -15,6 +15,7 @@ import model.player.iPlayer;
 import remote.iClient;
 import remote.iServer;
 import remote.iServerGame;
+import utilities.IllegalCallException;
 
 /**
  * @author robinandersson
@@ -25,11 +26,19 @@ public class RemoteGameController implements iClient, iServerRequest {
 	
 	private iServer stub;
 	private iServerGame serverGameController;
+	private GameController gameController;
 	
 	// TODO Flytta "lagringen" av account till ett mer passande ställe
 	private Account account;
 	
 	public RemoteGameController(){
+		this(new GameController());
+	}
+	
+	
+	public RemoteGameController(GameController gameController){
+		
+		this.gameController = gameController;
 		
 	    try {
 	    	
@@ -69,25 +78,65 @@ public class RemoteGameController implements iClient, iServerRequest {
 
 	@Override
 	public boolean requestCall(Bet bet) {
-		// TODO Auto-generated method stub
+		
+		try {
+			return serverGameController.call(bet);
+		} catch (IllegalCallException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean requestCheck(Bet bet) {
-		// TODO Auto-generated method stub
+		
+		try {
+			return serverGameController.check(bet);
+		} catch (IllegalCallException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean requestRaise(Bet bet) {
-		// TODO Auto-generated method stub
+		
+		try {
+			return serverGameController.raise(bet);
+		} catch (IllegalCallException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean requestFold(iPlayer player) {
-		// TODO Auto-generated method stub
+		
+		try {
+			return serverGameController.fold(player);
+		} catch (IllegalCallException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 	
