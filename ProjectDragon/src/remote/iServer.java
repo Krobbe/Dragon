@@ -27,11 +27,12 @@ public interface iServer extends Remote {
 	public iServerGame getIServerGame(Account account) throws RemoteException;
 
 	/** 
-	 * Tries to login with the provided account name and password
+	 * Tries to login with the provided account name and password. Stores the
+	 * associated account and reference to client if successful
 	 * 
 	 * @param client The client that are to be registered
 	 * @param accountName The account's name.
-	 * @param accountPassword The password assoicated with the account name.
+	 * @param accountPassword The password associated with the account name.
 	 */
 	public Account login(iClient client, String accountName, String accountPassword) throws RemoteException;
 	

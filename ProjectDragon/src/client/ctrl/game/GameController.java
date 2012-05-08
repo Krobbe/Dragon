@@ -30,6 +30,10 @@ public class GameController {
 
 	private Table table;
 
+	public GameController() {
+		this(new Table());
+	}
+	
 	public GameController(Table table) {
 		this.table = table;
 	}

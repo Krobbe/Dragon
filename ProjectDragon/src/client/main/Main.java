@@ -2,6 +2,8 @@ package client.main;
 
 import java.util.List;
 
+import client.ctrl.game.GameController;
+import client.ctrl.game.RemoteGameController;
 import client.model.game.SidePotHandler;
 
 
@@ -19,9 +21,12 @@ public class Main {
 		return sidePots;
 	}
 	
+	//Varför går det inte att sätta private? Lika i kontrollerna för servern
+	
 	public static void main(String[] args) {
 		
-		new Client();
+		GameController gameController = new GameController(); 
+		RemoteGameController remoteGameController = new RemoteGameController();
 		
 	}
 	

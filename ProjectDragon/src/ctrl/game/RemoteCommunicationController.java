@@ -28,7 +28,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 											implements iServer, IDBAccount {
 	
 	iServerGame serverGame;
-	Map<iPlayer, iClient> clients;
+	Map<Account, iClient> clients;
 	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
 	RemoteGameController remoteGameController = new RemoteGameController();
@@ -42,7 +42,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		super();
 		new ServerStarter(this);
 		this.serverGame = serverGame;
-		clients = new HashMap<iPlayer, iClient>();
+		clients = new HashMap<Account, iClient>();
 	}
 
 	@Override
@@ -74,8 +74,9 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		
 		if(account != null && account.getPassWord() == accountPassword){
 			
-			//TODO A method in account to get a player object!
-			//clients.put(account.getPlayer(), client);
+			// TODO Change to player instead?
+			// TODO Login failed exception istället för att returnera ett null-objekt?
+			clients.put(account, client);
 		}
 		
 		return account;
