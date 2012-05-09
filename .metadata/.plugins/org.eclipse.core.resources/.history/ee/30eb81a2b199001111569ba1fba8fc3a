@@ -44,7 +44,7 @@ public class GameController {
 		return true;
 	}
 	
-	public boolean betOccured(Bet bet) {
+	public boolean makeBet(Bet bet) {
 		if(!table.getCurrentPlayer().equals(bet.getOwner())) {
 			return false;
 		}
@@ -61,26 +61,11 @@ public class GameController {
 	}
 	
 	public boolean setHand(iHand hand) {
-		//Set my own cards to hand. Meindex?
-		return false;
+		
 	}
 	
-	/**
-	 * Add cards to the table.
-	 * 
-	 * @param cards The cards you want to add.
-	 */
-	public void addCommunityCards(List<Card> cards) {
-		for(Card c: cards) {
-			table.addTableCard(c);
-		}
-	}
-	
-	/**
-	 * Clear the tables cards.
-	 */
-	public void clearCommunityCards() {
-		table.clearTableCards();
+	public boolean setCommunityCards(List<Card> cards) {
+		
 	}
 }
 

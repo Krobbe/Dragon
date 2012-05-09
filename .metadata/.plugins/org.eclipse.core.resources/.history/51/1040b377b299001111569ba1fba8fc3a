@@ -65,22 +65,10 @@ public class GameController {
 		return false;
 	}
 	
-	/**
-	 * Add cards to the table.
-	 * 
-	 * @param cards The cards you want to add.
-	 */
-	public void addCommunityCards(List<Card> cards) {
+	public void setCommunityCards(List<Card> cards) {
 		for(Card c: cards) {
 			table.addTableCard(c);
 		}
-	}
-	
-	/**
-	 * Clear the tables cards.
-	 */
-	public void clearCommunityCards() {
-		table.clearTableCards();
 	}
 }
 

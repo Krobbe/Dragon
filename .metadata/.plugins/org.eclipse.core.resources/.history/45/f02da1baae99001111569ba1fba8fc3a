@@ -63,21 +63,20 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		switch (evt.getTag()) {
 		
 			case SERVER_FOLD:
-				//iClientRequest 
+				
 
 				break;
-			case SERVER_UPDATE_BET:
-				break;
-				
-			case SERVER_DISTRIBUTE_CARDS:
-				break;
-				
-			case SERVER_ADD_TABLE_CARDS:
-				break;
+			case 
 				
 		
-			default:
-				break;
-		}
+		default:
+		break;
 	}
+
+}
+		
+	}
+	
+	
+
 }

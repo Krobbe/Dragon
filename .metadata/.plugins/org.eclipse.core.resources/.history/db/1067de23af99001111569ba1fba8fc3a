@@ -69,15 +69,9 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			case SERVER_UPDATE_BET:
 				break;
 				
-			case SERVER_DISTRIBUTE_CARDS:
-				break;
-				
-			case SERVER_ADD_TABLE_CARDS:
-				break;
-				
 		
-			default:
-				break;
-		}
+		default:
+		break;
 	}
+
 }

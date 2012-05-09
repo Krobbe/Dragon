@@ -29,11 +29,7 @@ public class Event {
     	SHOWDOWN_DONE, //ej mottaget eller publicerat någonstans
     	SERVER_FOLD,
     	SERVER_UPDATE_BET,
-    	SERVER_NEXT_TURN,
-    	SERVER_DISTRIBUTE_CARDS,
-    	SERVER_ADD_TABLE_CARDS,
-    	SERVER_CLEAR_TABLE_CARDS,
-    	SERVER_CREATE_TABLES
+    	SERVER_NEXT_TURN
     }
     private final Tag tag;
     // The new value 
