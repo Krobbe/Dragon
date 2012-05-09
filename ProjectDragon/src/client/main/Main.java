@@ -1,9 +1,7 @@
 package client.main;
 
-import java.util.List;
+import client.ctrl.game.RemoteCommunicationController;
 
-import client.ctrl.game.GameController;
-import client.ctrl.game.RemoteGameController;
 
 
 /**
@@ -16,8 +14,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		GameController gameController = new GameController(); 
-		RemoteGameController remoteGameController = new RemoteGameController();
+		new RemoteCommunicationController(); 
 		
 	}
 	

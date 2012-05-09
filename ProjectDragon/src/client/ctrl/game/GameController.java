@@ -21,13 +21,22 @@ public class GameController implements EventHandler {
 	Table table;
 	
 	public GameController() {
-		EventBus.register(this);
-		table = new Table();
+		this(new Table());
 	}
 	
 	public GameController(Table table) {
 		EventBus.register(this);
 		this.table = table;
+	}
+	
+	/**
+	 * Adds a player to the game table
+	 * 
+	 * @param player The player to be added
+	 * @author robinandersson
+	 */
+	public void addPlayer(iPlayer player) {
+		this.table.addPlayer(player);
 	}
 	
 	public void setCurrentBet(Bet bet) {

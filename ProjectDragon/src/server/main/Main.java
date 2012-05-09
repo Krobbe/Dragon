@@ -14,15 +14,11 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		GameController gameController = new GameController();
-		RemoteGameController remoteGameController;
-		RemoteCommunicationController remoteCommunicationController;
+
 		
 		try {
-			
-
-			remoteGameController = new RemoteGameController(gameController);
-			remoteCommunicationController = new RemoteCommunicationController(remoteGameController);
+			RemoteCommunicationController remoteCommunicationController =
+					new RemoteCommunicationController();
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();

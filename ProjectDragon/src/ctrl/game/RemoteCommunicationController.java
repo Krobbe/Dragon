@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import database.DatabaseCommunicator;
@@ -17,6 +18,7 @@ import model.player.iPlayer;
 
 import remote.ServerStarter;
 import remote.iClient;
+import remote.iClientGame;
 import remote.iServer;
 import remote.iServerGame;
 
@@ -27,60 +29,84 @@ import remote.iServerGame;
 public class RemoteCommunicationController extends UnicastRemoteObject
 											implements iServer, IDBAccount {
 	
-	iServerGame serverGame;
+	// A map containing all logged in players and references to their
+	// respective communication controllers
 	Map<Account, iClient> clients;
+	
+	LinkedList<iServerGame> activeGames;
+	
 	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
-	RemoteGameController remoteGameController = new RemoteGameController();
-	
 	public RemoteCommunicationController() throws RemoteException {
-		this(new RemoteGameController());
-	}
-	
-	public RemoteCommunicationController(iServerGame serverGame)
-			throws RemoteException {
 		super();
 		new ServerStarter(this);
-		this.serverGame = serverGame;
 		clients = new HashMap<Account, iClient>();
+		activeGames = new LinkedList<iServerGame>();
+	}
+	
+	@Override
+	public void logOut(Account account) throws RemoteException{
+		// TODO Do more when logging out a player? Saving active games or something?
+		clients.remove(account);
 	}
 
 	@Override
-	public iServerGame getIServerGame(Account account) throws RemoteException {
+	public Account login(iClient client, String accountName,
+								String accountPassword) throws RemoteException {
 		
-		/*
-		 * IF the supplied account has been successfully logged in the client
-		 * gains access to the gameController methods
-		 */
-		if(clients.containsKey(account)){
-			return serverGame;
+		Account account = loadAccount(accountName);
+		
+		if(account != null && account.getPassWord().equals(accountPassword)){
+			
+			// TODO Change to player instead?
+			// TODO Login failed exception istället för att returnera ett null-objekt?
+			clients.put(account, client);
+			
+			return account;
 		}
 		
 		return null;
 	}
 	
 	@Override
-	public void unRegisterClient(iPlayer player)
-			throws RemoteException {
-		clients.remove(player);
+	public iServerGame createGame(Account account, iPlayer player, iClientGame clientGame) {
 		
-	}
-
-	@Override
-	public Account login(iClient client, String accountName,
-			String accountPassword) throws RemoteException {
+		iServerGame newGame = null;
 		
-		Account account = loadAccount(accountName);
-		
-		if(account != null && account.getPassWord() == accountPassword){
+		if(clients.containsKey(account)) {
 			
-			// TODO Change to player instead?
-			// TODO Login failed exception istället för att returnera ett null-objekt?
-			clients.put(account, client);
+			try {
+				newGame = new RemoteGameController();
+				
+			} catch (RemoteException e) {
+			// TODO Better exception handling for when not able to create game?
+				return null;
+			}
+			
+			activeGames.add(newGame);
+			
+			//TODO Tillåtet att kasta om på detta viset bara för att kunna använda en metod i RemoteGameController-klassen som inte finns i iServerGame?
+			((RemoteGameController) newGame).addPlayer(player, clientGame);
 		}
 		
-		return account;
+		return newGame;
 	}
+	
+	@Override
+	public iServerGame joinGame(Account account, iPlayer player,
+			iClientGame clientGame, int gameIndex) {
+		
+		iServerGame game = null;
+		
+		if(clients.containsKey(account) && gameIndex < activeGames.size() ) {
+			
+			game = activeGames.get(gameIndex);
+			((RemoteGameController) game).addPlayer(player, clientGame);
+		}
+		
+		return game;
+	}
+
 
 	@Override
 	public Account loadAccount(String accountName) {
@@ -213,4 +239,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		}
 		return true;
 	}
+
+
+
+
 }
