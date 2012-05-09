@@ -43,6 +43,7 @@ public class GameController {
 
 	public GameController(Table table) {
 		this.table = table;
+		EventBus.register(this);
 	}
 
 	/**
