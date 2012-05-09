@@ -61,52 +61,52 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		
 		JLabel userName = new JLabel("User name");
 		userName.setBounds(447, 172, 110, 14);
-		userName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		userName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(userName);
 		
 		//TODO set the different values, get them from where?
 		setThisUserName = new JLabel("Get the name from where?");
-		setThisUserName.setBounds(447, 197, 110, 20);
+		setThisUserName.setBounds(447, 197, 110, 14);
 		setThisUserName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisUserName);
 		
 		JLabel firstName = new JLabel("First name");
 		firstName.setBounds(447, 222, 110, 14);
-		firstName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		firstName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(firstName);
 		
 		setThisFirstName = new JLabel("Get the name from where?");
-		setThisFirstName.setBounds(447, 247, 110, 20);
+		setThisFirstName.setBounds(447, 247, 110, 14);
 		setThisFirstName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisFirstName);
 		
 		JLabel lastName = new JLabel("Last name");
 		lastName.setBounds(447, 272, 110, 14);
-		lastName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lastName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(lastName);
 		
 		setThisLastName = new JLabel("Get the name from where?");
-		setThisLastName.setBounds(447, 297, 110, 20);
+		setThisLastName.setBounds(447, 297, 110, 14);
 		setThisLastName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisLastName);
 		
 		JLabel playedGames = new JLabel("Number of played games");
 		playedGames.setBounds(447, 322, 110, 14);
-		playedGames.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		playedGames.setFont(new Font("Tahoma", Font.BOLD, 14));
 		this.add(playedGames);
 		
 		setThisPlayedGames = new JLabel("Get the number of games from where?");
-		setThisPlayedGames.setBounds(447, 347, 110, 20);
+		setThisPlayedGames.setBounds(447, 347, 110, 14);
 		setThisPlayedGames.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisPlayedGames);
 		
 		JLabel wonGames = new JLabel("Number of won games");
 		wonGames.setBounds(447, 372, 110, 14);
-		wonGames.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		wonGames.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(wonGames);
 		
-		setThisWonGames = new JLabel(Integer.toString(loadNbrOfWonGames(RemoteCommunicationController.)));
-		setThisWonGames.setBounds(447, 397, 110, 20);
+		setThisWonGames = new JLabel(("Get number of won games from where?"));
+		setThisWonGames.setBounds(447, 397, 110, 14);
 		setThisWonGames.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisWonGames);
 		

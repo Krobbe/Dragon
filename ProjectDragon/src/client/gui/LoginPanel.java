@@ -11,10 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import model.player.Account;
-
-import database.IDBAccount;
-
 import event.Event;
 import event.EventBus;
 import event.EventHandler;

@@ -37,13 +37,14 @@ public class MenuView implements EventHandler {
 		frame.setBounds(100, 100, 1024, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(layout);
+		frame.getContentPane().add(tablePanel, "tablePanel");
 		frame.getContentPane().add(loginPanel, "loginPanel");
 		frame.getContentPane().add(registerPanel, "registerPanel");
 		frame.getContentPane().add(mainMenuPanel, "mainMenuPanel");
 		frame.getContentPane().add(joinTablePanel, "joinTablePanel");
 		frame.getContentPane().add(createTablePanel, "createTablePanel");
 		frame.getContentPane().add(statisticsPanel, "statisticsPanel");
-		frame.getContentPane().add(tablePanel, "tablePanel");
+		
 		frame.setVisible(true);
 		frame.setResizable(false);
 

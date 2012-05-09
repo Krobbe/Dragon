@@ -1,6 +1,5 @@
 package client.gui;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -15,6 +14,7 @@ import event.EventHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class TablePanel extends JPanel implements EventHandler, ActionListener {
 
 	private JButton leaveTableButton;
@@ -110,6 +110,25 @@ public class TablePanel extends JPanel implements EventHandler, ActionListener {
 		initialize();
 		EventBus.register(this);
 	}
+	
+	@Override
+	public void onEvent(Event evt) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//TODO Should the result be saved here somehow?
+		if(e.getSource().equals(leaveTableButton)) {
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN,1));
+		}
+		else if(e.getSource().equals(userCheckButton)) {
+			EventBus.publish(new Event(Event.Tag.))
+		}
+			
+
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -119,8 +138,8 @@ public class TablePanel extends JPanel implements EventHandler, ActionListener {
 		this.setLayout(null);
 
 		leaveTableButton = new JButton("Leave table");
-		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		leaveTableButton.setBounds(10, 683, 111, 36);
+		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		leaveTableButton.setBounds(10, 683, 111, 40);
 		this.add(leaveTableButton);
 
 		JPanel callPanel = new JPanel();
@@ -468,17 +487,5 @@ public class TablePanel extends JPanel implements EventHandler, ActionListener {
 		riverc1Label = new JLabel("Card 1");
 		riverc1Label.setBounds(355, 11, 53, 80);
 		shownCardsPanel.add(riverc1Label);
-	}
-
-	@Override
-	public void onEvent(Event evt) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 }
