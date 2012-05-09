@@ -11,12 +11,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import model.player.Account;
+
+import database.IDBAccount;
+
 import event.Event;
 import event.EventBus;
 import event.EventHandler;
 
 @SuppressWarnings("serial")
-public class LoginPanel extends JPanel implements ActionListener, EventHandler {
+public class LoginPanel extends JPanel implements ActionListener, EventHandler, IDBAccount {
 
 	private JTextField loginNameField;
 	private JPasswordField loginPasswordField;
@@ -87,5 +91,28 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler {
 		loginRegisterButton.setBounds(447, 401, 113, 23);
 		loginRegisterButton.addActionListener(this);
 		this.add(loginRegisterButton);
+	}
+
+	@Override
+	public Account loadAccount(String accountName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean createAccount(Account account) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean updateAccount(Account account, String oldPassword) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteAccount(Account account, String oldPassword) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
