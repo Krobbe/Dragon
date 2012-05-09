@@ -26,6 +26,9 @@ public class GameController {
 	
 	public GameController() {
 		//TODO: Request for newTable?
+		
+		//TODO Constructor without parameters plz!
+		//this(new Table(players, meIndex));
 	}
 	
 	public void newTable(List<iPlayer> players, int meIndex) { 
@@ -34,6 +37,20 @@ public class GameController {
 	
 	public GameController(Table table) {
 		this.table = table;
+	}
+
+	/**
+	 * Adds a player to the game table
+	 * 
+	 * @param player The player to be added
+	 * @author robinandersson
+	 */
+	public void addPlayer(iPlayer player) {
+		this.table.addPlayer(player);
+	}
+	
+	public void setCurrentBet(Bet bet) {
+		table.getRound().getBettingRound().setCurrentBet(bet);
 	}
 	
 	public void setPot(Pot pot) {

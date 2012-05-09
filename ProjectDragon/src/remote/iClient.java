@@ -17,18 +17,5 @@ import model.player.iPlayer;
  */
 public interface iClient extends Remote {
 	
-	/**
-	 * Method to set the player active to check, fold, raise etc.
-	 * 
-	 * @param active The boolean determining if it's the client's turn.
-	 */
-	public void setActive(boolean isActive) throws RemoteException;
-	
-	public void setPot(Pot pot);
-	
-	public void fold(iPlayer player);
-	
-	public void updateBet(Bet b);
-	
-	public void nextTurn();
+
 }

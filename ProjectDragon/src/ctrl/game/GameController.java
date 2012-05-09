@@ -47,6 +47,16 @@ public class GameController {
 	public GameController(Table table) {
 		this.table = table;
 	}
+	
+	/**
+	 * Adds a player to the game table
+	 * 
+	 * @param player The player to be added
+	 * @author robinandersson
+	 */
+	public void addPlayer(iPlayer player) {
+		this.table.addPlayer(player);
+	}
 
 	/**
 	 * Adds a new card to the "table cards"
