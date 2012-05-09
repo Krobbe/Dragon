@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="IDBAccountTest" project="ProjectDragon" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="ctrl.game.IDBAccountTest" time="0.295">
-    <testcase name="testLoadAccount" classname="ctrl.game.IDBAccountTest" time="0.206"/>
-    <testcase name="testUpdateAccount" classname="ctrl.game.IDBAccountTest" time="0.089"/>
-  </testsuite>
-</testrun>

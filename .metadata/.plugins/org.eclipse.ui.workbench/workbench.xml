@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="32" version="2.0">
+<workbench progressCount="28" version="2.0">
 <workbenchAdvisor/>
 <window height="685" maximized="true" width="1366" x="-26" y="22">
 <fastViewData fastViewLocation="1024"/>
@@ -31,21 +31,31 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteController.java" partName="RemoteController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/RemoteController.java" title="RemoteController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteController.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/RemoteController.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="440" selectionTopPixel="0"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameController.java" partName="GameController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/GameController.java" title="GameController.java" tooltip="ProjectDragon/src/ctrl/game/GameController.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameController.java" partName="GameController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/GameController.java" title="GameController.java" tooltip="ProjectDragon/src/ctrl/game/GameController.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/GameController.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="699" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Server.java" partName="Server.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/Server.java" title="Server.java" tooltip="ProjectDragon/src/ctrl/game/Server.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/Server.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteGameController.java" partName="RemoteGameController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/RemoteGameController.java" title="RemoteGameController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteGameController.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/RemoteGameController.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="166"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" partName="DatabaseCommunicator.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/database/DatabaseCommunicator.java" title="DatabaseCommunicator.java" tooltip="ProjectDragon/src/database/DatabaseCommunicator.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/database/DatabaseCommunicator.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="479" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IDBAccount.java" partName="IDBAccount.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/database/IDBAccount.java" title="IDBAccount.java" tooltip="ProjectDragon/src/database/IDBAccount.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/database/IDBAccount.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="748" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteCommunicationController.java" partName="RemoteCommunicationController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/RemoteCommunicationController.java" title="RemoteCommunicationController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteCommunicationController.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/RemoteCommunicationController.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="37" selectionOffset="1906" selectionTopPixel="963"/>
 </editor>
 </editors>
 <views>
@@ -54,9 +64,6 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings (26 items)"/>
-</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -234,14 +241,6 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/RmiStarter.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/hand/HandEvaluator.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/iRemote.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/main/Client.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/main/Main.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/RmiStarter.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/PolicyFileLocator.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/ServerStarter.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/Server.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/RemoteController.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/GameController.java"/>
@@ -260,156 +259,164 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/GameController.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/server/main/Server.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/Server.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/event/Event.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/RemoteController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/RemoteCommunicationController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/RemoteGameController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/player/Player.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/database/DatabaseCommunicator.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/database/IDBAccount.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/RemoteCommunicationController.java"/>
 </editors>
-<item historyLabel="RmiStarter.java" index="0">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="HandEvaluator.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RmiStarter.java" index="0">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="iRemote.java" index="2">
-<position info="not_deleted" x="247" y="15"/>
-</item>
-<item historyLabel="Client.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Main.java" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Client.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RmiStarter.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Client.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PolicyFileLocator.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Client.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ServerStarter.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RemoteController.java" index="9">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="GameController.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="iServerGame.java" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="iServerGame.java" index="11">
+<item historyLabel="iServerGame.java" index="3">
 <position info="not_deleted" x="252" y="0"/>
 </item>
-<item historyLabel="iServerGame.java" index="11">
+<item historyLabel="iServerGame.java" index="3">
 <position info="not_deleted" x="561" y="0"/>
 </item>
-<item historyLabel="iServerGame.java" index="11">
+<item historyLabel="iServerGame.java" index="3">
 <position info="not_deleted" x="642" y="0"/>
 </item>
-<item historyLabel="iServerGame.java" index="11">
+<item historyLabel="iServerGame.java" index="3">
 <position info="not_deleted" x="290" y="0"/>
 </item>
-<item historyLabel="GameController.java" index="10">
+<item historyLabel="GameController.java" index="2">
 <position info="not_deleted" x="2990" y="0"/>
 </item>
-<item historyLabel="iServerGame.java" index="11">
+<item historyLabel="iServerGame.java" index="3">
 <position info="not_deleted" x="82" y="0"/>
 </item>
-<item historyLabel="RemoteController.java" index="9">
+<item historyLabel="RemoteController.java" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="GameController.java" index="10">
+<item historyLabel="GameController.java" index="2">
 <position info="not_deleted" x="699" y="0"/>
 </item>
-<item historyLabel="RemoteController.java" index="9">
+<item historyLabel="RemoteController.java" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="RmiStarter.java" index="12">
+<item historyLabel="RmiStarter.java" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="RemoteController.java" index="9">
+<item historyLabel="RemoteController.java" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Server.java" index="8">
+<item historyLabel="Server.java" index="0">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PolicyFileLocator.java" index="13">
+<item historyLabel="PolicyFileLocator.java" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Server.java" index="8">
+<item historyLabel="Server.java" index="0">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="iRemote.java" index="14">
+<item historyLabel="iRemote.java" index="6">
 <position info="not_deleted" x="279" y="0"/>
 </item>
-<item historyLabel="Client.java" index="15">
+<item historyLabel="Client.java" index="7">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Table.java" index="16">
+<item historyLabel="Table.java" index="8">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Client.java" index="15">
+<item historyLabel="Client.java" index="7">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Round.java" index="17">
+<item historyLabel="Round.java" index="9">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Client.java" index="15">
+<item historyLabel="Client.java" index="7">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="OwnCurrentBetComparator.java" index="18">
+<item historyLabel="OwnCurrentBetComparator.java" index="10">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Client.java" index="15">
+<item historyLabel="Client.java" index="7">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="iServerGame.java" index="19">
+<item historyLabel="iServerGame.java" index="11">
 <position info="not_deleted" x="121" y="0"/>
 </item>
-<item historyLabel="Client.java" index="15">
+<item historyLabel="Client.java" index="7">
 <position info="not_deleted" x="228" y="0"/>
 </item>
-<item historyLabel="GameController.java" index="20">
+<item historyLabel="GameController.java" index="12">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Client.java" index="15">
+<item historyLabel="Client.java" index="7">
 <position info="not_deleted" x="228" y="0"/>
 </item>
-<item historyLabel="Main.java" index="21">
+<item historyLabel="Main.java" index="13">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="RemoteController.java" index="22">
+<item historyLabel="RemoteController.java" index="14">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="GameController.java" index="23">
+<item historyLabel="GameController.java" index="15">
 <position info="not_deleted" x="699" y="0"/>
 </item>
-<item historyLabel="RemoteController.java" index="22">
+<item historyLabel="RemoteController.java" index="14">
 <position info="not_deleted" x="467" y="0"/>
 </item>
-<item historyLabel="Server.java" index="24">
+<item historyLabel="Server.java" index="16">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Server.java" index="25">
+<item historyLabel="Server.java" index="17">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="GameController.java" index="23">
+<item historyLabel="GameController.java" index="15">
 <position info="not_deleted" x="699" y="0"/>
+</item>
+<item historyLabel="Event.java" index="18">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RemoteController.java" index="19">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Event.java" index="18">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RemoteCommunicationController.java" index="20">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RemoteGameController.java" index="21">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RemoteCommunicationController.java" index="20">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="GameController.java" index="15">
+<position info="not_deleted" x="699" y="0"/>
+</item>
+<item historyLabel="RemoteCommunicationController.java" index="20">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RemoteGameController.java" index="21">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Player.java" index="22">
+<position info="not_deleted" x="2805" y="0"/>
+</item>
+<item historyLabel="RemoteGameController.java" index="21">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DatabaseCommunicator.java" index="23">
+<position info="not_deleted" x="479" y="0"/>
+</item>
+<item historyLabel="IDBAccount.java" index="24">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="RemoteCommunicationController.java" index="25">
+<position info="not_deleted" x="1906" y="37"/>
+</item>
+<item historyLabel="IDBAccount.java" index="24">
+<position info="not_deleted" x="748" y="0"/>
+</item>
+<item historyLabel="DatabaseCommunicator.java" index="23">
+<position info="not_deleted" x="479" y="0"/>
+</item>
+<item active="true" historyLabel="IDBAccount.java" index="24">
+<position info="not_deleted" x="748" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -429,6 +436,24 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteCommunicationController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteCommunicationController.java">
+<persistable path="/ProjectDragon/src/ctrl/game/RemoteCommunicationController.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IDBAccount.java" tooltip="ProjectDragon/src/database/IDBAccount.java">
+<persistable path="/ProjectDragon/src/database/IDBAccount.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" tooltip="ProjectDragon/src/database/DatabaseCommunicator.java">
+<persistable path="/ProjectDragon/src/database/DatabaseCommunicator.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" tooltip="ProjectDragon/src/model/player/Player.java">
+<persistable path="/ProjectDragon/src/model/player/Player.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteGameController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteGameController.java">
+<persistable path="/ProjectDragon/src/ctrl/game/RemoteGameController.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Event.java" tooltip="ProjectDragon/src/event/Event.java">
+<persistable path="/ProjectDragon/src/event/Event.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Server.java" tooltip="ProjectDragon/src/server/main/Server.java">
 <persistable path="/ProjectDragon/src/server/main/Server.java"/>
 </file>
@@ -455,24 +480,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RmiStarter.java" tooltip="ProjectDragon/src/remote/RmiStarter.java">
 <persistable path="/ProjectDragon/src/remote/RmiStarter.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="iServerGame.java" tooltip="ProjectDragon/src/remote/iServerGame.java">
-<persistable path="/ProjectDragon/src/remote/iServerGame.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameController.java" tooltip="ProjectDragon/src/ctrl/game/GameController.java">
-<persistable path="/ProjectDragon/src/ctrl/game/GameController.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteController.java">
-<persistable path="/ProjectDragon/src/ctrl/game/RemoteController.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="ProjectDragon/src/client/main/Main.java">
-<persistable path="/ProjectDragon/src/client/main/Main.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HandEvaluator.java" tooltip="ProjectDragon/src/model/player/hand/HandEvaluator.java">
-<persistable path="/ProjectDragon/src/model/player/hand/HandEvaluator.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseCommunicator.java" tooltip="ProjectDragon/src/model/database/DatabaseCommunicator.java">
-<persistable path="/ProjectDragon/src/model/database/DatabaseCommunicator.java"/>
 </file>
 </mruList>
 </workbench>

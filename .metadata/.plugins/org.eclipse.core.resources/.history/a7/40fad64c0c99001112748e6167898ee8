@@ -132,6 +132,7 @@ public class Player implements iPlayer {
 	@Override
 	public void setDoneFirstTurn(boolean value) {
 		doneFirstTurn = value;
+		
 	}
 
 	@Override
