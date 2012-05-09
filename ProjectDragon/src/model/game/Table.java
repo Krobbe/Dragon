@@ -10,6 +10,7 @@ import event.Event;
 import event.EventBus;
 
 import model.card.Card;
+import model.card.iCard;
 import model.player.Bet;
 import model.player.iPlayer;
 import model.player.hand.FullTHHand;
@@ -33,7 +34,7 @@ import utilities.TableCardsFullException;
 public class Table {
 	private Round round;
 	private Dealer dealer;
-	private List<Card> tableCards;
+	private List<iCard> tableCards;
 	private List<iPlayer> players;
 	private boolean showdownDone;
 	private int indexOfCurrentPlayer;
@@ -48,7 +49,7 @@ public class Table {
 	public Table() {
 		round = new Round();
 		dealer = new Dealer();
-		tableCards = new ArrayList<Card>();
+		tableCards = new ArrayList<iCard>();
 		players = new ArrayList<iPlayer>();
 		indexOfCurrentPlayer = 0;
 		indexOfDealerButton = 0;
@@ -391,7 +392,7 @@ public class Table {
 	 * This method is used only for testing of the class.
 	 * @return The "table cards" represented as a list of cards.
 	 */
-	public List<Card> getTableCards() {
+	public List<iCard> getTableCards() {
 		return tableCards;
 	}
 	

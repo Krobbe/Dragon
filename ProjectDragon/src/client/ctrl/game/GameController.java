@@ -6,6 +6,7 @@ import client.model.game.Table;
 
 import model.card.Card;
 import model.card.InvisibleCard;
+import model.card.iCard;
 import model.game.Pot;
 import model.player.Bet;
 import model.player.iPlayer;
@@ -59,6 +60,7 @@ public class GameController {
 		p.getBalance().removeFromBalance(tmp);
 		p.setOwnCurrentBet(bet.getValue());
 		table.getRound().getBettingRound().setCurrentBet(bet);
+		table.getRound().getPot().addToPot(bet.getValue());
 		return true;
 	}
 	
@@ -71,7 +73,7 @@ public class GameController {
 		iHand myHand = me.getHand();
 		for(iPlayer p : table.getActivePlayers()) {
 			if(p.equals(me)) {
-				for(Card c : hand) {
+				for(iCard c : hand) {
 					myHand.addCard(c);
 				}
 			} else {

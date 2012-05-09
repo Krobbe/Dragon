@@ -272,8 +272,9 @@ public class GameController {
 		
 		/* set the table in a "initial" mode, in other words clear all bets
 		 * and pots, discard all hands etc. */
-		table.setShowdownDone(false);
+		table.setShowdownDone(false); //TODO: behövs denna här eller bara i nextRound?
 		table.getRound().getPot().emptyPot();
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_POT, table.getRound().getPot()));
 		table.getRound().getPreBettingPot().emptyPot();
 		table.clearTableCards();
 		EventBus.publish(new Event(Event.Tag.SERVER_CLEAR_TABLE_CARDS, ""));
@@ -281,6 +282,7 @@ public class GameController {
 		table.getSidePots().clear();
 		for (iPlayer p : players) {
 			p.getHand().discard();
+			
 			p.setOwnCurrentBet(0);
 			p.setDoneFirstTurn(false);			
 			if (p.getBalance().getValue() != 0) {
