@@ -6,23 +6,19 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="Database.DatabaseCommunicator"/>
-<fullyQualifiedTypeName name="model.game.Pot"/>
 <fullyQualifiedTypeName name="model.game.Card.Suite"/>
 <fullyQualifiedTypeName name="model.player.Balance"/>
 <fullyQualifiedTypeName name="model.game.Deck"/>
 <fullyQualifiedTypeName name="model.player.HandValue"/>
 <fullyQualifiedTypeName name="java.util.TreeMap"/>
 <fullyQualifiedTypeName name="model.player.hand.HandValue"/>
-<fullyQualifiedTypeName name="model.player.hand.iHand"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
-<fullyQualifiedTypeName name="model.player.iPlayer"/>
 <fullyQualifiedTypeName name="java.util.Comparator"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="model.game.CardComparator"/>
 <fullyQualifiedTypeName name="model.player.hand.FullTHHand"/>
 <fullyQualifiedTypeName name="model.game.Card"/>
 <fullyQualifiedTypeName name="model.player.hand.TexasHoldemHand"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="model.game.Card.Suit"/>
 <fullyQualifiedTypeName name="model.player.Bet"/>
 <fullyQualifiedTypeName name="model.game.Card.Rank"/>
@@ -35,4 +31,11 @@
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="utilities.IllegalRaiseException"/>
 <fullyQualifiedTypeName name="utilities.IllegalCallException"/>
+<fullyQualifiedTypeName name="model.player.hand.iHand"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="model.card.Card"/>
+<fullyQualifiedTypeName name="model.game.Round"/>
+<fullyQualifiedTypeName name="model.game.Pot"/>
+<fullyQualifiedTypeName name="model.player.iPlayer"/>
+<fullyQualifiedTypeName name="client.model.game.Table"/>
 </qualifiedTypeNameHistroy>

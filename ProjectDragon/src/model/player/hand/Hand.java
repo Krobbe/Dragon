@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.card.Card;
+import model.card.iCard;
 
 /**
  * @author robinandersson
@@ -15,7 +16,7 @@ import model.card.Card;
  */
 public class Hand implements iHand {
 
-	private List<Card> cards;
+	private List<iCard> cards;
 	private boolean isVisible;
 	
 	/*
@@ -26,7 +27,7 @@ public class Hand implements iHand {
 	}
 	
 	public Hand(boolean isVisible){
-		cards = new LinkedList<Card>();
+		cards = new LinkedList<iCard>();
 		this.isVisible = isVisible;
 	}
 	
@@ -36,12 +37,12 @@ public class Hand implements iHand {
 	}
 
 	@Override
-	public List<Card> getCards() {
+	public List<iCard> getCards() {
 		return cards;
 	}
 
 	@Override
-	public void addCard(Card card) {
+	public void addCard(iCard card) {
 		cards.add(card);
 	}
 
@@ -104,10 +105,10 @@ public class Hand implements iHand {
 			 * compared each time
 			 */
 			
-			List<Card> otherCards = ((Hand) o).getCards();
+			List<iCard> otherCards = ((Hand) o).getCards();
 			
 			//Every card in this hand is compared to the other Hand's cards
-			for(Card card : this.getCards()){
+			for(iCard card : this.getCards()){
 				
 				boolean sameCards = false;
 				

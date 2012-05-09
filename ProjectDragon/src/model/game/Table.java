@@ -10,10 +10,13 @@ import event.Event;
 import event.EventBus;
 
 import model.card.Card;
+import model.card.iCard;
+import model.player.Bet;
 import model.player.iPlayer;
 import model.player.hand.FullTHHand;
 import model.player.hand.HandValue;
 import model.player.hand.HandValueType;
+import model.player.hand.iHand;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
 
@@ -31,7 +34,7 @@ import utilities.TableCardsFullException;
 public class Table {
 	private Round round;
 	private Dealer dealer;
-	private List<Card> tableCards;
+	private List<iCard> tableCards;
 	private List<iPlayer> players;
 	private boolean showdownDone;
 	private int indexOfCurrentPlayer;
@@ -46,7 +49,7 @@ public class Table {
 	public Table() {
 		round = new Round();
 		dealer = new Dealer();
-		tableCards = new ArrayList<Card>();
+		tableCards = new ArrayList<iCard>();
 		players = new ArrayList<iPlayer>();
 		indexOfCurrentPlayer = 0;
 		indexOfDealerButton = 0;
@@ -179,6 +182,8 @@ public class Table {
 		
 		for (iPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);
+			EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_POT, 
+					new Bet(p, winnerAmount)));
 		}
 		//TODO: Remove money from the pot!
 	}
@@ -217,6 +222,11 @@ public class Table {
 		// Restores the list to the previous state before it was prepared
 		for(int i = 0 ; i <= getDealerButtonIndex() ; i++){
 			players.add(0, players.remove(players.size() -1));
+		}
+		
+		for(iPlayer p : getActivePlayers()) {
+			iHand h = p.getHand();
+			//TODO: Give cards to client
 		}
 	}
 	
@@ -382,7 +392,7 @@ public class Table {
 	 * This method is used only for testing of the class.
 	 * @return The "table cards" represented as a list of cards.
 	 */
-	public List<Card> getTableCards() {
+	public List<iCard> getTableCards() {
 		return tableCards;
 	}
 	

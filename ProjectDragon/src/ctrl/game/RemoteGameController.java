@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import event.Event;
+import event.EventHandler;
+
 import model.player.Bet;
 import model.player.iPlayer;
 
@@ -25,7 +28,7 @@ import utilities.IllegalRaiseException;
  * @author lisastenberg
  *
  */
-public class RemoteGameController extends UnicastRemoteObject implements iServerGame{
+public class RemoteGameController extends UnicastRemoteObject implements iServerGame, EventHandler{
 
 	GameController gameController;
 	//TODO Ta bort den "clientGames" som inte behövs (när det blir tydligt vad som behövs)
@@ -96,6 +99,30 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 	public boolean fold(iPlayer player) {
 		return gameController.fold(player);
 	}
+	
+	//TODO Javadoc
+	public void onEvent(Event evt) {
+		
+		switch (evt.getTag()) {
+		
+			case SERVER_FOLD:
+				//iClientRequest 
+
+				break;
+			case SERVER_UPDATE_BET:
+				break;
+				
+			case SERVER_DISTRIBUTE_CARDS:
+				break;
+				
+			case SERVER_ADD_TABLE_CARDS:
+				break;
+				
+		
+			default:
+				break;
+		}
+	}
 
 	@Override
 	public void startGame() throws IllegalCallException, RemoteException {
@@ -109,3 +136,4 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 	}
 
 }
+

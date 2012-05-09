@@ -1,13 +1,16 @@
 package ctrl.game;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import event.Event;
+import event.Event.Tag;
 import event.EventBus;
 import event.EventHandler;
 
 import model.card.Card;
+import model.card.iCard;
 import model.game.BettingRound;
 import model.game.Dealer;
 import model.game.P;
@@ -63,6 +66,9 @@ public class GameController {
 		Dealer dealer = table.getDealer();
 		Card c = dealer.getRiver();
 		table.addTableCard(c);
+		List<iCard> tmp = new LinkedList<iCard>();
+		tmp.add(c);
+		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARDS, tmp));
 	}
 
 	/**
@@ -71,10 +77,12 @@ public class GameController {
 	//TODO skulle kunna vara i table?
 	private void showFlop() {
 		Dealer dealer = table.getDealer();
+		//TODO: List<iCard>
 		List<Card> flop = dealer.getFlop();
 		for (Card c : flop) {
 			table.addTableCard(c);
 		}
+		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARDS, flop));
 	}
 
 	/**
@@ -263,6 +271,8 @@ public class GameController {
 			showRiver();
 		}
 		
+		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARDS, table.getTableCards()));
+		
 		/* do showdown */
 		table.doShowdown(plrs, potAmount);
 	}
@@ -275,8 +285,9 @@ public class GameController {
 		
 		/* set the table in a "initial" mode, in other words clear all bets
 		 * and pots, discard all hands etc. */
-		table.setShowdownDone(false);
+		table.setShowdownDone(false); //TODO: behövs denna här eller bara i nextRound?
 		table.getRound().getPot().emptyPot();
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_POT, table.getRound().getPot()));
 		table.getRound().getPreBettingPot().emptyPot();
 		table.clearTableCards();
 		table.getSidePots().clear();
@@ -288,6 +299,8 @@ public class GameController {
 				p.setActive(true);
 			}
 		}
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_NEW_ROUND,""));
 		
 		/* new cards for all active players*/
 		table.getDealer().newDeck();
@@ -308,6 +321,8 @@ public class GameController {
 			} while (!players.get(indexOfCurrentPlayer).isActive());
 		}
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
+		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN, indexOfCurrentPlayer));
+		
 	}
 	
 	/**
@@ -369,6 +384,9 @@ public class GameController {
 					new Bet(smallBlindPlayer,smallBlind));
 		}
 		
+		EventBus.publish(new Event(Tag.SERVER_UPDATE_BET, new Bet(smallBlindPlayer,smallBlind)));
+		EventBus.publish(new Event(Tag.SERVER_UPDATE_BET, new Bet(bigBlindPlayer,bigBlind)));
+		
 		/* if a player has gone all-in he shall not be able to act */
 		//TODO ska denna vara här?
 		if (bigBlindPlayer.getBalance().getValue() == 0) {
@@ -391,6 +409,7 @@ public class GameController {
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
 		for (iPlayer p : players) {
 			p.setOwnCurrentBet(0);
+			EventBus.publish(new Event(Event.Tag.SERVER_SET_OWN_CURRENT_BET, new Bet(p,0)));
 			p.setDoneFirstTurn(false);
 		}
 		
@@ -474,6 +493,7 @@ public class GameController {
 				
 	            /* the all-in player should after this not longer be active */
 	            p.setActive(false);
+	            EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE,p));
 		} 
 	}
 	

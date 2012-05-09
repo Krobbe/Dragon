@@ -4,18 +4,17 @@
 package client.ctrl.game;
 
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
+import model.game.Pot;
 import model.player.Account;
 import model.player.Bet;
-import model.player.Player;
 import model.player.iPlayer;
 
 import remote.iClient;
 import remote.iClientGame;
 import remote.iServer;
 import remote.iServerGame;
+
 import utilities.IllegalCallException;
 
 /**
@@ -112,6 +111,34 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 		}
 		
 		return false;
+	}
+
+
+	@Override
+	public void setPot(Pot pot) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void fold(iPlayer player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void updateBet(Bet b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void nextTurn() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

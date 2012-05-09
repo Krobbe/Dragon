@@ -19,7 +19,7 @@ public interface iServerRequest {
 	 * Requests a call.
 	 * 
 	 * @param bet A bet object containing the bet's amount and user information
-	 * (to verify that the correct player tried to invoka the call method)
+	 * (to verify that the correct player tried to invoke the call method)
 	 * @throws IllegalCallException
 	 */
 	public boolean requestCall(Bet bet);

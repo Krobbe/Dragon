@@ -1,0 +1,12 @@
+package ctrl.game;
+
+import model.player.*;
+
+public interface iClientRequest {
+
+	public void fold(iPlayer player);
+	
+	public void updateBet(Bet b);
+	
+	public void nextTurn();
+}

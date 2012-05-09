@@ -1,0 +1,5 @@
+package ctrl.game;
+
+public interface iClientRequest {
+
+}

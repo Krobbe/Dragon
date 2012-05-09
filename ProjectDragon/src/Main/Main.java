@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import client.gui.MenuView;
+
 import ctrl.game.GameController;
 
 import model.game.*;
@@ -15,8 +17,6 @@ import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
-import view.menu.MenuView;
-import view.table.TableView;
 
 public class Main {
 	

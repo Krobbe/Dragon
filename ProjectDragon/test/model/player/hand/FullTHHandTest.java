@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.card.Card;
+import model.card.iCard;
 
 import org.junit.Test;
 /**
@@ -25,20 +26,20 @@ public class FullTHHandTest {
 	public void testAddCard() {
 		FullTHHand hand = new FullTHHand();
 		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-		Card c = hand.getCards().get(0);
+		iCard c = hand.getCards().get(0);
 		assertTrue(c.getRank() == Card.Rank.ACE && c.getSuit() == Card.Suit.CLUBS);
 	}
 	
 	@Test
 	public void testAddCardsFromList() {
 		FullTHHand hand = new FullTHHand();
-		List<Card> list = new LinkedList<Card>();
+		List<iCard> list = new LinkedList<iCard>();
 		list.add(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
 		list.add(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
 		list.add(new Card(Card.Suit.CLUBS, Card.Rank.NINE));
 		hand.addCards(list);
 
-		Card c = hand.getCards().get(0);
+		iCard c = hand.getCards().get(0);
 		assertTrue(c.getRank() == Card.Rank.TEN && c.getSuit() == Card.Suit.CLUBS);
 	}
 	
@@ -49,7 +50,7 @@ public class FullTHHandTest {
 		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
 		
 		fhand.addCards(hand);
-		Card c = fhand.getCards().get(0);
+		iCard c = fhand.getCards().get(0);
 		assertTrue(c.getRank() == Card.Rank.EIGHT && c.getSuit() == Card.Suit.CLUBS);
 	}
 

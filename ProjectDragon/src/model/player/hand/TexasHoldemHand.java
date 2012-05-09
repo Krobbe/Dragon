@@ -6,6 +6,7 @@ package model.player.hand;
 import java.util.List;
 
 import model.card.Card;
+import model.card.iCard;
 
 /**
  * A class representing a standard Texas Hold'em hand
@@ -40,7 +41,7 @@ public class TexasHoldemHand implements iHand {
 	 * Returns the hand's cards
 	 */
 	@Override
-	public List<Card> getCards() {
+	public List<iCard> getCards() {
 		return hand.getCards();
 	}
 
@@ -49,7 +50,7 @@ public class TexasHoldemHand implements iHand {
 	 * @param card The card to be added
 	 */
 	@Override
-	public void addCard(Card card) {
+	public void addCard(iCard card) {
 		hand.addCard(card);
 	}
 	
@@ -124,10 +125,10 @@ public class TexasHoldemHand implements iHand {
 			 * compared each time
 			*/
 			
-			List<Card> otherCards = ((TexasHoldemHand) o).getCards();
+			List<iCard> otherCards = ((TexasHoldemHand) o).getCards();
 			
 			//Every card in this hand is compared to the other Hand's cards
-			for(Card card : this.getCards()){
+			for(iCard card : this.getCards()){
 				
 				boolean sameCards = false;
 				

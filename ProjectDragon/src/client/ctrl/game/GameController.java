@@ -1,12 +1,16 @@
 package client.ctrl.game;
 
+import java.util.List;
+
+import client.model.game.Table;
+
+import model.card.Card;
+import model.card.InvisibleCard;
+import model.card.iCard;
 import model.game.Pot;
 import model.player.Bet;
 import model.player.iPlayer;
-import client.event.Event;
-import client.event.EventHandler;
-import client.event.EventBus;
-import model.game.Table;
+import model.player.hand.*;
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -16,16 +20,22 @@ import model.game.Table;
  * 
  */
 
-public class GameController implements EventHandler {
+public class GameController {
 
 	Table table;
 	
 	public GameController() {
-		this(new Table());
+		//TODO: Request for newTable?
+		
+		//TODO Constructor without parameters plz!
+		//this(new Table(players, meIndex));
+	}
+	
+	public void newTable(List<iPlayer> players, int meIndex) { 
+		table = new Table(players, meIndex);
 	}
 	
 	public GameController(Table table) {
-		EventBus.register(this);
 		this.table = table;
 	}
 	
@@ -47,42 +57,83 @@ public class GameController implements EventHandler {
 		table.getRound().getPot().setValue(pot.getValue());
 	}
 	
-	public void fold(iPlayer player) {
-		player.getHand().discard();
-		player.setActive(false);
-		player.setDoneFirstTurn(true);
+	public boolean fold(iPlayer player) {
+		if(!table.getCurrentPlayer().equals(player)) {
+			return false;
+		} 
+		iPlayer p = table.getCurrentPlayer();
+		p.getHand().discard();
+		p.setActive(false);
+		p.setDoneFirstTurn(true);
+		return true;
 	}
 	
-	@Override
-	public void onEvent(Event evt) {
+	public boolean betOccured(Bet bet) {
+		iPlayer p = table.getCurrentPlayer();
+		int tmp = bet.getValue() - p.getOwnCurrentBet();
+		p.getBalance().removeFromBalance(tmp);
+		p.setOwnCurrentBet(bet.getValue());
 		
-		switch (evt.getTag()) {
-		
-			case REQUEST_CHECK:
-			
-				//
-
-			case REQUEST_FOLD:
-			
-			//Skicka en fold-fšrfrŒgan till servern
-			
-			
-			case REQUEST_CALL:
-			
-			//
-			
-			case REQUEST_RAISE:
-			
-			//raise(new Bet(table.getCurrentPlayer(),table.getRound()
-			//	.getBettingRound().getCurrentBet().getValue()) + amount);
-			break;
-			
-		default:
-			break;
+		/* kolla sŒ att inte bigblind Šr mindre Šn smallblind men blir inskickad efter smallblind*/
+		if (bet.getValue() >= table.getRound().getBettingRound().getCurrentBet().getValue()) {
+			table.getRound().getBettingRound().setCurrentBet(bet);
 		}
-	
-	}
 		
+		table.getRound().getPot().addToPot(bet.getValue());
+		return true;
+	}
+	
+	public boolean nextTurn(iPlayer nextPlayer) {
+		return table.nextPlayer().equals(nextPlayer);
+	}
+	
+	public void setTurn(int indexOfCurrentPlayer) {
+		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
+	}
+	
+	public void setHand(iHand hand) {
+		iPlayer me = table.getPlayers().get(table.getMeIndex());
+		iHand myHand = me.getHand();
+		for(iPlayer p : table.getActivePlayers()) {
+			if(p.equals(me)) {
+				for(iCard c : hand.getCards()) {
+					myHand.addCard(c);
+				}
+			} else {
+				p.getHand().addCard(new InvisibleCard());
+			}
+		}	
+	}
+	
+	/**
+	 * Add cards to the table.
+	 * 
+	 * @param cards The cards you want to add.
+	 */
+	public void addCommunityCards(List<Card> cards) {
+		for(Card c: cards) {
+			table.addTableCard(c);
+		}
+	}
+	
+	public void newRound() {
+		table.getTableCards().clear();
+		for (iPlayer p : table.getActivePlayers()) {
+			p.getHand().discard();
+			if (p.getBalance().getValue() != 0) {
+				p.setActive(true);
+			}
+		}
+	}
+	
+	public void setActive(iPlayer p, boolean b) {
+		p.setActive(b);
+	}
+	
+	public void setPlayerOwnCurrentBet(Bet bet) {
+		iPlayer p = bet.getOwner();
+		p.setOwnCurrentBet(bet.getValue());
+	}
 }
 
 

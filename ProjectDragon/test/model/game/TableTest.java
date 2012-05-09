@@ -7,6 +7,7 @@ import java.util.List;
 
 import model.card.Card;
 import model.card.Card.Suit;
+import model.card.iCard;
 import model.player.User;
 import model.player.iPlayer;
 import model.player.hand.HandValueType;
@@ -163,7 +164,7 @@ public class TableTest {
 	public void testAddTableCard() throws TableCardsFullException {
 		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
 		t.addTableCard(c);
-		List<Card> tableCards = t.getTableCards();
+		List<iCard> tableCards = t.getTableCards();
 		assertTrue(tableCards.get(0).equals(c));
 	}
 	
