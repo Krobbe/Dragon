@@ -1,4 +1,4 @@
-package view.menu;
+package client.gui;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -45,7 +45,7 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 	}
 
 	private void init() {
-//		JPanel mainPanel = new JPanel();
+		// JPanel mainPanel = new JPanel();
 		// frame.getContentPane().add(mainPanel);
 		this.setLayout(null);
 

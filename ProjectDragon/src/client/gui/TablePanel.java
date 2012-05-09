@@ -1,4 +1,4 @@
-package view.table;
+package client.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,88 +15,87 @@ import event.EventHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TableView implements EventHandler, ActionListener {
+public class TablePanel extends JPanel implements EventHandler, ActionListener {
 
-	private JFrame frame;
 	private JButton leaveTableButton;
-	
+
 	private JTextField userBetField;
 	private JLabel userAvailableCreditsLabel;
 	private JButton userFoldButton;
 	private JButton userCheckButton;
 	private JButton userRaiseButton;
 	private JLabel userCreditsLabel;
-	
+
 	private JPanel playerOnePanel;
 	private JLabel p1c1Label;
 	private JLabel p1c2Label;
 	private JLabel p1NameLabel;
 	private JLabel p1CreditsLabel;
 	private JLabel p1AvailableCreditsLabel;
-	
+
 	private JPanel playerTwoPanel;
 	private JLabel p2c1Label;
 	private JLabel p2c2Label;
 	private JLabel p2NameLabel;
 	private JLabel p2CreditsLabel;
 	private JLabel p2AvailableCreditsLabel;
-	
+
 	private JPanel playerThreePanel;
 	private JLabel p3c1Label;
 	private JLabel p3c2Label;
 	private JLabel p3NameLabel;
 	private JLabel p3CreditsLabel;
 	private JLabel p3AvailableCreditsLabel;
-	
+
 	private JPanel playerFourPanel;
 	private JLabel p4c1Label;
 	private JLabel p4c2Label;
 	private JLabel p4NameLabel;
 	private JLabel p4CreditsLabel;
 	private JLabel p4AvailableCreditsLabel;
-	
+
 	private JPanel playerFivePanel;
 	private JLabel p5c1Label;
 	private JLabel p5c2Label;
 	private JLabel p5NameLabel;
 	private JLabel p5CreditsLabel;
 	private JLabel p5AvailableCreditsLabel;
-	
+
 	private JPanel playerSixPanel;
 	private JLabel p6c1Label;
 	private JLabel p6c2Label;
 	private JLabel p6NameLabel;
 	private JLabel p6CreditsLabel;
 	private JLabel p6AvailableCreditsLabel;
-	
+
 	private JPanel playerSevenPanel;
 	private JLabel p7c1Label;
 	private JLabel p7c2Label;
 	private JLabel p7NameLabel;
 	private JLabel p7CreditsLabel;
 	private JLabel p7AvailableCreditsLabel;
-	
+
 	private JPanel playerEightPanel;
 	private JLabel p8c1Label;
 	private JLabel p8c2Label;
 	private JLabel p8NameLabel;
 	private JLabel p8CreditsLabel;
 	private JLabel p8AvailableCreditsLabel;
-	
+
 	private JPanel playerNinePanel;
 	private JLabel p9c1Label;
 	private JLabel p9c2Label;
 	private JLabel p9NameLabel;
 	private JLabel p9CreditsLabel;
 	private JLabel p9AvailableCreditsLabel;
-	
+
 	private JPanel playerTenPanel;
 	private JLabel p10c1Label;
 	private JLabel p10c2Label;
 	private JLabel p10NameLabel;
 	private JLabel p10CreditsLabel;
 	private JLabel p10AvailableCreditsLabel;
-	
+
 	private JPanel shownCardsPanel;
 	private JLabel flopc1Label;
 	private JLabel flopc2Label;
@@ -107,7 +106,7 @@ public class TableView implements EventHandler, ActionListener {
 	/**
 	 * Create the application.
 	 */
-	public TableView() {
+	public TablePanel() {
 		initialize();
 		EventBus.register(this);
 	}
@@ -116,26 +115,17 @@ public class TableView implements EventHandler, ActionListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1024, 768);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		
-		//Code for the table panel
-		JPanel tablePanel = new JPanel();
-		tablePanel.setBounds(0, 0, 1008, 730);
-		frame.getContentPane().add(tablePanel);
-		tablePanel.setLayout(null);
+		// Code for the table panel
+		this.setLayout(null);
 
 		leaveTableButton = new JButton("Leave table");
 		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		leaveTableButton.setBounds(10, 683, 111, 36);
-		tablePanel.add(leaveTableButton);
+		this.add(leaveTableButton);
 
 		JPanel callPanel = new JPanel();
 		callPanel.setBounds(666, 571, 332, 148);
-		tablePanel.add(callPanel);
+		this.add(callPanel);
 		callPanel.setLayout(null);
 
 		userAvailableCreditsLabel = new JLabel("xxx");
@@ -171,11 +161,10 @@ public class TableView implements EventHandler, ActionListener {
 
 		JPanel gamePanel = new JPanel();
 		gamePanel.setBounds(10, 11, 988, 549);
-		tablePanel.add(gamePanel);
+		this.add(gamePanel);
 		gamePanel.setLayout(null);
 
-		
-		//Player one
+		// Player one
 		playerOnePanel = new JPanel();
 		playerOnePanel.setLayout(null);
 		playerOnePanel.setBounds(580, 0, 135, 144);
@@ -202,9 +191,8 @@ public class TableView implements EventHandler, ActionListener {
 		p1AvailableCreditsLabel = new JLabel("xxx");
 		p1AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerOnePanel.add(p1AvailableCreditsLabel);
-		
-		
-		//Player two
+
+		// Player two
 		playerTwoPanel = new JPanel();
 		playerTwoPanel.setLayout(null);
 		playerTwoPanel.setBounds(853, 0, 135, 144);
@@ -228,12 +216,11 @@ public class TableView implements EventHandler, ActionListener {
 		p2CreditsLabel.setBounds(10, 119, 53, 14);
 		playerTwoPanel.add(p2CreditsLabel);
 
-		JLabel p2AvailableCreditsLabel = new JLabel("xxx");
+		p2AvailableCreditsLabel = new JLabel("xxx");
 		p2AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerTwoPanel.add(p2AvailableCreditsLabel);
-		
-		
-		//Player three
+
+		// Player three
 		playerThreePanel = new JPanel();
 		playerThreePanel.setLayout(null);
 		playerThreePanel.setBounds(853, 202, 135, 144);
@@ -260,9 +247,8 @@ public class TableView implements EventHandler, ActionListener {
 		p3AvailableCreditsLabel = new JLabel("xxx");
 		p3AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerThreePanel.add(p3AvailableCreditsLabel);
-		
-		
-		//Player four
+
+		// Player four
 		playerFourPanel = new JPanel();
 		playerFourPanel.setLayout(null);
 		playerFourPanel.setBounds(853, 405, 135, 144);
@@ -289,9 +275,8 @@ public class TableView implements EventHandler, ActionListener {
 		p4AvailableCreditsLabel = new JLabel("xxx");
 		p4AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerFourPanel.add(p4AvailableCreditsLabel);
-		
-		
-		//Player five
+
+		// Player five
 		playerFivePanel = new JPanel();
 		playerFivePanel.setLayout(null);
 		playerFivePanel.setBounds(580, 405, 135, 144);
@@ -318,9 +303,8 @@ public class TableView implements EventHandler, ActionListener {
 		p5AvailableCreditsLabel = new JLabel("xxx");
 		p5AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerFivePanel.add(p5AvailableCreditsLabel);
-		
-		
-		//Player six
+
+		// Player six
 		playerSixPanel = new JPanel();
 		playerSixPanel.setLayout(null);
 		playerSixPanel.setBounds(297, 405, 135, 144);
@@ -347,9 +331,8 @@ public class TableView implements EventHandler, ActionListener {
 		p6AvailableCreditsLabel = new JLabel("xxx");
 		p6AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerSixPanel.add(p6AvailableCreditsLabel);
-		
-		
-		//Player seven
+
+		// Player seven
 		playerSevenPanel = new JPanel();
 		playerSevenPanel.setLayout(null);
 		playerSevenPanel.setBounds(0, 405, 135, 144);
@@ -376,9 +359,8 @@ public class TableView implements EventHandler, ActionListener {
 		p7AvailableCreditsLabel = new JLabel("xxx");
 		p7AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerSevenPanel.add(p7AvailableCreditsLabel);
-		
-		
-		//Player eight
+
+		// Player eight
 		playerEightPanel = new JPanel();
 		playerEightPanel.setLayout(null);
 		playerEightPanel.setBounds(0, 202, 135, 144);
@@ -405,9 +387,8 @@ public class TableView implements EventHandler, ActionListener {
 		p8AvailableCreditsLabel = new JLabel("xxx");
 		p8AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerEightPanel.add(p8AvailableCreditsLabel);
-		
-		
-		//Player nine
+
+		// Player nine
 		playerNinePanel = new JPanel();
 		playerNinePanel.setBounds(0, 0, 135, 144);
 		gamePanel.add(playerNinePanel);
@@ -434,9 +415,8 @@ public class TableView implements EventHandler, ActionListener {
 		p9AvailableCreditsLabel = new JLabel("xxx");
 		p9AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerNinePanel.add(p9AvailableCreditsLabel);
-		
-		
-		//Player ten
+
+		// Player ten
 		playerTenPanel = new JPanel();
 		playerTenPanel.setLayout(null);
 		playerTenPanel.setBounds(297, 0, 135, 144);
@@ -488,8 +468,6 @@ public class TableView implements EventHandler, ActionListener {
 		riverc1Label = new JLabel("Card 1");
 		riverc1Label.setBounds(355, 11, 53, 80);
 		shownCardsPanel.add(riverc1Label);
-		
-		frame.setVisible(true);
 	}
 
 	@Override

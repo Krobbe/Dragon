@@ -8,18 +8,19 @@ package event;
 public class Event {
     // All possible events listed
     public enum Tag {
-    	TRY_LOGIN, //TODO This event needs to be caught and the contents compared with the DB, send either LOGIN_SUCCESS or LOGIN_FAILED back
+    	TRY_LOGIN, //The string is in the form "username password"
     	LOGIN_FAILED,
     	LOGIN_SUCCESS,
     	LOGOUT,
+    	GO_TO_MAIN,
     	GO_TO_REGISTER,
     	GO_TO_JOINTABLE,
     	GO_TO_CREATETABLE,
     	GO_TO_STATISTICS,
     	REGISTER_BACK,
-    	JOINTABLE_BACK,
-    	CREATETABLE_BACK,
-    	STATISTICS_BACK,
+//    	JOINTABLE_BACK,
+//    	CREATETABLE_BACK,
+//    	STATISTICS_BACK,
     	TRY_REGISTER,
     	REGISTER_FAILED,
     	REGISTER_SUCCESS,

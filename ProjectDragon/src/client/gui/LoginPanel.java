@@ -1,4 +1,4 @@
-package view.menu;
+package client.gui;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,7 @@ import event.EventBus;
 import event.EventHandler;
 
 @SuppressWarnings("serial")
-public class LoginPanel extends JPanel implements ActionListener, EventHandler, IDBAccount {
+public class LoginPanel extends JPanel implements ActionListener, EventHandler {
 
 	private JTextField loginNameField;
 	private JPasswordField loginPasswordField;
@@ -34,9 +34,11 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler, 
 
 	@Override
 	public void onEvent(Event evt) {
-		if(evt.getTag().equals(Event.Tag.LOGIN_FAILED)) {
-			JOptionPane.showMessageDialog(null, "Incorrect username or password");
-			//TODO A better solution to inform about a failed login, pop-ups are baaaaaad!
+		if (evt.getTag().equals(Event.Tag.LOGIN_FAILED)) {
+			JOptionPane.showMessageDialog(null,
+					"Incorrect username or password");
+			// TODO A better solution to inform about a failed login, pop-ups
+			// are baaaaaad!
 		}
 
 	}
@@ -44,15 +46,15 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler, 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == loginButton) {
-			EventBus.publish(new Event(Event.Tag.TRY_LOGIN, loginNameField.getText()  + " " + loginPasswordField.getPassword()));
-			//TODO Security with passwords?
+			EventBus.publish(new Event(Event.Tag.TRY_LOGIN, loginNameField
+					.getText() + " " + loginPasswordField.getPassword()));
+			// TODO Security with passwords?
 		} else if (e.getSource() == loginRegisterButton) {
 			EventBus.publish(new Event(Event.Tag.GO_TO_REGISTER, 1));
 		}
 	}
 
 	private void init() {
-//		JPanel loginPanel = new JPanel();
 		this.setLayout(null);
 
 		JLabel loginNameLabel = new JLabel("User name");
@@ -91,28 +93,5 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler, 
 		loginRegisterButton.setBounds(447, 401, 113, 23);
 		loginRegisterButton.addActionListener(this);
 		this.add(loginRegisterButton);
-	}
-
-	@Override
-	public Account loadAccount(String accountName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean createAccount(Account account) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public boolean updateAccount(Account account, String oldPassword) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteAccount(Account account, String oldPassword) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

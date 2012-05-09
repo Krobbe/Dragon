@@ -1,4 +1,4 @@
-package view.menu;
+package client.gui;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -34,29 +34,32 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 	@Override
 	public void onEvent(Event evt) {
-		if(evt.getTag().equals(Event.Tag.REGISTER_FAILED)) {
+		if (evt.getTag().equals(Event.Tag.REGISTER_FAILED)) {
 			JOptionPane.showMessageDialog(null, "Incorrect values");
-			//TODO Better solution is required to show what value was "bad"
+			// TODO Better solution is required to show what value was "bad"
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == registerRegisterButton) {
-			EventBus.publish(new Event(Event.Tag.TRY_REGISTER, registerFirstNameField.getText() + " " + registerLastNameField.getText()
-								+ " " + registerUserNameField.getText() + " " + registerPassword.getPassword()
-								+ " " + registerPasswordAgainField.getPassword()));
-			//TODO Security with passwords?
+			EventBus.publish(new Event(Event.Tag.TRY_REGISTER,
+					registerFirstNameField.getText() + " "
+							+ registerLastNameField.getText() + " "
+							+ registerUserNameField.getText() + " "
+							+ registerPassword.getPassword() + " "
+							+ registerPasswordAgainField.getPassword()));
+			// TODO Security with passwords?
 		} else if (e.getSource() == registerBackButton) {
 			EventBus.publish(new Event(Event.Tag.REGISTER_BACK, 1));
 		}
 	}
 
 	private void init() {
-//		JPanel registerPanel = new JPanel();
+		// JPanel registerPanel = new JPanel();
 		// frame.getContentPane().add(registerPanel);
 		this.setLayout(null);
-		
+
 		JLabel registerFirstNameLabel = new JLabel("First name\r\n");
 		registerFirstNameLabel.setBounds(447, 172, 110, 14);
 		registerFirstNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -66,7 +69,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 		registerFirstNameField.setBounds(447, 197, 110, 20);
 		this.add(registerFirstNameField);
 		registerFirstNameField.setColumns(10);
-		
+
 		JLabel registerLastNameLabel = new JLabel("Last name\r\n");
 		registerLastNameLabel.setBounds(447, 228, 110, 14);
 		registerLastNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));

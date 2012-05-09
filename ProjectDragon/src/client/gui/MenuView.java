@@ -1,4 +1,4 @@
-package view.menu;
+package client.gui;
 
 import javax.swing.JFrame;
 
@@ -7,7 +7,6 @@ import java.awt.CardLayout;
 import event.Event;
 import event.EventBus;
 import event.EventHandler;
-
 
 public class MenuView implements EventHandler {
 
@@ -18,7 +17,8 @@ public class MenuView implements EventHandler {
 	private MainMenuPanel mainMenuPanel = new MainMenuPanel();
 	private JoinTablePanel joinTablePanel = new JoinTablePanel();
 	private CreateTablePanel createTablePanel = new CreateTablePanel();
-	//TODO Statistics panel
+	private StatisticsPanel statisticsPanel = new StatisticsPanel();
+	private TablePanel tablePanel = new TablePanel();
 
 	/**
 	 * Create the application.
@@ -42,41 +42,35 @@ public class MenuView implements EventHandler {
 		frame.getContentPane().add(mainMenuPanel, "mainMenuPanel");
 		frame.getContentPane().add(joinTablePanel, "joinTablePanel");
 		frame.getContentPane().add(createTablePanel, "createTablePanel");
+		frame.getContentPane().add(statisticsPanel, "statisticsPanel");
+		frame.getContentPane().add(tablePanel, "tablePanel");
 		frame.setVisible(true);
 		frame.setResizable(false);
 
-		//TODO Statistics panel
+		// TODO Statistics panel
 	}
 
 	@Override
 	public void onEvent(Event evt) {
-		if(evt.getTag().equals(Event.Tag.LOGIN_SUCCESS) || evt.getTag().equals(Event.Tag.REGISTER_SUCCESS)) {
+		if (evt.getTag().equals(Event.Tag.LOGIN_SUCCESS)
+				|| evt.getTag().equals(Event.Tag.REGISTER_SUCCESS)) {
 			layout.show(frame.getContentPane(), "mainMenuPanel");
-		}
-		else if(evt.getTag().equals(Event.Tag.GO_TO_REGISTER)) {
+		} else if (evt.getTag().equals(Event.Tag.GO_TO_REGISTER)) {
 			layout.show(frame.getContentPane(), "registerPanel");
-		}
-		else if(evt.getTag().equals(Event.Tag.GO_TO_JOINTABLE)) {
+		} else if (evt.getTag().equals(Event.Tag.GO_TO_JOINTABLE)) {
 			layout.show(frame.getContentPane(), "joinTablePanel");
-		}
-		else if(evt.getTag().equals(Event.Tag.GO_TO_CREATETABLE)) {
+		} else if (evt.getTag().equals(Event.Tag.GO_TO_CREATETABLE)) {
 			layout.show(frame.getContentPane(), "createTablePanel");
-		}
-		else if(evt.getTag().equals(Event.Tag.CREATETABLE_BACK)) {
+		} else if (evt.getTag().equals(Event.Tag.GO_TO_MAIN)) {
 			layout.show(frame.getContentPane(), "mainMenuPanel");
-		}
-		else if(evt.getTag().equals(Event.Tag.JOINTABLE_BACK)) {
-			layout.show(frame.getContentPane(), "mainMenuPanel");
-		}
-		else if(evt.getTag().equals(Event.Tag.REGISTER_BACK)) {
+		} else if (evt.getTag().equals(Event.Tag.REGISTER_BACK)) {
 			layout.show(frame.getContentPane(), "loginPanel");
-		}
-		else if(evt.getTag().equals(Event.Tag.STATISTICS_BACK)) {
-			layout.show(frame.getContentPane(), "mainMenuPanel");
-		}
-		else if(evt.getTag().equals(Event.Tag.LOGOUT)) {
+		} else if (evt.getTag().equals(Event.Tag.LOGOUT)) {
 			layout.show(frame.getContentPane(), "loginPanel");
+		} else if (evt.getTag().equals(Event.Tag.CREATE_TABLE)) {
+			layout.show(frame.getContentPane(), "tablePanel");
+		} else if (evt.getTag().equals(Event.Tag.JOIN_TABLE)) {
+			layout.show(frame.getContentPane(), "tablePanel");
 		}
 	}
-
 }

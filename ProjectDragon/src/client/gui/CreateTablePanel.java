@@ -1,4 +1,4 @@
-package view.menu;
+package client.gui;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,8 +20,9 @@ import event.EventHandler;
 public class CreateTablePanel extends JPanel implements ActionListener,
 		EventHandler {
 
-	private JTextField createTableNameField;
-	private JPasswordField createTablePasswordField;
+	// TODO Implement these when there's time for it
+	// private JTextField createTableNameField;
+	// private JPasswordField createTablePasswordField;
 	private JComboBox<Integer> createTablePlayersSpinner;
 	private JButton createTableBackButton;
 	private JButton createTableCreateButton;
@@ -38,17 +39,15 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Skicka med antal spelare?
 		if (e.getSource() == createTableCreateButton) {
 			EventBus.publish(new Event(Event.Tag.CREATE_TABLE, 1));
-			// TODO Skicka med antal spelare?
 		} else if (e.getSource() == createTableBackButton) {
-			EventBus.publish(new Event(Event.Tag.CREATETABLE_BACK, 1));
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 
 	private void init() {
-//		JPanel createTablePanel = new JPanel();
-		// frame.getContentPane().add(createTablePanel);
 		this.setLayout(null);
 
 		JLabel createTableNameLabel = new JLabel("Choose a table name");
@@ -56,19 +55,19 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 		createTableNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(createTableNameLabel);
 
-		createTableNameField = new JTextField();
-		createTableNameField.setBounds(416, 293, 176, 20);
-		this.add(createTableNameField);
-		createTableNameField.setColumns(10);
+		// createTableNameField = new JTextField();
+		// createTableNameField.setBounds(416, 293, 176, 20);
+		// this.add(createTableNameField);
+		// createTableNameField.setColumns(10);
 
 		JLabel createTablePasswordLabel = new JLabel("Choose a table password");
 		createTablePasswordLabel.setBounds(416, 324, 176, 20);
 		createTablePasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(createTablePasswordLabel);
 
-		createTablePasswordField = new JPasswordField();
-		createTablePasswordField.setBounds(416, 355, 176, 20);
-		this.add(createTablePasswordField);
+		// createTablePasswordField = new JPasswordField();
+		// createTablePasswordField.setBounds(416, 355, 176, 20);
+		// this.add(createTablePasswordField);
 
 		JLabel createTablePlayersLabel = new JLabel("Number of players");
 		createTablePlayersLabel.setBounds(416, 386, 176, 20);

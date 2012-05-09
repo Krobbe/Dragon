@@ -1,0 +1,28 @@
+Meeting Agenda
+Location: Hubben
+Date: 2012-05-07
+Time: 15:16
+Facilitator: Robin Andersson
+Participants: Lisa Stenberg, Mattias Henriksson, Mathias Forssén
+	1.	Objectives (5 min)
+		The drilling is really annoying! 
+		Server and client is causing some issues. We are debating what the best implementation is.
+		Need to add a button or something similar to the table view to handle "I'm not ready to play yet". 
+	2.	Reports (15 min)
+		Lisa has implemented lots of database functionality.
+		Mathias has been working on the GUI and Events. 
+		Mattias has been working with the Events and added a P class for easier access to certain variables.
+		Robin broke the server, then he fixed it again. More work has been done on the server.
+	3.	Discussion items (35 min)
+	
+	4.	Outcomes and assignments (5 min)
+		We have decided that our game will only use the "tournament" rules. We will not let new players join a table once the game has started. The application should still be easily modified to also allow players to join a game in progress.
+
+		We can have smaller Events, like showCard rather than showFlop.
+
+		We need to sit down together and code, easier to sove problems.
+
+		When a check, bet etc is made the event published should contain a Bet.
+
+	5. 	Wrap up
+	Next meeting will on thursday 2012-05-10 at 09:00

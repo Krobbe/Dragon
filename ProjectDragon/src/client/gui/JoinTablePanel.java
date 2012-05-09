@@ -1,4 +1,4 @@
-package view.menu;
+package client.gui;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -35,17 +35,16 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Have to send what table to join
 		if (e.getSource() == joinTableJoinButton) {
 			EventBus.publish(new Event(Event.Tag.JOIN_TABLE, 1));
 		} else if (e.getSource() == joinTableBackButton) {
-			EventBus.publish(new Event(Event.Tag.JOINTABLE_BACK, 1));
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void init() {
-//		JPanel joinTablePanel = new JPanel();
-		// frame.getContentPane().add(joinTablePanel);
 		this.setLayout(null);
 
 		joinTableBackButton = new JButton("Back");
