@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import model.game.Pot;
 import model.player.Account;
 import model.player.Bet;
 import model.player.Player;
@@ -138,6 +139,34 @@ public class RemoteGameController implements iClient, iServerRequest {
 		}
 		
 		return false;
+	}
+
+
+	@Override
+	public void setPot(Pot pot) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void fold(iPlayer player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void updateBet(Bet b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void nextTurn() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -33,7 +33,9 @@ public class Event {
     	SERVER_DISTRIBUTE_CARDS,
     	SERVER_ADD_TABLE_CARDS,
     	SERVER_CLEAR_TABLE_CARDS,
-    	SERVER_CREATE_TABLES
+    	SERVER_CREATE_TABLES,
+    	SERVER_DISTRIBUTE_POT,
+    	SERVER_SET_PLAYER_ACTIVE
     }
     private final Tag tag;
     // The new value 

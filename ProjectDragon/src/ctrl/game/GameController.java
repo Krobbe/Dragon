@@ -1,6 +1,7 @@
 package ctrl.game;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import event.Event;
@@ -8,6 +9,7 @@ import event.EventBus;
 import event.EventHandler;
 
 import model.card.Card;
+import model.card.iCard;
 import model.game.BettingRound;
 import model.game.Dealer;
 import model.game.P;
@@ -53,6 +55,9 @@ public class GameController {
 		Dealer dealer = table.getDealer();
 		Card c = dealer.getRiver();
 		table.addTableCard(c);
+		List<iCard> tmp = new LinkedList<iCard>();
+		tmp.add(c);
+		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARDS, tmp));
 	}
 
 	/**
@@ -61,10 +66,12 @@ public class GameController {
 	//TODO skulle kunna vara i table?
 	private void showFlop() {
 		Dealer dealer = table.getDealer();
+		//TODO: List<iCard>
 		List<Card> flop = dealer.getFlop();
 		for (Card c : flop) {
 			table.addTableCard(c);
 		}
+		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARDS, flop));
 	}
 
 	/**
@@ -269,6 +276,8 @@ public class GameController {
 		table.getRound().getPot().emptyPot();
 		table.getRound().getPreBettingPot().emptyPot();
 		table.clearTableCards();
+		EventBus.publish(new Event(Event.Tag.SERVER_CLEAR_TABLE_CARDS, ""));
+		
 		table.getSidePots().clear();
 		for (iPlayer p : players) {
 			p.getHand().discard();
@@ -276,6 +285,7 @@ public class GameController {
 			p.setDoneFirstTurn(false);			
 			if (p.getBalance().getValue() != 0) {
 				p.setActive(true);
+				EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_ACTIVE, p));
 			}
 		}
 		

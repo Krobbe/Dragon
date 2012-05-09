@@ -5,6 +5,7 @@ import java.util.List;
 import client.model.game.Table;
 
 import model.card.Card;
+import model.card.InvisibleCard;
 import model.game.Pot;
 import model.player.Bet;
 import model.player.iPlayer;
@@ -66,10 +67,17 @@ public class GameController {
 	}
 	
 	public void setHand(iHand hand) {
-		iHand myHand = table.getPlayers().get(table.getMeIndex()).getHand();
-		for(Card c : hand.getCards()) {
-			myHand.addCard(c);
-		}
+		iPlayer me = table.getPlayers().get(table.getMeIndex());
+		iHand myHand = me.getHand();
+		for(iPlayer p : table.getActivePlayers()) {
+			if(p.equals(me)) {
+				for(Card c : hand) {
+					myHand.addCard(c);
+				}
+			} else {
+				p.getHand().addCard(new InvisibleCard());
+			}
+		}	
 	}
 	
 	/**
@@ -90,7 +98,9 @@ public class GameController {
 		table.clearTableCards();
 	}
 	
-	
+	public void setActive(iPlayer p, boolean b) {
+		p.setActive(b);
+	}
 }
 
 

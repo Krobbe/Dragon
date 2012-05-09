@@ -10,10 +10,12 @@ import event.Event;
 import event.EventBus;
 
 import model.card.Card;
+import model.player.Bet;
 import model.player.iPlayer;
 import model.player.hand.FullTHHand;
 import model.player.hand.HandValue;
 import model.player.hand.HandValueType;
+import model.player.hand.iHand;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
 
@@ -179,6 +181,8 @@ public class Table {
 		
 		for (iPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);
+			EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_POT, 
+					new Bet(p, winnerAmount)));
 		}
 		//TODO: Remove money from the pot!
 	}
@@ -217,6 +221,11 @@ public class Table {
 		// Restores the list to the previous state before it was prepared
 		for(int i = 0 ; i <= getDealerButtonIndex() ; i++){
 			players.add(0, players.remove(players.size() -1));
+		}
+		
+		for(iPlayer p : getActivePlayers()) {
+			iHand h = p.getHand();
+			//TODO: Give cards to client
 		}
 	}
 	

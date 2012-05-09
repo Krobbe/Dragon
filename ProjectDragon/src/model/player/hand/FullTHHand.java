@@ -6,6 +6,7 @@ import java.util.List;
 
 import model.card.Card;
 import model.card.CardComparator;
+import model.card.iCard;
 /**
  * A class that simulates a full Texas Hold'em Hand. 
  * 
@@ -17,14 +18,14 @@ import model.card.CardComparator;
  *
  */
 public class FullTHHand implements iHand {
-	private List<Card> cards = new LinkedList<Card>();
+	private List<iCard> cards = new LinkedList<iCard>();
 	private boolean isVisible = true;
 	
 	public FullTHHand() {
 		
 	}
 	
-	public FullTHHand(List<Card> cards) {
+	public FullTHHand(List<iCard> cards) {
 		addCards(cards);
 	}
 	
@@ -34,12 +35,12 @@ public class FullTHHand implements iHand {
 	}
 
 	@Override
-	public List<Card> getCards() {
+	public List<iCard> getCards() {
 		return cards;
 	}
 
 	@Override
-	public void addCard(Card c) {
+	public void addCard(iCard c) {
 		cards.add(c);
 		Collections.sort(cards, new CardComparator());
 	}
@@ -48,7 +49,7 @@ public class FullTHHand implements iHand {
 	 * Add cards to the list of cards from the list c.
 	 * @param c the list with card you want to add.
 	 */
-	public void addCards(List<Card> c) {
+	public void addCards(List<iCard> c) {
 		cards.addAll(c);
 		Collections.sort(cards, new CardComparator());
 	}
