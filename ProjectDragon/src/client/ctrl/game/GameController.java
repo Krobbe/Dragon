@@ -52,20 +52,26 @@ public class GameController {
 	}
 	
 	public boolean betOccured(Bet bet) {
-		if(!table.getCurrentPlayer().equals(bet.getOwner())) {
-			return false;
-		}
 		iPlayer p = table.getCurrentPlayer();
 		int tmp = bet.getValue() - p.getOwnCurrentBet();
 		p.getBalance().removeFromBalance(tmp);
 		p.setOwnCurrentBet(bet.getValue());
-		table.getRound().getBettingRound().setCurrentBet(bet);
+		
+		/* kolla sŒ att inte bigblind Šr mindre Šn smallblind men blir inskickad efter smallblind*/
+		if (bet.getValue() >= table.getRound().getBettingRound().getCurrentBet().getValue()) {
+			table.getRound().getBettingRound().setCurrentBet(bet);
+		}
+		
 		table.getRound().getPot().addToPot(bet.getValue());
 		return true;
 	}
 	
 	public boolean nextTurn(iPlayer nextPlayer) {
 		return table.nextPlayer().equals(nextPlayer);
+	}
+	
+	public void setTurn(int indexOfCurrentPlayer) {
+		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
 	}
 	
 	public void setHand(iHand hand) {
@@ -93,15 +99,23 @@ public class GameController {
 		}
 	}
 	
-	/**
-	 * Clear the tables cards.
-	 */
-	public void clearCommunityCards() {
-		table.clearTableCards();
+	public void newRound() {
+		table.getTableCards().clear();
+		for (iPlayer p : table.getActivePlayers()) {
+			p.getHand().discard();
+			if (p.getBalance().getValue() != 0) {
+				p.setActive(true);
+			}
+		}
 	}
 	
 	public void setActive(iPlayer p, boolean b) {
 		p.setActive(b);
+	}
+	
+	public void setPlayerOwnCurrentBet(Bet bet) {
+		iPlayer p = bet.getOwner();
+		p.setOwnCurrentBet(bet.getValue());
 	}
 }
 

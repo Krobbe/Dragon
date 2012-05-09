@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import event.Event;
+import event.Event.Tag;
 import event.EventBus;
 import event.EventHandler;
 
@@ -260,6 +261,8 @@ public class GameController {
 			showRiver();
 		}
 		
+		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARDS, table.getTableCards()));
+		
 		/* do showdown */
 		table.doShowdown(plrs, potAmount);
 	}
@@ -277,19 +280,17 @@ public class GameController {
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_POT, table.getRound().getPot()));
 		table.getRound().getPreBettingPot().emptyPot();
 		table.clearTableCards();
-		EventBus.publish(new Event(Event.Tag.SERVER_CLEAR_TABLE_CARDS, ""));
-		
 		table.getSidePots().clear();
 		for (iPlayer p : players) {
 			p.getHand().discard();
-			
 			p.setOwnCurrentBet(0);
 			p.setDoneFirstTurn(false);			
 			if (p.getBalance().getValue() != 0) {
 				p.setActive(true);
-				EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_ACTIVE, p));
 			}
 		}
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_NEW_ROUND,""));
 		
 		/* new cards for all active players*/
 		table.getDealer().newDeck();
@@ -310,6 +311,8 @@ public class GameController {
 			} while (!players.get(indexOfCurrentPlayer).isActive());
 		}
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
+		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN, indexOfCurrentPlayer));
+		
 	}
 	
 	/**
@@ -371,6 +374,9 @@ public class GameController {
 					new Bet(smallBlindPlayer,smallBlind));
 		}
 		
+		EventBus.publish(new Event(Tag.SERVER_UPDATE_BET, new Bet(smallBlindPlayer,smallBlind)));
+		EventBus.publish(new Event(Tag.SERVER_UPDATE_BET, new Bet(bigBlindPlayer,bigBlind)));
+		
 		/* if a player has gone all-in he shall not be able to act */
 		//TODO ska denna vara här?
 		if (bigBlindPlayer.getBalance().getValue() == 0) {
@@ -393,6 +399,7 @@ public class GameController {
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
 		for (iPlayer p : players) {
 			p.setOwnCurrentBet(0);
+			EventBus.publish(new Event(Event.Tag.SERVER_SET_OWN_CURRENT_BET, new Bet(p,0)));
 			p.setDoneFirstTurn(false);
 		}
 		
@@ -476,6 +483,7 @@ public class GameController {
 				
 	            /* the all-in player should after this not longer be active */
 	            p.setActive(false);
+	            EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE,p));
 		} 
 	}
 	
