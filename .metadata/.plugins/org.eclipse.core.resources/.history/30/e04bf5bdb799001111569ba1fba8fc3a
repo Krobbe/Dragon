@@ -65,11 +65,9 @@ public class GameController {
 		return table.nextPlayer().equals(nextPlayer);
 	}
 	
-	public void setHand(iHand hand) {
-		iHand myHand = table.getPlayers().get(table.getMeIndex()).getHand();
-		for(Card c : hand.getCards()) {
-			myHand.addCard(c);
-		}
+	public boolean setHand(iHand hand) {
+		//Set my own cards to hand. Meindex?
+		return false;
 	}
 	
 	/**
