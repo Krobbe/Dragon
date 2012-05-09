@@ -65,8 +65,7 @@ public class Card implements iCard {
 	 */
 	@Override
 	public int compareTo(Object o) {
-		Card tmp = (Card)o;
-		return this.getRank().compareTo(tmp.getRank());
+		return this.getRank().compareTo((Card)o.getRank());
 	}
 	
 	/**

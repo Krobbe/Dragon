@@ -73,7 +73,11 @@ public class GameController {
 		iHand myHand = me.getHand();
 		for(iPlayer p : table.getActivePlayers()) {
 			if(p.equals(me)) {
+<<<<<<< HEAD
+				for(iCard c : hand) {
+=======
 				for(iCard c : hand.getCards()) {
+>>>>>>> Fixat några röda fula pluppar
 					myHand.addCard(c);
 				}
 			} else {
