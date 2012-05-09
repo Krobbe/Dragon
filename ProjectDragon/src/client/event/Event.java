@@ -13,6 +13,10 @@ public class Event {
     	REQUEST_FOLD,
     	REQUEST_CHECK,
     	REQUEST_RAISE,
+    	DO_FOLD,
+    	DO_CALL,
+    	DO_CHECK,
+    	DO_RAISE
    
     }
     private final Tag tag;

@@ -6,6 +6,9 @@ package ctrl.game;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import event.Event;
+import event.EventHandler;
+
 import model.player.Bet;
 import model.player.iPlayer;
 
@@ -21,7 +24,7 @@ import utilities.IllegalRaiseException;
  * @author lisastenberg
  *
  */
-public class RemoteGameController extends UnicastRemoteObject implements iServerGame{
+public class RemoteGameController extends UnicastRemoteObject implements iServerGame, EventHandler{
 
 	GameController gameController;
 	
@@ -53,5 +56,27 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 	public boolean fold(iPlayer player) {
 		return gameController.fold(player);
 	}
+
+	@Override
+	public void onEvent(Event evt) {
+		
+		switch (evt.getTag()) {
+		
+			case SERVER_FOLD:
+				
+
+				break;
+			case 
+				
+		
+		default:
+		break;
+	}
+
+}
+		
+	}
+	
+	
 
 }

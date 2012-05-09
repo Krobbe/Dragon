@@ -16,17 +16,15 @@ import model.game.Table;
  * 
  */
 
-public class GameController implements EventHandler {
+public class GameController {
 
 	Table table;
 	
 	public GameController() {
-		EventBus.register(this);
 		table = new Table();
 	}
 	
 	public GameController(Table table) {
-		EventBus.register(this);
 		this.table = table;
 	}
 	
@@ -44,34 +42,8 @@ public class GameController implements EventHandler {
 		player.setDoneFirstTurn(true);
 	}
 	
-	@Override
-	public void onEvent(Event evt) {
+	public void makeBet(Bet bet) {
 		
-		switch (evt.getTag()) {
-		
-			case REQUEST_CHECK:
-			
-				//
-
-			case REQUEST_FOLD:
-			
-			//Skicka en fold-förfrågan till servern
-			
-			
-			case REQUEST_CALL:
-			
-			//
-			
-			case REQUEST_RAISE:
-			
-			//raise(new Bet(table.getCurrentPlayer(),table.getRound()
-			//	.getBettingRound().getCurrentBet().getValue()) + amount);
-			break;
-			
-		default:
-			break;
-		}
-	
 	}
 		
 }
