@@ -6,16 +6,11 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
-import event.Event;
-import event.EventBus;
-import event.EventHandler;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class TablePanel extends JPanel implements EventHandler, ActionListener {
+public class TablePanel extends JPanel implements client.event.EventHandler, ActionListener {
 
 	private JButton leaveTableButton;
 
@@ -108,11 +103,11 @@ public class TablePanel extends JPanel implements EventHandler, ActionListener {
 	 */
 	public TablePanel() {
 		initialize();
-		EventBus.register(this);
+		client.event.EventBus.register(this);
 	}
 	
 	@Override
-	public void onEvent(Event evt) {
+	public void onEvent(client.event.Event evt) {
 		// TODO Auto-generated method stub
 
 	}
@@ -121,10 +116,10 @@ public class TablePanel extends JPanel implements EventHandler, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		//TODO Should the result be saved here somehow?
 		if(e.getSource().equals(leaveTableButton)) {
-			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN,1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_MAIN,1));
 		}
 		else if(e.getSource().equals(userCheckButton)) {
-			EventBus.publish(new Event(Event.Tag.))
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.REQUEST_CHECK,1));
 		}
 			
 

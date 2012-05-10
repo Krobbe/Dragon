@@ -9,16 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
-import event.Event;
-import event.EventBus;
-import event.EventHandler;
 
 @SuppressWarnings("serial")
 public class CreateTablePanel extends JPanel implements ActionListener,
-		EventHandler {
+		client.event.EventHandler {
 
 	// TODO Implement these when there's time for it
 	// private JTextField createTableNameField;
@@ -29,11 +24,11 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 	public CreateTablePanel() {
 		init();
-		EventBus.register(this);
+		client.event.EventBus.register(this);
 	}
 
 	@Override
-	public void onEvent(Event evt) {
+	public void onEvent(client.event.Event evt) {
 
 	}
 
@@ -41,9 +36,9 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		// TODO Skicka med antal spelare?
 		if (e.getSource() == createTableCreateButton) {
-			EventBus.publish(new Event(Event.Tag.CREATE_TABLE, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, 1));
 		} else if (e.getSource() == createTableBackButton) {
-			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 

@@ -16,7 +16,22 @@ public class Event {
     	DO_FOLD,
     	DO_CALL,
     	DO_CHECK,
-    	DO_RAISE
+    	DO_RAISE,
+    	GO_TO_MAIN,
+    	CREATE_TABLE,
+    	JOIN_TABLE,
+    	TRY_LOGIN, //The string is in the form "username password"
+    	GO_TO_REGISTER,
+    	GO_TO_JOINTABLE,
+    	GO_TO_CREATETABLE,
+    	GO_TO_STATISTICS,
+    	LOGOUT,
+    	LOGIN_FAILED,
+    	LOGIN_SUCCESS,
+    	REGISTER_SUCCESS,
+    	REGISTER_BACK,
+    	REGISTER_FAILED,
+    	TRY_REGISTER,
    
     }
     private final Tag tag;

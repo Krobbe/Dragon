@@ -11,12 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import event.Event;
-import event.EventBus;
-import event.EventHandler;
 
 @SuppressWarnings("serial")
-public class LoginPanel extends JPanel implements ActionListener, EventHandler {
+public class LoginPanel extends JPanel implements ActionListener, client.event.EventHandler {
 
 	private JTextField loginNameField;
 	private JPasswordField loginPasswordField;
@@ -25,12 +22,12 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler {
 
 	public LoginPanel() {
 		init();
-		EventBus.register(this);
+		client.event.EventBus.register(this);
 	}
 
 	@Override
-	public void onEvent(Event evt) {
-		if (evt.getTag().equals(Event.Tag.LOGIN_FAILED)) {
+	public void onEvent(client.event.Event evt) {
+		if (evt.getTag().equals(client.event.Event.Tag.LOGIN_FAILED)) {
 			JOptionPane.showMessageDialog(null,
 					"Incorrect username or password");
 			// TODO A better solution to inform about a failed login, pop-ups
@@ -42,11 +39,11 @@ public class LoginPanel extends JPanel implements ActionListener, EventHandler {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == loginButton) {
-			EventBus.publish(new Event(Event.Tag.TRY_LOGIN, loginNameField
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.TRY_LOGIN, loginNameField
 					.getText() + " " + loginPasswordField.getPassword()));
 			// TODO Security with passwords?
 		} else if (e.getSource() == loginRegisterButton) {
-			EventBus.publish(new Event(Event.Tag.GO_TO_REGISTER, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_REGISTER, 1));
 		}
 	}
 

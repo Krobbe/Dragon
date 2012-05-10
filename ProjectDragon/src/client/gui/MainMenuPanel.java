@@ -7,13 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import event.Event;
-import event.EventBus;
-import event.EventHandler;
 
 @SuppressWarnings("serial")
 public class MainMenuPanel extends JPanel implements ActionListener,
-		EventHandler {
+		client.event.EventHandler {
 
 	private JButton mainLogoutButton;
 	private JButton mainJoinTableButton;
@@ -22,11 +19,11 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 
 	public MainMenuPanel() {
 		init();
-		EventBus.register(this);
+		client.event.EventBus.register(this);
 	}
 
 	@Override
-	public void onEvent(Event evt) {
+	public void onEvent(client.event.Event evt) {
 		// TODO Auto-generated method stub
 
 	}
@@ -34,13 +31,13 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == mainJoinTableButton) {
-			EventBus.publish(new Event(Event.Tag.GO_TO_JOINTABLE, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_JOINTABLE, 1));
 		} else if (e.getSource() == mainCreateTableButton) {
-			EventBus.publish(new Event(Event.Tag.GO_TO_CREATETABLE, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_CREATETABLE, 1));
 		} else if (e.getSource() == mainStatisticsButton) {
-			EventBus.publish(new Event(Event.Tag.GO_TO_STATISTICS, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_STATISTICS, 1));
 		} else if (e.getSource() == mainLogoutButton) {
-			EventBus.publish(new Event(Event.Tag.LOGOUT, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.LOGOUT, 1));
 		}
 	}
 

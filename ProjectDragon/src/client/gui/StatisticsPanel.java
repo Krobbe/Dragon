@@ -14,20 +14,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import ctrl.game.RemoteCommunicationController;
-
-import model.player.Account;
 import model.player.Player;
 
 import database.*;
 
-import event.Event;
-import event.EventBus;
-import event.EventHandler;
 
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel implements ActionListener,
-		EventHandler, IDBGame {
+		client.event.EventHandler, IDBGame {
 	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 
 	private JLabel setThisUserName;
@@ -40,11 +34,11 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 	public StatisticsPanel() {
 		init();
-		EventBus.register(this);
+		client.event.EventBus.register(this);
 	}
 
 	@Override
-	public void onEvent(Event evt) {
+	public void onEvent(client.event.Event evt) {
 		// TODO Auto-generated method stub
 
 	}
@@ -52,7 +46,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == statisticsBackButton) {
-			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 

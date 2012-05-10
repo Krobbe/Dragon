@@ -4,11 +4,7 @@ import javax.swing.JFrame;
 
 import java.awt.CardLayout;
 
-import event.Event;
-import event.EventBus;
-import event.EventHandler;
-
-public class MenuView implements EventHandler {
+public class MenuView implements client.event.EventHandler {
 
 	private JFrame frame;
 	private CardLayout layout;
@@ -25,7 +21,7 @@ public class MenuView implements EventHandler {
 	 */
 	public MenuView() {
 		init();
-		EventBus.register(this);
+		client.event.EventBus.register(this);
 	}
 
 	/**
@@ -52,25 +48,25 @@ public class MenuView implements EventHandler {
 	}
 
 	@Override
-	public void onEvent(Event evt) {
-		if (evt.getTag().equals(Event.Tag.LOGIN_SUCCESS)
-				|| evt.getTag().equals(Event.Tag.REGISTER_SUCCESS)) {
+	public void onEvent(client.event.Event evt) {
+		if (evt.getTag().equals(client.event.Event.Tag.LOGIN_SUCCESS)
+				|| evt.getTag().equals(client.event.Event.Tag.REGISTER_SUCCESS)) {
 			layout.show(frame.getContentPane(), "mainMenuPanel");
-		} else if (evt.getTag().equals(Event.Tag.GO_TO_REGISTER)) {
+		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_REGISTER)) {
 			layout.show(frame.getContentPane(), "registerPanel");
-		} else if (evt.getTag().equals(Event.Tag.GO_TO_JOINTABLE)) {
+		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_JOINTABLE)) {
 			layout.show(frame.getContentPane(), "joinTablePanel");
-		} else if (evt.getTag().equals(Event.Tag.GO_TO_CREATETABLE)) {
+		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_CREATETABLE)) {
 			layout.show(frame.getContentPane(), "createTablePanel");
-		} else if (evt.getTag().equals(Event.Tag.GO_TO_MAIN)) {
+		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_MAIN)) {
 			layout.show(frame.getContentPane(), "mainMenuPanel");
-		} else if (evt.getTag().equals(Event.Tag.REGISTER_BACK)) {
+		} else if (evt.getTag().equals(client.event.Event.Tag.REGISTER_BACK)) {
 			layout.show(frame.getContentPane(), "loginPanel");
-		} else if (evt.getTag().equals(Event.Tag.LOGOUT)) {
+		} else if (evt.getTag().equals(client.event.Event.Tag.LOGOUT)) {
 			layout.show(frame.getContentPane(), "loginPanel");
-		} else if (evt.getTag().equals(Event.Tag.CREATE_TABLE)) {
+		} else if (evt.getTag().equals(client.event.Event.Tag.CREATE_TABLE)) {
 			layout.show(frame.getContentPane(), "tablePanel");
-		} else if (evt.getTag().equals(Event.Tag.JOIN_TABLE)) {
+		} else if (evt.getTag().equals(client.event.Event.Tag.JOIN_TABLE)) {
 			layout.show(frame.getContentPane(), "tablePanel");
 		}
 	}

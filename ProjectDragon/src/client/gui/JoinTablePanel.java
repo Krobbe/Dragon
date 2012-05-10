@@ -10,13 +10,10 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
-import event.Event;
-import event.EventBus;
-import event.EventHandler;
 
 @SuppressWarnings("serial")
 public class JoinTablePanel extends JPanel implements ActionListener,
-		EventHandler {
+		client.event.EventHandler {
 
 	private JButton joinTableBackButton;
 	private JButton joinTableJoinButton;
@@ -24,11 +21,11 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 
 	public JoinTablePanel() {
 		init();
-		EventBus.register(this);
+		client.event.EventBus.register(this);
 	}
 
 	@Override
-	public void onEvent(Event evt) {
+	public void onEvent(client.event.Event evt) {
 		// TODO Auto-generated method stub
 
 	}
@@ -37,9 +34,9 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		// TODO Have to send what table to join
 		if (e.getSource() == joinTableJoinButton) {
-			EventBus.publish(new Event(Event.Tag.JOIN_TABLE, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.JOIN_TABLE, 1));
 		} else if (e.getSource() == joinTableBackButton) {
-			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 
