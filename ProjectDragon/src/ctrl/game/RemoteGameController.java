@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.TreeMap;
 
 import event.Event;
 import event.EventHandler;
@@ -48,7 +49,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 	public RemoteGameController(GameController gameController) throws RemoteException {
 		super();
 		playerList = new LinkedList<iPlayer>();
-		playerReferences = new HashMap<iPlayer, iClientGame>();
+		playerReferences = new TreeMap<iPlayer, iClientGame>();
 		this.gameController = gameController;
 	}
 	

@@ -5,7 +5,9 @@ package remote;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
+import model.card.Card;
 import model.game.Pot;
 import model.player.Bet;
 import model.player.iPlayer;
@@ -28,8 +30,14 @@ public interface iClientGame extends Remote {
 	
 	public void fold(iPlayer player);
 	
-	public void updateBet(Bet b);
+	public void betOccured(Bet b);
 	
 	public void nextTurn();
+	
+	public void distributeCards();
+	
+	public void addCommunityCards(List<Card> cards);
+	
+	
 
 }

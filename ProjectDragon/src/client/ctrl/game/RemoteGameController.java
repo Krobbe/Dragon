@@ -4,7 +4,9 @@
 package client.ctrl.game;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
+import model.card.Card;
 import model.game.Pot;
 import model.player.Account;
 import model.player.Bet;
@@ -129,14 +131,25 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 
 
 	@Override
-	public void updateBet(Bet b) {
+	public void nextTurn() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public void betOccured(Bet b) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
-	public void nextTurn() {
+	public void distributeCards() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addCommunityCards(List<Card> cards) {
 		// TODO Auto-generated method stub
 		
 	}

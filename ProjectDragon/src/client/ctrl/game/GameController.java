@@ -91,7 +91,7 @@ public class GameController {
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
 	}
 	
-	public void setHand(iHand hand) {
+	public void setHand(iPlayer player, iHand hand) {
 		iPlayer me = table.getPlayers().get(table.getMeIndex());
 		iHand myHand = me.getHand();
 		for(iPlayer p : table.getActivePlayers()) {
@@ -100,6 +100,7 @@ public class GameController {
 					myHand.addCard(c);
 				}
 			} else {
+				p.getHand().addCard(new InvisibleCard());
 				p.getHand().addCard(new InvisibleCard());
 			}
 		}	
