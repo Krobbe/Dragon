@@ -22,11 +22,11 @@ public class Event {
     	
     	MAKE_BET,
     	SHOWDOWN_DONE, //ej mottaget eller publicerat någonstans
-    	SERVER_FOLD,		//getValue(): iPlayer
-    	SERVER_UPDATE_BET,	//getValue(): Bet
-    	SERVER_NEXT_TURN,	//getValue(): iPlayer
+    	SERVER_FOLD,
+    	SERVER_UPDATE_BET,
+    	SERVER_NEXT_TURN,
     	SERVER_DISTRIBUTE_CARDS,
-    	SERVER_ADD_TABLE_CARDS,	//getValue(): List<iCard>
+    	SERVER_ADD_TABLE_CARDS,
     	SERVER_CREATE_TABLE,
     	SERVER_DISTRIBUTE_POT,
     	SERVER_UPDATE_POT,
