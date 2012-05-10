@@ -6,11 +6,15 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import model.player.Bet;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class TablePanel extends JPanel implements client.event.EventHandler, ActionListener {
+public class TablePanel extends JPanel implements client.event.EventHandler,
+		ActionListener {
 
 	private JButton leaveTableButton;
 
@@ -105,24 +109,37 @@ public class TablePanel extends JPanel implements client.event.EventHandler, Act
 		initialize();
 		client.event.EventBus.register(this);
 	}
-	
+
 	@Override
 	public void onEvent(client.event.Event evt) {
-		// TODO Auto-generated method stub
+    	CURRENT_BET_CHANGED,
+    	POT_CHANGED,
+    	HAND_DISCARDED,
+    	BALANCE_CHANGED,
+    	OWN_CURRENT_BET_CHANGED,
+    	TURN_CHANGED,
+    	HANDS_CHANGED,
+    	COMMUNITY_CARDS_CHANGED,
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//TODO Should the result be saved here somehow?
-		if(e.getSource().equals(leaveTableButton)) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_MAIN,1));
+		// TODO Should the result be saved here somehow?
+		if (e.getSource().equals(leaveTableButton)) {
+			client.event.EventBus.publish(new client.event.Event(
+					client.event.Event.Tag.GO_TO_MAIN, 1));
+		} else if (e.getSource().equals(userCheckButton)) {
+			client.event.EventBus.publish(new client.event.Event(
+					client.event.Event.Tag.REQUEST_CHECK, 1));
+		} else if (e.getSource().equals(userFoldButton)) {
+			client.event.EventBus.publish(new client.event.Event(
+					client.event.Event.Tag.REQUEST_FOLD, 1));
+		} else if (e.getSource().equals(userRaiseButton)) {
+			client.event.EventBus.publish(new client.event.Event(
+					client.event.Event.Tag.REQUEST_RAISE, Integer
+							.parseInt(userBetField.getText())));
 		}
-		else if(e.getSource().equals(userCheckButton)) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.REQUEST_CHECK,1));
-		}
-			
-
 	}
 
 	/**

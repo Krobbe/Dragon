@@ -32,6 +32,14 @@ public class Event {
     	REGISTER_BACK,
     	REGISTER_FAILED,
     	TRY_REGISTER,
+    	CURRENT_BET_CHANGED,
+    	POT_CHANGED,
+    	HAND_DISCARDED,
+    	BALANCE_CHANGED,
+    	OWN_CURRENT_BET_CHANGED,
+    	TURN_CHANGED,
+    	HANDS_CHANGED,
+    	COMMUNITY_CARDS_CHANGED,
    
     }
     private final Tag tag;
