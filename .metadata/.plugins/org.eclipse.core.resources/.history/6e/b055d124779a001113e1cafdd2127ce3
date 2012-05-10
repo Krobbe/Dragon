@@ -26,7 +26,7 @@ public class Event {
     	SERVER_UPDATE_BET,	//getValue(): Bet
     	SERVER_NEXT_TURN,	//getValue(): iPlayer
     	SERVER_DISTRIBUTE_CARDS,
-    	SERVER_ADD_TABLE_CARDS,	//getValue(): List<iCard>
+    	SERVER_ADD_TABLE_CARDS,
     	SERVER_CREATE_TABLE,
     	SERVER_DISTRIBUTE_POT,
     	SERVER_UPDATE_POT,

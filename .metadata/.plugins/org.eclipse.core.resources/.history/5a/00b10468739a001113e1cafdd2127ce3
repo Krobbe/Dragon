@@ -7,14 +7,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import event.Event;
 import event.EventHandler;
 
-import model.card.iCard;
 import model.player.Bet;
 import model.player.iPlayer;
 
@@ -51,7 +48,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 	public RemoteGameController(GameController gameController) throws RemoteException {
 		super();
 		playerList = new LinkedList<iPlayer>();
-		playerReferences = new TreeMap<iPlayer, iClientGame>();
+		playerReferences = new HashMap<iPlayer, iClientGame>();
 		this.gameController = gameController;
 	}
 	
@@ -109,29 +106,16 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		switch (evt.getTag()) {
 		
 			case SERVER_FOLD:
-				iPlayer player = (iPlayer)evt.getValue();
-				for(iClientGame client : playerReferences.values()) {
-					client.fold(player);
-				}
+				//iClientRequest 
 
 				break;
 			case SERVER_UPDATE_BET:
-				Bet bet = (Bet)evt.getValue();
-				for(iClientGame client : playerReferences.values()) {
-					client.updateBet(bet);
-				}
-				
 				break;
 				
 			case SERVER_DISTRIBUTE_CARDS:
-				//setHand();
 				break;
 				
 			case SERVER_ADD_TABLE_CARDS:
-				List<iCard> cards = (List<iCard>)evt.getValue();
-				for(iClientGame client : playerReferences.values()) {
-					client.addCommunityCards(cards);
-				}
 				break;
 				
 		
