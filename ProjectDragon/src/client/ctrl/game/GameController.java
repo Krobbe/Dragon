@@ -1,6 +1,9 @@
 package client.ctrl.game;
 
+import java.rmi.RemoteException;
 import java.util.List;
+
+import remote.iClientGame;
 
 import client.model.game.Table;
 
@@ -20,7 +23,7 @@ import model.player.hand.*;
  * 
  */
 
-public class GameController {
+public class GameController implements iClientGame {
 
 	Table table;
 
@@ -56,12 +59,14 @@ public class GameController {
 				client.event.Event.Tag.CURRENT_BET_CHANGED, bet.getValue()));
 	}
 
+	@Override
 	public void setPot(Pot pot) {
 		table.getRound().getPot().setValue(pot.getValue());
 		client.event.EventBus.publish(new client.event.Event(
 				client.event.Event.Tag.POT_CHANGED, pot.getValue()));
 	}
 
+	@Override
 	public boolean fold(iPlayer player) {
 		if (!table.getCurrentPlayer().equals(player)) {
 			return false;
@@ -75,6 +80,7 @@ public class GameController {
 		return true;
 	}
 
+	@Override
 	public boolean betOccured(Bet bet) {
 		iPlayer p = table.getCurrentPlayer();
 		int tmp = bet.getValue() - p.getOwnCurrentBet();
@@ -103,6 +109,7 @@ public class GameController {
 		return true;
 	}
 
+	@Override
 	public boolean nextTurn(iPlayer nextPlayer) {
 		Boolean tmp = table.nextPlayer().equals(nextPlayer);
 		client.event.EventBus.publish(new client.event.Event(
@@ -110,12 +117,14 @@ public class GameController {
 		return tmp;
 	}
 
+	@Override
 	public void setTurn(int indexOfCurrentPlayer) {
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
 		client.event.EventBus.publish(new client.event.Event(
 				client.event.Event.Tag.TURN_CHANGED, table.getCurrentPlayer()));
 	}
 	
+	@Override
 	public void setHand(iPlayer player, iHand hand) {
 		iPlayer me = table.getPlayers().get(table.getMeIndex());
 		iHand myHand = me.getHand();
@@ -139,14 +148,16 @@ public class GameController {
 	 * @param cards
 	 *            The cards you want to add.
 	 */
-	public void addCommunityCards(List<Card> cards) {
-		for (Card c : cards) {
+	@Override
+	public void addCommunityCards(List<iCard> cards) {
+		for (iCard c : cards) {
 			table.addTableCard(c);
 		}
 		client.event.EventBus.publish(new client.event.Event(
 				client.event.Event.Tag.COMMUNITY_CARDS_CHANGED, cards));
 	}
 
+	@Override
 	public void newRound() {
 		table.getTableCards().clear();
 		for (iPlayer p : table.getActivePlayers()) {
@@ -159,10 +170,12 @@ public class GameController {
 		}
 	}
 
+	@Override
 	public void setActive(iPlayer p, boolean b) {
 		p.setActive(b);
 	}
 
+	@Override
 	public void setPlayerOwnCurrentBet(Bet bet) {
 		iPlayer p = bet.getOwner();
 		p.setOwnCurrentBet(bet.getValue());

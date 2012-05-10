@@ -20,26 +20,56 @@ import model.player.hand.iHand;
  */
 public interface iClientGame extends Remote {
 	
+	public void setPot(Pot pot) throws RemoteException;
+	
 	/**
-	 * Method to set the player active to check, fold, raise etc.
+	 * A method for handling when a player has folded. 
 	 * 
-	 * @param active The boolean determining if it's the client's turn.
+	 * @param player	The player who folded.
+	 * @return	true if the fold went through.
+	 * @throws RemoteException
 	 */
-	public void setActive(boolean isActive) throws RemoteException;
+	public boolean fold(iPlayer player) throws RemoteException;
 	
-	// TODO Javadoc this sun'ufa'biatchs'
-	public void setPot(Pot pot);
+	/**
+	 * A method for handling when a bet has occured.
+	 * 
+	 * @param b The bet.
+	 * @return true if the method went through successfully.
+	 * @throws RemoteException
+	 */
+	public boolean betOccured(Bet b) throws RemoteException;
 	
-	public void fold(iPlayer player);
+	public boolean nextTurn(iPlayer nextPlayer) throws RemoteException;
 	
-	public void betOccured(Bet b);
+	public void setTurn(int indexOfCurrentPlayer) throws RemoteException;
 	
-	public void nextTurn();
+	/**
+	 * Add communitycards to the table.
+	 * 
+	 * @param cards The cards you want to add.
+	 * @throws RemoteException
+	 */
+	public void addCommunityCards(List<iCard> cards) throws RemoteException;
 	
-	public void distributeCards();
+	public void setHand(iPlayer player, iHand hand) throws RemoteException;
+		
+	/**
+	 * A method for setting a player active or inactive.
+	 * 
+	 * @param player The player.
+	 * @param b	The boolean you want to set.
+	 * @throws RemoteException
+	 */
+	public void setActive(iPlayer player, boolean b) throws RemoteException;
 	
-	public void addCommunityCards(List<iCard> cards);
+	public void setPlayerOwnCurrentBet(Bet bet) throws RemoteException;
 	
-	public void setHand(iPlayer player, iHand hand);
+	/**
+	 * Set up a new round.
+	 * 
+	 * @throws RemoteException
+	 */
+	public void newRound() throws RemoteException;
 
 }

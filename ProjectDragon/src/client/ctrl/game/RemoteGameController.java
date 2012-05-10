@@ -48,9 +48,8 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	}
 	
 	@Override
-	public void setActive(boolean active) {
+	public void setActive(iPlayer player, boolean b) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -126,28 +125,22 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 
 
 	@Override
-	public void fold(iPlayer player) {
+	public boolean fold(iPlayer player) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 
 	@Override
-	public void nextTurn() {
+	public boolean nextTurn(iPlayer nextPlayer) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void betOccured(Bet b) {
+	public boolean betOccured(Bet b) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void distributeCards() {
-		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
@@ -158,6 +151,24 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 
 	@Override
 	public void setHand(iPlayer player, iHand hand) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTurn(int indexOfCurrentPlayer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPlayerOwnCurrentBet(Bet bet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void newRound() {
 		// TODO Auto-generated method stub
 		
 	}

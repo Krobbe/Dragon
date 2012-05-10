@@ -15,6 +15,7 @@ import event.Event;
 import event.EventHandler;
 
 import model.card.iCard;
+import model.game.Pot;
 import model.player.*;
 import model.player.hand.iHand;
 
@@ -116,7 +117,11 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			} else {
 				player = (iPlayer) evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
-					client.fold(player);
+					try {
+						client.fold(player);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 			break;
@@ -128,7 +133,11 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			} else {
 				bet = (Bet) evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
-					client.betOccured(bet);
+					try {
+						client.betOccured(bet);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 			break;
@@ -145,7 +154,11 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				for (iPlayer p : playerHands.keySet()) {
 					hand = p.getHand();
 					client = playerReferences.get(p);
-					client.setHand(p, hand);
+					try {
+						client.setHand(p, hand);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 
@@ -158,42 +171,90 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			break;
 
 		case SERVER_DISTRIBUTE_POT:
-
+			
+			
 			// anrop balanceChanged(evt.getValue()) i
 			// client.ctrl.game.GameController
 
 			break;
 
 		case SERVER_UPDATE_POT:
-
-			// anrop setPot(evt.getValue()) i client.ctrl.game.GameController
-
+			Pot pot;
+			if (!(evt.getValue() instanceof Pot)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				pot = (Pot)evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						client.setPot(pot);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		
 			break;
 
 		case SERVER_NEW_ROUND:
-
-			// anrop newRound() i client.ctrl.game.GameController
-
+			for (iClientGame client : playerReferences.values()) {
+				try {
+					client.newRound();
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
 			break;
 
 		case SERVER_SET_TURN:
-
-			// anrop setTurn(evt.getValue()) i client.ctrl.game.GameController
-
+			int i;
+			if (!(evt.getValue() instanceof Integer)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				i = (Integer)evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						client.setTurn(i);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 			break;
 
 		case SERVER_SET_PLAYER_UNACTIVE:
-
-			// anrop setActive(evt.getValue(),false) i
-			// client.ctrl.game.GameController
-
+			iPlayer p;
+			if (!(evt.getValue() instanceof iPlayer)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				p = (iPlayer)evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						client.setActive(p, false);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 			break;
 
 		case SERVER_SET_OWN_CURRENT_BET:
-
-			// anrop setPlayerOwnCurrentBet(evt.getValue) i
-			// client.ctrl.game.GameController
-
+			Bet b;
+			if (!(evt.getValue() instanceof Bet)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				b = (Bet)evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						client.setPlayerOwnCurrentBet(b);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 			break;
 
 		case SERVER_ADD_TABLE_CARDS:
@@ -204,7 +265,11 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			} else {
 				cards = (List<iCard>) evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
-					client.addCommunityCards(cards);
+					try {
+						client.addCommunityCards(cards);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 			break;
@@ -224,6 +289,5 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		// TODO Handle start game scenario
 		
 	}
-
 }
 
