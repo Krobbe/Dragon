@@ -13,7 +13,7 @@ public class Event {
     	SERVER_FOLD,		//getValue(): iPlayer
     	SERVER_UPDATE_BET,	//getValue(): Bet
     	SERVER_NEXT_TURN,	//getValue(): iPlayer
-    	SERVER_DISTRIBUTE_CARDS,//getValue(): Map<iPlayer, iHand>
+    	SERVER_DISTRIBUTE_CARDS,//getValue(): List<iHand>
     	SERVER_ADD_TABLE_CARDS,	//getValue(): List<iCard>
     	SERVER_CREATE_TABLE,
     	SERVER_DISTRIBUTE_POT,

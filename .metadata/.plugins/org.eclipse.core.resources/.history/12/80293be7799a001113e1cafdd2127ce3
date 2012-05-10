@@ -223,6 +223,11 @@ public class Table {
 		for(int i = 0 ; i <= getDealerButtonIndex() ; i++){
 			players.add(0, players.remove(players.size() -1));
 		}
+		
+		for(iPlayer p : getActivePlayers()) {
+			iHand h = p.getHand();
+			//TODO: Give cards to client
+		}
 	}
 	
     /**

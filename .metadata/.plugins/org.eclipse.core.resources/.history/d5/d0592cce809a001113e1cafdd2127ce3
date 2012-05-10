@@ -38,7 +38,7 @@ public class Deck {
 	 * @param suite
 	 */
 	private void createSuite() {
-		for(int i = 0; i < 13; i++) {
+		for(int i = 0; i <= 12; i++) {
 			for(int j = 0; j < 4; j++) {
 				Suit suite = Suit.class.getEnumConstants()[j];
 				Rank rank = Rank.class.getEnumConstants()[i];

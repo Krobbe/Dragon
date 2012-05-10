@@ -3,8 +3,6 @@ package ctrl.game;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import event.Event;
 import event.Event.Tag;
@@ -22,7 +20,6 @@ import model.game.Table;
 import model.player.Bet;
 import model.player.OwnCurrentBetComparator;
 import model.player.iPlayer;
-import model.player.hand.iHand;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
@@ -103,13 +100,6 @@ public class GameController {
 		 * of unnecessary method calls between the two classes
 		 */
 		table.distributeCards();
-		
-		Map<iPlayer, iHand> playerHands = new TreeMap<iPlayer, iHand>();
-		for(iPlayer p : table.getActivePlayers()) {
-			playerHands.put(p, p.getHand());
-		}
-		
-		EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_CARDS, playerHands));
 	}
 
 	//TODO: Koden i call, raise, check, fold Šr lite lik. refactor?

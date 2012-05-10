@@ -8,11 +8,9 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import model.card.Card;
-import model.card.iCard;
 import model.game.Pot;
 import model.player.Bet;
 import model.player.iPlayer;
-import model.player.hand.iHand;
 
 /**
  * @author robinandersson
@@ -40,6 +38,6 @@ public interface iClientGame extends Remote {
 	
 	public void addCommunityCards(List<iCard> cards);
 	
-	public void setHand(iPlayer player, iHand hand);
+	
 
 }

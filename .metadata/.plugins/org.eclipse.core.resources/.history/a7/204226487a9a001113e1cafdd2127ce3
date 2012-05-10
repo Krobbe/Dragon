@@ -3,8 +3,6 @@ package ctrl.game;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import event.Event;
 import event.Event.Tag;
@@ -104,12 +102,11 @@ public class GameController {
 		 */
 		table.distributeCards();
 		
-		Map<iPlayer, iHand> playerHands = new TreeMap<iPlayer, iHand>();
+		List<iHand> playerHands = new LinkedList<iHand>();
 		for(iPlayer p : table.getActivePlayers()) {
-			playerHands.put(p, p.getHand());
+			playerHands.add(p.getHand());
+			//TODO: Give cards to client
 		}
-		
-		EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_CARDS, playerHands));
 	}
 
 	//TODO: Koden i call, raise, check, fold Šr lite lik. refactor?

@@ -7,12 +7,10 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import model.card.Card;
-import model.card.iCard;
 import model.game.Pot;
 import model.player.Account;
 import model.player.Bet;
 import model.player.iPlayer;
-import model.player.hand.iHand;
 
 import remote.iClient;
 import remote.iClientGame;
@@ -155,12 +153,5 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void setHand(iPlayer player, iHand hand) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 }
