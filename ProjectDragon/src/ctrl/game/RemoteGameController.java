@@ -109,6 +109,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		switch (evt.getTag()) {
 		
 			case SERVER_FOLD:
+				
 				iPlayer player = (iPlayer)evt.getValue();
 				for(iClientGame client : playerReferences.values()) {
 					client.fold(player);
@@ -122,9 +123,11 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				}
 				
 				break;
+
 				
 			case SERVER_DISTRIBUTE_CARDS:
-				//setHand();
+
+				//anropa setHand(parameter) i client.ctrl.game.GameController
 				break;
 				
 			case SERVER_ADD_TABLE_CARDS:
@@ -132,7 +135,48 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				for(iClientGame client : playerReferences.values()) {
 					client.addCommunityCards(cards);
 				}
+	
 				break;
+				
+			case SERVER_CREATE_TABLE:
+				
+				//anrop newTable(parameter) i client.ctrl.game.GameController
+				
+				break;
+				
+			case SERVER_DISTRIBUTE_POT:
+				
+				//anrop balanceChanged(evt.getValue()) i client.ctrl.game.GameController
+				
+				break;
+				
+			case SERVER_UPDATE_POT:
+				
+				//anrop setPot(evt.getValue()) i client.ctrl.game.GameController
+				
+				break;
+				
+			case SERVER_NEW_ROUND:
+				
+				//anrop newRound() i client.ctrl.game.GameController
+				
+				break;
+				
+			case SERVER_SET_TURN:
+				
+				//anrop setTurn(evt.getValue()) i client.ctrl.game.GameController
+				
+				break;
+				
+			case SERVER_SET_PLAYER_UNACTIVE:
+				
+				//anrop setActive(evt.getValue(),false) i client.ctrl.game.GameController
+
+				break;
+				
+			case SERVER_SET_OWN_CURRENT_BET:
+				
+				//anrop setPlayerOwnCurrentBet(evt.getValue) i client.ctrl.game.GameController
 				
 		
 			default:

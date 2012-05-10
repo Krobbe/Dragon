@@ -169,4 +169,8 @@ public class GameController {
 		client.event.EventBus.publish(new client.event.Event(
 				client.event.Event.Tag.OWN_CURRENT_BET_CHANGED, bet));
 	}
+	
+	public void balanceChanged(Bet bet) {
+		bet.getOwner().getBalance().addToBalance(bet.getValue());
+	}
 }
