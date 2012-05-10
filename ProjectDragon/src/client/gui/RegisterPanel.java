@@ -3,7 +3,6 @@ package client.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -11,13 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import event.Event;
-import event.EventBus;
-import event.EventHandler;
 
 @SuppressWarnings("serial")
 public class RegisterPanel extends JPanel implements ActionListener,
-		EventHandler {
+		client.event.EventHandler {
 
 	private JButton registerRegisterButton;
 	private JButton registerBackButton;
@@ -29,12 +25,12 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 	public RegisterPanel() {
 		init();
-		EventBus.register(this);
+		client.event.EventBus.register(this);
 	}
 
 	@Override
-	public void onEvent(Event evt) {
-		if (evt.getTag().equals(Event.Tag.REGISTER_FAILED)) {
+	public void onEvent(client.event.Event evt) {
+		if (evt.getTag().equals(client.event.Event.Tag.REGISTER_FAILED)) {
 			JOptionPane.showMessageDialog(null, "Incorrect values");
 			// TODO Better solution is required to show what value was "bad"
 		}
@@ -43,7 +39,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == registerRegisterButton) {
-			EventBus.publish(new Event(Event.Tag.TRY_REGISTER,
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.TRY_REGISTER,
 					registerFirstNameField.getText() + " "
 							+ registerLastNameField.getText() + " "
 							+ registerUserNameField.getText() + " "
@@ -51,7 +47,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 							+ registerPasswordAgainField.getPassword()));
 			// TODO Security with passwords?
 		} else if (e.getSource() == registerBackButton) {
-			EventBus.publish(new Event(Event.Tag.REGISTER_BACK, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.REGISTER_BACK, 1));
 		}
 	}
 
