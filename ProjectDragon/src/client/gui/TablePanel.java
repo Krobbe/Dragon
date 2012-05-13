@@ -112,15 +112,27 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 
 	@Override
 	public void onEvent(client.event.Event evt) {
-    	CURRENT_BET_CHANGED,
-    	POT_CHANGED,
-    	HAND_DISCARDED,
-    	BALANCE_CHANGED,
-    	OWN_CURRENT_BET_CHANGED,
-    	TURN_CHANGED,
-    	HANDS_CHANGED,
-    	COMMUNITY_CARDS_CHANGED,
-
+    	if (evt.getTag().equals(client.event.Event.Tag.CURRENT_BET_CHANGED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.HAND_DISCARDED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.BALANCE_CHANGED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.OWN_CURRENT_BET_CHANGED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.TURN_CHANGED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.HANDS_CHANGED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.COMMUNITY_CARDS_CHANGED)) {
+    		
+    	}
 	}
 
 	@Override
