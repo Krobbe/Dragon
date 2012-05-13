@@ -125,7 +125,6 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				}
 			}
 			break;
-			
 		case SERVER_UPDATE_BET:
 			Bet bet;
 			if (!(evt.getValue() instanceof Bet)) {
@@ -172,20 +171,10 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			break;
 
 		case SERVER_DISTRIBUTE_POT:
-			Bet b;
-			if (!(evt.getValue() instanceof Bet)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				b = (Bet)evt.getValue();
-				for(iClientGame client : playerReferences.values()) {
-					try {
-						client.balanceChanged(b);
-					} catch (RemoteException e) {
-						e.printStackTrace();
-					}
-				}
-			}
+			
+			
+			// anrop balanceChanged(evt.getValue()) i
+			// client.ctrl.game.GameController
 
 			break;
 
@@ -252,6 +241,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			break;
 
 		case SERVER_SET_OWN_CURRENT_BET:
+			Bet b;
 			if (!(evt.getValue() instanceof Bet)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());

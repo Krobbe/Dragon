@@ -173,11 +173,5 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 		
 	}
 
-	@Override
-	public void balanceChanged(Bet bet) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 }

@@ -141,10 +141,11 @@ public class GameController implements iClientGame {
 				iHand playerHand = p.getHand();
 				for(iCard card : hand.getCards()) {
 					playerHand.addCard(card);
+					
 				}
-				EventBus.publish(new Event(Event.Tag.HANDS_CHANGED, p));
 			}
 		}
+		EventBus.publish(new Event(Event.Tag.HANDS_CHANGED, me));
 	}
 
 	/**

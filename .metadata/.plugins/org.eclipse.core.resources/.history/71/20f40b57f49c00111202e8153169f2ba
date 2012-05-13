@@ -141,10 +141,23 @@ public class GameController implements iClientGame {
 				iHand playerHand = p.getHand();
 				for(iCard card : hand.getCards()) {
 					playerHand.addCard(card);
+					
 				}
-				EventBus.publish(new Event(Event.Tag.HANDS_CHANGED, p));
+<<<<<<< HEAD
+			} else {
+				p.getHand().addCard(
+						new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));
+				p.getHand().addCard(
+						new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));
 			}
 		}
+		EventBus.publish(new Event(Event.Tag.HANDS_CHANGED, me));
+=======
+				client.event.EventBus.publish(new client.event.Event(
+						client.event.Event.Tag.HANDS_CHANGED, p));
+			}
+		}
+>>>>>>> Mer event implementerade
 	}
 
 	/**
@@ -196,7 +209,7 @@ public class GameController implements iClientGame {
 		for(iPlayer player : table.getActivePlayers()) {
 			hand = player.getHand();
 			for(int i = 0; i < 2; i++) {
-				hand.addCard(new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));
+				hand.addCard(new InvisibleCard());
 			}
 		}
 	}

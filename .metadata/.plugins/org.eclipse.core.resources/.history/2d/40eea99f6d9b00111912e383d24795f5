@@ -8,12 +8,12 @@ import remote.iClientGame;
 import client.model.game.Table;
 
 import model.card.Card;
+import model.card.InvisibleCard;
 import model.card.iCard;
 import model.game.Pot;
 import model.player.Bet;
 import model.player.iPlayer;
 import model.player.hand.*;
-import client.event.*;
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -37,7 +37,6 @@ public class GameController implements iClientGame {
 
 	public GameController(Table table) {
 		this.table = table;
-		distributeInvisibleCards();
 	}
 	
 	/**
@@ -48,7 +47,6 @@ public class GameController implements iClientGame {
 	 */
 	public void newTable(List<iPlayer> players, int meIndex) {
 		table = new Table(players, meIndex);
-		distributeInvisibleCards();
 	}
 
 	/**
@@ -64,14 +62,15 @@ public class GameController implements iClientGame {
 
 	public void setCurrentBet(Bet bet) {
 		table.getRound().getBettingRound().setCurrentBet(bet);
-		EventBus.publish(new Event(Event.Tag.CURRENT_BET_CHANGED, bet
-				.getValue()));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.CURRENT_BET_CHANGED, bet.getValue()));
 	}
 
 	@Override
 	public void setPot(Pot pot) {
 		table.getRound().getPot().setValue(pot.getValue());
-		EventBus.publish(new Event(Event.Tag.POT_CHANGED, pot.getValue()));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.POT_CHANGED, pot.getValue()));
 	}
 
 	@Override
@@ -83,7 +82,8 @@ public class GameController implements iClientGame {
 		p.getHand().discard();
 		p.setActive(false);
 		p.setDoneFirstTurn(true);
-		EventBus.publish(new Event(Event.Tag.HAND_DISCARDED, player));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.HAND_DISCARDED, player));
 		return true;
 	}
 
@@ -92,11 +92,12 @@ public class GameController implements iClientGame {
 		iPlayer p = table.getCurrentPlayer();
 		int tmp = bet.getValue() - p.getOwnCurrentBet();
 		p.getBalance().removeFromBalance(tmp);
-		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, new Bet(p, p
-				.getBalance().getValue())));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.BALANCE_CHANGED, new Bet(p, p
+						.getBalance().getValue())));
 		p.setOwnCurrentBet(bet.getValue());
-		EventBus.publish(new Event(Event.Tag.OWN_CURRENT_BET_CHANGED, new Bet(
-				p, bet.getValue())));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.OWN_CURRENT_BET_CHANGED, new Bet(p, bet.getValue())));
 
 		/*
 		 * kolla så att inte bigblind är mindre än smallblind men blir inskickad
@@ -105,46 +106,47 @@ public class GameController implements iClientGame {
 		if (bet.getValue() >= table.getRound().getBettingRound()
 				.getCurrentBet().getValue()) {
 			table.getRound().getBettingRound().setCurrentBet(bet);
-			EventBus.publish(new Event(Event.Tag.CURRENT_BET_CHANGED, bet
-					.getValue()));
+			client.event.EventBus.publish(new client.event.Event(
+					client.event.Event.Tag.CURRENT_BET_CHANGED, bet.getValue()));
 		}
 
 		table.getRound().getPot().addToPot(bet.getValue());
-		EventBus.publish(new Event(Event.Tag.POT_CHANGED, table.getRound()
-				.getPot().getValue()));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.POT_CHANGED, table.getRound().getPot().getValue()));
 		return true;
 	}
 
 	@Override
-	//TODO: onödigt med både nextTurn och setTurn? 
-	// om vi tar bort nextTurn kan man ta bort nextPlayer i klientens table med.
 	public boolean nextTurn(iPlayer nextPlayer) {
 		Boolean tmp = table.nextPlayer().equals(nextPlayer);
-		EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
-				.getCurrentPlayer()));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.TURN_CHANGED, table.getCurrentPlayer()));
 		return tmp;
 	}
 
 	@Override
 	public void setTurn(int indexOfCurrentPlayer) {
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
-		EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
-				.getCurrentPlayer()));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.TURN_CHANGED, table.getCurrentPlayer()));
 	}
 	
 	@Override
 	public void setHand(iPlayer player, iHand hand) {
-		iPlayer p;
-		for(iPlayer tmp : table.getActivePlayers()) {
-			if(tmp.equals(player)) {
-				p = tmp;
-				iHand playerHand = p.getHand();
-				for(iCard card : hand.getCards()) {
-					playerHand.addCard(card);
+		iPlayer me = table.getPlayers().get(table.getMeIndex());
+		iHand myHand = me.getHand();
+		for (iPlayer p : table.getActivePlayers()) {
+			if (p.equals(me)) {
+				for (iCard c : hand.getCards()) {
+					myHand.addCard(c);
 				}
-				EventBus.publish(new Event(Event.Tag.HANDS_CHANGED, p));
+			} else {
+				p.getHand().addCard(new InvisibleCard());
+				p.getHand().addCard(new InvisibleCard());
 			}
 		}
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.HANDS_CHANGED, me));
 	}
 
 	/**
@@ -158,7 +160,8 @@ public class GameController implements iClientGame {
 		for (iCard c : cards) {
 			table.addTableCard(c);
 		}
-		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, cards));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.COMMUNITY_CARDS_CHANGED, cards));
 	}
 
 	@Override
@@ -166,7 +169,8 @@ public class GameController implements iClientGame {
 		table.getTableCards().clear();
 		for (iPlayer p : table.getActivePlayers()) {
 			p.getHand().discard();
-			EventBus.publish(new Event(Event.Tag.HAND_DISCARDED, p));
+			client.event.EventBus.publish(new client.event.Event(
+					client.event.Event.Tag.HAND_DISCARDED, p));
 			if (p.getBalance().getValue() != 0) {
 				p.setActive(true);
 			}
@@ -182,21 +186,20 @@ public class GameController implements iClientGame {
 	public void setPlayerOwnCurrentBet(Bet bet) {
 		iPlayer p = bet.getOwner();
 		p.setOwnCurrentBet(bet.getValue());
-		EventBus.publish(new Event(Event.Tag.OWN_CURRENT_BET_CHANGED, bet));
+		client.event.EventBus.publish(new client.event.Event(
+				client.event.Event.Tag.OWN_CURRENT_BET_CHANGED, bet));
 	}
 	
-	@Override
 	public void balanceChanged(Bet bet) {
 		bet.getOwner().getBalance().addToBalance(bet.getValue());
-		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, bet));
 	}
 	
-	private void distributeInvisibleCards() {
+	public void distributeInvisibleCards() {
 		iHand hand;
 		for(iPlayer player : table.getActivePlayers()) {
 			hand = player.getHand();
 			for(int i = 0; i < 2; i++) {
-				hand.addCard(new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));
+				hand.addCard(new InvisibleCard());
 			}
 		}
 	}

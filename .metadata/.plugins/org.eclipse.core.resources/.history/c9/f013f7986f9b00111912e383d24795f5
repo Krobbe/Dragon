@@ -172,15 +172,15 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			break;
 
 		case SERVER_DISTRIBUTE_POT:
-			Bet b;
+			Bet value;
 			if (!(evt.getValue() instanceof Bet)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				b = (Bet)evt.getValue();
+				value = (Bet)evt.getValue();
 				for(iClientGame client : playerReferences.values()) {
 					try {
-						client.balanceChanged(b);
+						client.balanceChanged(value);
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}
@@ -252,6 +252,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			break;
 
 		case SERVER_SET_OWN_CURRENT_BET:
+			Bet b;
 			if (!(evt.getValue() instanceof Bet)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());

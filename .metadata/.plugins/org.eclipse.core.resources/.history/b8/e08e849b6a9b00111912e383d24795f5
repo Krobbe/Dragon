@@ -16,16 +16,10 @@ import model.player.hand.iHand;
 
 /**
  * @author robinandersson
- * @author lisastenberg
+ *
  */
 public interface iClientGame extends Remote {
 	
-	/**
-	 * Set the pot.
-	 * 
-	 * @param pot The value you want to set the pot to.
-	 * @throws RemoteException
-	 */
 	public void setPot(Pot pot) throws RemoteException;
 	
 	/**
@@ -46,22 +40,8 @@ public interface iClientGame extends Remote {
 	 */
 	public boolean betOccured(Bet b) throws RemoteException;
 	
-	/**
-	 * A method that transfer the turn to the nextPlayer. Does a check that
-	 * nextPlayer is the same on the clients table as it should be.
-	 * 
-	 * @param nextPlayer
-	 * @return true if nextPlayer is the player that should have the turn.
-	 * @throws RemoteException
-	 */
 	public boolean nextTurn(iPlayer nextPlayer) throws RemoteException;
 	
-	/**
-	 * Set turn to indexOfCurrentPlayer.
-	 * 
-	 * @param indexOfCurrentPlayer
-	 * @throws RemoteException
-	 */
 	public void setTurn(int indexOfCurrentPlayer) throws RemoteException;
 	
 	/**
@@ -72,13 +52,6 @@ public interface iClientGame extends Remote {
 	 */
 	public void addCommunityCards(List<iCard> cards) throws RemoteException;
 	
-	/**
-	 * Set a players hand.
-	 * 
-	 * @param player The players hand you want to set.
-	 * @param hand	The hand
-	 * @throws RemoteException
-	 */
 	public void setHand(iPlayer player, iHand hand) throws RemoteException;
 		
 	/**
@@ -104,13 +77,5 @@ public interface iClientGame extends Remote {
 	 * @throws RemoteException
 	 */
 	public void newRound() throws RemoteException;
-	
-	/**
-	 * Changes a persons balance.
-	 * 
-	 * @param bet Holds a player and how much the player should add to his 
-	 * balance.
-	 */
-	public void balanceChanged(Bet bet) throws RemoteException;
 
 }

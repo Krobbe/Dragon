@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="34" version="2.0">
+<workbench progressCount="27" version="2.0">
 <workbenchAdvisor/>
 <window height="685" maximized="true" width="1366" x="-26" y="22">
 <fastViewData fastViewLocation="1024"/>
@@ -32,7 +32,6 @@
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
-<part id="4"/>
 </presentation>
 </folder>
 </info>
@@ -55,15 +54,11 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteGameController.java" partName="RemoteGameController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/RemoteGameController.java" title="RemoteGameController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteGameController.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/RemoteGameController.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5226" selectionTopPixel="1536"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6790" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="iClientGame.java" partName="iClientGame.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/remote/iClientGame.java" title="iClientGame.java" tooltip="ProjectDragon/src/remote/iClientGame.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="iClientGame.java" partName="iClientGame.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/remote/iClientGame.java" title="iClientGame.java" tooltip="ProjectDragon/src/remote/iClientGame.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/remote/iClientGame.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="873" selectionTopPixel="162"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteGameController.java" partName="RemoteGameController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/client/ctrl/game/RemoteGameController.java" title="RemoteGameController.java" tooltip="ProjectDragon/src/client/ctrl/game/RemoteGameController.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/client/ctrl/game/RemoteGameController.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2963" selectionTopPixel="1707"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1549" selectionTopPixel="417"/>
 </editor>
 <editor focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Event.java" partName="Event.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/event/Event.java" title="Event.java" tooltip="ProjectDragon/src/event/Event.java" workbook="org.eclipse.ui.internal.EditorStack@b036af">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/event/Event.java"/>
@@ -266,16 +261,10 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/Table.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/card/Deck.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/ctrl/game/RemoteGameController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/card/Card.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/RemoteGameController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/remote/iClientGame.java"/>
 </editors>
-<item historyLabel="RemoteGameController.java" index="0">
-<position info="not_deleted" x="3520" y="0"/>
-</item>
-<item historyLabel="Event.java" index="1">
-<position info="not_deleted" x="460" y="0"/>
-</item>
-<item historyLabel="GameController.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
 <item historyLabel="iClient.java" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
@@ -414,8 +403,17 @@
 <item historyLabel="iClientGame.java" index="4">
 <position info="not_deleted" x="873" y="0"/>
 </item>
-<item active="true" historyLabel="RemoteGameController.java" index="8">
-<position/>
+<item historyLabel="RemoteGameController.java" index="8">
+<position info="not_deleted" x="2963" y="0"/>
+</item>
+<item historyLabel="Card.java" index="9">
+<position info="not_deleted" x="1239" y="0"/>
+</item>
+<item historyLabel="RemoteGameController.java" index="10">
+<position info="not_deleted" x="5103" y="0"/>
+</item>
+<item active="true" historyLabel="iClientGame.java" index="11">
+<position info="not_deleted" x="1074" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>

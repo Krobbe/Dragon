@@ -111,6 +111,6 @@ public interface iClientGame extends Remote {
 	 * @param bet Holds a player and how much the player should add to his 
 	 * balance.
 	 */
-	public void balanceChanged(Bet bet) throws RemoteException;
+	public void balanceChanged(Bet bet);
 
 }
