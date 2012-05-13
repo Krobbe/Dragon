@@ -1,6 +1,5 @@
 package client.ctrl.game;
 
-import java.rmi.RemoteException;
 import java.util.List;
 
 import remote.iClientGame;
@@ -148,12 +147,6 @@ public class GameController implements iClientGame {
 		}
 	}
 
-	/**
-	 * Add cards to the table.
-	 * 
-	 * @param cards
-	 *            The cards you want to add.
-	 */
 	@Override
 	public void addCommunityCards(List<iCard> cards) {
 		for (iCard c : cards) {

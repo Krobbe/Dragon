@@ -7,7 +7,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import model.card.Card;
 import model.card.iCard;
 import model.game.Pot;
 import model.player.Bet;

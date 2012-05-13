@@ -39,8 +39,8 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 	// A map containing all logged in players and another map containing their
 	// active players and references to every respective player objects remote
 	// game controller
-//	Map<Account, Map<iPlayer, client.ctrl.game.RemoteGameController>> clientGames;
-//	Map<RemoteGameController, Map<iPlayer, client.ctrl.game.RemoteGameController>> clientGames;
+	//	Map<Account, Map<iPlayer, client.ctrl.game.RemoteGameController>> clientGames;
+	//	Map<RemoteGameController, Map<iPlayer, client.ctrl.game.RemoteGameController>> clientGames;
 	Map<iPlayer, iClientGame> playerReferences;
 	
 	LinkedList<iPlayer> playerList;

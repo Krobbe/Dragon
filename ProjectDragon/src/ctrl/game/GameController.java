@@ -9,7 +9,6 @@ import java.util.TreeMap;
 import event.Event;
 import event.Event.Tag;
 import event.EventBus;
-import event.EventHandler;
 
 import model.card.Card;
 import model.card.iCard;

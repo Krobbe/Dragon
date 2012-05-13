@@ -65,9 +65,8 @@ public class Card implements iCard {
 	 * @return > 0 if this.rank is higher than card.rank
 	 */
 	@Override
-	public int compareTo(Object o) {
-		Card tmp = (Card)o;
-		return this.getRank().compareTo(tmp.getRank());
+	public int compareTo(iCard o) {
+		return this.getRank().compareTo(o.getRank());
 	}
 	
 	/**

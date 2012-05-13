@@ -2,7 +2,6 @@ package model.player.hand;
 
 import java.util.List;
 
-import model.card.Card;
 import model.card.iCard;
 
 /**

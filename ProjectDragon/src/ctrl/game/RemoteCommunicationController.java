@@ -231,7 +231,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			}
 			String updateString = "DELETE FROM Accounts WHERE userName = '"
 					+ account.getUserName() + "'";
-			int up =
 			myStmt.executeUpdate(updateString);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

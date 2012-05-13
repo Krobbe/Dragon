@@ -13,10 +13,7 @@ import model.card.Card;
 import model.card.iCard;
 import model.player.Bet;
 import model.player.iPlayer;
-import model.player.hand.FullTHHand;
-import model.player.hand.HandValue;
-import model.player.hand.HandValueType;
-import model.player.hand.iHand;
+import model.player.hand.*;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
 

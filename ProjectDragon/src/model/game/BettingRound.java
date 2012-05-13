@@ -1,9 +1,7 @@
 package model.game;
 
-import model.player.Balance;
 import model.player.Bet;
 import model.player.Player;
-import model.player.hand.TexasHoldemHand;
 
 /**
  * A class that simulates a betting-round.

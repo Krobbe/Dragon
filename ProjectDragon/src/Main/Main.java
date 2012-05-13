@@ -1,7 +1,5 @@
 package Main;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -89,7 +87,6 @@ public class Main {
 					throw new IllegalArgumentException("Command not supported!!");
 				}
 				
-				/*
 				if (table.isBettingDone()) {
 					gc.handleAllIn();
 					gc.nextBettingRound();
@@ -97,12 +94,11 @@ public class Main {
 				
 				table.nextPlayer();
 				
-				/* slut på rundan ? */ /*
+				/* slut på rundan ? */
 				if (winners != null) {
 					System.out.println("Round ended...");
 					break;
 				}
-				*/
 			}
 		}
 	}

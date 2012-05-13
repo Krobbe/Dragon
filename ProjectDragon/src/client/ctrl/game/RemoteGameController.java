@@ -6,17 +6,13 @@ package client.ctrl.game;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import model.card.Card;
 import model.card.iCard;
 import model.game.Pot;
-import model.player.Account;
 import model.player.Bet;
 import model.player.iPlayer;
 import model.player.hand.iHand;
 
-import remote.iClient;
 import remote.iClientGame;
-import remote.iServer;
 import remote.iServerGame;
 
 import utilities.IllegalCallException;
@@ -32,7 +28,7 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	private GameController gameController;
 	
 	// TODO Flytta "lagringen" av account till ett mer passande ställe?
-	private Account account;
+	//private Account account;
 	
 	
 	public RemoteGameController(){

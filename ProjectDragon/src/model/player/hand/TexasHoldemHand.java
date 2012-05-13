@@ -5,8 +5,7 @@ package model.player.hand;
 
 import java.util.List;
 
-import model.card.Card;
-import model.card.iCard;
+import model.card.*;
 
 /**
  * A class representing a standard Texas Hold'em hand
