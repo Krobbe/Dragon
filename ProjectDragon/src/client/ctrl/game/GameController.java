@@ -8,7 +8,6 @@ import remote.iClientGame;
 import client.model.game.Table;
 
 import model.card.Card;
-import model.card.InvisibleCard;
 import model.card.iCard;
 import model.game.Pot;
 import model.player.Bet;
@@ -134,8 +133,10 @@ public class GameController implements iClientGame {
 					myHand.addCard(c);
 				}
 			} else {
-				p.getHand().addCard(new InvisibleCard());
-				p.getHand().addCard(new InvisibleCard());
+				p.getHand().addCard(
+						new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));
+				p.getHand().addCard(
+						new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));
 			}
 		}
 		EventBus.publish(new Event(Event.Tag.HANDS_CHANGED, me));

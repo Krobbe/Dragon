@@ -17,12 +17,13 @@ public class Card implements iCard {
 	public static final int NO_OF_RANKS = 13;
 	public static final int NO_OF_SUITS = 4;
 	
+	//TODO: Lyfta ur dessa?
 	public enum Suit {
-		SPADES, HEARTS, DIAMONDS, CLUBS;
+		SPADES, HEARTS, DIAMONDS, CLUBS, NO_SUIT;
 	}
 	
 	public enum Rank {
-		TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE; 
+		TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE, NO_RANK; 
 	}
 	
 	private Rank rank;
