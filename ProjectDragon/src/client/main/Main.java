@@ -1,6 +1,7 @@
 package client.main;
 
 import client.ctrl.game.RemoteCommunicationController;
+import client.gui.MainView;
 
 
 
@@ -14,6 +15,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
+		new MainView();
 		new RemoteCommunicationController(); 
 		
 	}

@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 import java.awt.CardLayout;
 
-public class MenuView implements client.event.EventHandler {
+public class MainView implements client.event.EventHandler {
 
 	private JFrame frame;
 	private CardLayout layout;
@@ -19,7 +19,7 @@ public class MenuView implements client.event.EventHandler {
 	/**
 	 * Create the application.
 	 */
-	public MenuView() {
+	public MainView() {
 		init();
 		client.event.EventBus.register(this);
 	}

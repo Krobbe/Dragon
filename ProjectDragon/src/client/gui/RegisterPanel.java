@@ -3,6 +3,8 @@ package client.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -39,13 +41,13 @@ public class RegisterPanel extends JPanel implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == registerRegisterButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.TRY_REGISTER,
-					registerFirstNameField.getText() + " "
-							+ registerLastNameField.getText() + " "
-							+ registerUserNameField.getText() + " "
-							+ registerPassword.getPassword() + " "
-							+ registerPasswordAgainField.getPassword()));
-			// TODO Security with passwords?
+			ArrayList<char[]> registerInfo = new ArrayList<char[]>();
+			registerInfo.add(registerUserNameField.getText().toCharArray());
+			registerInfo.add(registerFirstNameField.getText().toCharArray());
+			registerInfo.add(registerLastNameField.getText().toCharArray());
+			registerInfo.add(registerPassword.getPassword());
+			registerInfo.add(registerPasswordAgainField.getPassword());
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.TRY_REGISTER, registerInfo));
 		} else if (e.getSource() == registerBackButton) {
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.REGISTER_BACK, 1));
 		}

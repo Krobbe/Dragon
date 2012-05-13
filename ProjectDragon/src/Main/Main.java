@@ -3,7 +3,7 @@ package Main;
 import java.util.List;
 import java.util.Scanner;
 
-import client.gui.MenuView;
+import client.gui.MainView;
 
 import ctrl.game.GameController;
 
@@ -19,7 +19,7 @@ import utilities.TableCardsFullException;
 public class Main {
 	
 	public static void main(String[] args) {
-		new MenuView();
+		new MainView();
 		try {
 			new Main().run();
 		} catch (PlayersFullException e) {
