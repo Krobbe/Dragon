@@ -104,7 +104,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		return gameController.fold(player);
 	}
 	
-	//TODO Javadoc
+	@Override
 	public void onEvent(Event evt) {
 
 		switch (evt.getTag()) {
@@ -118,6 +118,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				player = (iPlayer) evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
 					try {
+						//TODO: Den här metoden returnerar en boolean. Vad ska vi göra med den?
 						client.fold(player);
 					} catch (RemoteException e) {
 						e.printStackTrace();
@@ -132,10 +133,11 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				bet = (Bet) evt.getValue();
+				bet = (Bet)evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
 					try {
-						client.betOccured(bet);
+						//TODO: Den här metoden returnerar en boolean. Vad ska vi göra med den?
+						client.betOccurred(bet);
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}
@@ -166,9 +168,24 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			break;
 
 		case SERVER_CREATE_TABLE:
-
-			// anrop newTable(parameter) i client.ctrl.game.GameController
-
+			List<iPlayer> players;
+			if (!(evt.getValue() instanceof List)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				players = (List<iPlayer>)evt.getValue();
+				iClientGame client;
+				int meIndex = 0;
+				for(iPlayer p: players) {
+					client = playerReferences.get(p);
+					try {
+						client.newTable(players, meIndex);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+					meIndex ++;
+				}
+			}
 			break;
 
 		case SERVER_DISTRIBUTE_POT:

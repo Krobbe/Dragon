@@ -40,12 +40,7 @@ public class GameController implements iClientGame {
 		distributeInvisibleCards();
 	}
 	
-	/**
-	 * Creates a new table.
-	 * 
-	 * @param players
-	 * @param meIndex
-	 */
+	@Override
 	public void newTable(List<iPlayer> players, int meIndex) {
 		table = new Table(players, meIndex);
 		distributeInvisibleCards();
@@ -88,7 +83,10 @@ public class GameController implements iClientGame {
 	}
 
 	@Override
-	public boolean betOccured(Bet bet) {
+	public boolean betOccurred(Bet bet) {
+		if (!table.getCurrentPlayer().equals(bet.getOwner())) {
+			return false;
+		}
 		iPlayer p = table.getCurrentPlayer();
 		int tmp = bet.getValue() - p.getOwnCurrentBet();
 		p.getBalance().removeFromBalance(tmp);
@@ -120,9 +118,12 @@ public class GameController implements iClientGame {
 	// om vi tar bort nextTurn kan man ta bort nextPlayer i klientens table med.
 	public boolean nextTurn(iPlayer nextPlayer) {
 		Boolean tmp = table.nextPlayer().equals(nextPlayer);
-		EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
-				.getCurrentPlayer()));
-		return tmp;
+		if(tmp) {
+			EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
+					.getCurrentPlayer()));
+			return true;
+		} 
+		return false;
 	}
 
 	@Override
@@ -174,8 +175,8 @@ public class GameController implements iClientGame {
 	}
 
 	@Override
-	public void setActive(iPlayer p, boolean b) {
-		p.setActive(b);
+	public void setActive(iPlayer player, boolean b) {
+		player.setActive(b);
 	}
 
 	@Override

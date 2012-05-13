@@ -21,6 +21,14 @@ import model.player.hand.iHand;
 public interface iClientGame extends Remote {
 	
 	/**
+	 * Creates a new table.
+	 * 
+	 * @param players The players at the table.
+	 * @param meIndex The index in the list of players that is the user.
+	 */
+	public void newTable(List<iPlayer> players, int meIndex) throws RemoteException;
+	
+	/**
 	 * Set the pot.
 	 * 
 	 * @param pot The value you want to set the pot to.
@@ -38,13 +46,13 @@ public interface iClientGame extends Remote {
 	public boolean fold(iPlayer player) throws RemoteException;
 	
 	/**
-	 * A method for handling when a bet has occured.
+	 * A method for handling when a bet has occurred.
 	 * 
 	 * @param b The bet.
 	 * @return true if the method went through successfully.
 	 * @throws RemoteException
 	 */
-	public boolean betOccured(Bet b) throws RemoteException;
+	public boolean betOccurred(Bet bet) throws RemoteException;
 	
 	/**
 	 * A method that transfer the turn to the nextPlayer. Does a check that
@@ -57,7 +65,8 @@ public interface iClientGame extends Remote {
 	public boolean nextTurn(iPlayer nextPlayer) throws RemoteException;
 	
 	/**
-	 * Set turn to indexOfCurrentPlayer.
+	 * Set turn to indexOfCurrentPlayer. This method should only be used then
+	 * the table is created.
 	 * 
 	 * @param indexOfCurrentPlayer
 	 * @throws RemoteException

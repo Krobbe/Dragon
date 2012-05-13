@@ -23,7 +23,7 @@ import utilities.IllegalCallException;
 
 /**
  * @author robinandersson
- *
+ * @author lisastenberg
  */
 
 public class RemoteGameController implements iClientGame, iServerRequest {
@@ -40,16 +40,7 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	}
 	
 	public RemoteGameController(GameController gameController){
-		
 		this.gameController = gameController;
-
-	   
-	    
-	}
-	
-	@Override
-	public void setActive(iPlayer player, boolean b) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -58,10 +49,8 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 		try {
 			return serverGameController.call(bet);
 		} catch (IllegalCallException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -74,10 +63,8 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 		try {
 			return serverGameController.check(bet);
 		} catch (IllegalCallException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -90,10 +77,8 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 		try {
 			return serverGameController.raise(bet);
 		} catch (IllegalCallException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -116,67 +101,64 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 		return false;
 	}
 
-
+	@Override
+	public void setActive(iPlayer player, boolean b) {
+		gameController.setActive(player, b);
+	}
+	
 	@Override
 	public void setPot(Pot pot) {
-		// TODO Auto-generated method stub
-		
+		gameController.setPot(pot);
 	}
-
 
 	@Override
 	public boolean fold(iPlayer player) {
-		// TODO Auto-generated method stub
-		return false;
+		return gameController.fold(player);
 	}
-
 
 	@Override
 	public boolean nextTurn(iPlayer nextPlayer) {
-		// TODO Auto-generated method stub
-		return false;
+		return gameController.nextTurn(nextPlayer);
 	}
 
 	@Override
-	public boolean betOccured(Bet b) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean betOccurred(Bet bet) {
+		return gameController.betOccurred(bet);
 	}
 
 	@Override
 	public void addCommunityCards(List<iCard> cards) {
-		// TODO Auto-generated method stub
-		
+		gameController.addCommunityCards(cards);
 	}
 
 	@Override
 	public void setHand(iPlayer player, iHand hand) {
-		// TODO Auto-generated method stub
-		
+		gameController.setHand(player, hand);
 	}
 
 	@Override
 	public void setTurn(int indexOfCurrentPlayer) {
-		// TODO Auto-generated method stub
-		
+		gameController.setTurn(indexOfCurrentPlayer);
 	}
 
 	@Override
 	public void setPlayerOwnCurrentBet(Bet bet) {
-		// TODO Auto-generated method stub
-		
+		gameController.setPlayerOwnCurrentBet(bet);		
 	}
 
 	@Override
 	public void newRound() {
-		// TODO Auto-generated method stub
-		
+		gameController.newRound();
 	}
 
 	@Override
 	public void balanceChanged(Bet bet) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		gameController.balanceChanged(bet);
+	}
+
+	@Override
+	public void newTable(List<iPlayer> players, int meIndex) {
+		gameController.newTable(players, meIndex);
 	}
 
 	

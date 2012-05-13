@@ -169,7 +169,7 @@ public class GameController {
 					"Not possible to call since no bet has been posted");
 		} else {
 			doCall();
-			EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
+			EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
 		}
 		return true;
 	}
@@ -211,7 +211,7 @@ public class GameController {
 		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
 		
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
 		return true;
 	}
 	
@@ -332,7 +332,6 @@ public class GameController {
 		}
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN, indexOfCurrentPlayer));
-		
 	}
 	
 	/**
