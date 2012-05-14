@@ -189,6 +189,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			break;
 
 		case SERVER_DISTRIBUTE_POT:
+
 			Bet b;
 			if (!(evt.getValue() instanceof Bet)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
@@ -212,7 +213,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				pot = (Pot)evt.getValue();
+				pot = (Pot) evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
 					try {
 						client.setPot(pot);
@@ -221,7 +222,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 					}
 				}
 			}
-		
+
 			break;
 
 		case SERVER_NEW_ROUND:
@@ -240,7 +241,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				i = (Integer)evt.getValue();
+				i = (Integer) evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
 					try {
 						client.setTurn(i);
@@ -257,7 +258,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				p = (iPlayer)evt.getValue();
+				p = (iPlayer) evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
 					try {
 						client.setActive(p, false);
@@ -273,7 +274,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				b = (Bet)evt.getValue();
+				b = (Bet) evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
 					try {
 						client.setPlayerOwnCurrentBet(b);
@@ -308,13 +309,12 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 
 	@Override
 	public void startGame() throws IllegalCallException, RemoteException {
-		
-		for(int i = 0; i < playerList.size() ; i++){
+
+		for (int i = 0; i < playerList.size(); i++) {
 			gameController.addPlayer(playerList.get(i));
 		}
-		
+
 		// TODO Handle start game scenario
-		
+
 	}
 }
-

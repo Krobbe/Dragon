@@ -44,6 +44,10 @@ public class GameController implements iClientGame {
 		table = new Table(players, meIndex);
 		distributeInvisibleCards();
 	}
+	
+	public void newTable(List<iPlayer> players, int meIndex) {
+		table = new Table(players, meIndex);
+	}
 
 	/**
 	 * Adds a player to the game table
@@ -76,7 +80,7 @@ public class GameController implements iClientGame {
 		iPlayer p = table.getCurrentPlayer();
 		p.getHand().discard();
 		p.setActive(false);
-		p.setDoneFirstTurn(true);
+		p.setDoneFirstTurn(true); //Behövs denna här? hanteras väl bara i server?
 		EventBus.publish(new Event(Event.Tag.HAND_DISCARDED, player));
 		return true;
 	}
