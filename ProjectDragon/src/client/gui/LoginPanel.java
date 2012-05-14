@@ -3,6 +3,7 @@ package client.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -39,9 +40,10 @@ public class LoginPanel extends JPanel implements ActionListener, client.event.E
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == loginButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.TRY_LOGIN, loginNameField
-					.getText() + " " + loginPasswordField.getPassword()));
-			// TODO Security with passwords?
+			ArrayList<char[]> loginInfo = new ArrayList<char[]>();
+			loginInfo.add(loginNameField.getText().toCharArray());
+			loginInfo.add(loginPasswordField.getPassword());
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.TRY_LOGIN, loginInfo));
 		} else if (e.getSource() == loginRegisterButton) {
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_REGISTER, 1));
 		}

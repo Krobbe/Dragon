@@ -6,8 +6,6 @@ package remote;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import ctrl.game.RemoteGameController;
-
 import model.player.Account;
 import model.player.iPlayer;
 

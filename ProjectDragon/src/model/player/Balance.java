@@ -1,7 +1,5 @@
 package model.player;
 
-import model.card.Card;
-
 /**
  * A class for balance. 
  * 

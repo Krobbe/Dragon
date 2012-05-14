@@ -13,10 +13,7 @@ import model.card.Card;
 import model.card.iCard;
 import model.player.Bet;
 import model.player.iPlayer;
-import model.player.hand.FullTHHand;
-import model.player.hand.HandValue;
-import model.player.hand.HandValueType;
-import model.player.hand.iHand;
+import model.player.hand.*;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
 
@@ -222,11 +219,6 @@ public class Table {
 		// Restores the list to the previous state before it was prepared
 		for(int i = 0 ; i <= getDealerButtonIndex() ; i++){
 			players.add(0, players.remove(players.size() -1));
-		}
-		
-		for(iPlayer p : getActivePlayers()) {
-			iHand h = p.getHand();
-			//TODO: Give cards to client
 		}
 	}
 	

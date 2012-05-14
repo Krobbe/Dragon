@@ -1,6 +1,5 @@
 package model.player.hand;
 
-import java.util.Arrays;
 import java.util.List;
 
 import model.card.Card;

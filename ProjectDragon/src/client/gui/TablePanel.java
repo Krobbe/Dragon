@@ -2,6 +2,8 @@ package client.gui;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -95,12 +97,16 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 	private JLabel p10CreditsLabel;
 	private JLabel p10AvailableCreditsLabel;
 
-	private JPanel shownCardsPanel;
+	private JPanel tableInfo;
 	private JLabel flopc1Label;
 	private JLabel flopc2Label;
 	private JLabel flopc3Label;
 	private JLabel turnc1Label;
 	private JLabel riverc1Label;
+	private JLabel potSize;
+	private JLabel potSizeInfoLabel;
+	private JLabel currentBet;
+	private JLabel currentBetInfoLabel;
 
 	/**
 	 * Create the application.
@@ -112,15 +118,30 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 
 	@Override
 	public void onEvent(client.event.Event evt) {
-    	CURRENT_BET_CHANGED,
-    	POT_CHANGED,
-    	HAND_DISCARDED,
-    	BALANCE_CHANGED,
-    	OWN_CURRENT_BET_CHANGED,
-    	TURN_CHANGED,
-    	HANDS_CHANGED,
-    	COMMUNITY_CARDS_CHANGED,
-
+    	if (evt.getTag().equals(client.event.Event.Tag.CURRENT_BET_CHANGED)) {
+    		currentBet.setText((String)evt.getValue());
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.POT_CHANGED)) {
+    		potSize.setText((String)evt.getValue());
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.HAND_DISCARDED)) {
+    		//Not sure what to do on this event, need help
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.BALANCE_CHANGED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.OWN_CURRENT_BET_CHANGED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.TURN_CHANGED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.HANDS_CHANGED)) {
+    		
+    	}
+    	else if(evt.getTag().equals(client.event.Event.Tag.COMMUNITY_CARDS_CHANGED)) {
+    		
+    	}
 	}
 
 	@Override
@@ -475,29 +496,47 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 		p10AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		playerTenPanel.add(p10AvailableCreditsLabel);
 
-		shownCardsPanel = new JPanel();
-		shownCardsPanel.setBounds(297, 202, 418, 144);
-		gamePanel.add(shownCardsPanel);
-		shownCardsPanel.setLayout(null);
+		tableInfo = new JPanel();
+		tableInfo.setBackground(Color.green);
+		tableInfo.setBounds(297, 202, 418, 144);
+		gamePanel.add(tableInfo);
+		tableInfo.setLayout(null);
 
 		flopc1Label = new JLabel("Card 1");
 		flopc1Label.setBounds(10, 11, 53, 80);
-		shownCardsPanel.add(flopc1Label);
+		tableInfo.add(flopc1Label);
 
 		flopc2Label = new JLabel("Card 1");
 		flopc2Label.setBounds(89, 11, 53, 80);
-		shownCardsPanel.add(flopc2Label);
+		tableInfo.add(flopc2Label);
 
 		flopc3Label = new JLabel("Card 1");
 		flopc3Label.setBounds(182, 11, 53, 80);
-		shownCardsPanel.add(flopc3Label);
+		tableInfo.add(flopc3Label);
 
 		turnc1Label = new JLabel("Card 1");
 		turnc1Label.setBounds(260, 11, 53, 80);
-		shownCardsPanel.add(turnc1Label);
+		tableInfo.add(turnc1Label);
 
 		riverc1Label = new JLabel("Card 1");
 		riverc1Label.setBounds(355, 11, 53, 80);
-		shownCardsPanel.add(riverc1Label);
+		tableInfo.add(riverc1Label);
+
+		potSizeInfoLabel= new JLabel("Pot size:");
+		potSizeInfoLabel.setBounds(10, 120, 53, 15);
+		tableInfo.add(potSizeInfoLabel);
+		
+		potSize = new JLabel("xxx");
+		potSize.setBounds(89, 120, 53, 15);
+		tableInfo.add(potSize);
+		
+		currentBetInfoLabel = new JLabel("Current bet:");
+		currentBetInfoLabel.setBounds(260, 120, 70, 15);
+		tableInfo.add(currentBetInfoLabel);
+		
+		currentBet = new JLabel("xxx");
+		currentBet.setBounds(355, 120, 53, 15);
+		tableInfo.add(currentBet);
+		
 	}
 }

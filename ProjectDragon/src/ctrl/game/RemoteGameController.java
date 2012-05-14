@@ -15,8 +15,9 @@ import event.Event;
 import event.EventHandler;
 
 import model.card.iCard;
-import model.player.Bet;
-import model.player.iPlayer;
+import model.game.Pot;
+import model.player.*;
+import model.player.hand.iHand;
 
 import remote.iClientGame;
 import remote.iServerGame;
@@ -38,8 +39,8 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 	// A map containing all logged in players and another map containing their
 	// active players and references to every respective player objects remote
 	// game controller
-//	Map<Account, Map<iPlayer, client.ctrl.game.RemoteGameController>> clientGames;
-//	Map<RemoteGameController, Map<iPlayer, client.ctrl.game.RemoteGameController>> clientGames;
+	//	Map<Account, Map<iPlayer, client.ctrl.game.RemoteGameController>> clientGames;
+	//	Map<RemoteGameController, Map<iPlayer, client.ctrl.game.RemoteGameController>> clientGames;
 	Map<iPlayer, iClientGame> playerReferences;
 	
 	LinkedList<iPlayer> playerList;
@@ -103,40 +104,205 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		return gameController.fold(player);
 	}
 	
-	//TODO Javadoc
+	@Override
 	public void onEvent(Event evt) {
-		
-		switch (evt.getTag()) {
-		
-			case SERVER_FOLD:
-				iPlayer player = (iPlayer)evt.getValue();
-				for(iClientGame client : playerReferences.values()) {
-					client.fold(player);
-				}
 
-				break;
-			case SERVER_UPDATE_BET:
-				Bet bet = (Bet)evt.getValue();
-				for(iClientGame client : playerReferences.values()) {
-					client.betOccured(bet);
+		switch (evt.getTag()) {
+
+		case SERVER_FOLD:
+			iPlayer player;
+			if (!(evt.getValue() instanceof iPlayer)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				player = (iPlayer) evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						//TODO: Den här metoden returnerar en boolean. Vad ska vi göra med den?
+						client.fold(player);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 				}
-				
-				break;
-				
-			case SERVER_DISTRIBUTE_CARDS:
-				//setHand();
-				break;
-				
-			case SERVER_ADD_TABLE_CARDS:
-				List<iCard> cards = (List<iCard>)evt.getValue();
-				for(iClientGame client : playerReferences.values()) {
-					client.addCommunityCards(cards);
+			}
+			break;
+			
+		case SERVER_UPDATE_BET:
+			Bet bet;
+			if (!(evt.getValue() instanceof Bet)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				bet = (Bet)evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						//TODO: Den här metoden returnerar en boolean. Vad ska vi göra med den?
+						client.betOccurred(bet);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 				}
-				break;
-				
+			}
+			break;
+			
+		case SERVER_DISTRIBUTE_CARDS:
+			Map<iPlayer, iHand> playerHands;
+			if (!(evt.getValue() instanceof Map)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());			
+			} else {
+				playerHands = (Map<iPlayer, iHand>) evt.getValue();
+				iHand hand;
+				iClientGame client;
+				for (iPlayer p : playerHands.keySet()) {
+					hand = p.getHand();
+					client = playerReferences.get(p);
+					try {
+						client.setHand(p, hand);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			break;
+
+		case SERVER_CREATE_TABLE:
+			List<iPlayer> players;
+			if (!(evt.getValue() instanceof List)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				players = (List<iPlayer>)evt.getValue();
+				iClientGame client;
+				int meIndex = 0;
+				for(iPlayer p: players) {
+					client = playerReferences.get(p);
+					try {
+						client.newTable(players, meIndex);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+					meIndex ++;
+				}
+			}
+			break;
+
+		case SERVER_DISTRIBUTE_POT:
+			Bet b;
+			if (!(evt.getValue() instanceof Bet)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				b = (Bet)evt.getValue();
+				for(iClientGame client : playerReferences.values()) {
+					try {
+						client.balanceChanged(b);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			break;
+
+		case SERVER_UPDATE_POT:
+			Pot pot;
+			if (!(evt.getValue() instanceof Pot)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				pot = (Pot)evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						client.setPot(pot);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		
-			default:
-				break;
+			break;
+
+		case SERVER_NEW_ROUND:
+			for (iClientGame client : playerReferences.values()) {
+				try {
+					client.newRound();
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+
+		case SERVER_SET_TURN:
+			int i;
+			if (!(evt.getValue() instanceof Integer)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				i = (Integer)evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						client.setTurn(i);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			break;
+
+		case SERVER_SET_PLAYER_UNACTIVE:
+			iPlayer p;
+			if (!(evt.getValue() instanceof iPlayer)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				p = (iPlayer)evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						client.setActive(p, false);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			break;
+
+		case SERVER_SET_OWN_CURRENT_BET:
+			if (!(evt.getValue() instanceof Bet)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				b = (Bet)evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						client.setPlayerOwnCurrentBet(b);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			break;
+
+		case SERVER_ADD_TABLE_CARDS:
+			List<iCard> cards;
+			if (!(evt.getValue() instanceof List)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				cards = (List<iCard>) evt.getValue();
+				for (iClientGame client : playerReferences.values()) {
+					try {
+						client.addCommunityCards(cards);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			break;
+
+		default:
+			break;
 		}
 	}
 
@@ -150,6 +316,5 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 		// TODO Handle start game scenario
 		
 	}
-
 }
 

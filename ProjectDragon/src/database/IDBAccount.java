@@ -1,9 +1,6 @@
 package database;
 
-import java.util.Map;
-
 import model.player.Account;
-import model.player.Player;
 /**
  * An interface that needs to be implemented to connect to the database 
  * account-tables.

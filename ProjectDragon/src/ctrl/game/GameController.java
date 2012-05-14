@@ -3,11 +3,12 @@ package ctrl.game;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import event.Event;
 import event.Event.Tag;
 import event.EventBus;
-import event.EventHandler;
 
 import model.card.Card;
 import model.card.iCard;
@@ -20,6 +21,7 @@ import model.game.Table;
 import model.player.Bet;
 import model.player.OwnCurrentBetComparator;
 import model.player.iPlayer;
+import model.player.hand.iHand;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
@@ -100,6 +102,13 @@ public class GameController {
 		 * of unnecessary method calls between the two classes
 		 */
 		table.distributeCards();
+		
+		Map<iPlayer, iHand> playerHands = new TreeMap<iPlayer, iHand>();
+		for(iPlayer p : table.getActivePlayers()) {
+			playerHands.put(p, p.getHand());
+		}
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_CARDS, playerHands));
 	}
 
 	//TODO: Koden i call, raise, check, fold Šr lite lik. refactor?
@@ -159,7 +168,7 @@ public class GameController {
 					"Not possible to call since no bet has been posted");
 		} else {
 			doCall();
-			EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
+			EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
 		}
 		return true;
 	}
@@ -201,7 +210,7 @@ public class GameController {
 		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
 		
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
 		return true;
 	}
 	
@@ -322,7 +331,6 @@ public class GameController {
 		}
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN, indexOfCurrentPlayer));
-		
 	}
 	
 	/**
