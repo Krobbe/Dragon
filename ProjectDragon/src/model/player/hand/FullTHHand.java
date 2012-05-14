@@ -15,15 +15,15 @@ import model.card.*;
  * @author lisastenberg
  *
  */
-public class FullTHHand implements iHand {
-	private List<iCard> cards = new LinkedList<iCard>();
+public class FullTHHand implements IHand {
+	private List<ICard> cards = new LinkedList<ICard>();
 	private boolean isVisible = true;
 	
 	public FullTHHand() {
 		
 	}
 	
-	public FullTHHand(List<iCard> cards) {
+	public FullTHHand(List<ICard> cards) {
 		addCards(cards);
 	}
 	
@@ -33,12 +33,12 @@ public class FullTHHand implements iHand {
 	}
 
 	@Override
-	public List<iCard> getCards() {
+	public List<ICard> getCards() {
 		return cards;
 	}
 
 	@Override
-	public void addCard(iCard c) {
+	public void addCard(ICard c) {
 		cards.add(c);
 		Collections.sort(cards, new CardComparator());
 	}
@@ -47,7 +47,7 @@ public class FullTHHand implements iHand {
 	 * Add cards to the list of cards from the list c.
 	 * @param c the list with card you want to add.
 	 */
-	public void addCards(List<iCard> c) {
+	public void addCards(List<ICard> c) {
 		cards.addAll(c);
 		Collections.sort(cards, new CardComparator());
 	}
@@ -56,7 +56,7 @@ public class FullTHHand implements iHand {
 	 * Add cards to the list of cards from hand.
 	 * @param hand the hand you want to add.
 	 */
-	public void addCards(iHand hand) {
+	public void addCards(IHand hand) {
 		addCards(hand.getCards());
 	}
 

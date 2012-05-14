@@ -27,7 +27,7 @@ public class HandTest {
 	@Test
 	public void testVisible() {
 		
-		iHand hand = new Hand();
+		IHand hand = new Hand();
 		assertTrue(!hand.isVisible());
 		assertTrue(new Hand(true).isVisible());
 		assertTrue(!(new Hand(false).isVisible()));
@@ -51,7 +51,7 @@ public class HandTest {
 	 */
 	@Test
 	public void testGetCards() {
-		iHand hand = new Hand();
+		IHand hand = new Hand();
 		assertTrue(hand.getCards().equals(new LinkedList<Card>()));
 	}
 	
@@ -62,7 +62,7 @@ public class HandTest {
 	 */
 	@Test
 	public void testAddCard() {
-		iHand hand = new Hand();
+		IHand hand = new Hand();
 		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		hand.addCard(card1);
 		
@@ -79,7 +79,7 @@ public class HandTest {
 	
 	@Test
 	public void testDiscard() {
-		iHand hand = new Hand();
+		IHand hand = new Hand();
 		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		hand.addCard(card1);
 		hand.discard();
@@ -92,7 +92,7 @@ public class HandTest {
 	 */
 	@Test
 	public void testToString() {
-		iHand hand1 = new Hand();
+		IHand hand1 = new Hand();
 		hand1.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
 		String s = hand1.toString();
 		String expected = "Hand: [ACE of CLUBS]";
@@ -106,8 +106,8 @@ public class HandTest {
 	 */
 	@Test
 	public void testEquals() {
-		iHand hand1 = new Hand();
-		iHand hand2 = new Hand(true); //Visibility should not matter
+		IHand hand1 = new Hand();
+		IHand hand2 = new Hand(true); //Visibility should not matter
 		
 		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.EIGHT);
@@ -124,7 +124,7 @@ public class HandTest {
 		assertTrue(hand1.equals(hand2));
 		assertTrue(hand2.equals(hand1));
 		
-		iHand hand3 = new Hand(false);
+		IHand hand3 = new Hand(false);
 		hand3.addCard(card1);
 		hand3.addCard(card2);
 		
@@ -135,7 +135,7 @@ public class HandTest {
 		
 		// Some tests where the hands are not equal
 		
-		iHand hand4 = new Hand();
+		IHand hand4 = new Hand();
 		
 		assertTrue(!hand1.equals(hand4));
 		assertTrue(!hand4.equals(hand1));
@@ -159,7 +159,7 @@ public class HandTest {
 	 */
 	@Test
 	public void hashTest(){
-		iHand hand = new Hand();
+		IHand hand = new Hand();
 		assertTrue(hand.hashCode() == 43);
 	}
 }

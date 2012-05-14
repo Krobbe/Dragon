@@ -5,6 +5,8 @@ import java.util.List;
 
 import model.card.Card;
 import model.card.Deck;
+import model.card.ICard;
+import model.card.IDeck;
 
 /**
  * A class that represents a dealer. 
@@ -15,7 +17,7 @@ import model.card.Deck;
  *
  */
 
-public class Dealer implements iDealer {
+public class Dealer implements IDealer {
 	private Deck d;
 	
 	public Dealer() {
@@ -26,7 +28,7 @@ public class Dealer implements iDealer {
 	 * 
 	 * @return the top card of the deck.
 	 */
-	public Card popCard() {
+	public ICard popCard() {
 		return d.popCard();
 	}
 	
@@ -42,12 +44,12 @@ public class Dealer implements iDealer {
 	 * 
 	 * @return the three top cards of the deck.
 	 */
-	public List<Card> getFlop() {
-		Card tmp1 = d.popCard();
-		Card tmp2 = d.popCard();
-		Card tmp3 = d.popCard();
+	public List<ICard> getFlop() {
+		ICard tmp1 = d.popCard();
+		ICard tmp2 = d.popCard();
+		ICard tmp3 = d.popCard();
 		
-		List<Card> flop = new LinkedList<Card>();
+		List<ICard> flop = new LinkedList<ICard>();
 		flop.add(tmp1);
 		flop.add(tmp2);
 		flop.add(tmp3);
@@ -59,7 +61,7 @@ public class Dealer implements iDealer {
 	 * @author mattiashenriksson
 	 * @return the top card of the deck
 	 */
-	public Card getRiver() {
+	public ICard getRiver() {
 		return d.popCard();
 	}
 	

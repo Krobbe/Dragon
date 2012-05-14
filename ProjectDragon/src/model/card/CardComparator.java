@@ -10,10 +10,10 @@ import java.util.Comparator;
  * @author lisastenberg
  *
  */
-public class CardComparator implements Comparator<iCard> {
+public class CardComparator implements Comparator<ICard> {
 
 	@Override
-	public int compare(iCard arg0, iCard arg1) {
+	public int compare(ICard arg0, ICard arg1) {
 		return -1*(arg0.compareTo(arg1));
 	}
 

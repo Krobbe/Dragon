@@ -1,6 +1,8 @@
 package model.game;
 
-import model.card.iCard;
+
+import model.card.ICard;
+
 
 /**
  * An interface that represents a Dealer. 
@@ -9,12 +11,12 @@ import model.card.iCard;
  * @author lisastenberg
  *
  */
-public interface iDealer {
+public interface IDealer {
 
 	/**
 	 * @return the top card of the Deck(s).
 	 */
-	public iCard popCard();
+	public ICard popCard();
 	
 	/**
 	 * Creates a new full and shuffled deck for the dealer.

@@ -7,13 +7,13 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import model.player.Account;
-import model.player.iPlayer;
+import model.player.IPlayer;
 
 /**
  * @author robinandersson
  *
  */
-public interface iServer extends Remote {
+public interface IServer extends Remote {
 	
 	public static final String REMOTE_NAME = "Server";
 
@@ -25,7 +25,7 @@ public interface iServer extends Remote {
 	 * @param accountName The account's name.
 	 * @param accountPassword The password associated with the account name.
 	 */
-	public Account login(iClient client, String accountName, String accountPassword) throws RemoteException;
+	public Account login(IClient client, String accountName, String accountPassword) throws RemoteException;
 	
 	/** 
 	 * Logs the client out from the server.
@@ -46,7 +46,7 @@ public interface iServer extends Remote {
 	 * @param maxPlayers The maximum amount of players allowed in the game 
 	 * @param playerChips The amount of chips players' get at the start of the game
 	 */
-	public iServerGame createGame(Account account, iClientGame clientGame,
+	public IServerGame createGame(Account account, IClientGame clientGame,
 			int entranceFee, int maxPlayers, int playerStartingChips)  throws RemoteException;
 	
 	/** 
@@ -61,7 +61,7 @@ public interface iServer extends Remote {
 	 * client-server/server-client game communicator
 	 * @param gameIndex The index of the game that the user wants to join
 	 */
-	public iServerGame joinGame(Account account, iPlayer player,
-				iClientGame clientGame, int gameIndex) throws RemoteException;
+	public IServerGame joinGame(Account account, IPlayer player,
+				IClientGame clientGame, int gameIndex) throws RemoteException;
 
 }

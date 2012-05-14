@@ -2,7 +2,7 @@ package model.card;
 
 import model.card.Card.*;
 
-public interface iCard extends Comparable<iCard> {
+public interface ICard extends Comparable<ICard> {
 	
 	public Rank getRank();
 	

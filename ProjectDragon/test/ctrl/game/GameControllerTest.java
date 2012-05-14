@@ -12,7 +12,7 @@ import model.player.Balance;
 import model.player.Bet;
 import model.player.Player;
 import model.player.User;
-import model.player.iPlayer;
+import model.player.IPlayer;
 import model.player.hand.TexasHoldemHand;
 
 import org.junit.Test;
@@ -58,9 +58,9 @@ public class GameControllerTest {
 	public void testRaise() throws PlayersFullException, IllegalRaiseException {
 		Table t = new Table();
 		GameController gc = new GameController(t);
-		iPlayer u1 = new User(new Player(new TexasHoldemHand(false),"Mattias"
+		IPlayer u1 = new User(new Player(new TexasHoldemHand(false),"Mattias"
 				, new Balance(100)));
-		iPlayer u2 = new User();
+		IPlayer u2 = new User();
 		t.addPlayer(u1);
 		t.addPlayer(u2);
 		gc.raise(new Bet(t.getCurrentPlayer(), t.getRound().
@@ -76,8 +76,8 @@ public class GameControllerTest {
 	public void testFold() throws PlayersFullException {
 		Table t = new Table();
 		GameController gc = new GameController(t);
-		iPlayer u1 = new User();
-		iPlayer u2 = new User();
+		IPlayer u1 = new User();
+		IPlayer u2 = new User();
 		t.addPlayer(u1);
 		t.addPlayer(u2);
 		Card c1 = new Card(Suit.CLUBS, Rank.ACE);
@@ -95,10 +95,10 @@ public class GameControllerTest {
 	public void testNextRound() throws PlayersFullException {
 		Table t = new Table();
 		GameController gc = new GameController(t);
-		iPlayer u1 = new User(), u2 = new User(), u3 = new User(), u4 = new User();
+		IPlayer u1 = new User(), u2 = new User(), u3 = new User(), u4 = new User();
 		t.addPlayer(u1); t.addPlayer(u2); t.addPlayer(u3); t.addPlayer(u4);	
-		List<iPlayer> players = t.getPlayers();
-		for (iPlayer p : players) {
+		List<IPlayer> players = t.getPlayers();
+		for (IPlayer p : players) {
 			p.addCard(new Card());
 			p.setActive(false);
 		}
@@ -107,7 +107,7 @@ public class GameControllerTest {
 		int previousIndexOfDealerButton = t.getDealerButtonIndex();
 		gc.nextRound();
 		
-		for (iPlayer p : players) {
+		for (IPlayer p : players) {
 			assertTrue(p.getHand().getCards().size() == 2);
 			assertTrue(p.isActive());
 		}

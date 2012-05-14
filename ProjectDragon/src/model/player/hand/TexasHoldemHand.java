@@ -13,7 +13,7 @@ import model.card.*;
  * @author robinandersson
  *
  */
-public class TexasHoldemHand implements iHand {
+public class TexasHoldemHand implements IHand {
 	
 	private Hand hand;
 	
@@ -40,7 +40,7 @@ public class TexasHoldemHand implements iHand {
 	 * Returns the hand's cards
 	 */
 	@Override
-	public List<iCard> getCards() {
+	public List<ICard> getCards() {
 		return hand.getCards();
 	}
 
@@ -49,7 +49,7 @@ public class TexasHoldemHand implements iHand {
 	 * @param card The card to be added
 	 */
 	@Override
-	public void addCard(iCard card) {
+	public void addCard(ICard card) {
 		hand.addCard(card);
 	}
 	
@@ -124,10 +124,10 @@ public class TexasHoldemHand implements iHand {
 			 * compared each time
 			*/
 			
-			List<iCard> otherCards = ((TexasHoldemHand) o).getCards();
+			List<ICard> otherCards = ((TexasHoldemHand) o).getCards();
 			
 			//Every card in this hand is compared to the other Hand's cards
-			for(iCard card : this.getCards()){
+			for(ICard card : this.getCards()){
 				
 				boolean sameCards = false;
 				

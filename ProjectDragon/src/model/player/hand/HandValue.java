@@ -28,7 +28,7 @@ package model.player.hand;
 public class HandValue implements Comparable<HandValue> {
 
 	/** The hand. */
-	private final iHand hand;
+	private final IHand hand;
 
 	/** The hand value type. */
 	private final HandValueType type;
@@ -42,7 +42,7 @@ public class HandValue implements Comparable<HandValue> {
 	 * @param hand
 	 *            The hand.
 	 */
-	public HandValue(iHand hand) {
+	public HandValue(IHand hand) {
 		this.hand = hand;
 		
 		HandEvaluator evaluator = new HandEvaluator(hand);
@@ -55,7 +55,7 @@ public class HandValue implements Comparable<HandValue> {
 	 * 
 	 * @return The hand.
 	 */
-	public iHand getHand() {
+	public IHand getHand() {
 		return hand;
 	}
 

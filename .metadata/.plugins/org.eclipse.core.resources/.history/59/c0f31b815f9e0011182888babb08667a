@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import model.card.Card;
+import model.card.ICard;
 
 import org.junit.Test;
 /**
@@ -14,19 +15,6 @@ import org.junit.Test;
  */
 public class DealerTest {
 
-	@Test
-	public void testGetFlop() {
-		TexasHoldemDealer d = new TexasHoldemDealer();
-		List<Card> list = d.getFlop();
-		assertTrue(list.size() == 3);
-	}
-	
-	@Test
-	public void testGetRiver() {
-		TexasHoldemDealer d = new TexasHoldemDealer();
-		Card c = d.getRiver();
-		assertTrue(c.getClass() == Card.class);
-	}
 	
 	@Test
 	public void testToString() {

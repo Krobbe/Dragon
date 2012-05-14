@@ -1,6 +1,5 @@
 package model.card;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,36 +7,32 @@ import java.util.List;
 import model.card.Card.Rank;
 import model.card.Card.Suit;
 
-/**
- * A class that represents a Deck.
- * 
- * @author lisastenberg
- *
- */
-
-public class Deck {
-	List<Card> cards = new ArrayList<Card>();
+public class Deck implements IDeck {
+	List<ICard> cards = new ArrayList<ICard>();
 	
 	/**
 	 * Creates a new deck.
 	 */
 	public Deck() {
-		createSuite();
+		createDeck();
 		shuffle();
 	}
 	
-	/**
-	 * Shuffles the deck.
-	 */
+	@Override
+	public ICard popCard() {
+		return cards.remove(0);
+	}
+	
+	@Override
 	public void shuffle() {
 		Collections.shuffle(cards);
 	}
 	
 	/**
-	 * A help method that creates a suite with all 13 cards in the deck.
-	 * @param suite
+	 * A help method that creates all the cards in a standard deck and adds 
+	 * them to the list "cards".
 	 */
-	private void createSuite() {
+	private void createDeck() {
 		for(int i = 0; i < 13; i++) {
 			for(int j = 0; j < 4; j++) {
 				Suit suite = Suit.class.getEnumConstants()[j];
@@ -45,10 +40,6 @@ public class Deck {
 				cards.add(new Card(suite, rank));
 			}
 		}
-	}
-	
-	public Card popCard() {
-		return cards.remove(0);
 	}
 	
 	/**
@@ -59,7 +50,7 @@ public class Deck {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		for(Card c : this.cards) {
+		for(ICard c : this.cards) {
 			result.append(c.toString() + "\n");
 		}
 		return result.toString();
@@ -83,7 +74,7 @@ public class Deck {
 			return false;
 		}
 		else {
-			Deck deck = (Deck)o;
+			IDeck deck = (IDeck)o;
 			while(deck.popCard() != null && this.popCard() != null) {
 				if(!this.popCard().equals(deck.popCard())) {
 					return false;
@@ -100,3 +91,4 @@ public class Deck {
 		  return 42; // any arbitrary constant will do
 	}
 }
+

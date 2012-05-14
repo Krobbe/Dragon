@@ -2,7 +2,7 @@ package model.player.hand;
 
 import java.util.List;
 
-import model.card.iCard;
+import model.card.ICard;
 
 /**
  * An interface for a hand in a poker game. 
@@ -10,7 +10,7 @@ import model.card.iCard;
  * @author robinandersson
  *
  */
-public interface iHand {
+public interface IHand {
 
 	/**
 	 * Removes all cards from a hand.
@@ -23,7 +23,7 @@ public interface iHand {
 	 * @author robinandersson
 	 * @return a List of the hand's cards.
 	 */
-	public List<iCard> getCards();
+	public List<ICard> getCards();
 	
 	/**
 	 * Add a new card to the hand.
@@ -31,7 +31,7 @@ public interface iHand {
 	 * @author robinandersson
 	 * @param card The card you want to add.
 	 */
-	public void addCard(iCard card);
+	public void addCard(ICard card);
 	
 	/**
 	 * Makes the cards visible to other players.

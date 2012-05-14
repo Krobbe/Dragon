@@ -1,14 +1,15 @@
 package model.player;
 
-import model.card.iCard;
-import model.player.hand.iHand;
+import model.card.ICard;
+import model.player.hand.IHand;
+
 
 /**
  * A class that simulates the local player.
  * @author lisastenberg
  * @author mattiashenriksson
  */
-public class User implements iPlayer {
+public class User implements IPlayer {
 	
 	Player player;
 
@@ -21,7 +22,7 @@ public class User implements iPlayer {
 	}
 
 	@Override
-	public iHand getHand() {
+	public IHand getHand() {
 		return player.getHand();
 	}
 
@@ -32,8 +33,7 @@ public class User implements iPlayer {
 	
 	@Override
 	public void setStillInGame(boolean b) {
-		this.player.setStillInGame(b);
-		
+		this.player.setStillInGame(b);		
 	}
 	
 	@Override
@@ -57,7 +57,8 @@ public class User implements iPlayer {
 	}
 	
 	@Override
-	public void addCard(iCard c) {
+	public void addCard(ICard c) {
+
 		player.addCard(c);
 	}
 	
@@ -104,7 +105,7 @@ public class User implements iPlayer {
 	 * Compare a player against another player by their names. 
 	 */
 	@Override
-	public int compareTo(iPlayer p) {
+	public int compareTo(IPlayer p) {
 		return this.getName().compareTo(p.getName());
 	}
 

@@ -5,18 +5,19 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
-import event.Event;
-import event.EventBus;
-
-import model.card.iCard;
+import model.card.ICard;
 import model.player.Bet;
-import model.player.iPlayer;
-import model.player.hand.*;
+import model.player.IPlayer;
+import model.player.hand.FullTHHand;
+import model.player.hand.HandValue;
+import model.player.hand.HandValueType;
+import model.player.hand.IHand;
 import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
+import event.Event;
+import event.EventBus;
 
 /**
  * A class that represent table at which a poker game takes place. This class 
@@ -32,13 +33,14 @@ import utilities.TableCardsFullException;
 public class Table {
 	private Round round;
 	private TexasHoldemDealer dealer;
-	private List<iCard> tableCards;
-	private List<iPlayer> players;
+	private List<ICard> tableCards;
+	private List<IPlayer> players;
+
 	private boolean showdownDone;
 	private int indexOfCurrentPlayer;
 	private int indexOfDealerButton;
-	private Map<iPlayer, HandValueType> handTypes = 
-			new TreeMap<iPlayer, HandValueType>();
+	private Map<IPlayer, HandValueType> handTypes = 
+			new TreeMap<IPlayer, HandValueType>();
 	private List<SidePotHandler> sidePots = new ArrayList<SidePotHandler>();
 	
 	/**
@@ -48,11 +50,12 @@ public class Table {
 		this(null);
 	}
 	
-	public Table(Collection<iPlayer> players) {
+	public Table(Collection<IPlayer> players) {
 		round = new Round();
 		dealer = new TexasHoldemDealer();
-		tableCards = new ArrayList<iCard>();
-		this.players = new ArrayList<iPlayer>(players);
+		tableCards = new ArrayList<ICard>();
+		this.players = new ArrayList<IPlayer>(players);
+
 		indexOfCurrentPlayer = 0;
 		indexOfDealerButton = 0;
 		
@@ -62,7 +65,7 @@ public class Table {
 	 * Adds a player to the table.
 	 * @param p The player that will be added to the list of players
 	 */
-	public void addPlayer(iPlayer player) {
+	public void addPlayer(IPlayer player) {
 			players.add(player);
 	}
 	
@@ -70,9 +73,10 @@ public class Table {
 	 * Adds the players in the array to the table.
 	 * @param playerArray The players that will be added to the list of players
 	 */
-	public void addPlayers(Collection<iPlayer> playerArray) {
-		for(iPlayer player : playerArray){
+	public void addPlayers(Collection<IPlayer> playerArray) {
+		for(IPlayer player : playerArray){
 			addPlayer(player);
+
 		}
 	}
 	
@@ -82,7 +86,7 @@ public class Table {
 	 * @return the next (active) player
 	 * @author lisastenberg
 	 */
-	public iPlayer nextPlayer() {
+	public IPlayer nextPlayer() {
 		
 		/* if none is active at the table, do nothing */
 		if (getActivePlayers().size() == 0) {
@@ -132,7 +136,7 @@ public class Table {
 	 * 
 	 * @return The player who's turn it currently is to bet, fold, raise or check
 	 */
-	public iPlayer getCurrentPlayer() {
+	public IPlayer getCurrentPlayer() {
 		return players.get(indexOfCurrentPlayer);
 	}
 	
@@ -150,9 +154,10 @@ public class Table {
 	 * 
 	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
-	public iCard addCommunityCard() {
+	public ICard addCommunityCard() {
+
 		if (tableCards.size() < 5) {
-			iCard card = dealer.popCard();
+			ICard card = dealer.popCard();
 			tableCards.add(card);
 			return card;
 		} else {
@@ -172,7 +177,7 @@ public class Table {
 	 * @param p The player which cards will be set visible
 	 */
 	//TODO denna i player ist? mindre beroende?
-	public void makeHandVisible(iPlayer p) {
+	public void makeHandVisible(IPlayer p) {
 		p.getHand().setVisible(true);
 	}
 	
@@ -183,12 +188,12 @@ public class Table {
 	 * Calculates the amount of chips the winner(s) will get and distributes it to him.
 	 * After the pot is distributed equally among the winner(s), the pot is emptied. 
 	 */
-	public void distributePot(List<iPlayer> winners, int potAmount) {
+	public void distributePot(List<IPlayer> winners, int potAmount) {
 		// This assumes that the pot can be distributed equally.
 		// TODO: How to do?
 		int winnerAmount = potAmount / winners.size();
 		
-		for (iPlayer p: winners) {
+		for (IPlayer p: winners) {
 			p.getBalance().addToBalance(winnerAmount);
 			EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_POT, 
 					new Bet(p, winnerAmount)));
@@ -220,7 +225,8 @@ public class Table {
 		 * card
 		 */
 		for (int i = 0; i < 2; i++) {
-			for (iPlayer player : getActivePlayers()) {
+			for (IPlayer player : getActivePlayers()) {
+
 				player.addCard(dealer.popCard());
 			}
 		}
@@ -230,8 +236,8 @@ public class Table {
 			players.add(0, players.remove(players.size() -1));
 		}
 		
-		Map<iPlayer, iHand> playerHands = new TreeMap<iPlayer, iHand>();
-		for(iPlayer p : getActivePlayers()) {
+		Map<IPlayer, IHand> playerHands = new TreeMap<IPlayer, IHand>();
+		for(IPlayer p : getActivePlayers()) {
 			playerHands.put(p, p.getHand());
 		}
 		EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_CARDS, playerHands));
@@ -244,12 +250,12 @@ public class Table {
      * 
      * Performs the Showdown.
      */
-    public void doShowdown(List<iPlayer> plrs, int potAmount) {
+    public void doShowdown(List<IPlayer> plrs, int potAmount) {
         // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
-        Map<HandValue, List<iPlayer>> rankedPlayers = getRankedPlayers(plrs);
+        Map<HandValue, List<IPlayer>> rankedPlayers = getRankedPlayers(plrs);
         for (HandValue handValue : rankedPlayers.keySet()) {
             // Get players with winning hand value.
-            List<iPlayer> winners = rankedPlayers.get(handValue);
+            List<IPlayer> winners = rankedPlayers.get(handValue);
             distributePot(winners, potAmount);
             
             setShowdownDone(true);
@@ -257,7 +263,7 @@ public class Table {
             /* utskrift för kontroll */
             System.out.println("\n\n-------------------------------\n" + 
             "SHOWDOWN RESULT:\n");
-            for (iPlayer p : winners) {
+            for (IPlayer p : winners) {
 				System.out.println("\nWinner: " + p.getName());
 				HandValueType hvt = getHandTypes().get(p);
 				System.out.print(hvt);
@@ -265,7 +271,7 @@ public class Table {
 			}
             System.out.println("potamount: " + potAmount);
             System.out.println("Players:");
-            for (iPlayer p : plrs ) {
+            for (IPlayer p : plrs ) {
             	System.out.println(p.getName());
             }
             System.out.println("\n-----------------------------------\n");
@@ -284,10 +290,10 @@ public class Table {
      * 
      * @return The active players mapped by their hand value (sorted). 
      */
-    private Map<HandValue, List<iPlayer>> getRankedPlayers(List<iPlayer> plrs) {
-        Map<HandValue, List<iPlayer>> winners = 
-        		new TreeMap<HandValue, List<iPlayer>>();
-		for (iPlayer player : plrs) {
+    private Map<HandValue, List<IPlayer>> getRankedPlayers(List<IPlayer> plrs) {
+        Map<HandValue, List<IPlayer>> winners = 
+        		new TreeMap<HandValue, List<IPlayer>>();
+		for (IPlayer player : plrs) {
 				// Create a hand with the community cards and the player's hole
 				// cards.
 				FullTHHand hand = new FullTHHand(tableCards);
@@ -300,9 +306,9 @@ public class Table {
 				// Store the player with its handvaluetype for later purpose.
 				handTypes.put(player, handValue.getType());
 				
-				List<iPlayer> playerList = winners.get(handValue);
+				List<IPlayer> playerList = winners.get(handValue);
 				if (playerList == null) {
-					playerList = new LinkedList<iPlayer>();
+					playerList = new LinkedList<IPlayer>();
 				}
 				playerList.add(player);
 				winners.put(handValue, playerList);
@@ -320,9 +326,9 @@ public class Table {
     //TODO denna här eller i kontrollern?
     public boolean isBettingDone() {
     	boolean bettingDone = true;
-		List<iPlayer> activePlayers = getActivePlayers();
+		List<IPlayer> activePlayers = getActivePlayers();
 		
-		for (iPlayer ap: activePlayers) {
+		for (IPlayer ap: activePlayers) {
 			
 			/* if all players hasn't posted the same bet the betting isn't done,
 			 * unless the players who hasn't done this is all-in */
@@ -345,10 +351,10 @@ public class Table {
      * 
      * @return a list containing the players who has currently gone all-in
      */
-    public List<iPlayer> getAllInPlayers() {
-    	List<iPlayer> allInPlayers = new ArrayList<iPlayer>();
+    public List<IPlayer> getAllInPlayers() {
+    	List<IPlayer> allInPlayers = new ArrayList<IPlayer>();
     	
-		for (iPlayer ap : getActivePlayers()) {
+		for (IPlayer ap : getActivePlayers()) {
 			//TODO ändra till player.isAllIn?
 			if (ap.getBalance().getValue() == 0) {
 				allInPlayers.add(ap);
@@ -377,7 +383,7 @@ public class Table {
 	 * This method is used only for testing of the class.
 	 * @return A list of players at the table.
 	 */
-	public List<iPlayer> getPlayers() {
+	public List<IPlayer> getPlayers() {
 		return players;
 	}
 	
@@ -385,9 +391,9 @@ public class Table {
 	 * 
 	 * @return A list of the players at the table who are currently active
 	 */
-	public List<iPlayer> getActivePlayers() {
-		List<iPlayer> activePlayers = new ArrayList<iPlayer>();
-		for (iPlayer p : players) {
+	public List<IPlayer> getActivePlayers() {
+		List<IPlayer> activePlayers = new ArrayList<IPlayer>();
+		for (IPlayer p : players) {
 			if (p.isActive()) {
 				activePlayers.add(p);
 			}
@@ -399,7 +405,7 @@ public class Table {
 	 * This method is used only for testing of the class.
 	 * @return The "table cards" represented as a list of cards.
 	 */
-	public List<iCard> getTableCards() {
+	public List<ICard> getTableCards() {
 		return tableCards;
 	}
 	
@@ -408,7 +414,7 @@ public class Table {
 	 * to show the winners handtype(s).
 	 * @return A map containing a player with the type of his hand.
 	 */
-	public Map<iPlayer, HandValueType> getHandTypes() {
+	public Map<IPlayer, HandValueType> getHandTypes() {
 		return handTypes;
 	}
 	
@@ -431,7 +437,7 @@ public class Table {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append("Players at table:\n");
-		for(iPlayer p : this.players) {
+		for(IPlayer p : this.players) {
 			result.append(p.toString() + "\n");
 		}
 		result.append("\n" + "Current player is " + getCurrentPlayer().getName() + "\n");

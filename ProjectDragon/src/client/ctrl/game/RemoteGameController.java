@@ -7,14 +7,14 @@ import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.List;
 
-import model.card.iCard;
+import model.card.ICard;
 import model.game.Pot;
 import model.player.Bet;
-import model.player.iPlayer;
-import model.player.hand.iHand;
+import model.player.IPlayer;
+import model.player.hand.IHand;
 
-import remote.iClientGame;
-import remote.iServerGame;
+import remote.IClientGame;
+import remote.IServerGame;
 
 import utilities.IllegalCallException;
 
@@ -23,10 +23,9 @@ import utilities.IllegalCallException;
  * @author lisastenberg
  */
 
-public class RemoteGameController implements iClientGame, iServerRequest {
-	
-	private iServerGame serverGameController;
-	
+public class RemoteGameController implements IClientGame, IServerRequest {
+
+	private IServerGame serverGameController;
 	private GameController gameController;
 	private RemoteCommunicationController remoteCommunicationController;
 	
@@ -49,7 +48,7 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	 * @param isReady True if the player is ready to start the game
 	 * @return True if the request was successful
 	 */
-	public boolean setReadyToPlay(iPlayer player, boolean isReady) {
+	public boolean setReadyToPlay(IPlayer player, boolean isReady) {
 		
 		try {
 			return serverGameController.isReadyToStart(
@@ -67,7 +66,7 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	 * @param player The player to be added
 	 * @author robinandersson
 	 */
-	public void addPlayers(iPlayer player) {
+	public void addPlayers(IPlayer player) {
 		gameController.addPlayer(player);
 	}
 	
@@ -77,7 +76,7 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	 * @param players The players to be added
 	 * @author robinandersson
 	 */
-	public void addPlayers(Collection<iPlayer> players) {
+	public void addPlayers(Collection<IPlayer> players) {
 		gameController.addPlayers(players);
 	}
 
@@ -133,7 +132,7 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	}
 
 	@Override
-	public boolean requestFold(iPlayer player) {
+	public boolean requestFold(IPlayer player) {
 		
 		if(serverGameController != null){
 
@@ -152,7 +151,7 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	}
 
 	@Override
-	public void setActive(iPlayer player, boolean b) {
+	public void setActive(IPlayer player, boolean b) {
 		gameController.setActive(player, b);
 	}
 	
@@ -162,12 +161,12 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	}
 
 	@Override
-	public boolean fold(iPlayer player) {
+	public boolean fold(IPlayer player) {
 		return gameController.fold(player);
 	}
 
 	@Override
-	public boolean nextTurn(iPlayer nextPlayer) {
+	public boolean nextTurn(IPlayer nextPlayer) {
 		return gameController.nextTurn(nextPlayer);
 	}
 
@@ -177,12 +176,13 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	}
 
 	@Override
-	public void addCommunityCard(iCard card) {
+	public void addCommunityCard(ICard card) {
 		gameController.addCommunityCard(card);
+
 	}
 
 	@Override
-	public void setHand(iPlayer player, iHand hand) {
+	public void setHand(IPlayer player, IHand hand) {
 		gameController.setHand(player, hand);
 	}
 
@@ -206,7 +206,7 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	}
 
 	@Override
-	public void newTable(List<iPlayer> players, int meIndex) {
+	public void newTable(List<IPlayer> players, int meIndex) {
 		gameController.newTable(players, meIndex);
 	}
 

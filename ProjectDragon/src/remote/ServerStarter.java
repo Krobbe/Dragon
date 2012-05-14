@@ -14,15 +14,15 @@ import java.rmi.registry.Registry;
  */
 public class ServerStarter extends RmiStarter{
 
-	public ServerStarter(iServer stub) {
+	public ServerStarter(IServer stub) {
 		
-	    super(iServer.class);
+	    super(IServer.class);
 		
 		try {
 			
             Registry registry = LocateRegistry.getRegistry();
             //TODO Okej med rebind istället för bind? Verkar lösa några problem
-            registry.rebind(iServer.REMOTE_NAME, stub);
+            registry.rebind(IServer.REMOTE_NAME, stub);
 
             System.out.println("Server ready");
             

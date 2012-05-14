@@ -2,7 +2,7 @@ package model.game;
 
 import java.util.List;
 
-import model.player.iPlayer;
+import model.player.IPlayer;
 
 /**
  * This class contains information when a "side pot"-event occurs.
@@ -11,15 +11,15 @@ import model.player.iPlayer;
  */
 public class SidePotHandler {
 
-	private List<iPlayer> players;
+	private List<IPlayer> players;
 	private Pot pot;
 	
-	public SidePotHandler(List<iPlayer> players, Pot pot) {
+	public SidePotHandler(List<IPlayer> players, Pot pot) {
 		this.players = players;
 		this.pot = pot;
 	}
 	
-	public List<iPlayer> getPlayers() {
+	public List<IPlayer> getPlayers() {
 		return players;
 	}
 	

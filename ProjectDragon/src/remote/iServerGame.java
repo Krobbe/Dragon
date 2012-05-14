@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import model.player.Account;
 import model.player.Bet;
-import model.player.iPlayer;
+import model.player.IPlayer;
 
 import utilities.*;
 /**
@@ -16,7 +16,7 @@ import utilities.*;
  * @author robinandersson
  *
  */
-public interface iServerGame extends Remote {
+public interface IServerGame extends Remote {
 	
 	/**
 	 * Set player ready to start the game. Passes along an Account instance for
@@ -31,7 +31,7 @@ public interface iServerGame extends Remote {
 	 * passed along player
 	 * @throws RemoteException
 	 */
-	public boolean isReadyToStart(Account account, iPlayer player, boolean isReady)
+	public boolean isReadyToStart(Account account, IPlayer player, boolean isReady)
 														throws RemoteException;
 	
 	// TODO Do you have to write specifically what the pre-conditions are, or
@@ -50,7 +50,8 @@ public interface iServerGame extends Remote {
 	 * @return The list with players in the game
 	 * @throws IllegalCallException, RemoteException
 	 */
-	public Collection<iPlayer> getPlayers() throws IllegalCallException, RemoteException;
+
+	public Collection<IPlayer> getPlayers() throws IllegalCallException, RemoteException;
 	
 	/**
 	 * Returns the maximum amount of players allowed in the game
@@ -69,6 +70,7 @@ public interface iServerGame extends Remote {
 	 * @throws RemoteException
 	 */
 	public int getEntranceFee() throws RemoteException;
+
 	
 	/**
 	 * Performs a call.
@@ -100,7 +102,7 @@ public interface iServerGame extends Remote {
 	 * 
 	 * @param player The player that wants to fold.
 	 */
-	public boolean fold(iPlayer player) throws RemoteException;
+	public boolean fold(IPlayer player) throws RemoteException;
 	
 
 	

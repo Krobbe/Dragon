@@ -3,7 +3,7 @@ package model.player.hand;
 import java.util.List;
 
 import model.card.Card;
-import model.card.iCard;
+import model.card.ICard;
 
 /**
  * Evaluator for calculating the value of a poker hand.
@@ -32,7 +32,7 @@ public class HandEvaluator {
 	private int value = 0;
 
 	/** The cards. */
-	private final List<iCard> cards;
+	private final List<ICard> cards;
 
 	/** The rank distribution (number of cards for each rank). */
 	private int[] rankDist = new int[Card.NO_OF_RANKS];
@@ -73,7 +73,7 @@ public class HandEvaluator {
 	 * @param hand
 	 *            The hand to evaulate.
 	 */
-	public HandEvaluator(iHand hand) {
+	public HandEvaluator(IHand hand) {
 		cards = hand.getCards();
 		calculateDistributions();
 		
@@ -120,7 +120,7 @@ public class HandEvaluator {
 	 * Calculates the rank and suit distributions.
 	 */
 	private void calculateDistributions() {
-		for (iCard card : cards) {
+		for (ICard card : cards) {
 			rankDist[card.getRank().ordinal()]++;
 			suitDist[card.getSuit().ordinal()]++;
 		}
@@ -133,7 +133,7 @@ public class HandEvaluator {
 		for (int i = 0; i < Card.NO_OF_SUITS; i++) {
 			if (suitDist[i] >= 5) {
 				flushSuit = i;
-				for (iCard card : cards) {
+				for (ICard card : cards) {
 					if (card.getSuit().ordinal() == flushSuit) {
 						//TODO: Why card.getRank() != Card.Rank.ACE?
 						if (!wheelingAce || card.getRank() != Card.Rank.ACE) {
@@ -212,7 +212,7 @@ public class HandEvaluator {
 		rankings[0] = type.getValue();
 		// Get the five highest ranks.
 		int index = 1;
-		for (iCard card : cards) {
+		for (ICard card : cards) {
 			rankings[index++] = card.getRank().ordinal();
 			if (index > 5) {
 				break;
@@ -237,7 +237,7 @@ public class HandEvaluator {
 			rankings[1] = pairRank;
 			// Get the three kickers.
 			int index = 2;
-			for (iCard card : cards) {
+			for (ICard card : cards) {
 				int rank = card.getRank().ordinal();
 				if (rank != pairRank) {
 					rankings[index++] = rank;
@@ -272,7 +272,7 @@ public class HandEvaluator {
 			rankings[1] = highRank;
 			rankings[2] = lowRank;
 			// Get the kicker card.
-			for (iCard card : cards) {
+			for (ICard card : cards) {
 				int rank = card.getRank().ordinal();
 				if ((rank != highRank) && (rank != lowRank)) {
 					rankings[3] = rank;
@@ -300,7 +300,7 @@ public class HandEvaluator {
 			rankings[1] = tripleRank;
 			// Get the remaining two cards as kickers.
 			int index = 2;
-			for (iCard card : cards) {
+			for (ICard card : cards) {
 				int rank = card.getRank().ordinal();
 				if (rank != tripleRank) {
 					rankings[index++] = rank;
@@ -348,7 +348,7 @@ public class HandEvaluator {
 			type = HandValueType.FLUSH;
 			rankings[0] = type.getValue();
 			int index = 1;
-			for (iCard card : cards) {
+			for (ICard card : cards) {
 				if (card.getSuit().ordinal() == flushSuit) {
 					int rank = card.getRank().ordinal();
 					if (index == 1) {
@@ -402,7 +402,7 @@ public class HandEvaluator {
 			rankings[1] = quadRank;
 			// Get the remaining card as kicker.
 			int index = 2;
-			for (iCard card : cards) {
+			for (ICard card : cards) {
 				int rank = card.getRank().ordinal();
 				if (rank != quadRank) {
 					rankings[index++] = rank;
@@ -434,7 +434,7 @@ public class HandEvaluator {
 			int lastRank = -1;
 			int inStraight = 1;
 			int inFlush = 1;
-			for (iCard card : cards) {
+			for (ICard card : cards) {
 				int rank = card.getRank().ordinal();
 				int suit = card.getSuit().ordinal();
 				if (lastRank != -1) {

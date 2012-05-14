@@ -1,7 +1,9 @@
 package model.player;
 
-import model.card.iCard;
-import model.player.hand.iHand;
+import model.card.ICard;
+import model.player.hand.IHand;
+
+
 
 /**
  * An interface that represents a player.
@@ -9,13 +11,13 @@ import model.player.hand.iHand;
  * @author mattiashenriksson
  * @author robinandersson
  */
-public interface iPlayer extends Comparable<iPlayer> {
+public interface IPlayer extends Comparable<IPlayer> {
 
 	/**
 	 * @author lisastenberg
 	 * @return the hand of the player.
 	 */
-	public iHand getHand();
+	public IHand getHand();
 	
 	/**
 	 * A method that can set the player active or unactive. An active player is 
@@ -53,6 +55,7 @@ public interface iPlayer extends Comparable<iPlayer> {
 	 * @return True if the player is still in the game. False is the player has
 	 * lost or quit the game. 
 	 */
+	//TODO: används denna nu?
 	public boolean isStillInGame();
 	
 	/**
@@ -67,7 +70,8 @@ public interface iPlayer extends Comparable<iPlayer> {
 	 * Gives the player a card which is added to the player's hand
 	 * @author mattiashenriksson
 	 */
-	public void addCard(iCard c);
+	public void addCard(ICard c);
+
 	
 	/**
 	 * @author mattiashenriksson

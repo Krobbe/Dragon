@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 public class Bet implements Serializable {
 	private int value;
-	private iPlayer owner;
+	private IPlayer owner;
 	
 	/**
 	 * Creates a bet with a "default" player and the value 0
@@ -31,7 +31,7 @@ public class Bet implements Serializable {
 	 * @param owner The player that placed the bet.
 	 * @param value The value that the player bet.
 	 */
-	public Bet(iPlayer owner, int value) {
+	public Bet(IPlayer owner, int value) {
 		this.value = value;
 		this.owner = owner;
 	}
@@ -48,7 +48,7 @@ public class Bet implements Serializable {
 	 * @author lisastenberg
 	 * @return the owner of the bet.
 	 */
-	public iPlayer getOwner() {
+	public IPlayer getOwner() {
 		return owner;
 	}
 	

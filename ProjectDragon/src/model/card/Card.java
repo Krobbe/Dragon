@@ -13,7 +13,7 @@ package model.card;
  * @author robinandersson
  */
 
-public class Card implements iCard {
+public class Card implements ICard {
 	public static final int NO_OF_RANKS = 13;
 	public static final int NO_OF_SUITS = 4;
 	
@@ -65,7 +65,7 @@ public class Card implements iCard {
 	 * @return > 0 if this.rank is higher than card.rank
 	 */
 	@Override
-	public int compareTo(iCard o) {
+	public int compareTo(ICard o) {
 		return this.getRank().compareTo(o.getRank());
 	}
 	

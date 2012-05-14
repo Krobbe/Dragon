@@ -4,7 +4,7 @@
 package client.ctrl.game;
 
 import model.player.Bet;
-import model.player.iPlayer;
+import model.player.IPlayer;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
@@ -13,7 +13,7 @@ import utilities.IllegalRaiseException;
  * @author robinandersson
  *
  */
-public interface iServerRequest {
+public interface IServerRequest {
 	
 	/**
 	 * Requests a call.
@@ -45,6 +45,6 @@ public interface iServerRequest {
 	 * 
 	 * @param player The player that wants to fold.
 	 */
-	public boolean requestFold(iPlayer player);
+	public boolean requestFold(IPlayer player);
 	
 }

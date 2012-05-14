@@ -7,9 +7,9 @@ import java.util.List;
 
 import model.card.Card;
 import model.card.Card.Suit;
-import model.card.iCard;
+import model.card.ICard;
 import model.player.User;
-import model.player.iPlayer;
+import model.player.IPlayer;
 import model.player.hand.HandValueType;
 
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class TableTest {
 	
 	@Test
 	public void testGetPlayers() {
-		iPlayer p1 = new User();
+		IPlayer p1 = new User();
 		try {
 			t.addPlayer(p1);
 		} catch (PlayersFullException e) {
@@ -46,8 +46,8 @@ public class TableTest {
 	
 	@Test
 	public void testGetActivePlayers() {
-		iPlayer p1 = new User();
-		iPlayer p2 = new User();
+		IPlayer p1 = new User();
+		IPlayer p2 = new User();
 		p1.setActive(true);
 		try {
 			t.addPlayer(p1);
@@ -70,8 +70,8 @@ public class TableTest {
 	
 	@Test
 	public void testSetIndexOfCurrentPlayer() {
-		iPlayer p1 = new User();
-		iPlayer p2 = new User();
+		IPlayer p1 = new User();
+		IPlayer p2 = new User();
 		p1.setActive(true);
 		p2.setActive(true);
 		try {
@@ -87,8 +87,8 @@ public class TableTest {
 	
 	@Test
 	public void testAddPlayer() {
-		iPlayer p1 = new User();
-		iPlayer p2 = new User();
+		IPlayer p1 = new User();
+		IPlayer p2 = new User();
 		try {
 			t.addPlayer(p1);
 			t.addPlayer(p2);
@@ -96,13 +96,13 @@ public class TableTest {
 			System.out.println("The table is full");
 			e.printStackTrace();
 		}
-		List<iPlayer> players = t.getPlayers();
+		List<IPlayer> players = t.getPlayers();
 		assertTrue(players.size() == 2);
 	}
 	
 	@Test(expected=PlayersFullException.class) 
 	public void testTableFull() throws PlayersFullException {
-		iPlayer p1 = new User(), p2 = new User(), p3 = new User(), p4 = new User(), p5 = new User(), 
+		IPlayer p1 = new User(), p2 = new User(), p3 = new User(), p4 = new User(), p5 = new User(), 
 				p6 = new User(), p7 = new User(), p8 = new User(), p9 = new User(), p10 = new User(), 
 				p11 = new User();
 		t.addPlayer(p1); t.addPlayer(p2); t.addPlayer(p3); t.addPlayer(p4); t.addPlayer(p5); t.addPlayer(p6);
@@ -111,7 +111,7 @@ public class TableTest {
 	
 	@Test
 	public void testGetCurrentPlayer() {
-		iPlayer p1 = new User();
+		IPlayer p1 = new User();
 		try {
 			t.addPlayer(p1);
 		} catch (PlayersFullException e) {
@@ -123,8 +123,8 @@ public class TableTest {
 
 	@Test
 	public void testNextPlayer() {
-		iPlayer p1 = new User();
-		iPlayer p2 = new User();
+		IPlayer p1 = new User();
+		IPlayer p2 = new User();
 		p1.setActive(true);
 		p2.setActive(true);
 		try {
@@ -146,8 +146,8 @@ public class TableTest {
 	
 	@Test
 	public void testNextDealerButtonIndex() {
-		iPlayer p1 = new User();
-		iPlayer p2 = new User();
+		IPlayer p1 = new User();
+		IPlayer p2 = new User();
 		p1.setActive(true);
 		p2.setActive(true);
 		try {
@@ -162,9 +162,16 @@ public class TableTest {
 
 	@Test
 	public void testAddTableCard() throws TableCardsFullException {
+<<<<<<< HEAD
 		t.addCommunityCard();
 		List<iCard> tableCards = t.getTableCards();
 		assertTrue(tableCards.get(0).getClass() == Card.class);
+=======
+		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
+		t.addTableCard(c);
+		List<ICard> tableCards = t.getTableCards();
+		assertTrue(tableCards.get(0).equals(c));
+>>>>>>> lagt till lite nya interface
 	}
 	
 	@Test(expected=TableCardsFullException.class) 
@@ -183,7 +190,7 @@ public class TableTest {
 	
 	@Test
 	public void testMakeHandVisible() {
-		iPlayer p = new User();
+		IPlayer p = new User();
 		p.getHand().setVisible(false);
 		t.makeHandVisible(p);
 		assertTrue(p.getHand().isVisible());
@@ -191,9 +198,9 @@ public class TableTest {
 	
 	@Test
 	public void testDistributePot() {
-		iPlayer p1 = new User();
-		iPlayer p2 = new User();
-		List<iPlayer> winners = new LinkedList<iPlayer>();
+		IPlayer p1 = new User();
+		IPlayer p2 = new User();
+		List<IPlayer> winners = new LinkedList<IPlayer>();
 		
 		winners.add(p1);
 		winners.add(p2);
@@ -205,8 +212,8 @@ public class TableTest {
 	//TODO: Is this test ready? It's best if robinandersson checks.
 	@Test
 	public void testDistributeCards() {
-		iPlayer p1 = new User();
-		iPlayer p2 = new User();
+		IPlayer p1 = new User();
+		IPlayer p2 = new User();
 		p1.setActive(true);
 		p2.setActive(true);
 		try {
@@ -222,8 +229,8 @@ public class TableTest {
 	
 	@Test
 	public void testDoShowdown() {
-		iPlayer p1 = new User();
-		iPlayer p2 = new User();
+		IPlayer p1 = new User();
+		IPlayer p2 = new User();
 		p1.setActive(true);
 		p2.setActive(true);
 		try {
@@ -242,8 +249,8 @@ public class TableTest {
 	
 	@Test
 	public void testGetHandTypes() {
-		iPlayer p1 = new User();
-		iPlayer p2 = new User();
+		IPlayer p1 = new User();
+		IPlayer p2 = new User();
 		p1.setActive(true);
 		p2.setActive(true);
 		try {
@@ -262,7 +269,7 @@ public class TableTest {
 	
 	@Test
 	public void testToString() {
-		iPlayer p1 = new User();
+		IPlayer p1 = new User();
 		p1.setActive(true);
 		try {
 			t.addPlayer(p1);

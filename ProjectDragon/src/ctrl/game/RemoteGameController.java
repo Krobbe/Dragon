@@ -13,13 +13,13 @@ import java.util.TreeMap;
 import event.Event;
 import event.EventHandler;
 
-import model.card.iCard;
+import model.card.ICard;
 import model.game.Pot;
 import model.player.*;
-import model.player.hand.iHand;
+import model.player.hand.IHand;
 
-import remote.iClientGame;
-import remote.iServerGame;
+import remote.IClientGame;
+import remote.IServerGame;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
@@ -32,7 +32,7 @@ import utilities.IllegalRaiseException;
  *
  */
 public class RemoteGameController extends UnicastRemoteObject
-										implements iServerGame, EventHandler{
+										implements IServerGame, EventHandler{
 
 	GameController gameController;
 	RemoteCommunicationController remoteCommunicationController;
@@ -41,7 +41,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	 * active players and references to every respective player objects remote
 	 * game controller
 	*/
-	Map<iPlayer, iClientGame> playerReferences;
+	Map<IPlayer, IClientGame> playerReferences;
 	
 	int entranceFee;
 	int playerStartingChips;
@@ -71,10 +71,11 @@ public class RemoteGameController extends UnicastRemoteObject
 		
 		super();
 		this.remoteCommunicationController = remoteCommunicationController;
-		playerReferences = new TreeMap<iPlayer, iClientGame>();
+		playerReferences = new TreeMap<IPlayer, IClientGame>();
 		this.maxPlayers = maxPlayers;
 		this.entranceFee = entranceFee;
 		this.playerStartingChips = playerStartingChips;
+
 	}
 	
 	/**
@@ -83,7 +84,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	 * @param player The player to be added to the game
 	 * @param clientGame The reference to the added player
 	 */
-	public void addPlayer(iPlayer player, iClientGame clientGame) {
+	public void addPlayer(IPlayer player, IClientGame clientGame) {
 		playerReferences.put(player, clientGame);
 	}
 	
@@ -93,12 +94,13 @@ public class RemoteGameController extends UnicastRemoteObject
 	 * @param player The player to be removed from the game
 	 * @param clientGame The reference to the removed player
 	 */
-	public void removePlayer(iPlayer player, iClientGame clientGame) {
+	public void removePlayer(IPlayer player, IClientGame clientGame) {
 		playerReferences.remove(player);
 	}
 	
 	@Override
-	public Set<iPlayer> getPlayers() throws IllegalCallException,
+	public Set<IPlayer> getPlayers() throws IllegalCallException,
+
 			RemoteException {
 		return playerReferences.keySet();
 	}
@@ -138,7 +140,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	}
 
 	@Override
-	public boolean fold(iPlayer player) {
+	public boolean fold(IPlayer player) {
 		if(gameController == null){
 			return false;
 		}
@@ -151,13 +153,13 @@ public class RemoteGameController extends UnicastRemoteObject
 		switch (evt.getTag()) {
 
 		case SERVER_FOLD:
-			iPlayer player;
-			if (!(evt.getValue() instanceof iPlayer)) {
+			IPlayer player;
+			if (!(evt.getValue() instanceof IPlayer)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				player = (iPlayer) evt.getValue();
-				for (iClientGame client : playerReferences.values()) {
+				player = (IPlayer) evt.getValue();
+				for (IClientGame client : playerReferences.values()) {
 					try {
 						//TODO: Den här metoden returnerar en boolean. Vad ska vi göra med den?
 						client.fold(player);
@@ -175,7 +177,7 @@ public class RemoteGameController extends UnicastRemoteObject
 						+ evt.getTag());
 			} else {
 				bet = (Bet)evt.getValue();
-				for (iClientGame client : playerReferences.values()) {
+				for (IClientGame client : playerReferences.values()) {
 					try {
 						//TODO: Den här metoden returnerar en boolean. Vad ska vi göra med den?
 						client.betOccurred(bet);
@@ -187,15 +189,15 @@ public class RemoteGameController extends UnicastRemoteObject
 			break;
 			
 		case SERVER_DISTRIBUTE_CARDS:
-			Map<iPlayer, iHand> playerHands;
+			Map<IPlayer, IHand> playerHands;
 			if (!(evt.getValue() instanceof Map)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());			
 			} else {
-				playerHands = (Map<iPlayer, iHand>) evt.getValue();
-				iHand hand;
-				iClientGame client;
-				for (iPlayer p : playerHands.keySet()) {
+				playerHands = (Map<IPlayer, IHand>) evt.getValue();
+				IHand hand;
+				IClientGame client;
+				for (IPlayer p : playerHands.keySet()) {
 					hand = p.getHand();
 					client = playerReferences.get(p);
 					try {
@@ -209,15 +211,15 @@ public class RemoteGameController extends UnicastRemoteObject
 			break;
 
 		case SERVER_CREATE_TABLE:
-			List<iPlayer> players;
+			List<IPlayer> players;
 			if (!(evt.getValue() instanceof List)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				players = (List<iPlayer>)evt.getValue();
-				iClientGame client;
+				players = (List<IPlayer>)evt.getValue();
+				IClientGame client;
 				int meIndex = 0;
-				for(iPlayer p: players) {
+				for(IPlayer p: players) {
 					client = playerReferences.get(p);
 					try {
 						client.newTable(players, meIndex);
@@ -237,7 +239,7 @@ public class RemoteGameController extends UnicastRemoteObject
 						+ evt.getTag());
 			} else {
 				b = (Bet)evt.getValue();
-				for(iClientGame client : playerReferences.values()) {
+				for(IClientGame client : playerReferences.values()) {
 					try {
 						client.balanceChanged(b);
 					} catch (RemoteException e) {
@@ -255,7 +257,7 @@ public class RemoteGameController extends UnicastRemoteObject
 						+ evt.getTag());
 			} else {
 				pot = (Pot) evt.getValue();
-				for (iClientGame client : playerReferences.values()) {
+				for (IClientGame client : playerReferences.values()) {
 					try {
 						client.setPot(pot);
 					} catch (RemoteException e) {
@@ -267,7 +269,7 @@ public class RemoteGameController extends UnicastRemoteObject
 			break;
 
 		case SERVER_NEW_ROUND:
-			for (iClientGame client : playerReferences.values()) {
+			for (IClientGame client : playerReferences.values()) {
 				try {
 					client.newRound();
 				} catch (RemoteException e) {
@@ -283,7 +285,7 @@ public class RemoteGameController extends UnicastRemoteObject
 						+ evt.getTag());
 			} else {
 				i = (Integer) evt.getValue();
-				for (iClientGame client : playerReferences.values()) {
+				for (IClientGame client : playerReferences.values()) {
 					try {
 						client.setTurn(i);
 					} catch (RemoteException e) {
@@ -294,13 +296,13 @@ public class RemoteGameController extends UnicastRemoteObject
 			break;
 
 		case SERVER_SET_PLAYER_UNACTIVE:
-			iPlayer p;
-			if (!(evt.getValue() instanceof iPlayer)) {
+			IPlayer p;
+			if (!(evt.getValue() instanceof IPlayer)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				p = (iPlayer) evt.getValue();
-				for (iClientGame client : playerReferences.values()) {
+				p = (IPlayer) evt.getValue();
+				for (IClientGame client : playerReferences.values()) {
 					try {
 						client.setActive(p, false);
 					} catch (RemoteException e) {
@@ -316,7 +318,7 @@ public class RemoteGameController extends UnicastRemoteObject
 						+ evt.getTag());
 			} else {
 				b = (Bet) evt.getValue();
-				for (iClientGame client : playerReferences.values()) {
+				for (IClientGame client : playerReferences.values()) {
 					try {
 						client.setPlayerOwnCurrentBet(b);
 					} catch (RemoteException e) {
@@ -326,14 +328,18 @@ public class RemoteGameController extends UnicastRemoteObject
 			}
 			break;
 
+
 		case SERVER_ADD_TABLE_CARD:
-			iCard card;
+			ICard card;
+
 			if (!(evt.getValue() instanceof List)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				card = (iCard)evt.getValue();
-				for (iClientGame client : playerReferences.values()) {
+
+				card = (ICard)evt.getValue();
+				for (IClientGame client : playerReferences.values()) {
+
 					try {
 						client.addCommunityCard(card);
 					} catch (RemoteException e) {
@@ -349,7 +355,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	}
 	
 	@Override
-	public boolean isReadyToStart(Account account, iPlayer player, boolean isReady)
+	public boolean isReadyToStart(Account account, IPlayer player, boolean isReady)
 													throws RemoteException {
 		
 		/*
@@ -362,7 +368,7 @@ public class RemoteGameController extends UnicastRemoteObject
 			
 			//Finds and sets the server-side Player object's variable that
 			//shows if the player is ready to play or not
-			for(iPlayer storedPlayer : playerReferences.keySet()){
+			for(IPlayer storedPlayer : playerReferences.keySet()){
 				if(storedPlayer.getName().equals(player.getName())){
 					storedPlayer.setStillInGame(isReady);
 					return true;
@@ -382,7 +388,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		boolean isReadyToStart = true;
 		
 		// Checks if all the players are ready to start the game
-		for(iPlayer player : playerReferences.keySet()){
+		for(IPlayer player : playerReferences.keySet()){
 			if(!player.isStillInGame()){
 				// TODO a way to exit the whole method instead of setting the
 				// variable?

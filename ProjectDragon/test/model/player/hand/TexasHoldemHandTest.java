@@ -30,7 +30,7 @@ public class TexasHoldemHandTest {
 	 */
 	@Test
 	public void testVisible() {
-		iHand hand = new TexasHoldemHand();
+		IHand hand = new TexasHoldemHand();
 		assertTrue(!hand.isVisible());
 		assertTrue(new TexasHoldemHand(true).isVisible());
 		assertTrue(!(new TexasHoldemHand(false).isVisible()));
@@ -54,7 +54,7 @@ public class TexasHoldemHandTest {
 	 */
 	@Test
 	public void testGetCards() {
-		iHand hand = new TexasHoldemHand(true);
+		IHand hand = new TexasHoldemHand(true);
 		assertTrue(hand.getCards().equals(new LinkedList<Card>()));
 	}
 	
@@ -65,7 +65,7 @@ public class TexasHoldemHandTest {
 	 */
 	@Test
 	public void testAddCard() {
-		iHand hand = new TexasHoldemHand();
+		IHand hand = new TexasHoldemHand();
 		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		hand.addCard(card1);
 		
@@ -87,8 +87,8 @@ public class TexasHoldemHandTest {
 	 */
 	@Test
 	public void testEquals() {
-		iHand hand1 = new TexasHoldemHand();
-		iHand hand2 = new TexasHoldemHand(true); //Visibility should not matter
+		IHand hand1 = new TexasHoldemHand();
+		IHand hand2 = new TexasHoldemHand(true); //Visibility should not matter
 		
 		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.EIGHT);
@@ -105,7 +105,7 @@ public class TexasHoldemHandTest {
 		assertTrue(hand1.equals(hand2));
 		assertTrue(hand2.equals(hand1));
 		
-		iHand hand3 = new TexasHoldemHand(false);
+		IHand hand3 = new TexasHoldemHand(false);
 		hand3.addCard(card1);
 		hand3.addCard(card2);
 		
@@ -116,7 +116,7 @@ public class TexasHoldemHandTest {
 		
 		// Some tests where the hands are not equal
 		
-		iHand hand4 = new TexasHoldemHand();
+		IHand hand4 = new TexasHoldemHand();
 		
 		assertTrue(!hand1.equals(hand4));
 		assertTrue(!hand4.equals(hand1));
@@ -140,13 +140,13 @@ public class TexasHoldemHandTest {
 	 */
 	@Test
 	public void hashTest(){
-		iHand hand = new TexasHoldemHand();
+		IHand hand = new TexasHoldemHand();
 		assertTrue(hand.hashCode() == 44);
 	}
 	
 	@Test
 	public void testToString() {
-		iHand hand1 = new TexasHoldemHand(true);
+		IHand hand1 = new TexasHoldemHand(true);
 		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		hand1.addCard(c);
 		String s = hand1.toString();

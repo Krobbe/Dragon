@@ -8,10 +8,10 @@ import java.util.Comparator;
  *
  */
 
-public class OwnCurrentBetComparator implements Comparator<iPlayer> {
+public class OwnCurrentBetComparator implements Comparator<IPlayer> {
 
 	@Override
-	public int compare(iPlayer p1, iPlayer p2) {
+	public int compare(IPlayer p1, IPlayer p2) {
 		return p1.getOwnCurrentBet() - p2.getOwnCurrentBet();
 	}
 

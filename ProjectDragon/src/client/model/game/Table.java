@@ -23,8 +23,8 @@ import utilities.*;
 
 public class Table {
 	private Round round;
-	private List<iCard> tableCards;
-	private List<iPlayer> players;
+	private List<ICard> tableCards;
+	private List<IPlayer> players;
 	private int meIndex;
 	private int indexOfCurrentPlayer;
 	private int indexOfDealerButton; //TODO: Vill vi se vem som har dealerbutton?
@@ -32,11 +32,11 @@ public class Table {
 	/**
 	 * Creates a new Table.
 	 */
-	public Table(List<iPlayer> players, int meIndex) {
+	public Table(List<IPlayer> players, int meIndex) {
 		this.meIndex = meIndex;
 		this.players = players;
 		round = new Round();
-		tableCards = new LinkedList<iCard>();
+		tableCards = new LinkedList<ICard>();
 		indexOfCurrentPlayer = 0;
 		indexOfDealerButton = 0;
 	}
@@ -46,7 +46,7 @@ public class Table {
 	 * @param p The player that will be added to the list of players
 	 * @throws IllegalArgumentException if there are already ten players at the table
 	 */
-	public void addPlayer(iPlayer p) {
+	public void addPlayer(IPlayer p) {
 		if (players.size() < 10) {
 			players.add(p);
 		} else {
@@ -58,8 +58,8 @@ public class Table {
 	 * Adds the players in the array to the table.
 	 * @param playerArray The players that will be added to the list of players
 	 */
-	public void addPlayers(Collection<iPlayer> playerArray) {
-		for(iPlayer player : playerArray){
+	public void addPlayers(Collection<IPlayer> playerArray) {
+		for(IPlayer player : playerArray){
 			addPlayer(player);
 		}
 	}
@@ -70,7 +70,7 @@ public class Table {
 	 * @return the next (active) player
 	 * @author lisastenberg
 	 */
-	public iPlayer nextPlayer() {
+	public IPlayer nextPlayer() {
 		
 		/* if none is active at the table, do nothing */
 		if (getActivePlayers().size() == 0) {
@@ -119,7 +119,7 @@ public class Table {
 	 * 
 	 * @return The player who's turn it currently is to bet, fold, raise or check
 	 */
-	public iPlayer getCurrentPlayer() {
+	public IPlayer getCurrentPlayer() {
 		return players.get(indexOfCurrentPlayer);
 	}
 	
@@ -137,7 +137,7 @@ public class Table {
 	 * @param c The card which will be added
 	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
-	public void addTableCard(iCard c) {
+	public void addTableCard(ICard c) {
 		if (tableCards.size() < 5) {
 			tableCards.add(c);
 		} else {
@@ -164,7 +164,7 @@ public class Table {
 	 * This method is used only for testing of the class.
 	 * @return A list of players at the table.
 	 */
-	public List<iPlayer> getPlayers() {
+	public List<IPlayer> getPlayers() {
 		return players;
 	}
 	
@@ -172,9 +172,9 @@ public class Table {
 	 * 
 	 * @return A list of the players at the table who are currently active
 	 */
-	public List<iPlayer> getActivePlayers() {
-		List<iPlayer> activePlayers = new ArrayList<iPlayer>();
-		for (iPlayer p : players) {
+	public List<IPlayer> getActivePlayers() {
+		List<IPlayer> activePlayers = new ArrayList<IPlayer>();
+		for (IPlayer p : players) {
 			if (p.isActive()) {
 				activePlayers.add(p);
 			}
@@ -186,7 +186,7 @@ public class Table {
 	 * This method is used only for testing of the class.
 	 * @return The "table cards" represented as a list of cards.
 	 */
-	public List<iCard> getTableCards() {
+	public List<ICard> getTableCards() {
 		return tableCards;
 	}
 
@@ -201,7 +201,7 @@ public class Table {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append("Players at table:\n");
-		for(iPlayer p : this.players) {
+		for(IPlayer p : this.players) {
 			result.append(p.toString() + "\n");
 		}
 		result.append("\n" + "Current player is " + getCurrentPlayer().getName() + "\n");

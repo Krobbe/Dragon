@@ -7,10 +7,10 @@ import java.util.List;
 import client.model.game.Table;
 
 import model.card.Card;
-import model.card.iCard;
+import model.card.ICard;
 import model.game.Pot;
 import model.player.Bet;
-import model.player.iPlayer;
+import model.player.IPlayer;
 import model.player.hand.*;
 import client.event.*;
 
@@ -23,7 +23,9 @@ import client.event.*;
  * 
  */
 
+
 public class GameController {
+
 
 	Table table;
 
@@ -38,17 +40,18 @@ public class GameController {
 		this.table = table;
 		distributeInvisibleCards();
 	}
-	
+
 	/**
 	 * Creates a new table.
 	 * 
 	 * @param players The players at the table.
 	 * @param meIndex The index in the list of players that is the user.
 	 */
-	public void newTable(List<iPlayer> players, int meIndex) {
+	public void newTable(List<IPlayer> players, int meIndex) {
 		table = new Table(players, meIndex);
 		distributeInvisibleCards();
 	}
+
 
 	/**
 	 * Adds a player to the game table
@@ -57,7 +60,7 @@ public class GameController {
 	 *            The player to be added
 	 * @author robinandersson
 	 */
-	public void addPlayer(iPlayer player) {
+	public void addPlayer(IPlayer player) {
 		this.table.addPlayer(player);
 	}
 	
@@ -67,7 +70,7 @@ public class GameController {
 	 * @param player The players to be added
 	 * @author robinandersson
 	 */
-	public void addPlayers(Collection<iPlayer> players) {
+	public void addPlayers(Collection<IPlayer> players) {
 		this.table.addPlayers(players);
 	}
 
@@ -95,11 +98,12 @@ public class GameController {
 	 * @return	true if the fold went through.
 	 * @throws RemoteException
 	 */
-	public boolean fold(iPlayer player) {
+	public boolean fold(IPlayer player) {
+
 		if (!table.getCurrentPlayer().equals(player)) {
 			return false;
 		}
-		iPlayer p = table.getCurrentPlayer();
+		IPlayer p = table.getCurrentPlayer();
 		p.getHand().discard();
 		p.setActive(false);
 		p.setDoneFirstTurn(true); //Behövs denna här? hanteras väl bara i server?
@@ -118,7 +122,7 @@ public class GameController {
 		if (!table.getCurrentPlayer().equals(bet.getOwner())) {
 			return false;
 		}
-		iPlayer p = table.getCurrentPlayer();
+		IPlayer p = table.getCurrentPlayer();
 		int tmp = bet.getValue() - p.getOwnCurrentBet();
 		p.getBalance().removeFromBalance(tmp);
 		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, new Bet(p, p
@@ -152,9 +156,8 @@ public class GameController {
 	 * @return true if nextPlayer is the player that should have the turn.
 	 * @throws RemoteException
 	 */
-	//TODO: onödigt med både nextTurn och setTurn? 
-	// om vi tar bort nextTurn kan man ta bort nextPlayer i klientens table med.
-	public boolean nextTurn(iPlayer nextPlayer) {
+	public boolean nextTurn(IPlayer nextPlayer) {
+
 		Boolean tmp = table.nextPlayer().equals(nextPlayer);
 		if(tmp) {
 			EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
@@ -177,6 +180,7 @@ public class GameController {
 				.getCurrentPlayer()));
 	}
 	
+
 	/**
 	 * Set a players hand.
 	 * 
@@ -184,11 +188,11 @@ public class GameController {
 	 * @param hand	The hand
 	 * @throws RemoteException
 	 */
-	public void setHand(iPlayer player, iHand hand) {
-		for(iPlayer tmp : table.getActivePlayers()) {
+	public void setHand(IPlayer player, IHand hand) {
+		for(IPlayer tmp : table.getActivePlayers()) {
 			if(tmp.equals(player)) {
-				iHand playerHand = tmp.getHand();
-				for(iCard card : hand.getCards()) {
+				IHand playerHand = tmp.getHand();
+				for(ICard card : hand.getCards()) {
 					playerHand.addCard(card);
 				}
 				EventBus.publish(new Event(Event.Tag.HANDS_CHANGED, tmp));
@@ -203,9 +207,10 @@ public class GameController {
 	 * @param cards The cards you want to add.
 	 * @throws RemoteException
 	 */
-	public void addCommunityCard(iCard card) {
+	public void addCommunityCard(ICard card) {
 		table.addTableCard(card);
 		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, card));
+
 	}
 
 	/**
@@ -215,7 +220,7 @@ public class GameController {
 	 */
 	public void newRound() {
 		table.getTableCards().clear();
-		for (iPlayer p : table.getActivePlayers()) {
+		for (IPlayer p : table.getActivePlayers()) {
 			p.getHand().discard();
 			EventBus.publish(new Event(Event.Tag.HAND_DISCARDED, p));
 			if (p.getBalance().getValue() != 0) {
@@ -231,8 +236,9 @@ public class GameController {
 	 * @param b	The boolean you want to set.
 	 * @throws RemoteException
 	 */
-	public void setActive(iPlayer player, boolean b) {
-		for(iPlayer p : table.getActivePlayers()) {
+	public void setActive(IPlayer player, boolean b) {
+		for(IPlayer p : table.getActivePlayers()) {
+
 			if(p.equals(player)) {
 				p.setActive(b);
 				break;
@@ -247,8 +253,8 @@ public class GameController {
 	 * @throws RemoteException
 	 */
 	public void setPlayerOwnCurrentBet(Bet bet) {
-		iPlayer player = bet.getOwner();
-		for(iPlayer p : table.getActivePlayers()) {
+		IPlayer player = bet.getOwner();
+		for(IPlayer p : table.getActivePlayers()) {
 			if(p.equals(player)) {
 				p.setOwnCurrentBet(bet.getValue());
 				break;
@@ -264,8 +270,8 @@ public class GameController {
 	 * balance.
 	 */
 	public void balanceChanged(Bet bet) {
-		iPlayer player = bet.getOwner();
-		for(iPlayer p : table.getActivePlayers()) {
+		IPlayer player = bet.getOwner();
+		for(IPlayer p : table.getActivePlayers()) {
 			if(p.equals(player)) {
 				p.getBalance().addToBalance(bet.getValue());
 				break;
@@ -279,8 +285,8 @@ public class GameController {
 	 * This method should be ran in the constructor. 
 	 */
 	private void distributeInvisibleCards() {
-		iHand hand;
-		for(iPlayer player : table.getActivePlayers()) {
+		IHand hand;
+		for(IPlayer player : table.getActivePlayers()) {
 			hand = player.getHand();
 			for(int i = 0; i < 2; i++) {
 				hand.addCard(new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));

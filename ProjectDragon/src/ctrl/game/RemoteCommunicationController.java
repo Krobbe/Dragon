@@ -16,39 +16,41 @@ import database.IDBAccount;
 import model.player.Account;
 import model.player.Balance;
 import model.player.Player;
-import model.player.iPlayer;
+import model.player.IPlayer;
 import model.player.hand.Hand;
 
+
 import remote.ServerStarter;
-import remote.iClient;
-import remote.iClientGame;
-import remote.iServer;
-import remote.iServerGame;
+import remote.IClient;
+import remote.IClientGame;
+import remote.IServer;
+import remote.IServerGame;
 
 /**
  * @author robinandersson
  *
  */
 public class RemoteCommunicationController extends UnicastRemoteObject
-											implements iServer, IDBAccount {
+											implements IServer, IDBAccount {
 	
 	// A map containing all logged in players and references to their
 	// respective communication controllers
-	Map<Account, iClient> clients;
+	Map<Account, IClient> clients;
 	
-	LinkedList<iServerGame> activeGames;
+	LinkedList<IServerGame> activeGames;
 	
 	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
 	public RemoteCommunicationController() throws RemoteException {
 		super();
 		new ServerStarter(this);
-		clients = new TreeMap<Account, iClient>();
-		activeGames = new LinkedList<iServerGame>();
+		clients = new TreeMap<Account, IClient>();
+		activeGames = new LinkedList<IServerGame>();
 	}
 	
 	@Override
-	public Account login(iClient client, String accountName,
+	public Account login(IClient client, String accountName,
+
 								String accountPassword) throws RemoteException {
 		
 		Account account = loadAccount(accountName);
@@ -72,10 +74,12 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 
 	@Override
-	public iServerGame createGame(Account account, iClientGame clientGame,
+	public IServerGame createGame(Account account, IClientGame clientGame,
 			int entranceFee, int maxPlayers, int playerStartingChips) {
 		
+
 		RemoteGameController newGame = null;
+
 		
 		// Checks if the supplied account has been added by the server earlier
 		if(isLoggedIn(account)) {
@@ -112,7 +116,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				activeGames.add(newGame);
 				// TODO Change the constructor in Balance to receive playerChips
 				// as parameter instead of creating a Balance-class here? 
-				iPlayer player = new Player(new Hand(), account.getUserName(),
+				IPlayer player = new Player(new Hand(), account.getUserName(),
 						new Balance(playerStartingChips));
 				
 				newGame.addPlayer(player, clientGame);
@@ -128,10 +132,10 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 	
 	@Override
-	public iServerGame joinGame(Account account, iPlayer player,
-			iClientGame clientGame, int gameIndex) {
+	public IServerGame joinGame(Account account, IPlayer player,
+			IClientGame clientGame, int gameIndex) {
 		
-		iServerGame game = null;
+		IServerGame game = null;
 		
 		if(isLoggedIn(account) && gameIndex < activeGames.size() ) {
 			

@@ -1,7 +1,7 @@
 package model.game;
 
-import model.card.iCard;
 import model.card.Deck;
+import model.card.ICard;
 
 /**
  * A class that represents a dealer. 
@@ -12,7 +12,7 @@ import model.card.Deck;
  *
  */
 
-public class TexasHoldemDealer implements iDealer {
+public class TexasHoldemDealer implements IDealer {
 	private Deck d;
 	
 	public TexasHoldemDealer() {
@@ -23,7 +23,7 @@ public class TexasHoldemDealer implements iDealer {
 	 * 
 	 * @return the top card of the deck.
 	 */
-	public iCard popCard() {
+	public ICard popCard() {
 		return d.popCard();
 	}
 	

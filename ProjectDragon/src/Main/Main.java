@@ -41,13 +41,13 @@ public class Main {
 		Table table = new Table();
 		GameController gc = new GameController(table);
 		
-		iPlayer player1 = new User(new Player(new TexasHoldemHand(true),
+		IPlayer player1 = new User(new Player(new TexasHoldemHand(true),
 				"Mattias H", new Balance(60)));
-		iPlayer player2 = new User(new Player(new TexasHoldemHand(true),
+		IPlayer player2 = new User(new Player(new TexasHoldemHand(true),
 				"Lisa", new Balance(60)));
-		iPlayer player3 = new User(new Player(new TexasHoldemHand(true),
+		IPlayer player3 = new User(new Player(new TexasHoldemHand(true),
 				"Robin", new Balance(60)));
-		iPlayer player4 = new User(new Player(new TexasHoldemHand(true),
+		IPlayer player4 = new User(new Player(new TexasHoldemHand(true),
 				"Mattias F", new Balance(60)));
 		table.addPlayer(player1); table.addPlayer(player2); 
 		table.addPlayer(player3); table.addPlayer(player4);
@@ -59,7 +59,7 @@ public class Main {
 			gc.nextRound();
 			
 			while(true) {
-				List<iPlayer> winners = null;
+				List<IPlayer> winners = null;
 				System.out.println(table);
 				System.out.println('>');
 				String cmd = in.nextLine();

@@ -1,8 +1,9 @@
 package model.player;
 
-import model.card.iCard;
+
+import model.card.ICard;
+import model.player.hand.IHand;
 import model.player.hand.TexasHoldemHand;
-import model.player.hand.iHand;
 
 /**
  * This class contains common methods and variables for all classes implementing
@@ -11,9 +12,9 @@ import model.player.hand.iHand;
  * @author mattiashenriksson
  * 
  */
-public class Player implements iPlayer {
+public class Player implements IPlayer {
 	
-	private iHand hand;
+	private IHand hand;
 	private boolean active = false;
 	private String name;
 	private Balance balance;
@@ -27,7 +28,7 @@ public class Player implements iPlayer {
 				new Balance());
 	}
 	
-	public Player(iHand hand, String name, Balance balance) {
+	public Player(IHand hand, String name, Balance balance) {
 		this.hand = hand;
 		this.name = name;
 		this.balance = balance;
@@ -36,7 +37,7 @@ public class Player implements iPlayer {
 	}
 
 	@Override
-	public iHand getHand() {
+	public IHand getHand() {
 		return hand;
 	}
 
@@ -71,7 +72,7 @@ public class Player implements iPlayer {
 	}
 
 	@Override
-	public void addCard(iCard c) {
+	public void addCard(ICard c) {
 		hand.addCard(c);
 	}
 	
@@ -126,7 +127,7 @@ public class Player implements iPlayer {
 	 * Compare a player against another player by their names. 
 	 */
 	@Override
-	public int compareTo(iPlayer p) {
+	public int compareTo(IPlayer p) {
 		return this.getName().compareTo(p.getName());
 	}
 

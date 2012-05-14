@@ -13,9 +13,9 @@ import model.card.*;
  * A class that the hand classes for different games can delegate similar
  * functionality to
  */
-public class Hand implements iHand {
+public class Hand implements IHand {
 
-	private List<iCard> cards;
+	private List<ICard> cards;
 	private boolean isVisible;
 	
 	/*
@@ -26,7 +26,7 @@ public class Hand implements iHand {
 	}
 	
 	public Hand(boolean isVisible){
-		cards = new LinkedList<iCard>();
+		cards = new LinkedList<ICard>();
 		this.isVisible = isVisible;
 	}
 	
@@ -36,12 +36,12 @@ public class Hand implements iHand {
 	}
 
 	@Override
-	public List<iCard> getCards() {
+	public List<ICard> getCards() {
 		return cards;
 	}
 
 	@Override
-	public void addCard(iCard card) {
+	public void addCard(ICard card) {
 		cards.add(card);
 	}
 
@@ -104,10 +104,10 @@ public class Hand implements iHand {
 			 * compared each time
 			 */
 			
-			List<iCard> otherCards = ((Hand) o).getCards();
+			List<ICard> otherCards = ((Hand) o).getCards();
 			
 			//Every card in this hand is compared to the other Hand's cards
-			for(iCard card : this.getCards()){
+			for(ICard card : this.getCards()){
 				
 				boolean sameCards = false;
 				

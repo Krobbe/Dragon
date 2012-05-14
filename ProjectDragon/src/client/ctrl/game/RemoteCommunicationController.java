@@ -12,33 +12,35 @@ import java.util.TreeMap;
 
 import model.player.Account;
 import model.player.Player;
-import model.player.iPlayer;
+import model.player.IPlayer;
 import model.player.hand.Hand;
 
-import remote.iClient;
-import remote.iClientGame;
-import remote.iServer;
-import remote.iServerGame;
+import remote.IClient;
+import remote.IClientGame;
+import remote.IServer;
+import remote.IServerGame;
 import utilities.IllegalCallException;
 
 /**
  * @author robinandersson
  *
  */
-public class RemoteCommunicationController implements iClient {
-	
+public class RemoteCommunicationController implements IClient {
+
 	// A map with games the user is currently playing represented by the remote
 	// game controller for that specific game
-	private Map<iPlayer, RemoteGameController> activeGames;
+	private Map<IPlayer, RemoteGameController> activeGames;
+
 	
 	// The reference to the server
-	private iServer server;
+	private IServer server;
 	
 	// TODO Flytta "lagringen" av account till ett mer passande ställe?
 	private Account account = null;
 	
 	public RemoteCommunicationController(){
-		activeGames = new TreeMap<iPlayer, RemoteGameController>();
+		activeGames = new TreeMap<IPlayer, RemoteGameController>();
+
 		server = connectToServer();
 	}
 	
@@ -46,7 +48,7 @@ public class RemoteCommunicationController implements iClient {
 	 * Tries to get a connection with the server on the default port and returns
 	 * a reference if successful
 	 */
-	public iServer connectToServer(){
+	public IServer connectToServer(){
 		return connectToServer(Registry.REGISTRY_PORT);
 	}
 	
@@ -56,13 +58,13 @@ public class RemoteCommunicationController implements iClient {
 	 * 
 	 * @param port The port number of the searched server
 	 */
-	public iServer connectToServer(int port){
-		iServer server = null;
+	public IServer connectToServer(int port){
+		IServer server = null;
 		
 	    try {
 	    	
 	        Registry registry = LocateRegistry.getRegistry(port);
-	        server = (iServer) registry.lookup(iServer.REMOTE_NAME);	        
+	        server = (IServer) registry.lookup(IServer.REMOTE_NAME);	        
 	    }
 	    
 	    catch (Exception e) {
@@ -83,8 +85,9 @@ public class RemoteCommunicationController implements iClient {
 	 * @param accountName The name of the account
 	 * @param accountPassword The password associated with the account name.
 	 */
-	public Account login(iClient client, String accountName,
+	public Account login(IClient client, String accountName,
 													String accountPassword){
+
 		
 		try {	
 			this.account = server.login(client, accountName, accountPassword);
@@ -115,9 +118,10 @@ public class RemoteCommunicationController implements iClient {
 		
 		Player player = new Player(new Hand(), account.getUserName(),
 														account.getBalance());
-		iClientGame clientGame = new RemoteGameController(this);
-		iServerGame serverGame = null;
+		IClientGame clientGame = new RemoteGameController(this);
+		IServerGame serverGame = null;
 		
+
 		try {
 			serverGame = server.joinGame(account, player, clientGame,
 																	gameIndex);
@@ -135,7 +139,7 @@ public class RemoteCommunicationController implements iClient {
 			RemoteGameController remoteGameController =
 					new RemoteGameController(this);
 			
-			Collection<iPlayer> playerList = serverGame.getPlayers();
+			Collection<IPlayer> playerList = serverGame.getPlayers();
 			remoteGameController.addPlayers(playerList);
 			activeGames.put(player, remoteGameController);
 			
