@@ -144,6 +144,8 @@ public class GameController {
 		
 		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
+		
+		progressTurn();
 	}
 	
 	/**
@@ -210,6 +212,8 @@ public class GameController {
 		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
 		
+		progressTurn();
+		
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
 		return true;
 	}
@@ -226,6 +230,8 @@ public class GameController {
 		player.getHand().discard();
 		player.setActive(false);
 		player.setDoneFirstTurn(true);
+		
+		progressTurn();
 		
 		EventBus.publish(new Event(Event.Tag.SERVER_FOLD, player));
 		return true;
@@ -252,6 +258,8 @@ public class GameController {
 		}
 		
 		currentPlayer.setDoneFirstTurn(true);
+		
+		progressTurn();
 		
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
 		return true;
