@@ -13,6 +13,7 @@ import model.player.Bet;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import client.event.*;
 
 @SuppressWarnings("serial")
 public class TablePanel extends JPanel implements client.event.EventHandler,
@@ -117,49 +118,73 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 	}
 
 	@Override
-	public void onEvent(client.event.Event evt) {
-    	if (evt.getTag().equals(client.event.Event.Tag.CURRENT_BET_CHANGED)) {
-    		currentBet.setText((String)evt.getValue());
-    	}
-    	else if(evt.getTag().equals(client.event.Event.Tag.POT_CHANGED)) {
-    		potSize.setText((String)evt.getValue());
-    	}
-    	else if(evt.getTag().equals(client.event.Event.Tag.HAND_DISCARDED)) {
-    		//Not sure what to do on this event, need help
-    	}
-    	else if(evt.getTag().equals(client.event.Event.Tag.BALANCE_CHANGED)) {
-    		
-    	}
-    	else if(evt.getTag().equals(client.event.Event.Tag.OWN_CURRENT_BET_CHANGED)) {
-    		
-    	}
-    	else if(evt.getTag().equals(client.event.Event.Tag.TURN_CHANGED)) {
-    		
-    	}
-    	else if(evt.getTag().equals(client.event.Event.Tag.HANDS_CHANGED)) {
-    		
-    	}
-    	else if(evt.getTag().equals(client.event.Event.Tag.COMMUNITY_CARDS_CHANGED)) {
-    		
-    	}
+	public void onEvent(Event evt) {
+    	
+		switch (evt.getTag()) {
+		
+		case CURRENT_BET_CHANGED:
+			
+			currentBet.setText((String)evt.getValue());
+			
+			break;
+			
+		case POT_CHANGED:
+			
+			potSize.setText((String)evt.getValue());
+			
+		case HAND_DISCARDED:
+			
+			//Not sure what to do on this event, need help
+			
+			break;
+			
+		case BALANCE_CHANGED:
+			
+			break;
+			
+		case OWN_CURRENT_BET_CHANGED:
+			
+			break;
+			
+		case TURN_CHANGED:
+			
+			break;
+			
+		case HANDS_CHANGED:
+			
+			break;
+			
+		case COMMUNITY_CARDS_CHANGED:
+			
+			break;
+			
+		default:
+			
+			break;
+		} 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Should the result be saved here somehow?
+		
 		if (e.getSource().equals(leaveTableButton)) {
-			client.event.EventBus.publish(new client.event.Event(
-					client.event.Event.Tag.GO_TO_MAIN, 1));
+			
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
+			
 		} else if (e.getSource().equals(userCheckButton)) {
-			client.event.EventBus.publish(new client.event.Event(
-					client.event.Event.Tag.REQUEST_CHECK, 1));
+			
+			EventBus.publish(new Event(Event.Tag.REQUEST_CHECK, 1));
+			
 		} else if (e.getSource().equals(userFoldButton)) {
-			client.event.EventBus.publish(new client.event.Event(
-					client.event.Event.Tag.REQUEST_FOLD, 1));
+			
+			EventBus.publish(new Event(Event.Tag.REQUEST_FOLD, 1));
+			
 		} else if (e.getSource().equals(userRaiseButton)) {
-			client.event.EventBus.publish(new client.event.Event(
-					client.event.Event.Tag.REQUEST_RAISE, Integer
-							.parseInt(userBetField.getText())));
+			
+			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE, Integer
+					.parseInt(userBetField.getText())));
+			
 		}
 	}
 
