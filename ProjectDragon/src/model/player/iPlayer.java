@@ -18,7 +18,8 @@ public interface iPlayer extends Comparable<iPlayer> {
 	public iHand getHand();
 	
 	/**
-	 * A method that can set the player active or unactive. An active player is one who has chips left and has not yet folded.
+	 * A method that can set the player active or unactive. An active player is 
+	 * one who has chips left and has not yet folded.
 	 * @author lisastenberg
 	 * @param b true if you want to set the player active. 
 	 */
@@ -27,7 +28,8 @@ public interface iPlayer extends Comparable<iPlayer> {
 	/**
 	 * Sets if the player is still in the game (has chips left).
 	 * @author robinandersson
-	 * @param b true if the player should be in the game, occurs at rebuys for example. False is the player has lost the game. 
+	 * @param b true if the player should be in the game, occurs at rebuys for
+	 * example. False is the player has lost the game. 
 	 */
 	public void setStillInGame(boolean b);
 	
@@ -40,14 +42,16 @@ public interface iPlayer extends Comparable<iPlayer> {
 	/**
 	 * Shows if the player has folded or is still in competition for the pot.
 	 * @author mattiashenriksson
-	 * @return True if the player is still in competition, false if he has folded.
+	 * @return True if the player is still in competition, false if he has
+	 * folded.
 	 */
 	public boolean isActive();
 	
 	/**
 	 * Shows if the player is still in the game (has chips left).
 	 * @author robinandersson
-	 * @return True if the player is still in the game. False is the player has lost or quit the game. 
+	 * @return True if the player is still in the game. False is the player has
+	 * lost or quit the game. 
 	 */
 	public boolean isStillInGame();
 	
@@ -80,6 +84,7 @@ public interface iPlayer extends Comparable<iPlayer> {
 	 */
 	public void setOwnCurrentBet(int value);
 	
+	// TODO Explain what this method does. What is doneFirstTurn?
 	/**
 	 * Sets the varible doneFirstTurn.
 	 * @param value

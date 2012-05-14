@@ -1,9 +1,11 @@
 package model.game;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import event.Event;
@@ -43,24 +45,34 @@ public class Table {
 	 * Creates a new Table.
 	 */
 	public Table() {
+		this(null);
+	}
+	
+	public Table(Collection<iPlayer> players) {
 		round = new Round();
 		dealer = new TexasHoldemDealer();
 		tableCards = new ArrayList<iCard>();
-		players = new ArrayList<iPlayer>();
+		this.players = new ArrayList<iPlayer>(players);
 		indexOfCurrentPlayer = 0;
 		indexOfDealerButton = 0;
+		
 	}
 	
 	/**
 	 * Adds a player to the table.
 	 * @param p The player that will be added to the list of players
-	 * @throws IllegalArgumentException if there are all ready ten players at the table
 	 */
-	public void addPlayer(iPlayer p) {
-		if (players.size() < 10) {
-			players.add(p);
-		} else {
-			throw new PlayersFullException();
+	public void addPlayer(iPlayer player) {
+			players.add(player);
+	}
+	
+	/**
+	 * Adds the players in the array to the table.
+	 * @param playerArray The players that will be added to the list of players
+	 */
+	public void addPlayers(Collection<iPlayer> playerArray) {
+		for(iPlayer player : playerArray){
+			addPlayer(player);
 		}
 	}
 	

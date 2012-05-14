@@ -1,6 +1,7 @@
 package client.ctrl.game;
 
 import java.rmi.RemoteException;
+import java.util.Collection;
 import java.util.List;
 
 import client.model.game.Table;
@@ -58,6 +59,16 @@ public class GameController {
 	 */
 	public void addPlayer(iPlayer player) {
 		this.table.addPlayer(player);
+	}
+	
+	/**
+	 * Adds the players in the list to to the game
+	 * 
+	 * @param player The player to be added
+	 * @author robinandersson
+	 */
+	public void addPlayers(Collection<iPlayer> player) {
+		this.table.addPlayers(player);
 	}
 
 	public void setCurrentBet(Bet bet) {

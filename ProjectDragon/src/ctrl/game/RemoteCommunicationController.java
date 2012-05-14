@@ -14,7 +14,10 @@ import database.DatabaseCommunicator;
 import database.IDBAccount;
 
 import model.player.Account;
+import model.player.Balance;
+import model.player.Player;
 import model.player.iPlayer;
+import model.player.hand.Hand;
 
 import remote.ServerStarter;
 import remote.iClient;
@@ -45,12 +48,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 	
 	@Override
-	public void logOut(Account account) throws RemoteException{
-		// TODO Do more when logging out a player? Saving active games or something?
-		clients.remove(account);
-	}
-
-	@Override
 	public Account login(iClient client, String accountName,
 								String accountPassword) throws RemoteException {
 		
@@ -69,25 +66,64 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 	
 	@Override
-	public iServerGame createGame(Account account, iPlayer player, iClientGame clientGame) {
+	public void logOut(Account account) throws RemoteException{
+		// TODO Do more when logging out a player? Save active games or something?
+		clients.remove(account);
+	}
+
+	@Override
+	public iServerGame createGame(Account account, iClientGame clientGame,
+			int entranceFee, int maxPlayers, int playerStartingChips) {
 		
 		RemoteGameController newGame = null;
 		
-		if(clients.containsKey(account)) {
+		// Checks if the supplied account has been added by the server earlier
+		if(isLoggedIn(account)) {
 			
-			try {
-				newGame = new RemoteGameController();
-				
-			} catch (RemoteException e) {
-			// TODO Better exception handling for when not able to create game?
-				return null;
+			Account serverSideAccount = null;
+			
+			/*
+			 * Gets the actual Account instance from the server. The supplied
+			 * account from the client is merely a clone (to prevent security
+			 * issues, for instance to prevent a modified client from changing
+			 * the account object illegally
+			 */
+			// TODO Better way to get the serverSideAccount?
+			for(Account acc : clients.keySet()){
+				if(account.equals(acc)){
+					serverSideAccount = acc;
+					break;
+				}
 			}
 			
-			activeGames.add(newGame);
+			// Checks if the player has enough "money" to pay the game's
+			// entrance fee
+			if(serverSideAccount.getBalance().getValue() >= entranceFee ){
 			
-			newGame.addPlayer(player, clientGame);
+				try {
+					newGame = new RemoteGameController(this, maxPlayers, entranceFee,
+							playerStartingChips);
+					
+				} catch (RemoteException e) {
+					// TODO Better exception handling for when not able to create game?
+					return null;
+				}
+				
+				activeGames.add(newGame);
+				// TODO Change the constructor in Balance to receive playerChips
+				// as parameter instead of creating a Balance-class here? 
+				iPlayer player = new Player(new Hand(), account.getUserName(),
+						new Balance(playerStartingChips));
+				
+				newGame.addPlayer(player, clientGame);
+				
+				// Removes the entranceFee from the user's Account instance
+				serverSideAccount.getBalance().removeFromBalance(entranceFee);	
+			}
+			
 		}
 		
+		// Returns null if the table-creation was unsuccessful
 		return newGame;
 	}
 	
@@ -97,7 +133,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		
 		iServerGame game = null;
 		
-		if(clients.containsKey(account) && gameIndex < activeGames.size() ) {
+		if(isLoggedIn(account) && gameIndex < activeGames.size() ) {
 			
 			game = activeGames.get(gameIndex);
 			((RemoteGameController) game).addPlayer(player, clientGame);
@@ -199,8 +235,9 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 					"', lastName = '" + lastName + "', passWord = '" + 
 					newPass + "', balance = '" + balance + "' WHERE userName = '"
 					+ userName + "'";
-			int up =
-			myStmt.executeUpdate(updateString);
+			
+			// TODO Why is the variable "up" not used?
+			int up = myStmt.executeUpdate(updateString);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -237,8 +274,14 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		}
 		return true;
 	}
-
-
-
+	
+	/**
+	 * Checks if the account is registered as logged in
+	 * @param account
+	 * @return true if the account is logged in
+	 */
+	public boolean isLoggedIn(Account account){
+		return clients.containsKey(account);
+	}
 
 }

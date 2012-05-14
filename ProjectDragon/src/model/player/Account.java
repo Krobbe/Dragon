@@ -111,14 +111,25 @@ public class Account {
 	}
 	
 	/**
-	 * Equals method for the account class
-	 * @author forssenm
+	 * Equals method for the account class. Checks specifically if the accounts'
+	 * username and password match.
+	 * @author robinandersson
 	 * @param the object to compare with
 	 * @return returns true if they are the same object
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return (this == o);
+		if(o == null) {
+			return false;
+		} else if(o.getClass() != this.getClass()){
+			return false;
+		}
+		
+		Account tmpAccount = (Account)o;
+		
+		return tmpAccount.getUserName().equals(this.getUserName()) &&
+				tmpAccount.getPassWord().equals(this.getPassWord());
+		
 	}
 
 	// Since we at the current state aren't planning on using any hashtables

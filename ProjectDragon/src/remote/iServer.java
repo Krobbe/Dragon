@@ -40,13 +40,14 @@ public interface iServer extends Remote {
 	 * assigned to the table if successful.
 	 * 
 	 * @param account The users unique Account object
-	 * @param player The Player object representing the client that wants to
-	 * create a new game
 	 * @param clientGame The reference to the client's
 	 * client-server/server-client game communicator
+	 * @param entranceFee The fee players' have to pay to join the table
+	 * @param maxPlayers The maximum amount of players allowed in the game 
+	 * @param playerChips The amount of chips players' get at the start of the game
 	 */
-	public iServerGame createGame(Account account, iPlayer player,
-			iClientGame clientGame)  throws RemoteException;
+	public iServerGame createGame(Account account, iClientGame clientGame,
+			int entranceFee, int maxPlayers, int playerStartingChips)  throws RemoteException;
 	
 	/** 
 	 * Tries to join the game with the specified index. Passes the unique

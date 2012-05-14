@@ -6,8 +6,8 @@ package client.ctrl.game;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 import model.player.Account;
@@ -83,7 +83,8 @@ public class RemoteCommunicationController implements iClient {
 	 * @param accountName The name of the account
 	 * @param accountPassword The password associated with the account name.
 	 */
-	public Account login(iClient client, String accountName, String accountPassword){
+	public Account login(iClient client, String accountName,
+													String accountPassword){
 		
 		try {	
 			this.account = server.login(client, accountName, accountPassword);
@@ -108,11 +109,14 @@ public class RemoteCommunicationController implements iClient {
 	 */
 	public boolean joinGame(Account account, int gameIndex) {
 		
-		Player player = new Player(new Hand(), account.getUserName(), account.getBalance());
+		Player player = new Player(new Hand(), account.getUserName(),
+														account.getBalance());
 		iClientGame clientGame = new RemoteGameController();
 		iServerGame serverGame = null;
+		
 		try {
-			serverGame = server.joinGame(account, player, clientGame, gameIndex);
+			serverGame = server.joinGame(account, player, clientGame,
+																	gameIndex);
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -126,11 +130,8 @@ public class RemoteCommunicationController implements iClient {
 
 		try {
 			
-			LinkedList<iPlayer> playerList = serverGame.getPlayers();
-			for(int i = 0; i < playerList.size() ; i++){
-				gameController.addPlayer(playerList.get(i));
-			}
-			
+			Collection<iPlayer> playerList = serverGame.getPlayers();
+			gameController.addPlayers(playerList);
 			activeGames.put(player, gameController);
 			
 		} catch (IllegalCallException e) {

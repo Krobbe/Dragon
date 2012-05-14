@@ -27,10 +27,6 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	private iServerGame serverGameController;
 	private GameController gameController;
 	
-	// TODO Flytta "lagringen" av account till ett mer passande ställe?
-	//private Account account;
-	
-	
 	public RemoteGameController(){
 		this(new GameController());
 	}
@@ -42,12 +38,15 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	@Override
 	public boolean requestCall(Bet bet) {
 		
-		try {
-			return serverGameController.call(bet);
-		} catch (IllegalCallException e) {
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			e.printStackTrace();
+		if(serverGameController != null){
+			
+			try {
+				return serverGameController.call(bet);
+			} catch (IllegalCallException e) {
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return false;
@@ -56,12 +55,15 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	@Override
 	public boolean requestCheck(Bet bet) {
 		
-		try {
-			return serverGameController.check(bet);
-		} catch (IllegalCallException e) {
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			e.printStackTrace();
+		if(serverGameController != null){
+			
+			try {
+				return serverGameController.check(bet);
+			} catch (IllegalCallException e) {
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return false;
@@ -70,12 +72,15 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	@Override
 	public boolean requestRaise(Bet bet) {
 		
-		try {
-			return serverGameController.raise(bet);
-		} catch (IllegalCallException e) {
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			e.printStackTrace();
+		if(serverGameController != null){
+			
+			try {
+				return serverGameController.raise(bet);
+			} catch (IllegalCallException e) {
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return false;
@@ -84,14 +89,17 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	@Override
 	public boolean requestFold(iPlayer player) {
 		
-		try {
-			return serverGameController.fold(player);
-		} catch (IllegalCallException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(serverGameController != null){
+
+			try {
+				return serverGameController.fold(player);
+			} catch (IllegalCallException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return false;

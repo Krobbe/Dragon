@@ -1,9 +1,11 @@
 package ctrl.game;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import event.Event;
@@ -38,10 +40,6 @@ public class GameController {
 
 	private Table table;
 	
-	/**
-	 * @author robinandersson
-	 *
-	 */
 	public GameController() {
 		this(new Table());
 	}
@@ -51,7 +49,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Adds a player to the gametable
+	 * Adds a player to the game's table
 	 * 
 	 * @param player The player to be added
 	 * @author robinandersson
@@ -60,6 +58,16 @@ public class GameController {
 		this.table.addPlayer(player);
 	}
 	
+	/**
+	 * Adds the players in the list to to the game
+	 * 
+	 * @param player The player to be added
+	 * @author robinandersson
+	 */
+	public void addPlayers(Collection<iPlayer> player) {
+		this.table.addPlayers(player);
+	}
+
 	/**
 	 * Adds a new card to the "table cards"
 	 */

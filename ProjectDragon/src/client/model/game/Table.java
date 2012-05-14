@@ -1,6 +1,7 @@
 package client.model.game;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,6 +51,16 @@ public class Table {
 			players.add(p);
 		} else {
 			throw new PlayersFullException();
+		}
+	}
+	
+	/**
+	 * Adds the players in the array to the table.
+	 * @param playerArray The players that will be added to the list of players
+	 */
+	public void addPlayers(Collection<iPlayer> playerArray) {
+		for(iPlayer player : playerArray){
+			addPlayer(player);
 		}
 	}
 	
