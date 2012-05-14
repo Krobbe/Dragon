@@ -18,7 +18,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	// TODO Implement these when there's time for it
 	// private JTextField createTableNameField;
 	// private JPasswordField createTablePasswordField;
-	private JComboBox<Integer> createTablePlayersSpinner;
+	private JComboBox createTablePlayersSpinner;
 	private JButton createTableBackButton;
 	private JButton createTableCreateButton;
 
@@ -69,8 +69,8 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 		createTablePlayersLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(createTablePlayersLabel);
 
-		createTablePlayersSpinner = new JComboBox<Integer>();
-		createTablePlayersSpinner.setModel(new DefaultComboBoxModel<Integer>(
+		createTablePlayersSpinner = new JComboBox();
+		createTablePlayersSpinner.setModel(new DefaultComboBoxModel(
 				new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }));
 		createTablePlayersSpinner.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTablePlayersSpinner.setMaximumRowCount(10);

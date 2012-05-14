@@ -17,7 +17,7 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 
 	private JButton joinTableBackButton;
 	private JButton joinTableJoinButton;
-	private JList<Object> joinTableList;
+	private JList joinTableList;
 
 	public JoinTablePanel() {
 		init();
@@ -56,7 +56,7 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 		joinTableJoinButton.addActionListener(this);
 		this.add(joinTableJoinButton);
 
-		joinTableList = new JList<Object>();
+		joinTableList = new JList();
 		joinTableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		joinTableList.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTableList.setModel(new AbstractListModel() {

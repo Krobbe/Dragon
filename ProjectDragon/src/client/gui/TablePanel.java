@@ -5,15 +5,19 @@ import javax.swing.JButton;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import model.card.iCard;
 import model.player.Bet;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import client.event.*;
+import model.player.*;
 
 @SuppressWarnings("serial")
 public class TablePanel extends JPanel implements client.event.EventHandler,
@@ -108,12 +112,20 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 	private JLabel potSizeInfoLabel;
 	private JLabel currentBet;
 	private JLabel currentBetInfoLabel;
+	
+	private client.model.game.Table table;
 
 	/**
 	 * Create the application.
 	 */
 	public TablePanel() {
 		initialize();
+		client.event.EventBus.register(this);
+	}
+	
+	public TablePanel(client.model.game.Table table) {
+		initialize();
+		this.table = table;
 		client.event.EventBus.register(this);
 	}
 
@@ -134,7 +146,15 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			
 		case HAND_DISCARDED:
 			
-			//Not sure what to do on this event, need help
+			List<iPlayer> list = table.getPlayers();
+			iPlayer player = (Player)evt.getValue();
+			for(int i = 0; i < list.size(); i++) {
+				if(player.equals(list.get(i))) {
+					
+					break;
+				}
+			}
+			
 			
 			break;
 			
@@ -155,6 +175,13 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			break;
 			
 		case COMMUNITY_CARDS_CHANGED:
+			List<iCard> cards = (List<iCard>) evt.getValue();
+			if(cards.size() == 0) {
+				cleara alla texter, byt bakgrund;
+			}
+			else if(cards.size() = 3,4,5) {
+				sätt korten;
+			}
 			
 			break;
 			
