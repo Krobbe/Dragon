@@ -44,10 +44,6 @@ public class GameController implements iClientGame {
 		table = new Table(players, meIndex);
 		distributeInvisibleCards();
 	}
-	
-	public void newTable(List<iPlayer> players, int meIndex) {
-		table = new Table(players, meIndex);
-	}
 
 	/**
 	 * Adds a player to the game table
@@ -80,7 +76,7 @@ public class GameController implements iClientGame {
 		iPlayer p = table.getCurrentPlayer();
 		p.getHand().discard();
 		p.setActive(false);
-		p.setDoneFirstTurn(true); //Behövs denna här? hanteras väl bara i server?
+		p.setDoneFirstTurn(true);
 		EventBus.publish(new Event(Event.Tag.HAND_DISCARDED, player));
 		return true;
 	}
@@ -195,20 +191,10 @@ public class GameController implements iClientGame {
 	
 	@Override
 	public void balanceChanged(Bet bet) {
-		iPlayer player = bet.getOwner();
-		for(iPlayer p : table.getActivePlayers()) {
-			if(p.equals(player)) {
-				p.getBalance().addToBalance(bet.getValue());
-				break;
-			}
-		}
+		bet.getOwner().getBalance().addToBalance(bet.getValue());
 		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, bet));
 	}
 	
-	/**
-	 * Distributes cards with no suit and no rank. 
-	 * This method should be ran in the constructor. 
-	 */
 	private void distributeInvisibleCards() {
 		iHand hand;
 		for(iPlayer player : table.getActivePlayers()) {
