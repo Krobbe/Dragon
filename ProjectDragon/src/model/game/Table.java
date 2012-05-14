@@ -144,7 +144,7 @@ public class Table {
 	 * @param c The card which will be added
 	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
-	public void addTableCard(Card c) {
+	public void addTableCard(iCard c) {
 		if (tableCards.size() < 5) {
 			tableCards.add(c);
 		} else {

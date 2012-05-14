@@ -118,7 +118,7 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			case SERVER_UPDATE_BET:
 				Bet bet = (Bet)evt.getValue();
 				for(iClientGame client : playerReferences.values()) {
-					client.updateBet(bet);
+					client.betOccured(bet);
 				}
 				
 				break;

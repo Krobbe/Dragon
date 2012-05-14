@@ -71,7 +71,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	@Override
 	public iServerGame createGame(Account account, iPlayer player, iClientGame clientGame) {
 		
-		iServerGame newGame = null;
+		RemoteGameController newGame = null;
 		
 		if(clients.containsKey(account)) {
 			
@@ -85,8 +85,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			
 			activeGames.add(newGame);
 			
-			//TODO Tillåtet att kasta om på detta viset bara för att kunna använda en metod i RemoteGameController-klassen som inte finns i iServerGame?
-			((RemoteGameController) newGame).addPlayer(player, clientGame);
+			newGame.addPlayer(player, clientGame);
 		}
 		
 		return newGame;

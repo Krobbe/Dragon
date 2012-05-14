@@ -117,6 +117,7 @@ public class GameController {
 	}
 	
 	public void setHand(iPlayer player, iHand hand) {
+		// TODO Modify method to set the hand to the player directly
 		iPlayer me = table.getPlayers().get(table.getMeIndex());
 		iHand myHand = me.getHand();
 		for (iPlayer p : table.getActivePlayers()) {
@@ -139,8 +140,8 @@ public class GameController {
 	 * @param cards
 	 *            The cards you want to add.
 	 */
-	public void addCommunityCards(List<Card> cards) {
-		for (Card c : cards) {
+	public void addCommunityCards(List<iCard> cards) {
+		for (iCard c : cards) {
 			table.addTableCard(c);
 		}
 		client.event.EventBus.publish(new client.event.Event(

@@ -22,7 +22,7 @@ import utilities.*;
 
 public class Table {
 	private Round round;
-	private List<Card> tableCards;
+	private List<iCard> tableCards;
 	private List<iPlayer> players;
 	private int meIndex;
 	private int indexOfCurrentPlayer;
@@ -35,7 +35,7 @@ public class Table {
 		this.meIndex = meIndex;
 		this.players = players;
 		round = new Round();
-		tableCards = new LinkedList<Card>();
+		tableCards = new LinkedList<iCard>();
 		indexOfCurrentPlayer = 0;
 		indexOfDealerButton = 0;
 	}
@@ -126,7 +126,7 @@ public class Table {
 	 * @param c The card which will be added
 	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
-	public void addTableCard(Card c) {
+	public void addTableCard(iCard c) {
 		if (tableCards.size() < 5) {
 			tableCards.add(c);
 		} else {
@@ -175,7 +175,7 @@ public class Table {
 	 * This method is used only for testing of the class.
 	 * @return The "table cards" represented as a list of cards.
 	 */
-	public List<Card> getTableCards() {
+	public List<iCard> getTableCards() {
 		return tableCards;
 	}
 
