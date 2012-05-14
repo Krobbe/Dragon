@@ -6,9 +6,9 @@ package ctrl.game;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.TreeMap;
 
 import database.DatabaseCommunicator;
 import database.IDBAccount;
@@ -43,7 +43,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	public RemoteCommunicationController() throws RemoteException {
 		super();
 		new ServerStarter(this);
-		clients = new HashMap<Account, iClient>();
+		clients = new TreeMap<Account, iClient>();
 		activeGames = new LinkedList<iServerGame>();
 	}
 	

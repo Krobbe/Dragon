@@ -4,6 +4,7 @@
 package client.ctrl.game;
 
 import java.rmi.RemoteException;
+import java.util.Collection;
 import java.util.List;
 
 import model.card.iCard;
@@ -25,14 +26,59 @@ import utilities.IllegalCallException;
 public class RemoteGameController implements iClientGame, iServerRequest {
 	
 	private iServerGame serverGameController;
-	private GameController gameController;
 	
-	public RemoteGameController(){
-		this(new GameController());
+	private GameController gameController;
+	private RemoteCommunicationController remoteCommunicationController;
+	
+	public RemoteGameController(
+				RemoteCommunicationController remoteCommunicationController){
+		this(remoteCommunicationController, new GameController());
 	}
 	
-	public RemoteGameController(GameController gameController){
+	public RemoteGameController(
+				RemoteCommunicationController remoteCommunicationController,
+												GameController gameController){
+		this.remoteCommunicationController = remoteCommunicationController;
 		this.gameController = gameController;
+	}
+	
+	/**
+	 * Tells the server that the supplied Player instance ready or not ready to
+	 * start the game
+	 * @param player The player that is ready or not to start the game
+	 * @param isReady True if the player is ready to start the game
+	 * @return True if the request was successful
+	 */
+	public boolean setReadyToPlay(iPlayer player, boolean isReady) {
+		
+		try {
+			return serverGameController.isReadyToStart(
+					remoteCommunicationController.getAccount(), player,
+					isReady);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * Adds the player in the list to to the game
+	 * 
+	 * @param player The player to be added
+	 * @author robinandersson
+	 */
+	public void addPlayers(iPlayer player) {
+		gameController.addPlayer(player);
+	}
+	
+	/**
+	 * Adds the players in the list to to the game
+	 * 
+	 * @param players The players to be added
+	 * @author robinandersson
+	 */
+	public void addPlayers(Collection<iPlayer> players) {
+		gameController.addPlayers(players);
 	}
 
 	@Override

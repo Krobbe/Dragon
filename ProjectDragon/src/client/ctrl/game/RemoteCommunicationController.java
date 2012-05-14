@@ -7,8 +7,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import model.player.Account;
 import model.player.Player;
@@ -27,9 +27,9 @@ import utilities.IllegalCallException;
  */
 public class RemoteCommunicationController implements iClient {
 	
-	// A map with games the user is currently playing represented by the game
-	// controller for that specific game
-	private Map<iPlayer, GameController> activeGames;
+	// A map with games the user is currently playing represented by the remote
+	// game controller for that specific game
+	private Map<iPlayer, RemoteGameController> activeGames;
 	
 	// The reference to the server
 	private iServer server;
@@ -38,7 +38,7 @@ public class RemoteCommunicationController implements iClient {
 	private Account account = null;
 	
 	public RemoteCommunicationController(){
-		activeGames = new HashMap<iPlayer, GameController>();
+		activeGames = new TreeMap<iPlayer, RemoteGameController>();
 		server = connectToServer();
 	}
 	
@@ -98,6 +98,10 @@ public class RemoteCommunicationController implements iClient {
 		return this.account;
 	}
 	
+	public Account getAccount(){
+		return this.account;
+	}
+	
 	/** 
 	 * Tries to join the table with the specified index. Passes the unique
 	 * Account object along for security clearance. Returns the iPlayer object
@@ -111,7 +115,7 @@ public class RemoteCommunicationController implements iClient {
 		
 		Player player = new Player(new Hand(), account.getUserName(),
 														account.getBalance());
-		iClientGame clientGame = new RemoteGameController();
+		iClientGame clientGame = new RemoteGameController(this);
 		iServerGame serverGame = null;
 		
 		try {
@@ -125,14 +129,15 @@ public class RemoteCommunicationController implements iClient {
 		if(serverGame == null) {
 			return false;
 		}
-		
-		GameController gameController = new GameController();
 
 		try {
 			
+			RemoteGameController remoteGameController =
+					new RemoteGameController(this);
+			
 			Collection<iPlayer> playerList = serverGame.getPlayers();
-			gameController.addPlayers(playerList);
-			activeGames.put(player, gameController);
+			remoteGameController.addPlayers(playerList);
+			activeGames.put(player, remoteGameController);
 			
 		} catch (IllegalCallException e) {
 			// TODO Auto-generated catch block

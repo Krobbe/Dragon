@@ -64,11 +64,11 @@ public class GameController {
 	/**
 	 * Adds the players in the list to to the game
 	 * 
-	 * @param player The player to be added
+	 * @param player The players to be added
 	 * @author robinandersson
 	 */
-	public void addPlayers(Collection<iPlayer> player) {
-		this.table.addPlayers(player);
+	public void addPlayers(Collection<iPlayer> players) {
+		this.table.addPlayers(players);
 	}
 
 	public void setCurrentBet(Bet bet) {
