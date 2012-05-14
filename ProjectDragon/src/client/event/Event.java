@@ -9,7 +9,7 @@ public class Event {
     // All possible events listed
 	//When you input a new tag, please put in alphabetical order.
     public enum Tag {
-    	COMMUNITY_CARDS_CHANGED,
+    	COMMUNITY_CARDS_CHANGED,	//getValue(): iCard
     	DO_FOLD,
     	DO_CALL,
     	DO_CHECK,

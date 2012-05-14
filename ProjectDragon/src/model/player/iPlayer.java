@@ -1,6 +1,6 @@
 package model.player;
 
-import model.card.Card;
+import model.card.iCard;
 import model.player.hand.iHand;
 
 /**
@@ -63,7 +63,7 @@ public interface iPlayer extends Comparable<iPlayer> {
 	 * Gives the player a card which is added to the player's hand
 	 * @author mattiashenriksson
 	 */
-	public void addCard(Card c);
+	public void addCard(iCard c);
 	
 	/**
 	 * @author mattiashenriksson

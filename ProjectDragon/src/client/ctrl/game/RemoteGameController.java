@@ -123,8 +123,8 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	}
 
 	@Override
-	public void addCommunityCards(List<iCard> cards) {
-		gameController.addCommunityCards(cards);
+	public void addCommunityCard(iCard card) {
+		gameController.addCommunityCard(card);
 	}
 
 	@Override

@@ -192,11 +192,9 @@ public class GameController {
 	 * @param cards The cards you want to add.
 	 * @throws RemoteException
 	 */
-	public void addCommunityCards(List<iCard> cards) {
-		for (iCard c : cards) {
-			table.addTableCard(c);
-		}
-		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, cards));
+	public void addCommunityCard(iCard card) {
+		table.addTableCard(card);
+		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, card));
 	}
 
 	/**

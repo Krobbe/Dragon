@@ -285,16 +285,16 @@ public class RemoteGameController extends UnicastRemoteObject implements iServer
 			}
 			break;
 
-		case SERVER_ADD_TABLE_CARDS:
-			List<iCard> cards;
+		case SERVER_ADD_TABLE_CARD:
+			iCard card;
 			if (!(evt.getValue() instanceof List)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				cards = (List<iCard>) evt.getValue();
+				card = (iCard)evt.getValue();
 				for (iClientGame client : playerReferences.values()) {
 					try {
-						client.addCommunityCards(cards);
+						client.addCommunityCard(card);
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}

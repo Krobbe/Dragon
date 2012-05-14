@@ -74,12 +74,12 @@ public interface iClientGame extends Remote {
 	public void setTurn(int indexOfCurrentPlayer) throws RemoteException;
 	
 	/**
-	 * Add communitycards to the table.
+	 * Add community-cards to the table.
 	 * 
-	 * @param cards The cards you want to add.
+	 * @param card The added card.
 	 * @throws RemoteException
 	 */
-	public void addCommunityCards(List<iCard> cards) throws RemoteException;
+	public void addCommunityCard(iCard card) throws RemoteException;
 	
 	/**
 	 * Set a players hand.

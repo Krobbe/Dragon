@@ -13,7 +13,7 @@ import event.EventBus;
 import model.card.Card;
 import model.card.iCard;
 import model.game.BettingRound;
-import model.game.Dealer;
+import model.game.TexasHoldemDealer;
 import model.game.P;
 import model.game.Pot;
 import model.game.SidePotHandler;
@@ -51,7 +51,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Adds a player to the game table
+	 * Adds a player to the gametable
 	 * 
 	 * @param player The player to be added
 	 * @author robinandersson
@@ -59,32 +59,13 @@ public class GameController {
 	public void addPlayer(iPlayer player) {
 		this.table.addPlayer(player);
 	}
-
+	
 	/**
 	 * Adds a new card to the "table cards"
 	 */
-	//TODO skulle kunna vara i table?
-	private void showRiver() {
-		Dealer dealer = table.getDealer();
-		Card c = dealer.getRiver();
-		table.addTableCard(c);
-		List<iCard> tmp = new LinkedList<iCard>();
-		tmp.add(c);
-		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARDS, tmp));
-	}
-
-	/**
-	 * Adds three new cards to the "table cards"
-	 */
-	//TODO skulle kunna vara i table?
-	private void showFlop() {
-		Dealer dealer = table.getDealer();
-		//TODO: List<iCard>
-		List<Card> flop = dealer.getFlop();
-		for (Card c : flop) {
-			table.addTableCard(c);
-		}
-		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARDS, flop));
+	public void addCommunityCard() {
+		iCard card = table.addCommunityCard();
+		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARD, card));
 	}
 
 	/**
@@ -107,7 +88,6 @@ public class GameController {
 		for(iPlayer p : table.getActivePlayers()) {
 			playerHands.put(p, p.getHand());
 		}
-		
 		EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_CARDS, playerHands));
 	}
 
@@ -123,23 +103,25 @@ public class GameController {
 		Pot currentPot = table.getRound().getPot();
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
+		int playersOwnCurrentBet = currentPlayer.getOwnCurrentBet();
 		
 		/* if the player calls a bet which is bigger than his balance, the 
 		 * player will call with as much as his balance allows and move all-in
 		 */
 		if (currentBetValue > currentPlayer.getBalance().getValue() 
-				+ currentPlayer.getOwnCurrentBet()) {
+				+ playersOwnCurrentBet) {
 			currentBetValue = currentPlayer.getBalance().getValue() 
-				+ currentPlayer.getOwnCurrentBet();
+				+ playersOwnCurrentBet;
 		}
 		
 		//TODO den här delen skulle kunna refactoreras kanske?
 		/* arrange the player's balance, bet and the pot according to the call 
 		 */
 		currentPlayer.getBalance().removeFromBalance(currentBetValue 
-				- currentPlayer.getOwnCurrentBet());
+				- playersOwnCurrentBet);
 		currentPot.addToPot(currentBetValue 
-				- currentPlayer.getOwnCurrentBet());
+				- playersOwnCurrentBet);
+		//TODO: om han inte hade så mycket pengar som currentBetValue är?
 		currentPlayer.setOwnCurrentBet(currentBetValue);
 		
 		/* the player has now done a move */
@@ -149,7 +131,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Checks if a call is valid and does a call if it is valid.
+	 * Checks if a call is valid and does a call if it is.
 	 * 
 	 * @author lisastenberg
 	 * @author robinandersson
@@ -158,7 +140,6 @@ public class GameController {
 	 * @throws IllegalCallException
 	 */
 	public boolean call(Bet bet) {
-		//Gör call ovanför om call blir giltlig
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
 
@@ -190,14 +171,14 @@ public class GameController {
 		//The amount the player wants to raise with
 		int amount = bet.getValue() - currentPlayer.getOwnCurrentBet();
 		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
-		
-		/* you should not be able to raise a bigger amount than what you have
-		 * on your balance */
-		//TODO: Betyder den här koden verkligen det?
-		if(amount + currentPlayer.getOwnCurrentBet() <= 
-				currentBettingRound.getCurrentBet().getValue()) {
+
+		if(amount > currentPlayer.getBalance().getValue()) {
 			throw new IllegalRaiseException(
 					"Not enough money on balance to make that raise");
+		} else if(bet.getValue() <= currentBettingRound.getCurrentBet().getValue()
+				+ P.getBigBlindValue()) {
+			throw new IllegalRaiseException("The raise have to be bigger" +
+					"than the current bet plus big blind.");
 		}
 		
 		/* arrange the player's balance, bet and the pot according to the raise 
@@ -266,31 +247,18 @@ public class GameController {
 	}
 	
 	/**
-	 * Performs a showdown.
+	 * Performs a showdown by laying out the rest of the cards.
+	 * 
 	 * @return a list of the winning players of the current round.
 	 */
-	//TODO nödvändig här? den finns ju redan i table. dock lite annorulunda nu..
-	//TODO snygga till/effektivisera?
-	//TODO bör distribute pot plockas ur denna och stå för sig själv?
-	//TODO en performShowdown och en doShowdown = snurrigt?
 	public void performShowdown(List<iPlayer> plrs, int potAmount) {
 		
 		/* put all the community cards out on the table */
-		int tableCardsSize = table.getTableCards().size();
-		if (tableCardsSize == 0) {
-			showFlop();
-			showRiver();
-			showRiver();
-		} else if (tableCardsSize == 3) {
-			showRiver();
-			showRiver();
-		} else if (tableCardsSize == 4) {
-			showRiver();
+		int cardsOnTable = table.getTableCards().size();
+		for(int i = cardsOnTable; i < 5; i++) {
+			addCommunityCard();
 		}
 		
-		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARDS, table.getTableCards()));
-		
-		/* do showdown */
 		table.doShowdown(plrs, potAmount);
 	}
 	
@@ -456,12 +424,14 @@ public class GameController {
 		
 		/* else, if it's time for flop, show flop */
 		} else if (table.getTableCards().size() == 0) {
-			showFlop();
+			for(int i = 0; i < 3; i++) {
+				addCommunityCard();
+			}
 			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
 			
-		/* if its time for river, show river */	
-		} else { //TODO ett till alternativ för showTurn?, ev tydligare
-			showRiver();
+		// if its time for river or turn	
+		} else {
+			addCommunityCard();
 			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
 		}
 	}
@@ -469,7 +439,7 @@ public class GameController {
 	/**
 	 * Performs the actions which occur when a player has gone all-in 
 	 */
-	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande?
+	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande? JA
 	public void handleAllIn() {
 		List<iPlayer> allInPlayers = table.getAllInPlayers();
 		List<iPlayer> activePlayers = table.getActivePlayers();

@@ -9,7 +9,6 @@ import java.util.TreeMap;
 import event.Event;
 import event.EventBus;
 
-import model.card.Card;
 import model.card.iCard;
 import model.player.Bet;
 import model.player.iPlayer;
@@ -30,7 +29,7 @@ import utilities.TableCardsFullException;
 
 public class Table {
 	private Round round;
-	private Dealer dealer;
+	private TexasHoldemDealer dealer;
 	private List<iCard> tableCards;
 	private List<iPlayer> players;
 	private boolean showdownDone;
@@ -45,7 +44,7 @@ public class Table {
 	 */
 	public Table() {
 		round = new Round();
-		dealer = new Dealer();
+		dealer = new TexasHoldemDealer();
 		tableCards = new ArrayList<iCard>();
 		players = new ArrayList<iPlayer>();
 		indexOfCurrentPlayer = 0;
@@ -137,13 +136,15 @@ public class Table {
 	
 	
 	/**
-	 * Adds a card to the "table cards" 
-	 * @param c The card which will be added
+	 * Adds a card to the "table cards"
+	 * 
 	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
-	public void addTableCard(iCard c) {
+	public iCard addCommunityCard() {
 		if (tableCards.size() < 5) {
-			tableCards.add(c);
+			iCard card = dealer.popCard();
+			tableCards.add(card);
+			return card;
 		} else {
 			throw new TableCardsFullException();
 		}
@@ -211,7 +212,6 @@ public class Table {
 		for (int i = 1; i <= 2; i++) {
 
 			for (iPlayer player : getActivePlayers()) {
-
 				player.addCard(dealer.popCard());
 			}
 		}
@@ -354,7 +354,7 @@ public class Table {
 	 * 
 	 * @return The table's dealer
 	 */
-	public Dealer getDealer() {
+	public TexasHoldemDealer getDealer() {
 		return dealer;
 	}
 	

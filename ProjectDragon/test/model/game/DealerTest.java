@@ -16,21 +16,21 @@ public class DealerTest {
 
 	@Test
 	public void testGetFlop() {
-		Dealer d = new Dealer();
+		TexasHoldemDealer d = new TexasHoldemDealer();
 		List<Card> list = d.getFlop();
 		assertTrue(list.size() == 3);
 	}
 	
 	@Test
 	public void testGetRiver() {
-		Dealer d = new Dealer();
+		TexasHoldemDealer d = new TexasHoldemDealer();
 		Card c = d.getRiver();
 		assertTrue(c.getClass() == Card.class);
 	}
 	
 	@Test
 	public void testToString() {
-		Dealer d = new Dealer();
+		TexasHoldemDealer d = new TexasHoldemDealer();
 		for(int i = 0; i < 52; i++) {
 			d.popCard();
 		}
@@ -39,7 +39,7 @@ public class DealerTest {
 	
 	@Test
 	public void testEquals() {
-		Dealer d = new Dealer();
+		TexasHoldemDealer d = new TexasHoldemDealer();
 		
 		//Only possible to test reflexivity here. Since the decks are shuffled
 		//randomly it would be unnecessary work for us to find two decks that 

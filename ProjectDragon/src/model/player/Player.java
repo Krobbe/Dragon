@@ -1,6 +1,6 @@
 package model.player;
 
-import model.card.Card;
+import model.card.iCard;
 import model.player.hand.TexasHoldemHand;
 import model.player.hand.iHand;
 
@@ -70,7 +70,7 @@ public class Player implements iPlayer {
 	}
 
 	@Override
-	public void addCard(Card c) {
+	public void addCard(iCard c) {
 		hand.addCard(c);
 	}
 	
