@@ -1,8 +1,7 @@
 package client.ctrl.game;
 
+import java.rmi.RemoteException;
 import java.util.List;
-
-import remote.iClientGame;
 
 import client.model.game.Table;
 
@@ -23,7 +22,7 @@ import client.event.*;
  * 
  */
 
-public class GameController implements iClientGame {
+public class GameController {
 
 	Table table;
 
@@ -39,14 +38,15 @@ public class GameController implements iClientGame {
 		distributeInvisibleCards();
 	}
 	
-	@Override
+	/**
+	 * Creates a new table.
+	 * 
+	 * @param players The players at the table.
+	 * @param meIndex The index in the list of players that is the user.
+	 */
 	public void newTable(List<iPlayer> players, int meIndex) {
 		table = new Table(players, meIndex);
 		distributeInvisibleCards();
-	}
-	
-	public void newTable(List<iPlayer> players, int meIndex) {
-		table = new Table(players, meIndex);
 	}
 
 	/**
@@ -66,13 +66,24 @@ public class GameController implements iClientGame {
 				.getValue()));
 	}
 
-	@Override
+	/**
+	 * Set the pot.
+	 * 
+	 * @param pot The value you want to set the pot to.
+	 * @throws RemoteException
+	 */
 	public void setPot(Pot pot) {
 		table.getRound().getPot().setValue(pot.getValue());
 		EventBus.publish(new Event(Event.Tag.POT_CHANGED, pot.getValue()));
 	}
 
-	@Override
+	/**
+	 * A method for handling when a player has folded. 
+	 * 
+	 * @param player	The player who folded.
+	 * @return	true if the fold went through.
+	 * @throws RemoteException
+	 */
 	public boolean fold(iPlayer player) {
 		if (!table.getCurrentPlayer().equals(player)) {
 			return false;
@@ -85,7 +96,13 @@ public class GameController implements iClientGame {
 		return true;
 	}
 
-	@Override
+	/**
+	 * A method for handling when a bet has occurred.
+	 * 
+	 * @param b The bet.
+	 * @return true if the method went through successfully.
+	 * @throws RemoteException
+	 */
 	public boolean betOccurred(Bet bet) {
 		if (!table.getCurrentPlayer().equals(bet.getOwner())) {
 			return false;
@@ -116,7 +133,14 @@ public class GameController implements iClientGame {
 		return true;
 	}
 
-	@Override
+	/**
+	 * A method that transfer the turn to the nextPlayer. Does a check that
+	 * nextPlayer is the same on the clients table as it should be.
+	 * 
+	 * @param nextPlayer
+	 * @return true if nextPlayer is the player that should have the turn.
+	 * @throws RemoteException
+	 */
 	//TODO: onödigt med både nextTurn och setTurn? 
 	// om vi tar bort nextTurn kan man ta bort nextPlayer i klientens table med.
 	public boolean nextTurn(iPlayer nextPlayer) {
@@ -129,14 +153,26 @@ public class GameController implements iClientGame {
 		return false;
 	}
 
-	@Override
+	/**
+	 * Set turn to indexOfCurrentPlayer. This method should only be used then
+	 * the table is created.
+	 * 
+	 * @param indexOfCurrentPlayer
+	 * @throws RemoteException
+	 */
 	public void setTurn(int indexOfCurrentPlayer) {
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
 				.getCurrentPlayer()));
 	}
 	
-	@Override
+	/**
+	 * Set a players hand.
+	 * 
+	 * @param player The players hand you want to set.
+	 * @param hand	The hand
+	 * @throws RemoteException
+	 */
 	public void setHand(iPlayer player, iHand hand) {
 		for(iPlayer tmp : table.getActivePlayers()) {
 			if(tmp.equals(player)) {
@@ -150,7 +186,12 @@ public class GameController implements iClientGame {
 		}
 	}
 
-	@Override
+	/**
+	 * Add communitycards to the table.
+	 * 
+	 * @param cards The cards you want to add.
+	 * @throws RemoteException
+	 */
 	public void addCommunityCards(List<iCard> cards) {
 		for (iCard c : cards) {
 			table.addTableCard(c);
@@ -158,7 +199,11 @@ public class GameController implements iClientGame {
 		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, cards));
 	}
 
-	@Override
+	/**
+	 * Set up a new round.
+	 * 
+	 * @throws RemoteException
+	 */
 	public void newRound() {
 		table.getTableCards().clear();
 		for (iPlayer p : table.getActivePlayers()) {
@@ -170,7 +215,13 @@ public class GameController implements iClientGame {
 		}
 	}
 
-	@Override
+	/**
+	 * A method for setting a player active or inactive.
+	 * 
+	 * @param player The player.
+	 * @param b	The boolean you want to set.
+	 * @throws RemoteException
+	 */
 	public void setActive(iPlayer player, boolean b) {
 		for(iPlayer p : table.getActivePlayers()) {
 			if(p.equals(player)) {
@@ -180,7 +231,12 @@ public class GameController implements iClientGame {
 		}
 	}
 
-	@Override
+	/**
+	 * Set a players ownCurrentBet
+	 * 
+	 * @param bet	The bet
+	 * @throws RemoteException
+	 */
 	public void setPlayerOwnCurrentBet(Bet bet) {
 		iPlayer player = bet.getOwner();
 		for(iPlayer p : table.getActivePlayers()) {
@@ -192,7 +248,12 @@ public class GameController implements iClientGame {
 		EventBus.publish(new Event(Event.Tag.OWN_CURRENT_BET_CHANGED, bet));
 	}
 	
-	@Override
+	/**
+	 * Changes a persons balance.
+	 * 
+	 * @param bet Holds a player and how much the player should add to his 
+	 * balance.
+	 */
 	public void balanceChanged(Bet bet) {
 		iPlayer player = bet.getOwner();
 		for(iPlayer p : table.getActivePlayers()) {
