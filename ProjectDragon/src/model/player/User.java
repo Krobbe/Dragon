@@ -120,4 +120,9 @@ public class User implements IPlayer {
 		return player.getDoneFirstTurn();
 	}
 
+	@Override
+	public boolean isAllIn() {
+		return player.isAllIn();
+	}
+
 }

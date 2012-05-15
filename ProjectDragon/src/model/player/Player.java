@@ -139,4 +139,9 @@ public class Player implements IPlayer {
 	public boolean getDoneFirstTurn() {
 		return doneFirstTurn;
 	}
+
+	@Override
+	public boolean isAllIn() {
+		return balance.getValue() == 0;
+	}
 }

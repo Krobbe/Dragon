@@ -101,6 +101,12 @@ public interface IPlayer extends Comparable<IPlayer> {
 	 */
 	public boolean getDoneFirstTurn();
 	
+	/**
+	 * 
+	 * @return a boolean telling if the player is all-in (has a balance of 0)
+	 */
+	public boolean isAllIn();
+	
 	@Override
 	public boolean equals(Object o);
 	
