@@ -18,8 +18,12 @@ import model.game.SidePotHandler;
 import model.game.Table;
 import model.player.Bet;
 import model.player.OwnCurrentBetComparator;
+<<<<<<< HEAD
 import model.player.IPlayer;
 import model.player.hand.IHand;
+=======
+import model.player.iPlayer;
+>>>>>>> Gamecontroller på server lite finare
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
@@ -69,7 +73,12 @@ public class GameController {
 	 * Adds a new card to the "table cards"
 	 */
 	public void addCommunityCard() {
+<<<<<<< HEAD
+		ICard card = table.addCommunityCard();
+		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARD, card));
+=======
 		table.addCommunityCard();
+>>>>>>> Gamecontroller på server lite finare
 	}
 
 	/**

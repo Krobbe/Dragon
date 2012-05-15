@@ -8,9 +8,7 @@ import event.Event;
 import event.Event.Tag;
 import event.EventBus;
 
-
-import model.card.Card;
-import model.card.ICard;
+import model.card.iCard;
 import model.game.BettingRound;
 import model.game.P;
 import model.game.Pot;
@@ -18,8 +16,7 @@ import model.game.SidePotHandler;
 import model.game.Table;
 import model.player.Bet;
 import model.player.OwnCurrentBetComparator;
-import model.player.IPlayer;
-import model.player.hand.IHand;
+import model.player.iPlayer;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
@@ -51,7 +48,7 @@ public class GameController {
 	 * @param player The player to be added
 	 * @author robinandersson
 	 */
-	public void addPlayer(IPlayer player) {
+	public void addPlayer(iPlayer player) {
 		this.table.addPlayer(player);
 	}
 	
@@ -61,7 +58,7 @@ public class GameController {
 	 * @param player The player to be added
 	 * @author robinandersson
 	 */
-	public void addPlayers(Collection<IPlayer> player) {
+	public void addPlayers(Collection<iPlayer> player) {
 		this.table.addPlayers(player);
 	}
 
@@ -69,7 +66,8 @@ public class GameController {
 	 * Adds a new card to the "table cards"
 	 */
 	public void addCommunityCard() {
-		table.addCommunityCard();
+		iCard card = table.addCommunityCard();
+		EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARD, card));
 	}
 
 	/**
@@ -96,9 +94,8 @@ public class GameController {
 	 * @author mattiashenriksson
 	 */
 	private void doCall() {
-		IPlayer currentPlayer = table.getCurrentPlayer();
+		iPlayer currentPlayer = table.getCurrentPlayer();
 		int playersOwnCurrentBet = currentPlayer.getOwnCurrentBet();
-
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
 		
@@ -158,7 +155,7 @@ public class GameController {
 	 */
 	//TODO delvis otestad
 	public boolean raise(Bet bet) {
-		IPlayer currentPlayer = table.getCurrentPlayer();
+		iPlayer currentPlayer = table.getCurrentPlayer();
 		if(!currentPlayer.equals(bet.getOwner())) {
 			return false;
 		}
@@ -198,7 +195,7 @@ public class GameController {
 	 * Performs a fold.
 	 */
 	//TODO Delvis otestad
-	public boolean fold(IPlayer player) {
+	public boolean fold(iPlayer player) {
 		//Check if the player is allowed to fold.
 		if(!table.getCurrentPlayer().equals(player)) {
 			return false;
@@ -219,9 +216,8 @@ public class GameController {
 	 */
 	//TODO otestat: exception, setOwncurrentBet
 	public boolean check(Bet bet) {
-		IPlayer currentPlayer = table.getCurrentPlayer();
+		iPlayer currentPlayer = table.getCurrentPlayer();
 		//Check if the player is allowed to check
-
 		if(!currentPlayer.equals(bet.getOwner())) {
 			return false;
 		}
@@ -248,8 +244,8 @@ public class GameController {
 	 * @return a list of the winning players of the current round.
 	 * @lisastenberg
 	 */
-	public void performShowdown(List<IPlayer> plrs, int potAmount) {
-
+	public void performShowdown(List<iPlayer> plrs, int potAmount) {
+		
 		/* put all the community cards out on the table */
 		int cardsOnTable = table.getTableCards().size();
 		for(int i = cardsOnTable; i < 5; i++) {
@@ -263,7 +259,7 @@ public class GameController {
 	 * Performs actions required for starting a new round
 	 */
 	public void nextRound() {
-		List<IPlayer> players = table.getPlayers();
+		List<iPlayer> players = table.getPlayers();
 		
 		table.setShowdownDone(false);
 		table.getRound().getPot().emptyPot();
@@ -271,7 +267,7 @@ public class GameController {
 		table.getRound().getPreBettingPot().emptyPot();
 		table.clearTableCards();
 		table.getSidePots().clear();
-		for (IPlayer p : players) {
+		for (iPlayer p : players) {
 			p.getHand().discard();
 			p.setOwnCurrentBet(0);
 			p.setDoneFirstTurn(false);			
@@ -286,7 +282,7 @@ public class GameController {
 		table.getDealer().newDeck();
 		distributeCards();
 
-		/* give dealer-button to the right player*/
+		/* give dealer button to the right player*/
 		table.nextDealerButtonIndex();
 		
 		postBlinds();
@@ -310,7 +306,7 @@ public class GameController {
 	 */
 	//TODO ska denna vara här? likt raise = refactor?
 	private void postBlinds() {
-		List<IPlayer> players = table.getPlayers();
+		List<iPlayer> players = table.getPlayers();
 
 		int dealerButtonIndex = table.getDealerButtonIndex();
 		
@@ -334,8 +330,8 @@ public class GameController {
 			count++;
 		} while (!players.get(bigBlindIndex).isActive());
 		
-		IPlayer smallBlindPlayer = players.get(smallBlindIndex);
-		IPlayer bigBlindPlayer = players.get(bigBlindIndex);
+		iPlayer smallBlindPlayer = players.get(smallBlindIndex);
+		iPlayer bigBlindPlayer = players.get(bigBlindIndex);
 		
 		/* define the definite value on the blinds (a player migth have to 
 		 * small balance to post the full blind) */
@@ -382,11 +378,11 @@ public class GameController {
 	//TODO Bättre javadoc
 	//TODO övergripande metod = annat namn?
 	public void nextBettingRound() {
-		List<IPlayer> players = table.getPlayers();
+		List<iPlayer> players = table.getPlayers();
 		
 		/* the table should have the default settings for a new betting round */
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
-		for (IPlayer p : players) {
+		for (iPlayer p : players) {
 			p.setOwnCurrentBet(0);
 			EventBus.publish(new Event(Event.Tag.SERVER_SET_OWN_CURRENT_BET, new Bet(p,0)));
 			p.setDoneFirstTurn(false);
@@ -436,8 +432,8 @@ public class GameController {
 	 */
 	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande? JA!
 	public void handleAllIn() {
-		List<IPlayer> allInPlayers = table.getAllInPlayers();
-		List<IPlayer> activePlayers = table.getActivePlayers();
+		List<iPlayer> allInPlayers = table.getAllInPlayers();
+		List<iPlayer> activePlayers = table.getActivePlayers();
 		List<SidePotHandler> sidePots = table.getSidePots();
 		
 		/* sort allInPlayers so that the next task is performed in the correct
@@ -446,14 +442,14 @@ public class GameController {
 		
 		/* for each player that has gone all-in a SidePotHandler containing '
 		 * info regarding that all-in case is created */
-		for (IPlayer p : allInPlayers) {
+		for (iPlayer p : allInPlayers) {
 			
 				/* calculate how big the all-in bet was and conduct neccesary 
 				 * changes according to this bet */
 				int allInAmount = p.getOwnCurrentBet();
 				int sidePotValue = allInAmount * activePlayers.size() 
 						+ table.getRound().getPreBettingPot().getValue();
-				for (IPlayer ap : activePlayers) {
+				for (iPlayer ap : activePlayers) {
 					ap.setOwnCurrentBet(ap.getOwnCurrentBet() - allInAmount);
 				}
 				table.getRound().getPreBettingPot().emptyPot();
@@ -468,7 +464,7 @@ public class GameController {
 	            "SIDEPOT ADDED\n");
 	            System.out.println("sidePotValue: " + sidePotValue + "\n");
 	            System.out.println("ADDED PLAYERS:");
-	            for (IPlayer ap : table.getActivePlayers() )
+	            for (iPlayer ap : table.getActivePlayers() )
 	            	System.out.println(ap.getName());
 	            System.out.println("\n-----------------------------------\n");
 				

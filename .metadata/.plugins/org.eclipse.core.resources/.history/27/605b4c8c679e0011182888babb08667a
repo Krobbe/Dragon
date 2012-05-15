@@ -146,8 +146,8 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			
 		case HAND_DISCARDED:
 			
-			List<IPlayer> list = table.getPlayers();
-			IPlayer player = (Player)evt.getValue();
+			List<iPlayer> list = table.getPlayers();
+			iPlayer player = (Player)evt.getValue();
 			for(int i = 0; i < list.size(); i++) {
 				if(player.equals(list.get(i))) {
 					

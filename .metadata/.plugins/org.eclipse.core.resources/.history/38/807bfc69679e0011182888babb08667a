@@ -154,7 +154,12 @@ public class Table {
 	 * 
 	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
+<<<<<<< HEAD
+	public ICard addCommunityCard() {
+
+=======
 	public void addCommunityCard() {
+>>>>>>> Gamecontroller på server lite finare
 		if (tableCards.size() < 5) {
 			ICard card = dealer.popCard();
 			tableCards.add(card);

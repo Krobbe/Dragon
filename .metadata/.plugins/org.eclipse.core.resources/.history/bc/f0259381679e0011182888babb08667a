@@ -162,9 +162,16 @@ public class TableTest {
 
 	@Test
 	public void testAddTableCard() throws TableCardsFullException {
+<<<<<<< HEAD
 		t.addCommunityCard();
-		List<ICard> tableCards = t.getTableCards();
+		List<iCard> tableCards = t.getTableCards();
 		assertTrue(tableCards.get(0).getClass() == Card.class);
+=======
+		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
+		t.addTableCard(c);
+		List<ICard> tableCards = t.getTableCards();
+		assertTrue(tableCards.get(0).equals(c));
+>>>>>>> lagt till lite nya interface
 	}
 	
 	@Test(expected=TableCardsFullException.class) 

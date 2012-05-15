@@ -11,7 +11,7 @@ package model.game;
 public enum P {
 	INSTANCE;
 
-	public int getBigBlindValue() {
+	public static int getBigBlindValue() {
 		return 20;
 	}
 
