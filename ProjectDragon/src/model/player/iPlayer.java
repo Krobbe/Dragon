@@ -80,17 +80,10 @@ public interface IPlayer extends Comparable<IPlayer> {
 	public void setOwnCurrentBet(int value);
 	
 	/**
-<<<<<<< HEAD
 	 * Sets if the player has done its first turn or not. Set true if the player
 	 * has done its first turn.
 	 * 
 	 * @param b	The boolean
-=======
-	 * Sets the varible doneFirstTurn. In other words sets true if a player has
-	 * had a chance made a move during a betting round
-	 * 
-	 * @param value
->>>>>>> tog bort addCard i player
 	 */
 	public void setDoneFirstTurn(boolean b);
 	
