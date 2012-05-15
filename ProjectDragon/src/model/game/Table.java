@@ -14,7 +14,6 @@ import model.player.hand.FullTHHand;
 import model.player.hand.HandValue;
 import model.player.hand.HandValueType;
 import model.player.hand.IHand;
-import utilities.PlayersFullException;
 import utilities.TableCardsFullException;
 import event.Event;
 import event.EventBus;

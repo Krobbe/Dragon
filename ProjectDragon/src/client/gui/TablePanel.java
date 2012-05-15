@@ -6,7 +6,6 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -14,7 +13,6 @@ import javax.swing.SwingConstants;
 
 import model.card.ICard;
 import model.player.Bet;
-import model.game.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

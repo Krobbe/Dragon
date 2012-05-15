@@ -8,9 +8,6 @@ import event.Event;
 import event.Event.Tag;
 import event.EventBus;
 
-
-import model.card.Card;
-import model.card.ICard;
 import model.game.BettingRound;
 import model.game.P;
 import model.game.Pot;
@@ -19,7 +16,6 @@ import model.game.Table;
 import model.player.Bet;
 import model.player.OwnCurrentBetComparator;
 import model.player.IPlayer;
-import model.player.hand.IHand;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
