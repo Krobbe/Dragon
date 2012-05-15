@@ -17,32 +17,7 @@ import org.junit.Test;
  */
 public class HandTest {
 
-	/**
-	 * Tests that the visibility is set to correct values by the constructors
-	 * and methods
-	 * 
-	 * @author lisastenberg
-	 * @author robinandersson
-	 */
-	@Test
-	public void testVisible() {
-		
-		IHand hand = new Hand();
-		assertTrue(!hand.isVisible());
-		assertTrue(new Hand(true).isVisible());
-		assertTrue(!(new Hand(false).isVisible()));
-		
-		/*
-		 *  The hand should be false by default (constructor with no parameter)
-		 *  which is why the first parameter in setVisible is set to true to
-		 *  thoroughly test the method
-		 */
-		hand.setVisible(true);
-		assertTrue(hand.isVisible());
-		
-		hand.setVisible(false);
-		assertTrue(!hand.isVisible());
-	}
+
 	
 	/**
 	 * Tests so that the class returns it's list with cards correctly
@@ -107,7 +82,7 @@ public class HandTest {
 	@Test
 	public void testEquals() {
 		IHand hand1 = new Hand();
-		IHand hand2 = new Hand(true); //Visibility should not matter
+		IHand hand2 = new Hand(); 
 		
 		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.EIGHT);
@@ -124,7 +99,7 @@ public class HandTest {
 		assertTrue(hand1.equals(hand2));
 		assertTrue(hand2.equals(hand1));
 		
-		IHand hand3 = new Hand(false);
+		IHand hand3 = new Hand();
 		hand3.addCard(card1);
 		hand3.addCard(card2);
 		

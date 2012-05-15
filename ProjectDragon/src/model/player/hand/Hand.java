@@ -16,18 +16,10 @@ import model.card.*;
 public class Hand implements IHand {
 
 	private List<ICard> cards;
-	private boolean isVisible;
 	
-	/*
-	 * This constructor isn't really needed. The next one is always used.
-	 */
+	
 	public Hand(){
-		this(false);
-	}
-	
-	public Hand(boolean isVisible){
 		cards = new LinkedList<ICard>();
-		this.isVisible = isVisible;
 	}
 	
 	@Override
@@ -43,16 +35,6 @@ public class Hand implements IHand {
 	@Override
 	public void addCard(ICard card) {
 		cards.add(card);
-	}
-
-	@Override
-	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible;
-	}
-
-	@Override
-	public boolean isVisible() {
-		return isVisible;
 	}
 	
 	@Override

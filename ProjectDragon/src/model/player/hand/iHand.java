@@ -33,25 +33,6 @@ public interface IHand {
 	 */
 	public void addCard(ICard card);
 	
-	/**
-	 * Makes the cards visible to other players.
-	 * @author lisastenberg
-	 * @author robinandersson
-	 * @param isVisible The boolean that sets the visibility.
-	 */
-	public void setVisible(boolean isVisible);
-	
-	// TODO Remove isVisible()- and setVisible() methods from the iHand interf.
-	// This means adapting other classes, table and player for example, to allow
-	// for such a change. The visibility is a Texas-Holdem specific property
-	// Remember to edit the Hand and HandTest classes to match these changes.
-	/**
-	 * Indicates if a card is visible or not
-	 * @author mattiashenriksson
-	 * @return A boolean that tells if the hand is visible
-	 */
-	public boolean isVisible();
-	
 	@Override
 	public boolean equals(Object o);
 	

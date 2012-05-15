@@ -182,14 +182,6 @@ public class TableTest {
 	}
 	
 	@Test
-	public void testMakeHandVisible() {
-		IPlayer p = new User();
-		p.getHand().setVisible(false);
-		t.makeHandVisible(p);
-		assertTrue(p.getHand().isVisible());
-	}
-	
-	@Test
 	public void testDistributePot() {
 		IPlayer p1 = new User();
 		IPlayer p2 = new User();

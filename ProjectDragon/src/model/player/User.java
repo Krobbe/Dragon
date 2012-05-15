@@ -116,8 +116,8 @@ public class User implements IPlayer {
 	}
 
 	@Override
-	public boolean getDoneFirstBet() {
-		return player.getDoneFirstBet();
+	public boolean getDoneFirstTurn() {
+		return player.getDoneFirstTurn();
 	}
 
 }

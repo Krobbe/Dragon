@@ -46,7 +46,7 @@ public class FullTHHandTest {
 	@Test
 	public void testAddCardsFromHand() {
 		FullTHHand fhand = new FullTHHand();
-		IHand hand = new TexasHoldemHand(true);
+		IHand hand = new TexasHoldemHand();
 		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
 		
 		fhand.addCards(hand);
@@ -60,21 +60,6 @@ public class FullTHHandTest {
 		fhand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
 		fhand.discard();
 		assertTrue(fhand.getCards().equals(new LinkedList<Card>()));
-	}
-	
-	@Test
-	public void testIsVisible() {
-		FullTHHand fhand = new FullTHHand();
-		assertTrue(fhand.isVisible());
-	}
-	
-	@Test
-	public void testSetVisible() {
-		FullTHHand fhand = new FullTHHand();
-		fhand.setVisible(false);
-		assertTrue(!fhand.isVisible());
-		fhand.setVisible(true);
-		assertTrue(fhand.isVisible());
 	}
 	
 	@Test

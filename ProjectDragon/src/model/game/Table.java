@@ -172,15 +172,6 @@ public class Table {
 	}
 	
 	/**
-	 * Makes a players cards visible
-	 * @param p The player which cards will be set visible
-	 */
-	//TODO denna i player ist? mindre beroende?
-	public void makeHandVisible(IPlayer p) {
-		p.getHand().setVisible(true);
-	}
-	
-	/**
 	 * @author Mattias Henriksson
 	 * @author lisastenberg
 	 * 
@@ -339,7 +330,7 @@ public class Table {
 			
 			/* if all players hasn't got the chance to make a move betting isn't
 			 * done */
-			if (!ap.getDoneFirstBet()) {
+			if (!ap.getDoneFirstTurn()) {
 				bettingDone = false;
 			}
 		}

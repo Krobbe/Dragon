@@ -17,7 +17,6 @@ import model.card.*;
  */
 public class FullTHHand implements IHand {
 	private List<ICard> cards = new LinkedList<ICard>();
-	private boolean isVisible = true;
 	
 	public FullTHHand() {
 		
@@ -58,16 +57,6 @@ public class FullTHHand implements IHand {
 	 */
 	public void addCards(IHand hand) {
 		addCards(hand.getCards());
-	}
-
-	@Override
-	public void setVisible(boolean b) {
-		isVisible = b;
-	}
-
-	@Override
-	public boolean isVisible() {
-		return isVisible;
 	}
 	
 	@Override

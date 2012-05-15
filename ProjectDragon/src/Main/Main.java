@@ -41,13 +41,13 @@ public class Main {
 		Table table = new Table();
 		GameController gc = new GameController(table);
 		
-		IPlayer player1 = new User(new Player(new TexasHoldemHand(true),
+		IPlayer player1 = new User(new Player(new TexasHoldemHand(),
 				"Mattias H", new Balance(60)));
-		IPlayer player2 = new User(new Player(new TexasHoldemHand(true),
+		IPlayer player2 = new User(new Player(new TexasHoldemHand(),
 				"Lisa", new Balance(60)));
-		IPlayer player3 = new User(new Player(new TexasHoldemHand(true),
+		IPlayer player3 = new User(new Player(new TexasHoldemHand(),
 				"Robin", new Balance(60)));
-		IPlayer player4 = new User(new Player(new TexasHoldemHand(true),
+		IPlayer player4 = new User(new Player(new TexasHoldemHand(),
 				"Mattias F", new Balance(60)));
 		table.addPlayer(player1); table.addPlayer(player2); 
 		table.addPlayer(player3); table.addPlayer(player4);

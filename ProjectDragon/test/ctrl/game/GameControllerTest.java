@@ -58,7 +58,7 @@ public class GameControllerTest {
 	public void testRaise() throws PlayersFullException, IllegalRaiseException {
 		Table t = new Table();
 		GameController gc = new GameController(t);
-		IPlayer u1 = new User(new Player(new TexasHoldemHand(false),"Mattias"
+		IPlayer u1 = new User(new Player(new TexasHoldemHand(),"Mattias"
 				, new Balance(100)));
 		IPlayer u2 = new User();
 		t.addPlayer(u1);

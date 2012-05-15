@@ -21,11 +21,7 @@ public class TexasHoldemHand implements IHand {
 	 * author lisastenberg
 	 */
 	public TexasHoldemHand() {
-		this(false);
-	}
-	
-	public TexasHoldemHand(boolean isVisible){
-		 hand = new Hand(isVisible);
+		hand = new Hand();
 	}
 	
 	/**
@@ -51,23 +47,6 @@ public class TexasHoldemHand implements IHand {
 	@Override
 	public void addCard(ICard card) {
 		hand.addCard(card);
-	}
-	
-	/**
-	 * Sets the visibility of the card
-	 * @param isVisible True if visible
-	 */
-	public void setVisible(boolean isVisible) {
-		hand.setVisible(isVisible);
-	}
-	
-	/**
-	 * Returns the visibility of the Hand - if a player is able to see the hand
-	 * 
-	 * @return if the hand is visible (true) or not (false)
-	 */
-	public boolean isVisible() {
-		return hand.isVisible();
 	}
 	
 	/**

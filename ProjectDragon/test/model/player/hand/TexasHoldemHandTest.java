@@ -22,30 +22,6 @@ import org.junit.Test;
  */
 public class TexasHoldemHandTest {
 
-	/**
-	 * Tests that the visibility is set to correct values by the constructors
-	 * and methods
-	 * @author lisastenberg
-	 * @author robinandersson
-	 */
-	@Test
-	public void testVisible() {
-		IHand hand = new TexasHoldemHand();
-		assertTrue(!hand.isVisible());
-		assertTrue(new TexasHoldemHand(true).isVisible());
-		assertTrue(!(new TexasHoldemHand(false).isVisible()));
-		
-		/*
-		 *  The hand should be false by default (constructor with no parameter)
-		 *  which is why the first parameter in setVisible is set to true to
-		 *  thoroughly test the method
-		 */
-		hand.setVisible(true);
-		assertTrue(hand.isVisible());
-		
-		hand.setVisible(false);
-		assertTrue(!hand.isVisible());
-	}
 	
 	/**
 	 * Tests so that the class returns it's list with cards correctly
@@ -54,7 +30,7 @@ public class TexasHoldemHandTest {
 	 */
 	@Test
 	public void testGetCards() {
-		IHand hand = new TexasHoldemHand(true);
+		IHand hand = new TexasHoldemHand();
 		assertTrue(hand.getCards().equals(new LinkedList<Card>()));
 	}
 	
@@ -88,7 +64,7 @@ public class TexasHoldemHandTest {
 	@Test
 	public void testEquals() {
 		IHand hand1 = new TexasHoldemHand();
-		IHand hand2 = new TexasHoldemHand(true); //Visibility should not matter
+		IHand hand2 = new TexasHoldemHand();
 		
 		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.EIGHT);
@@ -105,7 +81,7 @@ public class TexasHoldemHandTest {
 		assertTrue(hand1.equals(hand2));
 		assertTrue(hand2.equals(hand1));
 		
-		IHand hand3 = new TexasHoldemHand(false);
+		IHand hand3 = new TexasHoldemHand();
 		hand3.addCard(card1);
 		hand3.addCard(card2);
 		
@@ -146,7 +122,7 @@ public class TexasHoldemHandTest {
 	
 	@Test
 	public void testToString() {
-		IHand hand1 = new TexasHoldemHand(true);
+		IHand hand1 = new TexasHoldemHand();
 		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
 		hand1.addCard(c);
 		String s = hand1.toString();

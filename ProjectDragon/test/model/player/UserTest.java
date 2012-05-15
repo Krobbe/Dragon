@@ -19,7 +19,7 @@ public class UserTest {
 
 	@Test
 	public void testSetActive() {
-		Player p = new Player(new TexasHoldemHand(true), "Mattias", 
+		Player p = new Player(new TexasHoldemHand(), "Mattias", 
 				new Balance());
 		User u = new User(p);
 		u.setActive(true);
@@ -30,7 +30,7 @@ public class UserTest {
 	
 	@Test
 	public void testAddCard() {
-		TexasHoldemHand thh = new TexasHoldemHand(true);
+		TexasHoldemHand thh = new TexasHoldemHand();
 		Player p = new Player(thh, "Mattias", new Balance());
 		User u = new User(p);
 		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);

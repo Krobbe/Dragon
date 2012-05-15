@@ -99,7 +99,7 @@ public interface IPlayer extends Comparable<IPlayer> {
 	 * 
 	 * @return the variable doneFirstTurn.
 	 */
-	public boolean getDoneFirstBet();
+	public boolean getDoneFirstTurn();
 	
 	@Override
 	public boolean equals(Object o);

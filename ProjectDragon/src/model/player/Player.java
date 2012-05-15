@@ -22,9 +22,8 @@ public class Player implements IPlayer {
 	private int ownCurrentBet = -1; //TODO dšpa -1 till typ "NO_BET" ? 
 	private boolean doneFirstTurn;
 	
-	// TODO Is the "isVisible" variable used in TexasHold'em hand?
 	public Player() {
-		this(new TexasHoldemHand(false),"Default",
+		this(new TexasHoldemHand(),"Default",
 				new Balance());
 	}
 	
@@ -111,7 +110,7 @@ public class Player implements IPlayer {
 		String result = ("Name: " + getName() + " , " + "Balance: "
 				+ getBalance() + " , " + "Active: " + isActive() + " , "
 				+ "Hand: " + getHand().toString()) + " , " + "Own current bet: "
-				+ getOwnCurrentBet() + " , "+ "Done first bet?: " + getDoneFirstBet();
+				+ getOwnCurrentBet() + " , "+ "Done first bet?: " + getDoneFirstTurn();
 		return result;
 	}
 
@@ -137,7 +136,7 @@ public class Player implements IPlayer {
 	}
 
 	@Override
-	public boolean getDoneFirstBet() {
+	public boolean getDoneFirstTurn() {
 		return doneFirstTurn;
 	}
 }
