@@ -177,10 +177,12 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 		case COMMUNITY_CARDS_CHANGED:
 			List<iCard> cards = (List<iCard>) evt.getValue();
 			if(cards.size() == 0) {
-				cleara alla texter, byt bakgrund;
+//				cleara alla texter, byt bakgrund;
 			}
-			else if(cards.size() = 3,4,5) {
-				sätt korten;
+			else if(cards.size() == 3 ||
+					cards.size() == 4 ||
+					cards.size() == 5) {
+//				sätt korten;
 			}
 			
 			break;

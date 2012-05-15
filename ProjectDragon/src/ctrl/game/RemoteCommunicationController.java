@@ -58,7 +58,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		if(account != null && account.getPassWord().equals(accountPassword)){
 			
 			// TODO Change to player instead?
-			// TODO Login failed exception istŠllet fšr att returnera ett null-objekt?
+			// TODO Login failed exception istŠllet fšr att returnera ett
+			// null-objekt?
 			clients.put(account, client);
 			
 			return account;
@@ -69,7 +70,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	
 	@Override
 	public void logOut(Account account) throws RemoteException{
-		// TODO Do more when logging out a player? Save active games or something?
+		// TODO Do more when logging out a player? Save active games or
+		// something?
 		clients.remove(account);
 	}
 
@@ -87,7 +89,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			Account serverSideAccount = null;
 			
 			/*
-			 * Gets the actual Account instance from the server. The supplied
+			 * Gets the actual Account instance already stored. The supplied
 			 * account from the client is merely a clone (to prevent security
 			 * issues, for instance to prevent a modified client from changing
 			 * the account object illegally
@@ -100,16 +102,19 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				}
 			}
 			
-			// Checks if the player has enough "money" to pay the game's
-			// entrance fee
+			/*
+			 *  Checks if the player has enough "money" to pay the game's
+			 *	entrance fee
+			*/
 			if(serverSideAccount.getBalance().getValue() >= entranceFee ){
 			
 				try {
-					newGame = new RemoteGameController(this, maxPlayers, entranceFee,
-							playerStartingChips);
+					newGame = new RemoteGameController(this, maxPlayers,
+											entranceFee, playerStartingChips);
 					
 				} catch (RemoteException e) {
-					// TODO Better exception handling for when not able to create game?
+					// TODO Better exception handling for when not able to
+					// create game?
 					return null;
 				}
 				
@@ -164,7 +169,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				String balance = rs.getString(5);
 				int x = Integer.parseInt(balance);
 
-				Account a = new Account(firstName, lastName, accountName, passWord);
+				Account a = new Account(firstName, lastName, accountName, 
+																	passWord);
 				a.getBalance().addToBalance(x);
 				return a;
 			}

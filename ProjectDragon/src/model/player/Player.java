@@ -20,6 +20,7 @@ public class Player implements IPlayer {
 	private int ownCurrentBet = -1; //TODO dšpa -1 till typ "NO_BET" ? 
 	private boolean doneFirstTurn;
 	
+	// TODO Is the "isVisible" variable still used in TexasHold'em hand?
 	public Player() {
 		this(new TexasHoldemHand(),"Default",
 				new Balance());

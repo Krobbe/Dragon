@@ -12,6 +12,7 @@ import model.game.Pot;
 import model.player.Bet;
 import model.player.IPlayer;
 import model.player.hand.IHand;
+import model.player.User;
 
 import remote.IClientGame;
 import remote.IServerGame;
@@ -23,22 +24,38 @@ import utilities.IllegalCallException;
  * @author lisastenberg
  */
 
-public class RemoteGameController implements IClientGame, IServerRequest {
-
-	private IServerGame serverGameController;
-	private GameController gameController;
-	private RemoteCommunicationController remoteCommunicationController;
+public class RemoteGameController implements iClientGame, iServerRequest {
 	
-	public RemoteGameController(
-				RemoteCommunicationController remoteCommunicationController){
-		this(remoteCommunicationController, new GameController());
+	private iServerGame serverGame;
+	private RemoteCommunicationController clientComm;
+	
+	private GameController gameController;
+	
+	private iPlayer user;
+
+	
+	public RemoteGameController(RemoteCommunicationController clientComm,
+			iPlayer user){
+		this(clientComm, user, new GameController());
 	}
 	
-	public RemoteGameController(
-				RemoteCommunicationController remoteCommunicationController,
-												GameController gameController){
-		this.remoteCommunicationController = remoteCommunicationController;
+	public RemoteGameController(RemoteCommunicationController clientComm, 
+								iPlayer user, GameController gameController){
+		this.clientComm = clientComm;
 		this.gameController = gameController;
+		this.user = user;
+		
+		this.gameController.addPlayer(user);
+	}
+	
+	/**
+	 * Sets the reference to the controller that is handling this particular
+	 * game, together with other client's instances of this class.  
+	 * @param serverGame The reference to the server's instance controlling this
+	 * particular game
+	 */
+	public void setServerGame(iServerGame serverGame){
+		this.serverGame = serverGame;
 	}
 	
 	/**
@@ -51,8 +68,8 @@ public class RemoteGameController implements IClientGame, IServerRequest {
 	public boolean setReadyToPlay(IPlayer player, boolean isReady) {
 		
 		try {
-			return serverGameController.isReadyToStart(
-					remoteCommunicationController.getAccount(), player,
+			return serverGame.isReadyToStart(
+					clientComm.getAccount(), player,
 					isReady);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -83,10 +100,10 @@ public class RemoteGameController implements IClientGame, IServerRequest {
 	@Override
 	public boolean requestCall(Bet bet) {
 		
-		if(serverGameController != null){
+		if(serverGame != null){
 			
 			try {
-				return serverGameController.call(bet);
+				return serverGame.call(bet);
 			} catch (IllegalCallException e) {
 				e.printStackTrace();
 			} catch (RemoteException e) {
@@ -100,10 +117,10 @@ public class RemoteGameController implements IClientGame, IServerRequest {
 	@Override
 	public boolean requestCheck(Bet bet) {
 		
-		if(serverGameController != null){
+		if(serverGame != null){
 			
 			try {
-				return serverGameController.check(bet);
+				return serverGame.check(bet);
 			} catch (IllegalCallException e) {
 				e.printStackTrace();
 			} catch (RemoteException e) {
@@ -117,10 +134,10 @@ public class RemoteGameController implements IClientGame, IServerRequest {
 	@Override
 	public boolean requestRaise(Bet bet) {
 		
-		if(serverGameController != null){
+		if(serverGame != null){
 			
 			try {
-				return serverGameController.raise(bet);
+				return serverGame.raise(bet);
 			} catch (IllegalCallException e) {
 				e.printStackTrace();
 			} catch (RemoteException e) {
@@ -134,10 +151,10 @@ public class RemoteGameController implements IClientGame, IServerRequest {
 	@Override
 	public boolean requestFold(IPlayer player) {
 		
-		if(serverGameController != null){
+		if(serverGame != null){
 
 			try {
-				return serverGameController.fold(player);
+				return serverGame.fold(player);
 			} catch (IllegalCallException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
