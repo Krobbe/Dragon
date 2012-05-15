@@ -32,7 +32,7 @@ import event.EventBus;
 public class Table {
 	private Round round;
 	private TexasHoldemDealer dealer;
-	private List<ICard> tableCards;
+	private List<ICard> communityCards;
 	private List<IPlayer> players;
 
 	private boolean showdownDone;
@@ -52,7 +52,7 @@ public class Table {
 	public Table(Collection<IPlayer> players) {
 		round = new Round();
 		dealer = new TexasHoldemDealer();
-		tableCards = new ArrayList<ICard>();
+		communityCards = new ArrayList<ICard>();
 		this.players = new ArrayList<IPlayer>(players);
 
 		indexOfCurrentPlayer = 0;
@@ -154,9 +154,9 @@ public class Table {
 	 * @throws IllegalArgumentException if there are all ready five cards on the table 
 	 */
 	public void addCommunityCard() {
-		if (tableCards.size() < 5) {
+		if (communityCards.size() < 5) {
 			ICard card = dealer.popCard();
-			tableCards.add(card);
+			communityCards.add(card);
 			EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARD, card));
 		} else {
 			throw new TableCardsFullException();
@@ -167,7 +167,7 @@ public class Table {
 	 * Clears all "table cards" from the table.
 	 */
 	public void clearTableCards() {
-		tableCards.clear();
+		communityCards.clear();
 	}
 	
 	/**
@@ -294,7 +294,7 @@ public class Table {
 		for (IPlayer player : plrs) {
 				// Create a hand with the community cards and the player's hole
 				// cards.
-				FullTHHand hand = new FullTHHand(tableCards);
+				FullTHHand hand = new FullTHHand(communityCards);
 				hand.addCards(player.getHand());
 				
 				// Store the player together with other players with the same
@@ -404,7 +404,7 @@ public class Table {
 	 * @return The "table cards" represented as a list of cards.
 	 */
 	public List<ICard> getTableCards() {
-		return tableCards;
+		return communityCards;
 	}
 	
 	/**
@@ -441,7 +441,7 @@ public class Table {
 		result.append("\n" + "Current player is " + getCurrentPlayer().getName() + "\n");
 		result.append("Player with Dealer button is: " + 
 				(players.get(getDealerButtonIndex())).getName() + "\n");
-		result.append("Table cards are:" + "\n" + tableCards.toString() + "\n");
+		result.append("Table cards are:" + "\n" + communityCards.toString() + "\n");
 		result.append("Pot is: " + round.getPot().getValue() + "\n");
 		result.append("Pre-betting pot is: " + round.getPreBettingPot().getValue() + "\n");
 		result.append("Current bet is: " + 
