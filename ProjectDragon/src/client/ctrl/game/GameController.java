@@ -209,7 +209,7 @@ public class GameController {
 	 * @throws RemoteException
 	 */
 	public void addCommunityCard(ICard card) {
-		table.addTableCard(card);
+		table.addCommunityCard(card);
 		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, ""));
 
 	}
@@ -220,7 +220,7 @@ public class GameController {
 	 * @throws RemoteException
 	 */
 	public void newRound() {
-		table.getTableCards().clear();
+		table.getCommunityCards().clear();
 		for (IPlayer p : table.getActivePlayers()) {
 			p.getHand().discard();
 			p.setOwnCurrentBet(0);

@@ -149,9 +149,10 @@ public class Table {
 	
 	
 	/**
-	 * Adds a card to the "table cards"
+	 * Adds a card to the community cards
 	 * 
-	 * @throws IllegalArgumentException if there are all ready five cards on the table 
+	 * @throws CommunityCardsFullException
+	 *             if there are allready five cards on the table
 	 */
 	public void addCommunityCard() {
 		if (communityCards.size() < 5) {
@@ -400,10 +401,10 @@ public class Table {
 	}
 	
 	/**
-	 * This method is used only for testing of the class.
-	 * @return The "table cards" represented as a list of cards.
+	 * 
+	 * @return The community cards represented as a list of cards.
 	 */
-	public List<ICard> getTableCards() {
+	public List<ICard> getCommunityCards() {
 		return communityCards;
 	}
 	

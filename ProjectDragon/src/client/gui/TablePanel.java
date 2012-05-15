@@ -284,7 +284,7 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			
 		//TODO: snygga till denna?	
 		case COMMUNITY_CARDS_CHANGED:
-			List<ICard> communityCards = table.getTableCards();
+			List<ICard> communityCards = table.getCommunityCards();
 				switch (communityCards.size()) {
 
 				case 0:

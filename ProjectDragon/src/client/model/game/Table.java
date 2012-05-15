@@ -23,7 +23,7 @@ import utilities.*;
 
 public class Table {
 	private Round round;
-	private List<ICard> tableCards;
+	private List<ICard> communityCards;
 	private List<IPlayer> players;
 	private int meIndex;
 	private int indexOfCurrentPlayer;
@@ -36,7 +36,7 @@ public class Table {
 		this.meIndex = meIndex;
 		this.players = players;
 		round = new Round();
-		tableCards = new LinkedList<ICard>();
+		communityCards = new LinkedList<ICard>();
 		indexOfCurrentPlayer = 0;
 		indexOfDealerButton = 0;
 	}
@@ -133,23 +133,26 @@ public class Table {
 	
 	
 	/**
-	 * Adds a card to the "table cards" 
-	 * @param c The card which will be added
-	 * @throws IllegalArgumentException if there are all ready five cards on the table 
+	 * Adds a card to the "table cards"
+	 * 
+	 * @param c
+	 *            The card which will be added
+	 * @throws CommunityCardsFullException
+	 *             if there are all ready five cards on the table
 	 */
-	public void addTableCard(ICard c) {
-		if (tableCards.size() < 5) {
-			tableCards.add(c);
+	public void addCommunityCard(ICard c) {
+		if (communityCards.size() < 5) {
+			communityCards.add(c);
 		} else {
 			throw new CommunityCardsFullException();
 		}
 	}
 	
 	/**
-	 * Clears all "table cards" from the table.
+	 * Clears all community from the table.
 	 */
-	public void clearTableCards() {
-		tableCards.clear();
+	public void clearCommunityCards() {
+		communityCards.clear();
 	}
 	
 	/**
@@ -184,10 +187,10 @@ public class Table {
 	
 	/**
 	 * This method is used only for testing of the class.
-	 * @return The "table cards" represented as a list of cards.
+	 * @return The community cards represented as a list of cards.
 	 */
-	public List<ICard> getTableCards() {
-		return tableCards;
+	public List<ICard> getCommunityCards() {
+		return communityCards;
 	}
 
 	/**
@@ -207,7 +210,7 @@ public class Table {
 		result.append("\n" + "Current player is " + getCurrentPlayer().getName() + "\n");
 		result.append("Player with Dealer button is: " + 
 				(players.get(getDealerButtonIndex())).getName() + "\n");
-		result.append("Table cards are:" + "\n" + tableCards.toString() + "\n");
+		result.append("Table cards are:" + "\n" + communityCards.toString() + "\n");
 		result.append("Pot is: " + round.getPot().getValue() + "\n");
 		result.append("Pre-betting pot is: " + round.getPreBettingPot().getValue() + "\n");
 		result.append("Current bet is: " + 
