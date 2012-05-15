@@ -60,7 +60,7 @@ public class TableTest {
 	
 	@Test
 	public void testGetTableCards() {
-		assertTrue(t.getTableCards().equals(new LinkedList<Card>()));
+		assertTrue(t.getCommunityCards().equals(new LinkedList<Card>()));
 	}
 	
 	@Test
@@ -163,7 +163,7 @@ public class TableTest {
 	@Test
 	public void testAddTableCard() throws CommunityCardsFullException {
 		t.addCommunityCard();
-		List<ICard> tableCards = t.getTableCards();
+		List<ICard> tableCards = t.getCommunityCards();
 		assertTrue(tableCards.get(0).getClass() == Card.class);
 	}
 	
@@ -178,7 +178,7 @@ public class TableTest {
 	public void testClearTableCards() throws CommunityCardsFullException {
 		t.addCommunityCard();
 		t.clearCommunityCards();
-		assertTrue(t.getTableCards().size() == 0);
+		assertTrue(t.getCommunityCards().size() == 0);
 	}
 	
 	@Test

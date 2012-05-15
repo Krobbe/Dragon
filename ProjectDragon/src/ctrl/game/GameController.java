@@ -247,7 +247,7 @@ public class GameController {
 	public void performShowdown(List<IPlayer> plrs, int potAmount) {
 
 		/* put all the community cards out on the table */
-		int cardsOnTable = table.getTableCards().size();
+		int cardsOnTable = table.getCommunityCards().size();
 		for(int i = cardsOnTable; i < 5; i++) {
 			addCommunityCard();
 		}
@@ -395,7 +395,7 @@ public class GameController {
 		}
 		
 		/* check if it's time for showdown */
-		if (table.getTableCards().size() == 5 || 
+		if (table.getCommunityCards().size() == 5 || 
 				table.getActivePlayers().size() == 1 || 
 				table.getActivePlayers().size() == 0) {
 			
@@ -414,7 +414,7 @@ public class GameController {
 			}
 		
 		/* else, if it's time for flop, show flop */
-		} else if (table.getTableCards().size() == 0) {
+		} else if (table.getCommunityCards().size() == 0) {
 			for(int i = 0; i < 3; i++) {
 				addCommunityCard();
 			}
