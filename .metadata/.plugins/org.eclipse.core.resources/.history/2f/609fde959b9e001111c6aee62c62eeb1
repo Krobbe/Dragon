@@ -88,6 +88,10 @@ public class Main {
 				}
 				
 				if (table.isBettingDone()) {
+<<<<<<< HEAD
+					//gc.handleAllIn();
+=======
+>>>>>>> Finlirat i Table
 					gc.nextBettingRound();
 				} 
 				

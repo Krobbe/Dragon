@@ -209,7 +209,7 @@ public class Table {
 		 */
 		for (int i = 0; i < 2; i++) {
 			for (IPlayer player : getActivePlayers()) {
-				player.getHand().addCard(dealer.popCard());
+				player.addCard(dealer.popCard());
 			}
 		}
 
@@ -305,31 +305,37 @@ public class Table {
      * @return a boolean telling whether betting for the current round is done.
      */
     public boolean isBettingDone() {
+    	boolean bettingDone = true;
 		List<IPlayer> activePlayers = getActivePlayers();
 		
 		for (IPlayer ap: activePlayers) {
-			if (!ap.hasDoneFirstTurn()) {
-				return false;
-			}
 			
 			/* if all players hasn't posted the same bet the betting isn't done,
 			 * unless the players who hasn't done this is all-in */
-			if(ap.getOwnCurrentBet() != activePlayers.get(0).getOwnCurrentBet()
+			if (activePlayers.get(0).getOwnCurrentBet() != ap.getOwnCurrentBet()
 					&& !ap.isAllIn()) {
-				return false;
+					bettingDone = false;
+			}
+			
+			/* if all players hasn't got the chance to make a move betting isn't
+			 * done */
+			if (!ap.hasDoneFirstTurn()) {
+				bettingDone = false;
 			}
 		}
-		return true;
+		return bettingDone;
     }
     
     /**
+     * 
      * @return a list containing the players who has currently gone all-in
      */
     public List<IPlayer> getAllInPlayers() {
     	List<IPlayer> allInPlayers = new LinkedList<IPlayer>();
     	
 		for (IPlayer ap : getActivePlayers()) {
-			if (ap.isAllIn()) {
+			//TODO Šndra till player.isAllIn?
+			if (ap.getBalance().getValue() == 0) {
 				allInPlayers.add(ap);
 			}
 		}

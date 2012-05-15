@@ -209,7 +209,7 @@ public class Table {
 		 */
 		for (int i = 0; i < 2; i++) {
 			for (IPlayer player : getActivePlayers()) {
-				player.getHand().addCard(dealer.popCard());
+				player.addCard(dealer.popCard());
 			}
 		}
 
@@ -323,13 +323,15 @@ public class Table {
     }
     
     /**
+     * 
      * @return a list containing the players who has currently gone all-in
      */
     public List<IPlayer> getAllInPlayers() {
     	List<IPlayer> allInPlayers = new LinkedList<IPlayer>();
     	
 		for (IPlayer ap : getActivePlayers()) {
-			if (ap.isAllIn()) {
+			//TODO Šndra till player.isAllIn?
+			if (ap.getBalance().getValue() == 0) {
 				allInPlayers.add(ap);
 			}
 		}

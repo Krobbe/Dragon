@@ -119,7 +119,7 @@ public class Table {
 		
 		// The dealer button is set to a player that is still in the game.
 		/*while(!players.get(indexOfDealerButton).isStillInGame()){
-			indexOfDealerButton++; return nextDealerButtonIndex()?
+			indexOfDealerButton++;
 		}*/
 		return indexOfDealerButton;
 	}
@@ -140,11 +140,12 @@ public class Table {
 		return indexOfDealerButton;
 	}
 	
+	
 	/**
-	 * Adds a card to the community cards.
+	 * Adds a card to the community cards
 	 * 
 	 * @throws CommunityCardsFullException
-	 *             if there are already five cards on the table.
+	 *             if there are allready five cards on the table
 	 */
 	public void addCommunityCard() {
 		if (communityCards.size() < 5) {
@@ -167,9 +168,8 @@ public class Table {
 	 * @author Mattias Henriksson
 	 * @author lisastenberg
 	 * 
-	 * Calculates the amount of chips the winner(s) will get and distributes it 
-	 * to him. After the pot is distributed equally among the winner(s), the pot 
-	 * is emptied. 
+	 * Calculates the amount of chips the winner(s) will get and distributes it to him.
+	 * After the pot is distributed equally among the winner(s), the pot is emptied. 
 	 */
 	public void distributePot(List<IPlayer> winners, int potAmount) {
 		// This assumes that the pot can be distributed equally.
@@ -209,7 +209,8 @@ public class Table {
 		 */
 		for (int i = 0; i < 2; i++) {
 			for (IPlayer player : getActivePlayers()) {
-				player.getHand().addCard(dealer.popCard());
+
+				player.addCard(dealer.popCard());
 			}
 		}
 
@@ -257,7 +258,9 @@ public class Table {
             	System.out.println(p.getName());
             }
             System.out.println("\n-----------------------------------\n");
+            
         }
+
     }
     
     /**
@@ -300,36 +303,41 @@ public class Table {
     
     /**
      * This method checks if the players has all done their bets properly and 
-     * the betting for the current round is therefore done.
-     * 
+     * the betting for the current round is therefore done
      * @return a boolean telling whether betting for the current round is done.
      */
     public boolean isBettingDone() {
+    	boolean bettingDone = true;
 		List<IPlayer> activePlayers = getActivePlayers();
 		
 		for (IPlayer ap: activePlayers) {
-			if (!ap.hasDoneFirstTurn()) {
-				return false;
-			}
 			
 			/* if all players hasn't posted the same bet the betting isn't done,
 			 * unless the players who hasn't done this is all-in */
-			if(ap.getOwnCurrentBet() != activePlayers.get(0).getOwnCurrentBet()
+			if (activePlayers.get(0).getOwnCurrentBet() != ap.getOwnCurrentBet()
 					&& !ap.isAllIn()) {
-				return false;
+					bettingDone = false;
+			}
+			
+			/* if all players hasn't got the chance to make a move betting isn't
+			 * done */
+			if (!ap.hasDoneFirstTurn()) {
+				bettingDone = false;
 			}
 		}
-		return true;
+		return bettingDone;
     }
     
     /**
+     * 
      * @return a list containing the players who has currently gone all-in
      */
     public List<IPlayer> getAllInPlayers() {
     	List<IPlayer> allInPlayers = new LinkedList<IPlayer>();
     	
 		for (IPlayer ap : getActivePlayers()) {
-			if (ap.isAllIn()) {
+			//TODO Šndra till player.isAllIn?
+			if (ap.getBalance().getValue() == 0) {
 				allInPlayers.add(ap);
 			}
 		}
