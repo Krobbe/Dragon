@@ -3,7 +3,7 @@ package Main;
 import java.util.List;
 import java.util.Scanner;
 
-import client.gui.MainView;
+import client.gui.menu.MainView;
 
 import ctrl.game.GameController;
 

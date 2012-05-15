@@ -1,4 +1,4 @@
-package client.gui;
+package client.gui.menu;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -171,16 +171,99 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 					// hantera panel nr 0.
 					break;
 
-				case 1:
-					// hantera panel nr 1.
-				default:
-					break;
 				}
+			
+			/* handle the correct panels */
+			switch (handDiscardedPlayerIndex) {
+			case 0:
+				
+				p1c1Label.setText(null);
+				p1c2Label.setText(null);
+				playerOnePanel.setBackground(Color.red);
+				
+				break;
+				
+			case 1:
+				
+				p2c1Label.setText(null);
+				p2c2Label.setText(null);
+				playerTwoPanel.setBackground(Color.red);
+				
+				break;
+				
+			case 2:
+				
+				p3c1Label.setText(null);
+				p3c2Label.setText(null);
+				playerThreePanel.setBackground(Color.red);
+				
+				break;
+				
+			case 3:
+				
+				p4c1Label.setText(null);
+				p4c2Label.setText(null);
+				playerFourPanel.setBackground(Color.red);
+				
+				break;
+				
+			case 4:
+				
+				p5c1Label.setText(null);
+				p5c2Label.setText(null);
+				playerFivePanel.setBackground(Color.red);
+				
+				break;
+				
+			case 5:
+				
+				p6c1Label.setText(null);
+				p6c2Label.setText(null);
+				playerSixPanel.setBackground(Color.red);
+				
+				break;
+				
+			case 6:
+				
+				p7c1Label.setText(null);
+				p7c2Label.setText(null);
+				playerSevenPanel.setBackground(Color.red);
+				
+				break;
+				
+			case 7:
+				
+				p8c1Label.setText(null);
+				p8c2Label.setText(null);
+				playerEightPanel.setBackground(Color.red);
+				
+				break;
+				
+			case 8:
+				
+				p9c1Label.setText(null);
+				p9c2Label.setText(null);
+				playerNinePanel.setBackground(Color.red);
+				
+				break;
+				
+			case 9:
+				
+				p10c1Label.setText(null);
+				p10c2Label.setText(null);
+				playerTenPanel.setBackground(Color.red);
+				
+				break;
+				
+			default:
+				break;
+
 			}
 			
 			
-			break;
+			}
 			
+		
 		case BALANCE_CHANGED:
 			
 			IPlayer balanceChangedPlayer = (Player) evt.getValue();
@@ -198,13 +281,62 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			switch (balanceChangedPlayerIndex) {
 			case 0:
 				
-				// hantera panel 0
+				p1CreditsLabel.setText(balanceChangedPlayer.getBalance().toString());
 				
 				break;
 				
 			case 1:
 				
-				// hantera panel 1
+				p2CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+				
+				break;
+				
+			case 2:
+				
+				p3CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+				
+				break;
+				
+			case 3:
+				
+				p4CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+				
+				break;
+				
+			case 4:
+				
+				p5CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+				
+				break;
+				
+			case 5:
+				
+				p6CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+				
+				break;
+				
+			case 6:
+				
+				p7CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+				
+				break;
+				
+			case 7:
+				
+				p8CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+				
+				break;
+				
+			case 8:
+				
+				p9CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+				
+				break;
+				
+			case 9:
+				
+				p10CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+				
 				break;
 			default:
 				break;
@@ -220,9 +352,11 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			} else {
 				ownCurrentBet = (Bet)evt.getValue();
 				IPlayer betOwner = ownCurrentBet.getOwner();
+				int tmp = 0;
 				for(IPlayer player : allPlayers) {
+					tmp++;
 					if(player.equals(betOwner)) {
-						//update GUI
+						//TODO change bet
 						break;
 					}
 				}

@@ -1,4 +1,4 @@
-package client.gui;
+package client.gui.menu;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

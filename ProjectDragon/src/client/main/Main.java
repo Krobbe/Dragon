@@ -1,7 +1,7 @@
 package client.main;
 
 import client.ctrl.game.RemoteCommunicationController;
-import client.gui.MainView;
+import client.gui.menu.MainView;
 
 
 
