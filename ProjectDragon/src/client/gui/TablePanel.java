@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -133,7 +134,7 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 	@Override
 	public void onEvent(Event evt) {
 		
-		List<IPlayer> players = table.getPlayers();
+		List<IPlayer> allPlayers = table.getPlayers();
     	
 		switch (evt.getTag()) {
 		
@@ -166,9 +167,10 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			IPlayer handDiscardedPlayer = (Player) evt.getValue();
 			int handDiscardedPlayerIndex = -1;
 			
+			//TODO: om man fick in ett index från början ist hade inte följand varit nödvändigt:
 			/* get the index of the player whos hand was discarded */
-			for(int i = 0; i < players.size(); i++) {
-				if(handDiscardedPlayer.equals(players.get(i))) {
+			for(int i = 0; i < allPlayers.size(); i++) {
+				if(handDiscardedPlayer.equals(allPlayers.get(i))) {
 					handDiscardedPlayerIndex = i;
 					break;
 				}
@@ -198,9 +200,10 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			IPlayer balanceChangedPlayer = (Player) evt.getValue();
 			int balanceChangedPlayerIndex = -1;
 			
+			//TODO: om man fick in ett index från början ist hade inte följand varit nödvändigt:
 			/* get the index of the player whos balance was changed */
-			for(int i = 0; i < players.size(); i++) {
-				if(balanceChangedPlayer.equals(players.get(i))) {
+			for(int i = 0; i < allPlayers.size(); i++) {
+				if(balanceChangedPlayer.equals(allPlayers.get(i))) {
 					balanceChangedPlayerIndex = i;
 					break;
 				}
@@ -231,7 +234,7 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			} else {
 				ownCurrentBet = (Bet)evt.getValue();
 				IPlayer betOwner = ownCurrentBet.getOwner();
-				for(IPlayer player : players) {
+				for(IPlayer player : allPlayers) {
 					if(player.equals(betOwner)) {
 						//update GUI
 						break;
@@ -242,9 +245,55 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			
 		case TURN_CHANGED:
 			
+			int turnIndex = (Integer) evt.getValue();
+			
+			switch (turnIndex) {
+			case 0:
+				
+				//hantera att det är 0's tur
+				
+				break;
+				
+			case 1:
+				
+				//hantera att det är 1's tur
+
+			default:
+				break;
+			}
+			
 			break;
 			
 		case HANDS_CHANGED:
+			
+			if (!(evt.getValue() instanceof Player)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+
+				for (IPlayer acp : table.getActivePlayers()) {
+					int index = allPlayers.indexOf(acp);
+
+					switch (index) {
+					case 0:
+
+						// sätt panelerna på plats 0's kort. hämta från
+						// allPlayers.get(0).getHand()
+
+						break;
+
+					case 1:
+
+						// sätt panelerna på plats 0's kort. hämta från
+						// allPlayers.get(1).getHand()
+
+					default:
+						break;
+					}
+
+				}
+
+			}
 			
 			break;
 			

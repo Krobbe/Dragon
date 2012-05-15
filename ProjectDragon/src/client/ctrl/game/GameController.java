@@ -159,11 +159,11 @@ public class GameController {
 	public boolean nextTurn(IPlayer nextPlayer) {
 
 		Boolean tmp = table.nextPlayer().equals(nextPlayer);
-		if(tmp) {
+		if (tmp) {
 			EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
-					.getCurrentPlayer()));
+					.getIndexOfCurrentPlayer()));
 			return true;
-		} 
+		}
 		return false;
 	}
 
@@ -177,7 +177,7 @@ public class GameController {
 	public void setTurn(int indexOfCurrentPlayer) {
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
-				.getCurrentPlayer()));
+				.getIndexOfCurrentPlayer()));
 	}
 	
 
@@ -189,13 +189,14 @@ public class GameController {
 	 * @throws RemoteException
 	 */
 	public void setHand(IPlayer player, IHand hand) {
-		for(IPlayer tmp : table.getActivePlayers()) {
-			if(tmp.equals(player)) {
-				IHand playerHand = tmp.getHand();
-				for(ICard card : hand.getCards()) {
+		for (IPlayer clientPlayer : table.getActivePlayers()) {
+			if (clientPlayer.equals(player)) {
+				IHand playerHand = clientPlayer.getHand();
+				for (ICard card : hand.getCards()) {
 					playerHand.addCard(card);
 				}
-				EventBus.publish(new Event(Event.Tag.HANDS_CHANGED, tmp));
+				EventBus.publish(new Event(Event.Tag.HANDS_CHANGED,
+						clientPlayer));
 				break;
 			}
 		}

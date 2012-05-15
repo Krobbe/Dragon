@@ -9,7 +9,7 @@ public class Event {
     // All possible events listed
 	//When you input a new tag, please put in alphabetical order.
     public enum Tag {
-    	BALANCE_CHANGED,
+    	BALANCE_CHANGED,	// getValue(): player, the player who's balance was changed
     	COMMUNITY_CARDS_CHANGED,	//getValue(): ICard
     	CURRENT_BET_CHANGED,		//getValue(): int
     	DO_FOLD,
@@ -22,8 +22,8 @@ public class Event {
     	CREATE_TABLE,
     	GO_TO_REGISTER,
     	GO_TO_STATISTICS,
-    	HANDS_CHANGED,
-    	HAND_DISCARDED,
+    	HANDS_CHANGED,	// getValue(): player, The that represents "me" on the client
+    	HAND_DISCARDED,	// getValue(): player, the player who's hand was discarded
     	JOIN_TABLE,
     	LOGIN_FAILED,
     	LOGIN_SUCCESS,
@@ -39,8 +39,9 @@ public class Event {
     	REQUEST_RAISE,
     	TRY_LOGIN, //The string is in the form "username password"
     	TRY_REGISTER, //ArrayList<char[]>
-    	TURN_CHANGED
+    	TURN_CHANGED,	// getValue(): int, index of the new player
     }
+    
     private final Tag tag;
     // The new value 
     private final Object value;
