@@ -189,7 +189,7 @@ public class GameController {
 	 * Performs the actions which occur when a player has gone all-in 
 	 */
 	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande? JA!
-	private void handleAllIn() {
+	public void handleAllIn() {
 		List<IPlayer> allInPlayers = table.getAllInPlayers();
 		List<IPlayer> activePlayers = table.getActivePlayers();
 		List<SidePotHandler> sidePots = table.getSidePots();
@@ -253,6 +253,7 @@ public class GameController {
 	 * 
 	 * @lisastenberg
 	 */
+
 	private void nextGameAction() {
 		int potValue = table.getRound().getPot().getValue();
 		

@@ -189,7 +189,7 @@ public class GameController {
 	 * Performs the actions which occur when a player has gone all-in 
 	 */
 	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande? JA!
-	private void handleAllIn() {
+	public void handleAllIn() {
 		List<IPlayer> allInPlayers = table.getAllInPlayers();
 		List<IPlayer> activePlayers = table.getActivePlayers();
 		List<SidePotHandler> sidePots = table.getSidePots();
@@ -200,11 +200,11 @@ public class GameController {
 		
 		/* for each player that has gone all-in a SidePotHandler containing '
 		 * info regarding that all-in case is created */
-		for (IPlayer player : allInPlayers) {
+		for (IPlayer p : allInPlayers) {
 			
 				/* calculate how big the all-in bet was and conduct neccesary 
 				 * changes according to this bet */
-				int allInAmount = player.getOwnCurrentBet();
+				int allInAmount = p.getOwnCurrentBet();
 				int sidePotValue = allInAmount * activePlayers.size() 
 						+ table.getRound().getPreBettingPot().getValue();
 				for (IPlayer ap : activePlayers) {
@@ -227,8 +227,8 @@ public class GameController {
 	            System.out.println("\n-----------------------------------\n");
 				
 	            /* the all-in player should after this not longer be active */
-	            player.setActive(false);
-	            EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE, player));
+	            p.setActive(false);
+	            EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE, p));
 		} 
 	}
 	
@@ -253,6 +253,7 @@ public class GameController {
 	 * 
 	 * @lisastenberg
 	 */
+
 	private void nextGameAction() {
 		int potValue = table.getRound().getPot().getValue();
 		
