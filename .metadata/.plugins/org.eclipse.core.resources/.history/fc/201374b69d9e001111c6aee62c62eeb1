@@ -22,7 +22,7 @@ public class Event {
     	CREATE_TABLE,
     	GO_TO_REGISTER,
     	GO_TO_STATISTICS,
-    	HANDS_CHANGED,	// getValue(): player of the hands that changes
+    	HANDS_CHANGED,	// getValue(): player, The that represents "me" on the client
     	HAND_DISCARDED,	// getValue(): player, the player who's hand was discarded
     	JOIN_TABLE,
     	LOGIN_FAILED,

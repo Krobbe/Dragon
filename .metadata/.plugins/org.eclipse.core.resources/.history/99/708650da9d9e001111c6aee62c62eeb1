@@ -224,7 +224,6 @@ public class GameController {
 				p.setActive(true);
 			}
 		}
-		distributeInvisibleCards();
 	}
 
 	/**
@@ -288,8 +287,6 @@ public class GameController {
 			for(int i = 0; i < 2; i++) {
 				hand.addCard(new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));
 			}
-			EventBus.publish(new Event(Event.Tag.HANDS_CHANGED,
-					player));
 		}
 	}
 	

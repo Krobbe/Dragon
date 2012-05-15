@@ -1,5 +1,7 @@
 package model.player;
 
+
+import model.card.ICard;
 import model.player.hand.IHand;
 import model.player.hand.TexasHoldemHand;
 

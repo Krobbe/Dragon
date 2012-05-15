@@ -20,8 +20,13 @@ import client.event.*;
  * @author mattiashenriksson
  * @author lisastenberg
  * @author robinandersson
+ * 
  */
+
+
 public class GameController {
+
+
 	Table table;
 
 	public GameController() {
@@ -46,6 +51,7 @@ public class GameController {
 		table = new Table(players, meIndex);
 		distributeInvisibleCards();
 	}
+
 
 	/**
 	 * Adds a player to the game table
@@ -97,7 +103,8 @@ public class GameController {
 	 * @throws RemoteException
 	 */
 	public boolean fold(IPlayer player) {
-		if(!validPlayerAction(player)) {
+
+		if (!table.getCurrentPlayer().equals(player)) {
 			return false;
 		}
 		IPlayer p = table.getCurrentPlayer();
@@ -115,7 +122,7 @@ public class GameController {
 	 * @throws RemoteException
 	 */
 	public boolean betOccurred(Bet bet) {
-		if(!validPlayerAction(bet.getOwner())) {
+		if (!table.getCurrentPlayer().equals(bet.getOwner())) {
 			return false;
 		}
 		IPlayer p = table.getCurrentPlayer();
@@ -154,6 +161,7 @@ public class GameController {
 	 * @throws RemoteException
 	 */
 	public boolean nextTurn(IPlayer nextPlayer) {
+
 		Boolean tmp = table.nextPlayer().equals(nextPlayer);
 		if (tmp) {
 			EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
@@ -207,6 +215,7 @@ public class GameController {
 	public void addCommunityCard(ICard card) {
 		table.addCommunityCard(card);
 		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, ""));
+
 	}
 
 	/**
@@ -224,7 +233,6 @@ public class GameController {
 				p.setActive(true);
 			}
 		}
-		distributeInvisibleCards();
 	}
 
 	/**
@@ -236,6 +244,7 @@ public class GameController {
 	 */
 	public void setActive(IPlayer player, boolean b) {
 		for(IPlayer p : table.getActivePlayers()) {
+
 			if(p.equals(player)) {
 				p.setActive(b);
 				break;
@@ -288,19 +297,6 @@ public class GameController {
 			for(int i = 0; i < 2; i++) {
 				hand.addCard(new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));
 			}
-			EventBus.publish(new Event(Event.Tag.HANDS_CHANGED,
-					player));
 		}
-	}
-	
-	/**
-	 * Checks if a player is allowed to do an action. In other words this method
-	 * checks if player is the currentPlayer at the table.
-	 * 
-	 * @param player The player
-	 * @return true if the player is allowed to do the action.
-	 */
-	private boolean validPlayerAction(IPlayer player) {
-		return player.equals(table.getCurrentPlayer());
 	}
 }
