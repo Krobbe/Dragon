@@ -97,7 +97,11 @@ public class Table {
 	//TODO Discuss and implement a possible better solution to dealer button
 	public int nextDealerButtonIndex() {
 		do {
-			indexOfDealerButton = (indexOfDealerButton + 1) % players.size();
+			indexOfDealerButton++;
+			// Reset the index if it is at the end of the player-list
+			if (indexOfDealerButton == players.size()) {
+				indexOfDealerButton = 0;
+			}
 		} while (!players.get(indexOfDealerButton).isActive());
 		
 		// TODO Determine what happens if a player has lost recently.
@@ -106,7 +110,7 @@ public class Table {
 		
 		// The dealer button is set to a player that is still in the game.
 		/*while(!players.get(indexOfDealerButton).isStillInGame()){
-			indexOfDealerButton++; return nextDealerButtonIndex?
+			indexOfDealerButton++;
 		}*/
 		return indexOfDealerButton;
 	}

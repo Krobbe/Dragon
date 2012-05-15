@@ -106,7 +106,7 @@ public class Table {
 		
 		// The dealer button is set to a player that is still in the game.
 		/*while(!players.get(indexOfDealerButton).isStillInGame()){
-			indexOfDealerButton++; return nextDealerButtonIndex?
+			indexOfDealerButton++;
 		}*/
 		return indexOfDealerButton;
 	}
