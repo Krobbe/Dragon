@@ -134,6 +134,30 @@ public class GameController {
 	}
 	
 	/**
+	 * This method takes a player and creats a side pot with a player that has
+	 * gone all-in as reference.
+	 * 
+	 * @param player
+	 *            A player that has gone all-in and figures as reference for a
+	 *            side pot
+	 */
+	private void createSidePots(int sidePotValue) {
+		
+		table.getSidePots().add(
+				new SidePotHandler(table.getActivePlayers(), new Pot(
+						sidePotValue)));
+
+		/* controll prints */
+		System.out.println("\n\n-------------------------------\n"
+				+ "SIDEPOT ADDED\n");
+		System.out.println("sidePotValue: " + sidePotValue + "\n");
+		System.out.println("ADDED PLAYERS:");
+		for (IPlayer ap : table.getActivePlayers())
+			System.out.println(ap.getName());
+		System.out.println("\n-----------------------------------\n");
+	}
+	
+	/**
 	 * Method for handling the call scenario
 	 * 
 	 * @author forssenm 
@@ -188,50 +212,37 @@ public class GameController {
 	/**
 	 * Performs the actions which occur when a player has gone all-in 
 	 */
-	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande? JA!
-	private void handleAllIn() {
+	private void handleAllInCase() {
 		List<IPlayer> allInPlayers = table.getAllInPlayers();
-		List<IPlayer> activePlayers = table.getActivePlayers();
-		List<SidePotHandler> sidePots = table.getSidePots();
-		
-		/* sort allInPlayers so that the next task is performed in the correct
-		 * order */
+
+		/*
+		 * sort allInPlayers so that the next task is performed in the correct
+		 * order
+		 */
 		Collections.sort(allInPlayers, new OwnCurrentBetComparator());
-		
-		/* for each player that has gone all-in a SidePotHandler containing '
-		 * info regarding that all-in case is created */
+
+		/*
+		 * for each player that has gone all-in a SidePotHandler containing '
+		 * info regarding that all-in case is created
+		 */
 		for (IPlayer player : allInPlayers) {
 			
-				/* calculate how big the all-in bet was and conduct neccesary 
-				 * changes according to this bet */
-				int allInAmount = player.getOwnCurrentBet();
-				int sidePotValue = allInAmount * activePlayers.size() 
-						+ table.getRound().getPreBettingPot().getValue();
-				for (IPlayer ap : activePlayers) {
-					ap.setOwnCurrentBet(ap.getOwnCurrentBet() - allInAmount);
-				}
-				table.getRound().getPreBettingPot().emptyPot();
-				table.getRound().getPot().removeFromPot(sidePotValue);
-				
-				/* create the sidepot */
-				Pot sidePot = new Pot(sidePotValue);
-				sidePots.add(new SidePotHandler(table.getActivePlayers(), sidePot));
-		
-				/* controll prints */
-	            System.out.println("\n\n-------------------------------\n" + 
-	            "SIDEPOT ADDED\n");
-	            System.out.println("sidePotValue: " + sidePotValue + "\n");
-	            System.out.println("ADDED PLAYERS:");
-	            for (IPlayer ap : table.getActivePlayers() )
-	            	System.out.println(ap.getName());
-	            System.out.println("\n-----------------------------------\n");
-				
-	            /* the all-in player should after this not longer be active */
-	            player.setActive(false);
-	            EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE, player));
-		} 
+			/* calculate side pot values */
+			int allInValue = player.getOwnCurrentBet();
+			int sidePotValue = allInValue * table.getActivePlayers().size()
+					+ table.getRound().getPreBettingPot().getValue();
+			
+			createSidePots(sidePotValue);
+			updateMainPot(allInValue,sidePotValue);
+			
+			/* the player that went all in should not be active after that */
+			player.setActive(false);
+			EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE,
+					player));
+			
+		}
 	}
-	
+		
 	/**
 	 * Performs actions required for starting a new betting round. 
 	 */
@@ -424,7 +435,7 @@ public class GameController {
 		/* if the betting is done possible all-in case must be handled and then
 		 * a new betting round should take place */
 		if (table.isBettingDone()) {
-			handleAllIn();
+			handleAllInCase();
 			nextBettingRound();
 		} 
 		
@@ -513,6 +524,24 @@ public class GameController {
 		return table.getCommunityCards().size() == 5 || 
 				table.getActivePlayers().size() == 1 || 
 				table.getActivePlayers().size() == 0;
+	}
+	
+	/**
+	 * This method is called after a side pot is added. It removes from the main
+	 * pot what was added to the side pot
+	 * 
+	 * @param allInValue
+	 *            The value of the all-in player's (from which the side pot was
+	 *            created) bet.
+	 * @param sidePotValue
+	 *            The full value of the side pot
+	 */
+	private void updateMainPot(int allInValue, int sidePotValue) {
+		table.getRound().getPreBettingPot().emptyPot();
+		for (IPlayer ap : table.getActivePlayers()) {
+			ap.setOwnCurrentBet(ap.getOwnCurrentBet() - allInValue);
+		}
+		table.getRound().getPot().removeFromPot(sidePotValue);
 	}
 	
 	/**
