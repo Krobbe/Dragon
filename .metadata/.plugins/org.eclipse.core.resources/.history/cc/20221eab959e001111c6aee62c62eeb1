@@ -1,5 +1,6 @@
 package model.game;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class Table {
 	private int indexOfDealerButton;
 	private Map<IPlayer, HandValueType> handTypes = 
 			new TreeMap<IPlayer, HandValueType>();
-	private List<SidePotHandler> sidePots = new LinkedList<SidePotHandler>();
+	private List<SidePotHandler> sidePots = new ArrayList<SidePotHandler>();
 	
 	/**
 	 * Creates a new Table.
@@ -51,8 +52,8 @@ public class Table {
 	public Table(Collection<IPlayer> players) {
 		round = new Round();
 		dealer = new TexasHoldemDealer();
-		communityCards = new LinkedList<ICard>();
-		this.players = new LinkedList<IPlayer>(players);
+		communityCards = new ArrayList<ICard>();
+		this.players = new ArrayList<IPlayer>(players);
 
 		indexOfCurrentPlayer = 0;
 		indexOfDealerButton = 0;
@@ -338,7 +339,7 @@ public class Table {
      * @return a list containing the players who has currently gone all-in
      */
     public List<IPlayer> getAllInPlayers() {
-    	List<IPlayer> allInPlayers = new LinkedList<IPlayer>();
+    	List<IPlayer> allInPlayers = new ArrayList<IPlayer>();
     	
 		for (IPlayer ap : getActivePlayers()) {
 			//TODO Šndra till player.isAllIn?
@@ -378,7 +379,7 @@ public class Table {
 	 * @return A list of the players at the table who are currently active
 	 */
 	public List<IPlayer> getActivePlayers() {
-		List<IPlayer> activePlayers = new LinkedList<IPlayer>();
+		List<IPlayer> activePlayers = new ArrayList<IPlayer>();
 		for (IPlayer p : players) {
 			if (p.isActive()) {
 				activePlayers.add(p);

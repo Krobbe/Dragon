@@ -338,7 +338,7 @@ public class Table {
      * @return a list containing the players who has currently gone all-in
      */
     public List<IPlayer> getAllInPlayers() {
-    	List<IPlayer> allInPlayers = new LinkedList<IPlayer>();
+    	List<IPlayer> allInPlayers = new ArrayList<IPlayer>();
     	
 		for (IPlayer ap : getActivePlayers()) {
 			//TODO Šndra till player.isAllIn?
@@ -378,7 +378,7 @@ public class Table {
 	 * @return A list of the players at the table who are currently active
 	 */
 	public List<IPlayer> getActivePlayers() {
-		List<IPlayer> activePlayers = new LinkedList<IPlayer>();
+		List<IPlayer> activePlayers = new ArrayList<IPlayer>();
 		for (IPlayer p : players) {
 			if (p.isActive()) {
 				activePlayers.add(p);
