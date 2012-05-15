@@ -74,6 +74,10 @@ public class GameController {
 		this.table.addPlayers(players);
 	}
 
+	/**
+	 * Sets the current bet of the game
+	 * @param bet
+	 */
 	public void setCurrentBet(Bet bet) {
 		table.getRound().getBettingRound().setCurrentBet(bet);
 		EventBus.publish(new Event(Event.Tag.CURRENT_BET_CHANGED, bet
@@ -94,7 +98,7 @@ public class GameController {
 	/**
 	 * A method for handling when a player has folded. 
 	 * 
-	 * @param player	The player who folded.
+	 * @param player The player who folded.
 	 * @return	true if the fold went through.
 	 * @throws RemoteException
 	 */
@@ -106,7 +110,6 @@ public class GameController {
 		IPlayer p = table.getCurrentPlayer();
 		p.getHand().discard();
 		p.setActive(false);
-		p.setDoneFirstTurn(true); //Behšvs denna hŠr? hanteras vŠl bara i server?
 		EventBus.publish(new Event(Event.Tag.HAND_DISCARDED, player));
 		return true;
 	}
@@ -132,8 +135,9 @@ public class GameController {
 				p, bet.getValue())));
 
 		/*
-		 * kolla sŒ att inte bigblind Šr mindre Šn smallblind men blir inskickad
-		 * efter smallblind
+		 * Make sure that the new bet is not smaller than the current one (this
+		 * might occur if player with big blind moves all in when this i
+		 * posted). If so the new bet should not be set as a the current bet
 		 */
 		if (bet.getValue() >= table.getRound().getBettingRound()
 				.getCurrentBet().getValue()) {
@@ -203,7 +207,7 @@ public class GameController {
 	}
 
 	/**
-	 * Add communitycards to the table.
+	 * Add community cards to the table.
 	 * 
 	 * @param cards The cards you want to add.
 	 * @throws RemoteException
