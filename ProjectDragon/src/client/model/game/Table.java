@@ -141,7 +141,7 @@ public class Table {
 		if (tableCards.size() < 5) {
 			tableCards.add(c);
 		} else {
-			throw new TableCardsFullException();
+			throw new CommunityCardsFullException();
 		}
 	}
 	

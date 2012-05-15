@@ -14,7 +14,7 @@ import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
 import utilities.PlayersFullException;
-import utilities.TableCardsFullException;
+import utilities.CommunityCardsFullException;
 
 public class Main {
 	
@@ -24,7 +24,7 @@ public class Main {
 			new Main().run();
 		} catch (PlayersFullException e) {
 			e.printStackTrace();
-		} catch (TableCardsFullException e) {
+		} catch (CommunityCardsFullException e) {
 			e.printStackTrace();
 		} catch (IllegalCheckException e) {
 			e.printStackTrace();
@@ -35,7 +35,7 @@ public class Main {
 		}
 	}
 	
-	public void run() throws PlayersFullException, TableCardsFullException, 
+	public void run() throws PlayersFullException, CommunityCardsFullException, 
 	IllegalCheckException, IllegalCallException, IllegalRaiseException {
 		
 		Table table = new Table();

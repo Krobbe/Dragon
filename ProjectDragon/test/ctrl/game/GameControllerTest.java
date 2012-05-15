@@ -21,7 +21,7 @@ import ctrl.game.GameController;
 
 import utilities.IllegalRaiseException;
 import utilities.PlayersFullException;
-import utilities.TableCardsFullException;
+import utilities.CommunityCardsFullException;
 
 /**
  * A class containing methods testing the GameController class.

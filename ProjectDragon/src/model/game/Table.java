@@ -14,7 +14,7 @@ import model.player.hand.FullTHHand;
 import model.player.hand.HandValue;
 import model.player.hand.HandValueType;
 import model.player.hand.IHand;
-import utilities.TableCardsFullException;
+import utilities.CommunityCardsFullException;
 import event.Event;
 import event.EventBus;
 
@@ -159,7 +159,7 @@ public class Table {
 			communityCards.add(card);
 			EventBus.publish(new Event(Event.Tag.SERVER_ADD_TABLE_CARD, card));
 		} else {
-			throw new TableCardsFullException();
+			throw new CommunityCardsFullException();
 		}
 	}
 	

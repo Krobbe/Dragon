@@ -15,7 +15,7 @@ import model.player.hand.HandValueType;
 import org.junit.Test;
 
 import utilities.PlayersFullException;
-import utilities.TableCardsFullException;
+import utilities.CommunityCardsFullException;
 
 /**
  * A test of the Table-class
@@ -161,21 +161,21 @@ public class TableTest {
 	}
 
 	@Test
-	public void testAddTableCard() throws TableCardsFullException {
+	public void testAddTableCard() throws CommunityCardsFullException {
 		t.addCommunityCard();
 		List<ICard> tableCards = t.getTableCards();
 		assertTrue(tableCards.get(0).getClass() == Card.class);
 	}
 	
-	@Test(expected=TableCardsFullException.class) 
-	public void testTableCardsFull() throws TableCardsFullException {
+	@Test(expected=CommunityCardsFullException.class) 
+	public void testTableCardsFull() throws CommunityCardsFullException {
 		for (int i = 0; i <= 5; i++) {
 			t.addCommunityCard();
 		}	
 	}
 	
 	@Test
-	public void testClearTableCards() throws TableCardsFullException {
+	public void testClearTableCards() throws CommunityCardsFullException {
 		t.addCommunityCard();
 		t.clearCommunityCards();
 		assertTrue(t.getTableCards().size() == 0);
