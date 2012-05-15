@@ -216,7 +216,7 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			case 1:
 				
 				// hantera panel 1
-				break;
+
 			default:
 				break;
 			}
@@ -272,17 +272,16 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 					break;
 
 				case 5:
+
 					// sett paneler till korttext genom: cards.get(0).toString()
+
 					break;
 
 				default:
 					break;
 				}
-				break;
 			}
-		default:
-			break;
-		}
+		} 
 	}
 
 	@Override

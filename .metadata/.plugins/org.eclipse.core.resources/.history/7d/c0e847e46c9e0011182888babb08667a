@@ -216,7 +216,7 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			case 1:
 				
 				// hantera panel 1
-				break;
+
 			default:
 				break;
 			}
@@ -278,11 +278,8 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 				default:
 					break;
 				}
-				break;
 			}
-		default:
-			break;
-		}
+		} 
 	}
 
 	@Override

@@ -13,7 +13,6 @@ import javax.swing.SwingConstants;
 
 import model.card.ICard;
 import model.player.Bet;
-import model.game.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -138,27 +137,14 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 		switch (evt.getTag()) {
 		
 		case CURRENT_BET_CHANGED:
-			int bet;
-			if (!(evt.getValue() instanceof Integer)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				bet = (Integer)evt.getValue();
-				currentBet.setText("" + bet);
-			}
+			
+			currentBet.setText((String)evt.getValue());
 			
 			break;
 			
 		case POT_CHANGED:
-			int potValue;
-			if (!(evt.getValue() instanceof Integer)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				potValue = (Integer)evt.getValue();
-				potSize.setText("" + potValue);
-			}
-			break;
+			
+			potSize.setText((String)evt.getValue());
 			
 		case HAND_DISCARDED:
 			
@@ -216,7 +202,7 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			case 1:
 				
 				// hantera panel 1
-				break;
+
 			default:
 				break;
 			}
@@ -250,39 +236,39 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			
 		//TODO: snygga till denna?	
 		case COMMUNITY_CARDS_CHANGED:
-			List<ICard> communityCards;
-			if (!(evt.getValue() instanceof List)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				communityCards = (List<ICard>) evt.getValue();
+			
+			List<ICard> cards = (List<ICard>) evt.getValue();
+			
+			switch (cards.size()) {
+			
+			case 0:
+				
+				// SŠtt bakgrund till gršn eller liknanade...
+				
+				break;
+				
+			case 3:
+				
+				// sett paneler till korttext genom: cards.get(0).toString()
+				
+				break;
+				
+			case 4:
+				
+				// sett paneler till korttext genom: cards.get(0).toString()
+				
+				break;
+				
+			case 5:
+				
+				// sett paneler till korttext genom: cards.get(0).toString()
+				
+				break;
 
-				switch (communityCards.size()) {
-
-				case 0:
-					// SŠtt bakgrund till gršn eller liknanade...
-					break;
-
-				case 3:
-					// sett paneler till korttext genom: cards.get(0).toString()
-					break;
-
-				case 4:
-					// sett paneler till korttext genom: cards.get(0).toString()
-					break;
-
-				case 5:
-					// sett paneler till korttext genom: cards.get(0).toString()
-					break;
-
-				default:
-					break;
-				}
+			default:
 				break;
 			}
-		default:
-			break;
-		}
+		} 
 	}
 
 	@Override

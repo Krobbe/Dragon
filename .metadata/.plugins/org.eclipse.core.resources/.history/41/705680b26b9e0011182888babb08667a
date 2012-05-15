@@ -138,14 +138,8 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 		switch (evt.getTag()) {
 		
 		case CURRENT_BET_CHANGED:
-			int bet;
-			if (!(evt.getValue() instanceof Integer)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				bet = (Integer)evt.getValue();
-				currentBet.setText("" + bet);
-			}
+			
+			currentBet.setText((String)evt.getValue());
 			
 			break;
 			
@@ -216,7 +210,7 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			case 1:
 				
 				// hantera panel 1
-				break;
+
 			default:
 				break;
 			}
@@ -250,39 +244,39 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			
 		//TODO: snygga till denna?	
 		case COMMUNITY_CARDS_CHANGED:
-			List<ICard> communityCards;
-			if (!(evt.getValue() instanceof List)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				communityCards = (List<ICard>) evt.getValue();
+			
+			List<ICard> cards = (List<ICard>) evt.getValue();
+			
+			switch (cards.size()) {
+			
+			case 0:
+				
+				// SŠtt bakgrund till gršn eller liknanade...
+				
+				break;
+				
+			case 3:
+				
+				// sett paneler till korttext genom: cards.get(0).toString()
+				
+				break;
+				
+			case 4:
+				
+				// sett paneler till korttext genom: cards.get(0).toString()
+				
+				break;
+				
+			case 5:
+				
+				// sett paneler till korttext genom: cards.get(0).toString()
+				
+				break;
 
-				switch (communityCards.size()) {
-
-				case 0:
-					// SŠtt bakgrund till gršn eller liknanade...
-					break;
-
-				case 3:
-					// sett paneler till korttext genom: cards.get(0).toString()
-					break;
-
-				case 4:
-					// sett paneler till korttext genom: cards.get(0).toString()
-					break;
-
-				case 5:
-					// sett paneler till korttext genom: cards.get(0).toString()
-					break;
-
-				default:
-					break;
-				}
+			default:
 				break;
 			}
-		default:
-			break;
-		}
+		} 
 	}
 
 	@Override

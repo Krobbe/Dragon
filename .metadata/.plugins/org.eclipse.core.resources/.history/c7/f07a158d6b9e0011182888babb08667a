@@ -10,7 +10,7 @@ public class Event {
 	//When you input a new tag, please put in alphabetical order.
     public enum Tag {
     	BALANCE_CHANGED,
-    	COMMUNITY_CARDS_CHANGED,	//getValue(): ICard
+    	COMMUNITY_CARDS_CHANGED,	//getValue(): iCard
     	CURRENT_BET_CHANGED,		//getValue(): int
     	DO_FOLD,
     	DO_CALL,

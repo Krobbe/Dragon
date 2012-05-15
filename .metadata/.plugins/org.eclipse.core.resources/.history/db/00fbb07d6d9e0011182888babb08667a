@@ -278,11 +278,12 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 				default:
 					break;
 				}
-				break;
 			}
 		default:
 			break;
+			
 		}
+		break;
 	}
 
 	@Override
