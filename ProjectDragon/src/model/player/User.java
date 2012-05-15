@@ -57,12 +57,6 @@ public class User implements IPlayer {
 	}
 	
 	@Override
-	public void addCard(ICard c) {
-
-		player.addCard(c);
-	}
-	
-	@Override
 	public int getOwnCurrentBet() {
 		return player.getOwnCurrentBet();
 	}

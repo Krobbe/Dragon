@@ -69,11 +69,6 @@ public class Player implements IPlayer {
 	public String getName() {
 		return name;
 	}
-
-	@Override
-	public void addCard(ICard c) {
-		hand.addCard(c);
-	}
 	
 	@Override
 	public int getOwnCurrentBet() {

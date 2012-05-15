@@ -65,14 +65,6 @@ public interface IPlayer extends Comparable<IPlayer> {
 	 */
 	public String getName();
 	
-	//TODO ska vi ha kvar denna metod ? law of demeters
-	/**
-	 * Gives the player a card which is added to the player's hand
-	 * @author mattiashenriksson
-	 */
-	public void addCard(ICard c);
-
-	
 	/**
 	 * @author mattiashenriksson
 	 * @return The value of the last bet the player placed during the current 
@@ -82,17 +74,23 @@ public interface IPlayer extends Comparable<IPlayer> {
 	public int getOwnCurrentBet();
 	
 	/**
-	 * Sets the value of the last bet the player placed? 
-	 * //TODO sets lastBetValue ist?
+	 * Sets the value of the last bet the player placed
 	 * @author mattiashenriksson
 	 */
 	public void setOwnCurrentBet(int value);
 	
 	/**
+<<<<<<< HEAD
 	 * Sets if the player has done its first turn or not. Set true if the player
 	 * has done its first turn.
 	 * 
 	 * @param b	The boolean
+=======
+	 * Sets the varible doneFirstTurn. In other words sets true if a player has
+	 * had a chance made a move during a betting round
+	 * 
+	 * @param value
+>>>>>>> tog bort addCard i player
 	 */
 	public void setDoneFirstTurn(boolean b);
 	

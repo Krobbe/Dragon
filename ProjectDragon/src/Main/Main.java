@@ -88,7 +88,7 @@ public class Main {
 				}
 				
 				if (table.isBettingDone()) {
-					gc.handleAllIn();
+					//gc.handleAllIn();
 					gc.nextBettingRound();
 				} 
 				

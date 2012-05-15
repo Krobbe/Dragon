@@ -31,29 +31,6 @@ import utilities.CommunityCardsFullException;
 
 public class GameControllerTest {
 	
-	//TODO ta bort dessa? testar numera privata metoder
-	/*
-	@Test
-	public void testShowFlop() throws TableCardsFullException {
-		Table t = new Table();
-		GameController gc = new GameController(t);
-		int tableCardsLengthT0 = t.getTableCards().size();
-		gc.showFlop();
-		List<Card> tableCardsT = t.getTableCards();
-		int tableCardsLengthT = t.getTableCards().size();
-		assertTrue(tableCardsLengthT - tableCardsLengthT0 == 3);
-	}
-	
-	@Test
-	public void testShowRiver() throws TableCardsFullException {
-		Table t = new Table();
-		GameController gc = new GameController(t);
-		int tableCardsLengthT0 = t.getTableCards().size();
-		gc.showRiver();
-		int tableCardsLengthT = t.getTableCards().size();
-		assertTrue(tableCardsLengthT - tableCardsLengthT0 == 1);
-	}
-	*/
 	@Test
 	public void testRaise() throws PlayersFullException, IllegalRaiseException {
 		Table t = new Table();
@@ -82,8 +59,8 @@ public class GameControllerTest {
 		t.addPlayer(u2);
 		Card c1 = new Card(Suit.CLUBS, Rank.ACE);
 		Card c2 = new Card(Suit.DIAMONDS, Rank.ACE);
-		u1.addCard(c1);
-		u1.addCard(c2);
+		u1.getHand().addCard(c1);
+		u1.getHand().addCard(c2);
 		u1.setActive(true);
 		gc.fold(t.getCurrentPlayer());
 		assertTrue(u1.getHand().getCards().size() == 0);
@@ -99,7 +76,7 @@ public class GameControllerTest {
 		t.addPlayer(u1); t.addPlayer(u2); t.addPlayer(u3); t.addPlayer(u4);	
 		List<IPlayer> players = t.getPlayers();
 		for (IPlayer p : players) {
-			p.addCard(new Card());
+			p.getHand().addCard(new Card());
 			p.setActive(false);
 		}
 		t.getRound().getPot().addToPot(33);

@@ -215,7 +215,7 @@ public class Table {
 		for (int i = 0; i < 2; i++) {
 			for (IPlayer player : getActivePlayers()) {
 
-				player.addCard(dealer.popCard());
+				player.getHand().addCard(dealer.popCard());
 			}
 		}
 
@@ -341,8 +341,7 @@ public class Table {
     	List<IPlayer> allInPlayers = new LinkedList<IPlayer>();
     	
 		for (IPlayer ap : getActivePlayers()) {
-			//TODO Šndra till player.isAllIn?
-			if (ap.getBalance().getValue() == 0) {
+			if (ap.isAllIn()) {
 				allInPlayers.add(ap);
 			}
 		}

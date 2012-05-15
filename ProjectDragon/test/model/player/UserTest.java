@@ -27,15 +27,5 @@ public class UserTest {
 		u.setActive(false);
 		assertTrue(!u.isActive());
 	}
-	
-	@Test
-	public void testAddCard() {
-		TexasHoldemHand thh = new TexasHoldemHand();
-		Player p = new Player(thh, "Mattias", new Balance());
-		User u = new User(p);
-		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
-		u.addCard(c);
-		assertTrue(thh.getCards().get(0).equals(c));	
-	}
 
 }

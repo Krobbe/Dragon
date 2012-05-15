@@ -47,15 +47,6 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void testAddCard() {
-		TexasHoldemHand thh = new TexasHoldemHand();
-		Player p = new Player(thh, "Mattias", new Balance());
-		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
-		p.addCard(c);
-		assertTrue(thh.getCards().get(0).equals(c));
-	}
-	
-	@Test
 	public void testGetHand() {
 		TexasHoldemHand thh = new TexasHoldemHand();
 		Player p = new Player(thh, "Mattias", new Balance());
