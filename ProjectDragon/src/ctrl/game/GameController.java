@@ -265,7 +265,7 @@ public class GameController {
 		table.getRound().getPot().emptyPot();
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_POT, table.getRound().getPot()));
 		table.getRound().getPreBettingPot().emptyPot();
-		table.clearTableCards();
+		table.clearCommunityCards();
 		table.getSidePots().clear();
 		for (IPlayer p : players) {
 			p.getHand().discard();

@@ -166,7 +166,7 @@ public class Table {
 	/**
 	 * Clears all "table cards" from the table.
 	 */
-	public void clearTableCards() {
+	public void clearCommunityCards() {
 		communityCards.clear();
 	}
 	

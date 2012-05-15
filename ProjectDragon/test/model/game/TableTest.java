@@ -177,7 +177,7 @@ public class TableTest {
 	@Test
 	public void testClearTableCards() throws TableCardsFullException {
 		t.addCommunityCard();
-		t.clearTableCards();
+		t.clearCommunityCards();
 		assertTrue(t.getTableCards().size() == 0);
 	}
 	
