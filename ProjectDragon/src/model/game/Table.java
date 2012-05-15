@@ -313,7 +313,6 @@ public class Table {
      * the betting for the current round is therefore done
      * @return a boolean telling whether betting for the current round is done.
      */
-    //TODO denna här eller i kontrollern?
     public boolean isBettingDone() {
     	boolean bettingDone = true;
 		List<IPlayer> activePlayers = getActivePlayers();
@@ -323,14 +322,13 @@ public class Table {
 			/* if all players hasn't posted the same bet the betting isn't done,
 			 * unless the players who hasn't done this is all-in */
 			if (activePlayers.get(0).getOwnCurrentBet() != ap.getOwnCurrentBet()
-					//TODO ändra till player.isAllIn?
-					&& ap.getBalance().getValue() != 0) {
+					&& !ap.isAllIn()) {
 					bettingDone = false;
 			}
 			
 			/* if all players hasn't got the chance to make a move betting isn't
 			 * done */
-			if (!ap.getDoneFirstTurn()) {
+			if (!ap.hasDoneFirstTurn()) {
 				bettingDone = false;
 			}
 		}

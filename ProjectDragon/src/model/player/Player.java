@@ -110,7 +110,7 @@ public class Player implements IPlayer {
 		String result = ("Name: " + getName() + " , " + "Balance: "
 				+ getBalance() + " , " + "Active: " + isActive() + " , "
 				+ "Hand: " + getHand().toString()) + " , " + "Own current bet: "
-				+ getOwnCurrentBet() + " , "+ "Done first bet?: " + getDoneFirstTurn();
+				+ getOwnCurrentBet() + " , "+ "Done first bet?: " + hasDoneFirstTurn();
 		return result;
 	}
 
@@ -136,7 +136,7 @@ public class Player implements IPlayer {
 	}
 
 	@Override
-	public boolean getDoneFirstTurn() {
+	public boolean hasDoneFirstTurn() {
 		return doneFirstTurn;
 	}
 
