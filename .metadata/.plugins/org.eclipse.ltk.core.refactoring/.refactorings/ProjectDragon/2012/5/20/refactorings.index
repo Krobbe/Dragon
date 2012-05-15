@@ -10,3 +10,8 @@
 1337070213684	Rename compilation unit 'iServerGame.java'
 1337070221493	Rename compilation unit 'iCard.java'
 1337070231352	Rename compilation unit 'iServerRequest.java'
+1337084790039	Rename local variable 'amount'
+1337087408120	Rename method 'initial'
+1337088112968	Rename compilation unit 'iPlayer.java'
+1337088120984	Rename compilation unit 'iHand.java'
+1337088128362	Rename compilation unit 'iClient.java'

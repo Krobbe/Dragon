@@ -25,7 +25,6 @@
 <fullyQualifiedTypeName name="model.player.hand.HandValueType"/>
 <fullyQualifiedTypeName name="model.player.Account"/>
 <fullyQualifiedTypeName name="model.player.Player"/>
-<fullyQualifiedTypeName name="utilities.IllegalRaiseException"/>
 <fullyQualifiedTypeName name="utilities.IllegalCallException"/>
 <fullyQualifiedTypeName name="model.card.Card"/>
 <fullyQualifiedTypeName name="model.game.Round"/>
@@ -37,9 +36,10 @@
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="model.player.Bet"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="model.card.iCard"/>
-<fullyQualifiedTypeName name="event.Event.Tag"/>
 <fullyQualifiedTypeName name="model.player.hand.iHand"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.TreeMap"/>
+<fullyQualifiedTypeName name="utilities.IllegalRaiseException"/>
+<fullyQualifiedTypeName name="model.card.iCard"/>
+<fullyQualifiedTypeName name="event.Event.Tag"/>
 </qualifiedTypeNameHistroy>

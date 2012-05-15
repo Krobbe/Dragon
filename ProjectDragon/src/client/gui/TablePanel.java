@@ -147,34 +147,35 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			break;
 			
 		case HAND_DISCARDED:
-			
+			IPlayer handDiscardedPlayer;
+			if (!(evt.getValue() instanceof IPlayer)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				handDiscardedPlayer = (IPlayer) evt.getValue();
+				int handDiscardedPlayerIndex = -1;
 
-			IPlayer handDiscardedPlayer = (Player) evt.getValue();
-			int handDiscardedPlayerIndex = -1;
-			
-			//TODO: om man fick in ett index från början ist hade inte följand varit nödvändigt:
-			/* get the index of the player whos hand was discarded */
-			for(int i = 0; i < allPlayers.size(); i++) {
-				if(handDiscardedPlayer.equals(allPlayers.get(i))) {
-					handDiscardedPlayerIndex = i;
+				// TODO: om man fick in ett index från början ist hade inte
+				// följand varit nödvändigt:
+				/* get the index of the player whos hand was discarded */
+				for (int i = 0; i < allPlayers.size(); i++) {
+					if (handDiscardedPlayer.equals(allPlayers.get(i))) {
+						handDiscardedPlayerIndex = i;
+						break;
+					}
+				}
+
+				/* handle the correct panels */
+				switch (handDiscardedPlayerIndex) {
+				case 0:
+					// hantera panel nr 0.
+					break;
+
+				case 1:
+					// hantera panel nr 1.
+				default:
 					break;
 				}
-			}
-			
-			/* handle the correct panels */
-			switch (handDiscardedPlayerIndex) {
-			case 0:
-				
-				//hantera panel nr 0.
-				
-				break;
-				
-			case 1:
-				
-				//hantera panel nr 1.
-
-			default:
-				break;
 			}
 			
 			

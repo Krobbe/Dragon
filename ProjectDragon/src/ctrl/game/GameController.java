@@ -4,21 +4,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import event.Event;
-import event.Event.Tag;
-import event.EventBus;
-
-import model.game.BettingRound;
-import model.game.P;
-import model.game.Pot;
-import model.game.SidePotHandler;
-import model.game.Table;
-import model.player.Bet;
-import model.player.OwnCurrentBetComparator;
-import model.player.IPlayer;
-import utilities.IllegalCallException;
-import utilities.IllegalCheckException;
-import utilities.IllegalRaiseException;
+import event.*;
+import model.game.*;
+import model.player.*;
+import utilities.*;
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -42,6 +31,13 @@ public class GameController {
 	}
 	
 	/**
+	 * Adds a new card to the "table cards"
+	 */
+	public void addCommunityCard() {
+		table.addCommunityCard();
+	}
+	
+	/**
 	 * Adds a player to the game's table
 	 * 
 	 * @param player The player to be added
@@ -60,12 +56,14 @@ public class GameController {
 	public void addPlayers(Collection<IPlayer> player) {
 		this.table.addPlayers(player);
 	}
-
+	
 	/**
-	 * Adds a new card to the "table cards"
+	 * Checks if all players are all-in.
+	 * 
+	 * @return true if all players are all-in.
 	 */
-	public void addCommunityCard() {
-		table.addCommunityCard();
+	private boolean allPlayersAllIn() {
+		return table.getActivePlayers().size() == 0;
 	}
 
 	/**
@@ -82,44 +80,6 @@ public class GameController {
 		 * of unnecessary method calls between the two classes
 		 */
 		table.distributeCards();
-	}
-
-	//TODO: Koden i call, raise, check, fold är lite lik. refactor?
-	/**
-	 * Method for handling the call scenario
-	 * 
-	 * @author forssenm 
-	 * @author mattiashenriksson
-	 */
-	private void doCall() {
-		IPlayer currentPlayer = table.getCurrentPlayer();
-		int playersOwnCurrentBet = currentPlayer.getOwnCurrentBet();
-
-		int currentBetValue = 
-				table.getRound().getBettingRound().getCurrentBet().getValue();
-		
-		/* if the player calls a bet which is bigger than his balance, the 
-		 * player will call with as much as his balance allows and move all-in
-		 */
-		//TODO: Är det här all-in?
-		if(currentPlayer.getBalance().getValue() < 
-				currentBetValue - playersOwnCurrentBet) {
-			currentBetValue = currentPlayer.getBalance().getValue() 
-					+ playersOwnCurrentBet;
-		}
-		
-		//TODO den här delen skulle kunna refactoreras kanske?
-		/* arrange the player's balance, bet and the pot according to the call 
-		 */
-		table.getRound().getPot().addToPot(currentBetValue - playersOwnCurrentBet);
-		currentPlayer.setOwnCurrentBet(currentBetValue);
-		currentPlayer.getBalance().removeFromBalance(currentBetValue 
-				- playersOwnCurrentBet);
-		
-		/* the player has now done a move */
-		currentPlayer.setDoneFirstTurn(true);
-		
-		progressTurn();
 	}
 	
 	/**
@@ -148,80 +108,16 @@ public class GameController {
 	}
 	
 	/**
-	 * Performs a raise.
-	 * @param amount The amount to raise the pot with.
-	 * @throws IllegalRaiseException 
-	 */
-	//TODO delvis otestad
-	public boolean raise(Bet bet) {
-		IPlayer currentPlayer = table.getCurrentPlayer();
-		if(!currentPlayer.equals(bet.getOwner())) {
-			return false;
-		}
-		
-		//The amount the player wants to raise with
-		int amount = bet.getValue() - currentPlayer.getOwnCurrentBet();
-		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
-
-		if(amount > currentPlayer.getBalance().getValue()) {
-			throw new IllegalRaiseException(
-					"Not enough money on balance to make that raise");
-		} else if(bet.getValue() <= currentBettingRound.getCurrentBet().getValue()
-				+ P.INSTANCE.getBigBlindValue()) {
-			throw new IllegalRaiseException("The raise have to be bigger" +
-					"than the current bet plus big blind.");
-		}
-		
-		/* arrange the player's balance, bet and the pot according to the raise 
-		 */
-		currentPlayer.getBalance().removeFromBalance(amount);
-		table.getRound().getPot().addToPot(amount);
-		currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
-						amount + currentPlayer.getOwnCurrentBet()));
-		currentPlayer.setOwnCurrentBet(
-				amount + currentPlayer.getOwnCurrentBet());
-		
-		/* the player has now done a move */
-		currentPlayer.setDoneFirstTurn(true);
-		
-		progressTurn();
-		
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
-		return true;
-	}
-	
-	/**
-	 * Performs a fold.
-	 */
-	//TODO Delvis otestad
-	public boolean fold(IPlayer player) {
-		//Check if the player is allowed to fold.
-		if(!table.getCurrentPlayer().equals(player)) {
-			return false;
-		}
-		player.getHand().discard();
-		player.setActive(false);
-		player.setDoneFirstTurn(true);
-		EventBus.publish(new Event(Event.Tag.SERVER_FOLD, player));
-		
-		progressTurn();
-		
-		return true;
-	}
-	
-	/**
 	 * Performs a check.
 	 * @throws IllegalCheckException 
 	 */
 	//TODO otestat: exception, setOwncurrentBet
 	public boolean check(Bet bet) {
-		IPlayer currentPlayer = table.getCurrentPlayer();
-		//Check if the player is allowed to check
-
-		if(!currentPlayer.equals(bet.getOwner())) {
+		if(!validPlayerAction(bet.getOwner())) {
 			return false;
 		}
 		
+		IPlayer currentPlayer = table.getCurrentPlayer();
 		/* if there is a bet bigger than your own current bet you should not
 		 * be able to check */
 		if (currentPlayer.getOwnCurrentBet() < table.getRound()
@@ -234,8 +130,188 @@ public class GameController {
 		
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
 		progressTurn();
-		
 		return true;
+	}
+	
+	/**
+	 * Method for handling the call scenario
+	 * 
+	 * @author forssenm 
+	 * @author mattiashenriksson
+	 */
+	private void doCall() {
+		IPlayer currentPlayer = table.getCurrentPlayer();
+		int playersOwnCurrentBet = currentPlayer.getOwnCurrentBet();
+		int currentBetValue = 
+				table.getRound().getBettingRound().getCurrentBet().getValue();
+		
+		/* if the player calls a bet which is bigger than his balance, the 
+		 * player will move all-in
+		 */
+		if(currentPlayer.getBalance().getValue() < 
+				currentBetValue - playersOwnCurrentBet) {
+			currentBetValue = currentPlayer.getBalance().getValue() 
+					+ playersOwnCurrentBet;
+		}
+		
+		//TODO den här delen skulle kunna refactoreras kanske?
+		/* arrange the player's balance, bet and the pot according to the call 
+		 */
+		table.getRound().getPot().addToPot(currentBetValue - playersOwnCurrentBet);
+		currentPlayer.setDoneFirstTurn(true);
+		currentPlayer.setOwnCurrentBet(currentBetValue);
+		currentPlayer.getBalance().removeFromBalance(currentBetValue 
+				- playersOwnCurrentBet);
+		
+		progressTurn();
+	}
+	
+	/**
+	 * Performs a fold.
+	 */
+	//TODO Delvis otestad
+	public boolean fold(IPlayer player) {
+		if(!validPlayerAction(player)) {
+			return false;
+		}
+		
+		IPlayer currentPlayer = table.getCurrentPlayer();
+		currentPlayer.getHand().discard();
+		currentPlayer.setActive(false);
+		currentPlayer.setDoneFirstTurn(true);
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_FOLD, currentPlayer));
+		progressTurn();
+		return true;
+	}
+	
+	/**
+	 * Performs the actions which occur when a player has gone all-in 
+	 */
+	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande? JA!
+	public void handleAllIn() {
+		List<IPlayer> allInPlayers = table.getAllInPlayers();
+		List<IPlayer> activePlayers = table.getActivePlayers();
+		List<SidePotHandler> sidePots = table.getSidePots();
+		
+		/* sort allInPlayers so that the next task is performed in the correct
+		 * order */
+		Collections.sort(allInPlayers, new OwnCurrentBetComparator());
+		
+		/* for each player that has gone all-in a SidePotHandler containing '
+		 * info regarding that all-in case is created */
+		for (IPlayer p : allInPlayers) {
+			
+				/* calculate how big the all-in bet was and conduct neccesary 
+				 * changes according to this bet */
+				int allInAmount = p.getOwnCurrentBet();
+				int sidePotValue = allInAmount * activePlayers.size() 
+						+ table.getRound().getPreBettingPot().getValue();
+				for (IPlayer ap : activePlayers) {
+					ap.setOwnCurrentBet(ap.getOwnCurrentBet() - allInAmount);
+				}
+				table.getRound().getPreBettingPot().emptyPot();
+				table.getRound().getPot().removeFromPot(sidePotValue);
+				
+				/* create the sidepot */
+				Pot sidePot = new Pot(sidePotValue);
+				sidePots.add(new SidePotHandler(table.getActivePlayers(), sidePot));
+		
+				/* controll prints */
+	            System.out.println("\n\n-------------------------------\n" + 
+	            "SIDEPOT ADDED\n");
+	            System.out.println("sidePotValue: " + sidePotValue + "\n");
+	            System.out.println("ADDED PLAYERS:");
+	            for (IPlayer ap : table.getActivePlayers() )
+	            	System.out.println(ap.getName());
+	            System.out.println("\n-----------------------------------\n");
+				
+	            /* the all-in player should after this not longer be active */
+	            p.setActive(false);
+	            EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE, p));
+		} 
+	}
+	
+	/**
+	 * Performs actions required for starting a new betting round. 
+	 */
+	public void nextBettingRound() {	
+		playersInitial();
+		
+		/* give right player the turn */
+		table.setIndexOfCurrentPlayer(table.getDealerButtonIndex());
+		for (int i = 0; i < 2; i++) {
+			table.nextPlayer();
+		}
+		
+		nextGameAction();
+	}
+	
+	/**
+	 * The method checks what action is next (if it's time for showDown,
+	 * or if it's time to add community cards on the table) and does that action.
+	 * 
+	 * @lisastenberg
+	 */
+
+	private void nextGameAction() {
+		int potValue = table.getRound().getPot().getValue();
+		
+		if(timeForShowDown()) {
+			
+			List<SidePotHandler> sidePots = table.getSidePots();
+			/* perform showdown for possible sidepots */
+			if (sidePots != null) {
+				for (SidePotHandler sph : sidePots) {
+					performShowdown(sph.getPlayers(), sph.getPot().getValue());
+				}
+			}
+			
+			if (!allPlayersAllIn()) { 
+				/* perfom showdown for the table's current state*/
+				performShowdown(table.getActivePlayers(), potValue);
+			}
+		
+		/* if it's time for flop, show flop */
+		} else if (table.getCommunityCards().size() == 0) {
+			for(int i = 0; i < 3; i++) {
+				addCommunityCard();
+			}
+			table.getRound().getPreBettingPot().setValue(potValue);
+			
+		// if its time for river or turn	
+		} else {
+			addCommunityCard();
+			table.getRound().getPreBettingPot().setValue(potValue);
+		}
+	}
+	
+	/**
+	 * Performs actions required for starting a new round
+	 */
+	public void nextRound() {
+		playersInitial();
+		List<IPlayer> players = table.getPlayers();
+		for(IPlayer player : players) {
+			player.getHand().discard();
+			if (player.getBalance().getValue() != 0) {
+				player.setActive(true);
+			}
+		}
+		
+		tableInitial();
+		
+		/* set the turn to the right player */
+		//TODO funkar för två spelare?, detta görs på ett flertal ställen = 
+		//		refactor? 
+		int indexOfCurrentPlayer = table.getDealerButtonIndex();
+		for (int i = 0; i < 3; i++) {
+			do {
+				indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % table.getPlayers().size();
+			} while (!players.get(indexOfCurrentPlayer).isActive());
+		}
+		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
+		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN, indexOfCurrentPlayer));
 	}
 	
 	/**
@@ -253,51 +329,6 @@ public class GameController {
 		}
 		
 		table.doShowdown(plrs, potAmount);
-	}
-	
-	/**
-	 * Performs actions required for starting a new round
-	 */
-	public void nextRound() {
-		List<IPlayer> players = table.getPlayers();
-		
-		table.setShowdownDone(false);
-		table.getRound().getPot().emptyPot();
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_POT, table.getRound().getPot()));
-		table.getRound().getPreBettingPot().emptyPot();
-		table.clearCommunityCards();
-		table.getSidePots().clear();
-		for (IPlayer p : players) {
-			p.getHand().discard();
-			p.setOwnCurrentBet(0);
-			p.setDoneFirstTurn(false);			
-			if (p.getBalance().getValue() != 0) {
-				p.setActive(true);
-			}
-		}
-		
-		EventBus.publish(new Event(Event.Tag.SERVER_NEW_ROUND,""));
-		
-		/* new cards for all active players*/
-		table.getDealer().newDeck();
-		distributeCards();
-
-		/* give dealer-button to the right player*/
-		table.nextDealerButtonIndex();
-		
-		postBlinds();
-		
-		/* set the turn to the right player */
-		//TODO funkar för två spelare?, detta görs på ett flertal ställen = 
-		//		refactor? 
-		int indexOfCurrentPlayer = table.getDealerButtonIndex();
-		for (int i = 0; i < 3; i++) {
-			do {
-				indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % table.getPlayers().size();
-			} while (!players.get(indexOfCurrentPlayer).isActive());
-		}
-		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
-		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN, indexOfCurrentPlayer));
 	}
 	
 	/**
@@ -359,8 +390,8 @@ public class GameController {
 					new Bet(smallBlindPlayer,smallBlind));
 		}
 		
-		EventBus.publish(new Event(Tag.SERVER_UPDATE_BET, new Bet(smallBlindPlayer,smallBlind)));
-		EventBus.publish(new Event(Tag.SERVER_UPDATE_BET, new Bet(bigBlindPlayer,bigBlind)));
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(smallBlindPlayer,smallBlind)));
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(bigBlindPlayer,bigBlind)));
 		
 		/* if a player has gone all-in he shall not be able to act */
 		//TODO ska denna vara här?
@@ -373,105 +404,16 @@ public class GameController {
 	}
 	
 	/**
-	 * Performs actions required for starting a new betting round
+	 * Resets the players to its initial mode. This method is used when
+	 * setting up a new Round or BettingRound
 	 */
-	//TODO Bättre javadoc
-	//TODO övergripande metod = annat namn?
-	public void nextBettingRound() {
-		List<IPlayer> players = table.getPlayers();
-		
-		/* the table should have the default settings for a new betting round */
+	private void playersInitial() {
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
-		for (IPlayer p : players) {
+		for (IPlayer p : table.getPlayers()) {
 			p.setOwnCurrentBet(0);
 			EventBus.publish(new Event(Event.Tag.SERVER_SET_OWN_CURRENT_BET, new Bet(p,0)));
 			p.setDoneFirstTurn(false);
 		}
-		
-		/* give right player the turn */
-		table.setIndexOfCurrentPlayer(table.getDealerButtonIndex());
-		for (int i = 0; i < 2; i++) {
-			table.nextPlayer();
-		}
-		
-		/* check if it's time for showdown */
-		if (table.getCommunityCards().size() == 5 || 
-				table.getActivePlayers().size() == 1 || 
-				table.getActivePlayers().size() == 0) {
-			
-			/* if so, first perform showdown for possible sidepots */
-			List<SidePotHandler> sidePots = table.getSidePots();
-			if (sidePots != null) {
-				for (SidePotHandler sph : sidePots) {
-					performShowdown(sph.getPlayers(),sph.getPot().getValue());
-				}
-			}
-			
-			/* then perfom showdown for the table's current state, unless all 
-			 * players has gone all-in */
-			if (table.getActivePlayers().size() != 0) { 
-				performShowdown(table.getActivePlayers(), table.getRound().getPot().getValue());
-			}
-		
-		/* else, if it's time for flop, show flop */
-		} else if (table.getCommunityCards().size() == 0) {
-			for(int i = 0; i < 3; i++) {
-				addCommunityCard();
-			}
-			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
-			
-		// if its time for river or turn	
-		} else {
-			addCommunityCard();
-			table.getRound().getPreBettingPot().setValue(table.getRound().getPot().getValue());
-		}
-	}
-	
-	/**
-	 * Performs the actions which occur when a player has gone all-in 
-	 */
-	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande? JA!
-	public void handleAllIn() {
-		List<IPlayer> allInPlayers = table.getAllInPlayers();
-		List<IPlayer> activePlayers = table.getActivePlayers();
-		List<SidePotHandler> sidePots = table.getSidePots();
-		
-		/* sort allInPlayers so that the next task is performed in the correct
-		 * order */
-		Collections.sort(allInPlayers, new OwnCurrentBetComparator());
-		
-		/* for each player that has gone all-in a SidePotHandler containing '
-		 * info regarding that all-in case is created */
-		for (IPlayer p : allInPlayers) {
-			
-				/* calculate how big the all-in bet was and conduct neccesary 
-				 * changes according to this bet */
-				int allInAmount = p.getOwnCurrentBet();
-				int sidePotValue = allInAmount * activePlayers.size() 
-						+ table.getRound().getPreBettingPot().getValue();
-				for (IPlayer ap : activePlayers) {
-					ap.setOwnCurrentBet(ap.getOwnCurrentBet() - allInAmount);
-				}
-				table.getRound().getPreBettingPot().emptyPot();
-				table.getRound().getPot().removeFromPot(sidePotValue);
-				
-				/* create the sidepot */
-				Pot sidePot = new Pot(sidePotValue);
-				sidePots.add(new SidePotHandler(table.getActivePlayers(), sidePot));
-		
-				/* controll prints */
-	            System.out.println("\n\n-------------------------------\n" + 
-	            "SIDEPOT ADDED\n");
-	            System.out.println("sidePotValue: " + sidePotValue + "\n");
-	            System.out.println("ADDED PLAYERS:");
-	            for (IPlayer ap : table.getActivePlayers() )
-	            	System.out.println(ap.getName());
-	            System.out.println("\n-----------------------------------\n");
-				
-	            /* the all-in player should after this not longer be active */
-	            p.setActive(false);
-	            EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE, p));
-		} 
 	}
 	
 	/**
@@ -496,5 +438,92 @@ public class GameController {
 		}
 		
 	}
+	
+	/**
+	 * Performs a raise.
+	 * @param amount The amount to raise the pot with.
+	 * @throws IllegalRaiseException 
+	 */
+	//TODO delvis otestad
+	public boolean raise(Bet bet) {
+		if(!validPlayerAction(bet.getOwner())) {
+			return false;
+		}
+		IPlayer currentPlayer = table.getCurrentPlayer();
+		
+		int theRaise = bet.getValue() - currentPlayer.getOwnCurrentBet();
+		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
 
+		if(theRaise > currentPlayer.getBalance().getValue()) {
+			throw new IllegalRaiseException(
+					"Not enough money on balance to make that raise");
+		} else if(bet.getValue() <= currentBettingRound.getCurrentBet().getValue()
+				+ P.INSTANCE.getBigBlindValue()) {
+			throw new IllegalRaiseException("The raise have to be bigger" +
+					"than the current bet plus big blind.");
+		}
+		
+		/* arrange the player's balance, bet and the pot according to the raise 
+		 */
+		table.getRound().getPot().addToPot(theRaise);
+		currentPlayer.setDoneFirstTurn(true);
+		currentPlayer.getBalance().removeFromBalance(theRaise);
+		currentPlayer.setOwnCurrentBet(theRaise + currentPlayer.getOwnCurrentBet());
+		currentPlayer.setDoneFirstTurn(true);
+		currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
+						theRaise + currentPlayer.getOwnCurrentBet()));
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
+		progressTurn();
+		return true;
+	}
+	
+	/**
+	 * Resets the table to its initial mode. This method is used when
+	 * setting up a new Round.
+	 */
+	private void tableInitial() {
+		table.setShowdownDone(false);
+		table.getRound().getPot().emptyPot();
+		table.getRound().getPreBettingPot().emptyPot();
+		table.clearCommunityCards();
+		table.getSidePots().clear();
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_POT, table.getRound().getPot()));
+		EventBus.publish(new Event(Event.Tag.SERVER_NEW_ROUND,""));
+		
+		/* new cards for all active players*/
+		table.getDealer().newDeck();
+		distributeCards();
+
+		/* give dealer-button to the right player*/
+		table.nextDealerButtonIndex();
+		
+		postBlinds();
+	}
+	
+	/**
+	 * Check if it's time to do showdown. This method is used after a 
+	 * bettinground is done.
+	 * 
+	 * It is time to do showdown if all cards are on the table, if just one 
+	 * player is left or if all players all all-in.
+	 * 
+	 * @return true if it is time to do showdown.
+	 */
+	private boolean timeForShowDown() {
+		return table.getCommunityCards().size() == 5 || 
+				table.getActivePlayers().size() == 1 || 
+				table.getActivePlayers().size() == 0;
+	}
+	
+	/**
+	 * Checks if a player is allowed to do an action. In other words this method
+	 * checks if player is the currentPlayer at the table.
+	 * 
+	 * @param player The player
+	 * @return true if the player is allowed to do the action.
+	 */
+	private boolean validPlayerAction(IPlayer player) {
+		return player.equals(table.getCurrentPlayer());
+	}
 }
