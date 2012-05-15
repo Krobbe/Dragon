@@ -162,21 +162,24 @@ public class TableTest {
 
 	@Test
 	public void testAddTableCard() throws TableCardsFullException {
-		t.addCommunityCard();
+		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
+		t.addTableCard(c);
 		List<iCard> tableCards = t.getTableCards();
-		assertTrue(tableCards.get(0).getClass() == Card.class);
+		assertTrue(tableCards.get(0).equals(c));
 	}
 	
 	@Test(expected=TableCardsFullException.class) 
 	public void testTableCardsFull() throws TableCardsFullException {
+		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
 		for (int i = 0; i <= 5; i++) {
-			t.addCommunityCard();
+			t.addTableCard(c);
 		}	
 	}
 	
 	@Test
 	public void testClearTableCards() throws TableCardsFullException {
-		t.addCommunityCard();
+		Card c = new Card(Suit.SPADES, Card.Rank.TWO);
+		t.addTableCard(c);
 		t.clearTableCards();
 		assertTrue(t.getTableCards().size() == 0);
 	}

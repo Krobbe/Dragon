@@ -164,7 +164,7 @@ public class TableTest {
 	public void testAddTableCard() throws TableCardsFullException {
 		t.addCommunityCard();
 		List<iCard> tableCards = t.getTableCards();
-		assertTrue(tableCards.get(0).getClass() == Card.class);
+		assertTrue(tableCards.get(0).equals(c));
 	}
 	
 	@Test(expected=TableCardsFullException.class) 
