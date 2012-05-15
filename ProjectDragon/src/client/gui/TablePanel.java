@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import model.card.iCard;
+import model.card.ICard;
 import model.player.Bet;
 
 import java.awt.event.ActionEvent;
@@ -131,6 +131,8 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 
 	@Override
 	public void onEvent(Event evt) {
+		
+		List<IPlayer> players = table.getPlayers();
     	
 		switch (evt.getTag()) {
 		
@@ -146,19 +148,64 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			
 		case HAND_DISCARDED:
 			
-			List<IPlayer> list = table.getPlayers();
-			IPlayer player = (Player)evt.getValue();
-			for(int i = 0; i < list.size(); i++) {
-				if(player.equals(list.get(i))) {
-					
+
+			IPlayer handDiscardedPlayer = (Player) evt.getValue();
+			int handDiscardedPlayerIndex = -1;
+			
+			/* get the index of the player whos hand was discarded */
+			for(int i = 0; i < players.size(); i++) {
+				if(handDiscardedPlayer.equals(players.get(i))) {
+					handDiscardedPlayerIndex = i;
 					break;
 				}
+			}
+			
+			/* handle the correct panels */
+			switch (handDiscardedPlayerIndex) {
+			case 0:
+				
+				//hantera panel nr 0.
+				
+				break;
+				
+			case 1:
+				
+				//hantera panel nr 1.
+
+			default:
+				break;
 			}
 			
 			
 			break;
 			
 		case BALANCE_CHANGED:
+			
+			IPlayer balanceChangedPlayer = (Player) evt.getValue();
+			int balanceChangedPlayerIndex = -1;
+			
+			/* get the index of the player whos balance was changed */
+			for(int i = 0; i < players.size(); i++) {
+				if(balanceChangedPlayer.equals(players.get(i))) {
+					balanceChangedPlayerIndex = i;
+					break;
+				}
+			}
+			
+			switch (balanceChangedPlayerIndex) {
+			case 0:
+				
+				// hantera panel 0
+				
+				break;
+				
+			case 1:
+				
+				// hantera panel 1
+
+			default:
+				break;
+			}
 			
 			break;
 			
@@ -174,20 +221,40 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 			
 			break;
 			
+		//TODO: snygga till denna?	
 		case COMMUNITY_CARDS_CHANGED:
-			List<iCard> cards = (List<iCard>) evt.getValue();
-			if(cards.size() == 0) {
-				cleara alla texter, byt bakgrund;
+			
+			List<ICard> cards = (List<ICard>) evt.getValue();
+			
+			switch (cards.size()) {
+			
+			case 0:
+				
+				// SŠtt bakgrund till gršn eller liknanade...
+				
+				break;
+				
+			case 3:
+				
+				// sett paneler till korttext genom: cards.get(0).toString()
+				
+				break;
+				
+			case 4:
+				
+				// sett paneler till korttext genom: cards.get(0).toString()
+				
+				break;
+				
+			case 5:
+				
+				// sett paneler till korttext genom: cards.get(0).toString()
+				
+				break;
+
+			default:
+				break;
 			}
-			else if(cards.size() = 3,4,5) {
-				sätt korten;
-			}
-			
-			break;
-			
-		default:
-			
-			break;
 		} 
 	}
 
