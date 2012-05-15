@@ -1,10 +1,8 @@
 package ctrl.game;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import event.Event;
@@ -37,6 +35,10 @@ public class GameController {
 
 	private Table table;
 	
+	/**
+	 * @author robinandersson
+	 *
+	 */
 	public GameController() {
 		this(new Table());
 	}
@@ -46,7 +48,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Adds a player to the game's table
+	 * Adds a player to the gametable
 	 * 
 	 * @param player The player to be added
 	 * @author robinandersson
@@ -55,16 +57,6 @@ public class GameController {
 		this.table.addPlayer(player);
 	}
 	
-	/**
-	 * Adds the players in the list to to the game
-	 * 
-	 * @param player The player to be added
-	 * @author robinandersson
-	 */
-	public void addPlayers(Collection<iPlayer> player) {
-		this.table.addPlayers(player);
-	}
-
 	/**
 	 * Adds a new card to the "table cards"
 	 */
@@ -81,12 +73,20 @@ public class GameController {
 	 * @author robinandersson
 	 */
 	public void distributeCards() {
+
 		/* 
 		 * The  distribution is invoked by this controller class and redirected
 		 * to the table class. This makes more sense and also eliminates a bunch
 		 * of unnecessary method calls between the two classes
 		 */
 		table.distributeCards();
+		
+		Map<iPlayer, iHand> playerHands = new TreeMap<iPlayer, iHand>();
+		for(iPlayer p : table.getActivePlayers()) {
+			playerHands.put(p, p.getHand());
+		}
+		//TODO: publish i modellen då slipper man göra en Map..
+		EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_CARDS, playerHands));
 	}
 
 	//TODO: Koden i call, raise, check, fold är lite lik. refactor?
@@ -220,7 +220,7 @@ public class GameController {
 	//TODO otestat: exception, setOwncurrentBet
 	public boolean check(Bet bet) {
 		iPlayer currentPlayer = table.getCurrentPlayer();
-		//Check if the player is allowed to check
+		
 		if(!currentPlayer.equals(bet.getOwner())) {
 			return false;
 		}
@@ -235,9 +235,9 @@ public class GameController {
 		
 		currentPlayer.setDoneFirstTurn(true);
 		
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
 		progressTurn();
 		
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
 		return true;
 	}
 	
@@ -263,7 +263,9 @@ public class GameController {
 	public void nextRound() {
 		List<iPlayer> players = table.getPlayers();
 		
-		table.setShowdownDone(false);
+		/* set the table in a "initial" mode, in other words clear all bets
+		 * and pots, discard all hands etc. */
+		table.setShowdownDone(false); //TODO: behövs denna här eller bara i nextRound?
 		table.getRound().getPot().emptyPot();
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_POT, table.getRound().getPot()));
 		table.getRound().getPreBettingPot().emptyPot();

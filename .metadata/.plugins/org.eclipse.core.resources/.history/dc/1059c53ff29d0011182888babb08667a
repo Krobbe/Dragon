@@ -1,18 +1,19 @@
 package ctrl.game;
 
-import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import event.Event;
 import event.Event.Tag;
 import event.EventBus;
 
+import model.card.Card;
 import model.card.iCard;
 import model.game.BettingRound;
+import model.game.TexasHoldemDealer;
 import model.game.P;
 import model.game.Pot;
 import model.game.SidePotHandler;
@@ -37,6 +38,10 @@ public class GameController {
 
 	private Table table;
 	
+	/**
+	 * @author robinandersson
+	 *
+	 */
 	public GameController() {
 		this(new Table());
 	}
@@ -46,7 +51,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Adds a player to the game's table
+	 * Adds a player to the gametable
 	 * 
 	 * @param player The player to be added
 	 * @author robinandersson
@@ -55,16 +60,6 @@ public class GameController {
 		this.table.addPlayer(player);
 	}
 	
-	/**
-	 * Adds the players in the list to to the game
-	 * 
-	 * @param player The player to be added
-	 * @author robinandersson
-	 */
-	public void addPlayers(Collection<iPlayer> player) {
-		this.table.addPlayers(player);
-	}
-
 	/**
 	 * Adds a new card to the "table cards"
 	 */
@@ -81,12 +76,19 @@ public class GameController {
 	 * @author robinandersson
 	 */
 	public void distributeCards() {
+
 		/* 
 		 * The  distribution is invoked by this controller class and redirected
 		 * to the table class. This makes more sense and also eliminates a bunch
 		 * of unnecessary method calls between the two classes
 		 */
 		table.distributeCards();
+		
+		Map<iPlayer, iHand> playerHands = new TreeMap<iPlayer, iHand>();
+		for(iPlayer p : table.getActivePlayers()) {
+			playerHands.put(p, p.getHand());
+		}
+		EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_CARDS, playerHands));
 	}
 
 	//TODO: Koden i call, raise, check, fold är lite lik. refactor?
@@ -98,27 +100,29 @@ public class GameController {
 	 */
 	private void doCall() {
 		iPlayer currentPlayer = table.getCurrentPlayer();
-		int playersOwnCurrentBet = currentPlayer.getOwnCurrentBet();
+		Pot currentPot = table.getRound().getPot();
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
+		int playersOwnCurrentBet = currentPlayer.getOwnCurrentBet();
 		
 		/* if the player calls a bet which is bigger than his balance, the 
 		 * player will call with as much as his balance allows and move all-in
 		 */
-		//TODO: Är det här all-in?
-		if(currentPlayer.getBalance().getValue() < 
-				currentBetValue - playersOwnCurrentBet) {
+		if (currentBetValue > currentPlayer.getBalance().getValue() 
+				+ playersOwnCurrentBet) {
 			currentBetValue = currentPlayer.getBalance().getValue() 
-					+ playersOwnCurrentBet;
+				+ playersOwnCurrentBet;
 		}
 		
 		//TODO den här delen skulle kunna refactoreras kanske?
 		/* arrange the player's balance, bet and the pot according to the call 
 		 */
-		table.getRound().getPot().addToPot(currentBetValue - playersOwnCurrentBet);
-		currentPlayer.setOwnCurrentBet(currentBetValue);
 		currentPlayer.getBalance().removeFromBalance(currentBetValue 
 				- playersOwnCurrentBet);
+		currentPot.addToPot(currentBetValue 
+				- playersOwnCurrentBet);
+		//TODO: om han inte hade så mycket pengar som currentBetValue är?
+		currentPlayer.setOwnCurrentBet(currentBetValue);
 		
 		/* the player has now done a move */
 		currentPlayer.setDoneFirstTurn(true);
@@ -141,7 +145,8 @@ public class GameController {
 
 		if(!table.getCurrentPlayer().equals(bet.getOwner())) {
 			return false;
-		} else if (currentBetValue <= 0) {
+		} else if (currentBetValue == -1 //TODO -1 nödvändig? 
+				|| currentBetValue == 0) {
 			throw new IllegalCallException(
 					"Not possible to call since no bet has been posted");
 		} else {
@@ -206,10 +211,10 @@ public class GameController {
 		player.getHand().discard();
 		player.setActive(false);
 		player.setDoneFirstTurn(true);
-		EventBus.publish(new Event(Event.Tag.SERVER_FOLD, player));
 		
 		progressTurn();
 		
+		EventBus.publish(new Event(Event.Tag.SERVER_FOLD, player));
 		return true;
 	}
 	
@@ -220,7 +225,7 @@ public class GameController {
 	//TODO otestat: exception, setOwncurrentBet
 	public boolean check(Bet bet) {
 		iPlayer currentPlayer = table.getCurrentPlayer();
-		//Check if the player is allowed to check
+		
 		if(!currentPlayer.equals(bet.getOwner())) {
 			return false;
 		}
@@ -235,9 +240,9 @@ public class GameController {
 		
 		currentPlayer.setDoneFirstTurn(true);
 		
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
 		progressTurn();
 		
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET,bet));
 		return true;
 	}
 	
@@ -263,7 +268,9 @@ public class GameController {
 	public void nextRound() {
 		List<iPlayer> players = table.getPlayers();
 		
-		table.setShowdownDone(false);
+		/* set the table in a "initial" mode, in other words clear all bets
+		 * and pots, discard all hands etc. */
+		table.setShowdownDone(false); //TODO: behövs denna här eller bara i nextRound?
 		table.getRound().getPot().emptyPot();
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_POT, table.getRound().getPot()));
 		table.getRound().getPreBettingPot().emptyPot();
@@ -432,7 +439,7 @@ public class GameController {
 	/**
 	 * Performs the actions which occur when a player has gone all-in 
 	 */
-	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande? JA!
+	//TODO mkt förklaringar hör. skulle koden varit mer självförklarande? JA
 	public void handleAllIn() {
 		List<iPlayer> allInPlayers = table.getAllInPlayers();
 		List<iPlayer> activePlayers = table.getActivePlayers();
@@ -472,7 +479,7 @@ public class GameController {
 				
 	            /* the all-in player should after this not longer be active */
 	            p.setActive(false);
-	            EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE, p));
+	            EventBus.publish(new Event(Event.Tag.SERVER_SET_PLAYER_UNACTIVE,p));
 		} 
 	}
 	
