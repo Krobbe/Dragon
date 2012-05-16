@@ -24,23 +24,23 @@ import utilities.IllegalCallException;
  * @author lisastenberg
  */
 
-public class RemoteGameController implements iClientGame, iServerRequest {
+public class RemoteGameController implements IClientGame, iServerRequest {
 	
-	private iServerGame serverGame;
+	private IServerGame serverGame;
 	private RemoteCommunicationController clientComm;
 	
 	private GameController gameController;
 	
-	private iPlayer user;
+	private IPlayer user;
 
 	
 	public RemoteGameController(RemoteCommunicationController clientComm,
-			iPlayer user){
+			IPlayer user){
 		this(clientComm, user, new GameController());
 	}
 	
 	public RemoteGameController(RemoteCommunicationController clientComm, 
-								iPlayer user, GameController gameController){
+								IPlayer user, GameController gameController){
 		this.clientComm = clientComm;
 		this.gameController = gameController;
 		this.user = user;
@@ -54,7 +54,7 @@ public class RemoteGameController implements iClientGame, iServerRequest {
 	 * @param serverGame The reference to the server's instance controlling this
 	 * particular game
 	 */
-	public void setServerGame(iServerGame serverGame){
+	public void setServerGame(IServerGame serverGame){
 		this.serverGame = serverGame;
 	}
 	

@@ -35,13 +35,13 @@ public class RemoteCommunicationController implements IClient {
 
 	
 	// The reference to the server
-	private iServer serverComm;
+	private IServer serverComm;
 	
 	// TODO Flytta "lagringen" av account till ett mer passande ställe?
 	private Account account;
 	
 	public RemoteCommunicationController(){
-		activeGames = new TreeMap<iPlayer, RemoteGameController>();
+		activeGames = new TreeMap<IPlayer, RemoteGameController>();
 		serverComm = connectToServer();
 		account = null;
 	}
@@ -70,7 +70,7 @@ public class RemoteCommunicationController implements IClient {
 	    	
 	        Registry registry = LocateRegistry.getRegistry(port);
 
-	        server = (iServer) registry.lookup(iServer.REMOTE_NAME);
+	        server = (IServer) registry.lookup(IServer.REMOTE_NAME);
 	        System.out.println("*** Connection established on port: " + port
 	        														+ " ***");
 	    }
@@ -124,13 +124,13 @@ public class RemoteCommunicationController implements IClient {
 						getAccount().getUserName(),
 						new Balance(playerStartingChips));
 		
-		iPlayer user = new User(player);
+		IPlayer user = new User(player);
 		
 		RemoteGameController clientGame = new RemoteGameController(this, user);
 		
 		try {
 			
-			iServerGame serverGame = serverComm.createGame(getAccount(),
+			IServerGame serverGame = serverComm.createGame(getAccount(),
 					clientGame, entranceFee, maxPlayers, playerStartingChips);
 			clientGame.setServerGame(serverGame);
 			activeGames.put(user, clientGame);
@@ -163,10 +163,10 @@ public class RemoteCommunicationController implements IClient {
 				getAccount().getUserName(),
 				new Balance(1000));
 		
-		iPlayer user = new User(player);
+		IPlayer user = new User(player);
 		
 		RemoteGameController clientGame = new RemoteGameController(this, user);
-		iServerGame serverGame = null;
+		IServerGame serverGame = null;
 
 		try {
 			serverGame = serverComm.joinGame(getAccount(), player, clientGame,
@@ -182,7 +182,7 @@ public class RemoteCommunicationController implements IClient {
 
 		try {
 			
-			Collection<iPlayer> playerList = serverGame.getPlayers();
+			Collection<IPlayer> playerList = serverGame.getPlayers();
 			clientGame.addPlayers(playerList);
 			activeGames.put(user, clientGame);
 			
