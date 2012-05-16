@@ -1,5 +1,7 @@
 package model.player;
 
+import java.io.Serializable;
+
 /**
  * A class for balance. 
  * 
@@ -7,7 +9,7 @@ package model.player;
  *
  */
 
-public class Balance {
+public class Balance implements Serializable{
 	private int value;
 	
 	public Balance() {

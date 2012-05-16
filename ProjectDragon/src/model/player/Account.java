@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author lisastenberg
  * 
  */
-public class Account implements Serializable {
+public class Account implements Serializable, Comparable<Account> {
 	private String firstName, lastName, userName, passWord;
 	private Balance balance;
 
@@ -140,5 +140,10 @@ public class Account implements Serializable {
 	public int hashCode() {
 		assert false : "hashCode not designed";
 		return 42; // any arbitrary constant will do
+	}
+
+	@Override
+	public int compareTo(Account o) {
+		return this.userName.compareTo(o.userName);
 	}
 }

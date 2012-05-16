@@ -22,6 +22,7 @@ public class Event {
     	CREATE_TABLE,
     	GO_TO_REGISTER,
     	GO_TO_STATISTICS,
+    	GO_TO_TABLE,
     	HANDS_CHANGED,	// getValue(): player of the hands that changes
     	HAND_DISCARDED,	// getValue(): player, the player who's hand was discarded
     	JOIN_TABLE,
