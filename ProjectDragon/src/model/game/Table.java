@@ -471,6 +471,19 @@ public class Table {
 	}
 	
 	/**
+	 * This method recieves a bet and placese it om the table.
+	 * @param bet The bet that should be placed on the table.
+	 */
+	public void recieveBet(Bet bet) {
+		getRound().getPot().addToPot(bet.getValue());
+
+		Bet currentBet = getRound().getBettingRound().getCurrentBet();
+		if (bet.getValue() >= currentBet.getValue()) {
+			getRound().getBettingRound().setCurrentBet(bet);
+		}
+	}
+	
+	/**
 	 * Sets the list of players who won the last round
 	 * @param winners
 	 */

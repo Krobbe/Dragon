@@ -450,24 +450,25 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Should the result be saved here somehow?
-		
+
 		if (e.getSource().equals(leaveTableButton)) {
-			
-			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
-			
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, ""));
+
 		} else if (e.getSource().equals(userCheckButton)) {
-			
-			EventBus.publish(new Event(Event.Tag.REQUEST_CHECK, 1));
-			
+
+			EventBus.publish(new Event(Event.Tag.REQUEST_CHECK, new Bet(table
+					.getCurrentPlayer(), 0)));
+
 		} else if (e.getSource().equals(userFoldButton)) {
-			
-			EventBus.publish(new Event(Event.Tag.REQUEST_FOLD, 1));
-			
+
+			EventBus.publish(new Event(Event.Tag.REQUEST_FOLD, table
+					.getCurrentPlayer()));
+
 		} else if (e.getSource().equals(userRaiseButton)) {
-			
-			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE, Integer
-					.parseInt(userBetField.getText())));
-			
+
+			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE, new Bet(table
+					.getCurrentPlayer(), Integer.parseInt(userBetField
+					.getText()))));
 		}
 	}
 

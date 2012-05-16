@@ -373,15 +373,9 @@ public class GameController {
 		/*public void performPlayerBet(Bet bet) {
 			int value = bet.getValue();
 			IPlayer player = bet.getOwner();
-			
-			//TODO: det šversta kan ligga i player?
-			player.getBalance().removeFromBalance(value);
-			player.setOwnCurrentBet(value);
-			
-			table.getRound().getPot().addToPot(value);
-			Bet currentBet = table.getRound().getBettingRound().getCurrentBet();
-			if (value >= currentBet.getValue()) {
-				table.getRound().getBettingRound().setCurrentBet(bet);	
+
+			player.makeBet(value);
+			table.recieveBet(bet);
 		}*/
 		
 		/* post blinds */
