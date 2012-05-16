@@ -294,4 +294,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		return clients.containsKey(account);
 	}
 
+	@Override
+	public String testPrint() throws RemoteException {
+		return "Hej Mattias! :D";
+	}
 }

@@ -63,5 +63,13 @@ public interface IServer extends Remote {
 	 */
 	public IServerGame joinGame(Account account, IPlayer player,
 				IClientGame clientGame, int gameIndex) throws RemoteException;
+	
+	/**
+	 * Test method for connectivity
+	 * 
+	 * @return Test string for testing method call
+	 * @throws RemoteException
+	 */
+	public String testPrint() throws RemoteException;
 
 }

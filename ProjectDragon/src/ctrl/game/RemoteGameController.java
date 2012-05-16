@@ -398,7 +398,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		
 		if(isReadyToStart){
 			// TODO Handle start game scenario
-			//gameController.startGame();
+			gameController.nextRound();
 		}
 
 	}

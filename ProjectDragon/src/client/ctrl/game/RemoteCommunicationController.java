@@ -44,6 +44,12 @@ public class RemoteCommunicationController implements IClient {
 		activeGames = new TreeMap<IPlayer, RemoteGameController>();
 		serverComm = connectToServer();
 		account = null;
+		try {
+			System.out.println(serverComm.testPrint());
+		} catch (RemoteException e) {
+			System.out.println("Gick int' :(");
+			e.printStackTrace();
+		}
 	}
 	
 	/** 
