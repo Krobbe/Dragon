@@ -55,7 +55,6 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 			System.out.println("Gick int' :(");
 			e.printStackTrace();
 		}
-		EventBus.register(this);
 	}
 	
 	/** 
