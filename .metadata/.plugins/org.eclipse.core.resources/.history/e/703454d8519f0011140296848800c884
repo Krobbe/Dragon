@@ -232,15 +232,16 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	public void onEvent(Event evt) {
 		switch(evt.getTag()) {
 		case TRY_LOGIN:
-			ArrayList<char[]> login;
-			if(!(evt.getValue() instanceof ArrayList)) {
+			String login;
+			if(!(evt.getValue() instanceof String)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				login = (ArrayList<char[]>)evt.getValue();
+				login = (String)evt.getValue();
 				String userName, passWord;
-				userName = new String(login.get(0));
-				passWord = new String(login.get(1));
+				int index = login.indexOf(" ");
+				userName = login.substring(0, index);
+				passWord = login.substring(index + 1);
 				login(this, userName, passWord);
 			}
 			break;
