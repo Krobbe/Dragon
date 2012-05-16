@@ -24,7 +24,7 @@ import utilities.IllegalCallException;
  * @author lisastenberg
  */
 
-public class RemoteGameController implements IClientGame, iServerRequest {
+public class RemoteGameController implements IClientGame, IServerRequest {
 	
 	private IServerGame serverGame;
 	private RemoteCommunicationController clientComm;

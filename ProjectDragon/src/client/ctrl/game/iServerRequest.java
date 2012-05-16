@@ -13,7 +13,7 @@ import utilities.IllegalRaiseException;
  * @author robinandersson
  *
  */
-public interface iServerRequest {
+public interface IServerRequest {
 	
 	/**
 	 * Requests a call.
