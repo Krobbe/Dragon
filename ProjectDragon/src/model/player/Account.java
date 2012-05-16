@@ -1,5 +1,7 @@
 package model.player;
 
+import java.io.Serializable;
+
 /**
  * A class that simulates an account.
  * 
@@ -9,7 +11,7 @@ package model.player;
  * @author lisastenberg
  * 
  */
-public class Account {
+public class Account implements Serializable {
 	private String firstName, lastName, userName, passWord;
 	private Balance balance;
 

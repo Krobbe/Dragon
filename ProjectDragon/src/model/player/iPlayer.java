@@ -1,5 +1,7 @@
 package model.player;
 
+import java.io.Serializable;
+
 import model.player.hand.IHand;
 
 
@@ -10,7 +12,7 @@ import model.player.hand.IHand;
  * @author mattiashenriksson
  * @author robinandersson
  */
-public interface IPlayer extends Comparable<IPlayer> {
+public interface IPlayer extends Comparable<IPlayer>, Serializable {
 
 	/**
 	 * @author lisastenberg
@@ -98,6 +100,12 @@ public interface IPlayer extends Comparable<IPlayer> {
 	 * @return a boolean telling if the player is all-in (has a balance of 0)
 	 */
 	public boolean isAllIn();
+	
+	/**
+	 * Posts a bet from the player
+	 * @author mattiashenriksson
+	 */
+	public void makeBet(Bet bet);
 	
 	@Override
 	public boolean equals(Object o);

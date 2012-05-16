@@ -138,4 +138,12 @@ public class Player implements IPlayer {
 	public boolean isAllIn() {
 		return balance.getValue() == 0;
 	}
+
+	@Override
+	public void makeBet(Bet bet) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

@@ -118,4 +118,10 @@ public class User implements IPlayer {
 		return player.isAllIn();
 	}
 
+	@Override
+	public void makeBet(Bet bet) {
+		//TODO: gamle matte jobbar på dnna
+		
+	}
+
 }
