@@ -94,6 +94,14 @@ public class User implements IPlayer {
 		  return 42; // any arbitrary constant will do
 	}
 
+	/**
+	 * Compare a player against another player by their names. 
+	 */
+	@Override
+	public int compareTo(IPlayer p) {
+		return t;
+	}
+
 	@Override
 	public void setDoneFirstTurn(boolean value) {
 		player.setDoneFirstTurn(value);
