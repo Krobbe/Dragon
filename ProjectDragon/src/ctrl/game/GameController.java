@@ -368,10 +368,11 @@ public class GameController {
 		if (bigBlindPlayer.getBalance().getValue() < bigBlind) {
 			bigBlind = bigBlindPlayer.getBalance().getValue();
 		}
-		
-		//TODO pŒ g av matte h...
+		//TODO pŒ g av matte h
 		//TODO: parameter = bet ist?
-		/*public void performPlayerBet(IPlayer player, int value) {
+		/*public void performPlayerBet(Bet bet) {
+			int value = bet.getValue();
+			IPlayer player = bet.getOwner();
 			
 			//TODO: det šversta kan ligga i player?
 			player.getBalance().removeFromBalance(value);
@@ -379,9 +380,8 @@ public class GameController {
 			
 			table.getRound().getPot().addToPot(value);
 			Bet currentBet = table.getRound().getBettingRound().getCurrentBet();
-			if (value >= currentBet.value) {
-				table.getRound....
-			
+			if (value >= currentBet.getValue()) {
+				table.getRound().getBettingRound().setCurrentBet(bet);	
 		}*/
 		
 		/* post blinds */

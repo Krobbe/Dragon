@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import client.event.*;
+
 
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel implements ActionListener, client.event.EventHandler {
@@ -27,8 +29,8 @@ public class LoginPanel extends JPanel implements ActionListener, client.event.E
 	}
 
 	@Override
-	public void onEvent(client.event.Event evt) {
-		if (evt.getTag().equals(client.event.Event.Tag.LOGIN_FAILED)) {
+	public void onEvent(Event evt) {
+		if (evt.getTag().equals(Event.Tag.LOGIN_FAILED)) {
 			JOptionPane.showMessageDialog(null,
 					"Incorrect username or password");
 			// TODO A better solution to inform about a failed login, pop-ups
@@ -43,9 +45,9 @@ public class LoginPanel extends JPanel implements ActionListener, client.event.E
 			ArrayList<char[]> loginInfo = new ArrayList<char[]>();
 			loginInfo.add(loginNameField.getText().toCharArray());
 			loginInfo.add(loginPasswordField.getPassword());
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.TRY_LOGIN, loginInfo));
+			EventBus.publish(new Event(Event.Tag.TRY_LOGIN, loginInfo));
 		} else if (e.getSource() == loginRegisterButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_REGISTER, 1));
+			EventBus.publish(new Event(Event.Tag.GO_TO_REGISTER, 1));
 		}
 	}
 
