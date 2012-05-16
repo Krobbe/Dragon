@@ -104,8 +104,9 @@ public interface IPlayer extends Comparable<IPlayer>, Serializable {
 	/**
 	 * Posts a bet from the player
 	 * @author mattiashenriksson
+	 * @param value The value on the bet that should be posted
 	 */
-	public void makeBet(Bet bet);
+	public void makeBet(int value);
 	
 	@Override
 	public boolean equals(Object o);

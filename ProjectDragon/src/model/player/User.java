@@ -119,9 +119,8 @@ public class User implements IPlayer {
 	}
 
 	@Override
-	public void makeBet(Bet bet) {
-		//TODO: gamle matte jobbar på dnna
-		
+	public void makeBet(int value) {
+		player.makeBet(value);
 	}
 
 }

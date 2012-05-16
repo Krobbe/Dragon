@@ -140,9 +140,9 @@ public class Player implements IPlayer {
 	}
 
 	@Override
-	public void makeBet(Bet bet) {
-		// TODO Auto-generated method stub
-		
+	public void makeBet(int value) {
+		balance.removeFromBalance(value);
+		setOwnCurrentBet(value);
 	}
 	
 	

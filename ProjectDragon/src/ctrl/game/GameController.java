@@ -368,7 +368,7 @@ public class GameController {
 		if (bigBlindPlayer.getBalance().getValue() < bigBlind) {
 			bigBlind = bigBlindPlayer.getBalance().getValue();
 		}
-		//TODO pŒ g av matte h
+		
 		//TODO: parameter = bet ist?
 		/*public void performPlayerBet(Bet bet) {
 			int value = bet.getValue();
