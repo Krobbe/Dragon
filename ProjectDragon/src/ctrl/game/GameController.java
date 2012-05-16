@@ -369,6 +369,7 @@ public class GameController {
 			bigBlind = bigBlindPlayer.getBalance().getValue();
 		}
 		
+		//TODO: matte h håller på att fixar lite här!!
 		//TODO: parameter = bet ist?
 		/*public void performPlayerBet(Bet bet) {
 			int value = bet.getValue();
