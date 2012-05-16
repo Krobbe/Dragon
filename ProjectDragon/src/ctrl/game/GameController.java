@@ -379,6 +379,8 @@ public class GameController {
 			
 			table.getRound().getPot().addToPot(value);
 			Bet currentBet = table.getRound().getBettingRound().getCurrentBet();
+			if (value >= currentBet.value) {
+				table.getRound....
 			
 		}*/
 		
