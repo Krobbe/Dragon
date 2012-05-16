@@ -298,6 +298,27 @@ public class Table {
         return winners;
     }
     
+	/**
+	 * This method finds and returns the index of the next active player,
+	 * counted after the currentPlayerIndex, which is a parameter provided to
+	 * the method by the caller.
+	 * 
+	 * @param currentPlayerIndex 
+	 * @return The index of the next player.
+	 */
+	//TODO: denna kanske kan användas på fler ställen..
+	public int findIndexOfNextPlayer(int currentPlayerIndex) {
+		int returnIndex = -1;
+		int count = 1;
+		
+		do {
+			returnIndex = (currentPlayerIndex + count) % getPlayers().size();
+			count++;
+		} while (!getPlayers().get(returnIndex).isActive());
+		
+		return returnIndex;
+	}
+    
     /**
      * This method checks if the players has all done their bets properly and 
      * the betting for the current round is therefore done.

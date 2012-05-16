@@ -304,7 +304,7 @@ public class GameController {
 		List<IPlayer> players = table.getPlayers();
 		for(IPlayer player : players) {
 			player.getHand().discard();
-			if (player.getBalance().getValue() != 0) {
+			if (!player.isAllIn()) {
 				player.setActive(true);
 			}
 		}
@@ -312,8 +312,7 @@ public class GameController {
 		tableInitial();
 		
 		/* set the turn to the right player */
-		//TODO funkar för två spelare?, detta görs på ett flertal ställen = 
-		//		refactor? 
+		//TODO detta görs på ett flertal ställen = refactor? 
 		int indexOfCurrentPlayer = table.getDealerButtonIndex();
 		for (int i = 0; i < 3; i++) {
 			do {
@@ -345,36 +344,22 @@ public class GameController {
 	 * Makes the players who's turn it is to post the big and small blind to do 
 	 * so.
 	 */
-	//TODO ska denna vara här? likt raise = refactor?
+	//TODO likt raise = refactor?
 	private void postBlinds() {
 		List<IPlayer> players = table.getPlayers();
-
 		int dealerButtonIndex = table.getDealerButtonIndex();
 		
 		/* define the initial value of the blinds */ 
 		int bigBlind = P.INSTANCE.getBigBlindValue();
 		int smallBlind = bigBlind / 2;
-		
-		/* calculate smallBlindIndex */
-		int smallBlindIndex;
-		int count = 1;
-		do {
-			smallBlindIndex = (dealerButtonIndex + count) % table.getPlayers().size();
-			count++;
-		} while (!players.get(smallBlindIndex).isActive());
-		
-		/* calculate bigBlindIndex */
-		int bigBlindIndex;
-		count = 1;
-		do {
-			bigBlindIndex = (smallBlindIndex + count) % table.getPlayers().size();
-			count++;
-		} while (!players.get(bigBlindIndex).isActive());
+				
+		int smallBlindIndex = table.findIndexOfNextPlayer(dealerButtonIndex);
+		int bigBlindIndex =  table.findIndexOfNextPlayer(smallBlindIndex);
 		
 		IPlayer smallBlindPlayer = players.get(smallBlindIndex);
 		IPlayer bigBlindPlayer = players.get(bigBlindIndex);
 		
-		/* define the definite value on the blinds (a player migth have to 
+		/* define the definite value on the blinds (a player might have to 
 		 * small balance to post the full blind) */
 		if (smallBlindPlayer.getBalance().getValue() < smallBlind) {
 			smallBlind = smallBlindPlayer.getBalance().getValue();
@@ -383,6 +368,14 @@ public class GameController {
 		if (bigBlindPlayer.getBalance().getValue() < bigBlind) {
 			bigBlind = bigBlindPlayer.getBalance().getValue();
 		}
+		
+		/* på g av matte h */
+		//TODO: parameter = bet ist?
+		/*public void performPlayerBet(IPlayer player, int value) {
+			player.getBalance().removeFromBalance(value);
+			player.setOwnCurrentBet(value);
+			table.getRound().getPot().addToPot(value);
+		}*/
 		
 		/* post blinds */
 		smallBlindPlayer.getBalance().removeFromBalance(smallBlind);
@@ -405,10 +398,10 @@ public class GameController {
 		
 		/* if a player has gone all-in he shall not be able to act */
 		//TODO ska denna vara här?
-		if (bigBlindPlayer.getBalance().getValue() == 0) {
+		if (bigBlindPlayer.isAllIn()) {
 			bigBlindPlayer.setDoneFirstTurn(true);
 		}
-		if (smallBlindPlayer.getBalance().getValue() == 0) {
+		if (smallBlindPlayer.isAllIn()) {
 			smallBlindPlayer.setDoneFirstTurn(true);
 		}
 	}

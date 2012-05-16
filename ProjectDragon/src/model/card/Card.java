@@ -24,8 +24,8 @@ public class Card implements ICard {
 	 * @author mattiashenriksson
 	 */
 	public Card() {
-		this.rank = Rank.ACE;
-		this.suit = Suit.HEARTS;
+		this.rank = Rank.NO_RANK;
+		this.suit = Suit.NO_SUIT;
 	}
 	
 	public Card(Suit suit, Rank rank) {
