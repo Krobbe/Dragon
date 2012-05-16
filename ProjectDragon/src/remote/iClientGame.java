@@ -3,6 +3,7 @@
  */
 package remote;
 
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -18,7 +19,7 @@ import model.player.hand.IHand;
  * @author robinandersson
  * @author lisastenberg
  */
-public interface IClientGame extends Remote {
+public interface IClientGame extends Remote, Serializable{
 	
 	/**
 	 * Creates a new table.

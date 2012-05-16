@@ -1,5 +1,6 @@
 package remote;
 
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Collection;
@@ -16,7 +17,7 @@ import utilities.*;
  * @author robinandersson
  *
  */
-public interface IServerGame extends Remote {
+public interface IServerGame extends Remote, Serializable {
 	
 	/**
 	 * Set player ready to start the game. Passes along an Account instance for

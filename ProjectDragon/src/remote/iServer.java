@@ -3,6 +3,7 @@
  */
 package remote;
 
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -15,7 +16,7 @@ import model.player.IPlayer;
  * @author robinandersson
  *
  */
-public interface IServer extends Remote, IDBAccount {
+public interface IServer extends Remote, IDBAccount, Serializable {
 	
 	public static final String REMOTE_NAME = "Server";
 
