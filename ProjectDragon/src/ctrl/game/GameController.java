@@ -369,12 +369,17 @@ public class GameController {
 			bigBlind = bigBlindPlayer.getBalance().getValue();
 		}
 		
-		/* på g av matte h */
+		//TODO på g av matte h...
 		//TODO: parameter = bet ist?
 		/*public void performPlayerBet(IPlayer player, int value) {
+			
+			//TODO: det översta kan ligga i player?
 			player.getBalance().removeFromBalance(value);
 			player.setOwnCurrentBet(value);
+			
 			table.getRound().getPot().addToPot(value);
+			Bet currentBet = table.getRound().getBettingRound().getCurrentBet();
+			
 		}*/
 		
 		/* post blinds */
