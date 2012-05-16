@@ -13,7 +13,6 @@ import java.util.TreeMap;
 
 import client.event.Event;
 import client.event.EventHandler;
-import client.event.EventBus;
 
 import model.player.Account;
 import model.player.Balance;
@@ -113,11 +112,9 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		
 		try {	
 			this.account = serverComm.login(client, accountName, accountPassword);
-			EventBus.publish(new Event(Event.Tag.LOGIN_SUCCESS, ""));
-			//TODO: Login Failed	
+				
 		} catch (RemoteException e) {
 			// TODO Handle login failure better
-			EventBus.publish(new Event(Event.Tag.LOGIN_FAILED, ""));
 			System.out.println("*** Connection problem, failed to login ***");
 			e.printStackTrace();
 		}
@@ -162,16 +159,8 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	private void tryRegisterAccount(String userName, String firstName, 
 			String lastName, String passWord) {
 			Account tmp = new Account(firstName, lastName, userName, passWord);
-			try {
-				if(serverComm.createAccount(tmp)) {
-					login(this, tmp.getUserName(), tmp.getPassWord());
-					EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
-				} else {
-					EventBus.publish(new Event(Event.Tag.REGISTER_FAILED, ""));
-				}
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(serverComm.createAccount(tmp)) {
+				login(this, tmp.getUserName(), tmp.getPassWord());
 			}
 	}
 	
