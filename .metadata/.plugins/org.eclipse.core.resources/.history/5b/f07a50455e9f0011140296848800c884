@@ -110,6 +110,8 @@ public class RemoteGameController implements IClientGame, IServerRequest, EventH
 			
 			try {
 				return serverGame.call(bet);
+			} catch (IllegalCallException e) {
+				e.printStackTrace();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -125,6 +127,8 @@ public class RemoteGameController implements IClientGame, IServerRequest, EventH
 			
 			try {
 				return serverGame.check(bet);
+			} catch (IllegalCallException e) {
+				e.printStackTrace();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -140,6 +144,8 @@ public class RemoteGameController implements IClientGame, IServerRequest, EventH
 			
 			try {
 				return serverGame.raise(bet);
+			} catch (IllegalCallException e) {
+				e.printStackTrace();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -155,6 +161,9 @@ public class RemoteGameController implements IClientGame, IServerRequest, EventH
 
 			try {
 				return serverGame.fold(player);
+			} catch (IllegalCallException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
