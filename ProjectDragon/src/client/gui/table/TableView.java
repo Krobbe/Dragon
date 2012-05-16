@@ -39,7 +39,6 @@ public class TableView implements EventHandler, ActionListener{
 	
 	private JButton leaveTableButton;
 	
-	
 	public TableView(Table table) {
 		this.table = table;
 		init();

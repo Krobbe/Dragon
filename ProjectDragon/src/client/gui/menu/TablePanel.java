@@ -17,6 +17,7 @@ import model.player.Bet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import client.event.*;
+import client.model.game.Table;
 import model.player.*;
 
 @SuppressWarnings("serial")
@@ -113,7 +114,9 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 	private JLabel currentBet;
 	private JLabel currentBetInfoLabel;
 	
-	private client.model.game.Table table;
+	// TODO Expand functionality by storing multiple tables in a list to allow
+	// more games at the same time
+	private Table table;
 
 	/**
 	 * Create the application.
@@ -123,7 +126,7 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 		client.event.EventBus.register(this);
 	}
 	
-	public TablePanel(client.model.game.Table table) {
+	public TablePanel(Table table) {
 		initialize();
 		this.table = table;
 		client.event.EventBus.register(this);
@@ -132,325 +135,343 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 	@Override
 	public void onEvent(Event evt) {
 		
-		List<IPlayer> allPlayers = table.getPlayers();
-    	
-		switch (evt.getTag()) {
+		// 
+		if(table != null) {
 		
-		case CURRENT_BET_CHANGED:
-			int bet = table.getRound().getBettingRound().getCurrentBet().getValue();
-			currentBet.setText("" + bet);
-			break;
+			List<IPlayer> allPlayers = table.getPlayers();
 			
-		case POT_CHANGED:
-			int potValue = table.getRound().getPot().getValue();
-			potSize.setText("" + potValue);
-			break;
+			switch (evt.getTag()) {
 			
-		case HAND_DISCARDED:
-			IPlayer handDiscardedPlayer;
-			if (!(evt.getValue() instanceof IPlayer)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				handDiscardedPlayer = (IPlayer) evt.getValue();
-				int handDiscardedPlayerIndex = -1;
-
-				// TODO: om man fick in ett index från början ist hade inte
-				// följand varit nödvändigt:
-				/* get the index of the player whos hand was discarded */
-				for (int i = 0; i < allPlayers.size(); i++) {
-					if (handDiscardedPlayer.equals(allPlayers.get(i))) {
-						handDiscardedPlayerIndex = i;
-						break;
+			case CURRENT_BET_CHANGED:
+				int bet = table.getRound().getBettingRound().getCurrentBet().getValue();
+				currentBet.setText("" + bet);
+				break;
+				
+			case POT_CHANGED:
+				int potValue = table.getRound().getPot().getValue();
+				potSize.setText("" + potValue);
+				break;
+				
+			case HAND_DISCARDED:
+				IPlayer handDiscardedPlayer;
+				if (!(evt.getValue() instanceof IPlayer)) {
+					System.out.println("Wrong evt.getValue() for evt.getTag(): "
+							+ evt.getTag());
+				} else {
+					handDiscardedPlayer = (IPlayer) evt.getValue();
+					int handDiscardedPlayerIndex = -1;
+	
+					// TODO: om man fick in ett index från början ist hade inte
+					// följand varit nödvändigt:
+					/* get the index of the player whos hand was discarded */
+					for (int i = 0; i < allPlayers.size(); i++) {
+						if (handDiscardedPlayer.equals(allPlayers.get(i))) {
+							handDiscardedPlayerIndex = i;
+							break;
+						}
 					}
-				}
-
+	
+					/* handle the correct panels */
+					switch (handDiscardedPlayerIndex) {
+					case 0:
+						// hantera panel nr 0.
+						break;
+	
+					}
+				
 				/* handle the correct panels */
 				switch (handDiscardedPlayerIndex) {
 				case 0:
-					// hantera panel nr 0.
+					
+					p1c1Label.setText(null);
+					p1c2Label.setText(null);
+					playerOnePanel.setBackground(Color.red);
+					
 					break;
-
-				}
-			
-			/* handle the correct panels */
-			switch (handDiscardedPlayerIndex) {
-			case 0:
-				
-				p1c1Label.setText(null);
-				p1c2Label.setText(null);
-				playerOnePanel.setBackground(Color.red);
-				
-				break;
-				
-			case 1:
-				
-				p2c1Label.setText(null);
-				p2c2Label.setText(null);
-				playerTwoPanel.setBackground(Color.red);
-				
-				break;
-				
-			case 2:
-				
-				p3c1Label.setText(null);
-				p3c2Label.setText(null);
-				playerThreePanel.setBackground(Color.red);
-				
-				break;
-				
-			case 3:
-				
-				p4c1Label.setText(null);
-				p4c2Label.setText(null);
-				playerFourPanel.setBackground(Color.red);
-				
-				break;
-				
-			case 4:
-				
-				p5c1Label.setText(null);
-				p5c2Label.setText(null);
-				playerFivePanel.setBackground(Color.red);
-				
-				break;
-				
-			case 5:
-				
-				p6c1Label.setText(null);
-				p6c2Label.setText(null);
-				playerSixPanel.setBackground(Color.red);
-				
-				break;
-				
-			case 6:
-				
-				p7c1Label.setText(null);
-				p7c2Label.setText(null);
-				playerSevenPanel.setBackground(Color.red);
-				
-				break;
-				
-			case 7:
-				
-				p8c1Label.setText(null);
-				p8c2Label.setText(null);
-				playerEightPanel.setBackground(Color.red);
-				
-				break;
-				
-			case 8:
-				
-				p9c1Label.setText(null);
-				p9c2Label.setText(null);
-				playerNinePanel.setBackground(Color.red);
-				
-				break;
-				
-			case 9:
-				
-				p10c1Label.setText(null);
-				p10c2Label.setText(null);
-				playerTenPanel.setBackground(Color.red);
-				
-				break;
-				
-			default:
-				break;
-
-			}
-			
-			
-			}
-			
-		
-		case BALANCE_CHANGED:
-			
-			IPlayer balanceChangedPlayer = (Player) evt.getValue();
-			int balanceChangedPlayerIndex = -1;
-			
-			//TODO: om man fick in ett index från början ist hade inte följand varit nödvändigt:
-			/* get the index of the player whos balance was changed */
-			for(int i = 0; i < allPlayers.size(); i++) {
-				if(balanceChangedPlayer.equals(allPlayers.get(i))) {
-					balanceChangedPlayerIndex = i;
+					
+				case 1:
+					
+					p2c1Label.setText(null);
+					p2c2Label.setText(null);
+					playerTwoPanel.setBackground(Color.red);
+					
 					break;
-				}
-			}
-			
-			switch (balanceChangedPlayerIndex) {
-			case 0:
-				
-				p1CreditsLabel.setText(balanceChangedPlayer.getBalance().toString());
-				
-				break;
-				
-			case 1:
-				
-				p2CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
-				
-				break;
-				
-			case 2:
-				
-				p3CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
-				
-				break;
-				
-			case 3:
-				
-				p4CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
-				
-				break;
-				
-			case 4:
-				
-				p5CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
-				
-				break;
-				
-			case 5:
-				
-				p6CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
-				
-				break;
-				
-			case 6:
-				
-				p7CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
-				
-				break;
-				
-			case 7:
-				
-				p8CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
-				
-				break;
-				
-			case 8:
-				
-				p9CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
-				
-				break;
-				
-			case 9:
-				
-				p10CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
-				
-				break;
-			default:
-				break;
-			}
-			
-			break;
-			
-		case OWN_CURRENT_BET_CHANGED:
-			Bet ownCurrentBet;
-			if (!(evt.getValue() instanceof Bet)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				ownCurrentBet = (Bet)evt.getValue();
-				IPlayer betOwner = ownCurrentBet.getOwner();
-				int tmp = 0;
-				for(IPlayer player : allPlayers) {
-					tmp++;
-					if(player.equals(betOwner)) {
-						//TODO change bet
-						break;
-					}
-				}
-			}
-			break;
-			
-		case TURN_CHANGED:
-			
-			int turnIndex = (Integer) evt.getValue();
-			
-			switch (turnIndex) {
-			case 0:
-				
-				//hantera att det är 0's tur
-				
-				break;
-				
-			case 1:
-				
-				//hantera att det är 1's tur
-
-			default:
-				break;
-			}
-			
-			break;
-			
-		case HANDS_CHANGED:
-			
-			if (!(evt.getValue() instanceof Player)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-
-				for (IPlayer acp : table.getActivePlayers()) {
-					int index = allPlayers.indexOf(acp);
-
-					switch (index) {
-					case 0:
-
-						// sätt panelerna på plats 0's kort. hämta från
-						// allPlayers.get(0).getHand()
-
-						break;
-
-					case 1:
-
-						// sätt panelerna på plats 0's kort. hämta från
-						// allPlayers.get(1).getHand()
-
-					default:
-						break;
-					}
-
-				}
-
-			}
-			
-			break;
-			
-		//TODO: snygga till denna?	
-		case COMMUNITY_CARDS_CHANGED:
-			List<ICard> communityCards = table.getCommunityCards();
-				switch (communityCards.size()) {
-
-				case 0:
-					// Sätt bakgrund till grön eller liknanade...
+					
+				case 2:
+					
+					p3c1Label.setText(null);
+					p3c2Label.setText(null);
+					playerThreePanel.setBackground(Color.red);
+					
 					break;
-
+					
 				case 3:
-					// sett paneler till korttext genom: cards.get(0).toString()
+					
+					p4c1Label.setText(null);
+					p4c2Label.setText(null);
+					playerFourPanel.setBackground(Color.red);
+					
 					break;
-
+					
 				case 4:
-					// sett paneler till korttext genom: cards.get(0).toString()
+					
+					p5c1Label.setText(null);
+					p5c2Label.setText(null);
+					playerFivePanel.setBackground(Color.red);
+					
 					break;
-
+					
 				case 5:
-					// sett paneler till korttext genom: cards.get(0).toString()
+					
+					p6c1Label.setText(null);
+					p6c2Label.setText(null);
+					playerSixPanel.setBackground(Color.red);
+					
 					break;
-
+					
+				case 6:
+					
+					p7c1Label.setText(null);
+					p7c2Label.setText(null);
+					playerSevenPanel.setBackground(Color.red);
+					
+					break;
+					
+				case 7:
+					
+					p8c1Label.setText(null);
+					p8c2Label.setText(null);
+					playerEightPanel.setBackground(Color.red);
+					
+					break;
+					
+				case 8:
+					
+					p9c1Label.setText(null);
+					p9c2Label.setText(null);
+					playerNinePanel.setBackground(Color.red);
+					
+					break;
+					
+				case 9:
+					
+					p10c1Label.setText(null);
+					p10c2Label.setText(null);
+					playerTenPanel.setBackground(Color.red);
+					
+					break;
+					
+				default:
+					break;
+	
+				}
+				
+				
+				}
+				
+			
+			case BALANCE_CHANGED:
+				
+				IPlayer balanceChangedPlayer = (Player) evt.getValue();
+				int balanceChangedPlayerIndex = -1;
+				
+				//TODO: om man fick in ett index från början ist hade inte följand varit nödvändigt:
+				/* get the index of the player whos balance was changed */
+				for(int i = 0; i < allPlayers.size(); i++) {
+					if(balanceChangedPlayer.equals(allPlayers.get(i))) {
+						balanceChangedPlayerIndex = i;
+						break;
+					}
+				}
+				
+				switch (balanceChangedPlayerIndex) {
+				case 0:
+					
+					p1CreditsLabel.setText(balanceChangedPlayer.getBalance().toString());
+					
+					break;
+					
+				case 1:
+					
+					p2CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+					
+					break;
+					
+				case 2:
+					
+					p3CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+					
+					break;
+					
+				case 3:
+					
+					p4CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+					
+					break;
+					
+				case 4:
+					
+					p5CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+					
+					break;
+					
+				case 5:
+					
+					p6CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+					
+					break;
+					
+				case 6:
+					
+					p7CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+					
+					break;
+					
+				case 7:
+					
+					p8CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+					
+					break;
+					
+				case 8:
+					
+					p9CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+					
+					break;
+					
+				case 9:
+					
+					p10CreditsLabel.setText((balanceChangedPlayer.getBalance().toString()));
+					
+					break;
 				default:
 					break;
 				}
+				
 				break;
 				
-		case NEW_PLAYER_ADDED:
+			case OWN_CURRENT_BET_CHANGED:
+				Bet ownCurrentBet;
+				if (!(evt.getValue() instanceof Bet)) {
+					System.out.println("Wrong evt.getValue() for evt.getTag(): "
+							+ evt.getTag());
+				} else {
+					ownCurrentBet = (Bet)evt.getValue();
+					IPlayer betOwner = ownCurrentBet.getOwner();
+					int tmp = 0;
+					for(IPlayer player : allPlayers) {
+						tmp++;
+						if(player.equals(betOwner)) {
+							//TODO change bet
+							break;
+						}
+					}
+				}
+				break;
+				
+			case TURN_CHANGED:
+				
+				int turnIndex = (Integer) evt.getValue();
+				
+				switch (turnIndex) {
+				case 0:
+					
+					//hantera att det är 0's tur
+					
+					break;
+					
+				case 1:
+					
+					//hantera att det är 1's tur
+	
+				default:
+					break;
+				}
+				
+				break;
+				
+			case HANDS_CHANGED:
+				
+				if (!(evt.getValue() instanceof Player)) {
+					System.out.println("Wrong evt.getValue() for evt.getTag(): "
+							+ evt.getTag());
+				} else {
+	
+					for (IPlayer acp : table.getActivePlayers()) {
+						int index = allPlayers.indexOf(acp);
+	
+						switch (index) {
+						case 0:
+	
+							// sätt panelerna på plats 0's kort. hämta från
+							// allPlayers.get(0).getHand()
+	
+							break;
+	
+						case 1:
+	
+							// sätt panelerna på plats 0's kort. hämta från
+							// allPlayers.get(1).getHand()
+	
+						default:
+							break;
+						}
+	
+					}
+	
+				}
+				
+				break;
+				
+			//TODO: snygga till denna?	
+			case COMMUNITY_CARDS_CHANGED:
+				List<ICard> communityCards = table.getCommunityCards();
+					switch (communityCards.size()) {
+	
+					case 0:
+						// Sätt bakgrund till grön eller liknanade...
+						break;
+	
+					case 3:
+						// sett paneler till korttext genom: cards.get(0).toString()
+						break;
+	
+					case 4:
+						// sett paneler till korttext genom: cards.get(0).toString()
+						break;
+	
+					case 5:
+						// sett paneler till korttext genom: cards.get(0).toString()
+						break;
+	
+					default:
+						break;
+					}
+					break;
 			
-			//TODO: handle
-			break;
+			/* Not a valid constant (yet)?
+			case NEW_PLAYER_ADDED:
+				
+				//TODO: handle
+				break;
+				
+			*/
 			
-		default:
-			break;
+			default:
+				break;
+			
+
+			}
 		}
+	}
+	
+	/**
+	 * Sets the table so that the view is able to show the game accurately
+	 * 
+	 * @param table The model instance of the table
+	 */
+	public void setTable(Table table) {
+		this.table = table;
 	}
 
 	@Override

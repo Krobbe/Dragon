@@ -35,8 +35,8 @@ public class MainView implements client.event.EventHandler {
 		frame.setBounds(100, 100, 1024, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(layout);
-		frame.getContentPane().add(tablePanel, "tablePanel");
 		frame.getContentPane().add(loginPanel, "loginPanel");
+		frame.getContentPane().add(tablePanel, "tablePanel");
 		frame.getContentPane().add(registerPanel, "registerPanel");
 		frame.getContentPane().add(mainMenuPanel, "mainMenuPanel");
 		frame.getContentPane().add(joinTablePanel, "joinTablePanel");
@@ -45,6 +45,7 @@ public class MainView implements client.event.EventHandler {
 		
 		frame.setVisible(true);
 		frame.setResizable(false);
+		
 	}
 
 	@Override
@@ -67,9 +68,9 @@ public class MainView implements client.event.EventHandler {
 		} else if (evt.getTag().equals(client.event.Event.Tag.LOGOUT)) {
 			layout.show(frame.getContentPane(), "loginPanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.CREATE_TABLE)) {
-			new TableView((Table)evt.getValue());
+//			new TableView((Table)evt.getValue());
 		} else if (evt.getTag().equals(client.event.Event.Tag.JOIN_TABLE)) {
-			new TableView((Table)evt.getValue());
+//			new TableView((Table)evt.getValue());
 		}
 	}
 }
