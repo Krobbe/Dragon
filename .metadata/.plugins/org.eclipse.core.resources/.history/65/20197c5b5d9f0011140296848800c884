@@ -240,40 +240,14 @@ public class RemoteGameController implements IClientGame, IServerRequest, EventH
 		switch(evt.getTag()) {
 		case REQUEST_CALL:
 			if(!(evt.getValue() instanceof Bet)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
-			} else {
-				bet = (Bet) evt.getValue();
-				requestCall(bet);
+				
 			}
 			break;
 		case REQUEST_CHECK:
-			if(!(evt.getValue() instanceof Bet)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
-			} else {
-				bet = (Bet) evt.getValue();
-				requestCheck(bet);
-			}
 			break;
 		case REQUEST_FOLD:
-			IPlayer player;
-			if(!(evt.getValue() instanceof IPlayer)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
-			} else {
-				player = (IPlayer) evt.getValue();
-				requestFold(player);
-			}
 			break;
 		case REQUEST_RAISE:
-			if(!(evt.getValue() instanceof Bet)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
-			} else {
-				bet = (Bet) evt.getValue();
-				requestRaise(bet);
-			}
 			break;
 		default:
 			break;

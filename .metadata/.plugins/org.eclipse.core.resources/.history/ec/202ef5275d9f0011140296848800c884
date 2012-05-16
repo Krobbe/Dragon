@@ -7,9 +7,7 @@ import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.List;
 
-import client.event.Event;
 import client.event.EventBus;
-import client.event.EventHandler;
 
 import model.card.ICard;
 import model.game.Pot;
@@ -28,7 +26,7 @@ import utilities.IllegalCallException;
  * @author lisastenberg
  */
 
-public class RemoteGameController implements IClientGame, IServerRequest, EventHandler {
+public class RemoteGameController implements IClientGame, IServerRequest {
 	
 	private IServerGame serverGame;
 	private RemoteCommunicationController clientComm;
@@ -231,54 +229,6 @@ public class RemoteGameController implements IClientGame, IServerRequest, EventH
 	@Override
 	public void newTable(List<IPlayer> players, int meIndex) {
 		gameController.newTable(players, meIndex);
-	}
-
-	@Override
-	public void onEvent(Event evt) {
-		Bet bet;
-		
-		switch(evt.getTag()) {
-		case REQUEST_CALL:
-			if(!(evt.getValue() instanceof Bet)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
-			} else {
-				bet = (Bet) evt.getValue();
-				requestCall(bet);
-			}
-			break;
-		case REQUEST_CHECK:
-			if(!(evt.getValue() instanceof Bet)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
-			} else {
-				bet = (Bet) evt.getValue();
-				requestCheck(bet);
-			}
-			break;
-		case REQUEST_FOLD:
-			IPlayer player;
-			if(!(evt.getValue() instanceof IPlayer)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
-			} else {
-				player = (IPlayer) evt.getValue();
-				requestFold(player);
-			}
-			break;
-		case REQUEST_RAISE:
-			if(!(evt.getValue() instanceof Bet)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
-			} else {
-				bet = (Bet) evt.getValue();
-				requestRaise(bet);
-			}
-			break;
-		default:
-			break;
-		}
-		
 	}
 
 	
