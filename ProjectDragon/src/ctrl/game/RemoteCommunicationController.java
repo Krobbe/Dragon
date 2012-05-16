@@ -61,6 +61,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			// TODO Login failed exception istället för att returnera ett
 			// null-objekt?
 			clients.put(account, client);
+			System.out.println("*** " + account.getUserName() + " logged in"
+																	+ " ***");
 			
 			return account;
 		}
@@ -127,7 +129,9 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				newGame.addPlayer(player, clientGame);
 				
 				// Removes the entranceFee from the user's Account instance
-				serverSideAccount.getBalance().removeFromBalance(entranceFee);	
+				serverSideAccount.getBalance().removeFromBalance(entranceFee);
+				System.out.println("*** " + account.getUserName() + " created a"
+						+ " game ***");
 			}
 			
 		}
@@ -210,6 +214,9 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
+		
+		System.out.println("*** Account with username: \"" + account.getUserName() + "\" "
+				+ " ***");
 		return true;
 	}
 
