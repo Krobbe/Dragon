@@ -1,8 +1,9 @@
 package model.player.hand;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertTrue;
 import model.card.Card;
+import model.card.Rank;
+import model.card.Suit;
 
 import org.junit.Test;
 /**
@@ -17,11 +18,11 @@ public class HandEvaluatorTest {
 	
 	@Test
 	public void testIsFlush() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.NINE));
 
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.FLUSH));
@@ -29,11 +30,11 @@ public class HandEvaluatorTest {
 	
 	@Test
 	public void testIsStraight() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.HEARTS, Rank.TEN));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.STRAIGHT));
@@ -41,11 +42,11 @@ public class HandEvaluatorTest {
 	
 	@Test
 	public void testIsOnePair() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.HEARTS, Rank.ACE));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.ONE_PAIR));	
@@ -53,11 +54,11 @@ public class HandEvaluatorTest {
 
 	@Test
 	public void testIsTwoPairs() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.HEARTS, Rank.KING));
+		hand.addCard(new Card(Suit.HEARTS, Rank.ACE));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.TWO_PAIRS));	
@@ -65,11 +66,11 @@ public class HandEvaluatorTest {
 	
 	@Test
 	public void testIsThreeOfAKind() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.CLUBS, Rank.KING));
+		hand.addCard(new Card(Suit.HEARTS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.THREE_OF_A_KIND));	
@@ -77,11 +78,11 @@ public class HandEvaluatorTest {
 	
 	@Test
 	public void testIsFullHouse() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.CLUBS, Rank.ACE));
+		hand.addCard(new Card(Suit.HEARTS, Rank.ACE));
+		hand.addCard(new Card(Suit.HEARTS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.FULL_HOUSE));	
@@ -89,11 +90,11 @@ public class HandEvaluatorTest {
 	
 	@Test
 	public void testIsFourOfAKind() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.SPADES, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.HEARTS, Card.Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.CLUBS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.SPADES, Rank.ACE));
+		hand.addCard(new Card(Suit.HEARTS, Rank.ACE));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.FOUR_OF_A_KIND));	
@@ -104,11 +105,11 @@ public class HandEvaluatorTest {
 	 */
 	@Test
 	public void testIsRoyalFlush() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.TEN));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.ROYAL_FLUSH));
@@ -116,11 +117,11 @@ public class HandEvaluatorTest {
 	
 	@Test
 	public void testIsStraightFlush() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.TEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.NINE));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.STRAIGHT_FLUSH));
@@ -128,11 +129,11 @@ public class HandEvaluatorTest {
 	
 	@Test
 	public void testCalculateHighCard() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.NINE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.CLUBS, Rank.NINE));
 		
 		HandEvaluator h = new HandEvaluator(hand);
 		assertTrue(h.getType().equals(HandValueType.HIGH_CARD));

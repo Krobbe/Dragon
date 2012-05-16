@@ -147,7 +147,7 @@ public class TableView implements EventHandler, ActionListener{
 				IPlayer betOwner = ownCurrentBet.getOwner();
 				for(int i = 0; i < allPlayers.size(); i++) {
 					if(allPlayers.get(i).equals(betOwner)) {
-						playerPanelList.get(i)
+						playerPanelList.get(i);
 						break;
 					}
 				}

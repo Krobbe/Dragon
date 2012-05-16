@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import model.card.Card;
-import model.card.Card.Rank;
-import model.card.Card.Suit;
+import model.card.Rank;
+import model.card.Suit;
 import model.game.Table;
 import model.player.Balance;
 import model.player.Bet;

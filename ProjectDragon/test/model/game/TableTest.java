@@ -1,21 +1,23 @@
 package model.game;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import model.card.Card;
-import model.card.Card.Suit;
 import model.card.ICard;
-import model.player.User;
+import model.card.Rank;
+import model.card.Suit;
 import model.player.IPlayer;
+import model.player.User;
 import model.player.hand.HandValueType;
 
 import org.junit.Test;
 
-import utilities.PlayersFullException;
 import utilities.CommunityCardsFullException;
+import utilities.PlayersFullException;
 
 /**
  * A test of the Table-class
@@ -226,8 +228,8 @@ public class TableTest {
 			e.printStackTrace();
 		}
 		t.getRound().getPot().addToPot(10);
-		p1.getHand().addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-		p2.getHand().addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
+		p1.getHand().addCard(new Card(Suit.CLUBS, Rank.ACE));
+		p2.getHand().addCard(new Card(Suit.CLUBS, Rank.EIGHT));
 		t.doShowdown(t.getPlayers(), t.getRound().getPot().getValue());
 		assertTrue(p1.getBalance().getValue() == 10);
 	}
@@ -246,8 +248,8 @@ public class TableTest {
 			e.printStackTrace();
 		}
 		t.getRound().getPot().addToPot(10);
-		p1.getHand().addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
-		p2.getHand().addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
+		p1.getHand().addCard(new Card(Suit.CLUBS, Rank.ACE));
+		p2.getHand().addCard(new Card(Suit.CLUBS, Rank.EIGHT));
 		t.doShowdown(t.getPlayers(), t.getRound().getPot().getValue());
 		assertTrue(t.getHandTypes().get(p1).equals(HandValueType.HIGH_CARD));
 	}

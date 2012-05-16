@@ -1,12 +1,14 @@
 package model.player.hand;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import model.card.Card;
 import model.card.ICard;
+import model.card.Rank;
+import model.card.Suit;
 
 import org.junit.Test;
 /**
@@ -25,39 +27,39 @@ public class FullTHHandTest {
 	@Test
 	public void testAddCard() {
 		FullTHHand hand = new FullTHHand();
-		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+		hand.addCard(new Card(Suit.CLUBS, Rank.ACE));
 		ICard c = hand.getCards().get(0);
-		assertTrue(c.getRank() == Card.Rank.ACE && c.getSuit() == Card.Suit.CLUBS);
+		assertTrue(c.getRank() == Rank.ACE && c.getSuit() == Suit.CLUBS);
 	}
 	
 	@Test
 	public void testAddCardsFromList() {
 		FullTHHand hand = new FullTHHand();
 		List<ICard> list = new LinkedList<ICard>();
-		list.add(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
-		list.add(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
-		list.add(new Card(Card.Suit.CLUBS, Card.Rank.NINE));
+		list.add(new Card(Suit.CLUBS, Rank.EIGHT));
+		list.add(new Card(Suit.CLUBS, Rank.TEN));
+		list.add(new Card(Suit.CLUBS, Rank.NINE));
 		hand.addCards(list);
 
 		ICard c = hand.getCards().get(0);
-		assertTrue(c.getRank() == Card.Rank.TEN && c.getSuit() == Card.Suit.CLUBS);
+		assertTrue(c.getRank() == Rank.TEN && c.getSuit() == Suit.CLUBS);
 	}
 	
 	@Test
 	public void testAddCardsFromHand() {
 		FullTHHand fhand = new FullTHHand();
 		IHand hand = new TexasHoldemHand();
-		hand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
+		hand.addCard(new Card(Suit.CLUBS, Rank.EIGHT));
 		
 		fhand.addCards(hand);
 		ICard c = fhand.getCards().get(0);
-		assertTrue(c.getRank() == Card.Rank.EIGHT && c.getSuit() == Card.Suit.CLUBS);
+		assertTrue(c.getRank() == Rank.EIGHT && c.getSuit() == Suit.CLUBS);
 	}
 
 	@Test
 	public void testDiscard() {
 		FullTHHand fhand = new FullTHHand();
-		fhand.addCard(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
+		fhand.addCard(new Card(Suit.CLUBS, Rank.EIGHT));
 		fhand.discard();
 		assertTrue(fhand.getCards().equals(new LinkedList<Card>()));
 	}
@@ -65,18 +67,18 @@ public class FullTHHandTest {
 	@Test
 	public void testEquals() {
 		FullTHHand hand1 = new FullTHHand();
-		hand1.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+		hand1.addCard(new Card(Suit.CLUBS, Rank.ACE));
 		// Reflexivity
 		assertTrue(hand1.equals(hand1));
 		
 		FullTHHand hand2 = new FullTHHand();
-		hand2.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+		hand2.addCard(new Card(Suit.CLUBS, Rank.ACE));
 		// Symmetry
 		assertTrue(hand1.equals(hand2));
 		assertTrue(hand2.equals(hand1));
 		
 		FullTHHand hand3 = new FullTHHand();
-		hand3.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+		hand3.addCard(new Card(Suit.CLUBS, Rank.ACE));
 		// Transitivity
 		if(hand1.equals(hand2) && hand2.equals(hand3)) {
 			assertTrue(hand1.equals(hand3));
@@ -86,7 +88,7 @@ public class FullTHHandTest {
 	@Test
 	public void testToString() {
 		FullTHHand hand1 = new FullTHHand();
-		hand1.addCard(new Card(Card.Suit.CLUBS, Card.Rank.ACE));
+		hand1.addCard(new Card(Suit.CLUBS, Rank.ACE));
 		String s = hand1.toString();
 		String expected = "Full hand: [ACE of CLUBS]";
 		assertTrue(s.equals(expected));

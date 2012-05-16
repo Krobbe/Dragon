@@ -1,9 +1,11 @@
 package model.player.hand;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-
+import static org.junit.Assert.assertTrue;
 import model.card.Card;
+import model.card.Rank;
+import model.card.Suit;
+
+import org.junit.Test;
 /**
  * A test for HandValue
  * @author lisastenberg
@@ -15,11 +17,11 @@ public class HandValueTest {
 
 	@Test
 	public void testGetType() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.NINE));
 		
 		h = new HandValue(hand);
 		assertTrue(h.getType().equals(HandValueType.FLUSH));
@@ -27,11 +29,11 @@ public class HandValueTest {
 	
 	@Test
 	public void testGetDescription() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.NINE));
 		
 		h = new HandValue(hand);
 		assertTrue(h.getDescription().equals("Flush"));
@@ -39,11 +41,11 @@ public class HandValueTest {
 	
 	@Test
 	public void testGetValue() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.NINE));
 		
 		h = new HandValue(hand);
 		assertTrue(h.getValue() == 2225178);
@@ -51,11 +53,11 @@ public class HandValueTest {
 	
 	@Test
 	public void testEquals() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.NINE));
 		
 		h = new HandValue(hand);
 		//Reflexivity
@@ -73,11 +75,11 @@ public class HandValueTest {
 	
 	@Test
 	public void testToString() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.NINE));
 		
 		h = new HandValue(hand);
 		String tmp = h.toString();
@@ -87,22 +89,22 @@ public class HandValueTest {
 	
 	@Test
 	public void testCompareTo() {
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.NINE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand.addCard(new Card(Suit.DIAMONDS, Rank.NINE));
 		
 		h = new HandValue(hand);
 		HandValue h2 = new HandValue(hand);
 		assertTrue(h.compareTo(h2) == 0);
 		
 		FullTHHand hand2 = new FullTHHand();
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.ACE));
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.KING));
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN));
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.JACK));
-		hand2.addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
+		hand2.addCard(new Card(Suit.DIAMONDS, Rank.ACE));
+		hand2.addCard(new Card(Suit.DIAMONDS, Rank.KING));
+		hand2.addCard(new Card(Suit.DIAMONDS, Rank.QUEEN));
+		hand2.addCard(new Card(Suit.DIAMONDS, Rank.JACK));
+		hand2.addCard(new Card(Suit.DIAMONDS, Rank.TWO));
 		
 		HandValue h3 = new HandValue(hand2);
 		assertTrue(h.compareTo(h3) < 0);

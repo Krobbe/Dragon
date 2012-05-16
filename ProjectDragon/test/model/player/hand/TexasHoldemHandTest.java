@@ -3,11 +3,14 @@
  */
 package model.player.hand;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
 import java.util.LinkedList;
 
 import model.card.Card;
-import model.player.hand.TexasHoldemHand;
+import model.card.Rank;
+import model.card.Suit;
+
 import org.junit.Test;
 
 /**
@@ -42,13 +45,13 @@ public class TexasHoldemHandTest {
 	@Test
 	public void testAddCard() {
 		IHand hand = new TexasHoldemHand();
-		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
+		Card card1 = new Card(Suit.CLUBS, Rank.ACE);
 		hand.addCard(card1);
 		
 		assertTrue(hand.getCards().size() == 1);
 		assertTrue(hand.getCards().get(0).equals(card1));
 		
-		Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.KING);
+		Card card2 = new Card(Suit.CLUBS, Rank.KING);
 		hand.addCard(card2);
 		
 		assertTrue(hand.getCards().size() == 2);
@@ -66,8 +69,8 @@ public class TexasHoldemHandTest {
 		IHand hand1 = new TexasHoldemHand();
 		IHand hand2 = new TexasHoldemHand();
 		
-		Card card1 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
-		Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.EIGHT);
+		Card card1 = new Card(Suit.CLUBS, Rank.ACE);
+		Card card2 = new Card(Suit.CLUBS, Rank.EIGHT);
 		
 		hand1.addCard(card1);
 		hand1.addCard(card2);
@@ -102,7 +105,7 @@ public class TexasHoldemHandTest {
 		assertTrue(!hand1.equals(hand4)); 	// Tests the case where the hands
 											// have one equal card 
 		
-		Card card3 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
+		Card card3 = new Card(Suit.CLUBS, Rank.ACE);
 		hand4.addCard(card3);
 		
 		assertTrue(!hand1.equals(hand4));	// Tests the case where the hands
@@ -123,7 +126,7 @@ public class TexasHoldemHandTest {
 	@Test
 	public void testToString() {
 		IHand hand1 = new TexasHoldemHand();
-		Card c = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
+		Card c = new Card(Suit.CLUBS, Rank.ACE);
 		hand1.addCard(c);
 		String s = hand1.toString();
 		String expected = "Texas Hold'em Hand: [ACE of CLUBS]";

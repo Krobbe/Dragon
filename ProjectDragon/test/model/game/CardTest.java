@@ -1,8 +1,10 @@
 package model.game;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import model.card.Card;
+import model.card.Rank;
+import model.card.Suit;
 
 import org.junit.Test;
 /**
@@ -11,20 +13,20 @@ import org.junit.Test;
  *
  */
 public class CardTest {
-	Card c = new Card(Card.Suit.SPADES, Card.Rank.TWO);
-	Card d = new Card(Card.Suit.SPADES, Card.Rank.TWO);
-	Card e = new Card(Card.Suit.SPADES, Card.Rank.TWO);
+	Card c = new Card(Suit.SPADES, Rank.TWO);
+	Card d = new Card(Suit.SPADES, Rank.TWO);
+	Card e = new Card(Suit.SPADES, Rank.TWO);
 
 	
 	@Test
 	public void testGetValue() {
 		c.getRank();
-		assertTrue(c.getRank().equals(Card.Rank.TWO));
+		assertTrue(c.getRank().equals(Rank.TWO));
 	}
 	
 	@Test
 	public void testGetSuite() {
-		assertTrue(c.getSuit().equals(Card.Suit.SPADES));
+		assertTrue(c.getSuit().equals(Suit.SPADES));
 	}	
 
 	@Test

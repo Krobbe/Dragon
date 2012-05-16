@@ -4,15 +4,17 @@ import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.List;
 
-import client.model.game.Table;
-
 import model.card.Card;
 import model.card.ICard;
+import model.card.Rank;
+import model.card.Suit;
 import model.game.Pot;
 import model.player.Bet;
 import model.player.IPlayer;
-import model.player.hand.*;
-import client.event.*;
+import model.player.hand.IHand;
+import client.event.Event;
+import client.event.EventBus;
+import client.model.game.Table;
 
 /**
  * This class contains methods that handles the application during game mode.
@@ -286,7 +288,7 @@ public class GameController {
 		for(IPlayer player : table.getActivePlayers()) {
 			hand = player.getHand();
 			for(int i = 0; i < 2; i++) {
-				hand.addCard(new Card(Card.Suit.NO_SUIT, Card.Rank.NO_RANK));
+				hand.addCard(new Card(Suit.NO_SUIT, Rank.NO_RANK));
 			}
 			EventBus.publish(new Event(Event.Tag.HANDS_CHANGED,
 					player));

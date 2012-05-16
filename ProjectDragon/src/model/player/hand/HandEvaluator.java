@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.card.Card;
 import model.card.ICard;
+import model.card.Rank;
 
 /**
  * Evaluator for calculating the value of a poker hand.
@@ -136,7 +137,7 @@ public class HandEvaluator {
 				for (ICard card : cards) {
 					if (card.getSuit().ordinal() == flushSuit) {
 						//TODO: Why card.getRank() != Card.Rank.ACE?
-						if (!wheelingAce || card.getRank() != Card.Rank.ACE) {
+						if (!wheelingAce || card.getRank() != Rank.ACE) {
 							flushRank = card.getRank().ordinal();
 							break;
 						}
@@ -176,7 +177,7 @@ public class HandEvaluator {
 		}
 		// Special case for the 'Steel Wheel' (Five-high Straight with a
 		// 'wheeling Ace') .
-		if ((count == 4) && (rank == Card.Rank.FIVE.ordinal()) && (rankDist[Card.Rank.ACE.ordinal()] > 0)) {
+		if ((count == 4) && (rank == Rank.FIVE.ordinal()) && (rankDist[Rank.ACE.ordinal()] > 0)) {
 			wheelingAce = true;
 			straightRank = rank;
 		}
@@ -468,7 +469,7 @@ public class HandEvaluator {
 			}
 
 			if (inStraight >= 5 && inFlush >= 5) {
-				if (straightRank == Card.Rank.ACE.ordinal()) {
+				if (straightRank == Rank.ACE.ordinal()) {
 					// Royal Flush.
 					type = HandValueType.ROYAL_FLUSH;
 					rankings[0] = type.getValue();

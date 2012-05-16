@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import model.card.Card.Rank;
-import model.card.Card.Suit;
+import model.card.Rank;
+import model.card.Suit;
 
 public class Deck implements IDeck {
 	List<ICard> cards = new ArrayList<ICard>();
