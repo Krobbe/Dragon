@@ -6,7 +6,6 @@ package client.ctrl.game;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,10 +14,8 @@ import client.event.Event;
 import client.event.EventHandler;
 
 import model.player.Account;
-import model.player.Balance;
 import model.player.Player;
 import model.player.IPlayer;
-import model.player.User;
 import model.player.hand.Hand;
 
 import remote.IClient;
@@ -39,28 +36,20 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 
 	
 	// The reference to the server
-	private IServer serverComm;
+	private IServer server;
 	
 	// TODO Flytta "lagringen" av account till ett mer passande ställe?
-	private Account account;
+	private Account account = null;
 	
 	public RemoteCommunicationController(){
 		activeGames = new TreeMap<IPlayer, RemoteGameController>();
-		serverComm = connectToServer();
-		account = null;
-		try {
-			System.out.println(serverComm.testPrint());
-		} catch (RemoteException e) {
-			System.out.println("Gick int' :(");
-			e.printStackTrace();
-		}
+
+		server = connectToServer();
 	}
 	
 	/** 
 	 * Tries to get a connection with the server on the default port and returns
 	 * a reference if successful
-	 * 
-	 * @return The reference to the server
 	 */
 	public IServer connectToServer(){
 		return connectToServer(Registry.REGISTRY_PORT);
@@ -71,7 +60,6 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	 * and returns a reference if successful
 	 * 
 	 * @param port The port number of the searched server
-	 * @return The reference to the server
 	 */
 	public IServer connectToServer(int port){
 		IServer server = null;
@@ -79,15 +67,10 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	    try {
 	    	
 	        Registry registry = LocateRegistry.getRegistry(port);
-
-	        server = (IServer) registry.lookup(IServer.REMOTE_NAME);
-	        System.out.println("*** Connection established on port: " + port
-	        														+ " ***");
+	        server = (IServer) registry.lookup(IServer.REMOTE_NAME);	        
 	    }
 	    
 	    catch (Exception e) {
-	    	System.out.println("*** Failed to connect to server: ***");
-	    	System.out.println();
 	        System.err.println("Client exception: " + e.toString());
 	        e.printStackTrace();
 	    }
@@ -103,20 +86,18 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	 * @param clientGame The reference to this clients game controller
 	 * @param accountName The name of the account
 	 * @param accountPassword The password associated with the account name.
-	 * @return The Account instance containing useful information and used as
-	 * security clearance
 	 */
 	public Account login(IClient client, String accountName,
 													String accountPassword){
 
 		
 		try {	
-			this.account = serverComm.login(client, accountName, accountPassword);
+			this.account = server.login(client, accountName, accountPassword);
 				
 		} catch (RemoteException e) {
-			// TODO Handle login failure better
-			System.out.println("*** Connection problem, failed to login ***");
+			// TODO Handle login failure
 			e.printStackTrace();
+			System.out.println("Failed to login");
 		}
 		
 		return this.account;
@@ -124,44 +105,6 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	
 	public Account getAccount(){
 		return this.account;
-	}	
-	
-	public boolean createGame(int entranceFee, int maxPlayers,
-													int playerStartingChips) {
-		
-		Player player = new Player(new Hand(),
-						getAccount().getUserName(),
-						new Balance(playerStartingChips));
-		
-		IPlayer user = new User(player);
-		
-		RemoteGameController clientGame = new RemoteGameController(this, user);
-		
-		try {
-			
-			IServerGame serverGame = serverComm.createGame(getAccount(),
-					clientGame, entranceFee, maxPlayers, playerStartingChips);
-			clientGame.setServerGame(serverGame);
-			activeGames.put(user, clientGame);
-			return true;
-			
-		} catch (RemoteException e) {
-			// TODO Better handling when not able to create a game
-			System.out.println("*** Communication error," + 
-												"couldn not create game ***");
-			e.printStackTrace();
-		}
-		
-		return false;
-		
-	}
-	
-	private void tryRegisterAccount(String userName, String firstName, 
-			String lastName, String passWord) {
-			Account tmp = new Account(firstName, lastName, userName, passWord);
-			if(server.createAccount(tmp)) {
-				login(this, tmp.getUserName(), tmp.getPassWord());
-			}
 	}
 	
 	/** 
@@ -173,20 +116,16 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	 * @param gameIndex The index of the game that the user wants to join
 	 * @return true if the game was successfully joined
 	 */
-	public boolean joinGame(int gameIndex) {
+	public boolean joinGame(Account account, int gameIndex) {
 		
-		// TODO Change the balance to be the same as the startingChips
-		Player player = new Player(new Hand(),
-				getAccount().getUserName(),
-				new Balance(1000));
-		
-		IPlayer user = new User(player);
-		
-		RemoteGameController clientGame = new RemoteGameController(this, user);
+		Player player = new Player(new Hand(), account.getUserName(),
+														account.getBalance());
+		IClientGame clientGame = new RemoteGameController(this);
 		IServerGame serverGame = null;
+		
 
 		try {
-			serverGame = serverComm.joinGame(getAccount(), player, clientGame,
+			serverGame = server.joinGame(account, player, clientGame,
 																	gameIndex);
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
@@ -199,9 +138,12 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 
 		try {
 			
+			RemoteGameController remoteGameController =
+					new RemoteGameController(this);
+			
 			Collection<IPlayer> playerList = serverGame.getPlayers();
-			clientGame.addPlayers(playerList);
-			activeGames.put(user, clientGame);
+			remoteGameController.addPlayers(playerList);
+			activeGames.put(player, remoteGameController);
 			
 		} catch (IllegalCallException e) {
 			// TODO Auto-generated catch block
@@ -235,19 +177,7 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 			}
 			break;
 		case TRY_REGISTER:
-			ArrayList<char[]> accountInfo;
-			if(!(evt.getValue() instanceof ArrayList)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				accountInfo = (ArrayList<char[]>)evt.getValue();
-				String userName, firstName, lastName, passWord;
-				userName = new String(accountInfo.get(0));
-				firstName = new String(accountInfo.get(1));
-				lastName = new String(accountInfo.get(2));
-				passWord = new String(accountInfo.get(3));
-				tryRegisterAccount(userName, firstName, lastName, passWord);
-			}
+			
 		}
 	}
 

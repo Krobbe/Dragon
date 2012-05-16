@@ -6,8 +6,6 @@ package remote;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import database.IDBAccount;
-
 import model.player.Account;
 import model.player.IPlayer;
 
@@ -15,7 +13,7 @@ import model.player.IPlayer;
  * @author robinandersson
  *
  */
-public interface IServer extends Remote, IDBAccount {
+public interface IServer extends Remote {
 	
 	public static final String REMOTE_NAME = "Server";
 
@@ -65,13 +63,5 @@ public interface IServer extends Remote, IDBAccount {
 	 */
 	public IServerGame joinGame(Account account, IPlayer player,
 				IClientGame clientGame, int gameIndex) throws RemoteException;
-	
-	/**
-	 * Test method for connectivity
-	 * 
-	 * @return Test string for testing method call
-	 * @throws RemoteException
-	 */
-	public String testPrint() throws RemoteException;
 
 }
