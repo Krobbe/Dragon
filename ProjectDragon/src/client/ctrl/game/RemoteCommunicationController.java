@@ -159,8 +159,13 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	private void tryRegisterAccount(String userName, String firstName, 
 			String lastName, String passWord) {
 			Account tmp = new Account(firstName, lastName, userName, passWord);
-			if(serverComm.createAccount(tmp)) {
-				login(this, tmp.getUserName(), tmp.getPassWord());
+			try {
+				if(serverComm.createAccount(tmp)) {
+					login(this, tmp.getUserName(), tmp.getPassWord());
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 	}
 	
