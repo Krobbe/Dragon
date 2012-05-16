@@ -159,7 +159,7 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	private void tryRegisterAccount(String userName, String firstName, 
 			String lastName, String passWord) {
 			Account tmp = new Account(firstName, lastName, userName, passWord);
-			if(serverComm.createAccount(tmp)) {
+			if(server.createAccount(tmp)) {
 				login(this, tmp.getUserName(), tmp.getPassWord());
 			}
 	}
