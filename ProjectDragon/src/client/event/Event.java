@@ -29,6 +29,7 @@ public class Event {
     	LOGIN_FAILED,
     	LOGIN_SUCCESS,
     	LOGOUT,
+    	NEW_PLAYER_ADDED,			//getValue(): string, name of the player added
     	OWN_CURRENT_BET_CHANGED,	//getValue(): Bet
     	POT_CHANGED,				//getValue(): int
     	REGISTER_SUCCESS,

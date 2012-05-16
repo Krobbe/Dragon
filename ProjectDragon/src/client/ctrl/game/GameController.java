@@ -58,6 +58,7 @@ public class GameController {
 	 */
 	public void addPlayer(IPlayer player) {
 		this.table.addPlayer(player);
+		EventBus.publish(new Event(Event.Tag.NEW_PLAYER_ADDED, player.getName()));
 	}
 	
 	/**

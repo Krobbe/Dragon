@@ -442,6 +442,12 @@ public class TablePanel extends JPanel implements client.event.EventHandler,
 					break;
 				}
 				break;
+				
+		case NEW_PLAYER_ADDED:
+			
+			//TODO: handle
+			break;
+			
 		default:
 			break;
 		}
