@@ -1,10 +1,14 @@
 package client.gui.table;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class PlayerFourPanel extends JPanel {
+import model.player.hand.IHand;
+
+public class PlayerFourPanel extends JPanel implements IPlayerPanel {
 	
 	private JLabel p4c1Label;
 	private JLabel p4c2Label;
@@ -43,5 +47,27 @@ public class PlayerFourPanel extends JPanel {
 		this.add(p4AvailableCreditsLabel);
 		
 	}
+	
+	@Override
+	public boolean discard() {
+		p4c1Label.setText(null);
+		p4c2Label.setText(null);
+		return true;
+	}
 
+	@Override
+	public void setBalance(String s) {
+		p4AvailableCreditsLabel.setText(s);
+	}
+
+	@Override
+	public void showCards(IHand h) {
+		p4c1Label.setText(h.getCards().get(0).toString());
+		p4c2Label.setText(h.getCards().get(0).toString());
+	}
+	
+	@Override
+	public void setBackground(Color c) {
+		this.setBackground(c);
+	}
 }

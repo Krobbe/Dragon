@@ -1,10 +1,14 @@
 package client.gui.table;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class PlayerSixPanel extends JPanel {
+import model.player.hand.IHand;
+
+public class PlayerSixPanel extends JPanel implements IPlayerPanel {
 	
 	private JLabel p6c1Label;
 	private JLabel p6c2Label;
@@ -42,6 +46,29 @@ public class PlayerSixPanel extends JPanel {
 		p6AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		this.add(p6AvailableCreditsLabel);
 		
+	}
+	
+	@Override
+	public boolean discard() {
+		p6c1Label.setText(null);
+		p6c2Label.setText(null);
+		return true;
+	}
+
+	@Override
+	public void setBalance(String s) {
+		p6AvailableCreditsLabel.setText(s);
+	}
+
+	@Override
+	public void showCards(IHand h) {
+		p6c1Label.setText(h.getCards().get(0).toString());
+		p6c2Label.setText(h.getCards().get(0).toString());
+	}
+	
+	@Override
+	public void setBackground(Color c) {
+		this.setBackground(c);
 	}
 
 }

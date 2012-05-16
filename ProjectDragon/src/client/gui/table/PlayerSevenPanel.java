@@ -1,10 +1,14 @@
 package client.gui.table;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class PlayerSevenPanel extends JPanel {
+import model.player.hand.IHand;
+
+public class PlayerSevenPanel extends JPanel implements IPlayerPanel {
 	
 	private JLabel p7c1Label;
 	private JLabel p7c2Label;
@@ -41,6 +45,29 @@ public class PlayerSevenPanel extends JPanel {
 		p7AvailableCreditsLabel = new JLabel("xxx");
 		p7AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		this.add(p7AvailableCreditsLabel);
+	}
+	
+	@Override
+	public boolean discard() {
+		p7c1Label.setText(null);
+		p7c2Label.setText(null);
+		return true;
+	}
+
+	@Override
+	public void setBalance(String s) {
+		p7AvailableCreditsLabel.setText(s);
+	}
+
+	@Override
+	public void showCards(IHand h) {
+		p7c1Label.setText(h.getCards().get(0).toString());
+		p7c2Label.setText(h.getCards().get(0).toString());
+	}
+	
+	@Override
+	public void setBackground(Color c) {
+		this.setBackground(c);
 	}
 
 }

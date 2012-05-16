@@ -1,9 +1,12 @@
 package client.gui.table;
 
 import java.awt.Color;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import model.card.ICard;
 
 public class TableInfoPanel extends JPanel {
 	
@@ -69,6 +72,27 @@ public class TableInfoPanel extends JPanel {
 	}
 	public void setPotSize(String s) {
 		potSize.setText(s);
+	}
+	
+	public void showCards(List<ICard> list) {
+		if(list.size() == 3) {
+			flopc1Label.setText(list.get(0).toString());
+			flopc2Label.setText(list.get(1).toString());
+			flopc3Label.setText(list.get(2).toString());
+		}
+		if(list.size() == 4) {
+			flopc1Label.setText(list.get(0).toString());
+			flopc2Label.setText(list.get(1).toString());
+			flopc3Label.setText(list.get(2).toString());
+			turnc1Label.setText(list.get(3).toString());
+		}
+		if(list.size() == 5) {
+			flopc1Label.setText(list.get(0).toString());
+			flopc2Label.setText(list.get(1).toString());
+			flopc3Label.setText(list.get(2).toString());
+			turnc1Label.setText(list.get(3).toString());
+			riverc1Label.setText(list.get(4).toString());
+		}
 	}
 	
 	public void setFlopC1(String s) {

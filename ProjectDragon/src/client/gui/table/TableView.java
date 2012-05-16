@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.swing.*;
 
+import model.card.ICard;
 import model.player.Bet;
 import model.player.IPlayer;
 import model.player.Player;
@@ -34,14 +35,14 @@ public class TableView implements EventHandler, ActionListener{
 	private PlayerTenPanel playerTenPanel;
 	private TableInfoPanel tableInfoPanel;
 	private UserBetPanel userBetPanel;
-	private ArrayList<JPanel> playerPanelList;
+	private ArrayList<IPlayerPanel> playerPanelList;
 	
 	private JButton leaveTableButton;
 	
 	
 	public TableView(Table table) {
-		init();
 		this.table = table;
+		init();
 		EventBus.register(this);
 	}
 	
@@ -69,7 +70,7 @@ public class TableView implements EventHandler, ActionListener{
 		playerNinePanel = new PlayerNinePanel();
 		playerTenPanel = new PlayerTenPanel();
 		
-		playerPanelList = new ArrayList<JPanel>();
+		playerPanelList = new ArrayList<IPlayerPanel>();
 		playerPanelList.add(playerOnePanel);
 		playerPanelList.add(playerTwoPanel);
 		playerPanelList.add(playerThreePanel);
@@ -84,8 +85,9 @@ public class TableView implements EventHandler, ActionListener{
 		tableInfoPanel = new TableInfoPanel();
 		userBetPanel = new UserBetPanel();
 		
-		for(JPanel p : playerPanelList) {
-			backPanel.add(p);
+		for(IPlayerPanel p : playerPanelList) {
+			//TODO Will this work?
+			backPanel.add((JPanel)p);
 		}
 		
 		backPanel.add(tableInfoPanel);
@@ -93,6 +95,9 @@ public class TableView implements EventHandler, ActionListener{
 		backPanel.add(leaveTableButton);
 		
 		frame.getContentPane().add(backPanel);
+		
+		frame.setVisible(true);
+		frame.setResizable(false);
 	}
 
 	@Override
@@ -137,29 +142,60 @@ public class TableView implements EventHandler, ActionListener{
 			}
 			break;
 			
-		case OWN_CURRENT_BET_CHANGED:
-			Bet ownCurrentBet;
-			if (!(evt.getValue() instanceof Bet)) {
+			//TODO What is this case supposed to do?
+//		case OWN_CURRENT_BET_CHANGED:
+//			Bet ownCurrentBet;
+//			if (!(evt.getValue() instanceof Bet)) {
+//				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+//						+ evt.getTag());
+//			} else {
+//				ownCurrentBet = (Bet)evt.getValue();
+//				IPlayer betOwner = ownCurrentBet.getOwner();
+//				for(int i = 0; i < allPlayers.size(); i++) {
+//					if(allPlayers.get(i).equals(betOwner)) {
+//						playerPanelList.get(i).setBalance()
+//						break;
+//					}
+//				}
+//			}
+//			break;
+			
+		case TURN_CHANGED:
+			int turnIndex = (Integer) evt.getValue();
+			playerPanelList.get(turnIndex).setBackground(Color.green);
+			if(turnIndex == 1) {
+				playerPanelList.get(10).setBackground(Color.gray);
+			}
+			else {
+				playerPanelList.get(turnIndex-1).setBackground(Color.gray);
+			}
+			break;
+			
+		case HANDS_CHANGED:
+			
+			if (!(evt.getValue() instanceof Player)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				ownCurrentBet = (Bet)evt.getValue();
-				IPlayer betOwner = ownCurrentBet.getOwner();
-				for(int i = 0; i < allPlayers.size(); i++) {
-					if(allPlayers.get(i).equals(betOwner)) {
-						playerPanelList.get(i);
-						break;
-					}
+				for (IPlayer acp : table.getActivePlayers()) {
+					int index = allPlayers.indexOf(acp);
+					playerPanelList.get(index).showCards(allPlayers.get(index).getHand());
 				}
 			}
 			break;
+			
+		case COMMUNITY_CARDS_CHANGED:
+			List<ICard> communityCards = table.getCommunityCards();
+			tableInfoPanel.showCards(communityCards);
+			break;
+
 	}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(leaveTableButton)) {
 			//TODO this is the wrong event
-			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
+			EventBus.publish(new Event(Event.Tag.LEAVE_TABLE, 1));
 		}
 	}
 

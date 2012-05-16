@@ -1,10 +1,14 @@
 package client.gui.table;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class PlayerTwoPanel extends JPanel {
+import model.player.hand.IHand;
+
+public class PlayerTwoPanel extends JPanel implements IPlayerPanel {
 	
 	private JLabel p2c1Label;
 	private JLabel p2c2Label;
@@ -42,5 +46,27 @@ public class PlayerTwoPanel extends JPanel {
 		p2AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		this.add(p2AvailableCreditsLabel);
 	}
+	
+	@Override
+	public boolean discard() {
+		p2c1Label.setText(null);
+		p2c2Label.setText(null);
+		return true;
+	}
 
+	@Override
+	public void setBalance(String s) {
+		p2AvailableCreditsLabel.setText(s);
+	}
+
+	@Override
+	public void showCards(IHand h) {
+		p2c1Label.setText(h.getCards().get(0).toString());
+		p2c2Label.setText(h.getCards().get(0).toString());
+	}
+	
+	@Override
+	public void setBackground(Color c) {
+		this.setBackground(c);
+	}
 }
