@@ -134,6 +134,20 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		
 	}
 	
+	public boolean logout() {
+		
+		try {
+			serverComm.logout(this.account);
+			return true;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+		
+	}
+	
 	public Account getAccount(){
 		return this.account;
 	}	
@@ -303,11 +317,12 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 			if(createGame(1, 8, 1000)){
 				EventBus.publish(new Event(Event.Tag.GO_TO_TABLE, ""));
 			}
-		
 		case GET_ACTIVE_GAMES:
-			
 			EventBus.publish(new Event(Event.Tag.PUBLISH_ACTIVE_GAMES,
 															getActiveGames()));
+		case GET_ACCOUNT_INFORMATION:
+			EventBus.publish(new Event(Event.Tag.PUBLISH_ACCOUNT_INFORMATION,
+															getAccount()));
 		}
 	}
 

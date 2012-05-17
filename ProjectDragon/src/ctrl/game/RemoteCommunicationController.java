@@ -38,8 +38,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	// respective communication controllers
 	private Map<Account, IClient> clients;
 	
-	// A list showing games that player's can join
-	private List<IServerGame> activeGames;
+	// A list showing active games
+	private List<RemoteGameController> activeGames;
 	
 	private DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
@@ -47,7 +47,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		super();
 		new ServerStarter(this);
 		clients = new TreeMap<Account, IClient>();
-		activeGames = new LinkedList<IServerGame>();
+		activeGames = new LinkedList<RemoteGameController>();
 	}
 	
 	@Override
@@ -73,10 +73,24 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 	
 	@Override
-	public void logOut(Account account) throws RemoteException{
+	public boolean logout(Account account) throws RemoteException{
 		// TODO Do more when logging out a player? Save active games or
 		// something?
-		clients.remove(account);
+		
+		
+		// Uncomment and fix!
+		/*
+		
+		if(clients.remove(account) != null) {
+			for(RemoteGameController serverGame : activeGames){
+				serverGame.
+			}
+			return true;
+		}
+		
+		*/
+		
+		return true;
 	}
 
 	@Override
@@ -307,7 +321,13 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	public List<IServerGame> getActiveGames(Account account)
 			throws RemoteException {
 		
-		return activeGames;
+		List<IServerGame> tempList = new LinkedList<IServerGame>();
+		
+		for(RemoteGameController serverGame : activeGames) {
+			tempList.add(serverGame);
+		}
+		
+		return tempList;
 	}
 
 	@Override

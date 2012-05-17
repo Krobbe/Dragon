@@ -17,6 +17,7 @@ public class Event {
     	DO_CHECK,
     	DO_RAISE,
     	GET_ACTIVE_GAMES,
+    	GET_ACCOUNT_INFORMATION,
     	GO_TO_CREATETABLE,
     	GO_TO_JOINTABLE,
     	GO_TO_MAIN,
@@ -35,6 +36,7 @@ public class Event {
     	OWN_CURRENT_BET_CHANGED,	//getValue(): Bet
     	POT_CHANGED,				//getValue(): int
     	PUBLISH_ACTIVE_GAMES,		//getValue(): List<IServerGame>
+    	PUBLISH_ACCOUNT_INFORMATION,//getValue(): Account
     	REGISTER_SUCCESS,
     	REGISTER_BACK,
     	REGISTER_FAILED,
