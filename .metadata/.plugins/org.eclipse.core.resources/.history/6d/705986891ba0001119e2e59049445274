@@ -164,34 +164,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		try {
 			myStmt = conn.createStatement();
 			ResultSet rs = myStmt
-					.executeQuery("SELECT player, COUNT(*) AS " +
-							"nbrOfPlayedGames FROM PlayedGames WHERE player = '"
-							+ userName + "' GROUP BY player");
-			if (rs.next()) {
-				String nbrOfPlayedGames = rs.getString(2);
-				int tmp = Integer.parseInt(nbrOfPlayedGames);
-				return tmp;
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		return 0;
-	}
-
-	@Override
-	public int calculateGameID() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public int loadNbrOfPlayedGames(String userName) {
-		Connection conn = dbc.getConnection();
-		Statement myStmt;
-		try {
-			myStmt = conn.createStatement();
-			ResultSet rs = myStmt
-					.executeQuery("SELECT * FROM PlayedGames WHERE player = '"
+					.executeQuery("SELECT * FROM WonGames WHERE player = '"
 							+ userName + "'");
 			if (rs.next()) {
 				String nbrOfWonGames = rs.getString(2);
@@ -202,6 +175,11 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		return 0;
+		return -1;
+	}
+
+	@Override
+	public int calculateGameID() {
+		throw new UnsupportedOperationException();
 	}
 }

@@ -47,18 +47,11 @@ public interface IDBGame {
 	public Map<Integer, String> loadGamePlacements(String gameID);
 	
 	/**
-	 * Load number of won games.
+	 * Load number of one games.
 	 * @param userName the players username who you want to know the number of 
 	 * won games of.
-	 * @return the number of won games. If the account with "userName" as 
+	 * @return the number of one games. If the account with "userName" as 
 	 * userName doesn't exist the method returns -1.
 	 */
 	public int loadNbrOfWonGames(String userName);
-	
-	/**
-	 * Load number of played games. 
-	 * @param userName the player.
-	 * @return the number of games player has played.
-	 */
-	public int loadNbrOfPlayedGames(String userName);
 }
