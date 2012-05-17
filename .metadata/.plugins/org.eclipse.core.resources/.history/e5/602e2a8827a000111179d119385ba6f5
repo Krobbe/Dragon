@@ -18,8 +18,4 @@ public enum P {
 	public Font getLabelFont() {
 		return new Font("Tahoma", Font.PLAIN, 16);
 	}
-	
-	public Font getBoldLabelFont() {
-		return new Font("Tahoma", Font.PLAIN, 16);
-	}
 }

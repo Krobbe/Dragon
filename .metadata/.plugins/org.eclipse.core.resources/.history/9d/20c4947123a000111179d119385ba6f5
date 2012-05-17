@@ -64,7 +64,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 		JLabel userName = new JLabel("User name");
 		userName.setBounds(447, 172, 200, 20);
-		userName.setFont(P.INSTANCE.getBoldLabelFont());
+		userName.setFont(P.INSTANCE.getLabelFont());
 		this.add(userName);
 		
 		//TODO set the different values, get them from where?
@@ -75,7 +75,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		
 		JLabel firstName = new JLabel("First name");
 		firstName.setBounds(447, 222, 200, 20);
-		firstName.setFont(P.INSTANCE.getBoldLabelFont());
+		firstName.setFont(P.INSTANCE.getLabelFont());
 		this.add(firstName);
 		
 		setThisFirstName = new JLabel("Get the name from where?");
@@ -85,7 +85,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		
 		JLabel lastName = new JLabel("Last name");
 		lastName.setBounds(447, 272, 200, 20);
-		lastName.setFont(P.INSTANCE.getBoldLabelFont());
+		lastName.setFont(P.INSTANCE.getLabelFont());
 		this.add(lastName);
 		
 		setThisLastName = new JLabel("Get the name from where?");
@@ -95,7 +95,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		
 		JLabel playedGames = new JLabel("Number of played games");
 		playedGames.setBounds(447, 322, 230, 20);
-		playedGames.setFont(P.INSTANCE.getBoldLabelFont());
+		playedGames.setFont(P.INSTANCE.getLabelFont());
 		this.add(playedGames);
 		
 		setThisPlayedGames = new JLabel("Get the number of games from where?");
@@ -105,7 +105,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		
 		JLabel wonGames = new JLabel("Number of won games");
 		wonGames.setBounds(447, 372, 200, 20);
-		wonGames.setFont(P.INSTANCE.getBoldLabelFont());
+		wonGames.setFont(P.INSTANCE.getLabelFont());
 		this.add(wonGames);
 		
 		setThisWonGames = new JLabel(("Get number of won games from where?"));
