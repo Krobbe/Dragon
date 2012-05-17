@@ -32,5 +32,5 @@ public interface IPlayerPanel {
 	/**
 	 * Sets the background
 	 */
-	public void setBackground(Color h);
+	public void setTheBackground(Color h);
 }

@@ -35,9 +35,8 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Skicka med antal spelare?
 		if (e.getSource() == createTableCreateButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, createTablePlayersSpinner.getSelectedItem()));
 		} else if (e.getSource() == createTableBackButton) {
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_MAIN, 1));
 		}
@@ -75,7 +74,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 				new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }));
 		createTablePlayersSpinner.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTablePlayersSpinner.setMaximumRowCount(10);
-		createTablePlayersSpinner.setBounds(416, 417, 49, 26);
+		createTablePlayersSpinner.setBounds(416, 417, 55, 30);
 		this.add(createTablePlayersSpinner);
 
 		createTableBackButton = new JButton("Back");

@@ -78,7 +78,7 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 	}
 	
 	@Override
-	public void setBackground(Color c) {
+	public void setTheBackground(Color c) {
 		this.setBackground(c);
 	}
 	

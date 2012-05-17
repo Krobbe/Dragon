@@ -122,7 +122,7 @@ public class TableView implements EventHandler, ActionListener{
 			for(int i = 0; i < allPlayers.size(); i++) {
 				if(handDiscardedPlayer.equals(allPlayers.get(i))) {
 					playerPanelList.get(i).discard();
-					playerPanelList.get(i).setBackground(Color.red);
+					playerPanelList.get(i).setTheBackground(Color.red);
 					break;
 				}
 			}
@@ -162,12 +162,12 @@ public class TableView implements EventHandler, ActionListener{
 			
 		case TURN_CHANGED:
 			int turnIndex = (Integer) evt.getValue();
-			playerPanelList.get(turnIndex).setBackground(Color.green);
+			playerPanelList.get(turnIndex).setTheBackground(Color.green);
 			if(turnIndex == 1) {
-				playerPanelList.get(10).setBackground(Color.gray);
+				playerPanelList.get(10).setTheBackground(Color.gray);
 			}
 			else {
-				playerPanelList.get(turnIndex-1).setBackground(Color.gray);
+				playerPanelList.get(turnIndex-1).setTheBackground(Color.gray);
 			}
 			break;
 			

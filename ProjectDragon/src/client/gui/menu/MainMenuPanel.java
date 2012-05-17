@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import client.event.Event;
+import client.event.*;
 
 
 @SuppressWarnings("serial")
@@ -34,14 +34,15 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == mainJoinTableButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_JOINTABLE, 1));
+			EventBus.publish(new Event(Event.Tag.GO_TO_JOINTABLE, 1));
+			EventBus.publish(new Event(Event.Tag.GET_ACTIVE_GAMES, 1));
 		} else if (e.getSource() == mainCreateTableButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_CREATETABLE, 1));
+			EventBus.publish(new Event(Event.Tag.GO_TO_CREATETABLE, 1));
 		} else if (e.getSource() == mainStatisticsButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_STATISTICS, 1));
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GET_ACCOUNT_INFORMATION, 1));
+			EventBus.publish(new Event(Event.Tag.GO_TO_STATISTICS, 1));
+			EventBus.publish(new Event(Event.Tag.GET_ACCOUNT_INFORMATION, 1));
 		} else if (e.getSource() == mainLogoutButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.LOGOUT, 1));
+			EventBus.publish(new Event(Event.Tag.LOGOUT, 1));
 		}
 	}
 
