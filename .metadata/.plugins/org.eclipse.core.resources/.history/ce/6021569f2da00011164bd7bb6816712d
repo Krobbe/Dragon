@@ -101,6 +101,7 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 		errorLabel.setBounds(447, 249, 208, 14);
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		errorLabel.setForeground(Color.red);
+		errorLabel.setText("Incorrect username or password");
 		this.add(errorLabel);
 	}
 

@@ -98,9 +98,10 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 		this.add(loginRegisterButton);
 		
 		errorLabel = new JLabel();
-		errorLabel.setBounds(447, 249, 208, 14);
-		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		errorLabel.setBounds(447, 249, 108, 14);
+		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		errorLabel.setForeground(Color.red);
+		errorLabel.setText("Hello");
 		this.add(errorLabel);
 	}
 
