@@ -18,7 +18,11 @@ import javax.swing.JTextField;
 
 import client.event.*;
 
-
+/**
+ * LoginPanel is the panel in which users can login to the application
+ * @author forssenm
+ *
+ */
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel implements KeyListener, ActionListener, client.event.EventHandler {
 
@@ -28,6 +32,10 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 	private JButton loginRegisterButton;
 	private JLabel errorLabel;
 
+	
+	/**
+	 * Creates the panel
+	 */
 	public LoginPanel() {
 		init();
 		client.event.EventBus.register(this);

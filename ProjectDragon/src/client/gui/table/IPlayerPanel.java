@@ -5,6 +5,11 @@ import java.awt.Color;
 import model.player.IPlayer;
 import model.player.hand.IHand;
 
+/**
+ * Interface for handling all the PlayerPanels
+ * @author forssenm
+ *
+ */
 public interface IPlayerPanel {
 	
 	

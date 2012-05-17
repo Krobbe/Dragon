@@ -11,7 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-
+/**
+ * The RegisterPanel is the panel where users can type in their details and register for an account.
+ * @author forssenm
+ *
+ */
 @SuppressWarnings("serial")
 public class RegisterPanel extends JPanel implements ActionListener,
 		client.event.EventHandler {
@@ -23,7 +27,10 @@ public class RegisterPanel extends JPanel implements ActionListener,
 	private JTextField registerLastNameField;
 	private JPasswordField registerPassword;
 	private JPasswordField registerPasswordAgainField;
-
+	
+	/**
+	 * Creates the application
+	 */
 	public RegisterPanel() {
 		init();
 		client.event.EventBus.register(this);

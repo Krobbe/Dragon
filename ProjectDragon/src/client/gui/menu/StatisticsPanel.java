@@ -19,7 +19,11 @@ import model.player.*;
 
 import database.*;
 
-
+/**
+ * The StatisticsPanel has information about the logged in user. The information is retrieved from the DB.
+ * @author forssenm
+ *
+ */
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel implements ActionListener,
 		client.event.EventHandler, IDBGame {
@@ -32,7 +36,10 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	private JLabel setThisWonGames;
 
 	private JButton statisticsBackButton;
-
+	
+	/**
+	 * Creates the application.
+	 */
 	public StatisticsPanel() {
 		init();
 		client.event.EventBus.register(this);

@@ -8,6 +8,11 @@ import javax.swing.*;
 
 import client.event.*;
 
+/**
+ * The panel that has all the options that the player can do such as make a call or a bet
+ * @author forssenm
+ *
+ */
 public class UserBetPanel extends JPanel implements ActionListener {
 	
 	private JLabel userAvailableCreditsLabel;
@@ -17,6 +22,9 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	private JButton userCheckButton;
 	private JButton userRaiseButton;
 	
+	/**
+	 * Creates the panel
+	 */
 	public UserBetPanel() {
 		init();
 	}

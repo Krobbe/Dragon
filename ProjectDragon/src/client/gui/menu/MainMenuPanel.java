@@ -8,7 +8,12 @@ import javax.swing.JPanel;
 
 import client.event.*;
 
-
+/**
+ * The MainMenuPanel is the panel that the user is sent to after logging in. Has buttons for
+ * accessing other important panels.
+ * @author forssenm
+ *
+ */
 @SuppressWarnings("serial")
 public class MainMenuPanel extends JPanel implements ActionListener,
 		client.event.EventHandler {
@@ -17,7 +22,10 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 	private JButton mainJoinTableButton;
 	private JButton mainCreateTableButton;
 	private JButton mainStatisticsButton;
-
+	
+	/**
+	 * Creates the panel
+	 */
 	public MainMenuPanel() {
 		init();
 		client.event.EventBus.register(this);
@@ -26,7 +34,6 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 	@Override
 	public void onEvent(client.event.Event evt) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

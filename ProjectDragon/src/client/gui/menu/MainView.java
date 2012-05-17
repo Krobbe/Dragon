@@ -4,6 +4,12 @@ import javax.swing.JFrame;
 
 import java.awt.CardLayout;
 
+/**
+ * The MainView class uses a cardlayout to store all the other panels. It is in this class
+ * that all the other panels are created.
+ * @author forssenm
+ *
+ */
 public class MainView implements client.event.EventHandler {
 
 	private JFrame frame;

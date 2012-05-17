@@ -17,6 +17,11 @@ import client.event.EventBus;
 import client.gui.table.TableView;
 import client.model.game.*;
 
+/**
+ * CreateTablePanel is the panel in which the user can create a table
+ * @author forssenm
+ *
+ */
 @SuppressWarnings("serial")
 public class CreateTablePanel extends JPanel implements ActionListener,
 		client.event.EventHandler {
@@ -27,19 +32,22 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	private JComboBox createTablePlayersSpinner;
 	private JButton createTableBackButton;
 	private JButton createTableCreateButton;
-
+	
+	/**
+	 * Creates the panel
+	 */
 	public CreateTablePanel() {
 		init();
 		EventBus.register(this);
 	}
-
+	
 	@Override
 	public void onEvent(Event evt) {
 		if(evt.getTag().equals(Event.Tag.CREATE_TABLE_VIEW)) {
 			new TableView((Table)evt.getValue());
 		}
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == createTableCreateButton) {
@@ -53,7 +61,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
-
+	
 	private void init() {
 		this.setLayout(null);
 		this.setBackground(P.INSTANCE.getBackground());

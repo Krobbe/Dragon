@@ -8,6 +8,12 @@ import javax.swing.JPanel;
 
 import model.card.ICard;
 
+/**
+ * This is the panel that holds all the information about what cards are on the table, how much is in the pot
+ * and what the current bet is
+ * @author forssenm
+ *
+ */
 public class TableInfoPanel extends JPanel {
 	
 	private JLabel flopc1Label;
@@ -20,6 +26,9 @@ public class TableInfoPanel extends JPanel {
 	private JLabel currentBetInfoLabel;
 	private JLabel currentBet;
 	
+	/**
+	 * Creates the panel
+	 */
 	public TableInfoPanel() {
 		init();
 	}
@@ -66,14 +75,26 @@ public class TableInfoPanel extends JPanel {
 		this.add(currentBet);
 	}
 	
-	//TODO think these setters should return a boolean
+	/**
+	 * Sets the current bet
+	 * @param s The string that the bet should be set to
+	 */
 	public void setBet(String s) {
 		currentBet.setText(s);
 	}
+	
+	/**
+	 * Sets the pot size
+	 * @param s The string that the pot should be set to
+	 */
 	public void setPotSize(String s) {
 		potSize.setText(s);
 	}
 	
+	/**
+	 * Shows the cards that the dealer has placed on the table
+	 * @param list The list of the cards that should be shown
+	 */
 	public void showCards(List<ICard> list) {
 		if(list.size() == 3) {
 			flopc1Label.setText(list.get(0).toString());
@@ -95,23 +116,23 @@ public class TableInfoPanel extends JPanel {
 		}
 	}
 	
-	public void setFlopC1(String s) {
-		flopc1Label.setText(s);
-	}
-	
-	public void setFlopC2(String s) {
-		flopc2Label.setText(s);
-	}
-	
-	public void setFlopC3(String s) {
-		flopc3Label.setText(s);
-	}
-	
-	public void setTurnC1(String s) {
-		turnc1Label.setText(s);
-	}
-	public void setRiverC1(String s) {
-		riverc1Label.setText(s);
-	}
+//	public void setFlopC1(String s) {
+//		flopc1Label.setText(s);
+//	}
+//	
+//	public void setFlopC2(String s) {
+//		flopc2Label.setText(s);
+//	}
+//	
+//	public void setFlopC3(String s) {
+//		flopc3Label.setText(s);
+//	}
+//	
+//	public void setTurnC1(String s) {
+//		turnc1Label.setText(s);
+//	}
+//	public void setRiverC1(String s) {
+//		riverc1Label.setText(s);
+//	}
 
 }

@@ -18,6 +18,11 @@ import client.event.*;
 
 import client.model.game.*;
 
+/**
+ * This is the main table panel. It is in this panel that all other panels are created and added.
+ * @author forssenm
+ *
+ */
 public class TableView implements EventHandler, ActionListener{
 	
 	private Table table;
@@ -39,6 +44,10 @@ public class TableView implements EventHandler, ActionListener{
 	
 	private JButton leaveTableButton;
 	
+	/**
+	 * Creates the panel
+	 * @param table It takes a table as parameter to be able to set names of player etc
+	 */
 	public TableView(Table table) {
 		this.table = table;
 		init();

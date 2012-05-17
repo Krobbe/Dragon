@@ -11,6 +11,11 @@ import model.card.ICard;
 import model.player.IPlayer;
 import model.player.hand.IHand;
 
+/**
+ * The panel for player 6
+ * @author forssenm
+ *
+ */
 public class PlayerSixPanel extends JPanel implements IPlayerPanel {
 	
 	private JLabel p6c1Label;
@@ -20,6 +25,9 @@ public class PlayerSixPanel extends JPanel implements IPlayerPanel {
 	private JLabel p6AvailableCreditsLabel;
 	private String path = "lib/deckimages/";
 	
+	/**
+	 * Creates the panel
+	 */
 	public PlayerSixPanel() {
 		init();
 	}
