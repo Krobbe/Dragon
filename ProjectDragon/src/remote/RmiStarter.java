@@ -77,6 +77,8 @@ public abstract class RmiStarter {
         
         System.setProperty("java.security.policy",
         		PolicyFileLocator.getLocationOfPolicyFile());
+        
+        System.setProperty("java.rmi.server.hostname", IServer.REMOTE_NAME);
 
         if(System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
