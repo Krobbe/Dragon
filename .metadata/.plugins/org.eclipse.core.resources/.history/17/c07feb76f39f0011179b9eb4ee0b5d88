@@ -13,20 +13,13 @@ import model.player.Player;
 public interface IDBGame {
 
 	/**
-	 * Calculates what gameID a game should have. It does this by checking what 
-	 * gameID is the highest in the database an adds one.
-	 * @return the gameID.
-	 */
-	public int calculateGameID();
-	
-	/**
 	 * Inputs information about a game into the database, which contains
 	 * the date the game was played at.
 	 * 
 	 * @param gameID	The gameID is unique for a game.
 	 * @param date		The date the game was played. 
 	 */
-	public void saveGame(int gameID, String date);
+	public void saveGame(String gameID, String date);
 	
 	/**
 	 * Input a placement into the database.

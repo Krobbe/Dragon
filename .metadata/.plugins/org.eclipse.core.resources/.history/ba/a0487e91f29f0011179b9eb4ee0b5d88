@@ -9,8 +9,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -88,12 +86,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		this.maxPlayers = maxPlayers;
 		this.entranceFee = entranceFee;
 		this.playerStartingChips = playerStartingChips;
-		
-		gameID = calculateGameID();
-		Calendar cal = Calendar.getInstance();
-		String dateString = "" + cal.get(Calendar.DAY_OF_MONTH) + 
-				cal.get(Calendar.MONTH) + cal.get(Calendar.YEAR);
-		saveGame(gameID, dateString);
+
 	}
 	
 	/**
@@ -422,7 +415,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	}
 
 	@Override
-	public void saveGame(int gameID, String date) {
+	public void saveGame(String gameID, String date) {
 		Connection conn = dbc.getConnection();
 		Statement myStmt;
 		try {
@@ -440,52 +433,18 @@ public class RemoteGameController extends UnicastRemoteObject
 
 	@Override
 	public void savePlacement(String gameID, Player player, int placement) {
-		Connection conn = dbc.getConnection();
-		Statement myStmt;
-		try {
-			myStmt = conn.createStatement();
-			int up = myStmt.executeUpdate("INSERT INTO PlayedGames VALUES('" + gameID + "', '"
-							+ player + "', '" + placement + "')");
-			if(up == 0) {
-				System.out.println("Game with gameID" + gameID + " has already" +
-						"saved a placement for " + player);
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public Map<Integer, String> loadGamePlacements(String gameID) {
-		throw new UnsupportedOperationException();
+		return null;
 	}
 
 	@Override
 	public int loadNbrOfWonGames(String userName) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public int calculateGameID() {
-		Connection conn = dbc.getConnection();
-		Statement myStmt;
-		try {
-			myStmt = conn.createStatement();
-			ResultSet rs =
-					myStmt.executeQuery("SELECT max(gameID) FROM Games");
-			if(rs.next()) {
-				String max = rs.getString(1);
-				if(!(max.equals("null"))) {
-					int tmp = Integer.parseInt(max);
-					return tmp + 1;
-				}
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		return 1;
+		return 0;
 	}
 
 

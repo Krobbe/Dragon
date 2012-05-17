@@ -113,7 +113,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	}
 
 	@Override
-	public void saveGame(int gameID, String date) {
+	public void saveGame(String gameID, String date) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -170,6 +170,6 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 	@Override
 	public int calculateGameID() {
-		throw new UnsupportedOperationException();
+		return 0;
 	}
 }

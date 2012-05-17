@@ -39,7 +39,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	
 	private LinkedList<IServerGame> activeGames;
 	
-	private DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
+	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
 	public RemoteCommunicationController() throws RemoteException {
 		super();
@@ -303,6 +303,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 
 	@Override
 	public String testPrint() throws RemoteException {
-		return "Woop woop!";
+		return "Hej Mattias! :D";
 	}
 }

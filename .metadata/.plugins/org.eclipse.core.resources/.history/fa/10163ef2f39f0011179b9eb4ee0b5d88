@@ -303,6 +303,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 
 	@Override
 	public String testPrint() throws RemoteException {
-		return "Woop woop!";
+		return "Hej Mattias! :D";
 	}
 }

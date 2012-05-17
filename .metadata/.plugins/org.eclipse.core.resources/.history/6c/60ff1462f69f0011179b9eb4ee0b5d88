@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -90,9 +89,8 @@ public class RemoteGameController extends UnicastRemoteObject
 		this.playerStartingChips = playerStartingChips;
 		
 		gameID = calculateGameID();
-		Calendar cal = Calendar.getInstance();
-		String dateString = "" + cal.get(Calendar.DAY_OF_MONTH) + 
-				cal.get(Calendar.MONTH) + cal.get(Calendar.YEAR);
+		Date date = new Date();
+		String dateString = date.toString();
 		saveGame(gameID, dateString);
 	}
 	

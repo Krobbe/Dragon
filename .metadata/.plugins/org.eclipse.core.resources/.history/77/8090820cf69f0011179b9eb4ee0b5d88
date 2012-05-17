@@ -26,7 +26,7 @@ public interface IDBGame {
 	 * @param gameID	The gameID is unique for a game.
 	 * @param date		The date the game was played. 
 	 */
-	public void saveGame(int gameID, String date);
+	public void saveGame(String gameID, String date);
 	
 	/**
 	 * Input a placement into the database.

@@ -35,11 +35,11 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	
 	// A map containing all logged in players and references to their
 	// respective communication controllers
-	private Map<Account, IClient> clients;
+	Map<Account, IClient> clients;
 	
-	private LinkedList<IServerGame> activeGames;
+	LinkedList<IServerGame> activeGames;
 	
-	private DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
+	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
 	public RemoteCommunicationController() throws RemoteException {
 		super();
@@ -303,6 +303,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 
 	@Override
 	public String testPrint() throws RemoteException {
-		return "Woop woop!";
+		return "Hej Mattias! :D";
 	}
 }
