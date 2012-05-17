@@ -17,7 +17,7 @@ public class Player implements IPlayer {
 	private String name;
 	private Balance balance;
 	private boolean stillInGame;
-	private int ownCurrentBet = -1; //TODO dšpa -1 till typ "NO_BET" ? 
+	private int ownCurrentBet = 0; //TODO dšpa -1 till typ "NO_BET" ? 
 	private boolean doneFirstTurn;
 	
 	// TODO Is the "isVisible" variable still used in TexasHold'em hand?
@@ -134,8 +134,7 @@ public class Player implements IPlayer {
 	@Override
 	public void makeBet(int value) {
 		balance.removeFromBalance(value);
-		setOwnCurrentBet(value);
-		doneFirstTurn = true;
+		setOwnCurrentBet(ownCurrentBet + value);
 	}
 
 	@Override

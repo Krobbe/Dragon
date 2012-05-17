@@ -168,14 +168,13 @@ public class GameController {
 			currentBetValue = currentPlayer.getBalance().getValue() 
 					+ playersOwnCurrentBet;
 		}
-				
+
 		performPlayerBet(new Bet(currentPlayer,currentBetValue - playersOwnCurrentBet));
-		
+		currentPlayer.setDoneFirstTurn(true);
 		/* gammal kod, ta bort om nya funkar... */
 		/* arrange the player's balance, bet and the pot according to the call 
 		 */
 		//table.getRound().getPot().addToPot(currentBetValue - playersOwnCurrentBet);
-		//currentPlayer.setDoneFirstTurn(true);
 		//currentPlayer.setOwnCurrentBet(currentBetValue);
 		//currentPlayer.getBalance().removeFromBalance(currentBetValue 
 		//		- playersOwnCurrentBet);
@@ -317,7 +316,7 @@ public class GameController {
 			}
 			table.getRound().getPreBettingPot().setValue(potValue);
 			
-		// if its time for river or turn	
+		// if it's time for river or turn	
 		} else {
 			addCommunityCard();
 			table.getRound().getPreBettingPot().setValue(potValue);
@@ -400,11 +399,13 @@ public class GameController {
 		
 		/* the initial value of the blinds might be bigger than the player's
 		 * balance, correct this.. */
-		if (smallBlindPlayer.getBalance().getValue() < smallBlind) {
+		if (smallBlindPlayer.getBalance().getValue() <= smallBlind) {
 			smallBlind = smallBlindPlayer.getBalance().getValue();
+			smallBlindPlayer.setDoneFirstTurn(true);
 		}		
-		if (bigBlindPlayer.getBalance().getValue() < bigBlind) {
+		if (bigBlindPlayer.getBalance().getValue() <= bigBlind) {
 			bigBlind = bigBlindPlayer.getBalance().getValue();
+			bigBlindPlayer.setDoneFirstTurn(true);
 		}
 		
 		/* post blinds */ /* TODO: gammal kod, ta bort om nya funkar...
@@ -493,19 +494,19 @@ public class GameController {
 		if(raiseValue > currentPlayer.getBalance().getValue()) {
 			throw new IllegalRaiseException(
 					"Not enough money on balance to make that raise");
-		} else if(bet.getValue() <= currentBettingRound.getCurrentBet().getValue()
+		} else if(bet.getValue() < currentBettingRound.getCurrentBet().getValue()
 				+ P.INSTANCE.getBigBlindValue()) {
 			throw new IllegalRaiseException("The raise have to be bigger" +
 					"than the current bet plus big blind.");
 		}
 		
 		performPlayerBet(new Bet(currentPlayer,raiseValue));
+		currentPlayer.setDoneFirstTurn(true);
 		
 		//TODO: gammal kod, ta bort om nya funkar
 		/* arrange the player's balance, bet and the pot according to the raise 
 		 */
 		//table.getRound().getPot().addToPot(theRaise);
-		//currentPlayer.setDoneFirstTurn(true);
 		//currentPlayer.getBalance().removeFromBalance(theRaise);
 		//currentPlayer.setOwnCurrentBet(theRaise + currentPlayer.getOwnCurrentBet());
 		//currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),

@@ -1,9 +1,7 @@
 package client.gui.menu;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,10 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-
+import model.game.P;
+import client.event.Event;
+import client.event.EventBus;
 @SuppressWarnings("serial")
 public class CreateTablePanel extends JPanel implements ActionListener,
 		client.event.EventHandler {
@@ -30,11 +29,11 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 	public CreateTablePanel() {
 		init();
-		client.event.EventBus.register(this);
+		EventBus.register(this);
 	}
 
 	@Override
-	public void onEvent(client.event.Event evt) {
+	public void onEvent(Event evt) {
 
 	}
 
@@ -46,8 +45,9 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 			list.add(numberOfChipsField.getText());
 			list.add((String)createTablePlayersSpinner.getSelectedItem());
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, list));
+
 		} else if (e.getSource() == createTableBackButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_MAIN, 1));
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 

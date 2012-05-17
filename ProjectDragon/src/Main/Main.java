@@ -1,5 +1,6 @@
 package Main;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ import utilities.CommunityCardsFullException;
 public class Main {
 	
 	public static void main(String[] args) {
-		new MainView();
+		//new MainView();
 		try {
 			new Main().run();
 		} catch (PlayersFullException e) {
@@ -38,9 +39,6 @@ public class Main {
 	public void run() throws PlayersFullException, CommunityCardsFullException, 
 	IllegalCheckException, IllegalCallException, IllegalRaiseException {
 		
-		Table table = new Table();
-		GameController gc = new GameController(table);
-		
 		IPlayer player1 = new User(new Player(new TexasHoldemHand(),
 				"Mattias H", new Balance(60)));
 		IPlayer player2 = new User(new Player(new TexasHoldemHand(),
@@ -49,8 +47,12 @@ public class Main {
 				"Robin", new Balance(60)));
 		IPlayer player4 = new User(new Player(new TexasHoldemHand(),
 				"Mattias F", new Balance(60)));
-		table.addPlayer(player1); table.addPlayer(player2); 
-		table.addPlayer(player3); table.addPlayer(player4);
+		List<IPlayer> plrs = new LinkedList<IPlayer>();
+		
+		plrs.add(player1); plrs.add(player2); plrs.add(player3); plrs.add(player4);
+		
+		Table table = new Table(plrs);
+		GameController gc = new GameController(table);
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -72,6 +74,9 @@ public class Main {
 				} else if (cmd.equals("r20")) {
 					gc.raise(new Bet(table.getCurrentPlayer(), table.getRound().
 							getBettingRound().getCurrentBet().getValue() + 20));
+				} else if (cmd.equals("r30")) {
+					gc.raise(new Bet(table.getCurrentPlayer(), table.getRound().
+							getBettingRound().getCurrentBet().getValue() + 30));
 				} else if (cmd.equals("r50")) {
 					gc.raise(new Bet(table.getCurrentPlayer(), table.getRound().
 							getBettingRound().getCurrentBet().getValue() + 50));
@@ -87,17 +92,6 @@ public class Main {
 					throw new IllegalArgumentException("Command not supported!!");
 				}
 				
-				if (table.isBettingDone()) {
-					gc.nextBettingRound();
-				} 
-				
-				table.nextPlayer();
-				
-				/* slut på rundan ? */
-				if (winners != null) {
-					System.out.println("Round ended...");
-					break;
-				}
 			}
 		}
 	}

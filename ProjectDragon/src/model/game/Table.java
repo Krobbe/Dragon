@@ -190,7 +190,6 @@ public class Table {
 			EventBus.publish(new Event(Event.Tag.SERVER_DISTRIBUTE_POT, 
 					new Bet(p, winnerAmount)));
 		}
-		//TODO: Remove money from the pot!
 	}
 	
 	/**
@@ -244,6 +243,7 @@ public class Table {
     public void doShowdown(List<IPlayer> plrs, int potAmount) {
         // Look at each hand value (calculated in HandEvaluator), sorted from highest to lowest.
         Map<HandValue, List<IPlayer>> rankedPlayers = getRankedPlayers(plrs);
+        
         for (HandValue handValue : rankedPlayers.keySet()) {
             // Get players with winning hand value.
             List<IPlayer> winners = rankedPlayers.get(handValue);
@@ -266,6 +266,10 @@ public class Table {
             	System.out.println(p.getName());
             }
             System.out.println("\n-----------------------------------\n");
+            
+            //TODO: riktigt ful lösning. borde göras böttre. ingen loop behövs
+            //utan innehållet borde bara göras för första värdet i rankedPlayers
+            break;
         }
     }
     
