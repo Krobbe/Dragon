@@ -1,8 +1,11 @@
 package client.gui.menu;
 
 import java.awt.Font;
+import java.awt.RenderingHints.Key;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -16,7 +19,7 @@ import client.event.*;
 
 
 @SuppressWarnings("serial")
-public class LoginPanel extends JPanel implements ActionListener, client.event.EventHandler {
+public class LoginPanel extends JPanel implements KeyListener, ActionListener, client.event.EventHandler {
 
 	private JTextField loginNameField;
 	private JPasswordField loginPasswordField;
@@ -74,6 +77,7 @@ public class LoginPanel extends JPanel implements ActionListener, client.event.E
 
 		loginPasswordField = new JPasswordField();
 		loginPasswordField.setBounds(447, 355, 113, 20);
+		loginPasswordField.addKeyListener(this);
 		this.add(loginPasswordField);
 
 		loginButton = new JButton("Login");
@@ -91,5 +95,23 @@ public class LoginPanel extends JPanel implements ActionListener, client.event.E
 		loginRegisterButton.setBounds(447, 401, 113, 23);
 		loginRegisterButton.addActionListener(this);
 		this.add(loginRegisterButton);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+			ArrayList<char[]> loginInfo = new ArrayList<char[]>();
+			loginInfo.add(loginNameField.getText().toCharArray());
+			loginInfo.add(loginPasswordField.getPassword());
+			EventBus.publish(new Event(Event.Tag.TRY_LOGIN, loginInfo));
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 	}
 }
