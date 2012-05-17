@@ -6,6 +6,7 @@ package remote;
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import database.IDBAccount;
 
@@ -66,6 +67,16 @@ public interface IServer extends Remote, IDBAccount, Serializable {
 	 */
 	public IServerGame joinGame(Account account, IPlayer player,
 				IClientGame clientGame, int gameIndex) throws RemoteException;
+	
+	/**
+	 * 
+	 * 
+	 * @param account The user's Account object used for secuirity clearance
+	 * @return A list with games that players are allowed to join
+	 * @throws RemoteException
+	 */
+	public List<IServerGame> getActiveGames(Account account) 
+														throws RemoteException;
 	
 	/**
 	 * Test method for connectivity

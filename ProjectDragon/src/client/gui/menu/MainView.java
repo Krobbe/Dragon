@@ -1,6 +1,8 @@
 package client.gui.menu;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+
 import client.gui.table.*;
 import client.model.game.Table;
 
@@ -16,7 +18,6 @@ public class MainView implements client.event.EventHandler {
 	private JoinTablePanel joinTablePanel = new JoinTablePanel();
 	private CreateTablePanel createTablePanel = new CreateTablePanel();
 	private StatisticsPanel statisticsPanel = new StatisticsPanel();
-	private TablePanel tablePanel = new TablePanel();
 
 	/**
 	 * Create the application.
@@ -36,7 +37,6 @@ public class MainView implements client.event.EventHandler {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(layout);
 		frame.getContentPane().add(loginPanel, "loginPanel");
-		frame.getContentPane().add(tablePanel, "tablePanel");
 		frame.getContentPane().add(registerPanel, "registerPanel");
 		frame.getContentPane().add(mainMenuPanel, "mainMenuPanel");
 		frame.getContentPane().add(joinTablePanel, "joinTablePanel");
@@ -59,8 +59,8 @@ public class MainView implements client.event.EventHandler {
 			layout.show(frame.getContentPane(), "joinTablePanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_CREATETABLE)) {
 			layout.show(frame.getContentPane(), "createTablePanel");
-		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_TABLE)) {
-			layout.show(frame.getContentPane(), "tablePanel");
+		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_STATISTICS)) {
+			layout.show(frame.getContentPane(), "statisticsPanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_MAIN)) {
 			layout.show(frame.getContentPane(), "mainMenuPanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.REGISTER_BACK)) {

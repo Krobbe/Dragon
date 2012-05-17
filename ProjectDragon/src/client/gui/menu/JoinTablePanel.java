@@ -3,21 +3,30 @@ package client.gui.menu;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.AbstractListModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+
+import remote.IServerGame;
+
+import client.event.Event;
+import client.event.EventBus;
 
 
 @SuppressWarnings("serial")
-public class JoinTablePanel extends JPanel implements ActionListener,
+public class JoinTablePanel extends JScrollPane implements ActionListener,
 		client.event.EventHandler {
 
 	private JButton joinTableBackButton;
 	private JButton joinTableJoinButton;
 	private JList joinTableList;
+	private DefaultListModel model;
 
 	public JoinTablePanel() {
 		init();
@@ -26,7 +35,12 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 
 	@Override
 	public void onEvent(client.event.Event evt) {
-		// TODO Auto-generated method stub
+		if(evt.getTag().equals(client.event.Event.Tag.PUBLISH_ACTIVE_GAMES)) {
+			List<IServerGame> list = (List<IServerGame>)evt.getValue();
+			for(IServerGame isg : list) {
+				model.addElement(isg);
+			}
+		}
 
 	}
 
@@ -55,22 +69,14 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 		joinTableJoinButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTableJoinButton.addActionListener(this);
 		this.add(joinTableJoinButton);
-
+		
 		joinTableList = new JList();
+		model = new DefaultListModel();
 		joinTableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		joinTableList.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		joinTableList.setModel(new AbstractListModel() {
-			String[] values = new String[] {};
-
-			public int getSize() {
-				return values.length;
-			}
-
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+		joinTableList.setModel(model);
 		joinTableList.setBounds(192, 111, 623, 507);
 		this.add(joinTableList);
+		EventBus.publish(new Event(Event.Tag.GET_ACTIVE_GAMES, 1));
 	}
 }

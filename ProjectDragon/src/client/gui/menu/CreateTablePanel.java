@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
 @SuppressWarnings("serial")
@@ -45,20 +46,20 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	private void init() {
 		this.setLayout(null);
 
-		JLabel createTableNameLabel = new JLabel("Choose a table name");
-		createTableNameLabel.setBounds(416, 262, 176, 20);
-		createTableNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		this.add(createTableNameLabel);
+//		JLabel createTableNameLabel = new JLabel("Choose a table name");
+//		createTableNameLabel.setBounds(416, 262, 176, 20);
+//		createTableNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+//		this.add(createTableNameLabel);
 
 		// createTableNameField = new JTextField();
 		// createTableNameField.setBounds(416, 293, 176, 20);
 		// this.add(createTableNameField);
 		// createTableNameField.setColumns(10);
 
-		JLabel createTablePasswordLabel = new JLabel("Choose a table password");
-		createTablePasswordLabel.setBounds(416, 324, 176, 20);
-		createTablePasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		this.add(createTablePasswordLabel);
+//		JLabel createTablePasswordLabel = new JLabel("Choose a table password");
+//		createTablePasswordLabel.setBounds(416, 324, 176, 20);
+//		createTablePasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+//		this.add(createTablePasswordLabel);
 
 		// createTablePasswordField = new JPasswordField();
 		// createTablePasswordField.setBounds(416, 355, 176, 20);

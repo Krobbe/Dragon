@@ -49,7 +49,7 @@ public class TableView implements EventHandler, ActionListener{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1024, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(null);	
 		
 		backPanel = new JPanel();
 		backPanel.setBounds(100, 100, 1024, 768);
@@ -68,6 +68,8 @@ public class TableView implements EventHandler, ActionListener{
 		playerEightPanel = new PlayerEightPanel();
 		playerNinePanel = new PlayerNinePanel();
 		playerTenPanel = new PlayerTenPanel();
+		
+		playerOnePanel.setName(table.getPlayers().get(0));
 		
 		playerPanelList = new ArrayList<IPlayerPanel>();
 		playerPanelList.add(playerOnePanel);
@@ -96,7 +98,7 @@ public class TableView implements EventHandler, ActionListener{
 		frame.getContentPane().add(backPanel);
 		
 		frame.setVisible(true);
-		frame.setResizable(false);
+		frame.setResizable(true);
 	}
 
 	@Override
@@ -129,7 +131,6 @@ public class TableView implements EventHandler, ActionListener{
 		case BALANCE_CHANGED:
 			
 			IPlayer balanceChangedPlayer = (Player) evt.getValue();
-			int balanceChangedPlayerIndex = -1;
 			
 			//TODO: om man fick in ett index från början ist hade inte följand varit nödvändigt:
 			/* get the index of the player whos balance was changed */
@@ -188,7 +189,7 @@ public class TableView implements EventHandler, ActionListener{
 			tableInfoPanel.showCards(communityCards);
 			break;
 
-	}
+		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

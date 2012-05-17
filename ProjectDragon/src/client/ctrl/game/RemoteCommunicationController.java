@@ -8,6 +8,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -137,6 +138,30 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		return this.account;
 	}	
 	
+	private boolean tryRegisterAccount(String userName, String firstName, 
+			String lastName, String passWord) {
+		
+			if(serverComm == null) {
+				return false;
+			}
+			
+			Account tmp = new Account(firstName, lastName, userName, passWord);
+			try {
+				if(serverComm.createAccount(tmp)) {
+					login(this, tmp.getUserName(), tmp.getPassWord());
+					EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
+					return true;
+				} else {
+					EventBus.publish(new Event(Event.Tag.REGISTER_FAILED, ""));
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return false;
+	}
+	
 	public boolean createGame(int entranceFee, int maxPlayers,
 													int playerStartingChips) {
 		
@@ -168,31 +193,23 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		}
 		
 		return false;
-		
 	}
 	
-	private boolean tryRegisterAccount(String userName, String firstName, 
-			String lastName, String passWord) {
+	/**
+	 * Returns the active games that players are able to join 
+	 * @return A list with the active games that players are able to join
+	 */
+	public List<IServerGame> getActiveGames() {
 		
-			if(serverComm == null) {
-				return false;
-			}
-			
-			Account tmp = new Account(firstName, lastName, userName, passWord);
-			try {
-				if(serverComm.createAccount(tmp)) {
-					login(this, tmp.getUserName(), tmp.getPassWord());
-					EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
-					return true;
-				} else {
-					EventBus.publish(new Event(Event.Tag.REGISTER_FAILED, ""));
-				}
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			return false;
+		try {
+			return serverComm.getActiveGames(this.account);
+		} catch (RemoteException e) {
+			System.out.println("*** Could not get active games! ***");
+			e.printStackTrace();
+		}
+		
+		return null;
+		
 	}
 	
 	/** 
@@ -286,6 +303,11 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 			if(createGame(1, 8, 1000)){
 				EventBus.publish(new Event(Event.Tag.GO_TO_TABLE, ""));
 			}
+		
+		case GET_ACTIVE_GAMES:
+			
+			EventBus.publish(new Event(Event.Tag.PUBLISH_ACTIVE_GAMES,
+															getActiveGames()));
 		}
 	}
 

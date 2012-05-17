@@ -7,8 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+<<<<<<< HEAD
 import model.card.ICard;
+=======
 import model.player.IPlayer;
+import model.player.Player;
+>>>>>>> origin/master
 import model.player.hand.IHand;
 
 public class PlayerFivePanel extends JPanel implements IPlayerPanel {
