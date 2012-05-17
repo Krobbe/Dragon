@@ -116,8 +116,8 @@ public class User implements IPlayer {
 	}
 
 	@Override
-	public int compareTo(IPlayer o) {
-		return this.getName().compareTo(o.getName());
+	public int compare(IPlayer o1, IPlayer o2) {
+		return o1.getName().compareTo(o2.getName());
 	}
 
 }
