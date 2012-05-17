@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import client.event.Event;
+
 
 @SuppressWarnings("serial")
 public class MainMenuPanel extends JPanel implements ActionListener,
@@ -37,6 +39,7 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_CREATETABLE, 1));
 		} else if (e.getSource() == mainStatisticsButton) {
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_STATISTICS, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GET_ACCOUNT_INFORMATION, 1));
 		} else if (e.getSource() == mainLogoutButton) {
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.LOGOUT, 1));
 		}

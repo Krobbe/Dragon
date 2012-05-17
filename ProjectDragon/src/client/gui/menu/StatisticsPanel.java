@@ -15,7 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import model.player.Player;
+import client.event.Event;
+import client.event.Event.Tag;
+import client.event.EventBus;
+
+import model.player.*;
 
 import database.*;
 
@@ -40,7 +44,14 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 	@Override
 	public void onEvent(client.event.Event evt) {
-		// TODO Auto-generated method stub
+		if(evt.getTag().equals(Event.Tag.PUBLISH_ACCOUNT_INFORMATION)) {
+			Account acc = (Account)evt.getValue();
+			setThisUserName.setText(acc.getUserName());
+			setThisFirstName.setText(acc.getFirstName());
+			setThisLastName.setText(acc.getLastName());
+			setThisWonGames.setText(Integer.toString(loadNbrOfWonGames(acc.getUserName())));
+			setThisFirstName.repaint();
+		}
 
 	}
 
@@ -53,55 +64,54 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 	private void init() {
 		this.setLayout(null);
-		
 		JLabel userName = new JLabel("User name");
-		userName.setBounds(447, 172, 110, 14);
+		userName.setBounds(447, 172, 200, 20);
 		userName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(userName);
 		
 		//TODO set the different values, get them from where?
 		setThisUserName = new JLabel("Get the name from where?");
-		setThisUserName.setBounds(447, 197, 110, 14);
+		setThisUserName.setBounds(447, 197, 200, 20);
 		setThisUserName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisUserName);
 		
 		JLabel firstName = new JLabel("First name");
-		firstName.setBounds(447, 222, 110, 14);
+		firstName.setBounds(447, 222, 200, 20);
 		firstName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(firstName);
 		
 		setThisFirstName = new JLabel("Get the name from where?");
-		setThisFirstName.setBounds(447, 247, 110, 14);
+		setThisFirstName.setBounds(447, 247, 200, 20);
 		setThisFirstName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisFirstName);
 		
 		JLabel lastName = new JLabel("Last name");
-		lastName.setBounds(447, 272, 110, 14);
+		lastName.setBounds(447, 272, 200, 20);
 		lastName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(lastName);
 		
 		setThisLastName = new JLabel("Get the name from where?");
-		setThisLastName.setBounds(447, 297, 110, 14);
+		setThisLastName.setBounds(447, 297, 200, 20);
 		setThisLastName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisLastName);
 		
 		JLabel playedGames = new JLabel("Number of played games");
-		playedGames.setBounds(447, 322, 110, 14);
-		playedGames.setFont(new Font("Tahoma", Font.BOLD, 14));
+		playedGames.setBounds(447, 322, 230, 20);
+		playedGames.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(playedGames);
 		
 		setThisPlayedGames = new JLabel("Get the number of games from where?");
-		setThisPlayedGames.setBounds(447, 347, 110, 14);
+		setThisPlayedGames.setBounds(447, 347, 200, 20);
 		setThisPlayedGames.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisPlayedGames);
 		
 		JLabel wonGames = new JLabel("Number of won games");
-		wonGames.setBounds(447, 372, 110, 14);
+		wonGames.setBounds(447, 372, 200, 20);
 		wonGames.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(wonGames);
 		
 		setThisWonGames = new JLabel(("Get number of won games from where?"));
-		setThisWonGames.setBounds(447, 397, 110, 14);
+		setThisWonGames.setBounds(447, 397, 200, 20);
 		setThisWonGames.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisWonGames);
 		
@@ -110,7 +120,6 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		statisticsBackButton.setBounds(10, 683, 108, 36);
 		statisticsBackButton.addActionListener(this);
 		this.add(statisticsBackButton);
-		
 	}
 
 	@Override

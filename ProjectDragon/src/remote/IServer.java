@@ -29,14 +29,17 @@ public interface IServer extends Remote, IDBAccount, Serializable {
 	 * @param accountName The account's name.
 	 * @param accountPassword The password associated with the account name.
 	 */
-	public Account login(IClient client, String accountName, String accountPassword) throws RemoteException;
+	public Account login(IClient client, String accountName,
+								String accountPassword) throws RemoteException;
 	
-	/** 
+	/**
 	 * Logs the client out from the server.
 	 * 
 	 * @param account The Account object associated with the client
+	 * @return True if logout was successful
+	 * @throws RemoteException
 	 */
-	public void logOut(Account account) throws RemoteException;
+	public boolean logout(Account account) throws RemoteException;
 	
 	/** 
 	 * Tries to create a game. Passes the unique Account object along for

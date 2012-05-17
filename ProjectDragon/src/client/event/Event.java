@@ -11,16 +11,17 @@ public class Event {
     public enum Tag {
     	BALANCE_CHANGED,			//getValue(): IPlayer
     	COMMUNITY_CARDS_CHANGED,	//getValue(): ICard
+    	CREATE_TABLE,
     	CURRENT_BET_CHANGED,		//table.getTableCards()
     	DO_FOLD,
     	DO_CALL,
     	DO_CHECK,
     	DO_RAISE,
+    	GET_ACCOUNT_INFORMATION,
     	GET_ACTIVE_GAMES,
     	GO_TO_CREATETABLE,
     	GO_TO_JOINTABLE,
     	GO_TO_MAIN,
-    	CREATE_TABLE,
     	GO_TO_REGISTER,
     	GO_TO_STATISTICS,
     	GO_TO_TABLE,
@@ -35,6 +36,7 @@ public class Event {
     	OWN_CURRENT_BET_CHANGED,	//getValue(): Bet
     	POT_CHANGED,				//getValue(): int
     	PUBLISH_ACTIVE_GAMES,		//getValue(): List<IServerGame>
+    	PUBLISH_ACCOUNT_INFORMATION,//getValue(): Account
     	REGISTER_SUCCESS,
     	REGISTER_BACK,
     	REGISTER_FAILED,

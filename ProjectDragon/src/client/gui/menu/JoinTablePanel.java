@@ -77,6 +77,5 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 		joinTableList.setModel(model);
 		joinTableList.setBounds(192, 111, 623, 507);
 		this.add(joinTableList);
-		EventBus.publish(new Event(Event.Tag.GET_ACTIVE_GAMES, 1));
 	}
 }
