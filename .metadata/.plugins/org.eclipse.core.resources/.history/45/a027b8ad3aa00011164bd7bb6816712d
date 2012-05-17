@@ -19,11 +19,7 @@ import model.player.*;
 
 import database.*;
 
-/**
- * The StatisticsPanel has information about the logged in user. The information is retrieved from the DB.
- * @author forssenm
- *
- */
+
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel implements ActionListener,
 		client.event.EventHandler, IDBGame {
@@ -34,17 +30,9 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	private JLabel setThisLastName;
 	private JLabel setThisPlayedGames;
 	private JLabel setThisWonGames;
-	
-	private int frameHeight = P.INSTANCE.getFrameHeight();
-	private int margin = P.INSTANCE.getMarginSize();
-	private int buttonHeight = P.INSTANCE.getButtonHeight();
-	private int buttonWidth = P.INSTANCE.getButtonWidth();
 
 	private JButton statisticsBackButton;
-	
-	/**
-	 * Creates the application.
-	 */
+
 	public StatisticsPanel() {
 		init();
 		client.event.EventBus.register(this);
@@ -127,8 +115,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		
 		statisticsBackButton = new JButton("Back");
 		statisticsBackButton.setFont(P.INSTANCE.getLabelFont());
-		statisticsBackButton.setBounds(margin, frameHeight - buttonHeight 
-				- 2*margin, buttonWidth, buttonHeight);
+		statisticsBackButton.setBounds(10, 683, 108, 36);
 		statisticsBackButton.addActionListener(this);
 		this.add(statisticsBackButton);
 	}

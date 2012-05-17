@@ -28,15 +28,15 @@ public class RegisterPanel extends JPanel implements ActionListener,
 	private JPasswordField registerPassword;
 	private JPasswordField registerPasswordAgainField;
 	
+	/**
+	 * Creates the application
+	 */
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
 	private int margin = P.INSTANCE.getMarginSize();
 	private int buttonHeight = P.INSTANCE.getButtonHeight();
 	private int buttonWidth = P.INSTANCE.getButtonWidth();
 
-	/**
-	 * Creates the application
-	 */
 	public RegisterPanel() {
 		init();
 		client.event.EventBus.register(this);

@@ -12,11 +12,7 @@ import javax.swing.ListSelectionModel;
 
 import remote.IServerGame;
 
-/**
- * JoinTablePanel is the panel in which the user can select a table to join
- * @author forssenm
- *
- */
+
 @SuppressWarnings("serial")
 public class JoinTablePanel extends JScrollPane implements ActionListener,
 		client.event.EventHandler {
@@ -32,9 +28,6 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 	private int buttonHeight = P.INSTANCE.getButtonHeight();
 	private int buttonWidth = P.INSTANCE.getButtonWidth();
 
-	/**
-	 * Creates the panel
-	 */
 	public JoinTablePanel() {
 		init();
 		client.event.EventBus.register(this);
@@ -74,8 +67,8 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 		this.add(joinTableBackButton);
 
 		joinTableJoinButton = new JButton("Join table");
-		joinTableJoinButton.setBounds(frameWidth - buttonWidth - margin, 
-				frameHeight-buttonHeight - 2*margin, buttonWidth, buttonHeight);
+		joinTableJoinButton.setBounds(, frameHeight-buttonHeight - 2*margin, 
+				buttonWidth, buttonHeight);
 		joinTableJoinButton.setFont(P.INSTANCE.getLabelFont());
 		joinTableJoinButton.addActionListener(this);
 		this.add(joinTableJoinButton);

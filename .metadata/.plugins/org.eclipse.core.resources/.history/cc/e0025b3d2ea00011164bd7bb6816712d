@@ -22,24 +22,4 @@ public enum P {
 	public Font getBoldLabelFont() {
 		return new Font("Tahoma", Font.BOLD, 16);
 	}
-	
-	public int getFrameHeight() {
-		return 700;
-	}
-	
-	public int getFrameWidth() {
-		return 1000;
-	}
-	
-	public int getButtonHeight() {
-		return 36;
-	}
-	
-	public int getButtonWidth() {
-		return 108;
-	}
-	
-	public int getMarginSize() {
-		return 20;
-	}
 }

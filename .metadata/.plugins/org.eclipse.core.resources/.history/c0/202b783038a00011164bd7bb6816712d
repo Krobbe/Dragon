@@ -39,7 +39,7 @@ public enum P {
 		return 108;
 	}
 	
-	public int getMarginSize() {
+	public int marginSize() {
 		return 20;
 	}
 }

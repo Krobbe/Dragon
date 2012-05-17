@@ -39,7 +39,7 @@ public enum P {
 		return 108;
 	}
 	
-	public int getMarginSize() {
-		return 20;
+	public int getFramePos() {
+		return 100;
 	}
 }

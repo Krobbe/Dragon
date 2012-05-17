@@ -12,11 +12,7 @@ import javax.swing.ListSelectionModel;
 
 import remote.IServerGame;
 
-/**
- * JoinTablePanel is the panel in which the user can select a table to join
- * @author forssenm
- *
- */
+
 @SuppressWarnings("serial")
 public class JoinTablePanel extends JScrollPane implements ActionListener,
 		client.event.EventHandler {
@@ -25,16 +21,7 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 	private JButton joinTableJoinButton;
 	private JList joinTableList;
 	private DefaultListModel model;
-	
-	private int frameHeight = P.INSTANCE.getFrameHeight();
-	private int frameWidth = P.INSTANCE.getFrameWidth();
-	private int margin = P.INSTANCE.getMarginSize();
-	private int buttonHeight = P.INSTANCE.getButtonHeight();
-	private int buttonWidth = P.INSTANCE.getButtonWidth();
 
-	/**
-	 * Creates the panel
-	 */
 	public JoinTablePanel() {
 		init();
 		client.event.EventBus.register(this);
@@ -67,15 +54,13 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 		this.setBackground(P.INSTANCE.getBackground());
 
 		joinTableBackButton = new JButton("Back");
-		joinTableBackButton.setBounds(margin, frameHeight-buttonHeight - 2*margin, 
-				buttonWidth, buttonHeight);
+		joinTableBackButton.setBounds(10, 683, 108, 36);
 		joinTableBackButton.setFont(P.INSTANCE.getLabelFont());
 		joinTableBackButton.addActionListener(this);
 		this.add(joinTableBackButton);
 
 		joinTableJoinButton = new JButton("Join table");
-		joinTableJoinButton.setBounds(frameWidth - buttonWidth - margin, 
-				frameHeight-buttonHeight - 2*margin, buttonWidth, buttonHeight);
+		joinTableJoinButton.setBounds(890, 683, 108, 36);
 		joinTableJoinButton.setFont(P.INSTANCE.getLabelFont());
 		joinTableJoinButton.addActionListener(this);
 		this.add(joinTableJoinButton);

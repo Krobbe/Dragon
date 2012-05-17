@@ -32,14 +32,10 @@ public enum P {
 	}
 	
 	public int getButtonHeight() {
-		return 36;
+		return 0;
 	}
 	
 	public int getButtonWidth() {
-		return 108;
-	}
-	
-	public int getMarginSize() {
-		return 20;
+		return 0;
 	}
 }

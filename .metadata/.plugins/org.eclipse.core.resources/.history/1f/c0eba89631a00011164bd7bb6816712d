@@ -38,8 +38,4 @@ public enum P {
 	public int getButtonWidth() {
 		return 108;
 	}
-	
-	public int getMarginSize() {
-		return 20;
-	}
 }

@@ -30,16 +30,4 @@ public enum P {
 	public int getFrameWidth() {
 		return 1000;
 	}
-	
-	public int getButtonHeight() {
-		return 36;
-	}
-	
-	public int getButtonWidth() {
-		return 108;
-	}
-	
-	public int getMarginSize() {
-		return 20;
-	}
 }

@@ -22,15 +22,19 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 	private JButton mainJoinTableButton;
 	private JButton mainCreateTableButton;
 	private JButton mainStatisticsButton;
+<<<<<<< HEAD
 	
+	/**
+	 * Creates the panel
+	 */
+=======
+
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int margin = P.INSTANCE.getMarginSize();
 	private int buttonHeight = P.INSTANCE.getButtonHeight();
 	private int buttonWidth = P.INSTANCE.getButtonWidth();
 	
-	/**
-	 * Creates the panel
-	 */
+>>>>>>> Utökat P i för guit och gjort så att knapparna beror på dessa variabler
 	public MainMenuPanel() {
 		init();
 		client.event.EventBus.register(this);

@@ -32,6 +32,12 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	private JComboBox createTablePlayersSpinner;
 	private JButton createTableBackButton;
 	private JButton createTableCreateButton;
+<<<<<<< HEAD
+	
+	/**
+	 * Creates the panel
+	 */
+=======
 
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
@@ -39,9 +45,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	private int buttonHeight = P.INSTANCE.getButtonHeight();
 	private int buttonWidth = P.INSTANCE.getButtonWidth();
 	
-	/**
-	 * Creates the panel
-	 */
+>>>>>>> Utökat P i för guit och gjort så att knapparna beror på dessa variabler
 	public CreateTablePanel() {
 		init();
 		EventBus.register(this);

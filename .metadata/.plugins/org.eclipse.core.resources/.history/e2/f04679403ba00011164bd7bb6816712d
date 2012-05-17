@@ -26,15 +26,18 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 	private JList joinTableList;
 	private DefaultListModel model;
 	
+<<<<<<< HEAD
+	/**
+	 * Creates the panel
+	 */
+=======
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
 	private int margin = P.INSTANCE.getMarginSize();
 	private int buttonHeight = P.INSTANCE.getButtonHeight();
 	private int buttonWidth = P.INSTANCE.getButtonWidth();
 
-	/**
-	 * Creates the panel
-	 */
+>>>>>>> Utökat P i för guit och gjort så att knapparna beror på dessa variabler
 	public JoinTablePanel() {
 		init();
 		client.event.EventBus.register(this);

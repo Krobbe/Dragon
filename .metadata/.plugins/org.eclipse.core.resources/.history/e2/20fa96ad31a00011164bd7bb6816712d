@@ -18,11 +18,7 @@ import javax.swing.JTextField;
 
 import client.event.*;
 
-/**
- * LoginPanel is the panel in which users can login to the application
- * @author forssenm
- *
- */
+
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel implements KeyListener, ActionListener, client.event.EventHandler {
 
@@ -36,12 +32,7 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 	private int frameWidth = P.INSTANCE.getFrameWidth();
 	private int buttonHeight = P.INSTANCE.getButtonHeight();
 	private int buttonWidth = P.INSTANCE.getButtonWidth();
-	private int margin = P.INSTANCE.getMarginSize();
 
-	
-	/**
-	 * Creates the panel
-	 */
 	public LoginPanel() {
 		init();
 		client.event.EventBus.register(this);
@@ -96,8 +87,8 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 		this.add(loginPasswordField);
 
 		loginButton = new JButton("Login");
-		loginButton.setBounds(frameWidth - buttonWidth - margin, 
-				frameHeight - buttonHeight - 2*margin, buttonWidth, buttonHeight);
+		loginButton.setBounds(frameWidth - buttonWidth - 20, 
+				frameHeight - 2*buttonHeight, 108, 36);
 		loginButton.addActionListener(this);
 		this.add(loginButton);
 		loginButton.setFont(P.INSTANCE.getLabelFont());
