@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 
 import client.event.Event;
 import client.event.EventBus;
+import client.gui.table.TableView;
+import client.model.game.*;
+
 @SuppressWarnings("serial")
 public class CreateTablePanel extends JPanel implements ActionListener,
 		client.event.EventHandler {
@@ -32,7 +35,9 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 	@Override
 	public void onEvent(Event evt) {
-
+		if(evt.getTag().equals(Event.Tag.CREATE_TABLE_VIEW)) {
+			new TableView((Table)evt.getValue());
+		}
 	}
 
 	@Override
