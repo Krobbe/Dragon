@@ -23,7 +23,6 @@ import model.player.User;
 import model.player.hand.Hand;
 
 import remote.IClient;
-import remote.IClientGame;
 import remote.IServer;
 import remote.IServerGame;
 import utilities.IllegalCallException;
@@ -37,7 +36,6 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	// A map with games the user is currently playing represented by the remote
 	// game controller for that specific game
 	private Map<IPlayer, RemoteGameController> activeGames;
-
 	
 	// The reference to the server
 	private IServer serverComm;
@@ -47,14 +45,7 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	
 	public RemoteCommunicationController() {
 		activeGames = new TreeMap<IPlayer, RemoteGameController>();
-		serverComm = connectToServer();
 		account = null;
-		try {
-			System.out.println(serverComm.testPrint());
-		} catch (RemoteException e) {
-			System.out.println("Gick int' :(");
-			e.printStackTrace();
-		}
 		EventBus.register(this);
 	}
 	
@@ -110,19 +101,36 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	 */
 	public Account login(IClient client, String accountName,
 													String accountPassword){
-
 		
-		try {	
-			this.account = serverComm.login(client, accountName, accountPassword);
-			EventBus.publish(new Event(Event.Tag.LOGIN_SUCCESS, ""));
-		} catch (RemoteException e) {
-			// TODO Handle login failure better
-			EventBus.publish(new Event(Event.Tag.LOGIN_FAILED, ""));
-			System.out.println("*** Connection problem, failed to login ***");
-			e.printStackTrace();
+		serverComm = connectToServer();
+		
+		if(serverComm != null){
+			
+			// TODO Remove this first try-catch part after connection through
+			// network has been established. Also remove testPrint from
+			// IServerGame
+			try {
+				System.out.println(serverComm.testPrint());
+			} catch (RemoteException e) {
+				System.out.println("Gick int' :(");
+				e.printStackTrace();
+			}
+		
+			try {	
+				this.account = serverComm.login(client, accountName, accountPassword);
+				EventBus.publish(new Event(Event.Tag.LOGIN_SUCCESS, ""));
+			} catch (RemoteException e) {
+				// TODO Handle login failure better
+				EventBus.publish(new Event(Event.Tag.LOGIN_FAILED, ""));
+				System.out.println("*** Connection problem, failed to login ***");
+				e.printStackTrace();
+			}
+			
+			return this.account;
 		}
 		
-		return this.account;
+		return null;
+		
 	}
 	
 	public Account getAccount(){
@@ -131,6 +139,10 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	
 	public boolean createGame(int entranceFee, int maxPlayers,
 													int playerStartingChips) {
+		
+		if(serverComm == null) {
+			return false;
+		}
 		
 		Player player = new Player(new Hand(),
 						getAccount().getUserName(),
@@ -159,13 +171,19 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		
 	}
 	
-	private void tryRegisterAccount(String userName, String firstName, 
+	private boolean tryRegisterAccount(String userName, String firstName, 
 			String lastName, String passWord) {
+		
+			if(serverComm == null) {
+				return false;
+			}
+			
 			Account tmp = new Account(firstName, lastName, userName, passWord);
 			try {
 				if(serverComm.createAccount(tmp)) {
 					login(this, tmp.getUserName(), tmp.getPassWord());
 					EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
+					return true;
 				} else {
 					EventBus.publish(new Event(Event.Tag.REGISTER_FAILED, ""));
 				}
@@ -173,6 +191,8 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			return false;
 	}
 	
 	/** 
@@ -185,6 +205,10 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	 * @return true if the game was successfully joined
 	 */
 	public boolean joinGame(int gameIndex) {
+		
+		if(serverComm == null) {
+			return false;
+		}
 		
 		// TODO Change the balance to be the same as the startingChips
 		Player player = new Player(new Hand(),
