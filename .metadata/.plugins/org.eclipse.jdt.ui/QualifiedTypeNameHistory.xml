@@ -42,4 +42,9 @@
 <fullyQualifiedTypeName name="utilities.IllegalRaiseException"/>
 <fullyQualifiedTypeName name="model.card.iCard"/>
 <fullyQualifiedTypeName name="event.Event.Tag"/>
+<fullyQualifiedTypeName name="database.IDBGame"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="model.card.ICard"/>
+<fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
 </qualifiedTypeNameHistroy>
