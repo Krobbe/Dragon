@@ -303,6 +303,11 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 			if(createGame(1, 8, 1000)){
 				EventBus.publish(new Event(Event.Tag.GO_TO_TABLE, ""));
 			}
+		
+		case GET_ACTIVE_GAMES:
+			
+			EventBus.publish(new Event(Event.Tag.PUBLISH_ACTIVE_GAMES,
+															getActiveGames()));
 		}
 	}
 

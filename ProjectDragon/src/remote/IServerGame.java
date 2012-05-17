@@ -32,8 +32,8 @@ public interface IServerGame extends Remote, Serializable {
 	 * passed along player
 	 * @throws RemoteException
 	 */
-	public boolean isReadyToStart(Account account, IPlayer player, boolean isReady)
-														throws RemoteException;
+	public boolean isReadyToStart(Account account, IPlayer player,
+										boolean isReady) throws RemoteException;
 	
 	// TODO Do you have to write specifically what the pre-conditions are, or
 	// should'nt this be allowed? This interface should not know about the
@@ -51,8 +51,8 @@ public interface IServerGame extends Remote, Serializable {
 	 * @return The list with players in the game
 	 * @throws IllegalCallException, RemoteException
 	 */
-
-	public Collection<IPlayer> getPlayers() throws IllegalCallException, RemoteException;
+	public Collection<IPlayer> getPlayers() throws IllegalCallException,
+																RemoteException;
 	
 	/**
 	 * Returns the maximum amount of players allowed in the game

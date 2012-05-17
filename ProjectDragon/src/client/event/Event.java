@@ -16,6 +16,7 @@ public class Event {
     	DO_CALL,
     	DO_CHECK,
     	DO_RAISE,
+    	GET_ACTIVE_GAMES,
     	GO_TO_CREATETABLE,
     	GO_TO_JOINTABLE,
     	GO_TO_MAIN,
@@ -32,6 +33,7 @@ public class Event {
     	NEW_PLAYER_ADDED,			//getValue(): string, name of the player added
     	OWN_CURRENT_BET_CHANGED,	//getValue(): Bet
     	POT_CHANGED,				//getValue(): int
+    	PUBLISH_ACTIVE_GAMES,		//getValue(): List<IServerGame>
     	REGISTER_SUCCESS,
     	REGISTER_BACK,
     	REGISTER_FAILED,
