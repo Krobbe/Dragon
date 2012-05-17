@@ -15,7 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import model.player.Player;
+import client.event.Event;
+import client.event.Event.Tag;
+import client.event.EventBus;
+
+import model.player.*;
 
 import database.*;
 
@@ -40,7 +44,13 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 	@Override
 	public void onEvent(client.event.Event evt) {
-		// TODO Auto-generated method stub
+		if(evt.getTag().equals(PUBLISH_ACCOUNT_INFORMATION)) {
+			Account acc = (Account)evt.getValue();
+			setThisUserName.setText(acc.getUserName());
+			setThisFirstName.setText(acc.getFirstName());
+			setThisLastName.setText(acc.getLastName());
+			setThisWonGames.setText(Integer.toString(loadNbrOfWonGames(acc.getUserName())));
+		}
 
 	}
 
@@ -53,7 +63,6 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 	private void init() {
 		this.setLayout(null);
-		
 		JLabel userName = new JLabel("User name");
 		userName.setBounds(447, 172, 110, 14);
 		userName.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -110,6 +119,8 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		statisticsBackButton.setBounds(10, 683, 108, 36);
 		statisticsBackButton.addActionListener(this);
 		this.add(statisticsBackButton);
+		
+		EventBus.publish(new Event(Tag.GET_ACCOUNT_INFORMATION, 1));
 		
 	}
 
