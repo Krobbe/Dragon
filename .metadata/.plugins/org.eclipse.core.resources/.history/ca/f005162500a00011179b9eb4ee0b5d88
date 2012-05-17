@@ -17,7 +17,6 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 	private JLabel p1NameLabel;
 	private JLabel p1CreditsLabel;
 	private JLabel p1AvailableCreditsLabel;
-	private String path = "lib/deckimages/";
 	
 	public PlayerOnePanel() {
 		init();

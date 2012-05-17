@@ -17,7 +17,6 @@ public class PlayerTwoPanel extends JPanel implements IPlayerPanel {
 	private JLabel p2NameLabel;
 	private JLabel p2CreditsLabel;
 	private JLabel p2AvailableCreditsLabel;
-	private String path = "lib/deckimages/";
 	
 	public PlayerTwoPanel() {
 		init();
@@ -29,12 +28,10 @@ public class PlayerTwoPanel extends JPanel implements IPlayerPanel {
 
 		p2c1Label = new JLabel("Card 1");
 		p2c1Label.setBounds(10, 5, 53, 80);
-		//p2c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p2c1Label);
 
 		p2c2Label = new JLabel("Card 2\r\n");
 		p2c2Label.setBounds(73, 5, 53, 80);
-		//p2c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p2c2Label);
 
 		p2NameLabel = new JLabel("Player1\r\n");
@@ -54,11 +51,8 @@ public class PlayerTwoPanel extends JPanel implements IPlayerPanel {
 	
 	@Override
 	public boolean discard() {
-		//TODO: Avkommentera när det finns en bild med no rank och nosuit
-		/*
-		p2c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
-		p2c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
-		*/
+		p2c1Label.setText(null);
+		p2c2Label.setText(null);
 		return true;
 	}
 
@@ -71,6 +65,9 @@ public class PlayerTwoPanel extends JPanel implements IPlayerPanel {
 	public void showCards(IHand h) {
 		ICard card1 = h.getCards().get(0);
 		ICard card2 = h.getCards().get(1);
+		p2c1Label.setText(h.getCards().get(0).toString());
+		p2c2Label.setText(h.getCards().get(0).toString());
+		String path = "";
 		p2c1Label.setIcon(new ImageIcon(getClass().getResource(path + 
 				card1.getRank() + card1.getSuit() + ".gif")));
 		p2c2Label.setIcon(new ImageIcon(getClass().getResource(path + 

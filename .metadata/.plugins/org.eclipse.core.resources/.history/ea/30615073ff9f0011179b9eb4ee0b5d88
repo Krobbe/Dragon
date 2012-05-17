@@ -29,12 +29,10 @@ public class PlayerTenPanel extends JPanel implements IPlayerPanel {
 
 		p10c1Label = new JLabel("Card 1");
 		p10c1Label.setBounds(10, 5, 53, 80);
-		//p10c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p10c1Label);
 
 		p10c2Label = new JLabel("Card 2\r\n");
 		p10c2Label.setBounds(73, 5, 53, 80);
-		//p10c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p10c2Label);
 
 		p10NameLabel = new JLabel("Player1\r\n");

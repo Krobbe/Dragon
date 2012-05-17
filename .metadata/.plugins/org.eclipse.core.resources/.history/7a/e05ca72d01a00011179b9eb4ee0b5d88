@@ -2,12 +2,10 @@ package client.gui.table;
 
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import model.card.ICard;
 import model.player.hand.IHand;
 
 public class PlayerEightPanel extends JPanel implements IPlayerPanel {
@@ -17,7 +15,6 @@ public class PlayerEightPanel extends JPanel implements IPlayerPanel {
 	private JLabel p8NameLabel;
 	private JLabel p8CreditsLabel;
 	private JLabel p8AvailableCreditsLabel;
-	private String path = "lib/deckimages/";
 	
 	public PlayerEightPanel() {
 		init();
@@ -29,12 +26,10 @@ public class PlayerEightPanel extends JPanel implements IPlayerPanel {
 
 		p8c1Label = new JLabel("Card 1");
 		p8c1Label.setBounds(10, 5, 53, 80);
-		//p8c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p8c1Label);
 
 		p8c2Label = new JLabel("Card 2\r\n");
 		p8c2Label.setBounds(73, 5, 53, 80);
-		//p8c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p8c2Label);
 
 		p8NameLabel = new JLabel("Player1\r\n");
@@ -55,11 +50,8 @@ public class PlayerEightPanel extends JPanel implements IPlayerPanel {
 
 	@Override
 	public boolean discard() {
-		//TODO: Avkommentera när det finns en bild med no rank och nosuit
-				/*
-				p2c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
-				p2c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
-				*/
+		p8c1Label.setText(null);
+		p8c2Label.setText(null);
 		return true;
 	}
 
@@ -70,12 +62,8 @@ public class PlayerEightPanel extends JPanel implements IPlayerPanel {
 
 	@Override
 	public void showCards(IHand h) {
-		ICard card1 = h.getCards().get(0);
-		ICard card2 = h.getCards().get(1);
-		p8c1Label.setIcon(new ImageIcon(getClass().getResource(path + 
-				card1.getRank() + card1.getSuit() + ".gif")));
-		p8c2Label.setIcon(new ImageIcon(getClass().getResource(path + 
-				card2.getRank() + card2.getSuit() + ".gif")));
+		p8c1Label.setText(h.getCards().get(0).toString());
+		p8c2Label.setText(h.getCards().get(0).toString());
 	}
 
 	@Override

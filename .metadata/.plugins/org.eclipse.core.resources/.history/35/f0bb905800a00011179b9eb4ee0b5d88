@@ -29,12 +29,10 @@ public class PlayerNinePanel extends JPanel implements IPlayerPanel {
 
 		p9c1Label = new JLabel("Card 1");
 		p9c1Label.setBounds(10, 5, 53, 80);
-		p9c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p9c1Label);
 
 		p9c2Label = new JLabel("Card 2\r\n");
 		p9c2Label.setBounds(73, 5, 53, 80);
-		p9c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p9c2Label);
 
 		p9NameLabel = new JLabel("Player1\r\n");
@@ -55,11 +53,8 @@ public class PlayerNinePanel extends JPanel implements IPlayerPanel {
 	
 	@Override
 	public boolean discard() {
-		//TODO: Avkommentera när det finns en bild med no rank och nosuit
-				/*
-				p9c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
-				p9c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
-				*/
+		p9c1Label.setText(null);
+		p9c2Label.setText(null);
 		return true;
 	}
 
