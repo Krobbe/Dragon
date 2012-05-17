@@ -11,7 +11,7 @@ public class Event {
     public enum Tag {
     	BALANCE_CHANGED,			//getValue(): IPlayer
     	COMMUNITY_CARDS_CHANGED,	//getValue(): ICard
-    	CREATE_TABLE,
+    	CREATE_TABLE,				//getValue(): ArrayList<String> (cost, chips, players)
     	CURRENT_BET_CHANGED,		//table.getTableCards()
     	DO_FOLD,
     	DO_CALL,

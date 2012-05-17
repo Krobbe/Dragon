@@ -1,8 +1,10 @@
 package client.gui.menu;
 
 import java.awt.Font;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -10,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 
 @SuppressWarnings("serial")
@@ -17,8 +20,8 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 		client.event.EventHandler {
 
 	// TODO Implement these when there's time for it
-	// private JTextField createTableNameField;
-	// private JPasswordField createTablePasswordField;
+	private JTextField costToEnterField;
+	private JTextField numberOfChipsField;
 	private JComboBox createTablePlayersSpinner;
 	private JButton createTableBackButton;
 	private JButton createTableCreateButton;
@@ -36,7 +39,11 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == createTableCreateButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, createTablePlayersSpinner.getSelectedItem()));
+			ArrayList<String> list = new ArrayList<String>();
+			list.add(costToEnterField.getText());
+			list.add(numberOfChipsField.getText());
+			list.add((String)createTablePlayersSpinner.getSelectedItem());
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, list));
 		} else if (e.getSource() == createTableBackButton) {
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_MAIN, 1));
 		}
@@ -45,24 +52,24 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	private void init() {
 		this.setLayout(null);
 
-//		JLabel createTableNameLabel = new JLabel("Choose a table name");
-//		createTableNameLabel.setBounds(416, 262, 176, 20);
-//		createTableNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-//		this.add(createTableNameLabel);
+		JLabel costToEnterLabel = new JLabel("Cost to enter?");
+		costToEnterLabel.setBounds(416, 262, 176, 20);
+		costToEnterLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		this.add(costToEnterLabel);
 
-		// createTableNameField = new JTextField();
-		// createTableNameField.setBounds(416, 293, 176, 20);
-		// this.add(createTableNameField);
-		// createTableNameField.setColumns(10);
+		costToEnterField = new JTextField();
+		costToEnterField.setBounds(416, 293, 176, 20);
+		this.add(costToEnterField);
+		costToEnterField.setColumns(10);
 
-//		JLabel createTablePasswordLabel = new JLabel("Choose a table password");
-//		createTablePasswordLabel.setBounds(416, 324, 176, 20);
-//		createTablePasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-//		this.add(createTablePasswordLabel);
+		JLabel numberOfChipsLabel = new JLabel("Number of chips?");
+		numberOfChipsLabel.setBounds(416, 324, 176, 20);
+		numberOfChipsLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		this.add(numberOfChipsLabel);
 
-		// createTablePasswordField = new JPasswordField();
-		// createTablePasswordField.setBounds(416, 355, 176, 20);
-		// this.add(createTablePasswordField);
+		numberOfChipsField = new JTextField();
+		numberOfChipsField.setBounds(416, 355, 176, 20);
+		this.add(numberOfChipsField);
 
 		JLabel createTablePlayersLabel = new JLabel("Number of players");
 		createTablePlayersLabel.setBounds(416, 386, 176, 20);
