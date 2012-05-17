@@ -29,12 +29,12 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 
 		p1c1Label = new JLabel("Card 1");
 		p1c1Label.setBounds(10, 5, 53, 80);
-		p1c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+		//p1c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p1c1Label);
 
 		p1c2Label = new JLabel("Card 2\r\n");
 		p1c2Label.setBounds(73, 5, 53, 80);
-		p1c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+		//p1c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p1c2Label);
 
 		p1NameLabel = new JLabel("Player1\r\n");
@@ -54,10 +54,11 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 	
 	@Override
 	public boolean discard() {
-		p1c1Label.setIcon(new ImageIcon(getClass().getResource(
-				path + "NORANKNOSUIT.gif")));
-		p1c2Label.setIcon(new ImageIcon(getClass().getResource(
-				path + "NORANKNOSUIT.gif")));
+		//TODO: Avkommentera när det finns en bild med no rank och nosuit
+				/*
+				p2c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+				p2c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+				*/
 		return true;
 	}
 

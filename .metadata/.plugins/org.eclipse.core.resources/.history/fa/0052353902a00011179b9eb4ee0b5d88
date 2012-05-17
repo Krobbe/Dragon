@@ -55,8 +55,8 @@ public class PlayerSixPanel extends JPanel implements IPlayerPanel {
 	
 	@Override
 	public boolean discard() {
-		p6c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
-		p6c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+		p2c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+		p2c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		return true;
 	}
 

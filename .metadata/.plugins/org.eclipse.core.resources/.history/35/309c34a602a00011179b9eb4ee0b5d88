@@ -55,10 +55,11 @@ public class PlayerNinePanel extends JPanel implements IPlayerPanel {
 	
 	@Override
 	public boolean discard() {
-		p9c1Label.setIcon(new ImageIcon(getClass().getResource(
-				path + "NORANKNOSUIT.gif")));
-		p9c2Label.setIcon(new ImageIcon(getClass().getResource(
-				path + "NORANKNOSUIT.gif")));
+		//TODO: Avkommentera när det finns en bild med no rank och nosuit
+				/*
+				p9c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+				p9c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+				*/
 		return true;
 	}
 

@@ -55,10 +55,8 @@ public class PlayerFourPanel extends JPanel implements IPlayerPanel {
 	
 	@Override
 	public boolean discard() {
-		p4c1Label.setIcon(new ImageIcon(getClass().getResource(
-				path + "NORANKNOSUIT.gif")));
-		p4c2Label.setIcon(new ImageIcon(getClass().getResource(
-				path + "NORANKNOSUIT.gif")));
+				p4c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+				p4c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		return true;
 	}
 
