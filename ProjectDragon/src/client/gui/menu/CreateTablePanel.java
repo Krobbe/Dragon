@@ -41,7 +41,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 			ArrayList<String> list = new ArrayList<String>();
 			list.add(costToEnterField.getText());
 			list.add(numberOfChipsField.getText());
-			list.add((String)createTablePlayersSpinner.getSelectedItem());
+			list.add(createTablePlayersSpinner.getSelectedItem().toString());
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, list));
 
 		} else if (e.getSource() == createTableBackButton) {

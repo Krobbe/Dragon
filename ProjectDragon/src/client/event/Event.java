@@ -12,6 +12,7 @@ public class Event {
     	BALANCE_CHANGED,			//getValue(): IPlayer
     	COMMUNITY_CARDS_CHANGED,	//getValue(): ICard
     	CREATE_TABLE,				//getValue(): ArrayList<String> (cost, chips, players)
+    	CREATE_TABLE_VIEW,			//getValue(): Table
     	CURRENT_BET_CHANGED,		//table.getTableCards()
     	DO_FOLD,
     	DO_CALL,

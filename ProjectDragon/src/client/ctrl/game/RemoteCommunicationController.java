@@ -200,6 +200,7 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 					clientGame, entranceFee, maxPlayers, playerStartingChips);
 			clientGame.setServerGame(serverGame);
 			activeGames.put(user, clientGame);
+			
 			return true;
 			
 		} catch (RemoteException e) {

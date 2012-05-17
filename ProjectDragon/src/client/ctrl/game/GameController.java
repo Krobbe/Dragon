@@ -36,6 +36,7 @@ public class GameController {
 	public GameController(Table table) {
 		this.table = table;
 		distributeInvisibleCards();
+		EventBus.publish(new Event(Event.Tag.CREATE_TABLE_VIEW, this.table));
 	}
 
 	/**

@@ -10,6 +10,7 @@ import java.util.List;
 import client.event.Event;
 import client.event.EventBus;
 import client.event.EventHandler;
+import client.model.game.Table;
 
 import model.card.ICard;
 import model.game.Pot;
@@ -50,7 +51,6 @@ public class RemoteGameController implements IClientGame, IServerRequest, EventH
 		this.user = user;
 		
 		this.gameController.addPlayer(user);
-		
 		EventBus.register(this);
 	}
 	
