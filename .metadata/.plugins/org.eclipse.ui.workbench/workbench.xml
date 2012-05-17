@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="35" version="2.0">
 <workbenchAdvisor/>
-<window height="742" maximized="true" width="1106" x="0" y="22">
+<window height="742" maximized="true" width="1355" x="0" y="22">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -31,21 +31,31 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Card.java" partName="Card.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/model/card/Card.java" title="Card.java" tooltip="ProjectDragon/src/model/card/Card.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/model/card/Card.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1084"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UserBetPanel.java" partName="UserBetPanel.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/client/gui/table/UserBetPanel.java" title="UserBetPanel.java" tooltip="ProjectDragon/src/client/gui/table/UserBetPanel.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/client/gui/table/UserBetPanel.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="458"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IDBGame.java" partName="IDBGame.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/database/IDBGame.java" title="IDBGame.java" tooltip="ProjectDragon/src/database/IDBGame.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/database/IDBGame.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1713" selectionTopPixel="439"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerFivePanel.java" partName="PlayerFivePanel.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/client/gui/table/PlayerFivePanel.java" title="PlayerFivePanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerFivePanel.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/client/gui/table/PlayerFivePanel.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1730" selectionTopPixel="705"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteGameController.java" partName="RemoteGameController.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/ctrl/game/RemoteGameController.java" title="RemoteGameController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteGameController.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/ctrl/game/RemoteGameController.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="12654" selectionTopPixel="7080"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" partName="Main.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/client/main/Main.java" title="Main.java" tooltip="ProjectDragon/src/client/main/Main.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/client/main/Main.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="111" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CreateTablePanel.java" partName="CreateTablePanel.java" path="/Users/lisastenberg/Documents/TDA367, Projekt/Dragon/ProjectDragon/src/client/gui/menu/CreateTablePanel.java" title="CreateTablePanel.java" tooltip="ProjectDragon/src/client/gui/menu/CreateTablePanel.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectDragon/src/client/gui/menu/CreateTablePanel.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1640" selectionTopPixel="135"/>
 </editor>
 </editors>
 <views>
@@ -107,7 +117,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.debug.ui.DebugView" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -218,7 +228,7 @@
 </folder>
 </info>
 <info folder="true" part="right" ratio="0.5" ratioLeft="225" ratioRight="225" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1080f38">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
@@ -236,168 +246,168 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerTwoPanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerSixPanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerSevenPanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerNinePanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerFivePanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerEightPanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/TableView.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerThreePanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerTenPanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerOnePanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/PlayerFourPanel.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/table/UserBetPanel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/menu/StatisticsPanel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/ctrl/game/RemoteGameController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/main/Main.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/menu/CreateTablePanel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/menu/MainView.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/menu/LoginPanel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/model/game/P.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/menu/P.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/menu/JoinTablePanel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/menu/MainMenuPanel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/menu/RegisterPanel.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectDragon/src/client/gui/menu/StatisticsPanel.java"/>
 </editors>
-<item historyLabel="PlayerEightPanel.java" index="5">
+<item historyLabel="RemoteGameController.java" index="1">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="StatisticsPanel.java" index="0">
+<position info="not_deleted" x="5447" y="0"/>
+</item>
+<item historyLabel="StatisticsPanel.java" index="0">
+<position info="not_deleted" x="1509" y="0"/>
+</item>
+<item historyLabel="Main.java" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="2807" y="0"/>
+</item>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="2809" y="0"/>
+</item>
+<item historyLabel="Main.java" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="2841" y="0"/>
+</item>
+<item historyLabel="Main.java" index="2">
+<position info="not_deleted" x="111" y="0"/>
+</item>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="2759" y="0"/>
+</item>
+<item historyLabel="MainView.java" index="4">
 <position/>
 </item>
-<item historyLabel="PlayerTwoPanel.java" index="0">
-<position info="not_deleted" x="456" y="42"/>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="2759" y="0"/>
 </item>
-<item historyLabel="PlayerEightPanel.java" index="5">
+<item historyLabel="LoginPanel.java" index="5">
 <position/>
 </item>
-<item historyLabel="PlayerTwoPanel.java" index="0">
-<position info="not_deleted" x="456" y="42"/>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="2759" y="0"/>
 </item>
-<item historyLabel="PlayerSixPanel.java" index="1">
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="1415" y="0"/>
+</item>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="1414" y="0"/>
+</item>
+<item historyLabel="P.java" index="6">
 <position/>
 </item>
-<item historyLabel="PlayerTwoPanel.java" index="0">
-<position info="not_deleted" x="1532" y="0"/>
-</item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1715" y="0"/>
-</item>
-<item historyLabel="PlayerTenPanel.java" index="8">
-<position info="not_deleted" x="1760" y="0"/>
-</item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1715" y="0"/>
-</item>
-<item historyLabel="PlayerSixPanel.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1715" y="0"/>
-</item>
-<item historyLabel="PlayerSevenPanel.java" index="2">
-<position info="not_deleted" x="1536" y="0"/>
-</item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1715" y="0"/>
-</item>
-<item historyLabel="PlayerOnePanel.java" index="9">
+<item historyLabel="P.java" index="7">
 <position/>
 </item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1715" y="0"/>
-</item>
-<item historyLabel="PlayerNinePanel.java" index="3">
+<item historyLabel="P.java" index="7">
 <position/>
 </item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1715" y="0"/>
-</item>
-<item historyLabel="PlayerFourPanel.java" index="10">
-<position info="not_deleted" x="1539" y="199"/>
-</item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1715" y="0"/>
-</item>
-<item historyLabel="PlayerFivePanel.java" index="4">
+<item historyLabel="P.java" index="7">
 <position/>
 </item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1715" y="0"/>
-</item>
-<item historyLabel="PlayerEightPanel.java" index="5">
+<item historyLabel="P.java" index="6">
 <position/>
 </item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1715" y="0"/>
-</item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1737" y="0"/>
-</item>
-<item historyLabel="PlayerEightPanel.java" index="5">
+<item historyLabel="P.java" index="7">
 <position/>
 </item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1633" y="0"/>
-</item>
-<item historyLabel="PlayerEightPanel.java" index="5">
+<item historyLabel="P.java" index="6">
 <position/>
 </item>
-<item historyLabel="PlayerThreePanel.java" index="7">
-<position info="not_deleted" x="1633" y="0"/>
-</item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PlayerFivePanel.java" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PlayerNinePanel.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PlayerOnePanel.java" index="9">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="26" y="0"/>
-</item>
-<item historyLabel="PlayerEightPanel.java" index="5">
+<item historyLabel="P.java" index="7">
 <position/>
 </item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="26" y="0"/>
+<item historyLabel="P.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PlayerEightPanel.java" index="5">
+<item historyLabel="P.java" index="7">
 <position/>
 </item>
-<item historyLabel="TableView.java" index="6">
-<position info="not_deleted" x="245" y="25"/>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="1413" y="0"/>
 </item>
-<item historyLabel="UserBetPanel.java" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PlayerEightPanel.java" index="5">
+<item historyLabel="P.java" index="7">
 <position/>
 </item>
-<item historyLabel="UserBetPanel.java" index="11">
+<item historyLabel="P.java" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PlayerFivePanel.java" index="4">
+<item historyLabel="P.java" index="7">
+<position/>
+</item>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="1366" y="50"/>
+</item>
+<item historyLabel="P.java" index="7">
+<position/>
+</item>
+<item historyLabel="JoinTablePanel.java" index="8">
+<position info="not_deleted" x="1626" y="0"/>
+</item>
+<item historyLabel="P.java" index="7">
+<position/>
+</item>
+<item historyLabel="LoginPanel.java" index="5">
+<position info="not_deleted" x="1558" y="0"/>
+</item>
+<item historyLabel="P.java" index="7">
+<position/>
+</item>
+<item historyLabel="MainMenuPanel.java" index="9">
+<position info="not_deleted" x="1520" y="0"/>
+</item>
+<item historyLabel="MainView.java" index="4">
+<position info="not_deleted" x="845" y="0"/>
+</item>
+<item historyLabel="MainMenuPanel.java" index="9">
+<position info="not_deleted" x="1520" y="0"/>
+</item>
+<item historyLabel="RegisterPanel.java" index="10">
+<position info="not_deleted" x="2080" y="0"/>
+</item>
+<item historyLabel="MainMenuPanel.java" index="9">
+<position info="not_deleted" x="1520" y="0"/>
+</item>
+<item historyLabel="StatisticsPanel.java" index="11">
+<position info="not_deleted" x="1824" y="0"/>
+</item>
+<item historyLabel="MainMenuPanel.java" index="9">
+<position info="not_deleted" x="1520" y="0"/>
+</item>
+<item historyLabel="P.java" index="7">
+<position/>
+</item>
+<item historyLabel="Main.java" index="2">
+<position info="not_deleted" x="111" y="0"/>
+</item>
+<item historyLabel="RemoteGameController.java" index="1">
+<position info="not_deleted" x="12654" y="0"/>
+</item>
+<item historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="1640" y="0"/>
+</item>
+<item historyLabel="P.java" index="7">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PlayerFivePanel.java" index="4">
-<position info="not_deleted" x="1922" y="0"/>
-</item>
-<item historyLabel="PlayerEightPanel.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item active="true" historyLabel="PlayerFivePanel.java" index="4">
-<position info="not_deleted" x="1730" y="0"/>
+<item active="true" historyLabel="CreateTablePanel.java" index="3">
+<position info="not_deleted" x="1640" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -417,50 +427,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerEightPanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerEightPanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/PlayerEightPanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="P.java" tooltip="ProjectDragon/src/client/gui/menu/P.java">
+<persistable path="/ProjectDragon/src/client/gui/menu/P.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerFivePanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerFivePanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/PlayerFivePanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CreateTablePanel.java" tooltip="ProjectDragon/src/client/gui/menu/CreateTablePanel.java">
+<persistable path="/ProjectDragon/src/client/gui/menu/CreateTablePanel.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerOnePanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerOnePanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/PlayerOnePanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="StatisticsPanel.java" tooltip="ProjectDragon/src/client/gui/menu/StatisticsPanel.java">
+<persistable path="/ProjectDragon/src/client/gui/menu/StatisticsPanel.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerNinePanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerNinePanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/PlayerNinePanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RegisterPanel.java" tooltip="ProjectDragon/src/client/gui/menu/RegisterPanel.java">
+<persistable path="/ProjectDragon/src/client/gui/menu/RegisterPanel.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerFourPanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerFourPanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/PlayerFourPanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainView.java" tooltip="ProjectDragon/src/client/gui/menu/MainView.java">
+<persistable path="/ProjectDragon/src/client/gui/menu/MainView.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerSevenPanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerSevenPanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/PlayerSevenPanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainMenuPanel.java" tooltip="ProjectDragon/src/client/gui/menu/MainMenuPanel.java">
+<persistable path="/ProjectDragon/src/client/gui/menu/MainMenuPanel.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerSixPanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerSixPanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/PlayerSixPanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LoginPanel.java" tooltip="ProjectDragon/src/client/gui/menu/LoginPanel.java">
+<persistable path="/ProjectDragon/src/client/gui/menu/LoginPanel.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerTenPanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerTenPanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/PlayerTenPanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="JoinTablePanel.java" tooltip="ProjectDragon/src/client/gui/menu/JoinTablePanel.java">
+<persistable path="/ProjectDragon/src/client/gui/menu/JoinTablePanel.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerThreePanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerThreePanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/PlayerThreePanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="P.java" tooltip="ProjectDragon/src/model/game/P.java">
+<persistable path="/ProjectDragon/src/model/game/P.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Rank.java" tooltip="ProjectDragon/src/model/card/Rank.java">
-<persistable path="/ProjectDragon/src/model/card/Rank.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="ProjectDragon/src/client/main/Main.java">
+<persistable path="/ProjectDragon/src/client/main/Main.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RemoteGameController.java" tooltip="ProjectDragon/src/ctrl/game/RemoteGameController.java">
+<persistable path="/ProjectDragon/src/ctrl/game/RemoteGameController.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IDBGame.java" tooltip="ProjectDragon/src/database/IDBGame.java">
+<persistable path="/ProjectDragon/src/database/IDBGame.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameController.java" tooltip="ProjectDragon/src/client/ctrl/game/GameController.java">
+<persistable path="/ProjectDragon/src/client/ctrl/game/GameController.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerTwoPanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerTwoPanel.java">
 <persistable path="/ProjectDragon/src/client/gui/table/PlayerTwoPanel.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IPlayerPanel.java" tooltip="ProjectDragon/src/client/gui/table/IPlayerPanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/IPlayerPanel.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TableInfoPanel.java" tooltip="ProjectDragon/src/client/gui/table/TableInfoPanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/TableInfoPanel.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TableView.java" tooltip="ProjectDragon/src/client/gui/table/TableView.java">
-<persistable path="/ProjectDragon/src/client/gui/table/TableView.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UserBetPanel.java" tooltip="ProjectDragon/src/client/gui/table/UserBetPanel.java">
-<persistable path="/ProjectDragon/src/client/gui/table/UserBetPanel.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerThreePanel.java" tooltip="ProjectDragon/src/client/gui/table/PlayerThreePanel.java">
+<persistable path="/ProjectDragon/src/client/gui/table/PlayerThreePanel.java"/>
 </file>
 </mruList>
 </workbench>

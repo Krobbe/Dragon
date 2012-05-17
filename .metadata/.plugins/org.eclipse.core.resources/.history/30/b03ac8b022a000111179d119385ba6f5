@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.game.P;
 import client.event.Event;
 import client.event.EventBus;
 @SuppressWarnings("serial")

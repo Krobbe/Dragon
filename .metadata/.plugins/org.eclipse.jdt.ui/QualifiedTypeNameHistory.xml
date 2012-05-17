@@ -45,6 +45,9 @@
 <fullyQualifiedTypeName name="database.IDBGame"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
-<fullyQualifiedTypeName name="model.card.ICard"/>
 <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+<fullyQualifiedTypeName name="model.card.ICard"/>
+<fullyQualifiedTypeName name="java.lang.UnsupportedOperationException"/>
+<fullyQualifiedTypeName name="java.awt.Dimension"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
 </qualifiedTypeNameHistroy>

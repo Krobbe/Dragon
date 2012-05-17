@@ -1,16 +1,22 @@
 package client.gui.menu;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import remote.IServerGame;
+
+import client.event.Event;
+import client.event.EventBus;
 
 
 @SuppressWarnings("serial")
@@ -55,20 +61,20 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 
 		joinTableBackButton = new JButton("Back");
 		joinTableBackButton.setBounds(10, 683, 108, 36);
-		joinTableBackButton.setFont(P.INSTANCE.getLabelFont());
+		joinTableBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTableBackButton.addActionListener(this);
 		this.add(joinTableBackButton);
 
 		joinTableJoinButton = new JButton("Join table");
 		joinTableJoinButton.setBounds(890, 683, 108, 36);
-		joinTableJoinButton.setFont(P.INSTANCE.getLabelFont());
+		joinTableJoinButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTableJoinButton.addActionListener(this);
 		this.add(joinTableJoinButton);
 		
 		joinTableList = new JList();
 		model = new DefaultListModel();
 		joinTableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		joinTableList.setFont(P.INSTANCE.getLabelFont());
+		joinTableList.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTableList.setModel(model);
 		joinTableList.setBounds(192, 111, 623, 507);
 		this.add(joinTableList);

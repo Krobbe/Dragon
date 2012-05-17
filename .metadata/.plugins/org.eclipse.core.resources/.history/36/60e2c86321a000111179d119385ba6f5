@@ -1,7 +1,6 @@
 package client.gui.menu;
 
 import java.awt.Color;
-import java.awt.Font;
 
 /**
  * This class holds data for the GUI.
@@ -13,9 +12,5 @@ public enum P {
 	
 	public Color getBackground() {
 		return new Color(188, 219, 204);
-	}
-	
-	public Font getLabelFont() {
-		return new Font("Tahoma", Font.PLAIN, 16);
 	}
 }

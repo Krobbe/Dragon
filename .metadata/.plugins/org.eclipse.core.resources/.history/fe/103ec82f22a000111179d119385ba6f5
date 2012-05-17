@@ -1,6 +1,10 @@
 package client.gui.menu;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+
+import client.gui.table.*;
+import client.model.game.Table;
 
 import java.awt.CardLayout;
 

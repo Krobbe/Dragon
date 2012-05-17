@@ -1,5 +1,6 @@
 package client.gui.menu;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 
@@ -60,7 +62,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 		JLabel registerFirstNameLabel = new JLabel("First name\r\n");
 		registerFirstNameLabel.setBounds(447, 172, 110, 14);
-		registerFirstNameLabel.setFont(P.INSTANCE.getLabelFont());
+		registerFirstNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(registerFirstNameLabel);
 
 		registerFirstNameField = new JTextField();
@@ -70,7 +72,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 		JLabel registerLastNameLabel = new JLabel("Last name\r\n");
 		registerLastNameLabel.setBounds(447, 228, 110, 14);
-		registerLastNameLabel.setFont(P.INSTANCE.getLabelFont());
+		registerLastNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(registerLastNameLabel);
 
 		registerLastNameField = new JTextField();
@@ -80,7 +82,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 		JLabel registerUserNameLabel = new JLabel("User name\r\n");
 		registerUserNameLabel.setBounds(447, 284, 110, 14);
-		registerUserNameLabel.setFont(P.INSTANCE.getLabelFont());
+		registerUserNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(registerUserNameLabel);
 
 		registerUserNameField = new JTextField();
@@ -90,7 +92,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 		JLabel registerPasswordLabel = new JLabel("Password");
 		registerPasswordLabel.setBounds(447, 340, 110, 14);
-		registerPasswordLabel.setFont(P.INSTANCE.getLabelFont());
+		registerPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(registerPasswordLabel);
 
 		registerPassword = new JPasswordField();
@@ -99,7 +101,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 		JLabel registerPasswordAgainLabel = new JLabel("Password again");
 		registerPasswordAgainLabel.setBounds(447, 396, 110, 20);
-		registerPasswordAgainLabel.setFont(P.INSTANCE.getLabelFont());
+		registerPasswordAgainLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(registerPasswordAgainLabel);
 
 		registerPasswordAgainField = new JPasswordField();
@@ -107,13 +109,13 @@ public class RegisterPanel extends JPanel implements ActionListener,
 		this.add(registerPasswordAgainField);
 
 		registerRegisterButton = new JButton("Register");
-		registerRegisterButton.setFont(P.INSTANCE.getLabelFont());
+		registerRegisterButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		registerRegisterButton.setBounds(890, 683, 108, 36);
 		registerRegisterButton.addActionListener(this);
 		this.add(registerRegisterButton);
 
 		registerBackButton = new JButton("Back");
-		registerBackButton.setFont(P.INSTANCE.getLabelFont());
+		registerBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		registerBackButton.setBounds(10, 683, 108, 36);
 		registerBackButton.addActionListener(this);
 		this.add(registerBackButton);

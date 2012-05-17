@@ -1,6 +1,9 @@
 package client.gui.menu;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,10 +13,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import client.event.Event;
-import client.event.EventBus;
+
 @SuppressWarnings("serial")
 public class CreateTablePanel extends JPanel implements ActionListener,
 		client.event.EventHandler {
@@ -27,11 +30,11 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 	public CreateTablePanel() {
 		init();
-		EventBus.register(this);
+		client.event.EventBus.register(this);
 	}
 
 	@Override
-	public void onEvent(Event evt) {
+	public void onEvent(client.event.Event evt) {
 
 	}
 
@@ -43,9 +46,8 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 			list.add(numberOfChipsField.getText());
 			list.add((String)createTablePlayersSpinner.getSelectedItem());
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, list));
-
 		} else if (e.getSource() == createTableBackButton) {
-			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 
@@ -55,7 +57,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 		
 		JLabel costToEnterLabel = new JLabel("Cost to enter?");
 		costToEnterLabel.setBounds(416, 262, 176, 20);
-		costToEnterLabel.setFont(P.INSTANCE.getLabelFont());
+		costToEnterLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(costToEnterLabel);
 
 		costToEnterField = new JTextField();
@@ -65,7 +67,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 		JLabel numberOfChipsLabel = new JLabel("Number of chips?");
 		numberOfChipsLabel.setBounds(416, 324, 176, 20);
-		numberOfChipsLabel.setFont(P.INSTANCE.getLabelFont());
+		numberOfChipsLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(numberOfChipsLabel);
 
 		numberOfChipsField = new JTextField();
@@ -74,26 +76,26 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 		JLabel createTablePlayersLabel = new JLabel("Number of players");
 		createTablePlayersLabel.setBounds(416, 386, 176, 20);
-		createTablePlayersLabel.setFont(P.INSTANCE.getLabelFont());
+		createTablePlayersLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(createTablePlayersLabel);
 
 		createTablePlayersSpinner = new JComboBox();
 		createTablePlayersSpinner.setModel(new DefaultComboBoxModel(
 				new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }));
-		createTablePlayersSpinner.setFont(P.INSTANCE.getLabelFont());
+		createTablePlayersSpinner.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTablePlayersSpinner.setMaximumRowCount(10);
 		createTablePlayersSpinner.setLocation(416, 417);
 		createTablePlayersSpinner.setSize(new Dimension(80, 30));
 		this.add(createTablePlayersSpinner);
 
 		createTableBackButton = new JButton("Back");
-		createTableBackButton.setFont(P.INSTANCE.getLabelFont());
+		createTableBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTableBackButton.setBounds(10, 683, 108, 36);
 		createTableBackButton.addActionListener(this);
 		this.add(createTableBackButton);
 
 		createTableCreateButton = new JButton("Create table");
-		createTableCreateButton.setFont(P.INSTANCE.getLabelFont());
+		createTableCreateButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		createTableCreateButton.setBounds(881, 683, 117, 36);
 		createTableCreateButton.addActionListener(this);
 		this.add(createTableCreateButton);

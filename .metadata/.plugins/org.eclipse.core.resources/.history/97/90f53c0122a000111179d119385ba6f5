@@ -1,5 +1,6 @@
 package client.gui.menu;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -12,8 +13,11 @@ import java.util.TreeMap;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import client.event.Event;
+import client.event.Event.Tag;
+import client.event.EventBus;
 
 import model.player.*;
 
@@ -64,57 +68,57 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 		JLabel userName = new JLabel("User name");
 		userName.setBounds(447, 172, 200, 20);
-		userName.setFont(P.INSTANCE.getLabelFont());
+		userName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(userName);
 		
 		//TODO set the different values, get them from where?
 		setThisUserName = new JLabel("Get the name from where?");
 		setThisUserName.setBounds(447, 197, 200, 20);
-		setThisUserName.setFont(P.INSTANCE.getLabelFont());
+		setThisUserName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisUserName);
 		
 		JLabel firstName = new JLabel("First name");
 		firstName.setBounds(447, 222, 200, 20);
-		firstName.setFont(P.INSTANCE.getLabelFont());
+		firstName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(firstName);
 		
 		setThisFirstName = new JLabel("Get the name from where?");
 		setThisFirstName.setBounds(447, 247, 200, 20);
-		setThisFirstName.setFont(P.INSTANCE.getLabelFont());
+		setThisFirstName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisFirstName);
 		
 		JLabel lastName = new JLabel("Last name");
 		lastName.setBounds(447, 272, 200, 20);
-		lastName.setFont(P.INSTANCE.getLabelFont());
+		lastName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(lastName);
 		
 		setThisLastName = new JLabel("Get the name from where?");
 		setThisLastName.setBounds(447, 297, 200, 20);
-		setThisLastName.setFont(P.INSTANCE.getLabelFont());
+		setThisLastName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisLastName);
 		
 		JLabel playedGames = new JLabel("Number of played games");
 		playedGames.setBounds(447, 322, 230, 20);
-		playedGames.setFont(P.INSTANCE.getLabelFont());
+		playedGames.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(playedGames);
 		
 		setThisPlayedGames = new JLabel("Get the number of games from where?");
 		setThisPlayedGames.setBounds(447, 347, 200, 20);
-		setThisPlayedGames.setFont(P.INSTANCE.getLabelFont());
+		setThisPlayedGames.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisPlayedGames);
 		
 		JLabel wonGames = new JLabel("Number of won games");
 		wonGames.setBounds(447, 372, 200, 20);
-		wonGames.setFont(P.INSTANCE.getLabelFont());
+		wonGames.setFont(new Font("Tahoma", Font.BOLD, 16));
 		this.add(wonGames);
 		
 		setThisWonGames = new JLabel(("Get number of won games from where?"));
 		setThisWonGames.setBounds(447, 397, 200, 20);
-		setThisWonGames.setFont(P.INSTANCE.getLabelFont());
+		setThisWonGames.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(setThisWonGames);
 		
 		statisticsBackButton = new JButton("Back");
-		statisticsBackButton.setFont(P.INSTANCE.getLabelFont());
+		statisticsBackButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		statisticsBackButton.setBounds(10, 683, 108, 36);
 		statisticsBackButton.addActionListener(this);
 		this.add(statisticsBackButton);

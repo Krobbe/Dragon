@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import client.event.*;
@@ -58,7 +59,7 @@ public class LoginPanel extends JPanel implements ActionListener, client.event.E
 		JLabel loginNameLabel = new JLabel("User name");
 		loginNameLabel.setBounds(447, 274, 108, 14);
 		this.add(loginNameLabel);
-		loginNameLabel.setFont(P.INSTANCE.getLabelFont());
+		loginNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		loginNameField = new JTextField();
 		loginNameField.setBounds(447, 299, 113, 20);
@@ -70,7 +71,7 @@ public class LoginPanel extends JPanel implements ActionListener, client.event.E
 		JLabel loginPasswordLabel = new JLabel("Password\r\n");
 		loginPasswordLabel.setBounds(447, 330, 108, 14);
 		this.add(loginPasswordLabel);
-		loginPasswordLabel.setFont(P.INSTANCE.getLabelFont());
+		loginPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		loginPasswordField = new JPasswordField();
 		loginPasswordField.setBounds(447, 355, 113, 20);
@@ -80,7 +81,7 @@ public class LoginPanel extends JPanel implements ActionListener, client.event.E
 		loginButton.setBounds(890, 683, 108, 36);
 		loginButton.addActionListener(this);
 		this.add(loginButton);
-		loginButton.setFont(P.INSTANCE.getLabelFont());
+		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JLabel noAccountLabel = new JLabel("Don't have an account?" + "\n" + "");
 		noAccountLabel.setBounds(447, 386, 113, 14);
