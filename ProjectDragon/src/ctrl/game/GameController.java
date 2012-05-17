@@ -56,15 +56,6 @@ public class GameController {
 	public void addPlayers(Collection<IPlayer> player) {
 		this.table.addPlayers(player);
 	}
-	
-	/**
-	 * Checks if all players are all-in.
-	 * 
-	 * @return true if all players are all-in.
-	 */
-	private boolean allPlayersAllIn() {
-		return table.getActivePlayers().size() == 0;
-	}
 
 	/**
 	 * Calls the distributeCards() method in the table class where the actual
@@ -113,7 +104,7 @@ public class GameController {
 	 */
 	//TODO otestat: exception, setOwncurrentBet
 	public boolean check(Bet bet) {
-		if(!validPlayerAction(bet.getOwner())) {
+		if(!isValidPlayerAction(bet.getOwner())) {
 			return false;
 		}
 		
@@ -177,15 +168,17 @@ public class GameController {
 			currentBetValue = currentPlayer.getBalance().getValue() 
 					+ playersOwnCurrentBet;
 		}
+				
+		performPlayerBet(new Bet(currentPlayer,currentBetValue - playersOwnCurrentBet));
 		
-		//TODO den här delen skulle kunna refactoreras kanske?
+		/* gammal kod, ta bort om nya funkar... */
 		/* arrange the player's balance, bet and the pot according to the call 
 		 */
-		table.getRound().getPot().addToPot(currentBetValue - playersOwnCurrentBet);
-		currentPlayer.setDoneFirstTurn(true);
-		currentPlayer.setOwnCurrentBet(currentBetValue);
-		currentPlayer.getBalance().removeFromBalance(currentBetValue 
-				- playersOwnCurrentBet);
+		//table.getRound().getPot().addToPot(currentBetValue - playersOwnCurrentBet);
+		//currentPlayer.setDoneFirstTurn(true);
+		//currentPlayer.setOwnCurrentBet(currentBetValue);
+		//currentPlayer.getBalance().removeFromBalance(currentBetValue 
+		//		- playersOwnCurrentBet);
 		
 		progressTurn();
 	}
@@ -195,7 +188,7 @@ public class GameController {
 	 */
 	//TODO Delvis otestad
 	public boolean fold(IPlayer player) {
-		if(!validPlayerAction(player)) {
+		if(!isValidPlayerAction(player)) {
 			return false;
 		}
 		
@@ -242,6 +235,41 @@ public class GameController {
 			
 		}
 	}
+	
+	/**
+	 * Check if it's time to do showdown. This method is used after a 
+	 * bettinground is done.
+	 * 
+	 * It is time to do showdown if all cards are on the table, if just one 
+	 * player is left or if all players all all-in.
+	 * 
+	 * @return true if it is time to do showdown.
+	 */
+	private boolean isTimeForShowDown() {
+		return table.getCommunityCards().size() == 5 || 
+				table.getActivePlayers().size() == 1 || 
+				table.getActivePlayers().size() == 0;
+	}
+	
+	/**
+	 * Checks if all players are all-in.
+	 * 
+	 * @return true if all players are all-in.
+	 */
+	private boolean isAllPlayersAllIn() {
+		return table.getActivePlayers().size() == 0;
+	}
+	
+	/**
+	 * Checks if a player is allowed to do an action. In other words this method
+	 * checks if player is the currentPlayer at the table.
+	 * 
+	 * @param player The player
+	 * @return true if the player is allowed to do the action.
+	 */
+	private boolean isValidPlayerAction(IPlayer player) {
+		return player.equals(table.getCurrentPlayer());
+	}
 		
 	/**
 	 * Performs actions required for starting a new betting round. 
@@ -267,7 +295,7 @@ public class GameController {
 	private void nextGameAction() {
 		int potValue = table.getRound().getPot().getValue();
 		
-		if(timeForShowDown()) {
+		if(isTimeForShowDown()) {
 			
 			List<SidePotHandler> sidePots = table.getSidePots();
 			/* perform showdown for possible sidepots */
@@ -277,7 +305,7 @@ public class GameController {
 				}
 			}
 			
-			if (!allPlayersAllIn()) { 
+			if (!isAllPlayersAllIn()) { 
 				/* perfom showdown for the table's current state*/
 				performShowdown(table.getActivePlayers(), potValue);
 			}
@@ -341,51 +369,51 @@ public class GameController {
 	}
 	
 	/**
+	 * Performs a bet from specific player.
+	 * @param bet The bet (contains owner and value) that should be performed
+	 */
+	private void performPlayerBet(Bet bet) {
+		int value = bet.getValue();
+		IPlayer player = bet.getOwner();
+
+		player.makeBet(value);
+		table.recieveBet(bet);
+	}
+	
+	/**
 	 * Makes the players who's turn it is to post the big and small blind to do 
 	 * so.
 	 */
-	//TODO likt raise = refactor?
+	//TODO: eventuellt lite mer decompsition här.. 
 	private void postBlinds() {
 		List<IPlayer> players = table.getPlayers();
 		int dealerButtonIndex = table.getDealerButtonIndex();
-		
-		/* define the initial value of the blinds */ 
-		int bigBlind = P.INSTANCE.getBigBlindValue();
-		int smallBlind = bigBlind / 2;
 				
 		int smallBlindIndex = table.findIndexOfNextPlayer(dealerButtonIndex);
-		int bigBlindIndex =  table.findIndexOfNextPlayer(smallBlindIndex);
-		
+		int bigBlindIndex =  table.findIndexOfNextPlayer(smallBlindIndex);		
 		IPlayer smallBlindPlayer = players.get(smallBlindIndex);
 		IPlayer bigBlindPlayer = players.get(bigBlindIndex);
 		
-		/* define the definite value on the blinds (a player might have to 
-		 * small balance to post the full blind) */
+		/* define the value of the blinds */ 
+		int bigBlind = P.INSTANCE.getBigBlindValue();
+		int smallBlind = bigBlind / 2;
+		
+		/* the initial value of the blinds might be bigger than the player's
+		 * balance, correct this.. */
 		if (smallBlindPlayer.getBalance().getValue() < smallBlind) {
 			smallBlind = smallBlindPlayer.getBalance().getValue();
-		}
-		
+		}		
 		if (bigBlindPlayer.getBalance().getValue() < bigBlind) {
 			bigBlind = bigBlindPlayer.getBalance().getValue();
 		}
 		
-		//TODO: matte h håller på att fixar lite här!!
-		//TODO: parameter = bet ist?
-		/*public void performPlayerBet(Bet bet) {
-			int value = bet.getValue();
-			IPlayer player = bet.getOwner();
-
-			player.makeBet(value);
-			table.recieveBet(bet);
-		}*/
-		
-		/* post blinds */
+		/* post blinds */ /* TODO: gammal kod, ta bort om nya funkar...
 		smallBlindPlayer.getBalance().removeFromBalance(smallBlind);
 		smallBlindPlayer.setOwnCurrentBet(smallBlind);
 		bigBlindPlayer.getBalance().removeFromBalance(bigBlind);
 		bigBlindPlayer.setOwnCurrentBet(bigBlind);
 
-		/* add blinds to pot and current bet */
+		/* add blinds to pot and current bet */ /*
 		table.getRound().getPot().addToPot(smallBlind + bigBlind);
 		if (bigBlind >= smallBlind) {
 			table.getRound().getBettingRound().setCurrentBet(
@@ -394,12 +422,15 @@ public class GameController {
 			table.getRound().getBettingRound().setCurrentBet(
 					new Bet(smallBlindPlayer,smallBlind));
 		}
+		*/
+		
+		performPlayerBet(new Bet(smallBlindPlayer, smallBlind));
+		performPlayerBet(new Bet(bigBlindPlayer, bigBlind));
 		
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(smallBlindPlayer,smallBlind)));
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(bigBlindPlayer,bigBlind)));
 		
 		/* if a player has gone all-in he shall not be able to act */
-		//TODO ska denna vara här?
 		if (bigBlindPlayer.isAllIn()) {
 			bigBlindPlayer.setDoneFirstTurn(true);
 		}
@@ -451,15 +482,15 @@ public class GameController {
 	 */
 	//TODO delvis otestad
 	public boolean raise(Bet bet) {
-		if(!validPlayerAction(bet.getOwner())) {
+		if(!isValidPlayerAction(bet.getOwner())) {
 			return false;
 		}
 		IPlayer currentPlayer = table.getCurrentPlayer();
 		
-		int theRaise = bet.getValue() - currentPlayer.getOwnCurrentBet();
+		int raiseValue = bet.getValue() - currentPlayer.getOwnCurrentBet();
 		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
 
-		if(theRaise > currentPlayer.getBalance().getValue()) {
+		if(raiseValue > currentPlayer.getBalance().getValue()) {
 			throw new IllegalRaiseException(
 					"Not enough money on balance to make that raise");
 		} else if(bet.getValue() <= currentBettingRound.getCurrentBet().getValue()
@@ -468,15 +499,17 @@ public class GameController {
 					"than the current bet plus big blind.");
 		}
 		
+		performPlayerBet(new Bet(currentPlayer,raiseValue));
+		
+		//TODO: gammal kod, ta bort om nya funkar
 		/* arrange the player's balance, bet and the pot according to the raise 
 		 */
-		table.getRound().getPot().addToPot(theRaise);
-		currentPlayer.setDoneFirstTurn(true);
-		currentPlayer.getBalance().removeFromBalance(theRaise);
-		currentPlayer.setOwnCurrentBet(theRaise + currentPlayer.getOwnCurrentBet());
-		currentPlayer.setDoneFirstTurn(true);
-		currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
-						theRaise + currentPlayer.getOwnCurrentBet()));
+		//table.getRound().getPot().addToPot(theRaise);
+		//currentPlayer.setDoneFirstTurn(true);
+		//currentPlayer.getBalance().removeFromBalance(theRaise);
+		//currentPlayer.setOwnCurrentBet(theRaise + currentPlayer.getOwnCurrentBet());
+		//currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
+		//				theRaise + currentPlayer.getOwnCurrentBet()));
 		
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
 		progressTurn();
@@ -507,21 +540,6 @@ public class GameController {
 	}
 	
 	/**
-	 * Check if it's time to do showdown. This method is used after a 
-	 * bettinground is done.
-	 * 
-	 * It is time to do showdown if all cards are on the table, if just one 
-	 * player is left or if all players all all-in.
-	 * 
-	 * @return true if it is time to do showdown.
-	 */
-	private boolean timeForShowDown() {
-		return table.getCommunityCards().size() == 5 || 
-				table.getActivePlayers().size() == 1 || 
-				table.getActivePlayers().size() == 0;
-	}
-	
-	/**
 	 * This method is called after a side pot is added. It removes from the main
 	 * pot what was added to the side pot
 	 * 
@@ -539,14 +557,4 @@ public class GameController {
 		table.getRound().getPot().removeFromPot(sidePotValue);
 	}
 	
-	/**
-	 * Checks if a player is allowed to do an action. In other words this method
-	 * checks if player is the currentPlayer at the table.
-	 * 
-	 * @param player The player
-	 * @return true if the player is allowed to do the action.
-	 */
-	private boolean validPlayerAction(IPlayer player) {
-		return player.equals(table.getCurrentPlayer());
-	}
 }

@@ -135,6 +135,7 @@ public class Player implements IPlayer {
 	public void makeBet(int value) {
 		balance.removeFromBalance(value);
 		setOwnCurrentBet(value);
+		doneFirstTurn = true;
 	}
 
 	@Override
