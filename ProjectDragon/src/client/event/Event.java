@@ -27,6 +27,7 @@ public class Event {
     	HANDS_CHANGED,	// getValue(): player of the hands that changes
     	HAND_DISCARDED,	// getValue(): player, the player who's hand was discarded
     	JOIN_TABLE,
+    	LEAVE_TABLE,
     	LOGIN_FAILED,
     	LOGIN_SUCCESS,
     	LOGOUT,
@@ -44,8 +45,6 @@ public class Event {
     	TRY_LOGIN, //The string is in the form "username password"
     	TRY_REGISTER, //ArrayList<char[]>
     	TURN_CHANGED,	// getValue(): int, index of the new player
-    	LEAVE_TABLE,
-    	GET_ACTIVE_GAMES
     }
     
     private final Tag tag;
