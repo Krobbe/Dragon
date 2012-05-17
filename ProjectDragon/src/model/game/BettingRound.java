@@ -1,5 +1,7 @@
 package model.game;
 
+import java.io.Serializable;
+
 import model.player.Bet;
 import model.player.Player;
 
@@ -11,7 +13,7 @@ import model.player.Player;
  * @author forssenm
  * @author mattiashenriksson
  */
-public class BettingRound {
+public class BettingRound implements Serializable{
 	private Bet currentBet;
 	
 	/**

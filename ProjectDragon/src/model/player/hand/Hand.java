@@ -3,6 +3,7 @@
  */
 package model.player.hand;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import model.card.*;
  * A class that the hand classes for different games can delegate similar
  * functionality to
  */
-public class Hand implements IHand {
+public class Hand implements IHand, Serializable {
 
 	private List<ICard> cards;
 	

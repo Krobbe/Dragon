@@ -1,5 +1,7 @@
 package model.game;
 
+import java.io.Serializable;
+
 /**
  * A class that simulates a Round in a pokergame. 
  * 
@@ -7,7 +9,7 @@ package model.game;
  * @author lisastenberg
  * @author mattiashenriksson
  */
-public class Round {
+public class Round implements Serializable{
 	private BettingRound bettingRound;
 	private Pot pot;
 	private Pot preBettingPot;

@@ -15,6 +15,7 @@ import java.util.TreeMap;
 import client.event.Event;
 import client.event.EventHandler;
 import client.event.EventBus;
+import client.model.game.Table;
 
 import model.player.Account;
 import model.player.Balance;
@@ -24,6 +25,7 @@ import model.player.User;
 import model.player.hand.Hand;
 
 import remote.IClient;
+import remote.IClientGame;
 import remote.IServer;
 import remote.IServerGame;
 import utilities.IllegalCallException;
@@ -192,7 +194,11 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		
 		IPlayer user = new User(player);
 		
-		RemoteGameController clientGame = new RemoteGameController(this, user);
+		Table table = new Table(0);
+		table.addPlayer(user);
+		
+		RemoteGameController clientGame = new RemoteGameController(this, user,
+				table);
 		
 		try {
 			
@@ -239,7 +245,7 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	 * @param gameIndex The index of the game that the user wants to join
 	 * @return true if the game was successfully joined
 	 */
-	public boolean joinGame(int gameIndex) {
+	public boolean joinGame(int gameID) {
 		
 		if(serverComm == null) {
 			return false;
@@ -252,35 +258,26 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		
 		IPlayer user = new User(player);
 		
-		RemoteGameController clientGame = new RemoteGameController(this, user);
+		RemoteGameController clientGame = new RemoteGameController(this, user,
+														new GameController());
 		IServerGame serverGame = null;
 
 		try {
 			serverGame = serverComm.joinGame(getAccount(), player, clientGame,
-																	gameIndex);
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		if(serverGame == null) {
-			return false;
-		}
-
-		try {
+																	gameID);
+			if(serverGame == null) {
+				return false;
+			}
 			
-			Collection<IPlayer> playerList = serverGame.getPlayers();
+			List<IPlayer> playerList = serverGame.getPlayers();
+			playerList.add(user);
+			clientGame.newTable(playerList, playerList.size() - 1);
 			clientGame.addPlayers(playerList);
 			activeGames.put(user, clientGame);
 			
-		} catch (IllegalCallException e) {
+		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
+			e1.printStackTrace();
 		}
 		
 		return true;

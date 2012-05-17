@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -59,6 +60,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	private int maxPlayers;
 	private int gameID;
 	
+	// TODO Implement gameOpenForPlayers!
 	// A variable that determines if new players are allowed to join. Observe
 	// that games that has been started doesn't necessarily have to bee closed
 	// for new players.
@@ -122,10 +124,10 @@ public class RemoteGameController extends UnicastRemoteObject
 	}
 	
 	@Override
-	public Set<IPlayer> getPlayers() throws IllegalCallException,
-
+	public List<IPlayer> getPlayers() throws IllegalCallException,
 			RemoteException {
-		return playerReferences.keySet();
+		
+		return new LinkedList<IPlayer>(playerReferences.keySet());
 	}
 	
 	@Override

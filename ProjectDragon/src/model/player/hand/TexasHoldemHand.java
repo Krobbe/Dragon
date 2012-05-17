@@ -3,6 +3,7 @@
  */
 package model.player.hand;
 
+import java.io.Serializable;
 import java.util.List;
 
 import model.card.*;
@@ -13,7 +14,7 @@ import model.card.*;
  * @author robinandersson
  *
  */
-public class TexasHoldemHand implements IHand {
+public class TexasHoldemHand implements IHand, Serializable {
 	
 	private Hand hand;
 	

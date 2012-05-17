@@ -1,5 +1,6 @@
 package model.player.hand;
 
+import java.io.Serializable;
 import java.util.List;
 
 import model.card.ICard;

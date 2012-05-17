@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Collection;
+import java.util.List;
 
 import model.player.Account;
 import model.player.Bet;
@@ -51,7 +52,7 @@ public interface IServerGame extends Remote, Serializable {
 	 * @return The list with players in the game
 	 * @throws IllegalCallException, RemoteException
 	 */
-	public Collection<IPlayer> getPlayers() throws IllegalCallException,
+	public List<IPlayer> getPlayers() throws IllegalCallException,
 																RemoteException;
 	
 	/**

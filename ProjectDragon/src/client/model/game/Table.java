@@ -1,5 +1,6 @@
 package client.model.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -21,7 +22,7 @@ import utilities.*;
  * 
  */
 
-public class Table {
+public class Table implements Serializable {
 	private Round round;
 	private List<ICard> communityCards;
 	private List<IPlayer> players;
@@ -32,6 +33,13 @@ public class Table {
 	/**
 	 * Creates a new Table.
 	 */
+	
+	public Table(int meIndex) {
+		
+		this(new LinkedList<IPlayer>(), meIndex);
+	}
+	
+	
 	public Table(List<IPlayer> players, int meIndex) {
 		this.meIndex = meIndex;
 		this.players = players;

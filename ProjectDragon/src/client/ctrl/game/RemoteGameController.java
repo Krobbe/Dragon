@@ -3,6 +3,7 @@
  */
 package client.ctrl.game;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.List;
@@ -17,19 +18,17 @@ import model.game.Pot;
 import model.player.Bet;
 import model.player.IPlayer;
 import model.player.hand.IHand;
-import model.player.User;
 
 import remote.IClientGame;
 import remote.IServerGame;
-
-import utilities.IllegalCallException;
 
 /**
  * @author robinandersson
  * @author lisastenberg
  */
 
-public class RemoteGameController implements IClientGame, IServerRequest, EventHandler {
+public class RemoteGameController implements IClientGame, IServerRequest,
+												EventHandler, Serializable {
 	
 	private IServerGame serverGame;
 	private RemoteCommunicationController clientComm;
@@ -37,20 +36,26 @@ public class RemoteGameController implements IClientGame, IServerRequest, EventH
 	private GameController gameController;
 	
 	private IPlayer user;
-
 	
 	public RemoteGameController(RemoteCommunicationController clientComm,
-			IPlayer user){
-		this(clientComm, user, new GameController());
+			IPlayer user) {
+		this.clientComm = clientComm;
+		this.user = user;
+		EventBus.register(this);
+	}
+	
+	public RemoteGameController(RemoteCommunicationController clientComm,
+			IPlayer user, Table table) {
+		this(clientComm, user, new GameController(table));
 	}
 	
 	public RemoteGameController(RemoteCommunicationController clientComm, 
-								IPlayer user, GameController gameController){
+					IPlayer user, GameController gameController){
 		this.clientComm = clientComm;
 		this.gameController = gameController;
 		this.user = user;
-		
 		this.gameController.addPlayer(user);
+		
 		EventBus.register(this);
 	}
 	

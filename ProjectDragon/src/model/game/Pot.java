@@ -1,4 +1,7 @@
 package model.game;
+
+import java.io.Serializable;
+
 /**
  * A class that simulates a pot
  * @author lisastenberg
@@ -7,7 +10,7 @@ package model.game;
  *
  */
 
-public class Pot {
+public class Pot implements Serializable{
 	private int value;
 	
 	/**
