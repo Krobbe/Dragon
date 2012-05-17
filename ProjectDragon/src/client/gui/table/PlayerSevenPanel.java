@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import model.player.IPlayer;
+import model.player.Player;
 import model.player.hand.IHand;
 
 public class PlayerSevenPanel extends JPanel implements IPlayerPanel {
@@ -68,6 +70,11 @@ public class PlayerSevenPanel extends JPanel implements IPlayerPanel {
 	@Override
 	public void setBackground(Color c) {
 		this.setBackground(c);
+	}
+	
+	@Override
+	public void setName(IPlayer p) {
+		p7NameLabel.setText(p.getName());
 	}
 
 }

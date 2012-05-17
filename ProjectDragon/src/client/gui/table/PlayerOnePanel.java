@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import model.player.IPlayer;
+import model.player.Player;
 import model.player.hand.IHand;
 
 public class PlayerOnePanel extends JPanel implements IPlayerPanel {
@@ -42,7 +44,7 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 		p1CreditsLabel.setBounds(10, 119, 53, 14);
 		this.add(p1CreditsLabel);
 
-		p1AvailableCreditsLabel = new JLabel("xxx");
+		p1AvailableCreditsLabel = new JLabel("1000");
 		p1AvailableCreditsLabel.setBounds(72, 119, 53, 14);
 		this.add(p1AvailableCreditsLabel);
 	}
@@ -68,6 +70,11 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 	@Override
 	public void setBackground(Color c) {
 		this.setBackground(c);
+	}
+	
+	@Override
+	public void setName(IPlayer p) {
+		p1NameLabel.setText(p.getName());
 	}
 
 }

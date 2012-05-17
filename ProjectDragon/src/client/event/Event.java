@@ -42,7 +42,8 @@ public class Event {
     	TRY_LOGIN, //The string is in the form "username password"
     	TRY_REGISTER, //ArrayList<char[]>
     	TURN_CHANGED,	// getValue(): int, index of the new player
-    	LEAVE_TABLE
+    	LEAVE_TABLE,
+    	GET_ACTIVE_GAMES
     }
     
     private final Tag tag;

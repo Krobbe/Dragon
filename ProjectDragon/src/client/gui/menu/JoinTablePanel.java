@@ -8,11 +8,15 @@ import javax.swing.AbstractListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+
+import client.event.Event;
+import client.event.EventBus;
 
 
 @SuppressWarnings("serial")
-public class JoinTablePanel extends JPanel implements ActionListener,
+public class JoinTablePanel extends JScrollPane implements ActionListener,
 		client.event.EventHandler {
 
 	private JButton joinTableBackButton;
@@ -55,7 +59,7 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 		joinTableJoinButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		joinTableJoinButton.addActionListener(this);
 		this.add(joinTableJoinButton);
-
+		
 		joinTableList = new JList();
 		joinTableList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		joinTableList.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -72,5 +76,6 @@ public class JoinTablePanel extends JPanel implements ActionListener,
 		});
 		joinTableList.setBounds(192, 111, 623, 507);
 		this.add(joinTableList);
+		EventBus.publish(new Event(Event.Tag.GET_ACTIVE_GAMES, 1));
 	}
 }
