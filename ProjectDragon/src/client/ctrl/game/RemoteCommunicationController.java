@@ -179,8 +179,8 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 			return false;
 	}
 	
-	public boolean createGame(int entranceFee, int maxPlayers,
-													int playerStartingChips) {
+	public boolean createGame(int entranceFee, int playerStartingChips,
+															int maxPlayers) {
 		
 		if(serverComm == null) {
 			return false;
@@ -288,7 +288,9 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 
 	@Override
 	public void onEvent(Event evt) {
+		
 		switch(evt.getTag()) {
+		
 		case TRY_LOGIN:
 			ArrayList<char[]> login;
 			if(!(evt.getValue() instanceof ArrayList)) {
@@ -302,6 +304,7 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 				login(this, userName, passWord);
 			}
 			break;
+			
 		case TRY_REGISTER:
 			ArrayList<char[]> accountInfo;
 			if(!(evt.getValue() instanceof ArrayList)) {
@@ -317,15 +320,45 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 				tryRegisterAccount(userName, firstName, lastName, passWord);
 			}
 			break;
+			
 		case CREATE_TABLE:
-			if(createGame(1, 8, 1000)){
-				EventBus.publish(new Event(Event.Tag.GO_TO_TABLE, ""));
+			
+			ArrayList<String> tableInfo;
+			if(!(evt.getValue() instanceof ArrayList)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				tableInfo = (ArrayList<String>) evt.getValue();
+				
+				ArrayList<Integer> tableInfoParsed =
+													new ArrayList<Integer>();
+				
+				for(String numberString : tableInfo) {
+					try{
+						tableInfoParsed.add(Integer.parseInt(numberString));
+						
+					} catch (NumberFormatException e){
+						System.out.println("Wrong evt.getValue() for evt.getTag(): "
+								+ evt.getTag());
+					}
+				}
+				
+				if(tableInfoParsed.size() == 3 &&
+						createGame(tableInfoParsed.get(0),
+						tableInfoParsed.get(1), tableInfoParsed.get(2))) {
+					
+					EventBus.publish(new Event(Event.Tag.GO_TO_TABLE, ""));
+					
+				}
 			}
+			
 			break;
+			
 		case GET_ACTIVE_GAMES:
 			EventBus.publish(new Event(Event.Tag.PUBLISH_ACTIVE_GAMES,
 															getActiveGames()));
 			break;
+			
 		case GET_ACCOUNT_INFORMATION:
 			EventBus.publish(new Event(Event.Tag.PUBLISH_ACCOUNT_INFORMATION,
 															getAccount()));

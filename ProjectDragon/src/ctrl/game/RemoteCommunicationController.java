@@ -96,10 +96,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	@Override
 	public IServerGame createGame(Account account, IClientGame clientGame,
 			int entranceFee, int maxPlayers, int playerStartingChips) {
-		
 
 		RemoteGameController newGame = null;
-
 		
 		// Checks if the supplied account has been added by the server earlier
 		if(isLoggedIn(account)) {
