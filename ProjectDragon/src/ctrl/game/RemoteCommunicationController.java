@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -37,7 +38,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	// respective communication controllers
 	Map<Account, IClient> clients;
 	
-	LinkedList<IServerGame> activeGames;
+	// A list showing games that player's can join
+	List<IServerGame> activeGames;
 	
 	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
@@ -299,6 +301,13 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	 */
 	public boolean isLoggedIn(Account account){
 		return clients.containsKey(account);
+	}
+	
+	@Override
+	public List<IServerGame> getActiveGames(Account account)
+			throws RemoteException {
+		
+		return activeGames;
 	}
 
 	@Override
