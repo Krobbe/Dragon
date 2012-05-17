@@ -389,8 +389,8 @@ public class GameController {
 		List<IPlayer> players = table.getPlayers();
 		int dealerButtonIndex = table.getDealerButtonIndex();
 				
-		int smallBlindIndex = table.findIndexOfNextPlayer(dealerButtonIndex);
-		int bigBlindIndex =  table.findIndexOfNextPlayer(smallBlindIndex);		
+		int smallBlindIndex = table.findIndexOfNextActivePlayer(dealerButtonIndex);
+		int bigBlindIndex =  table.findIndexOfNextActivePlayer(smallBlindIndex);		
 		IPlayer smallBlindPlayer = players.get(smallBlindIndex);
 		IPlayer bigBlindPlayer = players.get(bigBlindIndex);
 		
