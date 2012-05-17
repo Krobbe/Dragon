@@ -59,6 +59,11 @@ public class RemoteGameController extends UnicastRemoteObject
 	private int maxPlayers;
 	private int gameID;
 	
+	// A variable that determines if new players are allowed to join. Observe
+	// that games that has been started doesn't necessarily have to bee closed
+	// for new players.
+	private boolean gameOpenForPlayers;
+	
 	// TODO Simpler (less parameters) constructors?
 	// - Convention? Only two constructors?
 	public RemoteGameController(
@@ -87,6 +92,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		this.maxPlayers = maxPlayers;
 		this.entranceFee = entranceFee;
 		this.playerStartingChips = playerStartingChips;
+		gameOpenForPlayers = true;
 		
 		gameID = calculateGameID();
 		Calendar cal = Calendar.getInstance();

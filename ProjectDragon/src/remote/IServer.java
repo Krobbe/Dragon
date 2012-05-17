@@ -28,6 +28,7 @@ public interface IServer extends Remote, IDBAccount, Serializable {
 	 * @param client The client that are to be registered
 	 * @param accountName The account's name.
 	 * @param accountPassword The password associated with the account name.
+	 * @return An Account object containing user information
 	 */
 	public Account login(IClient client, String accountName,
 								String accountPassword) throws RemoteException;

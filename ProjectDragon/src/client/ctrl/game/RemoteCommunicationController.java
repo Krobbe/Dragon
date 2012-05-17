@@ -100,7 +100,7 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	 * @return The Account instance containing useful information and used as
 	 * security clearance
 	 */
-	public Account login(IClient client, String accountName,
+	public boolean login(IClient client, String accountName,
 													String accountPassword){
 		
 		serverComm = connectToServer();
@@ -113,24 +113,27 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 			try {
 				System.out.println(serverComm.testPrint());
 			} catch (RemoteException e) {
-				System.out.println("Gick int' :(");
+				System.out.println("Test print unsuccessful");
 				e.printStackTrace();
 			}
 		
 			try {	
 				this.account = serverComm.login(client, accountName, accountPassword);
-				EventBus.publish(new Event(Event.Tag.LOGIN_SUCCESS, ""));
+				
+				if(this.account != null){
+					EventBus.publish(new Event(Event.Tag.LOGIN_SUCCESS, ""));
+					return true;
+				}
+				
 			} catch (RemoteException e) {
 				// TODO Handle login failure better
 				EventBus.publish(new Event(Event.Tag.LOGIN_FAILED, ""));
 				System.out.println("*** Connection problem, failed to login ***");
 				e.printStackTrace();
 			}
-			
-			return this.account;
 		}
 		
-		return null;
+		return false;
 		
 	}
 	
