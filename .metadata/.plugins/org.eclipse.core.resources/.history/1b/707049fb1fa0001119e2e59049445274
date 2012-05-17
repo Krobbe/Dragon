@@ -53,12 +53,19 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 	private void init() {
 		this.setLayout(null);
-		this.setBackground(P.INSTANCE.getBackground());
-		
+<<<<<<< HEAD
+
 		JLabel costToEnterLabel = new JLabel("Cost to enter?");
 		costToEnterLabel.setBounds(416, 262, 176, 20);
 		costToEnterLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(costToEnterLabel);
+=======
+		this.setBackground(P.INSTANCE.getBackground());
+//		JLabel createTableNameLabel = new JLabel("Choose a table name");
+//		createTableNameLabel.setBounds(416, 262, 176, 20);
+//		createTableNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+//		this.add(createTableNameLabel);
+>>>>>>> Nu har vi en fin bakgrundsfärg
 
 		costToEnterField = new JTextField();
 		costToEnterField.setBounds(416, 293, 176, 20);

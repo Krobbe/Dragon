@@ -58,7 +58,6 @@ public class RegisterPanel extends JPanel implements ActionListener,
 		// JPanel registerPanel = new JPanel();
 		// frame.getContentPane().add(registerPanel);
 		this.setLayout(null);
-		this.setBackground(P.INSTANCE.getBackground());
 
 		JLabel registerFirstNameLabel = new JLabel("First name\r\n");
 		registerFirstNameLabel.setBounds(447, 172, 110, 14);

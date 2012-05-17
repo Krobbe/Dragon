@@ -64,8 +64,6 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 	private void init() {
 		this.setLayout(null);
-		this.setBackground(P.INSTANCE.getBackground());
-
 		JLabel userName = new JLabel("User name");
 		userName.setBounds(447, 172, 200, 20);
 		userName.setFont(new Font("Tahoma", Font.BOLD, 16));

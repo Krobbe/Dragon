@@ -50,7 +50,6 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 		// JPanel mainPanel = new JPanel();
 		// frame.getContentPane().add(mainPanel);
 		this.setLayout(null);
-		this.setBackground(P.INSTANCE.getBackground());
 
 		mainLogoutButton = new JButton("Log out");
 		mainLogoutButton.setBounds(10, 683, 108, 36);

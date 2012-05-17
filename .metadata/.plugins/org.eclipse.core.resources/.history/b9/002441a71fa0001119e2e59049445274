@@ -57,7 +57,6 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void init() {
 		this.setLayout(null);
-		this.setBackground(P.INSTANCE.getBackground());
 
 		joinTableBackButton = new JButton("Back");
 		joinTableBackButton.setBounds(10, 683, 108, 36);

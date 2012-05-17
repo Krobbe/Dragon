@@ -1,0 +1,5 @@
+package client.gui.menu;
+
+public enum P {
+
+}

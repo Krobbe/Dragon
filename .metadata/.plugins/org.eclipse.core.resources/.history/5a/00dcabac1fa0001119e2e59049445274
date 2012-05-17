@@ -54,7 +54,6 @@ public class LoginPanel extends JPanel implements ActionListener, client.event.E
 
 	private void init() {
 		this.setLayout(null);
-		this.setBackground(P.INSTANCE.getBackground());
 
 		JLabel loginNameLabel = new JLabel("User name");
 		loginNameLabel.setBounds(447, 274, 108, 14);
