@@ -83,10 +83,10 @@ public class PlayerTest {
 	public void testCompareTo() {
 		Player p = new Player(new TexasHoldemHand(), "Mattias", 
 				new Balance());
-		assertTrue(p.compare(p, p) == 0);
+		assertTrue(p.compareTo(p) == 0);
 		Player p2 = new Player(new TexasHoldemHand(), "Mattias", 
 				new Balance());
-		assertTrue(p.compare(p, p2) == 0);
+		assertTrue(p.compareTo(p2) == 0);
 	}
 	
 	@Test

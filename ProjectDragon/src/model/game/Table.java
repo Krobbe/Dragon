@@ -89,13 +89,18 @@ public class Table {
 			return getCurrentPlayer();
 		}
 		
-		indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % players.size();
+		indexOfCurrentPlayer = findIndexOfNextActivePlayer(indexOfCurrentPlayer);
+		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN, getCurrentPlayer()));
+		return players.get(indexOfCurrentPlayer);
+		
+		//TODO: gammal kod, ta bort om nya funkar
+		/*indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % players.size();
 
 		if (getCurrentPlayer().isActive()) {
 			EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN, getCurrentPlayer()));
 			return getCurrentPlayer();
 		}
-		return nextPlayer();
+		return nextPlayer(); */
 	}
 	
 	/**
@@ -109,9 +114,13 @@ public class Table {
 	//TODO Test nextDealerButtonPlayer()
 	//TODO Discuss and implement a possible better solution to dealer button
 	public int nextDealerButtonIndex() {
-		do {
+		
+		indexOfDealerButton = findIndexOfNextActivePlayer(indexOfDealerButton);
+		
+		//TODO: gammal kod, ta bort om nya funkar
+		/*do {
 			indexOfDealerButton = (indexOfDealerButton + 1) % players.size();
-		} while (!players.get(indexOfDealerButton).isActive());
+		} while (!players.get(indexOfDealerButton).isActive()); */
 		
 		// TODO Determine what happens if a player has lost recently.
 		// If the dealer button only should be set to players still in the game
@@ -307,7 +316,7 @@ public class Table {
 	 * @return The index of the next player.
 	 */
 	//TODO: denna kanske kan användas på fler ställen..
-	public int findIndexOfNextPlayer(int currentPlayerIndex) {
+	public int findIndexOfNextActivePlayer(int currentPlayerIndex) {
 		int returnIndex = -1;
 		int count = 1;
 		
@@ -318,30 +327,6 @@ public class Table {
 		
 		return returnIndex;
 	}
-    
-    /**
-     * This method checks if the players has all done their bets properly and 
-     * the betting for the current round is therefore done.
-     * 
-     * @return a boolean telling whether betting for the current round is done.
-     */
-    public boolean isBettingDone() {
-		List<IPlayer> activePlayers = getActivePlayers();
-		
-		for (IPlayer ap: activePlayers) {
-			if (!ap.hasDoneFirstTurn()) {
-				return false;
-			}
-			
-			/* if all players hasn't posted the same bet the betting isn't done,
-			 * unless the players who hasn't done this is all-in */
-			if(ap.getOwnCurrentBet() != activePlayers.get(0).getOwnCurrentBet()
-					&& !ap.isAllIn()) {
-				return false;
-			}
-		}
-		return true;
-    }
     
     /**
      * @return a list containing the players who has currently gone all-in
@@ -469,6 +454,30 @@ public class Table {
 	public boolean isShowdownDone() {
 		return showdownDone;
 	}
+	
+    /**
+     * This method checks if the players has all done their bets properly and 
+     * the betting for the current round is therefore done.
+     * 
+     * @return a boolean telling whether betting for the current round is done.
+     */
+    public boolean isBettingDone() {
+		List<IPlayer> activePlayers = getActivePlayers();
+		
+		for (IPlayer ap: activePlayers) {
+			if (!ap.hasDoneFirstTurn()) {
+				return false;
+			}
+			
+			/* if all players hasn't posted the same bet the betting isn't done,
+			 * unless the players who hasn't done this is all-in */
+			if(ap.getOwnCurrentBet() != activePlayers.get(0).getOwnCurrentBet()
+					&& !ap.isAllIn()) {
+				return false;
+			}
+		}
+		return true;
+    }
 	
 	/**
 	 * This method recieves a bet and placese it om the table.

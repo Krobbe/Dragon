@@ -5,10 +5,18 @@ package ctrl.game;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+
+import database.DatabaseCommunicator;
+import database.IDBGame;
 
 import event.Event;
 import event.EventHandler;
@@ -25,27 +33,31 @@ import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
 
 /**
- * A class that manages all general communication to and from the server
+ * A class that manages all general communication to and from the server.
+ * The class does also hold the gameID which is a unique value for a game.
  * 
  * @author robinandersson
  * @author lisastenberg
  *
  */
 public class RemoteGameController extends UnicastRemoteObject
-										implements IServerGame, EventHandler{
+										implements IServerGame, EventHandler,
+										IDBGame {
 
-	GameController gameController;
-	RemoteCommunicationController remoteCommunicationController;
+	private GameController gameController;
+	private RemoteCommunicationController remoteCommunicationController;
+	private DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
 	/* A map containing all logged in players and another map containing their
 	 * active players and references to every respective player objects remote
 	 * game controller
 	*/
-	Map<IPlayer, IClientGame> playerReferences;
+	private Map<IPlayer, IClientGame> playerReferences;
 	
-	int entranceFee;
-	int playerStartingChips;
-	int maxPlayers;
+	private int entranceFee;
+	private int playerStartingChips;
+	private int maxPlayers;
+	private int gameID;
 	
 	// TODO Simpler (less parameters) constructors?
 	// - Convention? Only two constructors?
@@ -75,7 +87,12 @@ public class RemoteGameController extends UnicastRemoteObject
 		this.maxPlayers = maxPlayers;
 		this.entranceFee = entranceFee;
 		this.playerStartingChips = playerStartingChips;
-
+		
+		gameID = calculateGameID();
+		Calendar cal = Calendar.getInstance();
+		String dateString = "" + cal.get(Calendar.DAY_OF_MONTH) + 
+				cal.get(Calendar.MONTH) + cal.get(Calendar.YEAR);
+		saveGame(gameID, dateString);
 	}
 	
 	/**
@@ -401,6 +418,73 @@ public class RemoteGameController extends UnicastRemoteObject
 			gameController.nextRound();
 		}
 
+	}
+
+	@Override
+	public void saveGame(int gameID, String date) {
+		Connection conn = dbc.getConnection();
+		Statement myStmt;
+		try {
+			myStmt = conn.createStatement();
+			int up = myStmt.executeUpdate("INSERT INTO Games VALUES('" + gameID + "', '"
+							+ date + "')");
+			if(up == 0) {
+				System.out.println("Game with gameID" + gameID + "already exists");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void savePlacement(String gameID, Player player, int placement) {
+		Connection conn = dbc.getConnection();
+		Statement myStmt;
+		try {
+			myStmt = conn.createStatement();
+			int up = myStmt.executeUpdate("INSERT INTO PlayedGames VALUES('" + gameID + "', '"
+							+ player + "', '" + placement + "')");
+			if(up == 0) {
+				System.out.println("Game with gameID" + gameID + " has already" +
+						"saved a placement for " + player);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Map<Integer, String> loadGamePlacements(String gameID) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int loadNbrOfWonGames(String userName) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int calculateGameID() {
+		Connection conn = dbc.getConnection();
+		Statement myStmt;
+		try {
+			myStmt = conn.createStatement();
+			ResultSet rs =
+					myStmt.executeQuery("SELECT max(gameID) FROM Games");
+			if(rs.next()) {
+				String max = rs.getString(1);
+				if(!(max.equals("null"))) {
+					int tmp = Integer.parseInt(max);
+					return tmp + 1;
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		return 1;
 	}
 
 
