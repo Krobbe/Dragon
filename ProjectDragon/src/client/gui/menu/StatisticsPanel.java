@@ -9,12 +9,17 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import client.event.Event;
 
@@ -29,7 +34,7 @@ import database.*;
  */
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel implements ActionListener,
-		client.event.EventHandler, IDBGame {
+		ListSelectionListener, client.event.EventHandler, IDBGame {
 	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 
 	private JLabel setThisUserName;
@@ -37,8 +42,12 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	private JLabel setThisLastName;
 	private JLabel setThisPlayedGames;
 	private JLabel setThisWonGames;
-	private JList listWithGames;
-	private JList selectedGame;
+	
+	private JList<Integer> listWithGames;
+	private DefaultListModel<Integer> listWithGamesModel;
+	
+	private JList<String> selectedGame;
+	private DefaultListModel<String> selectedGameModel;
 	
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int margin = P.INSTANCE.getMarginSize();
@@ -130,11 +139,17 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		setThisWonGames.setFont(P.INSTANCE.getLabelFont());
 		this.add(setThisWonGames);
 		
-		listWithGames = new JList();
+		listWithGames = new JList<Integer>(listWithGamesModel);
 		listWithGames.setBounds(500, 102, 400, 245);
+		listWithGames.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		List<Integer> tmp = loadPlayedGames(setThisUserName.getText());
+		for(Integer i : tmp) {
+			listWithGamesModel.addElement(i);
+		}
+		listWithGames.addListSelectionListener(this);
 		this.add(listWithGames);
 		
-		selectedGame = new JList();
+		selectedGame = new JList<String>(selectedGameModel);
 		selectedGame.setBounds(500, 372, 400, 245);
 		this.add(selectedGame);
 		
@@ -250,5 +265,15 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		String tmp = listWithGames.getSelectedValue().toString();
+		Map<Integer, String> othertmp = loadGamePlacements(tmp);
+		Set<Integer> s = othertmp.keySet();
+		for(Integer i : s) {
+			selectedGameModel.addElement(i + ". " + othertmp.get(i));
+		}
 	}
 }
