@@ -4,13 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import ctrl.game.GameController;
+
 import client.gui.menu.MainView;
 
 
 import model.game.*;
 import model.player.*;
 import model.player.hand.TexasHoldemHand;
-import server.ctrl.game.GameController;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
