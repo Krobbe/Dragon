@@ -6,8 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -216,28 +214,5 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 			e.printStackTrace();
 		}
 		return 0;
-	}
-
-	@Override
-	public List<Integer> loadPlayedGames(String userName) {
-		Connection conn = dbc.getConnection();
-		Statement myStmt;
-		try {
-			myStmt = conn.createStatement();
-			ResultSet rs = myStmt
-					.executeQuery("SELECT gameID FROM PlayedGames WHERE player = '"
-							+ userName + "'");
-			List<Integer> playedGames = new LinkedList<Integer>();
-			while (rs.next()) {
-				String gameID = rs.getString(1);
-				int tmp = Integer.parseInt(gameID);
-				playedGames.add(tmp);
-			}
-			return playedGames;
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		return null;
 	}
 }

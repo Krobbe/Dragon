@@ -1,6 +1,5 @@
 package database;
 
-import java.util.List;
 import java.util.Map;
 
 import model.player.Player;
@@ -62,12 +61,4 @@ public interface IDBGame {
 	 * @return the number of games player has played.
 	 */
 	public int loadNbrOfPlayedGames(String userName);
-	
-	/**
-	 * Load played games
-	 * 
-	 * @param userName the player
-	 * @return a list containing gameID of games the player has played.
-	 */
-	public List<Integer> loadPlayedGames(String userName);
 }
