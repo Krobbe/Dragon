@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import event.*;
+import server.event.*;
 import model.game.*;
 import model.player.*;
 import utilities.*;

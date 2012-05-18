@@ -1,4 +1,4 @@
-package event;
+package server.event;
 
 /**
  * A single event

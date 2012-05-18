@@ -16,8 +16,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import database.*;
-import event.Event;
-import event.EventHandler;
 
 
 import model.card.ICard;
@@ -27,6 +25,8 @@ import model.player.hand.IHand;
 
 import remote.IClientGame;
 import remote.IServerGame;
+import server.event.Event;
+import server.event.EventHandler;
 import utilities.IllegalCallException;
 import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;

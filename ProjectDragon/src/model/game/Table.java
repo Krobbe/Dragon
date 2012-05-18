@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import event.Event;
-import event.EventBus;
 
 import model.card.ICard;
 import model.player.Bet;
@@ -16,6 +14,8 @@ import model.player.hand.FullTHHand;
 import model.player.hand.HandValue;
 import model.player.hand.HandValueType;
 import model.player.hand.IHand;
+import server.event.Event;
+import server.event.EventBus;
 import utilities.CommunityCardsFullException;
 import utilities.PlayersFullException;
 
