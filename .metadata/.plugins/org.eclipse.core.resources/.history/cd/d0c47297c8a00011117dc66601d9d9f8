@@ -139,7 +139,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		setThisWonGames.setFont(P.INSTANCE.getLabelFont());
 		this.add(setThisWonGames);
 		
-		listWithGames = new JList(listWithGamesModel);
+		listWithGames = new JList<Integer>(listWithGamesModel);
 		listWithGames.setBounds(500, 102, 400, 245);
 		listWithGames.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		List<Integer> tmp = loadPlayedGames(setThisUserName.getText());
@@ -149,7 +149,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		listWithGames.addListSelectionListener(this);
 		this.add(listWithGames);
 		
-		selectedGame = new JList(selectedGameModel);
+		selectedGame = new JList<String>(selectedGameModel);
 		selectedGame.setBounds(500, 372, 400, 245);
 		this.add(selectedGame);
 		
