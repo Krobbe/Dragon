@@ -6,6 +6,10 @@ import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.List;
 
+import common.utilities.IllegalCallException;
+import common.utilities.IllegalCheckException;
+import common.utilities.IllegalRaiseException;
+
 import model.player.Account;
 import model.player.Bet;
 import model.player.IPlayer;

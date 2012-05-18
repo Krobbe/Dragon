@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import common.utilities.IllegalCallException;
+import common.utilities.IllegalCheckException;
+import common.utilities.IllegalRaiseException;
+
 import database.*;
 
 
@@ -27,9 +31,6 @@ import remote.IClientGame;
 import remote.IServerGame;
 import server.event.Event;
 import server.event.EventHandler;
-import utilities.IllegalCallException;
-import utilities.IllegalCheckException;
-import utilities.IllegalRaiseException;
 
 /**
  * This serverside class manages all game communication to and from the client.

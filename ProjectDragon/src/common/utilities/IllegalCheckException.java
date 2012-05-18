@@ -1,4 +1,4 @@
-package utilities;
+package common.utilities;
 
 public class IllegalCheckException extends RuntimeException{
 	

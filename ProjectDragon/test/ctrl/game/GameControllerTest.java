@@ -17,11 +17,12 @@ import model.player.hand.TexasHoldemHand;
 
 import org.junit.Test;
 
+import common.utilities.CommunityCardsFullException;
+import common.utilities.IllegalRaiseException;
+import common.utilities.PlayersFullException;
+
 
 import server.ctrl.game.GameController;
-import utilities.IllegalRaiseException;
-import utilities.PlayersFullException;
-import utilities.CommunityCardsFullException;
 
 /**
  * A class containing methods testing the GameController class.

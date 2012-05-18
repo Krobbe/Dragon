@@ -17,8 +17,9 @@ import model.player.hand.HandValueType;
 
 import org.junit.Test;
 
-import utilities.CommunityCardsFullException;
-import utilities.PlayersFullException;
+import common.utilities.CommunityCardsFullException;
+import common.utilities.PlayersFullException;
+
 
 /**
  * A test of the Table-class

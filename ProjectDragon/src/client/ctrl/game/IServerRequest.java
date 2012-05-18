@@ -3,11 +3,12 @@
  */
 package client.ctrl.game;
 
+import common.utilities.IllegalCallException;
+import common.utilities.IllegalCheckException;
+import common.utilities.IllegalRaiseException;
+
 import model.player.Bet;
 import model.player.IPlayer;
-import utilities.IllegalCallException;
-import utilities.IllegalCheckException;
-import utilities.IllegalRaiseException;
 
 /**
  * @author robinandersson

@@ -4,6 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import common.utilities.CommunityCardsFullException;
+import common.utilities.IllegalCallException;
+import common.utilities.IllegalCheckException;
+import common.utilities.IllegalRaiseException;
+import common.utilities.PlayersFullException;
+
 
 import client.gui.menu.MainView;
 
@@ -12,11 +18,6 @@ import model.game.*;
 import model.player.*;
 import model.player.hand.TexasHoldemHand;
 import server.ctrl.game.GameController;
-import utilities.IllegalCallException;
-import utilities.IllegalCheckException;
-import utilities.IllegalRaiseException;
-import utilities.PlayersFullException;
-import utilities.CommunityCardsFullException;
 
 public class Main {
 	
