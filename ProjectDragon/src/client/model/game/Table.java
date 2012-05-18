@@ -6,13 +6,10 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import common.utilities.CommunityCardsFullException;
-import common.utilities.PlayersFullException;
-
 import model.card.*;
 import model.game.*;
 import model.player.*;
-import utilities.*;
+import common.utilities.*;
 
 /**
  * A class that represent table at which a poker game takes place. This class 

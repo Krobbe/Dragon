@@ -4,14 +4,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import common.utilities.IllegalCallException;
-import common.utilities.IllegalCheckException;
-import common.utilities.IllegalRaiseException;
-
 import server.event.*;
 import model.game.*;
 import model.player.*;
-import utilities.*;
+import common.utilities.*;
 
 /**
  * This class contains methods that handles the application during game mode.
