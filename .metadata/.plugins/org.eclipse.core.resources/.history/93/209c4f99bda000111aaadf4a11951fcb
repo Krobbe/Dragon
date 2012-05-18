@@ -125,8 +125,6 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 				if(this.account != null){
 					EventBus.publish(new Event(Event.Tag.LOGIN_SUCCESS, ""));
 					return true;
-				} else {
-					EventBus.publish(new Event(Event.Tag.LOGIN_FAILED, ""));
 				}
 				
 			} catch (RemoteException e) {
