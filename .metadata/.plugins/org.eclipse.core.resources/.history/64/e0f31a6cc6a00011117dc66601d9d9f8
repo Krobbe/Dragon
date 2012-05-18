@@ -222,7 +222,9 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			String updateString = "INSERT INTO Accounts VALUES('" + userName + 
 					"', '" + firstName + "', '" + lastName + "', '" + 
 					passWord + "', '" + balance + "')";
+			int up =
 			myStmt.executeUpdate(updateString);
+			System.out.println(up);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

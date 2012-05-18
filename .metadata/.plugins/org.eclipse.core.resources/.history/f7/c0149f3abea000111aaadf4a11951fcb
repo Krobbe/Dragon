@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -160,23 +161,26 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	
 	private boolean tryRegisterAccount(String userName, String firstName, 
 			String lastName, String passWord) {
-		serverComm = connectToServer();
-
-		Account tmp = new Account(firstName, lastName, userName, passWord);
-		try {
-			if (serverComm.createAccount(tmp)) {
-				login(this, tmp.getUserName(), tmp.getPassWord());
-				EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
-				return true;
-			} else {
-				EventBus.publish(new Event(Event.Tag.REGISTER_FAILED, ""));
+		
+			if(serverComm == null) {
+				return false;
 			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return false;
+			
+			Account tmp = new Account(firstName, lastName, userName, passWord);
+			try {
+				if(serverComm.createAccount(tmp)) {
+					login(this, tmp.getUserName(), tmp.getPassWord());
+					EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
+					return true;
+				} else {
+					EventBus.publish(new Event(Event.Tag.REGISTER_FAILED, ""));
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return false;
 	}
 	
 	public boolean createGame(int entranceFee, int playerStartingChips,

@@ -418,7 +418,6 @@ public class RemoteGameController extends UnicastRemoteObject
 				// TODO a way to exit the whole method instead of setting the
 				// variable?
 				isReadyToStart = false;
-				break;
 			}
 		}
 		

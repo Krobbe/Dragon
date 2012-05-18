@@ -48,7 +48,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 	@Override
 	public void onEvent(client.event.Event evt) {
 		if (evt.getTag().equals(Event.Tag.REGISTER_FAILED)) {
-			errorLabel.setText("That username already exist. " +
+			errorLabel.setText("That username already exist." +
 					"Choose another one.");
 		} else if(evt.getTag().equals(Event.Tag.REGISTER_SUCCESS)
 				|| evt.getTag().equals(Event.Tag.LOGIN_SUCCESS)) {

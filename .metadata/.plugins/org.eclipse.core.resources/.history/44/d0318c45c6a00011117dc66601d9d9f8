@@ -211,6 +211,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			//Accountinformation
 			String userName = account.getUserName();
 			if(loadAccount(userName) != null) {
+				System.out.println("hej");
 				return false;
 			}
 			
@@ -222,7 +223,16 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			String updateString = "INSERT INTO Accounts VALUES('" + userName + 
 					"', '" + firstName + "', '" + lastName + "', '" + 
 					passWord + "', '" + balance + "')";
+			int up =
 			myStmt.executeUpdate(updateString);
+			System.out.println(up);
+			/*
+			if(up != 1) {
+				System.out.println("Account with userName " + userName + " " +
+						"already exists");
+				return false;
+			}
+			*/
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

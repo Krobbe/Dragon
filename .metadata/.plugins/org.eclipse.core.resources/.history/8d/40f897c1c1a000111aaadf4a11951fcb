@@ -160,23 +160,25 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	
 	private boolean tryRegisterAccount(String userName, String firstName, 
 			String lastName, String passWord) {
-		serverComm = connectToServer();
-
-		Account tmp = new Account(firstName, lastName, userName, passWord);
-		try {
-			if (serverComm.createAccount(tmp)) {
-				login(this, tmp.getUserName(), tmp.getPassWord());
-				EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
-				return true;
-			} else {
-				EventBus.publish(new Event(Event.Tag.REGISTER_FAILED, ""));
+			System.out.println("hej!");
+			if(serverComm == null) {
+				return false;
 			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return false;
+			Account tmp = new Account(firstName, lastName, userName, passWord);
+			try {
+				if(serverComm.createAccount(tmp)) {
+					login(this, tmp.getUserName(), tmp.getPassWord());
+					EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
+					return true;
+				} else {
+					EventBus.publish(new Event(Event.Tag.REGISTER_FAILED, ""));
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return false;
 	}
 	
 	public boolean createGame(int entranceFee, int playerStartingChips,

@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.postgresql.util.PSQLException;
-
 import database.DatabaseCommunicator;
 import database.IDBAccount;
 
@@ -210,10 +208,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			
 			//Accountinformation
 			String userName = account.getUserName();
-			if(loadAccount(userName) != null) {
-				return false;
-			}
-			
 			String firstName = account.getFirstName();
 			String lastName = account.getLastName();
 			String passWord = account.getPassWord();
@@ -222,11 +216,17 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			String updateString = "INSERT INTO Accounts VALUES('" + userName + 
 					"', '" + firstName + "', '" + lastName + "', '" + 
 					passWord + "', '" + balance + "')";
+			int up =
 			myStmt.executeUpdate(updateString);
+			System.out.println(up);
+			if(up != 1) {
+				System.out.println("Account with userName " + userName + " " +
+						"already exists");
+				return false;
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			return false;
 		}
 		
 		System.out.println("*** Account with username: \"" + account.getUserName() + "\" "

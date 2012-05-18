@@ -6,12 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import client.event.Event;
+import client.event.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import event.Event;
 
 /**
  * The RegisterPanel is the panel where users can type in their details and register for an account.
@@ -47,11 +50,11 @@ public class RegisterPanel extends JPanel implements ActionListener,
 
 	@Override
 	public void onEvent(client.event.Event evt) {
-		if (evt.getTag().equals(Event.Tag.REGISTER_FAILED)) {
-			errorLabel.setText("That username already exist. " +
+		if (evt.getTag().equals(client.event.Event.Tag.REGISTER_FAILED)) {
+			errorLabel.setText("That username already exist." +
 					"Choose another one.");
-		} else if(evt.getTag().equals(Event.Tag.REGISTER_SUCCESS)
-				|| evt.getTag().equals(Event.Tag.LOGIN_SUCCESS)) {
+		} else if(evt.getTag().equals(client.event.Event.Tag.REGISTER_SUCCESS)
+				||evt.getTag().equals(Event.Tag.LOGIN_SUCCESS)) {
 			errorLabel.setText("");
 		}
 	}
@@ -140,7 +143,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 		this.add(registerBackButton);
 		
 		errorLabel = new JLabel();
-		errorLabel.setBounds(447, 152, 300, 14);
+		errorLabel.setBounds(447, 152, 208, 14);
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		errorLabel.setForeground(Color.red);
 		this.add(errorLabel);

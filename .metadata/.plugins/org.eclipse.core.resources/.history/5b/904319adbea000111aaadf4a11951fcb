@@ -102,6 +102,7 @@ public class Table implements Serializable {
 	 */
 	//TODO annat namn på denna?
 	//TODO Test nextDealerButtonPlayer()
+	//TODO Discuss and implement a possible better solution to dealer button
 	public int nextDealerButtonIndex() {
 		do {
 			indexOfDealerButton = (indexOfDealerButton + 1) % players.size();
@@ -263,45 +264,4 @@ public class Table implements Serializable {
 	public int getMeIndex() {
 		return meIndex;
 	}
-	
-	/**
-	 * Checks which buttons that are supposed to be disabled.
-	 * @return A list of strings with the names of the buttons that are supposed
-	 * to be disabled.
-	 */
-	public List<String> getLegalButtons() {
-		List<String> legalButtons = new LinkedList<String>();
-		
-		/* if it's not this client's turn, he should not be able to push any
-		 * button. */
-		if (getCurrentPlayer() != players.get(meIndex)) {
-			return legalButtons;
-		}
-		
-		if(isCheckLegal()) { legalButtons.add("check"); }
-		if(isCallLegal()) {	legalButtons.add("call"); }
-		legalButtons.add("fold");
-		legalButtons.add("raise");
-		
-		return legalButtons;
-	}
-	
-	/**
-	 * Checks if a the current player is allowed to perform a check.
-	 * 
-	 * @return A boolean telling if the check is legal
-	 */
-	private boolean isCheckLegal() {
-		return !(getCurrentPlayer().getOwnCurrentBet() < getRound()
-				.getBettingRound().getCurrentBet().getValue());
-	}
-
-	/**
-	 * Checks if a the current player is allowed to perform a call.
-	 * @return A boolean telling if the call is legal
-	 */
-	private boolean isCallLegal() {
-		return !(getRound().getBettingRound().getCurrentBet().getValue() <= 0);
-	}
-
 }
