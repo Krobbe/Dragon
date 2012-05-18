@@ -8,6 +8,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Collection;
 import java.util.List;
 
+import common.remote.IClientGame;
+import common.remote.IServerGame;
+
 import client.event.Event;
 import client.event.EventBus;
 import client.event.EventHandler;
@@ -19,8 +22,6 @@ import model.player.Bet;
 import model.player.IPlayer;
 import model.player.hand.IHand;
 
-import remote.IClientGame;
-import remote.IServerGame;
 
 /**
  * @author robinandersson

@@ -1,4 +1,4 @@
-package remote;
+package common.remote;
 
 import java.io.BufferedWriter;
 import java.io.File;

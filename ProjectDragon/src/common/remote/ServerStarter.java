@@ -1,7 +1,7 @@
 /**
  * 
  */
-package remote;
+package common.remote;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

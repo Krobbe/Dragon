@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import common.remote.IClient;
+import common.remote.IServer;
+import common.remote.IServerGame;
+
 import client.event.Event;
 import client.event.EventHandler;
 import client.event.EventBus;
@@ -24,9 +28,6 @@ import model.player.IPlayer;
 import model.player.User;
 import model.player.hand.Hand;
 
-import remote.IClient;
-import remote.IServer;
-import remote.IServerGame;
 
 /**
  * This clientside class handles all general communication to and from the

@@ -13,6 +13,12 @@ import java.util.TreeMap;
 
 import org.postgresql.util.PSQLException;
 
+import common.remote.IClient;
+import common.remote.IClientGame;
+import common.remote.IServer;
+import common.remote.IServerGame;
+import common.remote.ServerStarter;
+
 import database.DatabaseCommunicator;
 import database.IDBAccount;
 
@@ -23,11 +29,6 @@ import model.player.IPlayer;
 import model.player.hand.Hand;
 
 
-import remote.ServerStarter;
-import remote.IClient;
-import remote.IClientGame;
-import remote.IServer;
-import remote.IServerGame;
 
 /**
  * This serverside class handles all general communication to and from the 

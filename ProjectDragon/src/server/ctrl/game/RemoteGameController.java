@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import common.remote.IClientGame;
+import common.remote.IServerGame;
 import common.utilities.IllegalCallException;
 import common.utilities.IllegalCheckException;
 import common.utilities.IllegalRaiseException;
@@ -27,8 +29,6 @@ import model.game.Pot;
 import model.player.*;
 import model.player.hand.IHand;
 
-import remote.IClientGame;
-import remote.IServerGame;
 import server.event.Event;
 import server.event.EventHandler;
 

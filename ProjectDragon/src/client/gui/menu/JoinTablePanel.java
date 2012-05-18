@@ -18,7 +18,8 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-import remote.IServerGame;
+import common.remote.IServerGame;
+
 
 /**
  * JoinTablePanel is the panel in which the user can select a table to join

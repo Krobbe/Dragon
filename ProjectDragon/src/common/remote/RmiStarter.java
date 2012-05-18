@@ -1,4 +1,4 @@
-package remote;
+package common.remote;
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
