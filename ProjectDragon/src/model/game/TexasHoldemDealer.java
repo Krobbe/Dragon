@@ -2,6 +2,7 @@ package model.game;
 
 import model.card.Deck;
 import model.card.ICard;
+import model.card.IDeck;
 
 /**
  * A class that represents a dealer. 
@@ -13,7 +14,7 @@ import model.card.ICard;
  */
 
 public class TexasHoldemDealer implements IDealer {
-	private Deck d;
+	private IDeck d;
 	
 	public TexasHoldemDealer() {
 		d = new Deck();

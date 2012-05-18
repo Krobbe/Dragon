@@ -178,6 +178,10 @@ public class TableView implements EventHandler, ActionListener{
 			else {
 				playerPanelList.get(turnIndex-1).setTheBackground(Color.gray);
 			}
+			
+			List<String> legalButtons = table.getLegalButtons();
+			//TODO: hantera call, check, fold och raise knappar. listan innehåller
+			// strängar med vilka knappar som man ska kunna trycka på.
 			break;
 			
 		case HANDS_CHANGED:

@@ -3,6 +3,7 @@ package client.ctrl.game;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import model.card.Card;
@@ -308,4 +309,5 @@ public class GameController implements Serializable{
 	private boolean validPlayerAction(IPlayer player) {
 		return player.equals(table.getCurrentPlayer());
 	}
+		
 }

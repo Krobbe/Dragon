@@ -30,7 +30,7 @@ import event.EventBus;
 
 public class Table {
 	private Round round;
-	private TexasHoldemDealer dealer;
+	private IDealer dealer;
 	private List<ICard> communityCards;
 	private List<IPlayer> players;
 
@@ -358,7 +358,7 @@ public class Table {
 	 * 
 	 * @return The table's dealer
 	 */
-	public TexasHoldemDealer getDealer() {
+	public IDealer getDealer() {
 		return dealer;
 	}
 	
