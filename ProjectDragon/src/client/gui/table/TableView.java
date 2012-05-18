@@ -9,7 +9,8 @@ import java.util.List;
 
 import javax.swing.*;
 
-import model.card.ICard;
+import common.model.card.ICard;
+
 import model.player.Bet;
 import model.player.IPlayer;
 import model.player.Player;

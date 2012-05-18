@@ -1,4 +1,4 @@
-package model.card;
+package common.model.card;
 
 /**
  * This enum contains the suit values that a card can have

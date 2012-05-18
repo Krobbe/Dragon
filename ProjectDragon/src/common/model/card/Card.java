@@ -1,4 +1,4 @@
-package model.card;
+package common.model.card;
 
 
 /**

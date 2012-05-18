@@ -1,4 +1,4 @@
-package model.card;
+package common.model.card;
 
 /**
  * A interface that represents a Deck.

@@ -7,8 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import common.model.card.ICard;
 
-import model.card.ICard;
+
 import model.player.IPlayer;
 import model.player.hand.IHand;
 

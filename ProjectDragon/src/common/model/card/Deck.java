@@ -1,11 +1,12 @@
-package model.card;
+package common.model.card;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import model.card.Rank;
-import model.card.Suit;
+import common.model.card.Rank;
+import common.model.card.Suit;
+
 
 public class Deck implements IDeck {
 	List<ICard> cards = new ArrayList<ICard>();

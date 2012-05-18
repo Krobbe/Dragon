@@ -2,9 +2,10 @@ package model.player.hand;
 
 import java.util.List;
 
-import model.card.Card;
-import model.card.ICard;
-import model.card.Rank;
+import common.model.card.Card;
+import common.model.card.ICard;
+import common.model.card.Rank;
+
 
 /**
  * Evaluator for calculating the value of a poker hand.

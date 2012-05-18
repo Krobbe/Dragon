@@ -1,8 +1,8 @@
 package model.game;
 
-import model.card.Deck;
-import model.card.ICard;
-import model.card.IDeck;
+import common.model.card.Deck;
+import common.model.card.ICard;
+import common.model.card.IDeck;
 
 /**
  * A class that represents a dealer. 

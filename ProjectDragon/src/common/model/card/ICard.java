@@ -1,6 +1,6 @@
-package model.card;
+package common.model.card;
 
-import model.card.Card.*;
+import common.model.card.Card.*;
 
 public interface ICard extends Comparable<ICard> {
 	

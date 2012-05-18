@@ -4,10 +4,11 @@ import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.List;
 
-import model.card.Card;
-import model.card.ICard;
-import model.card.Rank;
-import model.card.Suit;
+import common.model.card.Card;
+import common.model.card.ICard;
+import common.model.card.Rank;
+import common.model.card.Suit;
+
 import model.game.Pot;
 import model.player.Bet;
 import model.player.IPlayer;

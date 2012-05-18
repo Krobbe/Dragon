@@ -1,11 +1,12 @@
 package model.player.hand;
 
 import static org.junit.Assert.assertTrue;
-import model.card.Card;
-import model.card.Rank;
-import model.card.Suit;
 
 import org.junit.Test;
+
+import common.model.card.Card;
+import common.model.card.Rank;
+import common.model.card.Suit;
 /**
  * A test for HandValue
  * @author lisastenberg

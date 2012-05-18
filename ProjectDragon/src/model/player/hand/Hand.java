@@ -7,7 +7,8 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.card.*;
+
+import common.model.card.*;
 
 /**
  * @author robinandersson

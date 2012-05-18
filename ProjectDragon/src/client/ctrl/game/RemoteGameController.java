@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Collection;
 import java.util.List;
 
+import common.model.card.ICard;
 import common.remote.IClientGame;
 import common.remote.IServerGame;
 
@@ -16,7 +17,6 @@ import client.event.EventBus;
 import client.event.EventHandler;
 import client.model.game.Table;
 
-import model.card.ICard;
 import model.game.Pot;
 import model.player.Bet;
 import model.player.IPlayer;

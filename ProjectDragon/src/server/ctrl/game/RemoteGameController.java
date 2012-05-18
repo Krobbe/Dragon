@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import common.model.card.ICard;
 import common.remote.IClientGame;
 import common.remote.IServerGame;
 import common.utilities.IllegalCallException;
@@ -24,7 +25,6 @@ import common.utilities.IllegalRaiseException;
 import database.*;
 
 
-import model.card.ICard;
 import model.game.Pot;
 import model.player.*;
 import model.player.hand.IHand;

@@ -7,7 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.card.ICard;
+import common.model.card.ICard;
+
 
 /**
  * This is the panel that holds all the information about what cards are on the table, how much is in the pot

@@ -1,7 +1,7 @@
 package model.game;
 
 
-import model.card.ICard;
+import common.model.card.ICard;
 
 
 /**

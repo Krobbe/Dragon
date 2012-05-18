@@ -7,11 +7,12 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 
-import model.card.Card;
-import model.card.Rank;
-import model.card.Suit;
 
 import org.junit.Test;
+
+import common.model.card.Card;
+import common.model.card.Rank;
+import common.model.card.Suit;
 
 /**
  * Test for TexasHoldemHand.

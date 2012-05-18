@@ -6,10 +6,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.card.Card;
-import model.card.ICard;
-import model.card.Rank;
-import model.card.Suit;
 import model.player.IPlayer;
 import model.player.Player;
 import model.player.User;
@@ -17,6 +13,10 @@ import model.player.hand.HandValueType;
 
 import org.junit.Test;
 
+import common.model.card.Card;
+import common.model.card.ICard;
+import common.model.card.Rank;
+import common.model.card.Suit;
 import common.utilities.CommunityCardsFullException;
 import common.utilities.PlayersFullException;
 

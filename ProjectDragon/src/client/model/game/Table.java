@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.card.*;
+import common.model.card.*;
 import model.game.*;
 import model.player.*;
 import common.utilities.*;

@@ -3,7 +3,8 @@ package model.player.hand;
 import java.io.Serializable;
 import java.util.List;
 
-import model.card.ICard;
+import common.model.card.ICard;
+
 
 /**
  * An interface for a hand in a poker game. 

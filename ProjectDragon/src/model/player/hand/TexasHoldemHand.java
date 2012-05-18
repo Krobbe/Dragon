@@ -6,7 +6,8 @@ package model.player.hand;
 import java.io.Serializable;
 import java.util.List;
 
-import model.card.*;
+
+import common.model.card.*;
 
 /**
  * A class representing a standard Texas Hold'em hand

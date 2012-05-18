@@ -2,10 +2,11 @@ package model.player;
 
 import static org.junit.Assert.*;
 
-import model.card.Card;
 import model.player.hand.TexasHoldemHand;
 
 import org.junit.Test;
+
+import common.model.card.Card;
 
 /**
  * A test of the class "Player".

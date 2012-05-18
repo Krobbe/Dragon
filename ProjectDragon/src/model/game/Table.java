@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import common.model.card.ICard;
 import common.utilities.CommunityCardsFullException;
 import common.utilities.PlayersFullException;
 
 
-import model.card.ICard;
 import model.player.Bet;
 import model.player.IPlayer;
 import model.player.hand.FullTHHand;

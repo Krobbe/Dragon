@@ -1,12 +1,13 @@
 package model.game;
 
 import static org.junit.Assert.assertTrue;
-import model.card.Card;
-import model.card.CardComparator;
-import model.card.Rank;
-import model.card.Suit;
 
 import org.junit.Test;
+
+import common.model.card.Card;
+import common.model.card.CardComparator;
+import common.model.card.Rank;
+import common.model.card.Suit;
 /**
  * A test for CardComparator.
  * 
