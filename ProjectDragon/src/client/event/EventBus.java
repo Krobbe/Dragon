@@ -40,7 +40,8 @@ public class EventBus {
     public static void publish( Event evt ) {
         // Tracking all events
         System.out.println(evt);
-        for( EventHandler evh : handlers){    	
+        List<EventHandler> tmp = new ArrayList<EventHandler>(handlers);
+        for( EventHandler evh : tmp){    	
         	evh.onEvent(evt);
         }
     }
