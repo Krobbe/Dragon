@@ -14,6 +14,7 @@ import model.player.hand.HandValue;
 import model.player.hand.HandValueType;
 import model.player.hand.IHand;
 import utilities.CommunityCardsFullException;
+import utilities.PlayersFullException;
 import event.Event;
 import event.EventBus;
 
@@ -44,17 +45,17 @@ public class Table {
 	 * Creates a new Table.
 	 */
 	public Table() {
-		this(null);
+		this(new LinkedList<IPlayer>());
 	}
 
 	public Table(Collection<IPlayer> players) {
 		round = new Round();
 		dealer = new TexasHoldemDealer();
 		communityCards = new LinkedList<ICard>();
-		if (players == null) {
-			this.players = new LinkedList<IPlayer>();
-		} else {
-			this.players = new LinkedList<IPlayer>(players);
+		players = new LinkedList<IPlayer>();
+		
+		for(IPlayer player : players) {
+			this.players.add(player);
 		}
 
 		indexOfCurrentPlayer = 0;
@@ -65,10 +66,16 @@ public class Table {
 	 * Adds a player to the table.
 	 * 
 	 * @param p
-	 *            The player that will be added to the list of players
+	 *            The player that will be added to the list of players.
+	 * @throws PlayersFullException if there already is 10 players at the table.
+	 *        
 	 */
-	public void addPlayer(IPlayer player) {
-		players.add(player);
+	public void addPlayer(IPlayer player) throws PlayersFullException {
+		if(players.size() < 10) {
+			players.add(player);
+		} else {
+			throw new PlayersFullException();
+		}
 	}
 
 	/**

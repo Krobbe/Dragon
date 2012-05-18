@@ -1,12 +1,21 @@
 package client.gui.menu;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import client.event.Event;
+
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,6 +40,8 @@ public class RegisterPanel extends JPanel implements ActionListener,
 	private JPasswordField registerPasswordAgainField;
 	private JLabel errorLabel;
 	
+	private String background = P.INSTANCE.getBackgroundImage();
+	private float transparency = P.INSTANCE.getTransparency();
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
 	private int margin = P.INSTANCE.getMarginSize();
@@ -74,6 +85,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 	private void init() {
 		// JPanel registerPanel = new JPanel();
 		// frame.getContentPane().add(registerPanel);
+		this.setOpaque(false);
 		this.setLayout(null);
 		this.setBackground(P.INSTANCE.getBackground());
 
@@ -146,4 +158,35 @@ public class RegisterPanel extends JPanel implements ActionListener,
 		this.add(errorLabel);
 	}
 
+	public void paintComponent(Graphics g) {
+		Image im = loadTranslucentImage(background, transparency);
+		g.drawImage(im, 0, 0, frameWidth, frameHeight, null);
+	}
+
+	/**
+	 * Return a translucent bufferedImage with transparency "transperancy"
+	 * 
+	 * @param url
+	 * @param transperancy
+	 * @return
+	 * @author lisastenberg
+	 */
+	public static BufferedImage loadTranslucentImage(String url,
+			float transparency) {
+		BufferedImage loaded;
+		try {
+			loaded = ImageIO.read(new File(url));
+			BufferedImage aimg = new BufferedImage(loaded.getWidth(),
+					loaded.getHeight(), BufferedImage.TRANSLUCENT);
+			Graphics2D g = aimg.createGraphics();
+			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+					transparency));
+			g.drawImage(loaded, null, 0, 0);
+			g.dispose();
+			return aimg;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

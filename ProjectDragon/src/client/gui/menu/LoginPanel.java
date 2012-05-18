@@ -1,16 +1,22 @@
 package client.gui.menu;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints.Key;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -34,6 +40,8 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 	private JButton loginButton;
 	private JButton loginRegisterButton;
 	private JLabel errorLabel;
+	private String background = P.INSTANCE.getBackgroundImage();
+	private float transparency = P.INSTANCE.getTransparency();
 	
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
@@ -74,9 +82,8 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 
 	private void init() {
 		this.setLayout(null);
+		this.setOpaque(false);
 		
-		//this.setBackground(P.INSTANCE.getBackground());
-
 		JLabel loginNameLabel = new JLabel("User name");
 		loginNameLabel.setBounds(447, 274, 108, 14);
 		this.add(loginNameLabel);
@@ -140,9 +147,36 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
-	
-	  public void paintComponent(Graphics g) {
-		  Image img = new ImageIcon("lib/dragon_background.jpg").getImage();
-		  g.drawImage(img, 0, 0, frameWidth, frameHeight, null);
-	  }
+
+	public void paintComponent(Graphics g) {
+		Image im = loadTranslucentImage(background, transparency);
+		g.drawImage(im, 0, 0, frameWidth, frameHeight, null);
+	}
+
+	/**
+	 * Return a translucent bufferedImage with transparency "transperancy"
+	 * 
+	 * @param url
+	 * @param transperancy
+	 * @return
+	 * @author lisastenberg
+	 */
+	public static BufferedImage loadTranslucentImage(String url,
+			float transparency) {
+		BufferedImage loaded;
+		try {
+			loaded = ImageIO.read(new File(url));
+			BufferedImage aimg = new BufferedImage(loaded.getWidth(),
+					loaded.getHeight(), BufferedImage.TRANSLUCENT);
+			Graphics2D g = aimg.createGraphics();
+			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+					transparency));
+			g.drawImage(loaded, null, 0, 0);
+			g.dispose();
+			return aimg;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

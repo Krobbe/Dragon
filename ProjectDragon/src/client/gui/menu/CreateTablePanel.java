@@ -1,10 +1,18 @@
 package client.gui.menu;
 
+import java.awt.AlphaComposite;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,7 +39,9 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	private JComboBox createTablePlayersSpinner;
 	private JButton createTableBackButton;
 	private JButton createTableCreateButton;
-
+	
+	private String background = P.INSTANCE.getBackgroundImage();
+	private float transparency = P.INSTANCE.getTransparency();
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
 	private int margin = P.INSTANCE.getMarginSize();
@@ -69,7 +79,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	
 	private void init() {
 		this.setLayout(null);
-		this.setBackground(P.INSTANCE.getBackground());
+		this.setOpaque(false);
 		
 		JLabel costToEnterLabel = new JLabel("Cost to enter?");
 		costToEnterLabel.setBounds(416, 262, 176, 20);
@@ -117,5 +127,37 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 				- 2*margin, buttonWidth, buttonHeight);
 		createTableCreateButton.addActionListener(this);
 		this.add(createTableCreateButton);
+	}
+	
+	public void paintComponent(Graphics g) {
+		Image im = loadTranslucentImage(background, transparency);
+		g.drawImage(im, 0, 0, frameWidth, frameHeight, null);
+	}
+
+	/**
+	 * Return a translucent bufferedImage with transparency "transperancy"
+	 * 
+	 * @param url
+	 * @param transperancy
+	 * @return
+	 * @author lisastenberg
+	 */
+	public static BufferedImage loadTranslucentImage(String url,
+			float transparency) {
+		BufferedImage loaded;
+		try {
+			loaded = ImageIO.read(new File(url));
+			BufferedImage aimg = new BufferedImage(loaded.getWidth(),
+					loaded.getHeight(), BufferedImage.TRANSLUCENT);
+			Graphics2D g = aimg.createGraphics();
+			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+					transparency));
+			g.drawImage(loaded, null, 0, 0);
+			g.dispose();
+			return aimg;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

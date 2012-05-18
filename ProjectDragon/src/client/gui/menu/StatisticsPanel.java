@@ -1,7 +1,14 @@
 package client.gui.menu;
 
+import java.awt.AlphaComposite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -49,6 +57,9 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	private JList selectedGame;
 	private DefaultListModel selectedGameModel;
 	
+	private String background = P.INSTANCE.getBackgroundImage();
+	private float transparency = P.INSTANCE.getTransparency();
+	private int frameWidth = P.INSTANCE.getFrameWidth();
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int margin = P.INSTANCE.getMarginSize();
 	private int buttonHeight = P.INSTANCE.getButtonHeight();
@@ -86,7 +97,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 
 	private void init() {
 		this.setLayout(null);
-		this.setBackground(P.INSTANCE.getBackground());
+		this.setOpaque(false);
 
 		JLabel userName = new JLabel("User name");
 		userName.setBounds(200, 102, 200, 20);
@@ -277,5 +288,37 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		for(Integer i : s) {
 			selectedGameModel.addElement(i + ". " + othertmp.get(i));
 		}
+	}
+	
+	public void paintComponent(Graphics g) {
+		Image im = loadTranslucentImage(background, transparency);
+		g.drawImage(im, 0, 0, frameWidth, frameHeight, null);
+	}
+
+	/**
+	 * Return a translucent bufferedImage with transparency "transperancy"
+	 * 
+	 * @param url
+	 * @param transperancy
+	 * @return
+	 * @author lisastenberg
+	 */
+	public static BufferedImage loadTranslucentImage(String url,
+			float transparency) {
+		BufferedImage loaded;
+		try {
+			loaded = ImageIO.read(new File(url));
+			BufferedImage aimg = new BufferedImage(loaded.getWidth(),
+					loaded.getHeight(), BufferedImage.TRANSLUCENT);
+			Graphics2D g = aimg.createGraphics();
+			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+					transparency));
+			g.drawImage(loaded, null, 0, 0);
+			g.dispose();
+			return aimg;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
