@@ -25,10 +25,8 @@ import model.player.User;
 import model.player.hand.Hand;
 
 import remote.IClient;
-import remote.IClientGame;
 import remote.IServer;
 import remote.IServerGame;
-import utilities.IllegalCallException;
 
 /**
  * This clientside class handles all general communication to and from the
@@ -53,7 +51,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		activeGames = new TreeMap<IPlayer, RemoteGameController>();
 		account = null;
 		// TODO Set where to search for server. Comment that son'uvabitch
-		//System.setProperty("java.naming.provider.url", "rmi://129.16.184.157:1099");
+		//System.setProperty("java.naming.provider.url", "rmi://129.16.179.143:1099");
 		EventBus.register(this);
 	}
 	
@@ -79,9 +77,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		
 	    try {
 	    	//Registry registry = LocateRegistry.getRegistry(IServer.REMOTE_NAME, port);
-	        //Registry registry = LocateRegistry.getRegistry("rmi://129.16.179.143", port);
-	        Registry registry = LocateRegistry.getRegistry("129.16.179.143", port);
-	        //Registry registry = LocateRegistry.getRegistry(port);
+	        //Registry registry = LocateRegistry.getRegistry("129.16.179.143", port);
+	        Registry registry = LocateRegistry.getRegistry(port);
 
 	        server = (IServer) registry.lookup(IServer.REMOTE_NAME);
 	        System.out.println("*** Connection established on port: " + port
