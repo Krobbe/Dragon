@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ctrl.game;
+package server.ctrl.game;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

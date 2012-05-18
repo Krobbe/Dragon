@@ -2,7 +2,8 @@ package server.main;
 
 import java.rmi.RemoteException;
 
-import ctrl.game.RemoteCommunicationController;
+import server.ctrl.game.RemoteCommunicationController;
+
 
 /**
  * @author robinandersson
