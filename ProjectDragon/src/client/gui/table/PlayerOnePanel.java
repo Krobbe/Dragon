@@ -1,6 +1,7 @@
 package client.gui.table;
 
 import java.awt.Color;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -38,13 +39,12 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 
 		p1c1Label = new JLabel("Card 1");
 		p1c1Label.setBounds(10, 5, 53, 80);
-		System.out.println(getClass().getResource(path + "NORANKNOSUIT.gif"));
 		p1c1Label.setIcon(new ImageIcon((path + "NORANKNOSUIT.gif")));
 		this.add(p1c1Label);
 
 		p1c2Label = new JLabel("Card 2\r\n");
 		p1c2Label.setBounds(73, 5, 53, 80);
-		p1c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+		p1c2Label.setIcon(new ImageIcon((path + "NORANKNOSUIT.gif")));
 		this.add(p1c2Label);
 
 		p1NameLabel = new JLabel("Player1\r\n");

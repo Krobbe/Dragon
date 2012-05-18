@@ -124,7 +124,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			 *  Checks if the player has enough "money" to pay the game's
 			 *	entrance fee
 			*/
-			if(serverSideAccount.getBalance().getValue() >= entranceFee ){
+			if(serverSideAccount != null && serverSideAccount.getBalance().getValue() >= entranceFee ){
 			
 				try {
 					newGame = new RemoteGameController(this, maxPlayers,

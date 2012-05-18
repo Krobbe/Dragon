@@ -90,6 +90,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		
 		super();
 		this.remoteCommunicationController = remoteCommunicationController;
+		this.gameController = gameController;
 		playerReferences = new TreeMap<IPlayer, IClientGame>();
 		this.maxPlayers = maxPlayers;
 		this.entranceFee = entranceFee;
@@ -410,15 +411,17 @@ public class RemoteGameController extends UnicastRemoteObject
 	@Override
 	public void tryStartGame() throws RemoteException {
 		
-		// Checks if all the players are ready to start the game
-		for(IPlayer player : playerReferences.keySet()){
-			if(!player.isStillInGame()){
-				return;
+		if(gameController != null) {
+			// Checks if all the players are ready to start the game
+			for(IPlayer player : playerReferences.keySet()){
+				if(!player.isStillInGame()){
+					return;
+				}
 			}
+			
+			// TODO Handle start game scenario
+			gameController.nextRound();
 		}
-		
-		// TODO Handle start game scenario
-		gameController.nextRound();
 
 	}
 
