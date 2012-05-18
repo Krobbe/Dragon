@@ -3,6 +3,8 @@
  */
 package remote;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -17,6 +19,13 @@ public class ServerStarter extends RmiStarter{
 	public ServerStarter(IServer stub) {
 		
 	    super(IServer.class);
+	    
+	    try {
+			System.out.println((InetAddress.getLocalHost()).toString());
+		} catch (UnknownHostException e1) {
+			System.out.println("Can't get inet adress");
+			e1.printStackTrace();
+		}
 		
 		try {
 			

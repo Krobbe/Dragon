@@ -52,7 +52,6 @@ public abstract class RmiStarter {
 					} catch (NotBoundException e) {
 						e.printStackTrace();
 					}
-	
 			    	
 			    } //run()
 			}//new Runnable()
@@ -63,8 +62,6 @@ public abstract class RmiStarter {
     		e.printStackTrace();
     		System.exit(0);
     	}
-
-    	
     	
     	/**
     	 * @author srasul 
@@ -79,7 +76,8 @@ public abstract class RmiStarter {
         		PolicyFileLocator.getLocationOfPolicyFile());
         
         System.setProperty("java.rmi.server.hostname", IServer.REMOTE_NAME);
-
+        //System.setProperty("java.rmi.server.hostname", "rmi://129.16.184.157:1099");
+        
         if(System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
         }
