@@ -26,7 +26,6 @@ import client.model.game.*;
 public class CreateTablePanel extends JPanel implements ActionListener,
 		client.event.EventHandler {
 
-	// TODO Implement these when there's time for it
 	private JTextField costToEnterField;
 	private JTextField numberOfChipsField;
 	private JComboBox createTablePlayersSpinner;

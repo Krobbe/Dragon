@@ -15,7 +15,6 @@ public class Main {
 
 		
 		try {
-			RemoteCommunicationController remoteCommunicationController =
 					new RemoteCommunicationController();
 			
 		} catch (RemoteException e) {
