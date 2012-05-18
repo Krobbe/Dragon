@@ -175,6 +175,16 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	}
 
 	@Override
+	public void saveGame(int gameID, String date) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void savePlacement(String gameID, Player player, int placement) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public Map<Integer, String> loadGamePlacements(String gameID) {
 		Connection conn = dbc.getConnection();
 		Statement myStmt;
@@ -218,6 +228,11 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public int calculateGameID() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

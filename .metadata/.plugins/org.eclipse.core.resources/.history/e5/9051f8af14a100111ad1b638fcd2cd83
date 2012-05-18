@@ -480,4 +480,18 @@ public class RemoteGameController extends UnicastRemoteObject
 		}
 		return -1;
 	}
+
+	@Override
+	public int loadNbrOfPlayedGames(String userName) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<Integer> loadPlayedGames(String userName) {
+		throw new UnsupportedOperationException();
+	}
+
+
+
+
 }

@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import database.DatabaseCommunicator;
-import database.*;
+import database.IDBGame;
 
 import event.Event;
 import event.EventHandler;
@@ -43,7 +43,7 @@ import utilities.IllegalRaiseException;
  */
 public class RemoteGameController extends UnicastRemoteObject
 										implements IServerGame, EventHandler,
-										IDBSaveGame {
+										IDBGame {
 
 	private GameController gameController;
 	private RemoteCommunicationController remoteCommunicationController;
@@ -462,6 +462,16 @@ public class RemoteGameController extends UnicastRemoteObject
 	}
 
 	@Override
+	public Map<Integer, String> loadGamePlacements(String gameID) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int loadNbrOfWonGames(String userName) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public int calculateGameID() {
 		Connection conn = dbc.getConnection();
 		Statement myStmt;
@@ -480,4 +490,18 @@ public class RemoteGameController extends UnicastRemoteObject
 		}
 		return -1;
 	}
+
+	@Override
+	public int loadNbrOfPlayedGames(String userName) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<Integer> loadPlayedGames(String userName) {
+		throw new UnsupportedOperationException();
+	}
+
+
+
+
 }
