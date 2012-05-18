@@ -1,4 +1,4 @@
-package model.player.hand;
+package common.model.player.hand;
 
 import java.util.Collections;
 import java.util.LinkedList;

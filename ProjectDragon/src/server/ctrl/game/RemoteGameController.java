@@ -20,6 +20,7 @@ import common.model.player.Account;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.Player;
+import common.model.player.hand.IHand;
 import common.remote.IClientGame;
 import common.remote.IServerGame;
 import common.utilities.IllegalCallException;
@@ -31,7 +32,6 @@ import database.*;
 
 import model.game.Pot;
 import model.player.*;
-import model.player.hand.IHand;
 
 import server.event.Event;
 import server.event.EventHandler;

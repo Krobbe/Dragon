@@ -10,9 +10,9 @@ import common.model.card.Rank;
 import common.model.card.Suit;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
+import common.model.player.hand.IHand;
 
 import model.game.Pot;
-import model.player.hand.IHand;
 import client.event.Event;
 import client.event.EventBus;
 import client.model.game.Table;

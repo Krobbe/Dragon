@@ -12,9 +12,9 @@ import java.util.List;
 import common.model.card.ICard;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
+import common.model.player.hand.IHand;
 
 import model.game.Pot;
-import model.player.hand.IHand;
 
 /**
  * @author robinandersson

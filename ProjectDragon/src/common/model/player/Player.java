@@ -1,7 +1,7 @@
 package common.model.player;
 
-import model.player.hand.IHand;
-import model.player.hand.TexasHoldemHand;
+import common.model.player.hand.IHand;
+import common.model.player.hand.TexasHoldemHand;
 
 /**
  * This class contains common methods and variables for all classes implementing

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.player.hand;
+package common.model.player.hand;
 
 import java.io.Serializable;
 import java.util.List;

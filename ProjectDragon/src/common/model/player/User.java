@@ -1,6 +1,6 @@
 package common.model.player;
 
-import model.player.hand.IHand;
+import common.model.player.hand.IHand;
 
 
 /**

@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import model.game.Table;
-import model.player.hand.TexasHoldemHand;
 
 import org.junit.Test;
 
@@ -17,6 +16,7 @@ import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.Player;
 import common.model.player.User;
+import common.model.player.hand.TexasHoldemHand;
 import common.utilities.CommunityCardsFullException;
 import common.utilities.IllegalRaiseException;
 import common.utilities.PlayersFullException;

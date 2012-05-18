@@ -3,8 +3,8 @@ package client.gui.table;
 import java.awt.Color;
 
 import common.model.player.IPlayer;
+import common.model.player.hand.IHand;
 
-import model.player.hand.IHand;
 
 /**
  * Interface for handling all the PlayerPanels

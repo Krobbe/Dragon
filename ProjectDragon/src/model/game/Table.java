@@ -9,14 +9,14 @@ import java.util.TreeMap;
 import common.model.card.ICard;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
+import common.model.player.hand.FullTHHand;
+import common.model.player.hand.HandValue;
+import common.model.player.hand.HandValueType;
+import common.model.player.hand.IHand;
 import common.utilities.CommunityCardsFullException;
 import common.utilities.PlayersFullException;
 
 
-import model.player.hand.FullTHHand;
-import model.player.hand.HandValue;
-import model.player.hand.HandValueType;
-import model.player.hand.IHand;
 import server.event.Event;
 import server.event.EventBus;
 

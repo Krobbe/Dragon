@@ -13,6 +13,8 @@ import org.junit.Test;
 import common.model.card.Card;
 import common.model.card.Rank;
 import common.model.card.Suit;
+import common.model.player.hand.IHand;
+import common.model.player.hand.TexasHoldemHand;
 
 /**
  * Test for TexasHoldemHand.

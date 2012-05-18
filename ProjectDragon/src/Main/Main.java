@@ -9,6 +9,7 @@ import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.Player;
 import common.model.player.User;
+import common.model.player.hand.TexasHoldemHand;
 import common.utilities.CommunityCardsFullException;
 import common.utilities.IllegalCallException;
 import common.utilities.IllegalCheckException;
@@ -21,7 +22,6 @@ import client.gui.menu.MainView;
 
 import model.game.*;
 import model.player.*;
-import model.player.hand.TexasHoldemHand;
 import server.ctrl.game.GameController;
 
 public class Main {

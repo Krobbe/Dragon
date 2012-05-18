@@ -1,4 +1,4 @@
-package model.player.hand;
+package common.model.player.hand;
 
 //This file is part of the 'texasholdem' project, an open source
 //Texas Hold'em poker application written in Java.

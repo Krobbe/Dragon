@@ -17,6 +17,7 @@ import common.model.player.Balance;
 import common.model.player.IPlayer;
 import common.model.player.Player;
 import common.model.player.User;
+import common.model.player.hand.Hand;
 import common.remote.IClient;
 import common.remote.IServer;
 import common.remote.IServerGame;
@@ -26,7 +27,6 @@ import client.event.EventHandler;
 import client.event.EventBus;
 import client.model.game.Table;
 
-import model.player.hand.Hand;
 
 
 /**

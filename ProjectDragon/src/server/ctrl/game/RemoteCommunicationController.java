@@ -17,6 +17,7 @@ import common.model.player.Account;
 import common.model.player.Balance;
 import common.model.player.IPlayer;
 import common.model.player.Player;
+import common.model.player.hand.Hand;
 import common.remote.IClient;
 import common.remote.IClientGame;
 import common.remote.IServer;
@@ -26,7 +27,6 @@ import common.remote.ServerStarter;
 import database.DatabaseCommunicator;
 import database.IDBAccount;
 
-import model.player.hand.Hand;
 
 
 

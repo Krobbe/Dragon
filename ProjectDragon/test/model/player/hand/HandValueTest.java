@@ -7,6 +7,9 @@ import org.junit.Test;
 import common.model.card.Card;
 import common.model.card.Rank;
 import common.model.card.Suit;
+import common.model.player.hand.FullTHHand;
+import common.model.player.hand.HandValue;
+import common.model.player.hand.HandValueType;
 /**
  * A test for HandValue
  * @author lisastenberg

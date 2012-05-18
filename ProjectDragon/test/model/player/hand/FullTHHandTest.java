@@ -12,6 +12,9 @@ import common.model.card.Card;
 import common.model.card.ICard;
 import common.model.card.Rank;
 import common.model.card.Suit;
+import common.model.player.hand.FullTHHand;
+import common.model.player.hand.IHand;
+import common.model.player.hand.TexasHoldemHand;
 /**
  * A test class for FullTHHand (Full Texas Hold'Em Hand)
  * @author lisastenberg
