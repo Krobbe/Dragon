@@ -13,7 +13,7 @@ import model.player.Player;
  * @author forssenm
  * @author mattiashenriksson
  */
-public class BettingRound implements Serializable{
+public class BettingRound {
 	private Bet currentBet;
 	
 	/**

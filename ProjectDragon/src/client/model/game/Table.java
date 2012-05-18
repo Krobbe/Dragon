@@ -22,7 +22,7 @@ import utilities.*;
  * 
  */
 
-public class Table implements Serializable {
+public class Table {
 	private Round round;
 	private List<ICard> communityCards;
 	private List<IPlayer> players;

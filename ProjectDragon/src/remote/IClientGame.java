@@ -19,7 +19,7 @@ import model.player.hand.IHand;
  * @author robinandersson
  * @author lisastenberg
  */
-public interface IClientGame extends Remote, Serializable{
+public interface IClientGame extends Remote {
 	
 	/**
 	 * Creates a new table.

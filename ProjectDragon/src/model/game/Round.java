@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author lisastenberg
  * @author mattiashenriksson
  */
-public class Round implements Serializable{
+public class Round {
 	private BettingRound bettingRound;
 	private Pot pot;
 	private Pot preBettingPot;

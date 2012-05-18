@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author lisastenberg
  * @author mattiashenriksson
  */
-public class Bet implements Serializable {
+public class Bet {
 	private int value;
 	private IPlayer owner;
 	

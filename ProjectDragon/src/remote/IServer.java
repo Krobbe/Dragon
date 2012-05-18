@@ -17,7 +17,7 @@ import model.player.IPlayer;
  * @author robinandersson
  *
  */
-public interface IServer extends Remote, IDBAccount, Serializable {
+public interface IServer extends Remote, IDBAccount {
 	
 	public static final String REMOTE_NAME = "Server";
 

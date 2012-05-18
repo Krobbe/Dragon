@@ -1,7 +1,6 @@
 package model.player;
 
 import java.io.Serializable;
-import java.util.Comparator;
 
 /**
  * A class that simulates an account.
@@ -10,9 +9,10 @@ import java.util.Comparator;
  * for that persons account.
  * 
  * @author lisastenberg
+ * @author robinandersson
  * 
  */
-public class Account implements Serializable, Comparable<Account> {
+public class Account implements Comparable<Account>, Serializable {
 	private String firstName, lastName, userName, passWord;
 	private Balance balance;
 

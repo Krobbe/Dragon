@@ -6,6 +6,7 @@ package client.ctrl.game;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,10 +31,13 @@ import remote.IServerGame;
 import utilities.IllegalCallException;
 
 /**
+ * This clientside class handles all general communication to and from the
+ * server.
+ * 
  * @author robinandersson
- *
  */
-public class RemoteCommunicationController implements IClient, EventHandler {
+public class RemoteCommunicationController extends UnicastRemoteObject
+											implements IClient, EventHandler {
 
 	// A map with games the user is currently playing represented by the remote
 	// game controller for that specific game
@@ -45,9 +49,11 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 	// TODO Flytta "lagringen" av account till ett mer passande ställe?
 	private Account account;
 	
-	public RemoteCommunicationController() {
+	public RemoteCommunicationController() throws RemoteException{
 		activeGames = new TreeMap<IPlayer, RemoteGameController>();
 		account = null;
+		// TODO Set where to search for server. Comment that son'uvabitch
+		System.setProperty("java.naming.provider.url", "rmi://localhost:1099");
 		EventBus.register(this);
 	}
 	
@@ -105,9 +111,6 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 													String accountPassword){
 		
 		serverComm = connectToServer();
-		
-		// TODO Set where to search for server
-		//System.setProperties("java.naming.provider.url" RMI:// RMI );
 		
 		if(serverComm != null){
 			

@@ -18,7 +18,7 @@ import utilities.*;
  * @author robinandersson
  *
  */
-public interface IServerGame extends Remote, Serializable {
+public interface IServerGame extends Remote {
 	
 	/**
 	 * Set player ready to start the game. Passes along an Account instance for

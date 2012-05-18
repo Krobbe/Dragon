@@ -1,9 +1,7 @@
 package client.ctrl.game;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 import model.card.Card;
@@ -25,7 +23,7 @@ import client.model.game.Table;
  * @author lisastenberg
  * @author robinandersson
  */
-public class GameController implements Serializable{
+public class GameController {
 	Table table;
 
 	public GameController() {

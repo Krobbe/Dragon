@@ -14,7 +14,7 @@ import model.card.*;
  * @author robinandersson
  *
  */
-public class TexasHoldemHand implements IHand, Serializable {
+public class TexasHoldemHand implements IHand {
 	
 	private Hand hand;
 	

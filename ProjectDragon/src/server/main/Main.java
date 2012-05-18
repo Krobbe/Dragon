@@ -4,10 +4,11 @@ import java.rmi.RemoteException;
 
 import ctrl.game.RemoteCommunicationController;
 
-
-
-
-
+/**
+ * @author robinandersson
+ * 
+ * The main class for the server
+ */
 public class Main {
 	
 	

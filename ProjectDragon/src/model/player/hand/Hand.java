@@ -14,7 +14,7 @@ import model.card.*;
  * A class that the hand classes for different games can delegate similar
  * functionality to
  */
-public class Hand implements IHand, Serializable {
+public class Hand implements IHand {
 
 	private List<ICard> cards;
 	

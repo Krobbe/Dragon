@@ -10,7 +10,7 @@ import java.rmi.Remote;
  * @author robinandersson
  *
  */
-public interface IClient extends Remote, Serializable {
+public interface IClient extends Remote {
 	
 
 }

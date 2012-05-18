@@ -3,7 +3,6 @@
  */
 package client.ctrl.game;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Collection;
@@ -26,10 +25,12 @@ import remote.IServerGame;
 /**
  * @author robinandersson
  * @author lisastenberg
+ * 
+ * This clientside class manages all game communication to and from the server.
  */
 
-public class RemoteGameController extends UnicastRemoteObject implements IClientGame, IServerRequest,
-												EventHandler, Serializable {
+public class RemoteGameController extends UnicastRemoteObject
+						implements IClientGame, IServerRequest, EventHandler {
 	
 	private IServerGame serverGame;
 	private RemoteCommunicationController clientComm;

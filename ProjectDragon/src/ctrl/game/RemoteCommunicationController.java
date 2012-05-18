@@ -30,6 +30,9 @@ import remote.IServer;
 import remote.IServerGame;
 
 /**
+ * This serverside class handles all general communication to and from the 
+ * client.
+ * 
  * @author robinandersson
  *
  */
@@ -54,7 +57,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	
 	@Override
 	public Account login(IClient client, String accountName,
-
 								String accountPassword) throws RemoteException {
 		
 		Account account = loadAccount(accountName);

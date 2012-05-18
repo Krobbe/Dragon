@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import database.DatabaseCommunicator;
@@ -34,8 +33,9 @@ import utilities.IllegalCheckException;
 import utilities.IllegalRaiseException;
 
 /**
- * A class that manages all general communication to and from the server.
- * The class does also hold the gameID which is a unique value for a game.
+ * This serverside class manages all game communication to and from the client.
+ * The class does also stores the gameID which is a unique number for each game
+ * ever made.
  * 
  * @author robinandersson
  * @author lisastenberg
@@ -71,6 +71,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	public RemoteGameController(
 				RemoteCommunicationController remoteCommunicationController)
 													throws RemoteException {
+		
 		this(remoteCommunicationController, 8, 0, 1000);
 	}
 	
