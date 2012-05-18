@@ -1,6 +1,7 @@
 package event;
 
 
+
 /**
  * Contract for an event handler
  * @author hajo
