@@ -150,11 +150,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		setThisWonGames.setFont(P.INSTANCE.getLabelFont());
 		this.add(setThisWonGames);
 		
-		/*
-		listWithGames = new JList<Integer>(listWithGamesModel);
-		 */
-		// TODO Modified the following part from the above Code.
-		// Couldnt compile on mac. Also see TODOS at the top and below
+		listWithGamesModel = new DefaultListModel();
 		listWithGames = new JList(listWithGamesModel);
 		listWithGames.setBounds(500, 102, 400, 245);
 		listWithGames.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -165,11 +161,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		listWithGames.addListSelectionListener(this);
 		this.add(listWithGames);
 		
-		/*
-		selectedGame = new JList<String>(selectedGameModel);
-		*/
-		// TODO Modified the following part from the above Code.
-		// Couldnt compile on mac. Also see TODOS at the top and below
+		selectedGameModel = new DefaultListModel();
 		selectedGame = new JList(selectedGameModel);
 		selectedGame.setBounds(500, 372, 400, 245);
 		this.add(selectedGame);
