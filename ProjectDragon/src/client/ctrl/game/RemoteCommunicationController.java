@@ -80,7 +80,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	    try {
 	    	//Registry registry = LocateRegistry.getRegistry(IServer.REMOTE_NAME, port);
 	        //Registry registry = LocateRegistry.getRegistry("rmi://129.16.179.143", port);
-	        Registry registry = LocateRegistry.getRegistry(port);
+	        Registry registry = LocateRegistry.getRegistry("129.16.179.143", port);
+	        //Registry registry = LocateRegistry.getRegistry(port);
 
 	        server = (IServer) registry.lookup(IServer.REMOTE_NAME);
 	        System.out.println("*** Connection established on port: " + port
