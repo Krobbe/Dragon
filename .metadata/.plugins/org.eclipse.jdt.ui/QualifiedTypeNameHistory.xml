@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
 <fullyQualifiedTypeName name="Game.Card"/>
 <fullyQualifiedTypeName name="Game.Card.Suite"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
@@ -42,7 +41,6 @@
 <fullyQualifiedTypeName name="database.IDBGame"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
-<fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
 <fullyQualifiedTypeName name="model.card.ICard"/>
 <fullyQualifiedTypeName name="java.awt.Dimension"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
@@ -53,4 +51,13 @@
 <fullyQualifiedTypeName name="event.Event"/>
 <fullyQualifiedTypeName name="event.Event.Tag"/>
 <fullyQualifiedTypeName name="org.postgresql.util.PSQLException"/>
+<fullyQualifiedTypeName name="java.awt.Graphics"/>
+<fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+<fullyQualifiedTypeName name="java.awt.Image"/>
+<fullyQualifiedTypeName name="utilities.PlayersFullException"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="java.awt.Graphics2D"/>
+<fullyQualifiedTypeName name="java.awt.AlphaComposite"/>
 </qualifiedTypeNameHistroy>

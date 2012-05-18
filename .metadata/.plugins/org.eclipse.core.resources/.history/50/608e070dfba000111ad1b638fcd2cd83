@@ -480,15 +480,17 @@ public class RemoteGameController extends UnicastRemoteObject
 			ResultSet rs =
 					myStmt.executeQuery("SELECT max(gameID) FROM Games");
 			if(rs.next()) {
-				int max = Integer.parseInt(rs.getString(1));
-				System.out.println(max);
-				return max + 1;
+				String max = rs.getString(1);
+				if(!(max.equals("null"))) {
+					int tmp = Integer.parseInt(max);
+					return tmp + 1;
+				}
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		return -1;
+		return 1;
 	}
 
 	@Override

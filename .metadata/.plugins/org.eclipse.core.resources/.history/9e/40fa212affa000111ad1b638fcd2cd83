@@ -488,7 +488,7 @@ public class RemoteGameController extends UnicastRemoteObject
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		return -1;
+		return 1;
 	}
 
 	@Override
