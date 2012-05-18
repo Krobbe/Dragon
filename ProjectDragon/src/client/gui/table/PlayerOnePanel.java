@@ -23,7 +23,7 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 	private JLabel p1NameLabel;
 	private JLabel p1CreditsLabel;
 	private JLabel p1AvailableCreditsLabel;
-	private String path = "lib/deckimages/";
+	private String path = "../../../lib/deckimages/";
 	
 	/**
 	 * Creates the panel
@@ -38,6 +38,7 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 
 		p1c1Label = new JLabel("Card 1");
 		p1c1Label.setBounds(10, 5, 53, 80);
+		System.out.println(getClass().getResource(path + "NORANKNOSUIT.gif"));
 		p1c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
 		this.add(p1c1Label);
 

@@ -5,6 +5,7 @@ package client.ctrl.game;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,7 +28,7 @@ import remote.IServerGame;
  * @author lisastenberg
  */
 
-public class RemoteGameController implements IClientGame, IServerRequest,
+public class RemoteGameController extends UnicastRemoteObject implements IClientGame, IServerRequest,
 												EventHandler, Serializable {
 	
 	private IServerGame serverGame;
@@ -38,19 +39,19 @@ public class RemoteGameController implements IClientGame, IServerRequest,
 	private IPlayer user;
 	
 	public RemoteGameController(RemoteCommunicationController clientComm,
-			IPlayer user) {
+			IPlayer user) throws RemoteException{
 		this.clientComm = clientComm;
 		this.user = user;
 		EventBus.register(this);
 	}
 	
 	public RemoteGameController(RemoteCommunicationController clientComm,
-			IPlayer user, Table table) {
+			IPlayer user, Table table) throws RemoteException{
 		this(clientComm, user, new GameController(table));
 	}
 	
 	public RemoteGameController(RemoteCommunicationController clientComm, 
-					IPlayer user, GameController gameController){
+					IPlayer user, GameController gameController) throws RemoteException{
 		this.clientComm = clientComm;
 		this.gameController = gameController;
 		this.user = user;

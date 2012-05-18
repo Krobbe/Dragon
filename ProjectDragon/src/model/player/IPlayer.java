@@ -57,7 +57,6 @@ public interface IPlayer extends Comparable<IPlayer>, Serializable {
 	 * @return True if the player is still in the game. False is the player has
 	 * lost or quit the game. 
 	 */
-	//TODO: används denna nu?
 	public boolean isStillInGame();
 	
 	/**

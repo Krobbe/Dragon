@@ -195,10 +195,12 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		Table table = new Table(0);
 		table.addPlayer(user);
 		
-		RemoteGameController clientGame = new RemoteGameController(this, user,
-				table);
+
 		
 		try {
+			
+			RemoteGameController clientGame = new RemoteGameController(this,
+																user, table);
 			
 			IServerGame serverGame = serverComm.createGame(getAccount(),
 					clientGame, entranceFee, maxPlayers, playerStartingChips);
@@ -256,11 +258,14 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		
 		IPlayer user = new User(player);
 		
-		RemoteGameController clientGame = new RemoteGameController(this, user,
-														new GameController());
+		
 		IServerGame serverGame = null;
 
 		try {
+			
+			RemoteGameController clientGame = new RemoteGameController(this,
+												user, new GameController());
+			
 			serverGame = serverComm.joinGame(getAccount(), player, clientGame,
 																	gameID);
 			if(serverGame == null) {

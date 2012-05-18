@@ -410,22 +410,15 @@ public class RemoteGameController extends UnicastRemoteObject
 	@Override
 	public void tryStartGame() throws RemoteException {
 		
-		boolean isReadyToStart = true;
-		
 		// Checks if all the players are ready to start the game
 		for(IPlayer player : playerReferences.keySet()){
 			if(!player.isStillInGame()){
-				// TODO a way to exit the whole method instead of setting the
-				// variable?
-				isReadyToStart = false;
-				break;
+				return;
 			}
 		}
 		
-		if(isReadyToStart){
-			// TODO Handle start game scenario
-			gameController.nextRound();
-		}
+		// TODO Handle start game scenario
+		gameController.nextRound();
 
 	}
 

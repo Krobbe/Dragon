@@ -11,6 +11,7 @@ import model.card.ICard;
 import model.card.Rank;
 import model.card.Suit;
 import model.player.IPlayer;
+import model.player.Player;
 import model.player.User;
 import model.player.hand.HandValueType;
 
@@ -195,12 +196,11 @@ public class TableTest {
 		t.distributePot(winners, t.getRound().getPot().getValue());
 		assertTrue(p1.getBalance().getValue() == 50);
 	}
-	
-	//TODO: Is this test ready? It's best if robinandersson checks.
+
 	@Test
 	public void testDistributeCards() {
-		IPlayer p1 = new User();
-		IPlayer p2 = new User();
+		IPlayer p1 = new Player();
+		IPlayer p2 = new Player();
 		p1.setActive(true);
 		p2.setActive(true);
 		try {
@@ -210,7 +210,9 @@ public class TableTest {
 			System.out.println("The table is full");
 			e.printStackTrace();
 		}
+		
 		t.distributeCards();
+		assertTrue(p1.getHand().getCards().size() == 2);
 		assertTrue(p2.getHand().getCards().size() == 2);
 	}
 	
