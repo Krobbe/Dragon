@@ -16,7 +16,7 @@ import java.io.InputStream;
  */
 public class PolicyFileLocator {
 
-    public static final String POLICY_FILE_NAME = "/remote/allow_all.policy";
+    public static final String POLICY_FILE_NAME = "/common/remote/allow_all.policy";
 
     public static String getLocationOfPolicyFile() {
         try {
