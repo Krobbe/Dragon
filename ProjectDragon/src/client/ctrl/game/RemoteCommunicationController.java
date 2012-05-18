@@ -106,6 +106,9 @@ public class RemoteCommunicationController implements IClient, EventHandler {
 		
 		serverComm = connectToServer();
 		
+		// TODO Set where to search for server
+		//System.setProperties("java.naming.provider.url" RMI:// RMI );
+		
 		if(serverComm != null){
 			
 			// TODO Remove this first try-catch part after connection through
