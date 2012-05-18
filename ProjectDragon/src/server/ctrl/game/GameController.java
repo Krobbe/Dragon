@@ -1,4 +1,4 @@
-package ctrl.game;
+package server.ctrl.game;
 
 import java.util.Collection;
 import java.util.Collections;

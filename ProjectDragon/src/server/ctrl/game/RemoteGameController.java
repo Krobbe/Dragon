@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ctrl.game;
+package server.ctrl.game;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -15,11 +15,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import database.DatabaseCommunicator;
 import database.*;
-
 import event.Event;
 import event.EventHandler;
+
 
 import model.card.ICard;
 import model.game.Pot;
