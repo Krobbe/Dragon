@@ -142,7 +142,7 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 	}
 	
 	  public void paintComponent(Graphics g) {
-		  Image img = new ImageIcon("lib/dragon_background.jpg").getImage();
-		  g.drawImage(img, 0, 0, frameWidth, frameHeight, null);
+		  Image img = new ImageIcon("lib/dragon_background.png").getImage();
+		  g.drawImage(img, 0, 0, frameWidth, frameHeight, null);s
 	  }
 }

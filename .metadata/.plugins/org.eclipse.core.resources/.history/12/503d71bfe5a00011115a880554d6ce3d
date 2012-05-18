@@ -2,8 +2,6 @@ package client.gui.menu;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.RenderingHints.Key;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -74,8 +71,7 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 
 	private void init() {
 		this.setLayout(null);
-		
-		//this.setBackground(P.INSTANCE.getBackground());
+		this.setBackground(P.INSTANCE.getBackground());
 
 		JLabel loginNameLabel = new JLabel("User name");
 		loginNameLabel.setBounds(447, 274, 108, 14);
@@ -140,9 +136,4 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
-	
-	  public void paintComponent(Graphics g) {
-		  Image img = new ImageIcon("lib/dragon_background.jpg").getImage();
-		  g.drawImage(img, 0, 0, frameWidth, frameHeight, null);
-	  }
 }
