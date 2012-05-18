@@ -3,6 +3,7 @@ package client.gui.table;
 import java.awt.Color;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -25,6 +26,7 @@ public class TableInfoPanel extends JPanel {
 	private JLabel potSize;
 	private JLabel currentBetInfoLabel;
 	private JLabel currentBet;
+	private String path = "lib/deckimages/";
 	
 	/**
 	 * Creates the panel
@@ -97,42 +99,22 @@ public class TableInfoPanel extends JPanel {
 	 */
 	public void showCards(List<ICard> list) {
 		if(list.size() == 3) {
-			flopc1Label.setText(list.get(0).toString());
-			flopc2Label.setText(list.get(1).toString());
-			flopc3Label.setText(list.get(2).toString());
+			flopc1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
+			flopc2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
+			flopc3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
 		}
 		if(list.size() == 4) {
-			flopc1Label.setText(list.get(0).toString());
-			flopc2Label.setText(list.get(1).toString());
-			flopc3Label.setText(list.get(2).toString());
-			turnc1Label.setText(list.get(3).toString());
+			flopc1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
+			flopc2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
+			flopc3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
+			turnc1Label.setIcon(new ImageIcon(path + list.get(3).getRank() + list.get(3).getSuit() + ".gif"));
 		}
 		if(list.size() == 5) {
-			flopc1Label.setText(list.get(0).toString());
-			flopc2Label.setText(list.get(1).toString());
-			flopc3Label.setText(list.get(2).toString());
-			turnc1Label.setText(list.get(3).toString());
-			riverc1Label.setText(list.get(4).toString());
+			flopc1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
+			flopc2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
+			flopc3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
+			turnc1Label.setIcon(new ImageIcon(path + list.get(3).getRank() + list.get(3).getSuit() + ".gif"));
+			riverc1Label.setIcon(new ImageIcon(path + list.get(4).getRank() + list.get(4).getSuit() + ".gif"));
 		}
 	}
-	
-//	public void setFlopC1(String s) {
-//		flopc1Label.setText(s);
-//	}
-//	
-//	public void setFlopC2(String s) {
-//		flopc2Label.setText(s);
-//	}
-//	
-//	public void setFlopC3(String s) {
-//		flopc3Label.setText(s);
-//	}
-//	
-//	public void setTurnC1(String s) {
-//		turnc1Label.setText(s);
-//	}
-//	public void setRiverC1(String s) {
-//		riverc1Label.setText(s);
-//	}
-
 }

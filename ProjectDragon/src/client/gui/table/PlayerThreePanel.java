@@ -38,12 +38,12 @@ public class PlayerThreePanel extends JPanel implements IPlayerPanel {
 
 		p3c1Label = new JLabel("Card 1");
 		p3c1Label.setBounds(10, 5, 53, 80);
-		p3c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+		p3c1Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
 		this.add(p3c1Label);
 
 		p3c2Label = new JLabel("Card 2\r\n");
 		p3c2Label.setBounds(73, 5, 53, 80);
-		p3c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+		p3c2Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
 		this.add(p3c2Label);
 
 		p3NameLabel = new JLabel("Player1\r\n");
@@ -64,8 +64,8 @@ public class PlayerThreePanel extends JPanel implements IPlayerPanel {
 	
 	@Override
 	public boolean discard() {
-		p3c1Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
-		p3c2Label.setIcon(new ImageIcon(getClass().getResource(path + "NORANKNOSUIT.gif")));
+		p3c1Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+		p3c2Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
 		return true;
 	}
 
@@ -78,10 +78,10 @@ public class PlayerThreePanel extends JPanel implements IPlayerPanel {
 	public void showCards(IHand h) {
 		ICard card1 = h.getCards().get(0);
 		ICard card2 = h.getCards().get(1);
-		p3c1Label.setIcon(new ImageIcon(getClass().getResource(path + 
-				card1.getRank() + card1.getSuit() + ".gif")));
-		p3c2Label.setIcon(new ImageIcon(getClass().getResource(path + 
-				card2.getRank() + card2.getSuit() + ".gif")));
+		p3c1Label.setIcon(new ImageIcon(path + 
+				card1.getRank() + card1.getSuit() + ".gif"));
+		p3c2Label.setIcon(new ImageIcon(path + 
+				card2.getRank() + card2.getSuit() + ".gif"));
 	}
 	
 	@Override

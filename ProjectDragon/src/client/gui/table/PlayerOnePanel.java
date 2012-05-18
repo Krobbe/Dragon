@@ -64,10 +64,10 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 	
 	@Override
 	public boolean discard() {
-		p1c1Label.setIcon(new ImageIcon(getClass().getResource(
-				path + "NORANKNOSUIT.gif")));
-		p1c2Label.setIcon(new ImageIcon(getClass().getResource(
-				path + "NORANKNOSUIT.gif")));
+		p1c1Label.setIcon(new ImageIcon(
+				path + "NORANKNOSUIT.gif"));
+		p1c2Label.setIcon(new ImageIcon(
+				path + "NORANKNOSUIT.gif"));
 		return true;
 	}
 
@@ -80,10 +80,10 @@ public class PlayerOnePanel extends JPanel implements IPlayerPanel {
 	public void showCards(IHand h) {
 		ICard card1 = h.getCards().get(0);
 		ICard card2 = h.getCards().get(1);
-		p1c1Label.setIcon(new ImageIcon(getClass().getResource(path + 
-				card1.getRank() + card1.getSuit() + ".gif")));
-		p1c2Label.setIcon(new ImageIcon(getClass().getResource(path + 
-				card2.getRank() + card2.getSuit() + ".gif")));
+		p1c1Label.setIcon(new ImageIcon(path + 
+				card1.getRank() + card1.getSuit() + ".gif"));
+		p1c2Label.setIcon(new ImageIcon(path + 
+				card2.getRank() + card2.getSuit() + ".gif"));
 	}
 	
 	@Override
