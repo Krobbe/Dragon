@@ -69,10 +69,6 @@ public class MainView implements client.event.EventHandler {
 			layout.show(frame.getContentPane(), "loginPanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.LOGOUT)) {
 			layout.show(frame.getContentPane(), "loginPanel");
-		} else if (evt.getTag().equals(client.event.Event.Tag.CREATE_TABLE)) {
-//			new TableView((Table)evt.getValue());
-		} else if (evt.getTag().equals(client.event.Event.Tag.JOIN_TABLE)) {
-//			new TableView((Table)evt.getValue());
 		}
 	}
 }
