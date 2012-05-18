@@ -8,10 +8,10 @@ import common.model.card.Card;
 import common.model.card.ICard;
 import common.model.card.Rank;
 import common.model.card.Suit;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
 
 import model.game.Pot;
-import model.player.Bet;
-import model.player.IPlayer;
 import model.player.hand.IHand;
 import client.event.Event;
 import client.event.EventBus;

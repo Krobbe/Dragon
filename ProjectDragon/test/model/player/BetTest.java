@@ -2,6 +2,9 @@ package model.player;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import common.model.player.Bet;
+import common.model.player.User;
 /**
  * A test for Bet.
  * @author lisastenberg

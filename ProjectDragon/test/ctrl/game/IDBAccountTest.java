@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import model.player.Account;
 
 import org.junit.Test;
+
+import common.model.player.Account;
 
 import database.DatabaseCommunicator;
 import database.IDBAccount;

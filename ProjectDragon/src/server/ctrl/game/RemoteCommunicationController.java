@@ -13,6 +13,10 @@ import java.util.TreeMap;
 
 import org.postgresql.util.PSQLException;
 
+import common.model.player.Account;
+import common.model.player.Balance;
+import common.model.player.IPlayer;
+import common.model.player.Player;
 import common.remote.IClient;
 import common.remote.IClientGame;
 import common.remote.IServer;
@@ -22,10 +26,6 @@ import common.remote.ServerStarter;
 import database.DatabaseCommunicator;
 import database.IDBAccount;
 
-import model.player.Account;
-import model.player.Balance;
-import model.player.Player;
-import model.player.IPlayer;
 import model.player.hand.Hand;
 
 

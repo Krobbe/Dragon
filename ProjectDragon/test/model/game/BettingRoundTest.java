@@ -2,10 +2,11 @@ package model.game;
 
 import static org.junit.Assert.*;
 
-import model.player.Bet;
-import model.player.Player;
 
 import org.junit.Test;
+
+import common.model.player.Bet;
+import common.model.player.Player;
 /**
  * A test for a bettinground.
  * 

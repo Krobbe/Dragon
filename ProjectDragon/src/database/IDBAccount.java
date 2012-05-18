@@ -2,7 +2,8 @@ package database;
 
 import java.rmi.RemoteException;
 
-import model.player.Account;
+import common.model.player.Account;
+
 /**
  * An interface that needs to be implemented to connect to the database 
  * account-tables.

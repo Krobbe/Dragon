@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.List;
 
 import common.model.card.ICard;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
 import common.remote.IClientGame;
 import common.remote.IServerGame;
 
@@ -18,8 +20,6 @@ import client.event.EventHandler;
 import client.model.game.Table;
 
 import model.game.Pot;
-import model.player.Bet;
-import model.player.IPlayer;
 import model.player.hand.IHand;
 
 

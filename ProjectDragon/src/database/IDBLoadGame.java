@@ -3,7 +3,8 @@ package database;
 import java.util.List;
 import java.util.Map;
 
-import model.player.Player;
+import common.model.player.Player;
+
 /**
  * An interface that needs to be implemented to load data about games from the
  * database.

@@ -6,10 +6,10 @@ import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.List;
 
-import model.player.Account;
-import model.player.Bet;
-import model.player.IPlayer;
 
+import common.model.player.Account;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
 import common.utilities.*;
 /**
  * Interface for method calls concerning game-functions to Server. 

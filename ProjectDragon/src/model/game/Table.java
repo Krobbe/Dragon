@@ -7,12 +7,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import common.model.card.ICard;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
 import common.utilities.CommunityCardsFullException;
 import common.utilities.PlayersFullException;
 
 
-import model.player.Bet;
-import model.player.IPlayer;
 import model.player.hand.FullTHHand;
 import model.player.hand.HandValue;
 import model.player.hand.HandValueType;

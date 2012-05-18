@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import common.model.card.ICard;
+import common.model.player.IPlayer;
 
 
-import model.player.IPlayer;
 import model.player.hand.IHand;
 
 /**

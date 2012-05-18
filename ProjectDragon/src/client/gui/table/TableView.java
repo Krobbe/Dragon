@@ -10,10 +10,10 @@ import java.util.List;
 import javax.swing.*;
 
 import common.model.card.ICard;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
+import common.model.player.Player;
 
-import model.player.Bet;
-import model.player.IPlayer;
-import model.player.Player;
 
 import client.event.*;
 

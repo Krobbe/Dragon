@@ -5,11 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import model.game.Table;
-import model.player.Balance;
-import model.player.Bet;
-import model.player.Player;
-import model.player.User;
-import model.player.IPlayer;
 import model.player.hand.TexasHoldemHand;
 
 import org.junit.Test;
@@ -17,6 +12,11 @@ import org.junit.Test;
 import common.model.card.Card;
 import common.model.card.Rank;
 import common.model.card.Suit;
+import common.model.player.Balance;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
+import common.model.player.Player;
+import common.model.player.User;
 import common.utilities.CommunityCardsFullException;
 import common.utilities.IllegalRaiseException;
 import common.utilities.PlayersFullException;

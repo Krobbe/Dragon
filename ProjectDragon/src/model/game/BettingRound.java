@@ -2,8 +2,9 @@ package model.game;
 
 import java.io.Serializable;
 
-import model.player.Bet;
-import model.player.Player;
+import common.model.player.Bet;
+import common.model.player.Player;
+
 
 /**
  * A class that simulates a betting-round.

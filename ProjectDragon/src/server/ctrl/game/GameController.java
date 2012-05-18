@@ -7,6 +7,9 @@ import java.util.List;
 import server.event.*;
 import model.game.*;
 import model.player.*;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
+import common.model.player.OwnCurrentBetComparator;
 import common.utilities.*;
 
 /**

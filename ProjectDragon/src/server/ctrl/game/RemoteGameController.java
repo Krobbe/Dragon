@@ -16,6 +16,10 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import common.model.card.ICard;
+import common.model.player.Account;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
+import common.model.player.Player;
 import common.remote.IClientGame;
 import common.remote.IServerGame;
 import common.utilities.IllegalCallException;

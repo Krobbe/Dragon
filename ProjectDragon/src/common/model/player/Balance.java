@@ -1,4 +1,4 @@
-package model.player;
+package common.model.player;
 
 import java.io.Serializable;
 

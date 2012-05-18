@@ -2,7 +2,8 @@ package model.game;
 
 import java.util.List;
 
-import model.player.IPlayer;
+import common.model.player.IPlayer;
+
 
 /**
  * This class contains information when a "side pot"-event occurs.

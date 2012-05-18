@@ -1,6 +1,6 @@
 package database;
 
-import model.player.Player;
+import common.model.player.Player;
 
 /**
  * An interface that need to be implemented to save data about games into the 

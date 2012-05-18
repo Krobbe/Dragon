@@ -8,10 +8,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import common.model.player.Account;
+import common.model.player.IPlayer;
+
 import database.IDBAccount;
 
-import model.player.Account;
-import model.player.IPlayer;
 
 /**
  * @author robinandersson

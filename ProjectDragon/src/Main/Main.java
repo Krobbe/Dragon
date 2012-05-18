@@ -4,6 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import common.model.player.Balance;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
+import common.model.player.Player;
+import common.model.player.User;
 import common.utilities.CommunityCardsFullException;
 import common.utilities.IllegalCallException;
 import common.utilities.IllegalCheckException;

@@ -29,6 +29,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import common.model.player.Account;
+
 import client.event.Event;
 
 import model.player.*;

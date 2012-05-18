@@ -12,6 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import common.model.player.Account;
+import common.model.player.Balance;
+import common.model.player.IPlayer;
+import common.model.player.Player;
+import common.model.player.User;
 import common.remote.IClient;
 import common.remote.IServer;
 import common.remote.IServerGame;
@@ -21,11 +26,6 @@ import client.event.EventHandler;
 import client.event.EventBus;
 import client.model.game.Table;
 
-import model.player.Account;
-import model.player.Balance;
-import model.player.Player;
-import model.player.IPlayer;
-import model.player.User;
 import model.player.hand.Hand;
 
 

@@ -15,6 +15,9 @@ import model.player.hand.TexasHoldemHand;
 import org.junit.Test;
 
 import common.model.card.Card;
+import common.model.player.Balance;
+import common.model.player.Player;
+import common.model.player.User;
 
 public class UserTest {
 

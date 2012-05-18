@@ -2,7 +2,8 @@ package client.gui.table;
 
 import java.awt.Color;
 
-import model.player.IPlayer;
+import common.model.player.IPlayer;
+
 import model.player.hand.IHand;
 
 /**

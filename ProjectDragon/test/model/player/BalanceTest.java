@@ -2,9 +2,10 @@ package model.player;
 
 import static org.junit.Assert.*;
 
-import model.player.Balance;
 
 import org.junit.Test;
+
+import common.model.player.Balance;
 /**
  * Test for balance.
  * @author lisastenberg
