@@ -43,17 +43,6 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	private JLabel setThisPlayedGames;
 	private JLabel setThisWonGames;
 	
-	/*
-	private JList<Integer> listWithGames;
-	private DefaultListModel<Integer> listWithGamesModel;
-	
-	private JList<String> selectedGame;
-	private DefaultListModel<String> selectedGameModel;
-	 */	
-	// TODO Modified the following part from the above Code.
-	// Couldnt compile on mac. Also see below TODOS
-
-	
 	private JList listWithGames;
 	private DefaultListModel listWithGamesModel;
 	

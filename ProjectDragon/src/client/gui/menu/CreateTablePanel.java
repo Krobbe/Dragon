@@ -98,9 +98,9 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 
 		createTablePlayersSpinner = new JComboBox();
 		createTablePlayersSpinner.setModel(new DefaultComboBoxModel(
-				new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }));
+				new Integer[] {2, 3, 4, 5, 6, 7, 8, 9, 10 }));
 		createTablePlayersSpinner.setFont(P.INSTANCE.getLabelFont());
-		createTablePlayersSpinner.setMaximumRowCount(10);
+		createTablePlayersSpinner.setMaximumRowCount(9);
 		createTablePlayersSpinner.setLocation(416, 417);
 		createTablePlayersSpinner.setSize(new Dimension(80, 30));
 		this.add(createTablePlayersSpinner);
