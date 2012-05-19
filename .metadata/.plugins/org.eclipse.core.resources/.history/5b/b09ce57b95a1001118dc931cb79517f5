@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-import common.model.card.ICard;
-import common.model.player.IPlayer;
-import common.model.player.hand.IHand;
+import model.card.ICard;
+import model.player.IPlayer;
+import model.player.hand.IHand;
 
 public class PlayerPanel extends JPanel {
 	private JPanel cardPanel;
