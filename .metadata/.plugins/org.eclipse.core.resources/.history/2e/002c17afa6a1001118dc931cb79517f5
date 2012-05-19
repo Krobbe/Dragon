@@ -82,11 +82,7 @@ public class GameController {
 		EventBus.publish(new Event(Event.Tag.CURRENT_BET_CHANGED, bet
 				.getValue()));
 	}
-	
-	public Bet getCurrentBet() {
-		return table.getRound().getBettingRound().getCurrentBet();
-	}
-	
+
 	/**
 	 * Set the pot.
 	 * 

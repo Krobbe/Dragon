@@ -238,21 +238,39 @@ public class RemoteGameController extends UnicastRemoteObject
 		
 		switch(evt.getTag()) {
 		case REQUEST_CALL:
-			requestCall(new Bet(user, gameController.getCurrentBet().getValue()));
-			break;
-		case REQUEST_CHECK:
-			requestCheck(new Bet(user, 0));
-			break;
-		case REQUEST_FOLD:
-			requestFold(user);
-			break;
-		case REQUEST_RAISE:
-			if(!(evt.getValue() instanceof Integer)) {
+			if(!(evt.getValue() instanceof Bet)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
 			} else {
-				Integer amount = (Integer) evt.getValue();
-				bet = new Bet(user, user.getOwnCurrentBet() + amount);
+				bet = (Bet) evt.getValue();
+				requestCall(bet);
+			}
+			break;
+		case REQUEST_CHECK:
+			if(!(evt.getValue() instanceof Bet)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
+			} else {
+				bet = (Bet) evt.getValue();
+				requestCheck(bet);
+			}
+			break;
+		case REQUEST_FOLD:
+			IPlayer player;
+			if(!(evt.getValue() instanceof IPlayer)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
+			} else {
+				player = (IPlayer) evt.getValue();
+				requestFold(player);
+			}
+			break;
+		case REQUEST_RAISE:
+			if(!(evt.getValue() instanceof Bet)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
+			} else {
+				bet = (Bet) evt.getValue();
 				requestRaise(bet);
 			}
 			break;

@@ -251,6 +251,7 @@ public class RemoteGameController extends UnicastRemoteObject
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
 			} else {
+				//TODO: raise
 				Integer amount = (Integer) evt.getValue();
 				bet = new Bet(user, user.getOwnCurrentBet() + amount);
 				requestRaise(bet);

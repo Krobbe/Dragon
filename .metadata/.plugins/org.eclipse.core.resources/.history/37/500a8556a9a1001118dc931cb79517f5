@@ -1,7 +1,6 @@
 package client.gui.table;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -55,15 +54,11 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		foldButton = new JButton("Fold");
 		foldButton.setSize(buttonWidth, buttonHeight);
 		foldButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		foldButton.setBackground(Color.red);
-		foldButton.setOpaque(true);
 		foldButton.addActionListener(this);
 
 		checkButton = new JButton("Check");
 		checkButton.setSize(buttonWidth, buttonHeight);
 		checkButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		checkButton.setBackground(Color.green);
-		checkButton.setOpaque(true);
 		checkButton.addActionListener(this);
 
 		raiseButton = new JButton("Raise");

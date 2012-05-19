@@ -83,10 +83,6 @@ public class GameController {
 				.getValue()));
 	}
 	
-	public Bet getCurrentBet() {
-		return table.getRound().getBettingRound().getCurrentBet();
-	}
-	
 	/**
 	 * Set the pot.
 	 * 

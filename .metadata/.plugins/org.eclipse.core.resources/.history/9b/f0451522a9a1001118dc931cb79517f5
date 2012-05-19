@@ -1,7 +1,6 @@
 package client.gui.table;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -46,7 +45,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		
 		leaveTableButton = new JButton("Leave table");
 		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		leaveTableButton.setSize(buttonWidth, buttonHeight);
+		leaveTableButton.setPreferredSize(new Dimension(111,40));
 		
 		availableCreditsLabel = new JLabel("xxx");
 		availableCreditsLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -55,15 +54,11 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		foldButton = new JButton("Fold");
 		foldButton.setSize(buttonWidth, buttonHeight);
 		foldButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		foldButton.setBackground(Color.red);
-		foldButton.setOpaque(true);
 		foldButton.addActionListener(this);
 
 		checkButton = new JButton("Check");
 		checkButton.setSize(buttonWidth, buttonHeight);
 		checkButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		checkButton.setBackground(Color.green);
-		checkButton.setOpaque(true);
 		checkButton.addActionListener(this);
 
 		raiseButton = new JButton("Raise");
@@ -80,13 +75,16 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		creditsLabel.setSize(buttonWidth, buttonHeight);
 		creditsLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		this.add(leaveTableButton);
-		this.add(foldButton);
-		this.add(checkButton);
-		this.add(raiseButton);
-		this.add(betField);
-		this.add(creditsLabel);
-		this.add(availableCreditsLabel);
+		buttonPanel.add(checkButton);
+		buttonPanel.add(raiseButton);
+		buttonPanel.add(foldButton);
+		
+		infoPanel.add(betField, BorderLayout.NORTH);
+		infoPanel.add(creditsLabel, BorderLayout.CENTER);
+		infoPanel.add(availableCreditsLabel, BorderLayout.SOUTH);
+		
+		this.add(buttonPanel, BorderLayout.EAST);
+		this.add(infoPanel, BorderLayout.WEST);
 	}
 
 	@Override

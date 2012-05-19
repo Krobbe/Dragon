@@ -238,10 +238,23 @@ public class RemoteGameController extends UnicastRemoteObject
 		
 		switch(evt.getTag()) {
 		case REQUEST_CALL:
-			requestCall(new Bet(user, gameController.getCurrentBet().getValue()));
+			if(!(evt.getValue() instanceof Bet)) {
+				//Gšr ett bet av user.
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
+			} else {
+				bet = (Bet) evt.getValue();
+				requestCall(bet);
+			}
 			break;
 		case REQUEST_CHECK:
-			requestCheck(new Bet(user, 0));
+			if(!(evt.getValue() instanceof Bet)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
+			} else {
+				bet = (Bet) evt.getValue();
+				requestCheck(bet);
+			}
 			break;
 		case REQUEST_FOLD:
 			requestFold(user);
@@ -251,8 +264,7 @@ public class RemoteGameController extends UnicastRemoteObject
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
 			} else {
-				Integer amount = (Integer) evt.getValue();
-				bet = new Bet(user, user.getOwnCurrentBet() + amount);
+				bet = (Bet) evt.getValue();
 				requestRaise(bet);
 			}
 			break;

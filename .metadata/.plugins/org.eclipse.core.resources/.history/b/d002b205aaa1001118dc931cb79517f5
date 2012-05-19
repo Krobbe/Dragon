@@ -34,7 +34,6 @@ public class TableView implements EventHandler, ActionListener{
 	private Table table;
 	private JFrame frame;
 	private JPanel backPanel;
-	private JPanel foundationPanel;
 	
 	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel;
 
@@ -65,10 +64,7 @@ public class TableView implements EventHandler, ActionListener{
 		frame = new JFrame();
 		frame.setSize(frameWidth, frameHeight);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new FlowLayout());	
-		
-		foundationPanel = new JPanel();
-		foundationPanel.setLayout(new BorderLayout());
+		frame.getContentPane().setLayout(new BorderLayout());	
 		
 		backPanel = new JPanel();
 		backPanel.setSize(frameWidth, frameHeight);
@@ -131,10 +127,9 @@ public class TableView implements EventHandler, ActionListener{
 		backPanel.add(westPanel, BorderLayout.WEST);
 		backPanel.add(eastPanel, BorderLayout.EAST);
 		
-		foundationPanel.add(backPanel, BorderLayout.NORTH);
-		foundationPanel.add(userBetPanel, BorderLayout.SOUTH);
+		frame.getContentPane().add(backPanel, BorderLayout.NORTH);
+		frame.getContentPane().add(userBetPanel, BorderLayout.SOUTH);
 		
-		frame.add(foundationPanel);
 		frame.setVisible(true);
 		frame.setResizable(true);
 	}

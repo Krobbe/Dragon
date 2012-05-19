@@ -56,14 +56,12 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		foldButton.setSize(buttonWidth, buttonHeight);
 		foldButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		foldButton.setBackground(Color.red);
-		foldButton.setOpaque(true);
 		foldButton.addActionListener(this);
 
 		checkButton = new JButton("Check");
 		checkButton.setSize(buttonWidth, buttonHeight);
 		checkButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		checkButton.setBackground(Color.green);
-		checkButton.setOpaque(true);
 		checkButton.addActionListener(this);
 
 		raiseButton = new JButton("Raise");

@@ -4,11 +4,11 @@ public enum P {
 	INSTANCE;
 	
 	public int getFrameHeight() {
-		return 600;
+		return 700;
 	}
 	
 	public int getFrameWidth() {
-		return 900;
+		return 1000;
 	}
 	
 	public int getButtonHeight() {

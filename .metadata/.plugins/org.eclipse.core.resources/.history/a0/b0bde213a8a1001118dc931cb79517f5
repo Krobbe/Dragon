@@ -34,10 +34,21 @@ public class TableView implements EventHandler, ActionListener{
 	private Table table;
 	private JFrame frame;
 	private JPanel backPanel;
-	private JPanel foundationPanel;
 	
 	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel;
-
+	private JPanel northPanel1, northPanel2;
+	/*
+	private PlayerOnePanel playerOnePanel;
+	private PlayerTwoPanel playerTwoPanel;
+	private PlayerThreePanel playerThreePanel;
+	private PlayerFourPanel playerFourPanel;
+	private PlayerFivePanel playerFivePanel;
+	private PlayerSixPanel playerSixPanel;
+	private PlayerSevenPanel playerSevenPanel;
+	private PlayerEightPanel playerEightPanel;
+	private PlayerNinePanel playerNinePanel;
+	private PlayerTenPanel playerTenPanel;
+	*/
 	private PlayerPanel player1Panel, player2Panel, player3Panel, player4Panel, 
 	player5Panel, player6Panel, player7Panel, player8Panel, player9Panel
 	, player10Panel;
@@ -67,9 +78,6 @@ public class TableView implements EventHandler, ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new FlowLayout());	
 		
-		foundationPanel = new JPanel();
-		foundationPanel.setLayout(new BorderLayout());
-		
 		backPanel = new JPanel();
 		backPanel.setSize(frameWidth, frameHeight);
 		backPanel.setLayout(new BorderLayout());
@@ -79,12 +87,23 @@ public class TableView implements EventHandler, ActionListener{
 		westPanel = new JPanel();
 		eastPanel = new JPanel();
 		centerPanel = new JPanel();
+		northPanel1 = new JPanel();
+		northPanel2 = new JPanel();
 		
-		northPanel.setLayout(new FlowLayout());
+		northPanel.setLayout(new BorderLayout());
 		southPanel.setLayout(new FlowLayout());
-		centerPanel.setLayout(new FlowLayout());
+		centerPanel.setLayout(new BorderLayout());
 		westPanel.setLayout(new FlowLayout());
 		eastPanel.setLayout(new FlowLayout());
+		northPanel1.setLayout(new FlowLayout());
+		northPanel2.setLayout(new FlowLayout());
+		
+		southPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		northPanel2.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		
+		leaveTableButton = new JButton("Leave table");
+		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		leaveTableButton.setPreferredSize(new Dimension(111,40));
 		
 		player1Panel = new PlayerPanel();
 		player2Panel = new PlayerPanel();
@@ -118,12 +137,17 @@ public class TableView implements EventHandler, ActionListener{
 		southPanel.add(player1Panel);
 		southPanel.add(player2Panel);
 		eastPanel.add(player3Panel);
-		northPanel.add(player7Panel);
-		northPanel.add(player6Panel);
-		northPanel.add(player5Panel);
-		northPanel.add(player4Panel);
+		northPanel2.add(player7Panel);
+		northPanel2.add(player6Panel);
+		northPanel2.add(player5Panel);
+		northPanel2.add(player4Panel);
 		
-		centerPanel.add(tableInfoPanel);
+		northPanel1.add(leaveTableButton);
+		
+		centerPanel.add(tableInfoPanel, BorderLayout.WEST);
+		centerPanel.add(userBetPanel, BorderLayout.EAST);
+		northPanel.add(northPanel1, BorderLayout.NORTH);
+		northPanel.add(northPanel2, BorderLayout.SOUTH);
 		
 		backPanel.add(centerPanel, BorderLayout.CENTER);
 		backPanel.add(northPanel, BorderLayout.NORTH);
@@ -131,10 +155,8 @@ public class TableView implements EventHandler, ActionListener{
 		backPanel.add(westPanel, BorderLayout.WEST);
 		backPanel.add(eastPanel, BorderLayout.EAST);
 		
-		foundationPanel.add(backPanel, BorderLayout.NORTH);
-		foundationPanel.add(userBetPanel, BorderLayout.SOUTH);
+		frame.add(backPanel);
 		
-		frame.add(foundationPanel);
 		frame.setVisible(true);
 		frame.setResizable(true);
 	}
