@@ -383,11 +383,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			EventBus.publish(new Event(Event.Tag.PUBLISH_ACCOUNT_INFORMATION,
 															getAccount()));
 			break;
-		
-		case JOIN_TABLE:
-			if(!joinGame((Integer) evt.getValue())){
-				System.out.println("Unable to join table with id: " + evt.getValue());
-			}
 		}
 	}
 

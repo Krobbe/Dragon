@@ -132,7 +132,6 @@ public class RemoteGameController extends UnicastRemoteObject
 		if(serverGame != null){
 			
 			try {
-				System.out.println(serverGame.toString());
 				return serverGame.check(bet);
 			} catch (RemoteException e) {
 				e.printStackTrace();

@@ -159,7 +159,6 @@ public class RemoteGameController extends UnicastRemoteObject
 	public List<IPlayer> getPlayers() throws IllegalCallException,
 			RemoteException {
 		
-		// TODO Is this a deep copy?
 		return new LinkedList<IPlayer>(playerReferences.keySet());
 	}
 

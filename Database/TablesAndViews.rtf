@@ -12,11 +12,11 @@ password VARCHAR(50),\
 balance INT);\
 \
 CREATE TABLE Games(\
-gameID VARCHAR(50) PRIMARY KEY,\
+gameID INT PRIMARY KEY,\
 date VARCHAR(50));\
 \
 CREATE TABLE PlayedGames(\
-gameID VARCHAR(50) REFERENCES Games(gameID),\
+gameID INT REFERENCES Games(gameID),\
 player VARCHAR(50) REFERENCES Accounts(userName),\
 placement INT, \
 PRIMARY KEY(gameID, player));\

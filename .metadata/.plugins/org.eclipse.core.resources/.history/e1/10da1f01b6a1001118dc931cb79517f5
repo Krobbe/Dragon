@@ -17,11 +17,9 @@ import java.util.TreeMap;
 
 import common.model.card.ICard;
 import common.model.player.Account;
-import common.model.player.Balance;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.Player;
-import common.model.player.hand.Hand;
 import common.model.player.hand.IHand;
 import common.remote.IClientGame;
 import common.remote.IServerGame;
@@ -118,9 +116,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	 * @param clientGame The reference to the added player
 	 */
 	public void addPlayer(IPlayer player, IClientGame clientGame) {
-		IPlayer newPlayer = new Player(new Hand(), player.getName(),
-				new Balance(playerStartingChips));
-		playerReferences.put(newPlayer, clientGame);
+		playerReferences.put(player, clientGame);
 	}
 	
 	/**
@@ -159,7 +155,6 @@ public class RemoteGameController extends UnicastRemoteObject
 	public List<IPlayer> getPlayers() throws IllegalCallException,
 			RemoteException {
 		
-		// TODO Is this a deep copy?
 		return new LinkedList<IPlayer>(playerReferences.keySet());
 	}
 

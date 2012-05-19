@@ -144,16 +144,6 @@ public class TableView implements EventHandler, ActionListener{
 		List<IPlayer> allPlayers = table.getPlayers();
 		
 		switch (evt.getTag()) {
-		case NEW_PLAYER_ADDED:
-			int index;
-			for(IPlayer p : allPlayers) {
-				if(p.getName().equals((String)evt.getValue())) {
-					index = allPlayers.indexOf(p);
-					playerPanelList.get(index).setName(p);
-					playerPanelList.get(index).setBalance("" + p.getBalance());
-				}
-			}
-			break;
 		
 		case CURRENT_BET_CHANGED:
 			int bet = table.getRound().getBettingRound().getCurrentBet().getValue();
@@ -230,8 +220,8 @@ public class TableView implements EventHandler, ActionListener{
 						+ evt.getTag());
 			} else {
 				for (IPlayer acp : table.getActivePlayers()) {
-					int i = allPlayers.indexOf(acp);
-					playerPanelList.get(i).showCards(allPlayers.get(i).getHand());
+					int index = allPlayers.indexOf(acp);
+					playerPanelList.get(index).showCards(allPlayers.get(index).getHand());
 				}
 			}
 			break;

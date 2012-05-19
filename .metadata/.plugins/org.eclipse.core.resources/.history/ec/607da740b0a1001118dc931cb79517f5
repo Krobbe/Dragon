@@ -3,7 +3,6 @@ package client.gui.table;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -87,7 +86,6 @@ public class PlayerPanel extends JPanel {
 
 	public void setName(IPlayer p) {
 		nameLabel.setText(p.getName());
-		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 	}
 	
 	public void setBalance(String s) {

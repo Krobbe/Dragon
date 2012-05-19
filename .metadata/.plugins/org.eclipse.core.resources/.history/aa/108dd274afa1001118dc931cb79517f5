@@ -147,13 +147,13 @@ public class TableView implements EventHandler, ActionListener{
 		case NEW_PLAYER_ADDED:
 			int index;
 			for(IPlayer p : allPlayers) {
-				if(p.getName().equals((String)evt.getValue())) {
+				if(p.getName().equals(evt.getValue())) {
 					index = allPlayers.indexOf(p);
-					playerPanelList.get(index).setName(p);
+					playerPanelList.get(index).setName(p.getName());
 					playerPanelList.get(index).setBalance("" + p.getBalance());
 				}
 			}
-			break;
+			
 		
 		case CURRENT_BET_CHANGED:
 			int bet = table.getRound().getBettingRound().getCurrentBet().getValue();

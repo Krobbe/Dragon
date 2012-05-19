@@ -54,8 +54,6 @@ public interface IServerGame extends Remote {
 	 */
 	public List<IPlayer> getPlayers() throws IllegalCallException,
 																RemoteException;
-
-	public int getGameID() throws RemoteException;
 	
 	/**
 	 * Returns the maximum amount of players allowed in the game

@@ -87,7 +87,7 @@ public class PlayerPanel extends JPanel {
 
 	public void setName(IPlayer p) {
 		nameLabel.setText(p.getName());
-		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 	}
 	
 	public void setBalance(String s) {

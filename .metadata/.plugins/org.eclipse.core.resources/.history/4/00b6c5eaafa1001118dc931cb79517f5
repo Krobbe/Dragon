@@ -149,7 +149,8 @@ public class TableView implements EventHandler, ActionListener{
 			for(IPlayer p : allPlayers) {
 				if(p.getName().equals((String)evt.getValue())) {
 					index = allPlayers.indexOf(p);
-					playerPanelList.get(index).setName(p);
+					playerPanelList.get(index).setName(p.getName());
+					System.out.println(p.getName());
 					playerPanelList.get(index).setBalance("" + p.getBalance());
 				}
 			}

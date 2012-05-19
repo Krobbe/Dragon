@@ -61,7 +61,12 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 			for(IServerGame isg : list) {
 				model.addElement(isg);
 			}
+		} else if(evt.getTag().equals(Event.Tag.JOIN_TABLE)) {
+			IServerGame sg = (IServerGame)joinTableList.getSelectedValue();
+			int gameID = sg.getGameID();
+			new TableView();
 		}
+
 	}
 
 	@Override

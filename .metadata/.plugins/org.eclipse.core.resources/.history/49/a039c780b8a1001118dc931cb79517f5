@@ -385,9 +385,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			break;
 		
 		case JOIN_TABLE:
-			if(!joinGame((Integer) evt.getValue())){
-				System.out.println("Unable to join table with id: " + evt.getValue());
-			}
+			joinGame(((Integer) evt.getValue()).intValue());
 		}
 	}
 
