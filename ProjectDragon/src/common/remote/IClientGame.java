@@ -10,11 +10,11 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import common.model.card.ICard;
+import common.model.game.Pot;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.hand.IHand;
 
-import model.game.Pot;
 
 /**
  * @author robinandersson

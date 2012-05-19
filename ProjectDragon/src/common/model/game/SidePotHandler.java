@@ -1,4 +1,4 @@
-package model.game;
+package common.model.game;
 
 import java.util.List;
 

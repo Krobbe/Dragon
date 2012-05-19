@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import server.model.game.Table;
+
 import common.model.card.Card;
 import common.model.card.ICard;
 import common.model.card.Rank;

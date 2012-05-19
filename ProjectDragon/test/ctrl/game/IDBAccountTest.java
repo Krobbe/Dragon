@@ -10,10 +10,10 @@ import java.sql.Statement;
 
 import org.junit.Test;
 
+import common.database.DatabaseCommunicator;
+import common.database.IDBAccount;
 import common.model.player.Account;
 
-import database.DatabaseCommunicator;
-import database.IDBAccount;
 
 public class IDBAccountTest {
 	

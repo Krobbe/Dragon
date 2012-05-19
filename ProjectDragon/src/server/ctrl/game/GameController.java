@@ -5,8 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 import server.event.*;
+import server.model.game.Table;
 import model.game.*;
 import model.player.*;
+import common.model.game.BettingRound;
+import common.model.game.P;
+import common.model.game.Pot;
+import common.model.game.SidePotHandler;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.OwnCurrentBetComparator;

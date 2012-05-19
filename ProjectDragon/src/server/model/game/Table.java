@@ -1,4 +1,4 @@
-package model.game;
+package server.model.game;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -6,7 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+
 import common.model.card.ICard;
+import common.model.game.IDealer;
+import common.model.game.Round;
+import common.model.game.SidePotHandler;
+import common.model.game.TexasHoldemDealer;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.hand.FullTHHand;

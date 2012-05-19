@@ -1,4 +1,4 @@
-package database;
+package common.database;
 
 import java.util.List;
 import java.util.Map;

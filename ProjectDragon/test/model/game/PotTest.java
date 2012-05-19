@@ -2,9 +2,10 @@ package model.game;
 
 import static org.junit.Assert.*;
 
-import model.game.Pot;
 
 import org.junit.Test;
+
+import common.model.game.Pot;
 /**
  * A test for pot.
  * @author lisastenberg

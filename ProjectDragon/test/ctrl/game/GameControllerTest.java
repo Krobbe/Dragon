@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import model.game.Table;
 
 import org.junit.Test;
 
@@ -23,6 +22,7 @@ import common.utilities.PlayersFullException;
 
 
 import server.ctrl.game.GameController;
+import server.model.game.Table;
 
 /**
  * A class containing methods testing the GameController class.

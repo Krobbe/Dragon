@@ -3,6 +3,8 @@ package model.game;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import common.model.game.TexasHoldemDealer;
 /**
  * A test for Dealer.
  * @author lisastenberg
