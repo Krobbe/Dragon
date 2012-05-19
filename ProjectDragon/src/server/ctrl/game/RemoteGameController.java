@@ -436,10 +436,12 @@ public class RemoteGameController extends UnicastRemoteObject
 		Statement myStmt;
 		try {
 			myStmt = conn.createStatement();
-			int up = myStmt.executeUpdate("INSERT INTO Games VALUES('" + gameID + "', '"
-							+ date + "')");
-			if(up == 0) {
-				System.out.println("Game with gameID" + gameID + "already exists");
+			if(gameID > 0) {
+				int up = myStmt.executeUpdate("INSERT INTO Games VALUES('" + gameID + "', '"
+								+ date + "')");
+				if(up == 0) {
+					System.out.println("Game with gameID" + gameID + "already exists");
+				}
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -476,7 +478,7 @@ public class RemoteGameController extends UnicastRemoteObject
 			if(rs.next()) {
 				int max = Integer.parseInt(rs.getString(1));
 				System.out.println(max);
-				return max + 1;
+				return (max + 1);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

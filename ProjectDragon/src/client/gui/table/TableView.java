@@ -1,7 +1,12 @@
 package client.gui.table;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,6 +34,10 @@ public class TableView implements EventHandler, ActionListener{
 	private Table table;
 	private JFrame frame;
 	private JPanel backPanel;
+	
+	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel;
+	private JPanel northPanel1, northPanel2;
+	/*
 	private PlayerOnePanel playerOnePanel;
 	private PlayerTwoPanel playerTwoPanel;
 	private PlayerThreePanel playerThreePanel;
@@ -39,11 +48,19 @@ public class TableView implements EventHandler, ActionListener{
 	private PlayerEightPanel playerEightPanel;
 	private PlayerNinePanel playerNinePanel;
 	private PlayerTenPanel playerTenPanel;
+	*/
+	private PlayerPanel player1Panel, player2Panel, player3Panel, player4Panel, 
+	player5Panel, player6Panel, player7Panel, player8Panel, player9Panel
+	, player10Panel;
+
 	private TableInfoPanel tableInfoPanel;
 	private UserBetPanel userBetPanel;
-	private ArrayList<IPlayerPanel> playerPanelList;
+	private List<PlayerPanel> playerPanelList;
 	
 	private JButton leaveTableButton;
+	
+	private int frameHeight = P.INSTANCE.getFrameHeight();
+	private int frameWidth = P.INSTANCE.getFrameWidth();
 	
 	/**
 	 * Creates the panel
@@ -57,17 +74,39 @@ public class TableView implements EventHandler, ActionListener{
 	
 	private void init() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1024, 768);
+		frame.setSize(frameWidth, frameHeight);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);	
+		frame.getContentPane().setLayout(new FlowLayout());	
 		
 		backPanel = new JPanel();
-		backPanel.setBounds(100, 100, 1024, 768);
+		backPanel.setSize(frameWidth, frameHeight);
+		backPanel.setLayout(new BorderLayout());
+		
+		northPanel = new JPanel();
+		southPanel = new JPanel();
+		westPanel = new JPanel();
+		eastPanel = new JPanel();
+		centerPanel = new JPanel();
+		northPanel1 = new JPanel();
+		northPanel2 = new JPanel();
+		
+		northPanel.setLayout(new BorderLayout());
+		southPanel.setLayout(new FlowLayout());
+		centerPanel.setLayout(new BorderLayout());
+		westPanel.setLayout(new FlowLayout());
+		eastPanel.setLayout(new FlowLayout());
+		northPanel1.setLayout(new FlowLayout());
+		northPanel2.setLayout(new FlowLayout());
+		
+		southPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		northPanel2.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		
 		leaveTableButton = new JButton("Leave table");
 		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		leaveTableButton.setBounds(10, 683, 111, 40);
+		leaveTableButton.setPreferredSize(new Dimension(111,40));
+		//leaveTableButton.setBounds(100, 683, 111, 40);
 		
+		/*
 		playerOnePanel = new PlayerOnePanel();
 		playerTwoPanel = new PlayerTwoPanel();
 		playerThreePanel = new PlayerThreePanel();
@@ -92,20 +131,68 @@ public class TableView implements EventHandler, ActionListener{
 		playerPanelList.add(playerEightPanel);
 		playerPanelList.add(playerNinePanel);
 		playerPanelList.add(playerTenPanel);
+		*/
+		
+		player1Panel = new PlayerPanel();
+		player2Panel = new PlayerPanel();
+		player3Panel = new PlayerPanel();
+		player4Panel = new PlayerPanel();
+		player5Panel = new PlayerPanel();
+		player6Panel = new PlayerPanel();
+		player7Panel = new PlayerPanel();
+		player8Panel = new PlayerPanel();
+		player9Panel = new PlayerPanel();
+		player10Panel = new PlayerPanel();
+		
+		
+		playerPanelList = new ArrayList<PlayerPanel>();
+		playerPanelList.add(player1Panel);
+		playerPanelList.add(player2Panel);
+		playerPanelList.add(player3Panel);
+		playerPanelList.add(player4Panel);
+		playerPanelList.add(player5Panel);
+		playerPanelList.add(player6Panel);
+		playerPanelList.add(player7Panel);
+		playerPanelList.add(player8Panel);
+		playerPanelList.add(player9Panel);
+		playerPanelList.add(player10Panel);
+		
+		System.out.println("panel: " + playerPanelList.get(0));
 		
 		tableInfoPanel = new TableInfoPanel();
 		userBetPanel = new UserBetPanel();
-		
+		/*
 		for(IPlayerPanel p : playerPanelList) {
 			//TODO Will this work?
 			backPanel.add((JPanel)p);
 		}
+		*/
 		
-		backPanel.add(tableInfoPanel);
-		backPanel.add(userBetPanel);
-		backPanel.add(leaveTableButton);
+		westPanel.add(player8Panel);
+		southPanel.add(player9Panel);
+		southPanel.add(player10Panel);
+		southPanel.add(player1Panel);
+		southPanel.add(player2Panel);
+		eastPanel.add(player3Panel);
+		northPanel2.add(player7Panel);
+		northPanel2.add(player6Panel);
+		northPanel2.add(player5Panel);
+		northPanel2.add(player4Panel);
 		
-		frame.getContentPane().add(backPanel);
+		northPanel1.add(leaveTableButton);
+		
+		centerPanel.add(tableInfoPanel, BorderLayout.WEST);
+		centerPanel.add(userBetPanel, BorderLayout.EAST);
+		northPanel.add(northPanel1, BorderLayout.NORTH);
+		northPanel.add(northPanel2, BorderLayout.SOUTH);
+		
+		backPanel.add(centerPanel, BorderLayout.CENTER);
+		backPanel.add(northPanel, BorderLayout.NORTH);
+		backPanel.add(southPanel, BorderLayout.SOUTH);
+		backPanel.add(westPanel, BorderLayout.WEST);
+		backPanel.add(eastPanel, BorderLayout.EAST);
+		
+		frame.add(backPanel);
 		
 		frame.setVisible(true);
 		frame.setResizable(true);
@@ -132,7 +219,7 @@ public class TableView implements EventHandler, ActionListener{
 			for(int i = 0; i < allPlayers.size(); i++) {
 				if(handDiscardedPlayer.equals(allPlayers.get(i))) {
 					playerPanelList.get(i).discard();
-					playerPanelList.get(i).setTheBackground(Color.red);
+					playerPanelList.get(i).setBackground(Color.red);
 					break;
 				}
 			}
@@ -152,7 +239,7 @@ public class TableView implements EventHandler, ActionListener{
 			}
 			break;
 			
-			//TODO What is this case supposed to do?
+			//TODO What is this case supposed to do? Change player.owncurrentbet
 //		case OWN_CURRENT_BET_CHANGED:
 //			Bet ownCurrentBet;
 //			if (!(evt.getValue() instanceof Bet)) {
@@ -172,12 +259,12 @@ public class TableView implements EventHandler, ActionListener{
 			
 		case TURN_CHANGED:
 			int turnIndex = (Integer) evt.getValue();
-			playerPanelList.get(turnIndex).setTheBackground(Color.green);
+			playerPanelList.get(turnIndex).setBackground(Color.green);
 			if(turnIndex == 1) {
-				playerPanelList.get(10).setTheBackground(Color.gray);
+				playerPanelList.get(10).setBackground(Color.gray);
 			}
 			else {
-				playerPanelList.get(turnIndex-1).setTheBackground(Color.gray);
+				playerPanelList.get(turnIndex-1).setBackground(Color.gray);
 			}
 			
 			List<String> legalButtons = table.getLegalButtons();

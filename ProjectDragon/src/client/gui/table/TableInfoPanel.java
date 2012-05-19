@@ -1,6 +1,10 @@
 package client.gui.table;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -18,11 +22,13 @@ import common.model.card.ICard;
  */
 public class TableInfoPanel extends JPanel {
 	
-	private JLabel flopc1Label;
-	private JLabel flopc2Label;
-	private JLabel flopc3Label;
-	private JLabel turnc1Label;
-	private JLabel riverc1Label;
+	private JPanel northPanel;
+	private JPanel southPanel;
+	private JLabel card1Label;
+	private JLabel card2Label;
+	private JLabel card3Label;
+	private JLabel card4Label;
+	private JLabel card5Label;
 	private JLabel potSizeInfoLabel;
 	private JLabel potSize;
 	private JLabel currentBetInfoLabel;
@@ -37,45 +43,71 @@ public class TableInfoPanel extends JPanel {
 	}
 
 	private void init() {
-		this.setBackground(Color.green);
-		this.setBounds(297, 202, 418, 144);
-		this.setLayout(null);
+		this.setPreferredSize(new Dimension(418, 144));
+		//this.setBounds(297, 202, 418, 144);
+		this.setLayout(new BorderLayout());
+		
+		northPanel = new JPanel();
+		southPanel = new JPanel();
+		northPanel.setLayout(new FlowLayout());
+		southPanel.setLayout(new FlowLayout());
+		
+		northPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		southPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
-		flopc1Label = new JLabel("Card 1");
-		flopc1Label.setBounds(10, 11, 53, 80);
-		this.add(flopc1Label);
+		card1Label = new JLabel();
+		card1Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+		this.add(card1Label);
 
-		flopc2Label = new JLabel("Card 1");
-		flopc2Label.setBounds(89, 11, 53, 80);
-		this.add(flopc2Label);
+		card2Label = new JLabel();
+		card2Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+		this.add(card2Label);
 
-		flopc3Label = new JLabel("Card 1");
-		flopc3Label.setBounds(182, 11, 53, 80);
-		this.add(flopc3Label);
+		card3Label = new JLabel();
+		card3Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+		this.add(card3Label);
 
-		turnc1Label = new JLabel("Card 1");
-		turnc1Label.setBounds(260, 11, 53, 80);
-		this.add(turnc1Label);
+		card4Label = new JLabel();
+		card4Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+		this.add(card4Label);
 
-		riverc1Label = new JLabel("Card 1");
-		riverc1Label.setBounds(355, 11, 53, 80);
-		this.add(riverc1Label);
+		card5Label = new JLabel();
+		card5Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+		this.add(card5Label);
 
 		potSizeInfoLabel= new JLabel("Pot size:");
-		potSizeInfoLabel.setBounds(10, 120, 53, 15);
+		potSizeInfoLabel.setPreferredSize(new Dimension(53, 15));
+		//potSizeInfoLabel.setBounds(10, 120, 53, 15);
 		this.add(potSizeInfoLabel);
 		
 		potSize = new JLabel("xxx");
-		potSize.setBounds(89, 120, 53, 15);
+		potSize.setPreferredSize(new Dimension(53, 15));
+		//potSize.setBounds(89, 120, 53, 15);
 		this.add(potSize);
 		
 		currentBetInfoLabel = new JLabel("Current bet:");
-		currentBetInfoLabel.setBounds(260, 120, 70, 15);
+		currentBetInfoLabel.setPreferredSize(new Dimension(70, 15));
+		//currentBetInfoLabel.setBounds(260, 120, 70, 15);
 		this.add(currentBetInfoLabel);
 		
 		currentBet = new JLabel("xxx");
-		currentBet.setBounds(355, 120, 53, 15);
+		potSizeInfoLabel.setPreferredSize(new Dimension(53, 15));
+		//currentBet.setBounds(355, 120, 53, 15);
 		this.add(currentBet);
+		
+		northPanel.add(card1Label);
+		northPanel.add(card2Label);
+		northPanel.add(card3Label);
+		northPanel.add(card4Label);
+		northPanel.add(card5Label);
+		
+		southPanel.add(potSizeInfoLabel);
+		southPanel.add(potSize);
+		southPanel.add(currentBetInfoLabel);
+		southPanel.add(currentBet);
+		
+		this.add(northPanel, BorderLayout.NORTH);
+		this.add(southPanel, BorderLayout.SOUTH);
 	}
 	
 	/**
@@ -100,22 +132,22 @@ public class TableInfoPanel extends JPanel {
 	 */
 	public void showCards(List<ICard> list) {
 		if(list.size() == 3) {
-			flopc1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
-			flopc2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
-			flopc3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
+			card1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
+			card2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
+			card3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
 		}
 		if(list.size() == 4) {
-			flopc1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
-			flopc2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
-			flopc3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
-			turnc1Label.setIcon(new ImageIcon(path + list.get(3).getRank() + list.get(3).getSuit() + ".gif"));
+			card1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
+			card2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
+			card3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
+			card4Label.setIcon(new ImageIcon(path + list.get(3).getRank() + list.get(3).getSuit() + ".gif"));
 		}
 		if(list.size() == 5) {
-			flopc1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
-			flopc2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
-			flopc3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
-			turnc1Label.setIcon(new ImageIcon(path + list.get(3).getRank() + list.get(3).getSuit() + ".gif"));
-			riverc1Label.setIcon(new ImageIcon(path + list.get(4).getRank() + list.get(4).getSuit() + ".gif"));
+			card1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
+			card2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
+			card3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
+			card4Label.setIcon(new ImageIcon(path + list.get(3).getRank() + list.get(3).getSuit() + ".gif"));
+			card5Label.setIcon(new ImageIcon(path + list.get(4).getRank() + list.get(4).getSuit() + ".gif"));
 		}
 	}
 }

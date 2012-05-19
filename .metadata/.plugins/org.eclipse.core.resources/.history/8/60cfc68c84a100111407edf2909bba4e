@@ -1,0 +1,13 @@
+package client.gui.table;
+
+public enum P {
+	INSTANCE;
+	
+	public int getFrameHeight() {
+		return 700;
+	}
+	
+	public int getFrameWidth() {
+		return 1000;
+	}
+}
