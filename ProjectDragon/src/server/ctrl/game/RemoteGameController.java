@@ -123,10 +123,32 @@ public class RemoteGameController extends UnicastRemoteObject
 	 * Removes a player from the game and the reference to the player's client
 	 * 
 	 * @param player The player to be removed from the game
-	 * @param clientGame The reference to the removed player
 	 */
-	public void removePlayer(IPlayer player, IClientGame clientGame) {
+	public void removePlayer(IPlayer player) {
+		// TODO Check if the logout-method in RemoteComm.Ctrl works as it should
+		// Remove the commented rows below when done
+		//System.out.println(playerReferences.size());
 		playerReferences.remove(player);
+		//System.out.println(playerReferences.size());
+	}
+	
+	/**
+	 * Removes a player from the game and the reference to the player's client
+	 * 
+	 * @param player The player to be removed from the game
+	 */
+	public void removePlayer(String userName) {
+		IPlayer playerToBeRemoved = null;
+		
+		for(IPlayer player : playerReferences.keySet()){
+			if(player.getName().equals(userName)) {
+				playerToBeRemoved = player;
+				break;
+			}
+		}
+		
+		removePlayer(playerToBeRemoved);
+		
 	}
 	
 	@Override

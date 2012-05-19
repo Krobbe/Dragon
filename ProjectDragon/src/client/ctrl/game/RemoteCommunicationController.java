@@ -149,6 +149,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	public boolean logout() {
 		
 		try {
+			System.out.println("Hejj");
 			serverComm.logout(this.account);
 			return true;
 		} catch (RemoteException e) {
@@ -311,6 +312,13 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				login(this, userName, passWord);
 			}
 			break;
+			
+		case TRY_LOGOUT:
+			
+			// TODO Handle logout better
+			logout();
+			EventBus.publish(new Event(Event.Tag.LOGOUT_SUCCESS, ""));
+			
 			
 		case TRY_REGISTER:
 			ArrayList<char[]> accountInfo;

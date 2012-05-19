@@ -32,7 +32,7 @@ public class Event {
     	LEAVE_TABLE,
     	LOGIN_FAILED,
     	LOGIN_SUCCESS,
-    	LOGOUT,
+    	LOGOUT_SUCCESS,
     	NEW_PLAYER_ADDED,			//getValue(): string, name of the player added
     	OWN_CURRENT_BET_CHANGED,	//getValue(): Bet
     	POT_CHANGED,				//getValue(): int
@@ -46,6 +46,7 @@ public class Event {
     	REQUEST_FOLD,
     	REQUEST_RAISE,
     	TRY_LOGIN, //The string is in the form "username password"
+    	TRY_LOGOUT,
     	TRY_REGISTER, //ArrayList<char[]>
     	TURN_CHANGED,	// getValue(): int, index of the new player
     }

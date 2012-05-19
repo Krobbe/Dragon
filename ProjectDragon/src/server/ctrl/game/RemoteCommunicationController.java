@@ -82,20 +82,14 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		// TODO Do more when logging out a player? Save active games or
 		// something?
 		
-		
-		// Uncomment and fix!
-		/*
-		
 		if(clients.remove(account) != null) {
 			for(RemoteGameController serverGame : activeGames){
-				serverGame.
+				serverGame.removePlayer(account.getUserName());
 			}
 			return true;
 		}
 		
-		*/
-		
-		return true;
+		return false;
 	}
 
 	@Override

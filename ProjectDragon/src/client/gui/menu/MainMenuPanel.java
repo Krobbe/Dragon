@@ -63,7 +63,7 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 			EventBus.publish(new Event(Event.Tag.GO_TO_STATISTICS, 1));
 			EventBus.publish(new Event(Event.Tag.GET_ACCOUNT_INFORMATION, 1));
 		} else if (e.getSource() == mainLogoutButton) {
-			EventBus.publish(new Event(Event.Tag.LOGOUT, 1));
+			EventBus.publish(new Event(Event.Tag.TRY_LOGOUT, 1));
 		}
 	}
 
