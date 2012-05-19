@@ -8,10 +8,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import common.database.IDBAccount;
 import common.model.player.Account;
 import common.model.player.IPlayer;
 
+import database.IDBAccount;
 
 
 /**
@@ -76,7 +76,7 @@ public interface IServer extends Remote, IDBAccount {
 	/**
 	 * 
 	 * 
-	 * @param account The user's Account object used for security clearance
+	 * @param account The user's Account object used for secuirity clearance
 	 * @return A list with games that players are allowed to join
 	 * @throws RemoteException
 	 */

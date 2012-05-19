@@ -73,7 +73,13 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 		if (e.getSource() == joinTableJoinButton) {
 			String s = (String)joinTableList.getSelectedValue();
 			int i = Integer.parseInt(s.substring(6));
-			client.event.EventBus.publish(new Event(Event.Tag.JOIN_TABLE, i));
+			System.out.println(i);
+			IServerGame sg = availableGamesLists.get(i-1);
+			//try {
+				client.event.EventBus.publish(new Event(Event.Tag.JOIN_TABLE, i));
+			//} catch (RemoteException e1) {
+			//	e1.printStackTrace();
+			//}
 		} else if (e.getSource() == joinTableBackButton) {
 			client.event.EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
 		}

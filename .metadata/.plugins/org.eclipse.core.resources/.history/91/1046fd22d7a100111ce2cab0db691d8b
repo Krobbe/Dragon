@@ -253,7 +253,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	 * @return true if the game was successfully joined
 	 */
 	public boolean joinGame(int gameID) {
-		System.out.println("" + serverComm);
+		
 		if(serverComm == null) {
 			return false;
 		}
@@ -264,6 +264,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				new Balance(1000));
 		
 		IPlayer user = new User(player);
+		
 		
 		IServerGame serverGame = null;
 
@@ -384,18 +385,9 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			break;
 		
 		case JOIN_TABLE:
-			int index = (Integer)evt.getValue();
-			IServerGame sg = getActiveGames().get(index-1);
-			try {
-				int gameID = sg.getGameID();
-				if(!joinGame(gameID)){
-					System.out.println("Unable to join table with id: " + evt.getValue());
-				}
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(!joinGame((Integer) evt.getValue())){
+				System.out.println("Unable to join table with id: " + evt.getValue());
 			}
-
 		}
 	}
 

@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.List;
 
 import common.model.card.ICard;
-import common.model.game.Pot;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.hand.IHand;
@@ -21,6 +20,7 @@ import client.event.EventBus;
 import client.event.EventHandler;
 import client.model.game.Table;
 
+import model.game.Pot;
 
 
 /**
@@ -262,18 +262,6 @@ public class RemoteGameController extends UnicastRemoteObject
 				bet = new Bet(user, user.getOwnCurrentBet() + amount);
 				requestRaise(bet);
 			}
-			break;
-		case PLAYER_SET_ACTIVE:
-			if(!(evt.getValue() instanceof Boolean)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
-			} else {
-				setReadyToPlay(user, true);
-			}
-			break;
-		case LEAVE_TABLE:
-			//TODO: Enough when leaving table?
-			setReadyToPlay(user, false);
 			break;
 		default:
 			break;

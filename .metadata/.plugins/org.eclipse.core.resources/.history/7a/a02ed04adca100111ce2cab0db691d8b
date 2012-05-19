@@ -268,7 +268,6 @@ public class TableView implements EventHandler, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(isReadyButton)) {
-			EventBus.publish(new Event(Event.Tag.PLAYER_SET_ACTIVE, true));
 			cardLayout.show(cardLayoutPanel, "centerPanel");
 		}
 	}
