@@ -37,6 +37,7 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 	private JButton joinTableJoinButton;
 	private JList joinTableList;
 	private DefaultListModel model;
+	private List<IServerGame> availableGamesLists;
 	
 	private String background = P.INSTANCE.getBackgroundImage();
 	private float transparency = P.INSTANCE.getTransparency();
@@ -57,9 +58,10 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 	@Override
 	public void onEvent(client.event.Event evt) {
 		if(evt.getTag().equals(Event.Tag.PUBLISH_ACTIVE_GAMES)) {
-			List<IServerGame> list = (List<IServerGame>)evt.getValue();
-			for(IServerGame isg : list) {
-				model.addElement(isg);
+			availableGamesLists = (List<IServerGame>)evt.getValue();
+			int i = 1;
+			for(IServerGame isg : availableGamesLists) {
+				model.addElement("Table " + i);
 			}
 		}
 	}
@@ -68,7 +70,11 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		// TODO Have to send what table to join
 		if (e.getSource() == joinTableJoinButton) {
-			IServerGame sg = (IServerGame)joinTableList.getSelectedValue();
+			String s = (String)joinTableList.getSelectedValue();
+			int i = Integer.parseInt(s.substring(6));
+			System.out.println(i);
+			IServerGame sg = availableGamesLists.get(i-1);
+//			IServerGame sg = (IServerGame)joinTableList.getSelectedValue();
 			try {
 				client.event.EventBus.publish(new Event(Event.Tag.JOIN_TABLE, sg.getGameID()));
 			} catch (RemoteException e1) {
