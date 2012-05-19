@@ -25,11 +25,11 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		
 	private JLabel availableCreditsLabel;
 	private JLabel creditsLabel;
+	private JTextField betField;
 	private JButton foldButton;
 	private JButton checkButton;
 	private JButton raiseButton;
 	private JButton leaveTableButton;
-	private JSpinner betSpinner;
 	
 	private IPlayer user;
 	
@@ -77,31 +77,22 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		raiseButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		raiseButton.addActionListener(this);
 
+		betField = new JTextField();
+		betField.setSize(buttonWidth, buttonHeight);
+		betField.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		betField.setColumns(10);
+
 		creditsLabel = new JLabel("Credits:");
 		creditsLabel.setSize(buttonWidth, buttonHeight);
 		creditsLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
-		int bigblind = 0;
-		SpinnerModel model = new SpinnerNumberModel(0, bigblind, user.getBalance().getValue(), 10);
-		betSpinner = new JSpinner(model);
 		
 		this.add(leaveTableButton);
 		this.add(foldButton);
 		this.add(checkButton);
 		this.add(raiseButton);
-		this.add(betSpinner);
+		this.add(betField);
 		this.add(creditsLabel);
 		this.add(availableCreditsLabel);
-	}
-	
-	public void updateAvailableCredits() {
-		availableCreditsLabel.setText("" + user.getBalance().getValue());
-	}
-	
-	public void updateSpinner() {
-		int bigblind = 0;
-		SpinnerModel model = new SpinnerNumberModel(0, bigblind, user.getBalance().getValue(), 10);
-		betSpinner = new JSpinner(model);
 	}
 
 	@Override
@@ -116,8 +107,8 @@ public class UserBetPanel extends JPanel implements ActionListener {
 			
 		} else if (e.getSource().equals(raiseButton)) {
 			
-			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE,
-					(Integer)betSpinner.getValue()));
+			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE, Integer
+					.parseInt(betField.getText())));
 		} else if (e.getSource().equals(leaveTableButton)) {
 //			EventBus.publish(new Event(Event.Tag.REQUEST_FOLD, 1));
 			EventBus.publish(new Event(Event.Tag.LEAVE_TABLE, 1));

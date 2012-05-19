@@ -1,7 +1,13 @@
 package client.gui.table;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,10 +15,11 @@ import java.util.List;
 
 import javax.swing.*;
 
-import model.card.ICard;
-import model.player.Bet;
-import model.player.IPlayer;
-import model.player.Player;
+import common.model.card.ICard;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
+import common.model.player.Player;
+
 
 import client.event.*;
 
@@ -28,18 +35,12 @@ public class TableView implements EventHandler, ActionListener{
 	private Table table;
 	private JFrame frame;
 	private JPanel backPanel;
-	/*
-	private PlayerOnePanel playerOnePanel;
-	private PlayerTwoPanel playerTwoPanel;
-	private PlayerThreePanel playerThreePanel;
-	private PlayerFourPanel playerFourPanel;
-	private PlayerFivePanel playerFivePanel;
-	private PlayerSixPanel playerSixPanel;
-	private PlayerSevenPanel playerSevenPanel;
-	private PlayerEightPanel playerEightPanel;
-	private PlayerNinePanel playerNinePanel;
-	private PlayerTenPanel playerTenPanel;
-	*/
+	private JPanel foundationPanel;
+	
+	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel, isReadyPanel, cardLayoutPanel;
+	
+	private CardLayout cardLayout;
+	
 	private PlayerPanel player1Panel, player2Panel, player3Panel, player4Panel, 
 	player5Panel, player6Panel, player7Panel, player8Panel, player9Panel
 	, player10Panel;
@@ -48,7 +49,10 @@ public class TableView implements EventHandler, ActionListener{
 	private UserBetPanel userBetPanel;
 	private List<PlayerPanel> playerPanelList;
 	
-	private JButton leaveTableButton;
+	private JButton isReadyButton;
+	
+	private int frameHeight = P.INSTANCE.getFrameHeight();
+	private int frameWidth = P.INSTANCE.getFrameWidth();
 	
 	/**
 	 * Creates the panel
@@ -62,43 +66,50 @@ public class TableView implements EventHandler, ActionListener{
 	
 	private void init() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1024, 768);
+		frame.setSize(frameWidth, frameHeight);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);	
+		frame.getContentPane().setLayout(new FlowLayout());	
+		
+		foundationPanel = new JPanel();
+		foundationPanel.setLayout(new BorderLayout());
 		
 		backPanel = new JPanel();
-		backPanel.setBounds(100, 100, 1024, 768);
+		backPanel.setSize(frameWidth, frameHeight);
+		backPanel.setLayout(new BorderLayout());
 		
-		leaveTableButton = new JButton("Leave table");
-		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		leaveTableButton.setBounds(100, 683, 111, 40);
+		northPanel = new JPanel();
+		southPanel = new JPanel();
+		westPanel = new JPanel();
+		eastPanel = new JPanel();
+		centerPanel = new JPanel();
+		isReadyPanel = new JPanel();
 		
-		/*
-		playerOnePanel = new PlayerOnePanel();
-		playerTwoPanel = new PlayerTwoPanel();
-		playerThreePanel = new PlayerThreePanel();
-		playerFourPanel = new PlayerFourPanel();
-		playerFivePanel = new PlayerFivePanel();
-		playerSixPanel = new PlayerSixPanel();
-		playerSevenPanel = new PlayerSevenPanel();
-		playerEightPanel = new PlayerEightPanel();
-		playerNinePanel = new PlayerNinePanel();
-		playerTenPanel = new PlayerTenPanel();
+		isReadyButton = new JButton("Click if ready");
+		isReadyButton.setPreferredSize(new Dimension(418, 144));
+		isReadyButton.addActionListener(this);
 		
-		playerOnePanel.setName(table.getPlayers().get(0));
+		isReadyPanel.add(isReadyButton);
 		
-		playerPanelList = new ArrayList<IPlayerPanel>();
-		playerPanelList.add(playerOnePanel);
-		playerPanelList.add(playerTwoPanel);
-		playerPanelList.add(playerThreePanel);
-		playerPanelList.add(playerFourPanel);
-		playerPanelList.add(playerFivePanel);
-		playerPanelList.add(playerSixPanel);
-		playerPanelList.add(playerSevenPanel);
-		playerPanelList.add(playerEightPanel);
-		playerPanelList.add(playerNinePanel);
-		playerPanelList.add(playerTenPanel);
-		*/
+		cardLayout = new CardLayout();
+		cardLayoutPanel = new JPanel(cardLayout);
+		
+		northPanel.setLayout(new FlowLayout());
+		southPanel.setLayout(new FlowLayout());
+		centerPanel.setLayout(new FlowLayout());
+		westPanel.setLayout(new FlowLayout());
+		eastPanel.setLayout(new FlowLayout());
+		
+		player1Panel = new PlayerPanel();
+		player2Panel = new PlayerPanel();
+		player3Panel = new PlayerPanel();
+		player4Panel = new PlayerPanel();
+		player5Panel = new PlayerPanel();
+		player6Panel = new PlayerPanel();
+		player7Panel = new PlayerPanel();
+		player8Panel = new PlayerPanel();
+		player9Panel = new PlayerPanel();
+		player10Panel = new PlayerPanel();
+		
 		playerPanelList = new ArrayList<PlayerPanel>();
 		playerPanelList.add(player1Panel);
 		playerPanelList.add(player2Panel);
@@ -111,28 +122,36 @@ public class TableView implements EventHandler, ActionListener{
 		playerPanelList.add(player9Panel);
 		playerPanelList.add(player10Panel);
 		
-		
-		for(PlayerPanel p : playerPanelList) {
-			p = new PlayerPanel();
-			backPanel.add(p);
-		}
-		
 		tableInfoPanel = new TableInfoPanel();
 		userBetPanel = new UserBetPanel();
 		
-		/*
-		for(IPlayerPanel p : playerPanelList) {
-			//TODO Will this work?
-			backPanel.add((JPanel)p);
-		}
-		*/
+		westPanel.add(player8Panel);
+		southPanel.add(player9Panel);
+		southPanel.add(player10Panel);
+		southPanel.add(player1Panel);
+		southPanel.add(player2Panel);
+		eastPanel.add(player3Panel);
+		northPanel.add(player7Panel);
+		northPanel.add(player6Panel);
+		northPanel.add(player5Panel);
+		northPanel.add(player4Panel);
 		
-		backPanel.add(tableInfoPanel);
-		backPanel.add(userBetPanel);
-		backPanel.add(leaveTableButton);
+		centerPanel.add(tableInfoPanel);
 		
-		frame.getContentPane().add(backPanel);
+		cardLayoutPanel.add(isReadyPanel, "isReadyPanel");
+		cardLayoutPanel.add(centerPanel, "centerPanel");
 		
+//		backPanel.add(centerPanel, BorderLayout.CENTER);
+		backPanel.add(cardLayoutPanel, BorderLayout.CENTER);
+		backPanel.add(northPanel, BorderLayout.NORTH);
+		backPanel.add(southPanel, BorderLayout.SOUTH);
+		backPanel.add(westPanel, BorderLayout.WEST);
+		backPanel.add(eastPanel, BorderLayout.EAST);
+		
+		foundationPanel.add(backPanel, BorderLayout.NORTH);
+		foundationPanel.add(userBetPanel, BorderLayout.SOUTH);
+		
+		frame.add(foundationPanel);
 		frame.setVisible(true);
 		frame.setResizable(true);
 	}
@@ -142,6 +161,16 @@ public class TableView implements EventHandler, ActionListener{
 		List<IPlayer> allPlayers = table.getPlayers();
 		
 		switch (evt.getTag()) {
+		case NEW_PLAYER_ADDED:
+			int index;
+			for(IPlayer p : allPlayers) {
+				if(p.getName().equals((String)evt.getValue())) {
+					index = allPlayers.indexOf(p);
+					playerPanelList.get(index).setName(p);
+					playerPanelList.get(index).setBalance("" + p.getBalance());
+				}
+			}
+			break;
 		
 		case CURRENT_BET_CHANGED:
 			int bet = table.getRound().getBettingRound().getCurrentBet().getValue();
@@ -158,7 +187,7 @@ public class TableView implements EventHandler, ActionListener{
 			for(int i = 0; i < allPlayers.size(); i++) {
 				if(handDiscardedPlayer.equals(allPlayers.get(i))) {
 					playerPanelList.get(i).discard();
-					playerPanelList.get(i).setTheBackground(Color.red);
+					playerPanelList.get(i).setBackground(Color.red);
 					break;
 				}
 			}
@@ -198,12 +227,12 @@ public class TableView implements EventHandler, ActionListener{
 			
 		case TURN_CHANGED:
 			int turnIndex = (Integer) evt.getValue();
-			playerPanelList.get(turnIndex).setTheBackground(Color.green);
+			playerPanelList.get(turnIndex).setBackground(Color.green);
 			if(turnIndex == 1) {
-				playerPanelList.get(10).setTheBackground(Color.gray);
+				playerPanelList.get(10).setBackground(Color.gray);
 			}
 			else {
-				playerPanelList.get(turnIndex-1).setTheBackground(Color.gray);
+				playerPanelList.get(turnIndex-1).setBackground(Color.gray);
 			}
 			
 			List<String> legalButtons = table.getLegalButtons();
@@ -218,8 +247,8 @@ public class TableView implements EventHandler, ActionListener{
 						+ evt.getTag());
 			} else {
 				for (IPlayer acp : table.getActivePlayers()) {
-					int index = allPlayers.indexOf(acp);
-					playerPanelList.get(index).showCards(allPlayers.get(index).getHand());
+					int i = allPlayers.indexOf(acp);
+					playerPanelList.get(i).showCards(allPlayers.get(i).getHand());
 				}
 			}
 			break;
@@ -228,14 +257,16 @@ public class TableView implements EventHandler, ActionListener{
 			List<ICard> communityCards = table.getCommunityCards();
 			tableInfoPanel.showCards(communityCards);
 			break;
-
+		
+		case LEAVE_TABLE:
+			frame.dispose();
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(leaveTableButton)) {
-			//TODO this is the wrong event
-			EventBus.publish(new Event(Event.Tag.LEAVE_TABLE, 1));
+		if (e.getSource().equals(isReadyButton)) {
+			cardLayout.show(cardLayoutPanel, "centerPanel");
 		}
 	}
 

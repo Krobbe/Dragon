@@ -239,11 +239,16 @@ public class RemoteGameController extends UnicastRemoteObject
 		
 		switch(evt.getTag()) {
 		case REQUEST_CALL:
-			requestCall(new Bet(user, gameController.getCurrentBet().getValue()));
+			if(requestCall(new Bet(user, gameController.getCurrentBet().getValue()))) {
+				;
+			}
 			break;
 		case REQUEST_CHECK:
 			if(gameController.getCurrentBet().getValue() == 0) {
-				requestCheck(new Bet(user, 0));
+				//do check
+				if(requestCheck(new Bet(user, 0))) {
+					gameController.nextTurn();
+				}
 			} else {
 				//if currentBet != 0 this is a call
 				EventBus.publish(new Event(Event.Tag.REQUEST_CALL, 1));

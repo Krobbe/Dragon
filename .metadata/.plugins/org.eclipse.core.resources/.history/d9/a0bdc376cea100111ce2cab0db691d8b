@@ -54,7 +54,7 @@ public class TableView implements EventHandler, ActionListener{
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
 	
-	IPlayer user;
+	IPlayer user = table.getPlayers().get(table.getMeIndex());
 	
 	/**
 	 * Creates the panel
@@ -62,7 +62,6 @@ public class TableView implements EventHandler, ActionListener{
 	 */
 	public TableView(Table table) {
 		this.table = table;
-		user = table.getPlayers().get(table.getMeIndex());
 		init();
 		EventBus.register(this);
 	}

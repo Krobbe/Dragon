@@ -90,6 +90,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		this.add(checkButton);
 		this.add(raiseButton);
 		this.add(betSpinner);
+		//this.add(betField);
 		this.add(creditsLabel);
 		this.add(availableCreditsLabel);
 	}
@@ -116,8 +117,8 @@ public class UserBetPanel extends JPanel implements ActionListener {
 			
 		} else if (e.getSource().equals(raiseButton)) {
 			
-			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE,
-					(Integer)betSpinner.getValue()));
+			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE, Integer
+					.parseInt(betField.getText())));
 		} else if (e.getSource().equals(leaveTableButton)) {
 //			EventBus.publish(new Event(Event.Tag.REQUEST_FOLD, 1));
 			EventBus.publish(new Event(Event.Tag.LEAVE_TABLE, 1));

@@ -320,7 +320,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		
 		for(RemoteGameController serverGame : activeGames) {
 			tempList.add(serverGame);
-			//TODO: Remove when a game is shutted down.
 		}
 		
 		return tempList;

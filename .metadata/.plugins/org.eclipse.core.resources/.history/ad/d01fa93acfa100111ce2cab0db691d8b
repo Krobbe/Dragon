@@ -90,6 +90,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		this.add(checkButton);
 		this.add(raiseButton);
 		this.add(betSpinner);
+		//this.add(betField);
 		this.add(creditsLabel);
 		this.add(availableCreditsLabel);
 	}
