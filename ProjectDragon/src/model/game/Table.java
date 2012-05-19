@@ -54,7 +54,7 @@ public class Table {
 		round = new Round();
 		dealer = new TexasHoldemDealer();
 		communityCards = new LinkedList<ICard>();
-		players = new LinkedList<IPlayer>();
+		this.players = new LinkedList<IPlayer>();
 		
 		for(IPlayer player : players) {
 			this.players.add(player);
