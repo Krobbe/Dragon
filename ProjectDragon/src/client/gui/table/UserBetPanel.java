@@ -47,6 +47,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		leaveTableButton = new JButton("Leave table");
 		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		leaveTableButton.setSize(buttonWidth, buttonHeight);
+		leaveTableButton.addActionListener(this);
 		
 		availableCreditsLabel = new JLabel("xxx");
 		availableCreditsLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -103,7 +104,9 @@ public class UserBetPanel extends JPanel implements ActionListener {
 			
 			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE, Integer
 					.parseInt(betField.getText())));
-			
+		} else if (e.getSource().equals(leaveTableButton)) {
+//			EventBus.publish(new Event(Event.Tag.REQUEST_FOLD, 1));
+			EventBus.publish(new Event(Event.Tag.LEAVE_TABLE, 1));
 		}
 	}
 

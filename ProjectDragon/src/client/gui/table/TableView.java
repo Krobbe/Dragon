@@ -1,6 +1,7 @@
 package client.gui.table;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
@@ -36,8 +37,10 @@ public class TableView implements EventHandler, ActionListener{
 	private JPanel backPanel;
 	private JPanel foundationPanel;
 	
-	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel;
-
+	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel, isReadyPanel, cardLayoutPanel;
+	
+	private CardLayout cardLayout;
+	
 	private PlayerPanel player1Panel, player2Panel, player3Panel, player4Panel, 
 	player5Panel, player6Panel, player7Panel, player8Panel, player9Panel
 	, player10Panel;
@@ -46,7 +49,7 @@ public class TableView implements EventHandler, ActionListener{
 	private UserBetPanel userBetPanel;
 	private List<PlayerPanel> playerPanelList;
 	
-	private JButton leaveTableButton;
+	private JButton isReadyButton;
 	
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
@@ -79,6 +82,16 @@ public class TableView implements EventHandler, ActionListener{
 		westPanel = new JPanel();
 		eastPanel = new JPanel();
 		centerPanel = new JPanel();
+		isReadyPanel = new JPanel();
+		
+		isReadyButton = new JButton("Click if ready");
+		isReadyButton.setPreferredSize(new Dimension(418, 144));
+		isReadyButton.addActionListener(this);
+		
+		isReadyPanel.add(isReadyButton);
+		
+		cardLayout = new CardLayout();
+		cardLayoutPanel = new JPanel(cardLayout);
 		
 		northPanel.setLayout(new FlowLayout());
 		southPanel.setLayout(new FlowLayout());
@@ -125,7 +138,11 @@ public class TableView implements EventHandler, ActionListener{
 		
 		centerPanel.add(tableInfoPanel);
 		
-		backPanel.add(centerPanel, BorderLayout.CENTER);
+		cardLayoutPanel.add(isReadyPanel, "isReadyPanel");
+		cardLayoutPanel.add(centerPanel, "centerPanel");
+		
+//		backPanel.add(centerPanel, BorderLayout.CENTER);
+		backPanel.add(cardLayoutPanel, BorderLayout.CENTER);
 		backPanel.add(northPanel, BorderLayout.NORTH);
 		backPanel.add(southPanel, BorderLayout.SOUTH);
 		backPanel.add(westPanel, BorderLayout.WEST);
@@ -240,14 +257,16 @@ public class TableView implements EventHandler, ActionListener{
 			List<ICard> communityCards = table.getCommunityCards();
 			tableInfoPanel.showCards(communityCards);
 			break;
-
+		
+		case LEAVE_TABLE:
+			frame.dispose();
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(leaveTableButton)) {
-			//TODO this is the wrong event
-			EventBus.publish(new Event(Event.Tag.LEAVE_TABLE, 1));
+		if (e.getSource().equals(isReadyButton)) {
+			cardLayout.show(cardLayoutPanel, "centerPanel");
 		}
 	}
 
