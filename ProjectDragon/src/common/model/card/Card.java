@@ -26,8 +26,8 @@ public class Card implements ICard, Serializable {
 	 * @author mattiashenriksson
 	 */
 	public Card() {
-		this.rank = Rank.NO_RANK;
-		this.suit = Suit.NO_SUIT;
+		this.rank = Rank.NORANK;
+		this.suit = Suit.NOSUIT;
 	}
 	
 	public Card(Suit suit, Rank rank) {

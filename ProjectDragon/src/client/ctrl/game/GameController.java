@@ -316,7 +316,7 @@ public class GameController {
 		for(IPlayer player : table.getActivePlayers()) {
 			hand = player.getHand();
 			for(int i = 0; i < 2; i++) {
-				hand.addCard(new Card(Suit.NO_SUIT, Rank.NO_RANK));
+				hand.addCard(new Card(Suit.NOSUIT, Rank.NORANK));
 			}
 			EventBus.publish(new Event(Event.Tag.HANDS_CHANGED,
 					player));

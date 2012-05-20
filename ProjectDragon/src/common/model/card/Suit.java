@@ -6,5 +6,5 @@ package common.model.card;
  *
  */
 public enum Suit {
-	SPADES, HEARTS, DIAMONDS, CLUBS, NO_SUIT;
+	SPADES, HEARTS, DIAMONDS, CLUBS, NOSUIT;
 }
