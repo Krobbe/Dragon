@@ -142,6 +142,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				newGame.addPlayer(player, clientGame);
 				
 				// Removes the entranceFee from the user's Account instance
+				// TODO Remove from database. Here or somewhere else?
 				serverSideAccount.getBalance().removeFromBalance(entranceFee);
 				System.out.println("*** " + account.getUserName() + " created a"
 						+ " game ***");
@@ -343,6 +344,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 
 	@Override
 	public String testPrint() throws RemoteException {
-		return "Woop woop!";
+		return "Test print successful!";
 	}
 }

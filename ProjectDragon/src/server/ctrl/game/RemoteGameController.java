@@ -115,9 +115,25 @@ public class RemoteGameController extends UnicastRemoteObject
 	 * @param clientGame The reference to the added player
 	 */
 	public void addPlayer(IPlayer player, IClientGame clientGame) {
+		
 		IPlayer newPlayer = new Player(new Hand(), player.getName(),
 				new Balance(playerStartingChips));
+
+		LinkedList<IPlayer> clientPlayers =
+				new LinkedList<IPlayer>(playerReferences.keySet());
+		
 		playerReferences.put(newPlayer, clientGame);
+		gameController.addPlayer(player);
+
+		try {
+			for(IPlayer clientPlayer : clientPlayers) {
+	
+					playerReferences.get(clientPlayer).addPlayer(newPlayer);
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -169,8 +185,6 @@ public class RemoteGameController extends UnicastRemoteObject
 	public int getMaxPlayers() throws RemoteException {
 		return maxPlayers;
 	}
-	
-
 
 	@Override
 	public int getEntranceFee() throws RemoteException {

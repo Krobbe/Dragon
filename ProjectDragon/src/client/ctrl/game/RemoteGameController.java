@@ -279,9 +279,22 @@ public class RemoteGameController extends UnicastRemoteObject
 			break;
 		default:
 			break;
-		}
-		
+			
+		} // switch(Evt.getTag())
+	} // OnEvent(Event evt)
+
+	
+	@Override
+	public void addPlayer(IPlayer player)
+			throws RemoteException {
+		gameController.addPlayer(player);
+		EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
 	}
 
+	@Override
+	public void removePlayer(IPlayer player) throws RemoteException {
+		gameController.removePlayer(player);
+		EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
+	}
 	
 }

@@ -49,7 +49,20 @@ public class GameController {
 	 * @author robinandersson
 	 */
 	public void addPlayer(IPlayer player) {
-		this.table.addPlayer(player);
+		List<IPlayer> players = table.getPlayers();
+		boolean hasBeenSeated = false;
+		
+		for(IPlayer playerSeat : players) {
+			if(playerSeat == null) {
+				playerSeat = player;
+				hasBeenSeated = true;
+				break;
+			}
+		}
+		
+		if(!hasBeenSeated) {
+			players.add(player);
+		}
 	}
 	
 	/**
@@ -60,6 +73,13 @@ public class GameController {
 	 */
 	public void addPlayers(Collection<IPlayer> player) {
 		this.table.addPlayers(player);
+	}
+	
+	//TODO Javadoc
+	public void removePlayer(IPlayer player) {
+		
+		List<IPlayer> players = table.getPlayers();
+		players.remove(player);
 	}
 
 	/**

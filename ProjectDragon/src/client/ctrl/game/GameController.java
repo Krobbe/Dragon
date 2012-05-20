@@ -53,15 +53,28 @@ public class GameController {
 	}
 
 	/**
-	 * Adds a player to the game table
+	 * Adds a player to the game table where a seat is empty
 	 * 
-	 * @param player
-	 *            The player to be added
+	 * @param playerThe player to be added
 	 * @author robinandersson
 	 */
 	public void addPlayer(IPlayer player) {
-		this.table.addPlayer(player);
-		EventBus.publish(new Event(Event.Tag.NEW_PLAYER_ADDED, player.getName()));
+		
+		List<IPlayer> players = table.getPlayers();
+		boolean hasBeenSeated = false;
+		
+		
+		for(IPlayer playerSeat : players) {
+			if(playerSeat == null) {
+				playerSeat = player;
+				hasBeenSeated = true;
+				break;
+			}
+		}
+		
+		if(!hasBeenSeated) {
+			players.add(player);
+		}
 	}
 	
 	/**
@@ -72,6 +85,13 @@ public class GameController {
 	 */
 	public void addPlayers(Collection<IPlayer> players) {
 		this.table.addPlayers(players);
+	}
+	
+	// TODO Javadoc
+	public void removePlayer(IPlayer player) {
+		
+		List<IPlayer> players = table.getPlayers();
+		players.remove(player);
 	}
 
 	/**

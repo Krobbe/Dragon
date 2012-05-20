@@ -121,7 +121,29 @@ public interface IClientGame extends Remote {
 	 * 
 	 * @param bet Holds a player and how much the player should add to his 
 	 * balance.
+	 * @throws RemoteException
 	 */
 	public void balanceChanged(Bet bet) throws RemoteException;
+	
+	/**
+	 * Notifies the client that a player has been added to the game
+	 * 
+	 * @param players The new player
+	 * @param playerIndex The index (or seat if you will) of the new player at
+	 * the table
+	 * @throws RemoteException
+	 */
+	public void addPlayer(IPlayer player) throws RemoteException;
+	
+	/**
+	 * Notifies the client that a player has been removed from the game
+	 * 
+	 * @param players The new player
+	 * the table
+	 * @throws RemoteException
+	 */
+	public void removePlayer(IPlayer player) throws RemoteException;
+	
+	
 
 }

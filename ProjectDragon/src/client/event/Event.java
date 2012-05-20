@@ -35,9 +35,9 @@ public class Event {
     	LOGIN_FAILED,
     	LOGIN_SUCCESS,
     	LOGOUT_SUCCESS,
-    	NEW_PLAYER_ADDED,			//getValue(): string, name of the player added
     	OWN_CURRENT_BET_CHANGED,	//getValue(): Bet
     	PLAYER_SET_ACTIVE,			//getValue(): Boolean
+    	PLAYERS_CHANGED,
     	POT_CHANGED,				//getValue(): int
     	PUBLISH_ACTIVE_GAMES,		//getValue(): List<IServerGame>
     	PUBLISH_ACCOUNT_INFORMATION,//getValue(): Account

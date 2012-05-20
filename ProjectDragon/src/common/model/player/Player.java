@@ -79,43 +79,6 @@ public class Player implements IPlayer {
 		ownCurrentBet = value;
 	}
 
-	/**
-	 * Equals method for the User class. A user A is equal to a user
-	 * B if and only if A = B.
-	 * 
-	 * @author forssenm
-	 * @param Object to compare with
-	 * @return returns true if they are the same object
-	 */
-	@Override
-	public boolean equals(Object o) {
-		return (this == o);
-	}
-
-	/**
-	 * Tostring method for the Player class
-	 * @author forssenm
-	 * @author mattiashenriksson
-	 * @return returns a string containing the name, balance, hand and if the
-	 *         user is active or not
-	 */
-	@Override
-	public String toString() {
-		String result = ("Name: " + getName() + " , " + "Balance: "
-				+ getBalance() + " , " + "Active: " + isActive() + " , "
-				+ "Hand: " + getHand().toString()) + " , " + "Own current bet: "
-				+ getOwnCurrentBet() + " , "+ "Done first bet?: " + hasDoneFirstTurn();
-		return result;
-	}
-
-	// Since we at the current state aren't planning on using any hashtables
-	// this code was added
-	// for the cause of good practice
-	public int hashCode() {
-		assert false : "hashCode not designed";
-		return 42; // any arbitrary constant will do
-	}
-
 	@Override
 	public void setDoneFirstTurn(boolean value) {
 		doneFirstTurn = value;
@@ -140,6 +103,50 @@ public class Player implements IPlayer {
 	@Override
 	public int compareTo(IPlayer o) {
 		return this.getName().compareTo(o.getName());
+	}
+	
+	// TODO Is this a correct equals method? (Symmetry etc.)
+	/**
+	 * Equals method for the Player class. Two objects are deemed equal if their
+	 * user-names match 
+	 * 
+	 * @author robinandersson
+	 * @param Object to compare with
+	 * @return returns true if they are the same object
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		} else if(o.getClass() != this.getClass()){
+			return false;
+		}
+		
+		return ((Player) o).getName().equals(this.getName());
+	}
+
+	/**
+	 * Tostring method for the Player class
+	 * @author forssenm
+	 * @author mattiashenriksson
+	 * @return returns a string containing the name, balance, hand and if the
+	 *         user is active or not
+	 */
+	@Override
+	public String toString() {
+		String result = ("Name: " + getName() + " , " + "Balance: "
+				+ getBalance() + " , " + "Active: " + isActive() + " , "
+				+ "Hand: " + getHand().toString()) + " , " + "Own current bet: "
+				+ getOwnCurrentBet() + " , "+ "Done first bet?: " + hasDoneFirstTurn();
+		return result;
+	}
+
+	// Since we at the current state aren't planning on using any hashtables
+	// this code was added
+	// for the cause of good practice
+	public int hashCode() {
+		assert false : "hashCode not designed";
+		return 42; // any arbitrary constant will do
 	}
 	
 	

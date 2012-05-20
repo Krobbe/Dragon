@@ -114,11 +114,12 @@ public class Account implements Comparable<Account>, Serializable {
 	}
 	
 	/**
-	 * Equals method for the account class. Checks specifically if the accounts'
-	 * username and password match.
+	 * Equals method for the account class. The two objects are deemed equal if
+	 * their user-names and passwords match.
+	 * 
 	 * @author robinandersson
 	 * @param the object to compare with
-	 * @return returns true if they are the same object
+	 * @return returns true if their user-names and passwords match
 	 */
 	@Override
 	public boolean equals(Object o) {

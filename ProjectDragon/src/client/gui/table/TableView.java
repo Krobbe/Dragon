@@ -162,7 +162,8 @@ public class TableView implements EventHandler, ActionListener{
 		List<IPlayer> allPlayers = table.getPlayers();
 		
 		switch (evt.getTag()) {
-		case NEW_PLAYER_ADDED:
+
+		case PLAYERS_CHANGED:
 			int index = 0;
 			for(IPlayer p : allPlayers) {
 					playerPanelList.get(index).setName(p);
