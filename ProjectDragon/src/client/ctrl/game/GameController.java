@@ -198,6 +198,7 @@ public class GameController {
 	 */
 	public void setTurn(int indexOfCurrentPlayer) {
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
+		System.out.println("index : " + indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
 				.getIndexOfCurrentPlayer()));
 	}

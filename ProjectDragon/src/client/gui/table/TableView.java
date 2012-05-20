@@ -233,7 +233,7 @@ public class TableView implements EventHandler, ActionListener{
 			int turnIndex = (Integer) evt.getValue();
 			System.out.println(turnIndex);
 			playerPanelList.get(turnIndex).setBackground(Color.green);
-			playerPanelList.get((turnIndex-1)%10).setBackground(Color.gray);
+			playerPanelList.get((turnIndex-1)%allPlayers.size()).setBackground(Color.gray);
 			
 			List<String> legalButtons = table.getLegalButtons();
 			if(legalButtons.contains("check") || legalButtons.contains("call")) {

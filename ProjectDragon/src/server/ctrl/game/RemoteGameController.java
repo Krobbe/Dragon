@@ -475,10 +475,9 @@ public class RemoteGameController extends UnicastRemoteObject
 						return;
 					}
 				}
+				// TODO Handle start game scenario
+				gameController.nextRound();
 			}
-			
-			// TODO Handle start game scenario
-			gameController.nextRound();
 		}
 
 	}
