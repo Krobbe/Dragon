@@ -96,6 +96,10 @@ public class PlayerPanel extends JPanel {
 	public void showCards(IHand hand) {
 		ICard card1 = hand.getCards().get(0);
 		ICard card2 = hand.getCards().get(1);
+		System.out.println("------------CARDS---------------");
+		System.out.println(card1);
+		System.out.println(card2);
+		System.out.println("--------------------------------");
 		card1Label.setIcon(new ImageIcon(
 				path + card1.getRank() + card1.getSuit() + ".gif"));
 		card2Label.setIcon(new ImageIcon(

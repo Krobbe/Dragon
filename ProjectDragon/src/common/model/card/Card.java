@@ -1,5 +1,7 @@
 package common.model.card;
 
+import java.io.Serializable;
+
 
 /**
  * A class that represents a Card. 
@@ -13,7 +15,7 @@ package common.model.card;
  * @author robinandersson
  */
 
-public class Card implements ICard {
+public class Card implements ICard, Serializable {
 	public static final int NO_OF_RANKS = 13;
 	public static final int NO_OF_SUITS = 4;
 		

@@ -481,9 +481,9 @@ public class RemoteGameController extends UnicastRemoteObject
 	
 	@Override
 	public void tryStartGame() throws RemoteException {
-		
+
 		boolean allReady = true;
-		
+
 		if(gameController != null) {
 			if (playerReferences.keySet().size() > 1) {
 				// Checks if all the players are ready to start the game
