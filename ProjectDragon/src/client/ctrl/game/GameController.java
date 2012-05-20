@@ -211,11 +211,15 @@ public class GameController {
 	 * @throws RemoteException
 	 */
 	public void setHand(IPlayer player, IHand hand) {
-		for (IPlayer clientPlayer : table.getActivePlayers()) {
+		System.out.println("--------------SET_HAND_ANROPAD!!!----------");
+		for (IPlayer clientPlayer : table.getPlayers()) {
+			System.out.println("Kom in i gc:n");
 			if (clientPlayer.equals(player)) {
+				System.out.println("HITTADE_PLAYERN: " + clientPlayer.toString());
 				IHand playerHand = clientPlayer.getHand();
 				for (ICard card : hand.getCards()) {
 					playerHand.addCard(card);
+					System.out.println(clientPlayer.getHand().toString());
 				}
 				EventBus.publish(new Event(Event.Tag.HANDS_CHANGED,
 						clientPlayer));

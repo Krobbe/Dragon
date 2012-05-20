@@ -234,6 +234,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	@Override
 	public void setHand(IPlayer player, IHand hand) {
 		gameController.setHand(player, hand);
+		System.out.println("HAND_CAUGHT_IN_CLIENT: " + hand.toString());
 	}
 
 	@Override

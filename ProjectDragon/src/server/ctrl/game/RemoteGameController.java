@@ -265,6 +265,7 @@ public class RemoteGameController extends UnicastRemoteObject
 			break;
 			
 		case SERVER_DISTRIBUTE_CARDS:
+			System.out.println("---------------SERVER_DIST_CRD_CAUGHT--------");
 			Map<IPlayer, IHand> playerHands;
 			if (!(evt.getValue() instanceof Map)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
@@ -278,6 +279,8 @@ public class RemoteGameController extends UnicastRemoteObject
 					client = playerReferences.get(p);
 					try {
 						client.setHand(p, hand);
+						System.out.println("--------------------SETHAND_CALLED_IN_SERVER-------------");
+						System.out.println("HAND_SENT: " + hand.toString());
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}
