@@ -44,6 +44,7 @@ public class RemoteGameController extends UnicastRemoteObject
 			IPlayer user) throws RemoteException{
 		this.clientComm = clientComm;
 		this.user = user;
+		gameController = new GameController();
 		EventBus.register(this);
 	}
 	
@@ -230,6 +231,7 @@ public class RemoteGameController extends UnicastRemoteObject
 
 	@Override
 	public void newTable(List<IPlayer> players, int meIndex) {
+		System.out.println("" + players);
 		gameController.newTable(players, meIndex);
 	}
 

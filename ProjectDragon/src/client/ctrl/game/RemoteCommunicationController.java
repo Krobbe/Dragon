@@ -52,7 +52,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		activeGames = new TreeMap<IPlayer, RemoteGameController>();
 		account = null;
 		// TODO Set where to search for server. Comment that son'uvabitch
-		//System.setProperty("java.naming.provider.url", "rmi://129.16.179.143:1099");
+		System.setProperty("java.naming.provider.url", "rmi://129.16.184.157:1099");
 		EventBus.register(this);
 	}
 	
@@ -78,8 +78,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		
 	    try {
 	    	//Registry registry = LocateRegistry.getRegistry(IServer.REMOTE_NAME, port);
-	        //Registry registry = LocateRegistry.getRegistry("129.16.179.143", port);
-	        Registry registry = LocateRegistry.getRegistry(port);
+	        Registry registry = LocateRegistry.getRegistry("129.16.184.157", port);
+	        //Registry registry = LocateRegistry.getRegistry(port);
 
 	        server = (IServer) registry.lookup(IServer.REMOTE_NAME);
 	        System.out.println("*** Connection established on port: " + port
@@ -202,8 +202,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		Table table = new Table(0);
 		table.addPlayer(user);
 		
-
-		
 		try {
 			
 			RemoteGameController clientGame = new RemoteGameController(this,
@@ -253,7 +251,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	 * @return true if the game was successfully joined
 	 */
 	public boolean joinGame(int gameID) {
-		System.out.println("" + serverComm);
+
 		if(serverComm == null) {
 			return false;
 		}
@@ -270,10 +268,12 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		try {
 			
 			RemoteGameController clientGame = new RemoteGameController(this,
-												user, new GameController());
+												user);
 			
 			serverGame = serverComm.joinGame(getAccount(), player, clientGame,
 																	gameID);
+			System.out.println("serverGame" + serverGame);
+			
 			if(serverGame == null) {
 				return false;
 			}

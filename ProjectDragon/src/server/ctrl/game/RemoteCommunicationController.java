@@ -155,14 +155,29 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	
 	@Override
 	public IServerGame joinGame(Account account, IPlayer player,
-			IClientGame clientGame, int gameIndex) {
+			IClientGame clientGame, int gameID) {
 		
-		IServerGame game = null;
+		RemoteGameController game = null;
 		
-		if(isLoggedIn(account) && gameIndex < activeGames.size() ) {
+		if(isLoggedIn(account)) {
 			
-			game = activeGames.get(gameIndex);
-			((RemoteGameController) game).addPlayer(player, clientGame);
+			try {
+				
+				for(RemoteGameController serverGame : activeGames) {
+					if(serverGame.getGameID() == gameID) {
+						game = serverGame;
+						break;
+					}
+				}
+			
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if(game != null) {
+				game.addPlayer(player, clientGame);
+			}
 		}
 		
 		return game;

@@ -31,7 +31,7 @@ public class GameController {
 		// TODO: Request for newTable?
 
 		// TODO Constructor without parameters plz!
-		// this(new Table(players, meIndex));
+		
 	}
 
 	public GameController(Table table) {
@@ -49,6 +49,7 @@ public class GameController {
 	public void newTable(List<IPlayer> players, int meIndex) {
 		table = new Table(players, meIndex);
 		distributeInvisibleCards();
+		EventBus.publish(new Event(Event.Tag.CREATE_TABLE_VIEW, this.table));
 	}
 
 	/**
