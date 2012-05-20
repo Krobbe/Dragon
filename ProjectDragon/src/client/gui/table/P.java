@@ -1,5 +1,12 @@
 package client.gui.table;
 
+/**
+ * This class holds all parameterization data for the tabel view.
+ * 
+ * @author lisast
+ *
+ */
+
 public enum P {
 	INSTANCE;
 	

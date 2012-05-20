@@ -242,6 +242,13 @@ public class Table {
 		int returnIndex = -1;
 		int count = 1;
 
+		/* if none is active at the table, do nothing */
+		if (getActivePlayers().size() == 0) {
+			//TODO: ta bort kontrollutskrift
+			System.out.println("---------------- none is active-----------------");
+			return getIndexOfCurrentPlayer();
+		}
+		
 		do {
 			returnIndex = (currentPlayerIndex + count) % getPlayers().size();
 			count++;
@@ -456,11 +463,6 @@ public class Table {
 	 * @author lisastenberg
 	 */
 	public IPlayer nextPlayer() {
-
-		/* if none is active at the table, do nothing */
-		if (getActivePlayers().size() == 0) {
-			return getCurrentPlayer();
-		}
 
 		indexOfCurrentPlayer = findIndexOfNextActivePlayer(indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,

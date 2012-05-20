@@ -81,6 +81,7 @@ public class Table {
 	 * @return the next (active) player
 	 * @author lisastenberg
 	 */
+	//TODO: vi kan hämta den som finns i server table ist om vi vill..
 	public IPlayer nextPlayer() {
 		
 		/* if none is active at the table, do nothing */
