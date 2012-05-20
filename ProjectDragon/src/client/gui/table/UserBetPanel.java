@@ -127,6 +127,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	 */
 	public void updateOwnCurrentBet() {
 		ownCurrentBetLabel.setText("Own Current Bet: " + user.getOwnCurrentBet());
+		System.out.println(user + "Owncurrentbet: " + user.getOwnCurrentBet());
 		updateSpinner(user.getOwnCurrentBet());
 	}
 	

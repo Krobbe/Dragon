@@ -29,7 +29,7 @@ public class Player implements IPlayer {
 		this.hand = hand;
 		this.name = name;
 		this.balance = balance;
-		stillInGame = true;
+		stillInGame = false;
 		doneFirstTurn = false;
 	}
 

@@ -200,7 +200,7 @@ public class TableView implements EventHandler, ActionListener{
 			
 		case BALANCE_CHANGED:
 			
-			IPlayer balanceChangedPlayer = (Player) evt.getValue();
+			IPlayer balanceChangedPlayer = (IPlayer) evt.getValue();
 			
 			//TODO: om man fick in ett index från början ist hade inte följand varit nödvändigt:
 			/* get the index of the player whos balance was changed */
@@ -231,10 +231,12 @@ public class TableView implements EventHandler, ActionListener{
 			
 		case TURN_CHANGED:
 			int turnIndex = (Integer) evt.getValue();
-			System.out.println(turnIndex);
 			playerPanelList.get(turnIndex).setBackground(Color.green);
-			playerPanelList.get((turnIndex-1)%allPlayers.size()).setBackground(Color.gray);
-			
+			if(turnIndex == 0) {
+				playerPanelList.get(allPlayers.size()-1).setBackground(Color.gray);
+			} else {
+				playerPanelList.get(turnIndex-1).setBackground(Color.gray);
+			}
 			List<String> legalButtons = table.getLegalButtons();
 			if(legalButtons.contains("check") || legalButtons.contains("call")) {
 				userBetPanel.setCheckEnabled(true);

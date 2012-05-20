@@ -1,6 +1,8 @@
 package common.model.card;
 
-public interface ICard extends Comparable<ICard> {
+import java.io.Serializable;
+
+public interface ICard extends Comparable<ICard>, Serializable {
 	
 	public Rank getRank();
 	

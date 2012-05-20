@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  */
 
-public class Pot {
+public class Pot implements Serializable {
 	private int value;
 	
 	/**

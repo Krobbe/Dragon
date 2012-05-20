@@ -365,9 +365,7 @@ public class RemoteGameController extends UnicastRemoteObject
 						+ evt.getTag());
 			} else {
 				i = (Integer) evt.getValue();
-				System.out.println("\n" + i + "\n");
 				for (IClientGame client : playerReferences.values()) {
-					System.out.println("forloop ");
 					try {
 						client.setTurn(i);
 					} catch (RemoteException e) {
@@ -467,16 +465,22 @@ public class RemoteGameController extends UnicastRemoteObject
 	@Override
 	public void tryStartGame() throws RemoteException {
 		
+		boolean allReady = true;
+		
 		if(gameController != null) {
 			if (playerReferences.keySet().size() > 1) {
 				// Checks if all the players are ready to start the game
 				for (IPlayer player : playerReferences.keySet()) {
 					if (!player.isStillInGame()) {
-						return;
+						System.out.println("i foorloop med " + player);
+						allReady = false;
 					}
 				}
-				// TODO Handle start game scenario
-				gameController.nextRound();
+				
+				if(allReady) {
+					// TODO Handle start game scenario
+					gameController.nextRound();
+				}
 			}
 		}
 

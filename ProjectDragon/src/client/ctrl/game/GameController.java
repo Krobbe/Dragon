@@ -147,8 +147,7 @@ public class GameController {
 		IPlayer p = table.getCurrentPlayer();
 		int tmp = bet.getValue() - p.getOwnCurrentBet();
 		p.getBalance().removeFromBalance(tmp);
-		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, new Bet(p, p
-				.getBalance().getValue())));
+		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, p));
 		p.setOwnCurrentBet(bet.getValue());
 		EventBus.publish(new Event(Event.Tag.OWN_CURRENT_BET_CHANGED, new Bet(
 				p, bet.getValue())));
@@ -301,7 +300,7 @@ public class GameController {
 				break;
 			}
 		}
-		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, bet));
+		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, player));
 	}
 	
 	/**
