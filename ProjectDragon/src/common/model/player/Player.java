@@ -13,7 +13,7 @@ import common.model.player.hand.TexasHoldemHand;
 public class Player implements IPlayer {
 	
 	private IHand hand;
-	private boolean active = false;
+	private boolean active = true;
 	private String name;
 	private Balance balance;
 	private boolean stillInGame;

@@ -188,7 +188,7 @@ public class TableView implements EventHandler, ActionListener{
 			break;
 		
 		case HAND_DISCARDED:
-			IPlayer handDiscardedPlayer = (Player) evt.getValue();
+			IPlayer handDiscardedPlayer = (IPlayer) evt.getValue();
 			for(int i = 0; i < allPlayers.size(); i++) {
 				if(handDiscardedPlayer.equals(allPlayers.get(i))) {
 					playerPanelList.get(i).discard();
@@ -257,7 +257,7 @@ public class TableView implements EventHandler, ActionListener{
 			
 		case HANDS_CHANGED:
 			
-			if (!(evt.getValue() instanceof Player)) {
+			if (!(evt.getValue() instanceof IPlayer)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
