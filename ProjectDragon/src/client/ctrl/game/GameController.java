@@ -1,7 +1,6 @@
 package client.ctrl.game;
 
 import java.rmi.RemoteException;
-import java.util.Collection;
 import java.util.List;
 
 import common.model.card.Card;
