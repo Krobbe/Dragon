@@ -1,0 +1,9 @@
+Very welcome to Project Dragon!
+
+To start the game, follow these steps:
+
+1. Make sure that you have Java Version 1.6.0 installed on your computer. 
+2. Find server.main.Main and run to start server (has to be done on one computer only)
+3. Find client.main.Main and run to start client (has to be done on every computer that wants to play game)
+
+Good Luck!

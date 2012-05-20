@@ -26,22 +26,22 @@ import server.event.Event;
 import server.event.EventBus;
 
 /**
- * A class that represent table at which a poker game takes place. This class
- * has a central role in Dragon. It has access to all the other classes in the
- * application and is the class through which the game is controlled.
+ * A class that represent a table at which a poker game takes place. This class
+ * has a central role in Project Dragon. It has access to all the other classes
+ * in the application and is the class through which the game is controlled.
  * 
- * @author Mattias Henriksson
+ * @author mattiashenriksson
  * @author lisastenberg
  * @author robinandersson
  * 
  */
 
 public class Table {
+	
 	private Round round;
 	private IDealer dealer;
 	private List<ICard> communityCards;
 	private List<IPlayer> players;
-
 	private boolean showdownDone;
 	private int indexOfCurrentPlayer;
 	private int indexOfDealerButton;
@@ -95,84 +95,6 @@ public class Table {
 		for (IPlayer player : playerArray) {
 			addPlayer(player);
 		}
-	}
-
-	/**
-	 * Set the turn to the next player in order, and returns that player.
-	 * 
-	 * @return the next (active) player
-	 * @author lisastenberg
-	 */
-	public IPlayer nextPlayer() {
-
-		/* if none is active at the table, do nothing */
-		if (getActivePlayers().size() == 0) {
-			return getCurrentPlayer();
-		}
-
-		indexOfCurrentPlayer = findIndexOfNextActivePlayer(indexOfCurrentPlayer);
-		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,
-				getCurrentPlayer()));
-		return players.get(indexOfCurrentPlayer);
-
-		// TODO: gammal kod, ta bort om nya funkar
-		/*
-		 * indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % players.size();
-		 * 
-		 * if (getCurrentPlayer().isActive()) { EventBus.publish(new
-		 * Event(Event.Tag.SERVER_NEXT_TURN, getCurrentPlayer())); return
-		 * getCurrentPlayer(); } return nextPlayer();
-		 */
-	}
-
-	/**
-	 * Increases the dealer button index to the next player still in the game
-	 * 
-	 * @return the next dealer button index.
-	 * @author robinandersson
-	 * @author mattiashenriksson
-	 */
-	// TODO annat namn på denna?
-	// TODO Test nextDealerButtonPlayer()
-	// TODO Discuss and implement a possible better solution to dealer button
-	public int nextDealerButtonIndex() {
-
-		indexOfDealerButton = findIndexOfNextActivePlayer(indexOfDealerButton);
-
-		// TODO: gammal kod, ta bort om nya funkar
-		/*
-		 * do { indexOfDealerButton = (indexOfDealerButton + 1) %
-		 * players.size(); } while
-		 * (!players.get(indexOfDealerButton).isActive());
-		 */
-
-		// TODO Determine what happens if a player has lost recently.
-		// If the dealer button only should be set to players still in the game
-		// or if lost players should be "ghosts"
-
-		// The dealer button is set to a player that is still in the game.
-		/*
-		 * while(!players.get(indexOfDealerButton).isStillInGame()){
-		 * indexOfDealerButton++; return nextDealerButtonIndex()? }
-		 */
-		return indexOfDealerButton;
-	}
-
-	/**
-	 * 
-	 * @return The player who's turn it currently is to bet, fold, raise or
-	 *         check
-	 */
-	public IPlayer getCurrentPlayer() {
-		return players.get(indexOfCurrentPlayer);
-	}
-
-	/**
-	 * 
-	 * @return The player who's turn it currently is
-	 */
-	public int getDealerButtonIndex() {
-		return indexOfDealerButton;
 	}
 
 	/**
@@ -303,6 +225,27 @@ public class Table {
 	}
 
 	/**
+	 * This method finds and returns the index of the next active player,
+	 * counted after the currentPlayerIndex, which is a parameter provided to
+	 * the method by the caller.
+	 * 
+	 * @param currentPlayerIndex
+	 * @return The index of the next player.
+	 */
+	// TODO: denna kanske kan användas på fler ställen..
+	public int findIndexOfNextActivePlayer(int currentPlayerIndex) {
+		int returnIndex = -1;
+		int count = 1;
+
+		do {
+			returnIndex = (currentPlayerIndex + count) % getPlayers().size();
+			count++;
+		} while (!getPlayers().get(returnIndex).isActive());
+
+		return returnIndex;
+	}
+	
+	/**
 	 * @author Oscar Stigter
 	 * @author lisastenberg
 	 * @author mattiashenriksson Returns the active players mapped and sorted by
@@ -338,26 +281,22 @@ public class Table {
 		}
 		return winners;
 	}
+	
+	/**
+	 * 
+	 * @return The player who's turn it currently is to bet, fold, raise or
+	 *         check
+	 */
+	public IPlayer getCurrentPlayer() {
+		return players.get(indexOfCurrentPlayer);
+	}
 
 	/**
-	 * This method finds and returns the index of the next active player,
-	 * counted after the currentPlayerIndex, which is a parameter provided to
-	 * the method by the caller.
 	 * 
-	 * @param currentPlayerIndex
-	 * @return The index of the next player.
+	 * @return The player who's turn it currently is
 	 */
-	// TODO: denna kanske kan användas på fler ställen..
-	public int findIndexOfNextActivePlayer(int currentPlayerIndex) {
-		int returnIndex = -1;
-		int count = 1;
-
-		do {
-			returnIndex = (currentPlayerIndex + count) % getPlayers().size();
-			count++;
-		} while (!getPlayers().get(returnIndex).isActive());
-
-		return returnIndex;
+	public int getDealerButtonIndex() {
+		return indexOfDealerButton;
 	}
 
 	/**
@@ -433,10 +372,36 @@ public class Table {
 
 	/**
 	 * 
-	 * @return Possible "side pots" a table might contain.
+	 * @return sidePots Possible "side pots" a table might contain.
 	 */
 	public List<SidePotHandler> getSidePots() {
 		return sidePots;
+	}
+	
+	/**
+	 * 
+	 * @return The players list-index of the current player
+	 */
+	public int getIndexOfCurrentPlayer() {
+		return indexOfCurrentPlayer;
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 *            The index indexOfCurrentPlayer should be set to.
+	 */
+	public void setIndexOfCurrentPlayer(int index) {
+		indexOfCurrentPlayer = index;
+	}
+	
+	/**
+	 * Sets the list of players who won the last round
+	 * 
+	 * @param winners
+	 */
+	public void setShowdownDone(boolean showdownDone) {
+		this.showdownDone = showdownDone;
 	}
 
 	/**
@@ -467,23 +432,6 @@ public class Table {
 				+ round.getBettingRound().getCurrentBet().getValue() + "\n");
 
 		return result.toString();
-	}
-
-	/**
-	 * 
-	 * @param index
-	 *            The index indexOfCurrentPlayer should be set to.
-	 */
-	public void setIndexOfCurrentPlayer(int index) {
-		indexOfCurrentPlayer = index;
-	}
-
-	/**
-	 * 
-	 * @return The players list-index of the current player
-	 */
-	public int getIndexOfCurrentPlayer() {
-		return indexOfCurrentPlayer;
 	}
 
 	/**
@@ -519,6 +467,67 @@ public class Table {
 		}
 		return true;
 	}
+	
+	/**
+	 * Set the turn to the next player in order, and returns that player.
+	 * 
+	 * @return the next (active) player
+	 * @author lisastenberg
+	 */
+	public IPlayer nextPlayer() {
+
+		/* if none is active at the table, do nothing */
+		if (getActivePlayers().size() == 0) {
+			return getCurrentPlayer();
+		}
+
+		indexOfCurrentPlayer = findIndexOfNextActivePlayer(indexOfCurrentPlayer);
+		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,
+				getCurrentPlayer()));
+		return players.get(indexOfCurrentPlayer);
+
+		// TODO: gammal kod, ta bort om nya funkar
+		/*
+		 * indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % players.size();
+		 * 
+		 * if (getCurrentPlayer().isActive()) { EventBus.publish(new
+		 * Event(Event.Tag.SERVER_NEXT_TURN, getCurrentPlayer())); return
+		 * getCurrentPlayer(); } return nextPlayer();
+		 */
+	}
+
+	/**
+	 * Increases the dealer button index to the next player still in the game
+	 * 
+	 * @return the next dealer button index.
+	 * @author robinandersson
+	 * @author mattiashenriksson
+	 */
+	// TODO Test nextDealerButtonPlayer()
+	// TODO Discuss and implement a possible better solution to dealer button
+	public int nextDealerButtonIndex() {
+
+		indexOfDealerButton = findIndexOfNextActivePlayer(indexOfDealerButton);
+
+		// TODO: gammal kod, ta bort om nya funkar
+		/*
+		 * do { indexOfDealerButton = (indexOfDealerButton + 1) %
+		 * players.size(); } while
+		 * (!players.get(indexOfDealerButton).isActive());
+		 */
+
+		// TODO Determine what happens if a player has lost recently.
+		// If the dealer button only should be set to players still in the game
+		// or if lost players should be "ghosts"
+
+		// The dealer button is set to a player that is still in the game.
+		/*
+		 * while(!players.get(indexOfDealerButton).isStillInGame()){
+		 * indexOfDealerButton++; return nextDealerButtonIndex()? }
+		 */
+		return indexOfDealerButton;
+	}
+
 
 	/**
 	 * This method recieves a bet and placese it om the table.
@@ -533,15 +542,6 @@ public class Table {
 		if (bet.getValue() >= currentBet.getValue()) {
 			getRound().getBettingRound().setCurrentBet(bet);
 		}
-	}
-
-	/**
-	 * Sets the list of players who won the last round
-	 * 
-	 * @param winners
-	 */
-	public void setShowdownDone(boolean showdownDone) {
-		this.showdownDone = showdownDone;
 	}
 
 	/**

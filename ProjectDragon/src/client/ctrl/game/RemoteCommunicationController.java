@@ -53,6 +53,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		account = null;
 		// TODO Set where to search for server. Comment that son'uvabitch
 		//System.setProperty("java.naming.provider.url", "rmi://129.16.184.157:1099");
+
 		EventBus.register(this);
 	}
 	
