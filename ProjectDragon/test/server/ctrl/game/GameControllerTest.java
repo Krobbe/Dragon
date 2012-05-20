@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import org.junit.Test;
 
 import common.model.card.Card;
@@ -21,7 +20,6 @@ import common.model.player.User;
 import common.model.player.hand.TexasHoldemHand;
 import common.utilities.IllegalRaiseException;
 import common.utilities.PlayersFullException;
-
 
 import server.ctrl.game.GameController;
 import server.model.game.Table;

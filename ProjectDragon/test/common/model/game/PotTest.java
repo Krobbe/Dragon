@@ -18,11 +18,27 @@ public class PotTest {
 		Pot p = new Pot();
 		assertTrue(p.getValue() == 0);
 	}
+	
+	@Test
+	public void testSetValue() {
+		Pot p = new Pot();
+		p.setValue(10);
+		assertTrue(p.getValue() == 10);
+	}
+	
 	@Test
 	public void testAddToPot() {
 		Pot p = new Pot();
 		p.addToPot(10);
 		assertTrue(p.getValue() == 10);
+	}
+	
+	@Test
+	public void testRemoveFromPot() {
+		Pot p = new Pot();
+		p.addToPot(10);
+		p.removeFromPot(5);
+		assertTrue(p.getValue() == 5);
 	}
 	
 	@Test

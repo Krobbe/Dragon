@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 
 import org.junit.Test;
-
-import common.model.card.Card;
 import common.model.player.Balance;
 import common.model.player.Player;
 import common.model.player.hand.TexasHoldemHand;
@@ -97,8 +95,42 @@ public class PlayerTest {
 		Player p = new Player(new TexasHoldemHand(), "Mattias", 
 				new Balance());
 		String s = p.toString();
-		String expected = "Name: Mattias , Balance: 0 , Active: false , " +
-				"Hand: Texas Hold'em hand: []";
+		String expected = "Name: Mattias , Balance: 0 , Active: false , Hand: " +
+				"Texas Hold'em Hand: [] , Own current bet: 0 , Done first bet?: false";
 		assertTrue(s.equals(expected));
+	}
+	
+	@Test
+	public void testSetOwnCurrentBet() {
+		Player p = new Player(new TexasHoldemHand(), "Mattias", 
+				new Balance());
+		assertTrue(p.getOwnCurrentBet() == 0);
+		p.setOwnCurrentBet(30);
+		assertTrue(p.getOwnCurrentBet() == 30);
+	}
+	
+	@Test
+	public void testSetDoneFirstTurn() {
+		Player p = new Player(new TexasHoldemHand(), "Mattias", 
+				new Balance());
+		assertTrue(!p.hasDoneFirstTurn());
+		p.setDoneFirstTurn(true);
+		assertTrue(p.hasDoneFirstTurn());
+	}
+	
+	public void testIsAllIn() {
+		Player p = new Player(new TexasHoldemHand(), "Mattias", 
+				new Balance());
+		assertTrue(p.isAllIn());
+		p.getBalance().addToBalance(30);
+		assertTrue(!p.isAllIn());
+	}
+	
+	public void testMakeBet() {
+		Player p = new Player(new TexasHoldemHand(), "Mattias", 
+				new Balance());
+		p.getBalance().addToBalance(100);
+		p.makeBet(30);
+		assertTrue(p.getBalance().getValue() == 70);
 	}
 }

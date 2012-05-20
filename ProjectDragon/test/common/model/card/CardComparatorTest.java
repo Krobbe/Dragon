@@ -1,4 +1,4 @@
-package common.model.game;
+package common.model.card;
 
 import static org.junit.Assert.assertTrue;
 

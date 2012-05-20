@@ -58,5 +58,25 @@ public class Round {
 		return preBettingPot;
 	}
 		
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		}
+		return (this == o);
+	}
+	
+	@Override
+	public String toString() {
+		return "Round where: " + bettingRound.toString();
+	}
+	
+	//Since we at the current state aren't planning on using any hashtables this code was added
+	//for the cause of good practice
+	public int hashCode() {
+		  assert false : "hashCode not designed";
+		  return 42; // any arbitrary constant will do
+	}
+	
 	
 }

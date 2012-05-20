@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="model.game.Card.Suit"/>
-<fullyQualifiedTypeName name="model.game.Card.Rank"/>
-<fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="model.player.hand.HandValueType"/>
 <fullyQualifiedTypeName name="model.player.Account"/>
 <fullyQualifiedTypeName name="model.player.Player"/>
@@ -25,7 +21,6 @@
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="model.card.ICard"/>
-<fullyQualifiedTypeName name="java.awt.Font"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="java.lang.UnsupportedOperationException"/>
@@ -49,7 +44,6 @@
 <fullyQualifiedTypeName name="java.awt.GridLayout"/>
 <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
 <fullyQualifiedTypeName name="java.awt.ComponentOrientation"/>
-<fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="common.model.player.Balance"/>
 <fullyQualifiedTypeName name="common.model.player.hand.Hand"/>
 <fullyQualifiedTypeName name="common.model.player.IPlayer"/>
@@ -59,5 +53,11 @@
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="client.event.EventHandler"/>
 <fullyQualifiedTypeName name="client.event.Event"/>
+<fullyQualifiedTypeName name="common.model.game.P"/>
+<fullyQualifiedTypeName name="common.model.player.Bet"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="client.event.Event.Tag"/>
+<fullyQualifiedTypeName name="javax.swing.JPasswordField"/>
+<fullyQualifiedTypeName name="java.awt.Font"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
 </qualifiedTypeNameHistroy>

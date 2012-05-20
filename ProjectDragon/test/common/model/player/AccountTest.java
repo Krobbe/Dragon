@@ -75,8 +75,15 @@ public class AccountTest {
 	@Test
 	public void testEquals() {
 		Account c = new Account("a", "b", "c", "d");
+		Account d = new Account("a", "b", "c", "c");
+		//Reflexivity
 		assertTrue(a.equals(a));
-		assertTrue(!a.equals(c));
+		//Symmetry
+		assertTrue(a.equals(c) && c.equals(a));
+		//Transitivity
+		if(c.equals(d)) {
+			assertTrue(a.equals(d));
+		}
 	}
 	
 	@Test
@@ -86,4 +93,8 @@ public class AccountTest {
 		assertTrue(s.equals(expected));
 	}
 
+	public void testCompareTo() {
+		Account c = new Account("a", "b", "c", "d");
+		assertTrue(a.compareTo(c) == 0);
+	}
 }

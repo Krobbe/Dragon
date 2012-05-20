@@ -4,13 +4,23 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import common.model.card.Card;
+import common.model.card.ICard;
 import common.model.game.TexasHoldemDealer;
 /**
  * A test for Dealer.
+ * 
  * @author lisastenberg
  *
  */
 public class TexasHoldemDealerTest {
+	@Test
+	public void testPopCard() {
+		TexasHoldemDealer d = new TexasHoldemDealer();
+		assertTrue(d.popCard() instanceof ICard);
+		//Not necessary to test more since deck is already tested in another 
+		//class.
+	}
 	
 	@Test
 	public void testToString() {
