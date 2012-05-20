@@ -94,7 +94,7 @@ public class PlayerPanel extends JPanel {
 	 * @param hand the hand.
 	 */
 	public void showCards(IHand hand) {
-		if (hand.getCards().size() != 0) {
+		if (hand.getCards().size() >= 2) {
 			ICard card1 = hand.getCards().get(0);
 			ICard card2 = hand.getCards().get(1);
 			System.out.println("------------CARDS---------------");

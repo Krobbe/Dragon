@@ -217,6 +217,7 @@ public class GameController {
 			if (clientPlayer.equals(player)) {
 				System.out.println("HITTADE_PLAYERN: " + clientPlayer.toString());
 				IHand playerHand = clientPlayer.getHand();
+				playerHand.discard();
 				for (ICard card : hand.getCards()) {
 					playerHand.addCard(card);
 					System.out.println(clientPlayer.getHand().toString());
