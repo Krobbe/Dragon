@@ -1,5 +1,11 @@
 package common.model.game;
 
-public interface ITable {
+import common.model.player.IPlayer;
 
+public interface ITable {
+	
+	public void addPlayer(IPlayer player);
+
+	//TODO: påbörjad av matte h!
+	
 }
