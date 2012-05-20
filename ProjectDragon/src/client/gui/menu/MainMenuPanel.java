@@ -1,6 +1,7 @@
 package client.gui.menu;
 
 import java.awt.AlphaComposite;
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -30,6 +31,7 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 	private JButton mainJoinTableButton;
 	private JButton mainCreateTableButton;
 	private JButton mainStatisticsButton;
+	private JButton mainAccountButton;
 	
 	private String background = P.INSTANCE.getBackgroundImage();
 	private float transparency = P.INSTANCE.getTransparency();
@@ -64,12 +66,13 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 			EventBus.publish(new Event(Event.Tag.GET_ACCOUNT_INFORMATION, 1));
 		} else if (e.getSource() == mainLogoutButton) {
 			EventBus.publish(new Event(Event.Tag.TRY_LOGOUT, 1));
+		} else if (e.getSource() == mainAccountButton) {
+			EventBus.publish(new Event(Event.Tag.GO_TO_ACCOUNTINFO, 1));
+			EventBus.publish(new Event(Event.Tag.GET_ACCOUNT_INFORMATION, 1));
 		}
 	}
 
 	private void init() {
-		// JPanel mainPanel = new JPanel();
-		// frame.getContentPane().add(mainPanel);
 		this.setLayout(null);
 		this.setOpaque(false);
 
@@ -82,21 +85,27 @@ public class MainMenuPanel extends JPanel implements ActionListener,
 
 		mainJoinTableButton = new JButton("Join table");
 		mainJoinTableButton.setFont(P.INSTANCE.getLabelFont());
-		mainJoinTableButton.setBounds(420, 292, 167, 146);
+		mainJoinTableButton.setBounds(280, 292, 200, 146);
 		mainJoinTableButton.addActionListener(this);
 		this.add(mainJoinTableButton);
 
 		mainCreateTableButton = new JButton("Create table");
 		mainCreateTableButton.setFont(P.INSTANCE.getLabelFont());
-		mainCreateTableButton.setBounds(128, 292, 167, 146);
+		mainCreateTableButton.setBounds(40, 292, 200, 146);
 		mainCreateTableButton.addActionListener(this);
 		this.add(mainCreateTableButton);
 
 		mainStatisticsButton = new JButton("View statistics");
 		mainStatisticsButton.setFont(P.INSTANCE.getLabelFont());
-		mainStatisticsButton.setBounds(704, 292, 167, 146);
+		mainStatisticsButton.setBounds(520, 292, 200, 146);
 		mainStatisticsButton.addActionListener(this);
 		this.add(mainStatisticsButton);
+		
+		mainAccountButton = new JButton("Account information");
+		mainAccountButton.setFont(P.INSTANCE.getLabelFont());
+		mainAccountButton.setBounds(760, 292, 200, 146);
+		mainAccountButton.addActionListener(this);
+		this.add(mainAccountButton);
 	}
 
 	public void paintComponent(Graphics g) {

@@ -2,6 +2,8 @@ package client.gui.menu;
 
 import javax.swing.JFrame;
 
+import client.event.Event;
+
 import java.awt.CardLayout;
 
 /**
@@ -20,6 +22,7 @@ public class MainView implements client.event.EventHandler {
 	private JoinTablePanel joinTablePanel = new JoinTablePanel();
 	private CreateTablePanel createTablePanel = new CreateTablePanel();
 	private StatisticsPanel statisticsPanel = new StatisticsPanel();
+	private AccountPanel accountPanel = new AccountPanel();
 
 	/**
 	 * Create the application.
@@ -44,6 +47,7 @@ public class MainView implements client.event.EventHandler {
 		frame.getContentPane().add(joinTablePanel, "joinTablePanel");
 		frame.getContentPane().add(createTablePanel, "createTablePanel");
 		frame.getContentPane().add(statisticsPanel, "statisticsPanel");
+		frame.getContentPane().add(accountPanel, "accountPanel");
 		
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -55,6 +59,8 @@ public class MainView implements client.event.EventHandler {
 		if (evt.getTag().equals(client.event.Event.Tag.LOGIN_SUCCESS)
 				|| evt.getTag().equals(client.event.Event.Tag.REGISTER_SUCCESS)) {
 			layout.show(frame.getContentPane(), "mainMenuPanel");
+		} else if(evt.getTag().equals(Event.Tag.GO_TO_ACCOUNTINFO)) {
+			layout.show(frame.getContentPane(), "accountPanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_REGISTER)) {
 			layout.show(frame.getContentPane(), "registerPanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_JOINTABLE)) {

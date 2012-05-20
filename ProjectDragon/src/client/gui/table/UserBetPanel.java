@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import common.model.player.Bet;
 import common.model.player.IPlayer;
 
 import client.event.*;
@@ -30,8 +31,10 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	private JButton raiseButton;
 	private JButton leaveTableButton;
 	private JSpinner betSpinner;
+	private JLabel ownCurrentBetLabel;
 	
 	private IPlayer user;
+	private int bigblind = common.model.game.P.INSTANCE.getBigBlindValue();
 	
 	private int buttonHeight = P.INSTANCE.getButtonHeight();
 	private int buttonWidth = P.INSTANCE.getButtonWidth();
@@ -81,9 +84,11 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		creditsLabel.setSize(buttonWidth, buttonHeight);
 		creditsLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		int bigblind = 0;
-		SpinnerModel model = new SpinnerNumberModel(0, bigblind, user.getBalance().getValue(), 10);
-		betSpinner = new JSpinner(model);
+		ownCurrentBetLabel = new JLabel("Own Current Bet: " + user.getOwnCurrentBet());
+		ownCurrentBetLabel.setSize(buttonWidth, buttonHeight);
+		ownCurrentBetLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		updateSpinner(0);
 		
 		this.add(leaveTableButton);
 		this.add(foldButton);
@@ -92,16 +97,23 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		this.add(betSpinner);
 		this.add(creditsLabel);
 		this.add(availableCreditsLabel);
+		this.add(ownCurrentBetLabel);
 	}
 	
 	public void updateAvailableCredits() {
 		availableCreditsLabel.setText("" + user.getBalance().getValue());
+		updateSpinner(user.getOwnCurrentBet());
 	}
 	
-	public void updateSpinner() {
-		int bigblind = 0;
-		SpinnerModel model = new SpinnerNumberModel(0, bigblind, user.getBalance().getValue(), 10);
+	public void updateSpinner(int currentBet) {
+		int minRaise = bigblind + (currentBet - user.getOwnCurrentBet());
+		SpinnerModel model = new SpinnerNumberModel(minRaise, minRaise, user.getBalance().getValue(), 10);
 		betSpinner = new JSpinner(model);
+	}
+	
+	public void updateOwnCurrentBet() {
+		ownCurrentBetLabel.setText("Own Current Bet: " + user.getOwnCurrentBet());
+		updateSpinner(user.getOwnCurrentBet());
 	}
 
 	@Override

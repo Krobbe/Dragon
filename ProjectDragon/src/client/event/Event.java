@@ -9,6 +9,7 @@ public class Event {
     // All possible events listed
 	//When you input a new tag, please put in alphabetical order.
     public enum Tag {
+    	ACCOUNT_CHANGED,
     	BALANCE_CHANGED,			//getValue(): IPlayer
     	COMMUNITY_CARDS_CHANGED,	//getValue(): ICard
     	CREATE_TABLE,				//getValue(): ArrayList<String> (cost, chips, players)
@@ -20,6 +21,7 @@ public class Event {
     	DO_RAISE,
     	GET_ACCOUNT_INFORMATION,
     	GET_ACTIVE_GAMES,
+    	GO_TO_ACCOUNTINFO,
     	GO_TO_CREATETABLE,
     	GO_TO_JOINTABLE,
     	GO_TO_MAIN,

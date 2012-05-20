@@ -89,7 +89,6 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 			setThisWonGames.setText(Integer.toString(loadNbrOfWonGames(acc.getUserName())));
 			setThisPlayedGames.setText(Integer.toString(loadNbrOfPlayedGames(acc.getUserName())));
 		}
-
 	}
 
 	@Override

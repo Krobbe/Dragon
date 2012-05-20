@@ -1,0 +1,111 @@
+package client.gui.menu;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import client.event.Event;
+import client.event.EventBus;
+
+public class AccountPanel extends JPanel implements ActionListener {
+
+	private JButton backButton;
+	private JPanel infoPanel;
+	
+	private JLabel userNameLabel;
+	private JLabel firstNameLabel;
+	private JLabel lastNameLabel;
+	private JLabel balanceLabel;
+	private JLabel setThisWonGames;
+	
+	private String background = P.INSTANCE.getBackgroundImage();
+	private float transparency = P.INSTANCE.getTransparency();
+	private int frameHeight = P.INSTANCE.getFrameHeight();
+	private int frameWidth = P.INSTANCE.getFrameWidth();
+	private int margin = P.INSTANCE.getMarginSize();
+	private int buttonHeight = P.INSTANCE.getButtonHeight();
+	private int buttonWidth = P.INSTANCE.getButtonWidth();
+	
+	public AccountPanel() {
+		init();
+	}
+	
+	private void init() {
+		this.setSize(frameWidth, frameHeight);
+		this.setLayout(new BorderLayout());
+		
+		infoPanel = new JPanel();
+		infoPanel.setLayout(new BorderLayout());
+		
+		JLabel userName = new JLabel("User name");
+		userName.setBounds(200, 102, 200, 20);
+		userName.setFont(P.INSTANCE.getBoldLabelFont());
+		this.add(userName);
+		
+		//TODO set the different values, get them from where?
+		userName = new JLabel("Get the name from where?");
+		userName.setBounds(200, 127, 200, 20);
+		userName.setFont(P.INSTANCE.getLabelFont());
+		this.add(userName);
+		
+		JLabel firstName = new JLabel("First name");
+		firstName.setBounds(200, 152, 200, 20);
+		firstName.setFont(P.INSTANCE.getBoldLabelFont());
+		this.add(firstName);
+		
+		firstNameLabel = new JLabel("Get the name from where?");
+		firstNameLabel.setBounds(200, 177, 200, 20);
+		firstNameLabel.setFont(P.INSTANCE.getLabelFont());
+		this.add(firstNameLabel);
+		
+		JLabel lastName = new JLabel("Last name");
+		lastName.setBounds(200, 202, 200, 20);
+		lastName.setFont(P.INSTANCE.getBoldLabelFont());
+		this.add(lastName);
+		
+		lastNameLabel = new JLabel("Get the name from where?");
+		lastNameLabel.setBounds(200, 227, 200, 20);
+		lastNameLabel.setFont(P.INSTANCE.getLabelFont());
+		this.add(lastNameLabel);
+		
+		JLabel playedGames = new JLabel("Number of played games");
+		playedGames.setBounds(200, 252, 230, 20);
+		playedGames.setFont(P.INSTANCE.getBoldLabelFont());
+		this.add(playedGames);
+		
+		balanceLabel = new JLabel("Get the number of games from where?");
+		balanceLabel.setBounds(200, 277, 200, 20);
+		balanceLabel.setFont(P.INSTANCE.getLabelFont());
+		this.add(balanceLabel);
+		
+		JLabel wonGames = new JLabel("Number of won games");
+		wonGames.setBounds(200, 302, 200, 20);
+		wonGames.setFont(P.INSTANCE.getBoldLabelFont());
+		this.add(wonGames);
+		
+		setThisWonGames = new JLabel(("Get number of won games from where?"));
+		setThisWonGames.setBounds(200, 327, 200, 20);
+		setThisWonGames.setFont(P.INSTANCE.getLabelFont());
+		this.add(setThisWonGames);
+		
+		backButton = new JButton("Back");
+		backButton.setFont(P.INSTANCE.getLabelFont());
+		backButton.setBounds(margin, frameHeight - buttonHeight 
+				- 2*margin, buttonWidth, buttonHeight);
+		backButton.addActionListener(this);
+		this.add(backButton, BorderLayout.SOUTH);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == backButton) {
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
+		}
+		
+	}
+}

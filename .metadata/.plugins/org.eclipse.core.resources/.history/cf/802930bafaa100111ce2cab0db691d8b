@@ -1,0 +1,47 @@
+package client.gui.menu;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import client.event.Event;
+import client.event.EventBus;
+
+public class AccountPanel extends JPanel implements ActionListener {
+
+	private JButton backButton;
+	
+	private String background = P.INSTANCE.getBackgroundImage();
+	private float transparency = P.INSTANCE.getTransparency();
+	private int frameHeight = P.INSTANCE.getFrameHeight();
+	private int frameWidth = P.INSTANCE.getFrameWidth();
+	private int margin = P.INSTANCE.getMarginSize();
+	private int buttonHeight = P.INSTANCE.getButtonHeight();
+	private int buttonWidth = P.INSTANCE.getButtonWidth();
+	
+	public AccountPanel() {
+		init();
+	}
+	
+	private void init() {
+		this.setSize(frameWidth, frameHeight);
+		this.setLayout(null);
+		
+		backButton = new JButton("Back");
+		backButton.setFont(P.INSTANCE.getLabelFont());
+		backButton.setBounds(margin, frameHeight - buttonHeight 
+				- 2*margin, buttonWidth, buttonHeight);
+		backButton.addActionListener(this);
+		this.add(backButton);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == backButton) {
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN), 1);
+		}
+		
+	}
+}

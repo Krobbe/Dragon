@@ -177,6 +177,7 @@ public class TableView implements EventHandler, ActionListener{
 		case CURRENT_BET_CHANGED:
 			int bet = table.getRound().getBettingRound().getCurrentBet().getValue();
 			tableInfoPanel.setBet(Integer.toString(bet));
+			userBetPanel.updateSpinner(bet);
 			break;
 			
 		case POT_CHANGED:
@@ -207,25 +208,24 @@ public class TableView implements EventHandler, ActionListener{
 					break;
 				}
 			}
+			if(balanceChangedPlayer.equals(user)) {
+				userBetPanel.updateAvailableCredits();
+			}
 			break;
 			
-		//TODO: Show this in GUI?	
-//		case OWN_CURRENT_BET_CHANGED:
-//			Bet ownCurrentBet;
-//			if (!(evt.getValue() instanceof Bet)) {
-//				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-//						+ evt.getTag());
-//			} else {
-//				ownCurrentBet = (Bet)evt.getValue();
-//				IPlayer betOwner = ownCurrentBet.getOwner();
-//				for(int i = 0; i < allPlayers.size(); i++) {
-//					if(allPlayers.get(i).equals(betOwner)) {
-//						playerPanelList.get(i).setBalance()
-//						break;
-//					}
-//				}
-//			}
-//			break;
+		case OWN_CURRENT_BET_CHANGED:
+			Bet ownCurrentBet;
+			if (!(evt.getValue() instanceof Bet)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				ownCurrentBet = (Bet)evt.getValue();
+				IPlayer betOwner = ownCurrentBet.getOwner();
+				if(betOwner.equals(user)) {
+					userBetPanel.updateOwnCurrentBet();
+				}
+			}
+			break;
 			
 		case TURN_CHANGED:
 			int turnIndex = (Integer) evt.getValue();

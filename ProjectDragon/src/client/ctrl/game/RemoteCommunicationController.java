@@ -297,6 +297,14 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		return true;
 		
 	}
+	
+	private void updateAccount() {
+		try {
+			serverComm.updateAccount(this.account, account.getPassWord());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void onEvent(Event evt) {
@@ -383,6 +391,19 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 															getAccount()));
 			break;
 		
+		case ACCOUNT_CHANGED:
+			Account acc;
+			if(!(evt.getValue() instanceof Account)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				acc = (Account) evt.getValue();
+				this.account.getBalance().addToBalance(acc.getBalance().getValue());	
+				updateAccount();
+				EventBus.publish(new Event(Event.Tag.PUBLISH_ACCOUNT_INFORMATION, getAccount()));
+			}
+			break;
+			
 		case JOIN_TABLE:
 			int index = (Integer)evt.getValue();
 			IServerGame sg = getActiveGames().get(index-1);

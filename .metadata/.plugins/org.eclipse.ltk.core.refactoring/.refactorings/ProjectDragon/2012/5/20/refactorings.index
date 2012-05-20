@@ -40,3 +40,14 @@
 1337446793528	Delete elements
 1337446801725	Delete elements
 1337446814284	Delete element
+1337463303026	Rename field 'statisticsBackButton'
+1337463794456	Rename field 'setThisUserName'
+1337463888563	Rename field 'userName'
+1337463901634	Rename field 'setThisFirstName'
+1337463914107	Rename field 'setThisLastName'
+1337464058227	Rename field 'setThisPlayedGames'
+1337465011191	Rename field 'setThisWonGames'
+1337504448624	Rename field 'joinTableJoinButton'
+1337506579342	Rename field 'errorLabel'
+1337507062055	Rename field 'errorLabel1'
+1337507070717	Rename field 'errorLabel2'

@@ -1,7 +1,10 @@
 package client.gui.table;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -12,10 +15,11 @@ import java.util.List;
 
 import javax.swing.*;
 
-import model.card.ICard;
-import model.player.Bet;
-import model.player.IPlayer;
-import model.player.Player;
+import common.model.card.ICard;
+import common.model.player.Bet;
+import common.model.player.IPlayer;
+import common.model.player.Player;
+
 
 import client.event.*;
 
@@ -31,20 +35,12 @@ public class TableView implements EventHandler, ActionListener{
 	private Table table;
 	private JFrame frame;
 	private JPanel backPanel;
+	private JPanel foundationPanel;
 	
-	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel;
-	/*
-	private PlayerOnePanel playerOnePanel;
-	private PlayerTwoPanel playerTwoPanel;
-	private PlayerThreePanel playerThreePanel;
-	private PlayerFourPanel playerFourPanel;
-	private PlayerFivePanel playerFivePanel;
-	private PlayerSixPanel playerSixPanel;
-	private PlayerSevenPanel playerSevenPanel;
-	private PlayerEightPanel playerEightPanel;
-	private PlayerNinePanel playerNinePanel;
-	private PlayerTenPanel playerTenPanel;
-	*/
+	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel, isReadyPanel, cardLayoutPanel;
+	
+	private CardLayout cardLayout;
+	
 	private PlayerPanel player1Panel, player2Panel, player3Panel, player4Panel, 
 	player5Panel, player6Panel, player7Panel, player8Panel, player9Panel
 	, player10Panel;
@@ -53,10 +49,12 @@ public class TableView implements EventHandler, ActionListener{
 	private UserBetPanel userBetPanel;
 	private List<PlayerPanel> playerPanelList;
 	
-	private JButton leaveTableButton;
+	private JButton isReadyButton;
 	
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
+	
+	IPlayer user;
 	
 	/**
 	 * Creates the panel
@@ -64,6 +62,7 @@ public class TableView implements EventHandler, ActionListener{
 	 */
 	public TableView(Table table) {
 		this.table = table;
+		user = table.getPlayers().get(table.getMeIndex());
 		init();
 		EventBus.register(this);
 	}
@@ -72,51 +71,48 @@ public class TableView implements EventHandler, ActionListener{
 		frame = new JFrame();
 		frame.setSize(frameWidth, frameHeight);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout());	
+		frame.getContentPane().setLayout(new FlowLayout());	
+		
+		foundationPanel = new JPanel();
+		foundationPanel.setLayout(new BorderLayout());
 		
 		backPanel = new JPanel();
 		backPanel.setSize(frameWidth, frameHeight);
+		backPanel.setLayout(new BorderLayout());
 		
 		northPanel = new JPanel();
 		southPanel = new JPanel();
 		westPanel = new JPanel();
 		eastPanel = new JPanel();
 		centerPanel = new JPanel();
+		isReadyPanel = new JPanel();
 		
-		northPanel.setLayout(new BorderLayout());
-		southPanel.setLayout(new GridLayout(1,4));
-		centerPanel.setLayout(new BorderLayout());
+		isReadyButton = new JButton("Click if ready");
+		isReadyButton.setPreferredSize(new Dimension(418, 144));
+		isReadyButton.addActionListener(this);
 		
-		leaveTableButton = new JButton("Leave table");
-		leaveTableButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		leaveTableButton.setBounds(100, 683, 111, 40);
+		isReadyPanel.add(isReadyButton);
 		
-		/*
-		playerOnePanel = new PlayerOnePanel();
-		playerTwoPanel = new PlayerTwoPanel();
-		playerThreePanel = new PlayerThreePanel();
-		playerFourPanel = new PlayerFourPanel();
-		playerFivePanel = new PlayerFivePanel();
-		playerSixPanel = new PlayerSixPanel();
-		playerSevenPanel = new PlayerSevenPanel();
-		playerEightPanel = new PlayerEightPanel();
-		playerNinePanel = new PlayerNinePanel();
-		playerTenPanel = new PlayerTenPanel();
+		cardLayout = new CardLayout();
+		cardLayoutPanel = new JPanel(cardLayout);
 		
-		playerOnePanel.setName(table.getPlayers().get(0));
+		northPanel.setLayout(new FlowLayout());
+		southPanel.setLayout(new FlowLayout());
+		centerPanel.setLayout(new FlowLayout());
+		westPanel.setLayout(new FlowLayout());
+		eastPanel.setLayout(new FlowLayout());
 		
-		playerPanelList = new ArrayList<IPlayerPanel>();
-		playerPanelList.add(playerOnePanel);
-		playerPanelList.add(playerTwoPanel);
-		playerPanelList.add(playerThreePanel);
-		playerPanelList.add(playerFourPanel);
-		playerPanelList.add(playerFivePanel);
-		playerPanelList.add(playerSixPanel);
-		playerPanelList.add(playerSevenPanel);
-		playerPanelList.add(playerEightPanel);
-		playerPanelList.add(playerNinePanel);
-		playerPanelList.add(playerTenPanel);
-		*/
+		player1Panel = new PlayerPanel();
+		player2Panel = new PlayerPanel();
+		player3Panel = new PlayerPanel();
+		player4Panel = new PlayerPanel();
+		player5Panel = new PlayerPanel();
+		player6Panel = new PlayerPanel();
+		player7Panel = new PlayerPanel();
+		player8Panel = new PlayerPanel();
+		player9Panel = new PlayerPanel();
+		player10Panel = new PlayerPanel();
+		
 		playerPanelList = new ArrayList<PlayerPanel>();
 		playerPanelList.add(player1Panel);
 		playerPanelList.add(player2Panel);
@@ -129,21 +125,8 @@ public class TableView implements EventHandler, ActionListener{
 		playerPanelList.add(player9Panel);
 		playerPanelList.add(player10Panel);
 		
-		
-		for(PlayerPanel p : playerPanelList) {
-			p = new PlayerPanel();
-			backPanel.add(p);
-		}
-		
 		tableInfoPanel = new TableInfoPanel();
-		userBetPanel = new UserBetPanel();
-		
-		/*
-		for(IPlayerPanel p : playerPanelList) {
-			//TODO Will this work?
-			backPanel.add((JPanel)p);
-		}
-		*/
+		userBetPanel = new UserBetPanel(user);
 		
 		westPanel.add(player8Panel);
 		southPanel.add(player9Panel);
@@ -156,18 +139,21 @@ public class TableView implements EventHandler, ActionListener{
 		northPanel.add(player5Panel);
 		northPanel.add(player4Panel);
 		
-		centerPanel.add(tableInfoPanel, BorderLayout.WEST);
-		centerPanel.add(userBetPanel, BorderLayout.EAST);
-		backPanel.add(leaveTableButton);
+		centerPanel.add(tableInfoPanel);
 		
-		backPanel.add(centerPanel, BorderLayout.CENTER);
+		cardLayoutPanel.add(isReadyPanel, "isReadyPanel");
+		cardLayoutPanel.add(centerPanel, "centerPanel");
+		
+		backPanel.add(cardLayoutPanel, BorderLayout.CENTER);
 		backPanel.add(northPanel, BorderLayout.NORTH);
 		backPanel.add(southPanel, BorderLayout.SOUTH);
 		backPanel.add(westPanel, BorderLayout.WEST);
 		backPanel.add(eastPanel, BorderLayout.EAST);
 		
-		frame.add(backPanel);
+		foundationPanel.add(backPanel, BorderLayout.NORTH);
+		foundationPanel.add(userBetPanel, BorderLayout.SOUTH);
 		
+		frame.add(foundationPanel);
 		frame.setVisible(true);
 		frame.setResizable(true);
 	}
@@ -177,6 +163,16 @@ public class TableView implements EventHandler, ActionListener{
 		List<IPlayer> allPlayers = table.getPlayers();
 		
 		switch (evt.getTag()) {
+		case NEW_PLAYER_ADDED:
+			int index;
+			for(IPlayer p : allPlayers) {
+				if(p.getName().equals((String)evt.getValue())) {
+					index = allPlayers.indexOf(p);
+					playerPanelList.get(index).setName(p);
+					playerPanelList.get(index).setBalance("" + p.getBalance());
+				}
+			}
+			break;
 		
 		case CURRENT_BET_CHANGED:
 			int bet = table.getRound().getBettingRound().getCurrentBet().getValue();
@@ -213,7 +209,7 @@ public class TableView implements EventHandler, ActionListener{
 			}
 			break;
 			
-			//TODO What is this case supposed to do? Change player.owncurrentbet
+		//TODO: Show this in GUI?	
 //		case OWN_CURRENT_BET_CHANGED:
 //			Bet ownCurrentBet;
 //			if (!(evt.getValue() instanceof Bet)) {
@@ -253,8 +249,8 @@ public class TableView implements EventHandler, ActionListener{
 						+ evt.getTag());
 			} else {
 				for (IPlayer acp : table.getActivePlayers()) {
-					int index = allPlayers.indexOf(acp);
-					playerPanelList.get(index).showCards(allPlayers.get(index).getHand());
+					int i = allPlayers.indexOf(acp);
+					playerPanelList.get(i).showCards(allPlayers.get(i).getHand());
 				}
 			}
 			break;
@@ -263,14 +259,17 @@ public class TableView implements EventHandler, ActionListener{
 			List<ICard> communityCards = table.getCommunityCards();
 			tableInfoPanel.showCards(communityCards);
 			break;
-
+		
+		case LEAVE_TABLE:
+			frame.dispose();
+			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
 		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(leaveTableButton)) {
-			//TODO this is the wrong event
-			EventBus.publish(new Event(Event.Tag.LEAVE_TABLE, 1));
+		if (e.getSource().equals(isReadyButton)) {
+			EventBus.publish(new Event(Event.Tag.PLAYER_SET_ACTIVE, true));
+			cardLayout.show(cardLayoutPanel, "centerPanel");
 		}
 	}
 
