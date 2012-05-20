@@ -3,6 +3,8 @@ package common.model.player;
 import static org.junit.Assert.*;
 
 import common.model.player.hand.*;
+import common.utilities.OwnCurrentBetComparator;
+
 import org.junit.Test;
 
 public class OwnCurrentBetComparatorTest {
