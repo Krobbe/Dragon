@@ -83,14 +83,10 @@ public class Table {
 	 *        
 	 */
 	public void addPlayer(IPlayer player) throws PlayersFullException {
-		System.out.println("Start addPlayer");
-		System.out.println("");
+
 		for(int i = 0; i < players.size(); i++) {
-			System.out.println("For loop");
 			IPlayer playerSeat = players.get(i);
-			System.out.println(playerSeat);
 			if(playerSeat == null) {
-				System.out.println("If-sats 1");
 				players.set(i, player);
 				
 				return;
@@ -98,14 +94,10 @@ public class Table {
 		}
 		
 		if(players.size() < maxPlayers) {
-			System.out.println("If-sats 2");
 			players.add(player);
 		} else {
 			throw new PlayersFullException();
 		}
-		System.out.println(players);
-		System.out.println("");
-		System.out.println("End addplayer");
 	}
 
 	/**

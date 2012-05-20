@@ -166,7 +166,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	public List<IPlayer> getPlayers() throws RemoteException {
 		
 		// TODO Is this a deep copy?
-		return new LinkedList<IPlayer>(playerReferences.keySet());
+		return new LinkedList<IPlayer>(gameController.getTable().getPlayers());
 	}
 
 	@Override

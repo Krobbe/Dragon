@@ -265,12 +265,12 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			
 			if(rs.next()) {
 				if(!rs.getString(4).equals(oldPassword)) {
-					System.out.println("Wrong password!");
+					System.out.println("*** Wrong password! *** ");
 					return false;
 				}
 			} else {
-				System.out.println("There exists no account with userName: " +
-						account.getUserName());
+				System.out.println("*** There exists no account with userName: " +
+						account.getUserName() + " ***");
 				return false;
 			}
 			
@@ -307,12 +307,12 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			
 			if(rs.next()) {
 				if(!rs.getString(4).equals(oldPassword)) {
-					System.out.println("Wrong password!");
+					System.out.println("*** Wrong password! ***");
 					return false;
 				}
 			} else {
-				System.out.println("There exists no account with userName: " +
-						account.getUserName());
+				System.out.println("*** There exists no account with userName: " +
+						account.getUserName() + " ***");
 				return false;
 			}
 			String updateString = "DELETE FROM Accounts WHERE userName = '"
