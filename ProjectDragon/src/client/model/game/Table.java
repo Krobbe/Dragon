@@ -67,7 +67,13 @@ public class Table {
 	 * @throws IllegalArgumentException if there are already ten players at the table
 	 */
 	public void addPlayer(int index, IPlayer player) {
+		if(index < getPlayers().size()) {
+			players.set(index, player);
+		}
+		
+		else {
 			players.add(index, player);
+		}
 	}
 	
 	/**

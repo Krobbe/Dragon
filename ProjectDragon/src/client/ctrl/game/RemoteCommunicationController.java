@@ -278,8 +278,10 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			IPlayer user = new User(
 					(Player) playerList.get(playerList.size() - 1));
 			
+			int userIndex = serverGame.getPlayers().indexOf(user);
+			
 			clientGame.setServerGame(serverGame);
-			clientGame.newTable(playerList, user, playerList.size() - 1,
+			clientGame.newTable(playerList, user, userIndex,
 					serverGame.getMaxPlayers());
 			// TODO Is addPlayers needed?
 			//clientGame.addPlayers(playerList);
@@ -407,11 +409,14 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			IServerGame sg = getActiveGames().get(index-1);
 			try {
 				int gameID = sg.getGameID();
-				if(!joinGame(gameID)){
-					System.out.println("Unable to join table with id: " + evt.getValue());
-				} else {
+				
+				if(joinGame(gameID)) {
+					//TODO: publish here?
 					EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
+				} else {
+					System.out.println("Unable to join table with id: " + evt.getValue());
 				}
+				
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

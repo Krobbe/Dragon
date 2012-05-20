@@ -132,7 +132,7 @@ public interface IClientGame extends Remote {
 	 * @param index The index the player will be added at
 	 * @throws RemoteException
 	 */
-	public void addPlayer(IPlayer player, int index) throws RemoteException;
+	public void addPlayer(int index, IPlayer player) throws RemoteException;
 	
 	/**
 	 * Add players in a list to the game

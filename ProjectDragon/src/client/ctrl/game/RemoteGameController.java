@@ -109,9 +109,9 @@ public class RemoteGameController extends UnicastRemoteObject
 	}
 	
 	@Override
-	public void addPlayer(IPlayer player, int index)
+	public void addPlayer(int index, IPlayer player)
 			throws RemoteException {
-		gameController.addPlayer(player, index);
+		gameController.addPlayer(index, player);
 		EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
 	}
 	

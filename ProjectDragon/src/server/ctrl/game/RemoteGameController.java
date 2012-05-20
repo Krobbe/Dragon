@@ -107,26 +107,22 @@ public class RemoteGameController extends UnicastRemoteObject
 	 * @param clientGame The reference to the added player
 	 */
 	public void addPlayer(IPlayer player, IClientGame clientGame) {
-		
-		IPlayer newPlayer = new Player(new Hand(), player.getName(),
-				new Balance(gameController.getStartingChips()));
 
 		LinkedList<IPlayer> clientPlayers =
 				new LinkedList<IPlayer>(playerReferences.keySet());
 		
-		playerReferences.put(newPlayer, clientGame);
+		playerReferences.put(player, clientGame);
 		
-		gameController.addPlayer(newPlayer);
+		
+		gameController.addPlayer(player);
 		int newPlayerIndex = gameController.getTable().
-				getPlayers().indexOf(newPlayer);
+				getPlayers().indexOf(player);
 
-
+		
 		try {
 			for(IPlayer clientPlayer : clientPlayers) {
-	
 					playerReferences.get(clientPlayer).
-						addPlayer(newPlayer, newPlayerIndex);
-
+						addPlayer(newPlayerIndex, player);
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -167,8 +163,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	}
 	
 	@Override
-	public List<IPlayer> getPlayers() throws IllegalCallException,
-			RemoteException {
+	public List<IPlayer> getPlayers() throws RemoteException {
 		
 		// TODO Is this a deep copy?
 		return new LinkedList<IPlayer>(playerReferences.keySet());

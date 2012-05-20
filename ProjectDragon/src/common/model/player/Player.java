@@ -118,11 +118,14 @@ public class Player implements IPlayer {
 	public boolean equals(Object o) {
 		if(o == null) {
 			return false;
-		} else if(o.getClass() != this.getClass()){
+		} else if(this == o) {
+			return true;
+		} else if(!(o instanceof IPlayer)){
 			return false;
+		} else {
+			IPlayer tmp = (IPlayer)o;
+			return tmp.getName().equals(this.getName());
 		}
-		
-		return ((Player) o).getName().equals(this.getName());
 	}
 
 	/**

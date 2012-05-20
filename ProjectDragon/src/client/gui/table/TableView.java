@@ -165,6 +165,10 @@ public class TableView implements EventHandler, ActionListener{
 
 		case PLAYERS_CHANGED:
 			int index = 0;
+			for(PlayerPanel p : playerPanelList) {
+				p.setName("No Player");
+				p.setBalance("xxx");
+			}
 			for(IPlayer p : allPlayers) {
 					playerPanelList.get(index).setName(p);
 					playerPanelList.get(index).setBalance("" + p.getBalance());

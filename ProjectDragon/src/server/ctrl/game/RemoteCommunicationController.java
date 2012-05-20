@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.postgresql.util.PSQLException;
-
 import common.database.DatabaseCommunicator;
 import common.database.IDBAccount;
 import common.model.player.Account;

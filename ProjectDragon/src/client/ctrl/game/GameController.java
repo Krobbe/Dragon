@@ -61,7 +61,7 @@ public class GameController {
 	 * @author robinandersson
 	 */
 
-	public void addPlayer(IPlayer player, int index) {
+	public void addPlayer(int index, IPlayer player) {
 		table.addPlayer(index, player);
 	}
 	

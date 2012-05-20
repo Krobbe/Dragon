@@ -73,7 +73,16 @@ public class User implements IPlayer {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return (this == o);
+		if(o == null) {
+			return false;
+		} else if(this == o) {
+			return true;
+		} else if(!(o instanceof IPlayer)){
+			return false;
+		} else {
+			IPlayer tmp = (IPlayer)o;
+			return tmp.getName().equals(this.getName());
+		}
 	}
 	
 	/**
