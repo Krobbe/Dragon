@@ -16,7 +16,6 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
@@ -81,6 +80,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 			setThisWonGames.setText(Integer.toString(loadNbrOfWonGames(acc.getUserName())));
 			setThisPlayedGames.setText(Integer.toString(loadNbrOfPlayedGames(acc.getUserName())));
 			List<Integer> tmp = loadPlayedGames(acc.getUserName());
+			listWithGamesModel.clear();
 			for(Integer i : tmp) {
 				listWithGamesModel.addElement(i);
 			}
@@ -237,10 +237,10 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		String tmp = listWithGames.getSelectedValue().toString();
-		Map<Integer, String> othertmp = loadGamePlacements(tmp);
-		Set<Integer> s = othertmp.keySet();
-		for(Integer i : s) {
-			selectedGameModel.addElement(i + ". " + othertmp.get(i));
+		Map<Integer, String> placements = loadGamePlacements(tmp);
+		selectedGameModel.clear();
+		for(Integer i : placements.keySet()) {
+			selectedGameModel.addElement(i + ". " + placements.get(i));
 		}
 	}
 	
