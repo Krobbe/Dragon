@@ -36,6 +36,7 @@ public class GameController {
 	public GameController(Table table) {
 		this.table = table;
 		distributeInvisibleCards();
+		
 		EventBus.publish(new Event(Event.Tag.CREATE_TABLE_VIEW, this.table));
 	}
 
@@ -54,18 +55,14 @@ public class GameController {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Adds a player to the game table where a seat is empty
-=======
 	 * Adds a player to the game table at the specified index
->>>>>>> Implemented maxPlayers, entranceFee and startingChips. Changed what happens when players create/join a game -> the addPlayers method in both client and server.
 	 * 
 	 * @param playerThe player to be added
 	 * @author robinandersson
 	 */
 
 	public void addPlayer(IPlayer player, int index) {
-		table.addPlayer(player, index);
+		table.addPlayer(index, player);
 	}
 	
 	/**

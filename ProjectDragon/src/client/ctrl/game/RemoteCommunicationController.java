@@ -201,7 +201,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		IPlayer user = new User(player);
 		
 		Table table = new Table(user, 0, maxPlayers);
-		table.addPlayer(user, 0);
 		
 		try {
 			
@@ -211,7 +210,10 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			IServerGame serverGame = serverComm.createGame(getAccount(),
 					clientGame, entranceFee, maxPlayers, playerStartingChips);
 			clientGame.setServerGame(serverGame);
+			
 			activeGames.put(user, clientGame);
+			
+			
 			
 			return true;
 			
@@ -367,10 +369,12 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				if(tableInfoParsed.size() == 3 &&
 						createGame(tableInfoParsed.get(0),
 						tableInfoParsed.get(1), tableInfoParsed.get(2))) {
-					
-					EventBus.publish(new Event(Event.Tag.GO_TO_TABLE, ""));
-					
+					EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
+				} else {
+					System.out.println(" Couldn't create table!");
 				}
+				
+				
 			}
 			
 			break;
@@ -405,6 +409,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				int gameID = sg.getGameID();
 				if(!joinGame(gameID)){
 					System.out.println("Unable to join table with id: " + evt.getValue());
+				} else {
+					EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block

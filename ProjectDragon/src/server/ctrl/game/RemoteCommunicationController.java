@@ -101,7 +101,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		// Checks if the supplied account has been added by the server earlier
 		if(isLoggedIn(account)) {
 			
-			Account serverSideAccount = null;
+			Account serversAccount = null;
 			
 			/*
 			 * Gets the actual Account instance already stored. The supplied
@@ -112,7 +112,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			// TODO Better way to get the serverSideAccount?
 			for(Account acc : clients.keySet()){
 				if(account.equals(acc)){
-					serverSideAccount = acc;
+					serversAccount = acc;
 					break;
 				}
 			}
@@ -121,7 +121,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			 *  Checks if the player has enough "money" to pay the game's
 			 *	entrance fee
 			*/
-			if(serverSideAccount != null && serverSideAccount.getBalance().getValue() >= entranceFee ){
+			if(serversAccount != null && serversAccount.getBalance().getValue() >= entranceFee ){
 			
 				try {
 					newGame = new RemoteGameController(this, maxPlayers,
@@ -143,7 +143,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 				
 				// Removes the entranceFee from the user's Account instance
 				// TODO Remove from database. Here or somewhere else?
-				serverSideAccount.getBalance().removeFromBalance(entranceFee);
+				serversAccount.getBalance().removeFromBalance(entranceFee);
 				System.out.println("*** " + account.getUserName() + " created a"
 						+ " game ***");
 			}

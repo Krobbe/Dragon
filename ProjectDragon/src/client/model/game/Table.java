@@ -48,6 +48,9 @@ public class Table {
 			int maxPlayers) {
 		this.players = players;
 		this.user = user;
+		
+		addPlayer(meIndex, user);
+		
 		this.meIndex = meIndex;
 		this.maxPlayers = maxPlayers;
 		
@@ -63,7 +66,7 @@ public class Table {
 	 * @param index The index where the player will be seated
 	 * @throws IllegalArgumentException if there are already ten players at the table
 	 */
-	public void addPlayer(IPlayer player, int index) {
+	public void addPlayer(int index, IPlayer player) {
 			players.add(index, player);
 	}
 	
