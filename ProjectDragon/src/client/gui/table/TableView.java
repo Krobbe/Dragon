@@ -233,8 +233,21 @@ public class TableView implements EventHandler, ActionListener{
 			playerPanelList.get((turnIndex-1)%10).setBackground(Color.gray);
 			
 			List<String> legalButtons = table.getLegalButtons();
-			//TODO: hantera call, check, fold och raise knappar. listan innehåller
-			// strängar med vilka knappar som man ska kunna trycka på.
+			if(legalButtons.contains("check") || legalButtons.contains("call")) {
+				userBetPanel.setCheckEnabled(true);
+			} else {
+				userBetPanel.setCheckEnabled(false);
+			}
+			if(legalButtons.contains("fold")) {
+				userBetPanel.setFoldEnabled(true);
+			} else {
+				userBetPanel.setFoldEnabled(false);
+			}
+			if(legalButtons.contains("raise")) {
+				userBetPanel.setRaiseEnabled(true);
+			} else {
+				userBetPanel.setRaiseEnabled(false);
+			}
 			break;
 			
 		case HANDS_CHANGED:

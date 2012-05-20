@@ -62,6 +62,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		availableCreditsLabel.setPreferredSize(new Dimension(60,19));
 
 		foldButton = new JButton("Fold");
+		foldButton.setEnabled(false);
 		foldButton.setSize(buttonWidth, buttonHeight);
 		foldButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		foldButton.setBackground(Color.red);
@@ -69,6 +70,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		foldButton.addActionListener(this);
 
 		checkButton = new JButton("Check");
+		checkButton.setEnabled(false);
 		checkButton.setSize(buttonWidth, buttonHeight);
 		checkButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		checkButton.setBackground(Color.green);
@@ -76,6 +78,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		checkButton.addActionListener(this);
 
 		raiseButton = new JButton("Raise");
+		raiseButton.setEnabled(false);
 		raiseButton.setSize(buttonWidth, buttonHeight);
 		raiseButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		raiseButton.addActionListener(this);
@@ -114,6 +117,33 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	public void updateOwnCurrentBet() {
 		ownCurrentBetLabel.setText("Own Current Bet: " + user.getOwnCurrentBet());
 		updateSpinner(user.getOwnCurrentBet());
+	}
+	
+	//TODO: hantera call, check, fold och raise knappar. listan innehåller
+	// strängar med vilka knappar som man ska kunna trycka på. Sätta enabled från början?
+	
+	/**
+	 * Set Foldbutton enabled
+	 * @param b true if the button should be enabled.
+	 */
+	public void setFoldEnabled(boolean b) {
+		foldButton.setEnabled(b);
+	}
+	
+	/**
+	 * Set Checkbutton enabled.
+	 * @param b true if the button should be enabled.
+	 */
+	public void setCheckEnabled(boolean b) {
+		checkButton.setEnabled(b);
+	}
+	
+	/**
+	 * Set Raisebutton enabled.
+	 * @param b true if the button should be enabled.
+	 */
+	public void setRaiseEnabled(boolean b) {
+		raiseButton.setEnabled(b);
 	}
 
 	@Override

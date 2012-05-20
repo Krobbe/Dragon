@@ -36,7 +36,7 @@ public class PlayerPanel extends JPanel {
 	private void init() {
 		this.setPreferredSize(new Dimension(135, 144));
 		this.setLayout(new BorderLayout());
-		this.setBackground(Color.green);
+		this.setBackground(Color.gray);
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		cardPanel = new JPanel();
