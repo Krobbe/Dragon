@@ -122,12 +122,12 @@ public class Account implements Comparable<Account>, Serializable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		if(o == null) {
-			return false;
-		} else if(o.getClass() != this.getClass()){
+		if(this == o) {
+			return true;
+		}
+		else if(o == null || o.getClass() != this.getClass()) {
 			return false;
 		}
-		
 		Account tmpAccount = (Account)o;
 		
 		return tmpAccount.getUserName().equals(this.getUserName()) &&

@@ -2,6 +2,9 @@ package ctrl.game;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -31,6 +34,50 @@ import server.model.game.Table;
  */
 
 public class GameControllerTest {
+	
+	
+	@Test
+	public void testNewTable() {
+		LinkedList<IPlayer> players = new LinkedList<IPlayer>();
+		IPlayer p = new Player();
+		players.add(p);
+	}
+	@Test
+	public void testAddPlayer() {
+		Table t = new Table();
+		IPlayer p = new Player();
+		t.addPlayer(p);
+		assertTrue(t.getPlayers().get(t.getPlayers().size()-1).equals(p));
+	}
+	
+	@Test
+	public void testAddPlayers() {
+		Table t = new Table();
+		IPlayer p1 = new Player();
+		Collection<IPlayer> players = new ArrayList<IPlayer>();
+		players.add(p1);
+		t.addPlayers(players);
+		assertTrue(t.getPlayers().equals(players));
+	}
+	
+	@Test
+	public void testSetCurrentBet() {
+		Table t = new Table();
+		IPlayer p = new Player();
+		Bet b = new Bet(p, 100);
+		t.getRound().getBettingRound().setCurrentBet(b);
+		assertTrue(t.getRound().getBettingRound().getCurrentBet().getOwner().equals(p)
+					&& t.getRound().getBettingRound().getCurrentBet().getValue() == 100);
+	}
+	
+	@Test
+	public void testGetCurrentBet() {
+		Table t = new Table();
+		IPlayer p = new Player();
+		Bet b = new Bet(p, 100);
+		t.getRound().getBettingRound().setCurrentBet(b);
+		assertTrue(t.getRound().getBettingRound().getCurrentBet().equals(b));
+	}
 	
 	@Test
 	public void testRaise() throws PlayersFullException, IllegalRaiseException {
