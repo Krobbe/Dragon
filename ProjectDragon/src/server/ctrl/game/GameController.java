@@ -423,7 +423,6 @@ public class GameController {
 	 * Makes the players who's turn it is to post the big and small blind to do 
 	 * so.
 	 */
-	//TODO: eventuellt lite mer decompsition här.. 
 	private void postBlinds() {
 		List<IPlayer> players = table.getPlayers();
 		int dealerButtonIndex = table.getDealerButtonIndex();

@@ -202,7 +202,6 @@ public class TableView implements EventHandler, ActionListener{
 			
 			IPlayer balanceChangedPlayer = (IPlayer) evt.getValue();
 			
-			//TODO: om man fick in ett index från början ist hade inte följand varit nödvändigt:
 			/* get the index of the player whos balance was changed */
 			for(int i = 0; i < allPlayers.size(); i++) {
 				if(balanceChangedPlayer.equals(allPlayers.get(i))) {

@@ -208,7 +208,6 @@ public class Table {
 		// Look at each hand value (calculated in HandEvaluator), sorted from
 		// highest to lowest.
 		Map<HandValue, List<IPlayer>> rankedPlayers = getRankedPlayers(plrs);
-
 		for (HandValue handValue : rankedPlayers.keySet()) {
 			// Get players with winning hand value.
 			List<IPlayer> winners = rankedPlayers.get(handValue);
