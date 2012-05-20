@@ -33,6 +33,7 @@ import common.utilities.IllegalCheckException;
 import common.utilities.IllegalRaiseException;
 
 import server.event.Event;
+import server.event.EventBus;
 import server.event.EventHandler;
 
 /**
@@ -98,6 +99,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		String dateString = "" + cal.get(Calendar.DAY_OF_MONTH) + 
 				cal.get(Calendar.MONTH) + cal.get(Calendar.YEAR);
 		saveGame(gameID, dateString);
+		EventBus.register(this);
 	}
 	
 	/**
@@ -363,7 +365,9 @@ public class RemoteGameController extends UnicastRemoteObject
 						+ evt.getTag());
 			} else {
 				i = (Integer) evt.getValue();
+				System.out.println("\n" + i + "\n");
 				for (IClientGame client : playerReferences.values()) {
+					System.out.println("forloop ");
 					try {
 						client.setTurn(i);
 					} catch (RemoteException e) {

@@ -231,6 +231,7 @@ public class TableView implements EventHandler, ActionListener{
 			
 		case TURN_CHANGED:
 			int turnIndex = (Integer) evt.getValue();
+			System.out.println(turnIndex);
 			playerPanelList.get(turnIndex).setBackground(Color.green);
 			playerPanelList.get((turnIndex-1)%10).setBackground(Color.gray);
 			
