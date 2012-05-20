@@ -246,7 +246,6 @@ public class Table {
 			returnIndex = (currentPlayerIndex + count) % getPlayers().size();
 			count++;
 		} while (!getPlayers().get(returnIndex).isActive());
-
 		return returnIndex;
 	}
 	
@@ -488,7 +487,6 @@ public class Table {
 	// TODO Test nextDealerButtonPlayer()
 	// TODO Discuss and implement a possible better solution to dealer button
 	public int nextDealerButtonIndex() {
-
 		indexOfDealerButton = findIndexOfNextActivePlayer(indexOfDealerButton);
 
 		// TODO: gammal kod, ta bort om nya funkar

@@ -392,9 +392,7 @@ public class GameController {
 				player.setActive(true);
 			}
 		}
-		
 		tableInitial();
-		
 		/* set the turn to the right player */
 		//TODO detta görs på ett flertal ställen = refactor? 
 		int indexOfCurrentPlayer = table.getDealerButtonIndex();
@@ -586,7 +584,6 @@ public class GameController {
 		table.getSidePots().clear();
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_POT, table.getRound().getPot()));
 		EventBus.publish(new Event(Event.Tag.SERVER_NEW_ROUND,""));
-		
 		/* new cards for all active players*/
 		table.getDealer().newDeck();
 		distributeCards();

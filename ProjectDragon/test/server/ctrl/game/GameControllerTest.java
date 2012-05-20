@@ -12,12 +12,15 @@ import org.junit.Test;
 import common.model.card.Card;
 import common.model.card.Rank;
 import common.model.card.Suit;
+import common.model.game.Pot;
 import common.model.player.Balance;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.Player;
 import common.model.player.User;
 import common.model.player.hand.TexasHoldemHand;
+import common.utilities.IllegalCallException;
+import common.utilities.IllegalCheckException;
 import common.utilities.IllegalRaiseException;
 import common.utilities.PlayersFullException;
 
@@ -36,48 +39,78 @@ public class GameControllerTest {
 	int startingChips = 1000;
 	
 	
-	
-	@Test
-	public void testNewTable() {
-		LinkedList<IPlayer> players = new LinkedList<IPlayer>();
-		IPlayer p = new Player();
-		players.add(p);
-	}
 	@Test
 	public void testAddPlayer() {
 		Table t = new Table(maxPlayers, entranceFee, startingChips);
+		GameController gc = new GameController(t);
 		IPlayer p = new Player();
-		t.addPlayer(p);
+		gc.addPlayer(p);
 		assertTrue(t.getPlayers().get(t.getPlayers().size()-1).equals(p));
 	}
 	
 	@Test
 	public void testAddPlayers() {
 		Table t = new Table(maxPlayers, entranceFee, startingChips);
+		GameController gc = new GameController(t);
 		IPlayer p1 = new Player();
 		Collection<IPlayer> players = new ArrayList<IPlayer>();
 		players.add(p1);
-		t.addPlayers(players);
+		gc.addPlayers(players);
 		assertTrue(t.getPlayers().equals(players));
 	}
 	
-	@Test
-	public void testSetCurrentBet() {
-		Table t = new Table(maxPlayers, entranceFee, startingChips);
-		IPlayer p = new Player();
-		Bet b = new Bet(p, 100);
+	public void testCall() {
+		Table t = new Table(maxPlayers,entranceFee,startingChips);
+		GameController gc = new GameController(t);
+		IPlayer p1 = new Player();
+		IPlayer p2 = new Player();
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		Bet b = new Bet(p1, 100);
 		t.getRound().getBettingRound().setCurrentBet(b);
-		assertTrue(t.getRound().getBettingRound().getCurrentBet().getOwner().equals(p)
-					&& t.getRound().getBettingRound().getCurrentBet().getValue() == 100);
+		t.setIndexOfCurrentPlayer(1);
+		assertTrue(!gc.call(b));
+		t.setIndexOfCurrentPlayer(0);
+		assertTrue(gc.call(b));
 	}
 	
-	@Test
-	public void testGetCurrentBet() {
-		Table t = new Table(maxPlayers, entranceFee, startingChips);
-		IPlayer p = new Player();
-		Bet b = new Bet(p, 100);
-		t.getRound().getBettingRound().setCurrentBet(b);
-		assertTrue(t.getRound().getBettingRound().getCurrentBet().equals(b));
+	@Test(expected=IllegalCallException.class)
+	public void testBadCall() {
+		Table t = new Table(maxPlayers,entranceFee,startingChips);
+		GameController gc = new GameController(t);
+		IPlayer p1 = new Player();
+		gc.addPlayer(p1);
+		Bet b = new Bet(p1, 100);
+		gc.call(b);
+	}
+	
+	public void testCheck() {
+		Table t = new Table(maxPlayers,entranceFee,startingChips);
+		GameController gc = new GameController(t);
+		IPlayer p1 = new Player();
+		IPlayer p2 = new Player();
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.setIndexOfCurrentPlayer(1);
+		Bet b = new Bet(p1, 100);
+		assertTrue(!gc.check(b));
+		t.setIndexOfCurrentPlayer(0);
+		assertTrue(gc.check(b));
+	}
+	
+	@Test(expected=IllegalCheckException.class)
+	public void testBadCheck() {
+		Table t = new Table(maxPlayers,entranceFee,startingChips);
+		GameController gc = new GameController(t);
+		IPlayer p1 = new Player();
+		IPlayer p2 = new Player();
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		Bet b1 = new Bet(p1, 100);
+		Bet b2 = new Bet(p2, 1);
+		t.getRound().getBettingRound().setCurrentBet(b1);
+		t.setIndexOfCurrentPlayer(0);
+		gc.check(b2);
 	}
 	
 	@Test
@@ -122,11 +155,11 @@ public class GameControllerTest {
 		Table t = new Table(maxPlayers, entranceFee, startingChips);
 		GameController gc = new GameController(t);
 		IPlayer u1 = new User(), u2 = new User(), u3 = new User(), u4 = new User();
-		t.addPlayer(u1); t.addPlayer(u2); t.addPlayer(u3); t.addPlayer(u4);	
+		gc.addPlayer(u1); gc.addPlayer(u2); gc.addPlayer(u3); gc.addPlayer(u4);	
 		List<IPlayer> players = t.getPlayers();
 		for (IPlayer p : players) {
 			p.getHand().addCard(new Card());
-			p.setActive(false);
+			p.setActive(true);
 		}
 		t.getRound().getPot().addToPot(33);
 		t.getRound().getBettingRound().setCurrentBet(new Bet(u1,22));
