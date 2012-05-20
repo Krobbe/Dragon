@@ -25,14 +25,7 @@ import common.model.player.Account;
 import client.event.Event;
 import client.event.EventBus;
 import client.event.EventHandler;
-/**
- * The panel that shows information about the account. It's possible to add
- * balance to the account in this panel.
- * 
- * @author lisastenberg
- *
- */
-@SuppressWarnings("serial")
+
 public class AccountPanel extends JPanel implements ActionListener, EventHandler {
 
 	private JButton backButton, saveButton;

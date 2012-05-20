@@ -3,8 +3,11 @@ package client.gui.table;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -24,9 +27,7 @@ import client.model.game.*;
 
 /**
  * This is the main table panel. It is in this panel that all other panels are created and added.
- * 
  * @author forssenm
- * @author lisastenberg
  *
  */
 public class TableView implements EventHandler, ActionListener{
@@ -163,11 +164,13 @@ public class TableView implements EventHandler, ActionListener{
 		
 		switch (evt.getTag()) {
 		case NEW_PLAYER_ADDED:
-			int index = 0;
+			int index;
 			for(IPlayer p : allPlayers) {
+				if(p.getName().equals((String)evt.getValue())) {
+					index = allPlayers.indexOf(p);
 					playerPanelList.get(index).setName(p);
 					playerPanelList.get(index).setBalance("" + p.getBalance());
-					index++;
+				}
 			}
 			break;
 		
@@ -245,6 +248,8 @@ public class TableView implements EventHandler, ActionListener{
 			} else {
 				userBetPanel.setRaiseEnabled(false);
 			}
+			//TODO: hantera call, check, fold och raise knappar. listan innehåller
+			// strängar med vilka knappar som man ska kunna trycka på.
 			break;
 			
 		case HANDS_CHANGED:

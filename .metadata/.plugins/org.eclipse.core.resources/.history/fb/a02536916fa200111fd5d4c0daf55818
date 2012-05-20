@@ -131,4 +131,10 @@ public class MainMenuPanel extends JPanel implements ActionListener {
 		}
 		return null;
 	}
+
+	@Override
+	public void onEvent(Event evt) {
+		// TODO Auto-generated method stub
+		
+	}
 }

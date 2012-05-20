@@ -23,7 +23,7 @@ import client.event.*;
  *
  */
 @SuppressWarnings("serial")
-public class MainMenuPanel extends JPanel implements ActionListener {
+public class MainMenuPanel extends JPanel implements ActionListener, EventHandler {
 
 	private JButton mainLogoutButton;
 	private JButton mainJoinTableButton;
@@ -130,5 +130,11 @@ public class MainMenuPanel extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public void onEvent(Event evt) {
+		// TODO Auto-generated method stub
+		
 	}
 }

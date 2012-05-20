@@ -1,14 +1,18 @@
 package client.gui.table;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import common.model.player.Bet;
 import common.model.player.IPlayer;
 
 import client.event.*;
@@ -19,7 +23,6 @@ import client.event.*;
  * @author lisastenberg
  *
  */
-@SuppressWarnings("serial")
 public class UserBetPanel extends JPanel implements ActionListener {
 		
 	private JLabel availableCreditsLabel;
@@ -103,7 +106,6 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	
 	/**
 	 * Update availableCreditsLabel.
-	 * @author lisastenberg
 	 */
 	public void updateAvailableCredits() {
 		availableCreditsLabel.setText("" + user.getBalance().getValue());
@@ -113,7 +115,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	/**
 	 * Update betSpinner.
 	 * @param currentBet the current bet on the table.
-	 * @author lisastenberg
+	 * @auhtor lisastenberg
 	 */
 	public void updateSpinner(int currentBet) {
 		int minRaise = bigblind + (currentBet - user.getOwnCurrentBet());

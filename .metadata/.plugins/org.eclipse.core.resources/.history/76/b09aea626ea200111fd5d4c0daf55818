@@ -1,14 +1,18 @@
 package client.gui.table;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import common.model.player.Bet;
 import common.model.player.IPlayer;
 
 import client.event.*;
@@ -16,10 +20,8 @@ import client.event.*;
 /**
  * The panel that has all the options that the player can do such as make a call or a bet
  * @author forssenm
- * @author lisastenberg
  *
  */
-@SuppressWarnings("serial")
 public class UserBetPanel extends JPanel implements ActionListener {
 		
 	private JLabel availableCreditsLabel;
@@ -101,39 +103,28 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		this.add(ownCurrentBetLabel);
 	}
 	
-	/**
-	 * Update availableCreditsLabel.
-	 * @author lisastenberg
-	 */
 	public void updateAvailableCredits() {
 		availableCreditsLabel.setText("" + user.getBalance().getValue());
 		updateSpinner(user.getOwnCurrentBet());
 	}
 	
-	/**
-	 * Update betSpinner.
-	 * @param currentBet the current bet on the table.
-	 * @author lisastenberg
-	 */
 	public void updateSpinner(int currentBet) {
 		int minRaise = bigblind + (currentBet - user.getOwnCurrentBet());
 		SpinnerModel model = new SpinnerNumberModel(minRaise, minRaise, user.getBalance().getValue(), 10);
 		betSpinner = new JSpinner(model);
 	}
 	
-	/**
-	 * Update ownCurrentBetLabel.
-	 * @author lisastenberg
-	 */
 	public void updateOwnCurrentBet() {
 		ownCurrentBetLabel.setText("Own Current Bet: " + user.getOwnCurrentBet());
 		updateSpinner(user.getOwnCurrentBet());
 	}
 	
+	//TODO: hantera call, check, fold och raise knappar. listan innehåller
+	// strängar med vilka knappar som man ska kunna trycka på. Sätta enabled från början?
+	
 	/**
 	 * Set Foldbutton enabled
 	 * @param b true if the button should be enabled.
-	 * @author lisastenberg
 	 */
 	public void setFoldEnabled(boolean b) {
 		foldButton.setEnabled(b);
@@ -142,7 +133,6 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	/**
 	 * Set Checkbutton enabled.
 	 * @param b true if the button should be enabled.
-	 * @author lisastenberg
 	 */
 	public void setCheckEnabled(boolean b) {
 		checkButton.setEnabled(b);
@@ -151,7 +141,6 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	/**
 	 * Set Raisebutton enabled.
 	 * @param b true if the button should be enabled.
-	 * @author lisastenberg
 	 */
 	public void setRaiseEnabled(boolean b) {
 		raiseButton.setEnabled(b);

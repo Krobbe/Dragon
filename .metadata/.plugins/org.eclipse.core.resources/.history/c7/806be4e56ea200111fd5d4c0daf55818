@@ -19,7 +19,6 @@ import client.event.*;
  * @author lisastenberg
  *
  */
-@SuppressWarnings("serial")
 public class UserBetPanel extends JPanel implements ActionListener {
 		
 	private JLabel availableCreditsLabel;

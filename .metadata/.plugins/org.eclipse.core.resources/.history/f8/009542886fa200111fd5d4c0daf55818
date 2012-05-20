@@ -44,6 +44,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
 	 */
 	public MainMenuPanel() {
 		init();
+		client.event.EventBus.register(this);
 	}
 
 	@Override

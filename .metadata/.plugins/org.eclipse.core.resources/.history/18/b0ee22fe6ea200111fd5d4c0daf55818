@@ -32,7 +32,6 @@ import client.event.EventHandler;
  * @author lisastenberg
  *
  */
-@SuppressWarnings("serial")
 public class AccountPanel extends JPanel implements ActionListener, EventHandler {
 
 	private JButton backButton, saveButton;

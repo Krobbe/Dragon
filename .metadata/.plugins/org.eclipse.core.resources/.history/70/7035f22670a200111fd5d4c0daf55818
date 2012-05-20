@@ -17,7 +17,6 @@ import common.model.card.ICard;
  * This is the panel that holds all the information about what cards are on the table, how much is in the pot
  * and what the current bet is
  * @author forssenm
- * @author lisastenberg
  *
  */
 @SuppressWarnings("serial")
@@ -45,6 +44,7 @@ public class TableInfoPanel extends JPanel {
 
 	private void init() {
 		this.setPreferredSize(new Dimension(418, 144));
+		//this.setBounds(297, 202, 418, 144);
 		this.setLayout(new BorderLayout());
 		
 		northPanel = new JPanel();
@@ -77,18 +77,22 @@ public class TableInfoPanel extends JPanel {
 
 		potSizeInfoLabel= new JLabel("Pot size:");
 		potSizeInfoLabel.setPreferredSize(new Dimension(53, 15));
+		//potSizeInfoLabel.setBounds(10, 120, 53, 15);
 		this.add(potSizeInfoLabel);
 		
 		potSize = new JLabel("0");
 		potSize.setPreferredSize(new Dimension(53, 15));
+		//potSize.setBounds(89, 120, 53, 15);
 		this.add(potSize);
 		
 		currentBetInfoLabel = new JLabel("Current bet:");
 		currentBetInfoLabel.setPreferredSize(new Dimension(90, 15));
+		//currentBetInfoLabel.setBounds(260, 120, 70, 15);
 		this.add(currentBetInfoLabel);
 		
 		currentBet = new JLabel("0");
 		potSizeInfoLabel.setPreferredSize(new Dimension(53, 15));
+		//currentBet.setBounds(355, 120, 53, 15);
 		this.add(currentBet);
 		
 		northPanel.add(card1Label);

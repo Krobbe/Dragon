@@ -24,7 +24,6 @@ import client.model.game.*;
 
 /**
  * This is the main table panel. It is in this panel that all other panels are created and added.
- * 
  * @author forssenm
  * @author lisastenberg
  *

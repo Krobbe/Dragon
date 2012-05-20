@@ -17,7 +17,6 @@ import common.model.card.ICard;
  * This is the panel that holds all the information about what cards are on the table, how much is in the pot
  * and what the current bet is
  * @author forssenm
- * @author lisastenberg
  *
  */
 @SuppressWarnings("serial")

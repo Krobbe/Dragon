@@ -18,7 +18,7 @@ import common.model.player.hand.IHand;
 /**
  * This class represents a seat in a table. 
  * 
- * The panel shows information about hands, username and available credits.
+ * The panel shows information about hands, username and balance.
  * 
  * @author lisastenberg
  *

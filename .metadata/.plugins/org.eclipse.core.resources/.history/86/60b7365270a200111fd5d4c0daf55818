@@ -35,6 +35,10 @@ import common.model.player.Account;
 
 import client.event.Event;
 
+import model.player.*;
+
+import database.*;
+
 /**
  * The StatisticsPanel has information about the logged in user. The information is retrieved from the DB.
  * @author forssenm
