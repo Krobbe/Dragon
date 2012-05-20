@@ -6,8 +6,6 @@ import java.util.List;
 
 import server.event.*;
 import server.model.game.Table;
-import model.game.*;
-import model.player.*;
 import common.model.game.BettingRound;
 import common.model.game.P;
 import common.model.game.Pot;

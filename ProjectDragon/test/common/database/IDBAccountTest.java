@@ -1,4 +1,4 @@
-package ctrl.game;
+package common.database;
 
 import static org.junit.Assert.*;
 

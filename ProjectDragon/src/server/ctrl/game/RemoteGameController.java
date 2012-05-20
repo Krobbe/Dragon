@@ -32,11 +32,6 @@ import common.utilities.IllegalCallException;
 import common.utilities.IllegalCheckException;
 import common.utilities.IllegalRaiseException;
 
-import database.*;
-
-
-import model.player.*;
-
 import server.event.Event;
 import server.event.EventHandler;
 

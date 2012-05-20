@@ -1,4 +1,4 @@
-package database;
+package common.database;
 
 import static org.junit.Assert.*;
 

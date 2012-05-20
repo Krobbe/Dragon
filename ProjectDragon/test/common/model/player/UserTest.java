@@ -1,4 +1,4 @@
-package model.player;
+package common.model.player;
 
 /**
  * A test of the class "User"

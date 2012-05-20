@@ -16,12 +16,6 @@ import common.utilities.IllegalCheckException;
 import common.utilities.IllegalRaiseException;
 import common.utilities.PlayersFullException;
 
-
-import client.gui.menu.MainView;
-
-
-import model.game.*;
-import model.player.*;
 import server.ctrl.game.GameController;
 import server.model.game.Table;
 

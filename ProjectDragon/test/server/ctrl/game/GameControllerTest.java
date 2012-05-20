@@ -1,4 +1,4 @@
-package ctrl.game;
+package server.ctrl.game;
 
 import static org.junit.Assert.assertTrue;
 
@@ -19,7 +19,6 @@ import common.model.player.IPlayer;
 import common.model.player.Player;
 import common.model.player.User;
 import common.model.player.hand.TexasHoldemHand;
-import common.utilities.CommunityCardsFullException;
 import common.utilities.IllegalRaiseException;
 import common.utilities.PlayersFullException;
 
