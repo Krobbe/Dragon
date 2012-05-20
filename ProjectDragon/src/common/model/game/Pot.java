@@ -48,7 +48,6 @@ public class Pot {
 	 * Add x to the pot.
 	 * @param x	the 
 	 */
-	//TODO setValue ist?
 	public void addToPot(int x) {
 		value = value + x;
 	}

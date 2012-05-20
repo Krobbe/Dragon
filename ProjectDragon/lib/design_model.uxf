@@ -582,7 +582,7 @@ from Oscar Stiegler
       <x>480</x>
       <y>2030</y>
       <w>310</w>
-      <h>430</h>
+      <h>460</h>
     </coordinates>
     <panel_attributes>Table
 --
@@ -604,6 +604,7 @@ from Oscar Stiegler
 +getPlayers(): List&lt;IPlayer&gt;
 +getActivePlayers(): List&lt;IPlayer&gt;
 +getIndexOfCurrentPlayer(): int
++findIndexOfNextActivePlayer(int): int
 +nextPlayer(): IPlayer
 +nextDealerButtonIndex(): void
 +setIndexOfCurrentPlayer(int): void
@@ -1024,7 +1025,7 @@ m1=0..n
       <h>60</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>30;360;30;360</additional_attributes>
+    <additional_attributes>30;390;30;390</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>

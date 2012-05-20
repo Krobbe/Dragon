@@ -146,7 +146,6 @@ public class GameController {
 	 * Performs a check.
 	 * @throws IllegalCheckException 
 	 */
-	//TODO otestat: exception, setOwncurrentBet
 	public boolean check(Bet bet) {
 		if(!isValidPlayerAction(bet.getOwner())) {
 			return false;
@@ -372,23 +371,23 @@ public class GameController {
 	public void nextRound() {
 		playersInitial();
 		List<IPlayer> players = table.getPlayers();
-		for(IPlayer player : players) {
+		for (IPlayer player : players) {
 			player.getHand().discard();
 			if (!player.isAllIn()) {
 				player.setActive(true);
 			}
 		}
 		tableInitial();
+		
 		/* set the turn to the right player */
-		//TODO detta görs på ett flertal ställen = refactor? 
 		int indexOfCurrentPlayer = table.getDealerButtonIndex();
 		for (int i = 0; i < 3; i++) {
-			do {
-				indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % table.getPlayers().size();
-			} while (!players.get(indexOfCurrentPlayer).isActive());
+			indexOfCurrentPlayer = table
+					.findIndexOfNextActivePlayer(indexOfCurrentPlayer);
 		}
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
-		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN, indexOfCurrentPlayer));
+		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN,
+				indexOfCurrentPlayer));
 	}
 	
 	/**
