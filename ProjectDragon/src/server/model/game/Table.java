@@ -388,54 +388,6 @@ public class Table {
 	
 	/**
 	 * 
-	 * @param index
-	 *            The index indexOfCurrentPlayer should be set to.
-	 */
-	public void setIndexOfCurrentPlayer(int index) {
-		indexOfCurrentPlayer = index;
-	}
-	
-	/**
-	 * Sets the list of players who won the last round
-	 * 
-	 * @param winners
-	 */
-	public void setShowdownDone(boolean showdownDone) {
-		this.showdownDone = showdownDone;
-	}
-
-	/**
-	 * Tostring method for the Table class
-	 * 
-	 * @author Mattias Forssen
-	 * @author mattiashenriksson
-	 * @return Returns a string containing the names of all players, cards, who
-	 *         the current player is and what cards are shown.
-	 */
-	@Override
-	public String toString() {
-		StringBuilder result = new StringBuilder();
-		result.append("Players at table:\n");
-		for (IPlayer p : this.players) {
-			result.append(p.toString() + "\n");
-		}
-		result.append("\n" + "Current player is "
-				+ getCurrentPlayer().getName() + "\n");
-		result.append("Player with Dealer button is: "
-				+ (players.get(getDealerButtonIndex())).getName() + "\n");
-		result.append("Table cards are:" + "\n" + communityCards.toString()
-				+ "\n");
-		result.append("Pot is: " + round.getPot().getValue() + "\n");
-		result.append("Pre-betting pot is: "
-				+ round.getPreBettingPot().getValue() + "\n");
-		result.append("Current bet is: "
-				+ round.getBettingRound().getCurrentBet().getValue() + "\n");
-
-		return result.toString();
-	}
-
-	/**
-	 * 
 	 * @return a list of the players who won the last round
 	 */
 	public boolean isShowdownDone() {
@@ -467,6 +419,7 @@ public class Table {
 		}
 		return true;
 	}
+
 	
 	/**
 	 * Set the turn to the next player in order, and returns that player.
@@ -528,7 +481,6 @@ public class Table {
 		return indexOfDealerButton;
 	}
 
-
 	/**
 	 * This method recieves a bet and placese it om the table.
 	 * 
@@ -542,6 +494,54 @@ public class Table {
 		if (bet.getValue() >= currentBet.getValue()) {
 			getRound().getBettingRound().setCurrentBet(bet);
 		}
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 *            The index indexOfCurrentPlayer should be set to.
+	 */
+	public void setIndexOfCurrentPlayer(int index) {
+		indexOfCurrentPlayer = index;
+	}
+	
+	/**
+	 * Sets the list of players who won the last round
+	 * 
+	 * @param winners
+	 */
+	public void setShowdownDone(boolean showdownDone) {
+		this.showdownDone = showdownDone;
+	}
+
+	/**
+	 * Tostring method for the Table class
+	 * 
+	 * @author Mattias Forssen
+	 * @author mattiashenriksson
+	 * @return Returns a string containing the names of all players, cards, who
+	 *         the current player is and what cards are shown.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append("Players at table:\n");
+		for (IPlayer p : this.players) {
+			result.append(p.toString() + "\n");
+		}
+		result.append("\n" + "Current player is "
+				+ getCurrentPlayer().getName() + "\n");
+		result.append("Player with Dealer button is: "
+				+ (players.get(getDealerButtonIndex())).getName() + "\n");
+		result.append("Table cards are:" + "\n" + communityCards.toString()
+				+ "\n");
+		result.append("Pot is: " + round.getPot().getValue() + "\n");
+		result.append("Pre-betting pot is: "
+				+ round.getPreBettingPot().getValue() + "\n");
+		result.append("Current bet is: "
+				+ round.getBettingRound().getCurrentBet().getValue() + "\n");
+
+		return result.toString();
 	}
 
 	/**
