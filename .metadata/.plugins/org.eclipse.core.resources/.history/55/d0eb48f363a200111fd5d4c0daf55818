@@ -131,6 +131,10 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		listWithGames = new JList(listWithGamesModel);
 		listWithGames.setBounds(500, 102, 400, 245);
 		listWithGames.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		List<Integer> tmp = loadPlayedGames(setThisUserName.getText());
+		for(Integer i : tmp) {
+			listWithGamesModel.addElement(i);
+		}
 		listWithGames.addListSelectionListener(this);
 		this.add(listWithGames);
 		

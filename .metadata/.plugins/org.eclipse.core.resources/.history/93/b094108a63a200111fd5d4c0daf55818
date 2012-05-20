@@ -50,6 +50,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 
 	private JLabel userName;
+	private JLabel setThisUserName;
 	private JLabel setThisPlayedGames;
 	private JLabel setThisWonGames;
 	
@@ -81,13 +82,9 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	public void onEvent(client.event.Event evt) {
 		if(evt.getTag().equals(Event.Tag.PUBLISH_ACCOUNT_INFORMATION)) {
 			Account acc = (Account)evt.getValue();
-			userName.setText("<html><b>Username: </b>" + acc.getUserName() + "</html>");
+			userName.setText("<html><b>Username :</b>" + acc.getUserName() + "</html>");
 			setThisWonGames.setText(Integer.toString(loadNbrOfWonGames(acc.getUserName())));
 			setThisPlayedGames.setText(Integer.toString(loadNbrOfPlayedGames(acc.getUserName())));
-			List<Integer> tmp = loadPlayedGames(acc.getUserName());
-			for(Integer i : tmp) {
-				listWithGamesModel.addElement(i);
-			}
 		}
 	}
 
@@ -106,6 +103,11 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		userName.setBounds(200, 102, 200, 20);
 		userName.setFont(P.INSTANCE.getLabelFont());
 		this.add(userName);
+		
+		setThisUserName = new JLabel();
+		setThisUserName.setBounds(200, 127, 200, 20);
+		setThisUserName.setFont(P.INSTANCE.getLabelFont());
+		this.add(setThisUserName);
 		
 		JLabel playedGames = new JLabel("Number of played games");
 		playedGames.setBounds(200, 252, 230, 20);
@@ -131,6 +133,10 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		listWithGames = new JList(listWithGamesModel);
 		listWithGames.setBounds(500, 102, 400, 245);
 		listWithGames.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		List<Integer> tmp = loadPlayedGames(setThisUserName.getText());
+		for(Integer i : tmp) {
+			listWithGamesModel.addElement(i);
+		}
 		listWithGames.addListSelectionListener(this);
 		this.add(listWithGames);
 		

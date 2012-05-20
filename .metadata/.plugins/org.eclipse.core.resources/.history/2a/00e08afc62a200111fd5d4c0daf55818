@@ -49,7 +49,9 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		ListSelectionListener, client.event.EventHandler, IDBLoadGame {
 	DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 
-	private JLabel userName;
+	private JLabel setThisUserName;
+	private JLabel setThisFirstName;
+	private JLabel setThisLastName;
 	private JLabel setThisPlayedGames;
 	private JLabel setThisWonGames;
 	
@@ -81,13 +83,11 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 	public void onEvent(client.event.Event evt) {
 		if(evt.getTag().equals(Event.Tag.PUBLISH_ACCOUNT_INFORMATION)) {
 			Account acc = (Account)evt.getValue();
-			userName.setText("<html><b>Username: </b>" + acc.getUserName() + "</html>");
+			setThisUserName.setText(acc.getUserName());
+			setThisFirstName.setText(acc.getFirstName());
+			setThisLastName.setText(acc.getLastName());
 			setThisWonGames.setText(Integer.toString(loadNbrOfWonGames(acc.getUserName())));
 			setThisPlayedGames.setText(Integer.toString(loadNbrOfPlayedGames(acc.getUserName())));
-			List<Integer> tmp = loadPlayedGames(acc.getUserName());
-			for(Integer i : tmp) {
-				listWithGamesModel.addElement(i);
-			}
 		}
 	}
 
@@ -102,17 +102,43 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		this.setLayout(null);
 		this.setOpaque(false);
 
-		userName = new JLabel("User name");
+		JLabel userName = new JLabel("User name");
 		userName.setBounds(200, 102, 200, 20);
-		userName.setFont(P.INSTANCE.getLabelFont());
+		userName.setFont(P.INSTANCE.getBoldLabelFont());
 		this.add(userName);
+		
+		//TODO set the different values, get them from where?
+		setThisUserName = new JLabel("Get the name from where?");
+		setThisUserName.setBounds(200, 127, 200, 20);
+		setThisUserName.setFont(P.INSTANCE.getLabelFont());
+		this.add(setThisUserName);
+		
+		JLabel firstName = new JLabel("First name");
+		firstName.setBounds(200, 152, 200, 20);
+		firstName.setFont(P.INSTANCE.getBoldLabelFont());
+		this.add(firstName);
+		
+		setThisFirstName = new JLabel("Get the name from where?");
+		setThisFirstName.setBounds(200, 177, 200, 20);
+		setThisFirstName.setFont(P.INSTANCE.getLabelFont());
+		this.add(setThisFirstName);
+		
+		JLabel lastName = new JLabel("Last name");
+		lastName.setBounds(200, 202, 200, 20);
+		lastName.setFont(P.INSTANCE.getBoldLabelFont());
+		this.add(lastName);
+		
+		setThisLastName = new JLabel("Get the name from where?");
+		setThisLastName.setBounds(200, 227, 200, 20);
+		setThisLastName.setFont(P.INSTANCE.getLabelFont());
+		this.add(setThisLastName);
 		
 		JLabel playedGames = new JLabel("Number of played games");
 		playedGames.setBounds(200, 252, 230, 20);
 		playedGames.setFont(P.INSTANCE.getBoldLabelFont());
 		this.add(playedGames);
 		
-		setThisPlayedGames = new JLabel();
+		setThisPlayedGames = new JLabel("Get the number of games from where?");
 		setThisPlayedGames.setBounds(200, 277, 200, 20);
 		setThisPlayedGames.setFont(P.INSTANCE.getLabelFont());
 		this.add(setThisPlayedGames);
@@ -122,7 +148,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		wonGames.setFont(P.INSTANCE.getBoldLabelFont());
 		this.add(wonGames);
 		
-		setThisWonGames = new JLabel();
+		setThisWonGames = new JLabel(("Get number of won games from where?"));
 		setThisWonGames.setBounds(200, 327, 200, 20);
 		setThisWonGames.setFont(P.INSTANCE.getLabelFont());
 		this.add(setThisWonGames);
@@ -131,6 +157,10 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 		listWithGames = new JList(listWithGamesModel);
 		listWithGames.setBounds(500, 102, 400, 245);
 		listWithGames.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		List<Integer> tmp = loadPlayedGames(setThisUserName.getText());
+		for(Integer i : tmp) {
+			listWithGamesModel.addElement(i);
+		}
 		listWithGames.addListSelectionListener(this);
 		this.add(listWithGames);
 		
