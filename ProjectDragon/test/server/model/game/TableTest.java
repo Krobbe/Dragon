@@ -113,11 +113,13 @@ public class TableTest {
 	
 	@Test(expected=PlayersFullException.class) 
 	public void testTableFull() throws PlayersFullException {
-		IPlayer p1 = new User(), p2 = new User(), p3 = new User(), p4 = new User(), p5 = new User(), 
-				p6 = new User(), p7 = new User(), p8 = new User(), p9 = new User(), p10 = new User(), 
-				p11 = new User();
-		t.addPlayer(p1); t.addPlayer(p2); t.addPlayer(p3); t.addPlayer(p4); t.addPlayer(p5); t.addPlayer(p6);
-		t.addPlayer(p7); t.addPlayer(p8); t.addPlayer(p9); t.addPlayer(p10); t.addPlayer(p11);
+		IPlayer p1 = new User(), p2 = new User(), p3 = new User(), 
+				p4 = new User(), p5 = new User(), p6 = new User(), 
+				p7 = new User(), p8 = new User(), p9 = new User(), 
+				p10 = new User(), p11 = new User();
+		t.addPlayer(p1); t.addPlayer(p2); t.addPlayer(p3); t.addPlayer(p4);
+		t.addPlayer(p5); t.addPlayer(p6); t.addPlayer(p7); t.addPlayer(p8);
+		t.addPlayer(p9); t.addPlayer(p10); t.addPlayer(p11);
 	}
 	
 	@Test

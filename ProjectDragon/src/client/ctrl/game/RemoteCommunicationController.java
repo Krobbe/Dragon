@@ -22,9 +22,7 @@ import common.remote.IClient;
 import common.remote.IServer;
 import common.remote.IServerGame;
 
-import client.event.Event;
-import client.event.EventHandler;
-import client.event.EventBus;
+import client.event.*;
 import client.model.game.Table;
 
 
