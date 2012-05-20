@@ -212,7 +212,7 @@ public class GameController {
 	 */
 	public void setHand(IPlayer player, IHand hand) {
 		System.out.println("--------------SET_HAND_ANROPAD!!!----------");
-		for (IPlayer clientPlayer : table.getPlayers()) {
+		for (IPlayer clientPlayer : table.getActivePlayers()) {
 			System.out.println("Kom in i gc:n");
 			if (clientPlayer.equals(player)) {
 				System.out.println("HITTADE_PLAYERN: " + clientPlayer.toString());

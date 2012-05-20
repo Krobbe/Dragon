@@ -260,7 +260,7 @@ public class TableView implements EventHandler, ActionListener{
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
-				for (IPlayer acp : table.getPlayers()) {
+				for (IPlayer acp : table.getActivePlayers()) {
 					int i = allPlayers.indexOf(acp);
 					playerPanelList.get(i).showCards(allPlayers.get(i).getHand());
 				}
