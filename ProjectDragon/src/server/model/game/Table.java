@@ -45,25 +45,30 @@ public class Table {
 	private boolean showdownDone;
 	private int indexOfCurrentPlayer;
 	private int indexOfDealerButton;
+	private int maxPlayers;
+	private int entranceFee;
+	private int startingChips;
 	private Map<IPlayer, HandValueType> handTypes = new TreeMap<IPlayer, HandValueType>();
 	private List<SidePotHandler> sidePots = new LinkedList<SidePotHandler>();
 
 	/**
 	 * Creates a new Table.
 	 */
-	public Table() {
-		this(new LinkedList<IPlayer>());
+	public Table(int maxPlayers, int entranceFee, int startingChips) {
+		this(new LinkedList<IPlayer>(), maxPlayers, entranceFee, startingChips);
 	}
 
-	public Table(Collection<IPlayer> players) {
+	public Table(List<IPlayer> players, int maxPlayers, int entranceFee,
+														int startingChips) {
+		
+		this.players = players;		
+		this.maxPlayers = maxPlayers;
+		this.entranceFee = entranceFee;
+		this.startingChips = startingChips;
+		
 		round = new Round();
 		dealer = new TexasHoldemDealer();
 		communityCards = new LinkedList<ICard>();
-		this.players = new LinkedList<IPlayer>();
-		
-		for(IPlayer player : players) {
-			this.players.add(player);
-		}
 
 		indexOfCurrentPlayer = 0;
 		indexOfDealerButton = 0;
@@ -78,7 +83,7 @@ public class Table {
 	 *        
 	 */
 	public void addPlayer(IPlayer player) throws PlayersFullException {
-		if(players.size() < 10) {
+		if(players.size() <= maxPlayers) {
 			players.add(player);
 		} else {
 			throw new PlayersFullException();
@@ -311,6 +316,30 @@ public class Table {
 			}
 		}
 		return allInPlayers;
+	}
+	
+	/**
+	 * Returns the maximum number of allowed players in the table
+	 * @return the maximum number of allowed players
+	 */
+	public int getMaxPlayers() {
+		return maxPlayers;
+	}
+	
+	/**
+	 * Returns the entrance fee to join the table
+	 * @return the cost of joining the game at the table
+	 */
+	public int getEntranceFee() {
+		return entranceFee;
+	}
+	
+	/**
+	 * Returns the amount of chips players get at the start of the game
+	 * @return The amount of chips players get at the start of the game
+	 */
+	public int getStartingChips() {
+		return startingChips;
 	}
 
 	/**

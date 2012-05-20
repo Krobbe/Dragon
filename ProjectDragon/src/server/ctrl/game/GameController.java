@@ -27,8 +27,8 @@ public class GameController {
 
 	private Table table;
 	
-	public GameController() {
-		this(new Table());
+	public GameController(int maxPlayers, int entranceFee, int startingChips) {
+		this(new Table(maxPlayers, entranceFee, startingChips));
 	}
 
 	public GameController(Table table) {
@@ -96,6 +96,38 @@ public class GameController {
 		 * of unnecessary method calls between the two classes
 		 */
 		table.distributeCards();
+	}
+	
+	/**
+	 * Returns the gameControllers table object
+	 * @return The table object
+	 */
+	public Table getTable() {
+		return table;
+	}
+	
+	/**
+	 * Returns the maximum number of allowed players in the table
+	 * @return the maximum number of allowed players
+	 */
+	public int getMaxPlayers() {
+		return table.getMaxPlayers();
+	}
+	
+	/**
+	 * Returns the entrance fee to join the table
+	 * @return the cost of joining the game at the table
+	 */
+	public int getEntranceFee() {
+		return table.getEntranceFee();
+	}
+	
+	/**
+	 * Returns the amount of chips players get at the start of the game
+	 * @return The amount of chips players get at the start of the game
+	 */
+	public int getStartingChips() {
+		return table.getStartingChips();
 	}
 	
 	/**

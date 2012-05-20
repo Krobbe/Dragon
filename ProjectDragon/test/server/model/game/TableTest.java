@@ -31,7 +31,12 @@ import common.utilities.PlayersFullException;
  */
 
 public class TableTest {
-	Table t = new Table();
+	// TODO Test the maxPlayers etc. -methods
+	int maxPlayers = 10;
+	int entranceFee = 100;
+	int startingChips = 1000;
+	
+	Table t = new Table(maxPlayers, entranceFee, startingChips);
 	
 	@Test
 	public void testGetRound() {
@@ -284,8 +289,8 @@ public class TableTest {
 	
 	@Test
 	public void testEquals() {
-		Table t1 = new Table();
-		Table t2 = new Table();
+		Table t1 = new Table(maxPlayers, entranceFee, startingChips);
+		Table t2 = new Table(maxPlayers, entranceFee, startingChips);
 		assertTrue(t1.equals(t1));
 		assertFalse(t1.equals(t2));
 	}

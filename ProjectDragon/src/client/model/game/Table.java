@@ -22,10 +22,15 @@ import common.utilities.*;
  */
 
 public class Table {
+	
 	private Round round;
 	private List<ICard> communityCards;
 	private List<IPlayer> players;
-	private int meIndex;
+	
+	private IPlayer user;
+	
+	private int meIndex;	// The players index in the table's list
+	private int maxPlayers;	// The maximum number of players allowed at the table
 	private int indexOfCurrentPlayer;
 	private int indexOfDealerButton; //TODO: Vill vi se vem som har dealerbutton?
 	
@@ -33,15 +38,19 @@ public class Table {
 	 * Creates a new Table.
 	 */
 	
-	public Table(int meIndex) {
+	public Table(IPlayer user, int meIndex, int maxPlayers) {
 		
-		this(new LinkedList<IPlayer>(), meIndex);
+		this(new LinkedList<IPlayer>(), user, meIndex, maxPlayers);
 	}
 	
 	
-	public Table(List<IPlayer> players, int meIndex) {
-		this.meIndex = meIndex;
+	public Table(List<IPlayer> players, IPlayer user, int meIndex,
+			int maxPlayers) {
 		this.players = players;
+		this.user = user;
+		this.meIndex = meIndex;
+		this.maxPlayers = maxPlayers;
+		
 		round = new Round();
 		communityCards = new LinkedList<ICard>();
 		indexOfCurrentPlayer = 0;
@@ -49,26 +58,21 @@ public class Table {
 	}
 	
 	/**
-	 * Adds a player to the table.
+	 * Adds a player to the table at the specified index
 	 * @param p The player that will be added to the list of players
+	 * @param index The index where the player will be seated
 	 * @throws IllegalArgumentException if there are already ten players at the table
 	 */
-	public void addPlayer(IPlayer p) {
-		if (players.size() < 10) {
-			players.add(p);
-		} else {
-			throw new PlayersFullException();
-		}
+	public void addPlayer(IPlayer player, int index) {
+			players.add(index, player);
 	}
 	
 	/**
 	 * Adds the players in the array to the table.
 	 * @param playerArray The players that will be added to the list of players
 	 */
-	public void addPlayers(Collection<IPlayer> playerArray) {
-		for(IPlayer player : playerArray){
-			addPlayer(player);
-		}
+	public void addPlayers(List<IPlayer> playerArray) {
+			players.addAll(playerArray);
 	}
 	
 	/**
@@ -115,6 +119,14 @@ public class Table {
 			indexOfDealerButton++; return nextDealerButtonIndex?
 		}*/
 		return indexOfDealerButton;
+	}
+	
+	/**
+	 * Returns the user object representing the clients player
+	 * @return The user object representing the clients player
+	 */
+	public IPlayer getUser() {
+		return user;
 	}
 	
 	/**

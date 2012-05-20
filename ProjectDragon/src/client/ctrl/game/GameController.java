@@ -44,37 +44,29 @@ public class GameController {
 	 * Creates a new table.
 	 * 
 	 * @param players The players at the table.
+	 * @param user The user object representing the clients own player
 	 * @param meIndex The index in the list of players that is the user.
 	 */
-	public void newTable(List<IPlayer> players, int meIndex) {
-		table = new Table(players, meIndex);
+	public void newTable(List<IPlayer> players, IPlayer user, int meIndex,
+			int maxPlayers) {
+		table = new Table(players, user, meIndex, maxPlayers);
 		distributeInvisibleCards();
 		EventBus.publish(new Event(Event.Tag.CREATE_TABLE_VIEW, this.table));
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Adds a player to the game table where a seat is empty
+=======
+	 * Adds a player to the game table at the specified index
+>>>>>>> Implemented maxPlayers, entranceFee and startingChips. Changed what happens when players create/join a game -> the addPlayers method in both client and server.
 	 * 
 	 * @param playerThe player to be added
 	 * @author robinandersson
 	 */
-	public void addPlayer(IPlayer player) {
-		
-		List<IPlayer> players = table.getPlayers();
-		boolean hasBeenSeated = false;
-		
-		
-		for(IPlayer playerSeat : players) {
-			if(playerSeat == null) {
-				playerSeat = player;
-				hasBeenSeated = true;
-				break;
-			}
-		}
-		
-		if(!hasBeenSeated) {
-			players.add(player);
-		}
+
+	public void addPlayer(IPlayer player, int index) {
+		table.addPlayer(player, index);
 	}
 	
 	/**
@@ -83,7 +75,7 @@ public class GameController {
 	 * @param player The players to be added
 	 * @author robinandersson
 	 */
-	public void addPlayers(Collection<IPlayer> players) {
+	public void addPlayers(List<IPlayer> players) {
 		this.table.addPlayers(players);
 	}
 	
@@ -106,6 +98,14 @@ public class GameController {
 	
 	public Bet getCurrentBet() {
 		return table.getRound().getBettingRound().getCurrentBet();
+	}
+	
+	/**
+	 * Returns the user object representing the clients player
+	 * @return The user object representing the clients player
+	 */
+	public IPlayer getUser() {
+		return table.getUser();
 	}
 	
 	/**

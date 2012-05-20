@@ -53,7 +53,9 @@ public class Main {
 		
 		plrs.add(player1); plrs.add(player2); plrs.add(player3); plrs.add(player4);
 		
-		Table table = new Table(plrs);
+		// TODO Specify "Real" values for maxPlayers etc. to be used in this
+		// text-based version?
+		Table table = new Table(plrs, 10, 100, 1000);
 		GameController gc = new GameController(table);
 		
 		Scanner in = new Scanner(System.in);

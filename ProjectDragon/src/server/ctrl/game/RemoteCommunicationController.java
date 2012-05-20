@@ -155,8 +155,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 	
 	@Override
-	public IServerGame joinGame(Account account, IPlayer player,
-			IClientGame clientGame, int gameID) {
+	public IServerGame joinGame(Account account, IClientGame clientGame,
+			int gameID) {
 		
 		RemoteGameController game = null;
 		
@@ -177,6 +177,14 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			}
 			
 			if(game != null) {
+				
+				// TODO It is weird that a new Player object has to get a Hand.
+				// A new Player always has an empty hand anyway.
+				// Fix when possible
+				IPlayer player = new Player(
+						new Hand(), account.getUserName(),
+						new Balance(game.getStartingChips()));
+				
 				game.addPlayer(player, clientGame);
 			}
 		}

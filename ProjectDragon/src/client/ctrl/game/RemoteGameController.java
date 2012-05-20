@@ -34,12 +34,11 @@ public class RemoteGameController extends UnicastRemoteObject
 						implements IClientGame, IServerRequest, EventHandler {
 	
 	private IServerGame serverGame;
-	private RemoteCommunicationController clientComm;
 	
+	private RemoteCommunicationController clientComm;
 	private GameController gameController;
 	
-	private IPlayer user;
-	
+	/* Old constructors
 	public RemoteGameController(RemoteCommunicationController clientComm,
 			IPlayer user) throws RemoteException{
 		this.clientComm = clientComm;
@@ -60,6 +59,23 @@ public class RemoteGameController extends UnicastRemoteObject
 		this.user = user;
 		this.gameController.addPlayer(user);
 		
+		EventBus.register(this);
+	}
+	*/
+	
+	public RemoteGameController(RemoteCommunicationController clientComm)
+			throws RemoteException{
+		
+		this.clientComm = clientComm;
+		gameController = new GameController();
+		EventBus.register(this);
+	}
+	
+	public RemoteGameController(RemoteCommunicationController clientComm,
+			Table table) throws RemoteException{
+		
+		this.clientComm = clientComm;
+		this.gameController = new GameController(table);
 		EventBus.register(this);
 	}
 	
@@ -92,24 +108,22 @@ public class RemoteGameController extends UnicastRemoteObject
 		}
 	}
 	
-	/**
-	 * Adds the player in the list to to the game
-	 * 
-	 * @param player The player to be added
-	 * @author robinandersson
-	 */
-	public void addPlayers(IPlayer player) {
-		gameController.addPlayer(player);
+	@Override
+	public void addPlayer(IPlayer player, int index)
+			throws RemoteException {
+		gameController.addPlayer(player, index);
+		EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
 	}
 	
-	/**
-	 * Adds the players in the list to to the game
-	 * 
-	 * @param players The players to be added
-	 * @author robinandersson
-	 */
-	public void addPlayers(Collection<IPlayer> players) {
+	@Override
+	public void addPlayers(List<IPlayer> players) {
 		gameController.addPlayers(players);
+	}
+	
+	@Override
+	public void removePlayer(IPlayer player) throws RemoteException {
+		gameController.removePlayer(player);
+		EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
 	}
 
 	@Override
@@ -229,11 +243,17 @@ public class RemoteGameController extends UnicastRemoteObject
 		gameController.balanceChanged(bet);
 	}
 
+	// TODO Not needed? Delete!
 	@Override
 	public void newTable(List<IPlayer> players, int meIndex) {
-		System.out.println("" + players);
-		gameController.newTable(players, meIndex);
+//		gameController.newTable(players, meIndex);
 	}
+	
+	public void newTable(List<IPlayer> players, IPlayer user, int meIndex,
+			int maxPlayers) {
+		gameController.newTable(players, user, meIndex, maxPlayers);
+	}
+	
 
 	@Override
 	public void onEvent(Event evt) {
@@ -241,11 +261,11 @@ public class RemoteGameController extends UnicastRemoteObject
 		
 		switch(evt.getTag()) {
 		case REQUEST_CALL:
-			requestCall(new Bet(user, gameController.getCurrentBet().getValue()));
+			requestCall(new Bet(gameController.getUser(), gameController.getCurrentBet().getValue()));
 			break;
 		case REQUEST_CHECK:
 			if(gameController.getCurrentBet().getValue() == 0) {
-				requestCheck(new Bet(user, 0));
+				requestCheck(new Bet(gameController.getUser(), 0));
 			} else {
 				//if currentBet != 0 this is a call
 				EventBus.publish(new Event(Event.Tag.REQUEST_CALL, 1));
@@ -253,7 +273,7 @@ public class RemoteGameController extends UnicastRemoteObject
 			
 			break;
 		case REQUEST_FOLD:
-			requestFold(user);
+			requestFold(gameController.getUser());
 			break;
 		case REQUEST_RAISE:
 			if(!(evt.getValue() instanceof Integer)) {
@@ -261,6 +281,7 @@ public class RemoteGameController extends UnicastRemoteObject
 						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
 			} else {
 				Integer amount = (Integer) evt.getValue();
+				IPlayer user = gameController.getUser();
 				bet = new Bet(user, user.getOwnCurrentBet() + amount);
 				requestRaise(bet);
 			}
@@ -270,12 +291,12 @@ public class RemoteGameController extends UnicastRemoteObject
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
 			} else {
-				setReadyToPlay(user, true);
+				setReadyToPlay(gameController.getUser(), true);
 			}
 			break;
 		case LEAVE_TABLE:
 			//TODO: Enough when leaving table?
-			setReadyToPlay(user, false);
+			setReadyToPlay(gameController.getUser(), false);
 			break;
 		default:
 			break;
@@ -283,18 +304,6 @@ public class RemoteGameController extends UnicastRemoteObject
 		} // switch(Evt.getTag())
 	} // OnEvent(Event evt)
 
-	
-	@Override
-	public void addPlayer(IPlayer player)
-			throws RemoteException {
-		gameController.addPlayer(player);
-		EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
-	}
 
-	@Override
-	public void removePlayer(IPlayer player) throws RemoteException {
-		gameController.removePlayer(player);
-		EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
-	}
 	
 }

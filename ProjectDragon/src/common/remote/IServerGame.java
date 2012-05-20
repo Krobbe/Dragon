@@ -74,6 +74,13 @@ public interface IServerGame extends Remote {
 	 * @throws RemoteException
 	 */
 	public int getEntranceFee() throws RemoteException;
+	
+	/**
+	 * Returns the amount of chips players get at the beginning of the game
+	 * @return The amount of chips players get at the beginning of the game
+	 * @throws RemoteException
+	 */
+	public int getStartingChips() throws RemoteException;
 
 	
 	/**

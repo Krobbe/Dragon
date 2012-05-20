@@ -9,6 +9,7 @@ import common.utilities.IllegalCallException;
 import common.utilities.IllegalCheckException;
 import common.utilities.IllegalRaiseException;
 
+// TODO Remove this interface
 
 /**
  * @author robinandersson

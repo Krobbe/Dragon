@@ -188,7 +188,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	}
 	
 	public boolean createGame(int entranceFee, int playerStartingChips,
-															int maxPlayers) {
+			int maxPlayers) {
 		
 		if(serverComm == null) {
 			return false;
@@ -200,13 +200,13 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		
 		IPlayer user = new User(player);
 		
-		Table table = new Table(0);
-		table.addPlayer(user);
+		Table table = new Table(user, 0, maxPlayers);
+		table.addPlayer(user, 0);
 		
 		try {
 			
-			RemoteGameController clientGame = new RemoteGameController(this,
-																user, table);
+			RemoteGameController clientGame = new RemoteGameController(this, 
+					table);
 			
 			IServerGame serverGame = serverComm.createGame(getAccount(),
 					clientGame, entranceFee, maxPlayers, playerStartingChips);
@@ -257,23 +257,14 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			return false;
 		}
 		
-		// TODO Change the balance to be the same as the startingChips
-		Player player = new Player(new Hand(),
-				getAccount().getUserName(),
-				new Balance(1000));
-		
-		IPlayer user = new User(player);
-		
 		IServerGame serverGame = null;
 
 		try {
 			
-			RemoteGameController clientGame = new RemoteGameController(this,
-												user);
+			RemoteGameController clientGame = new RemoteGameController(this);
 			
-			serverGame = serverComm.joinGame(getAccount(), player, clientGame,
-																	gameID);
-			System.out.println("serverGame" + serverGame);
+			serverGame = serverComm.joinGame(getAccount(), clientGame,
+					gameID);
 			
 			if(serverGame == null) {
 				return false;
@@ -282,10 +273,12 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			List<IPlayer> playerList = serverGame.getPlayers();
 			
 			//TODO Smelly code!!! Improve!
-			user = new User((Player)playerList.get(playerList.size()-1));
+			IPlayer user = new User(
+					(Player) playerList.get(playerList.size() - 1));
 			
 			clientGame.setServerGame(serverGame);
-			clientGame.newTable(playerList, playerList.size() - 1);
+			clientGame.newTable(playerList, user, playerList.size() - 1,
+					serverGame.getMaxPlayers());
 			// TODO Is addPlayers needed?
 			//clientGame.addPlayers(playerList);
 			activeGames.put(user, clientGame);

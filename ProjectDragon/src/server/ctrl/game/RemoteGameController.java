@@ -58,15 +58,12 @@ public class RemoteGameController extends UnicastRemoteObject
 	*/
 	private Map<IPlayer, IClientGame> playerReferences;
 	
-	private int entranceFee;
-	private int playerStartingChips;
-	private int maxPlayers;
 	private int gameID;
 	
 	// TODO Implement gameOpenForPlayers!
 	// A variable that determines if new players are allowed to join. Observe
 	// that games that has been started doesn't necessarily have to bee closed
-	// for new players.
+	// for new players depending on the type of game (tournament/drop-in)
 	private boolean gameOpenForPlayers;
 	
 	// TODO Simpler (less parameters) constructors?
@@ -80,25 +77,20 @@ public class RemoteGameController extends UnicastRemoteObject
 	
 	public RemoteGameController(
 			RemoteCommunicationController remoteCommunicationController,
-			int maxPlayers,	int entranceFee, int playerStartingChips)
+			int maxPlayers,	int entranceFee, int startingChips)
 													throws RemoteException {
 		
-		this(remoteCommunicationController, new GameController(), maxPlayers,
-				entranceFee, playerStartingChips);
+		this(remoteCommunicationController, new GameController(maxPlayers, entranceFee, startingChips));
 	}
 	
 	public RemoteGameController(
 			RemoteCommunicationController remoteCommunicationController,
-			GameController gameController, int maxPlayers, int entranceFee,
-			int playerStartingChips) throws RemoteException {
+			GameController gameController) throws RemoteException {
 		
 		super();
 		this.remoteCommunicationController = remoteCommunicationController;
 		this.gameController = gameController;
 		playerReferences = new TreeMap<IPlayer, IClientGame>();
-		this.maxPlayers = maxPlayers;
-		this.entranceFee = entranceFee;
-		this.playerStartingChips = playerStartingChips;
 		gameOpenForPlayers = true;
 		
 		gameID = calculateGameID();
@@ -117,18 +109,24 @@ public class RemoteGameController extends UnicastRemoteObject
 	public void addPlayer(IPlayer player, IClientGame clientGame) {
 		
 		IPlayer newPlayer = new Player(new Hand(), player.getName(),
-				new Balance(playerStartingChips));
+				new Balance(gameController.getStartingChips()));
 
 		LinkedList<IPlayer> clientPlayers =
 				new LinkedList<IPlayer>(playerReferences.keySet());
 		
 		playerReferences.put(newPlayer, clientGame);
-		gameController.addPlayer(player);
+		
+		gameController.addPlayer(newPlayer);
+		int newPlayerIndex = gameController.getTable().
+				getPlayers().indexOf(newPlayer);
+
 
 		try {
 			for(IPlayer clientPlayer : clientPlayers) {
 	
-					playerReferences.get(clientPlayer).addPlayer(newPlayer);
+					playerReferences.get(clientPlayer).
+						addPlayer(newPlayer, newPlayerIndex);
+
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -183,12 +181,17 @@ public class RemoteGameController extends UnicastRemoteObject
 	
 	@Override
 	public int getMaxPlayers() throws RemoteException {
-		return maxPlayers;
+		return gameController.getMaxPlayers();
 	}
 
 	@Override
 	public int getEntranceFee() throws RemoteException {
-		return entranceFee;
+		return gameController.getEntranceFee();
+	}
+	
+	@Override
+	public int getStartingChips() {
+		return gameController.getStartingChips();
 	}
 
 	@Override
@@ -286,6 +289,9 @@ public class RemoteGameController extends UnicastRemoteObject
 
 			break;
 
+// TODO Remove this case if safe, also remove newTable(players, meIndex) in
+// clients remoteGameController
+/*
 		case SERVER_CREATE_TABLE:
 			List<IPlayer> players;
 			if (!(evt.getValue() instanceof List)) {
@@ -306,7 +312,8 @@ public class RemoteGameController extends UnicastRemoteObject
 				}
 			}
 			break;
-
+*/
+			
 		case SERVER_DISTRIBUTE_POT:
 
 			Bet b;

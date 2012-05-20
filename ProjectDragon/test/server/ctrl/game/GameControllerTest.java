@@ -31,6 +31,10 @@ import server.model.game.Table;
  */
 
 public class GameControllerTest {
+	int maxPlayers = 10;
+	int entranceFee = 100;
+	int startingChips = 1000;
+	
 	
 	
 	@Test
@@ -41,7 +45,7 @@ public class GameControllerTest {
 	}
 	@Test
 	public void testAddPlayer() {
-		Table t = new Table();
+		Table t = new Table(maxPlayers, entranceFee, startingChips);
 		IPlayer p = new Player();
 		t.addPlayer(p);
 		assertTrue(t.getPlayers().get(t.getPlayers().size()-1).equals(p));
@@ -49,7 +53,7 @@ public class GameControllerTest {
 	
 	@Test
 	public void testAddPlayers() {
-		Table t = new Table();
+		Table t = new Table(maxPlayers, entranceFee, startingChips);
 		IPlayer p1 = new Player();
 		Collection<IPlayer> players = new ArrayList<IPlayer>();
 		players.add(p1);
@@ -59,7 +63,7 @@ public class GameControllerTest {
 	
 	@Test
 	public void testSetCurrentBet() {
-		Table t = new Table();
+		Table t = new Table(maxPlayers, entranceFee, startingChips);
 		IPlayer p = new Player();
 		Bet b = new Bet(p, 100);
 		t.getRound().getBettingRound().setCurrentBet(b);
@@ -69,7 +73,7 @@ public class GameControllerTest {
 	
 	@Test
 	public void testGetCurrentBet() {
-		Table t = new Table();
+		Table t = new Table(maxPlayers, entranceFee, startingChips);
 		IPlayer p = new Player();
 		Bet b = new Bet(p, 100);
 		t.getRound().getBettingRound().setCurrentBet(b);
@@ -78,7 +82,7 @@ public class GameControllerTest {
 	
 	@Test
 	public void testRaise() throws PlayersFullException, IllegalRaiseException {
-		Table t = new Table();
+		Table t = new Table(maxPlayers, entranceFee, startingChips);
 		GameController gc = new GameController(t);
 		IPlayer u1 = new User(new Player(new TexasHoldemHand(),"Mattias"
 				, new Balance(100)));
@@ -96,7 +100,7 @@ public class GameControllerTest {
 	
 	@Test
 	public void testFold() throws PlayersFullException {
-		Table t = new Table();
+		Table t = new Table(maxPlayers, entranceFee, startingChips);
 		GameController gc = new GameController(t);
 		IPlayer u1 = new User();
 		IPlayer u2 = new User();
@@ -115,7 +119,7 @@ public class GameControllerTest {
 	
 	@Test
 	public void testNextRound() throws PlayersFullException {
-		Table t = new Table();
+		Table t = new Table(maxPlayers, entranceFee, startingChips);
 		GameController gc = new GameController(t);
 		IPlayer u1 = new User(), u2 = new User(), u3 = new User(), u4 = new User();
 		t.addPlayer(u1); t.addPlayer(u2); t.addPlayer(u3); t.addPlayer(u4);	

@@ -32,7 +32,7 @@ public interface IServer extends Remote, IDBAccount {
 	 * @return An Account object containing user information
 	 */
 	public Account login(IClient client, String accountName,
-								String accountPassword) throws RemoteException;
+			String accountPassword) throws RemoteException;
 	
 	/**
 	 * Logs the client out from the server.
@@ -56,7 +56,8 @@ public interface IServer extends Remote, IDBAccount {
 	 * @param playerChips The amount of chips players' get at the start of the game
 	 */
 	public IServerGame createGame(Account account, IClientGame clientGame,
-			int entranceFee, int maxPlayers, int playerStartingChips)  throws RemoteException;
+			int entranceFee, int maxPlayers, int playerStartingChips) 
+					throws RemoteException;
 	
 	/** 
 	 * Tries to join the game with the specified index. Passes the unique
@@ -70,8 +71,8 @@ public interface IServer extends Remote, IDBAccount {
 	 * client-server/server-client game communicator
 	 * @param gameIndex The index of the game that the user wants to join
 	 */
-	public IServerGame joinGame(Account account, IPlayer player,
-				IClientGame clientGame, int gameIndex) throws RemoteException;
+	public IServerGame joinGame(Account account, IClientGame clientGame,
+			int gameIndex) throws RemoteException;
 	
 	/**
 	 * 
@@ -80,8 +81,8 @@ public interface IServer extends Remote, IDBAccount {
 	 * @return A list with games that players are allowed to join
 	 * @throws RemoteException
 	 */
-	public List<IServerGame> getActiveGames(Account account) 
-														throws RemoteException;
+	public List<IServerGame> getActiveGames(Account account)
+			throws RemoteException;
 	
 	/**
 	 * Test method for connectivity
