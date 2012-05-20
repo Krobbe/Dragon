@@ -14,7 +14,7 @@ import common.model.player.hand.IHand;
  * @author mattiashenriksson
  * @author robinandersson
  */
-public interface IPlayer extends Comparable<IPlayer> {
+public interface IPlayer extends Comparable<IPlayer>, Serializable  {
 
 	/**
 	 * @author lisastenberg

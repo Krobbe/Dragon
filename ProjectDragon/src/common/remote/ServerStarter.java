@@ -11,6 +11,7 @@ import java.rmi.registry.Registry;
 
 
 /**
+ * A class for setting up the game server
  * @author robinandersson
  *
  */
@@ -18,7 +19,7 @@ public class ServerStarter extends RmiStarter{
 
 	public ServerStarter(IServer stub) {
 		
-	    super(IServer.class);
+	    super(IServer.class, Registry.REGISTRY_PORT);
 	    
 	    try {
 			System.out.println((InetAddress.getLocalHost()).toString());

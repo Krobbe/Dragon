@@ -17,10 +17,13 @@ import java.rmi.server.UnicastRemoteObject;
 public abstract class RmiStarter {
 
     /**
+     * A class for setting up the RMI-registry
      *
-     * @param clazzToAddToServerCodebase a class that should be in the java.rmi.server.codebase property.
+     * @param classToAddToServerCodebase a class that should be in the
+     * java.rmi.server.codebase property.
+     * @param registryPort The port on which to open the RMI-registry
      */
-    public RmiStarter(Class clazzToAddToServerCodebase) {
+    public RmiStarter(Class classToAddToServerCodebase, int registryPort) {
     	
     	/**
     	 * @author robinandersson 
@@ -31,7 +34,8 @@ public abstract class RmiStarter {
 		 * terminated when shutting down the server 
 		 */
     	try {
-    		final Registry registry = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+    		final Registry registry =
+    					LocateRegistry.createRegistry(registryPort);
 
 			/*
 			 * When the server is shutting down a new thread is executed where
@@ -67,7 +71,7 @@ public abstract class RmiStarter {
     	 * @author srasul 
     	 */
     	
-    	String urlString = clazzToAddToServerCodebase
+    	String urlString = classToAddToServerCodebase
                 .getProtectionDomain().getCodeSource().getLocation().toString();
     	
         System.setProperty("java.rmi.server.codebase", urlString);
@@ -75,7 +79,7 @@ public abstract class RmiStarter {
         System.setProperty("java.security.policy",
         		PolicyFileLocator.getLocationOfPolicyFile());
         
-        System.setProperty("java.rmi.server.hostname", IServer.REMOTE_NAME);
+//        System.setProperty("java.rmi.server.hostname", IServer.REMOTE_NAME);
         //System.setProperty("java.rmi.server.hostname", "129.16.179.143");
         
         if(System.getSecurityManager() == null) {

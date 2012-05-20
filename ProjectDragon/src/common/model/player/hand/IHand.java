@@ -12,7 +12,7 @@ import common.model.card.ICard;
  * @author robinandersson
  *
  */
-public interface IHand {
+public interface IHand extends Serializable {
 
 	/**
 	 * Removes all cards from a hand.
