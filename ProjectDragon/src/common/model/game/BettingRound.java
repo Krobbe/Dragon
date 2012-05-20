@@ -1,13 +1,11 @@
 package common.model.game;
 
-import java.io.Serializable;
-
 import common.model.player.Bet;
 import common.model.player.Player;
 
 
 /**
- * A class that simulates a betting-round.
+ * A class that simulates a betting round.
  * 
  * A betting-round ends when all active players have either checked or called the current bet.
  * @author lisastenberg

@@ -12,7 +12,6 @@ import common.model.game.Pot;
 import common.model.game.SidePotHandler;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
-import common.model.player.OwnCurrentBetComparator;
 import common.utilities.*;
 
 /**

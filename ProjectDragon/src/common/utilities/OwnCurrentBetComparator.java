@@ -1,6 +1,8 @@
-package common.model.player;
+package common.utilities;
 
 import java.util.Comparator;
+
+import common.model.player.IPlayer;
 
 /**
  * A comparator comparing different player's respective current bet
