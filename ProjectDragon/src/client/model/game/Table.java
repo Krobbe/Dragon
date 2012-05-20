@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import server.event.Event;
+import server.event.EventBus;
+
 import common.model.card.*;
 import common.model.game.Round;
 import common.model.player.IPlayer;
@@ -25,10 +28,8 @@ public class Table {
 	
 	private Round round;
 	private List<ICard> communityCards;
-	private List<IPlayer> players;
-	
-	private IPlayer user;
-	
+	private List<IPlayer> players;	
+	private IPlayer user;	
 	private int meIndex;	// The players index in the table's list
 	private int maxPlayers;	// The maximum number of players allowed at the table
 	private int indexOfCurrentPlayer;
@@ -90,44 +91,77 @@ public class Table {
 	 * @return the next (active) player
 	 * @author lisastenberg
 	 */
-	//TODO: vi kan hämta den som finns i server table ist om vi vill..
 	public IPlayer nextPlayer() {
-		
+
+		indexOfCurrentPlayer = findIndexOfNextActivePlayer(indexOfCurrentPlayer);
+		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,
+				getCurrentPlayer()));
+		return players.get(indexOfCurrentPlayer);
+
+		// TODO: gammal kod, ta bort om nya funkar
+		/*
+		 * indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % players.size();
+		 * 
+		 * if (getCurrentPlayer().isActive()) { EventBus.publish(new
+		 * Event(Event.Tag.SERVER_NEXT_TURN, getCurrentPlayer())); return
+		 * getCurrentPlayer(); } return nextPlayer();
+		 */
+	}
+	
+	/**
+	 * This method finds and returns the index of the next active player,
+	 * counted after the currentPlayerIndex, which is a parameter provided to
+	 * the method by the caller.
+	 * 
+	 * @param currentPlayerIndex
+	 * @return The index of the next player.
+	 */
+	public int findIndexOfNextActivePlayer(int currentPlayerIndex) {
+		int returnIndex = -1;
+		int count = 1;
+
 		/* if none is active at the table, do nothing */
 		if (getActivePlayers().size() == 0) {
-			return getCurrentPlayer();
+			//TODO: ta bort kontrollutskrift
+			System.out.println("---------------- none is active-----------------");
+			return getIndexOfCurrentPlayer();
 		}
 		
-		indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % players.size();
-
-		if (getCurrentPlayer().isActive()) {
-			return getCurrentPlayer();
-		}
-		return nextPlayer();
+		do {
+			returnIndex = (currentPlayerIndex + count) % getPlayers().size();
+			count++;
+		} while (!getPlayers().get(returnIndex).isActive());
+		return returnIndex;
 	}
 	
 	/**
 	 * Increases the dealer button index to the next player still in the game
 	 * 
-	 * @return the next dealer button index. 
+	 * @return the next dealer button index.
 	 * @author robinandersson
 	 * @author mattiashenriksson
 	 */
-	//TODO annat namn på denna?
-	//TODO Test nextDealerButtonPlayer()
+	// TODO Test nextDealerButtonPlayer()
+	// TODO Discuss and implement a possible better solution to dealer button
 	public int nextDealerButtonIndex() {
-		do {
-			indexOfDealerButton = (indexOfDealerButton + 1) % players.size();
-		} while (!players.get(indexOfDealerButton).isActive());
-		
+		indexOfDealerButton = findIndexOfNextActivePlayer(indexOfDealerButton);
+
+		// TODO: gammal kod, ta bort om nya funkar
+		/*
+		 * do { indexOfDealerButton = (indexOfDealerButton + 1) %
+		 * players.size(); } while
+		 * (!players.get(indexOfDealerButton).isActive());
+		 */
+
 		// TODO Determine what happens if a player has lost recently.
 		// If the dealer button only should be set to players still in the game
 		// or if lost players should be "ghosts"
-		
+
 		// The dealer button is set to a player that is still in the game.
-		/*while(!players.get(indexOfDealerButton).isStillInGame()){
-			indexOfDealerButton++; return nextDealerButtonIndex?
-		}*/
+		/*
+		 * while(!players.get(indexOfDealerButton).isStillInGame()){
+		 * indexOfDealerButton++; return nextDealerButtonIndex()? }
+		 */
 		return indexOfDealerButton;
 	}
 	

@@ -255,7 +255,6 @@ public class Table {
 	 * @param currentPlayerIndex
 	 * @return The index of the next player.
 	 */
-	// TODO: denna kanske kan användas på fler ställen..
 	public int findIndexOfNextActivePlayer(int currentPlayerIndex) {
 		int returnIndex = -1;
 		int count = 1;

@@ -229,7 +229,6 @@ public class GameController {
 	/**
 	 * Performs a fold.
 	 */
-	//TODO Delvis otestad
 	public boolean fold(IPlayer player) {
 		if(!isValidPlayerAction(player)) {
 			return false;
@@ -523,7 +522,6 @@ public class GameController {
 	 * @param amount The amount to raise the pot with.
 	 * @throws IllegalRaiseException 
 	 */
-	//TODO delvis otestad
 	public boolean raise(Bet bet) {
 		if(!isValidPlayerAction(bet.getOwner())) {
 			return false;

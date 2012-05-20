@@ -72,7 +72,6 @@ public interface IPlayer extends Comparable<IPlayer>, Serializable  {
 	 * @return The value of the last bet the player placed during the current 
 	 * betting round. Returns -1 if the player hasn't yet placed a bet.
 	 */
-	//TODO bŠttre returnera Bet?
 	public int getOwnCurrentBet();
 	
 	/**
