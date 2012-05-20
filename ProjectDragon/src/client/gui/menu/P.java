@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 /**
- * This class holds data for the GUI.
+ * This class holds parametrization data for the menu GUI.
  * @author lisastenberg
  *
  */

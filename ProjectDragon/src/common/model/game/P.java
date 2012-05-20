@@ -3,7 +3,6 @@ package common.model.game;
 /**
  * This class holds all parameterization data for the model
  * 
- * @author hajo
  * @author mattiashenriksson 
  *
  */
