@@ -230,7 +230,12 @@ public class TableView implements EventHandler, ActionListener{
 		case TURN_CHANGED:
 			int turnIndex = (Integer) evt.getValue();
 			playerPanelList.get(turnIndex).setBackground(Color.green);
-			playerPanelList.get((turnIndex-1)%10).setBackground(Color.gray);
+			if(turnIndex == 1) {
+				playerPanelList.get(10).setBackground(Color.gray);
+			}
+			else {
+				playerPanelList.get(turnIndex-1).setBackground(Color.gray);
+			}
 			
 			List<String> legalButtons = table.getLegalButtons();
 			//TODO: hantera call, check, fold och raise knappar. listan innehåller
