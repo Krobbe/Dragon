@@ -108,6 +108,17 @@ public class RemoteGameController extends UnicastRemoteObject
 		}
 	}
 	
+	/**
+	 * Try start a game.
+	 */
+	public void tryStartGame() {
+		try {
+			serverGame.tryStartGame();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void addPlayer(int index, IPlayer player)
 			throws RemoteException {
@@ -187,6 +198,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		
 		return false;
 	}
+	
 
 	@Override
 	public void setActive(IPlayer player, boolean b) {
@@ -291,7 +303,9 @@ public class RemoteGameController extends UnicastRemoteObject
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag() + "\nYou sent: " + evt.getValue().getClass());
 			} else {
-				setReadyToPlay(gameController.getUser(), true);
+				if(setReadyToPlay(gameController.getUser(), true)) {
+					tryStartGame();
+				}
 			}
 			break;
 		case LEAVE_TABLE:

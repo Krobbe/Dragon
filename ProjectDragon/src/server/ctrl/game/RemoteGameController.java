@@ -464,10 +464,12 @@ public class RemoteGameController extends UnicastRemoteObject
 	public void tryStartGame() throws RemoteException {
 		
 		if(gameController != null) {
-			// Checks if all the players are ready to start the game
-			for(IPlayer player : playerReferences.keySet()){
-				if(!player.isStillInGame()){
-					return;
+			if (playerReferences.keySet().size() > 1) {
+				// Checks if all the players are ready to start the game
+				for (IPlayer player : playerReferences.keySet()) {
+					if (!player.isStillInGame()) {
+						return;
+					}
 				}
 			}
 			
