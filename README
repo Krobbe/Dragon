@@ -1,9 +1,24 @@
 Very welcome to Project Dragon!
 
-To start the game, follow these steps:
+Observe! The project is developed and tested in Java Version 1.6.0_31.
 
-1. Make sure that you have Java Version 1.6.0 installed on your computer. 
-2. Find server.main.Main and run to start server (has to be done on one computer only)
-3. Find client.main.Main and run to start client (has to be done on every computer that wants to play game)
+To start a game, follow the folowing steps
+
+Setting up the server
+1. Find server.main.Main and run to start the server
+2 Input the port number to open the RMI-registry
+	or
+2 Press enter without an entry to use the default port (1099)
+
+Setting up a client
+1 Find client.main.Main and run to start client
+2.1 Input existing account's username and password
+	or if existing account's are unknown
+2.1 Click the register button and input name, password etc.
+	2.2 Input the newly created account's username and password
+3.1 Enter the IP-adress (the digits can be found printed in the server's console) and port number to the server
+	or
+3.1 Leave the text fields blank to use either the default IP (localhost), the default port (1099) or both
+
 
 Good Luck!

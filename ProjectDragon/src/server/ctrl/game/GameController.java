@@ -232,7 +232,7 @@ public class GameController {
 	 */
 	public boolean fold(IPlayer player) {
 		if(!isValidPlayerAction(player)) {
-			System.out.println("------------------UNVALID BET---------------------");
+			System.out.println("------------------INVALID BET---------------------");
 			return false;
 		}
 		
