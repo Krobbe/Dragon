@@ -222,7 +222,7 @@ public class GameController {
 		//currentPlayer.getBalance().removeFromBalance(currentBetValue 
 		//		- playersOwnCurrentBet);
 		//TODO:fusk?
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(currentPlayer,currentBetValue)));
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(currentPlayer,currentBetValue - playersOwnCurrentBet)));
 		progressTurn();
 	}
 	
