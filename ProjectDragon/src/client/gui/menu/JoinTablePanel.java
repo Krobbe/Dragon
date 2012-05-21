@@ -65,12 +65,17 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 			int i = 1;
 			for(IServerGame isg : availableGamesLists) {
 				try {
-					model.addElement("Table " + i + "          Players: " + isg.getPlayers().size() + "/" + isg.getMaxPlayers() +
-								"          Entrance fee: " + isg.getEntranceFee());
+					if (isg.getPlayers().size() < isg.getMaxPlayers()) {
+						model.addElement("Table " + i + "          Players: "
+								+ isg.getPlayers().size() + "/"
+								+ isg.getMaxPlayers()
+								+ "          Entrance fee: "
+								+ isg.getEntranceFee());
+						i++;
+					}
 				} catch (RemoteException e) {
 					e.printStackTrace();
 				}
-				i++;
 			}
 		}
 	}
