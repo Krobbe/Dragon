@@ -84,20 +84,33 @@ public class Table {
 	 */
 	public void addPlayer(IPlayer player) throws PlayersFullException {
 
+		System.out.println();
+		System.out.println("-------ADD PLAYER--------");
+		System.out.println();
+		
 		for(int i = 0; i < players.size(); i++) {
 			IPlayer playerSeat = players.get(i);
+			System.out.println(playerSeat);
 			if(playerSeat == null) {
+				System.out.println("set an already added seat");
+				System.out.println(players.get(i));
 				players.set(i, player);
+				System.out.println(players.get(i));
 				
 				return;
 			}
 		}
 		
 		if(players.size() < maxPlayers) {
+			System.out.println("added at the end");
 			players.add(player);
 		} else {
 			throw new PlayersFullException();
 		}
+		
+		System.out.println();
+		System.out.println("-------END ADD PLAYER-------");
+		System.out.println();
 	}
 
 	/**
@@ -110,6 +123,18 @@ public class Table {
 		for (IPlayer player : playerArray) {
 			addPlayer(player);
 		}
+	}
+	
+	public void removePlayer(IPlayer player) {
+		System.out.println();
+		System.out.println("------REMOVE PLAYER------");
+		System.out.println();
+		System.out.println(getPlayers());
+		System.out.println("-----------------------------------");
+		getPlayers().set(getPlayers().indexOf(player), null);
+		System.out.println(getPlayers());
+		System.out.println();
+		System.out.println("----END REMOVE PLAYER-----");
 	}
 
 	/**

@@ -77,9 +77,7 @@ public class GameController {
 	
 	// TODO Javadoc
 	public void removePlayer(IPlayer player) {
-		
-		List<IPlayer> players = table.getPlayers();
-		players.remove(player);
+		table.removePlayer(player);
 	}
 
 	/**

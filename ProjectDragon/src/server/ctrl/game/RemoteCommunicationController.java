@@ -82,7 +82,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		
 		if(clients.remove(account) != null) {
 			for(RemoteGameController serverGame : activeGames){
-				serverGame.removePlayer(account.getUserName());
+				serverGame.leaveGame(account);
 			}
 			return true;
 		}

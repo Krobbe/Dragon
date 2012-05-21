@@ -85,6 +85,11 @@ public class Table {
 			players.addAll(playerArray);
 	}
 	
+	public void removePlayer(IPlayer player) {
+		getPlayers().set(getPlayers().indexOf(player), null);
+	}
+
+	
 	/**
 	 * Set the turn to the next player in order, and returns that player.
 	 * 
@@ -236,7 +241,7 @@ public class Table {
 	public List<IPlayer> getActivePlayers() {
 		List<IPlayer> activePlayers = new ArrayList<IPlayer>();
 		for (IPlayer p : players) {
-			if (p.isActive()) {
+			if (p != null && p.isActive()) {
 				activePlayers.add(p);
 			}
 		}
@@ -263,7 +268,13 @@ public class Table {
 		StringBuilder result = new StringBuilder();
 		result.append("Players at table:\n");
 		for(IPlayer p : this.players) {
-			result.append(p.toString() + "\n");
+			if(p == null) {
+				result.append("null" + "\n");
+			}
+			
+			else {
+				result.append(p.toString() + "\n");
+			}
 		}
 		result.append("\n" + "Current player is " + getCurrentPlayer().getName() + "\n");
 		result.append("Player with Dealer button is: " + 

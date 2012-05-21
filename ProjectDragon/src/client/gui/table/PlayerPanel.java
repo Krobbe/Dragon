@@ -108,8 +108,14 @@ public class PlayerPanel extends JPanel {
 	 * Set the nameLabel.
 	 * @param p
 	 */
-	public void setName(IPlayer p) {
-		nameLabel.setText(p.getName());
+	public void setNameLabel(IPlayer p) {
+		if(p != null) {
+			nameLabel.setText(p.getName());
+		}
+		
+		else {
+			nameLabel.setText("No player");
+		}
 		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 	}
 	

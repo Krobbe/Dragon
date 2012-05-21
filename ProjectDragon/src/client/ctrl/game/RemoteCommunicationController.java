@@ -8,9 +8,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+
 
 import common.model.player.Account;
 import common.model.player.Balance;
@@ -37,8 +38,8 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 											implements IClient, EventHandler {
 
 	// A map with games the user is currently playing represented by the remote
-	// game controller for that specific game
-	private Map<IPlayer, RemoteGameController> activeGames;
+	// game controller and Player object for that specific game
+	private Map<RemoteGameController, IPlayer> activeGames;
 	
 	// The reference to the server
 	private IServer serverComm;
@@ -47,7 +48,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	private Account account;
 	
 	public RemoteCommunicationController() throws RemoteException{
-		activeGames = new TreeMap<IPlayer, RemoteGameController>();
+		activeGames = new HashMap<RemoteGameController, IPlayer>();
 		account = null;
 		// TODO Set where to search for server. Comment that son'uvabitch
 		//System.setProperty("java.naming.provider.url", "rmi://129.16.184.157:1099");
@@ -209,7 +210,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 					clientGame, entranceFee, maxPlayers, playerStartingChips);
 			clientGame.setServerGame(serverGame);
 			
-			activeGames.put(user, clientGame);
+			activeGames.put(clientGame, user);
 			
 			
 			
@@ -258,23 +259,34 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		}
 		
 		IServerGame serverGame = null;
+		
+		Account account = getAccount();
 
 		try {
 			
 			RemoteGameController clientGame = new RemoteGameController(this);
 			
-			serverGame = serverComm.joinGame(getAccount(), clientGame,
+			serverGame = serverComm.joinGame(account, clientGame,
 					gameID);
 			
 			if(serverGame == null) {
 				return false;
 			}
 			
+			IPlayer user = null;
 			List<IPlayer> playerList = serverGame.getPlayers();
 			
 			//TODO Smelly code!!! Improve!
-			IPlayer user = new User(
-					(Player) playerList.get(playerList.size() - 1));
+			for(IPlayer player : playerList) {
+				if(player != null && player.getName().
+						equals(account.getUserName())) {
+					user = new User((Player) player);
+				}
+			}
+			
+			if(user == null) {
+				return false;
+			}
 			
 			int userIndex = serverGame.getPlayers().indexOf(user);
 			
@@ -283,7 +295,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 					serverGame.getMaxPlayers());
 			// TODO Is addPlayers needed?
 			//clientGame.addPlayers(playerList);
-			activeGames.put(user, clientGame);
+			activeGames.put(clientGame, user);
 			
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
@@ -292,6 +304,11 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		
 		return true;
 		
+	}
+	
+	public void terminateGame(RemoteGameController clientGame) {
+		activeGames.remove(clientGame);
+		System.out.println("Left a game");
 	}
 	
 	private void updateAccount() {

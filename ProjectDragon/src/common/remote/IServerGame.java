@@ -46,6 +46,17 @@ public interface IServerGame extends Remote {
 	public void tryStartGame() throws RemoteException;
 	
 	/**
+	 * The player represented by the Account object leaves the game
+	 * 
+	 * @param account The account object used for security measures and to get
+	 * the clients username to identify which player to remove
+	 * @param clientGame
+	 * @throws RemoteException
+	 */
+	public void leaveGame(Account account)
+			throws RemoteException;
+	
+	/**
 	 * Returns a list with the players in this particular game
 	 * 
 	 * @author robinandersson

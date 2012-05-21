@@ -59,14 +59,12 @@ public class GameController {
 	 * @author robinandersson
 	 */
 	public void addPlayers(Collection<IPlayer> player) {
-		this.table.addPlayers(player);
+		table.addPlayers(player);
 	}
 	
 	//TODO Javadoc
 	public void removePlayer(IPlayer player) {
-		
-		List<IPlayer> players = table.getPlayers();
-		players.remove(player);
+		table.removePlayer(player);
 	}
 
 	/**

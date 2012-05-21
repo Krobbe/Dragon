@@ -184,11 +184,20 @@ public class TableView implements EventHandler, ActionListener{
 				p.setName("No Player");
 				p.setBalance("xxx");
 			}
+			
 			for(IPlayer p : allPlayers) {
-					playerPanelList.get(index).setName(p);
+				playerPanelList.get(index).setNameLabel(p);
+				
+				if(p != null) {
 					playerPanelList.get(index).setBalance("" + p.getBalance());
-					index++;
-			}
+				}
+				else {
+					playerPanelList.get(index).setBalance("xxx");
+				}
+
+				index++;
+				}
+
 			break;
 		
 		case CURRENT_BET_CHANGED:
@@ -298,8 +307,10 @@ public class TableView implements EventHandler, ActionListener{
 			break;
 		
 		case LEAVE_TABLE:
+			EventBus.unRegister(this);
 			frame.dispose();
 			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
+
 			break;
 		
 		case PUBLISH_SHOWDOWN:
@@ -317,6 +328,8 @@ public class TableView implements EventHandler, ActionListener{
 				nextRoundButton.setText(s);
 				cardLayout.show(cardLayoutPanel, "showdownPanel");
 			}
+		break;
+
 		}
 	}
 	@Override

@@ -50,7 +50,7 @@ public class RemoteGameController extends UnicastRemoteObject
 										IDBSaveGame {
 
 	private GameController gameController;
-	private RemoteCommunicationController remoteCommunicationController;
+	private RemoteCommunicationController serverComm;
 	private DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
 	
 	/* A map containing all logged in players and another map containing their
@@ -89,7 +89,7 @@ public class RemoteGameController extends UnicastRemoteObject
 			GameController gameController) throws RemoteException {
 		
 		super();
-		this.remoteCommunicationController = remoteCommunicationController;
+		this.serverComm = remoteCommunicationController;
 		this.gameController = gameController;
 		playerReferences = new TreeMap<IPlayer, IClientGame>();
 		gameOpenForPlayers = true;
@@ -137,6 +137,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	 * 
 	 * @param player The player to be removed from the game
 	 */
+	/* TODO remove if not used
 	public void removePlayer(IPlayer player) {
 		// TODO Check if the logout-method in RemoteComm.Ctrl works as it should
 		// Remove the commented rows below when done
@@ -144,12 +145,14 @@ public class RemoteGameController extends UnicastRemoteObject
 		playerReferences.remove(player);
 		//System.out.println(playerReferences.size());
 	}
+	*/
 	
 	/**
 	 * Removes a player from the game and the reference to the player's client
 	 * 
 	 * @param player The player to be removed from the game
 	 */
+	/* TODO remove if not used
 	public void removePlayer(String userName) {
 		IPlayer playerToBeRemoved = null;
 		
@@ -161,6 +164,27 @@ public class RemoteGameController extends UnicastRemoteObject
 		}
 		
 		removePlayer(playerToBeRemoved);
+		
+	}
+	*/
+	
+	@Override
+	public void leaveGame(Account account) throws RemoteException {
+		if(serverComm.isLoggedIn(account)) {
+			
+			IPlayer player = new Player(new Hand(),
+					account.getUserName(), new Balance());
+			
+			System.out.println(playerReferences.containsKey(player));
+			playerReferences.remove(player);
+			System.out.println(playerReferences.containsKey(player));
+			gameController.removePlayer(player);
+			
+			for(IClientGame clientGame : playerReferences.values()) {
+				clientGame.removePlayer(player);
+			}
+
+		}
 		
 	}
 	
@@ -503,7 +527,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		 * and so that the player object has got the same username as said
 		 * Account instance.
 		 */
-		if(remoteCommunicationController.isLoggedIn(account) ||
+		if(serverComm.isLoggedIn(account) ||
 				account.getUserName().equals(player.getName())){
 			
 			//Finds and sets the server-side Player object's variable that
@@ -601,4 +625,5 @@ public class RemoteGameController extends UnicastRemoteObject
 		}
 		return -1;
 	}
+
 }

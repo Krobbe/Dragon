@@ -302,10 +302,22 @@ public class RemoteGameController extends UnicastRemoteObject
 				}
 			}
 			break;
+			
 		case LEAVE_TABLE:
 			//TODO: Enough when leaving table?
-			setReadyToPlay(gameController.getUser(), false);
+			clientComm.terminateGame(this);
+			
+			try {
+				serverGame.leaveGame(clientComm.getAccount());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			EventBus.unRegister(this);
+			
 			break;
+			
 		default:
 			break;
 			

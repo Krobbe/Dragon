@@ -59,6 +59,7 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 	public void onEvent(client.event.Event evt) {
 		if(evt.getTag().equals(Event.Tag.PUBLISH_ACTIVE_GAMES)) {
 			availableGamesLists = (List<IServerGame>)evt.getValue();
+			model.clear();
 			int i = 1;
 			for(IServerGame isg : availableGamesLists) {
 				model.addElement("Table " + i);
