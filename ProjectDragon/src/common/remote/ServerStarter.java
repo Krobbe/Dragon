@@ -17,12 +17,13 @@ import java.rmi.registry.Registry;
  */
 public class ServerStarter extends RmiStarter{
 
-	public ServerStarter(IServer stub) {
+	public ServerStarter(IServer stub, int port) {
 		
-	    super(IServer.class, Registry.REGISTRY_PORT);
+	    super(IServer.class, port);
 	    
 	    try {
-			System.out.println((InetAddress.getLocalHost()).toString());
+	    	System.out.println("inet adress:");
+	    	System.out.println(InetAddress.getLocalHost().toString());
 		} catch (UnknownHostException e1) {
 			System.out.println("Can't get inet adress");
 			e1.printStackTrace();
@@ -33,8 +34,12 @@ public class ServerStarter extends RmiStarter{
             Registry registry = LocateRegistry.getRegistry();
             //TODO Okej med rebind istället för bind? Verkar lösa några problem
             registry.rebind(IServer.REMOTE_NAME, stub);
-
-            System.out.println("Server ready");
+            
+    		System.out.println();
+    		System.out.println("Port: ");
+    		System.out.println(port);
+    		System.out.println();
+            System.out.println("*** Server ready ***");
             
         } catch (Exception e) {
             System.err.println("Server exception: " + e.toString());

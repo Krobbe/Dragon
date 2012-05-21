@@ -80,71 +80,69 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 		this.setLayout(null);
 		this.setOpaque(false);
 		
-		JLabel loginNameLabel = new JLabel("User name");
-		loginNameLabel.setBounds(447, 274, 108, 14);
+		JLabel loginNameLabel = new JLabel("User name", JLabel.CENTER);
+		loginNameLabel.setBounds(447, 174, 108, 14);
 		this.add(loginNameLabel);
 		loginNameLabel.setFont(P.INSTANCE.getLabelFont());
 
 		loginNameField = new JTextField();
-		loginNameField.setBounds(447, 299, 113, 20);
+		loginNameField.setBounds(447, 199, 113, 20);
 		this.add(loginNameField);
 		loginNameField.setToolTipText("Type in your account name here\r\n");
 		loginNameField.setColumns(10);
 		loginNameLabel.setLabelFor(loginNameField);
 
-		JLabel loginPasswordLabel = new JLabel("Password\r\n");
-		loginPasswordLabel.setBounds(447, 330, 108, 14);
+		JLabel loginPasswordLabel = new JLabel("Password\r\n", JLabel.CENTER);
+		loginPasswordLabel.setBounds(447, 230, 108, 14);
 		this.add(loginPasswordLabel);
 		loginPasswordLabel.setFont(P.INSTANCE.getLabelFont());
 
 		loginPasswordField = new JPasswordField();
-		loginPasswordField.setBounds(447, 355, 113, 20);
+		loginPasswordField.setBounds(447, 255, 113, 20);
 		loginPasswordField.addKeyListener(this);
 		this.add(loginPasswordField);
 		
-		JLabel IpAdressLabel = new JLabel("Server IP");
-		IpAdressLabel.setBounds(417, 426, 108, 14);
-		this.add(IpAdressLabel);
-		IpAdressLabel.setFont(P.INSTANCE.getLabelFont());
+		JLabel ipAdressLabel = new JLabel("Server IP", JLabel.CENTER);
+		ipAdressLabel.setBounds(417, 326, 108, 14);
+		this.add(ipAdressLabel);
+		ipAdressLabel.setFont(P.INSTANCE.getLabelFont());
 		
 		IpAdressField = new JTextField();
-		IpAdressField.setBounds(417, 451, 113, 20);
+		IpAdressField.setBounds(417, 351, 113, 20);
 		IpAdressField.addKeyListener(this);
 		this.add(IpAdressField);
 		
-		JLabel portLabel = new JLabel("Port");
-		portLabel.setBounds(530, 426, 108, 14);
+		JLabel portLabel = new JLabel("Port", JLabel.CENTER);
+		portLabel.setBounds(530, 326, 50, 14);
 		this.add(portLabel);
 		portLabel.setFont(P.INSTANCE.getLabelFont());
 		
 		portField = new JTextField();
-		portField.setBounds(530, 451, 40, 20);
+		portField.setBounds(530, 351, 50, 20);
 		portField.addKeyListener(this);
 		this.add(portField);
 
 		loginButton = new JButton("Login");
-		loginButton.setBounds(frameWidth - buttonWidth - margin, 
-				frameHeight - buttonHeight - 2*margin, buttonWidth, buttonHeight);
+		loginButton.setBounds(447, 400, 113, 23);
 		loginButton.addActionListener(this);
 		this.add(loginButton);
 		loginButton.setFont(P.INSTANCE.getLabelFont());
 
-		JLabel noAccountLabel = new JLabel("Don't have an account?" + "\n" + "");
-		noAccountLabel.setBounds(447, 686, 113, 14);
+		JLabel noAccountLabel = new JLabel("Don't have an account?\n",
+				JLabel.CENTER);
+		noAccountLabel.setBounds(447, 475, 113, 14);
 		noAccountLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		this.add(noAccountLabel);
 
 		loginRegisterButton = new JButton("Register");
-		loginRegisterButton.setBounds(447, 701, 113, 23);
+		loginRegisterButton.setBounds(447, 496, 113, 23);
 		loginRegisterButton.addActionListener(this);
 		this.add(loginRegisterButton);
 		
 		
 		
-
-		
 		errorLabel = new JLabel();
-		errorLabel.setBounds(447, 249, 208, 14);
+		errorLabel.setBounds(427, 144, 208, 14);
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		errorLabel.setForeground(Color.red);
 		this.add(errorLabel);

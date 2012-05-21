@@ -4,11 +4,14 @@
 package server.ctrl.game;
 
 import java.rmi.RemoteException;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 import common.database.DatabaseCommunicator;
@@ -49,7 +52,35 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	
 	public RemoteCommunicationController() throws RemoteException {
 		super();
-		new ServerStarter(this);
+		
+		Scanner in = new Scanner(System.in);
+		int port = Registry.REGISTRY_PORT;
+		boolean correctValue = false;
+		
+		while(!correctValue) {
+			
+			System.out.println("Input port to open RMI-registry." +
+					" (Leave blank for default - 1099)");
+			
+			String portString = in.nextLine();
+			
+			if(portString.equals("")){
+				correctValue = true;
+			}
+			
+			else {
+				try {
+					port = Integer.parseInt(portString);
+					correctValue = true;
+				} catch (NumberFormatException e) {
+					System.out.println("*** Incorrect input, try again ***");
+					e.printStackTrace();
+				}
+			}
+			
+		} //while(!correctValue
+		
+		new ServerStarter(this, port);
 		clients = new TreeMap<Account, IClient>();
 		activeGames = new LinkedList<RemoteGameController>();
 	}
