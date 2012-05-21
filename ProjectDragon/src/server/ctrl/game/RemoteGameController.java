@@ -479,6 +479,7 @@ public class RemoteGameController extends UnicastRemoteObject
 					try {
 						client.showdownDone(winners);
 						for(IPlayer pl : gameController.getTable().getPlayers()) {
+							pl.setStillInGame(false);
 							client.setHand(pl, pl.getHand());
 						}
 					} catch (RemoteException e) {
@@ -531,7 +532,6 @@ public class RemoteGameController extends UnicastRemoteObject
 				// Checks if all the players are ready to start the game
 				for (IPlayer player : playerReferences.keySet()) {
 					if (!player.isStillInGame()) {
-						System.out.println("i foorloop med " + player);
 						allReady = false;
 					}
 				}

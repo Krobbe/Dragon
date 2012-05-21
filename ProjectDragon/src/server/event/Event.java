@@ -10,7 +10,7 @@ public class Event {
 	//When you input a new tag, please put in alphabetical order.
     public enum Tag {
     	MAKE_BET,
-    	SERVER_ADD_TABLE_CARD,		//getValue(): iCard
+    	SERVER_ADD_TABLE_CARD,		//getValue(): ICard
     	SERVER_CREATE_TABLE,		//getValue(): List<iPlayer>
     	SERVER_DISTRIBUTE_CARDS,	//getValue(): Map<iPlayer, iHand>
     	SERVER_DISTRIBUTE_POT,		//getValue(): Bet containing a player and h

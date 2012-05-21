@@ -128,21 +128,22 @@ public class TableInfoPanel extends JPanel {
 	 * @param list The list of the cards that should be shown
 	 */
 	public void showCards(List<ICard> list) {
-		System.out.println();
-		System.out.println("showcards in tableinfopanel");
-		System.out.println();
-		if(list.size() == 3) {
+		if(list.size() == 0) {
+			card1Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+			card2Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+			card3Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+			card4Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+			card5Label.setIcon(new ImageIcon(path + "NORANKNOSUIT.gif"));
+		} else if(list.size() == 3) {
 			card1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
 			card2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
 			card3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
-		}
-		if(list.size() == 4) {
+		} else if(list.size() == 4) {
 			card1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
 			card2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
 			card3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));
 			card4Label.setIcon(new ImageIcon(path + list.get(3).getRank() + list.get(3).getSuit() + ".gif"));
-		}
-		if(list.size() == 5) {
+		} else if(list.size() == 5) {
 			card1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
 			card2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));
 			card3Label.setIcon(new ImageIcon(path + list.get(2).getRank() + list.get(2).getSuit() + ".gif"));

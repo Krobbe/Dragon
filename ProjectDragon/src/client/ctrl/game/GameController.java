@@ -244,6 +244,7 @@ public class GameController {
 	 */
 	public void newRound() {
 		table.getCommunityCards().clear();
+		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, ""));
 		for (IPlayer p : table.getActivePlayers()) {
 			p.getHand().discard();
 			p.setOwnCurrentBet(0);

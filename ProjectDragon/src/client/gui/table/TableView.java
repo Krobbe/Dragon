@@ -92,6 +92,7 @@ public class TableView implements EventHandler, ActionListener{
 		
 		isReadyButton = new JButton("Click if ready");
 		isReadyButton.setPreferredSize(new Dimension(418, 144));
+		isReadyButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		isReadyButton.addActionListener(this);
 		
 		isReadyPanel.add(isReadyButton);
@@ -322,7 +323,7 @@ public class TableView implements EventHandler, ActionListener{
 			EventBus.publish(new Event(Event.Tag.PLAYER_SET_ACTIVE, true));
 			cardLayout.show(cardLayoutPanel, "centerPanel");
 		} else if(e.getSource().equals(nextRoundButton)) {
-			//EventBus.publish(new Event(Event.Tag.NEXT_ROUND, "");
+			EventBus.publish(new Event(Event.Tag.PLAYER_SET_ACTIVE, true));
 			cardLayout.show(cardLayoutPanel, "centerPanel");
 		}
 	}
