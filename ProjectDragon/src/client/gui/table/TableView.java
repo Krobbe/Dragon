@@ -267,7 +267,7 @@ public class TableView implements EventHandler, ActionListener{
 				playerPanelList.get(lastTurnIndex).setBackground(Color.gray);
 			}
 			List<String> legalButtons = table.getLegalButtons();
-			if(legalButtons.contains("check") || legalButtons.contains("call")) {
+			if(legalButtons.contains("check")) {
 				userBetPanel.setCheckEnabled(true);
 			} else {
 				userBetPanel.setCheckEnabled(false);
