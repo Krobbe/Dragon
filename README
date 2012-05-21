@@ -6,7 +6,7 @@ To start a game, follow the folowing steps
 
 Setting up the server
 1. Find server.main.Main and run to start the server
-2 Input the port number to open the RMI-registry
+2 Input the port number to open the RMI-registry (Be sure that the port is open, unsued and useable over your local network.)
 	or
 2 Press enter without an entry to use the default port (1099)
 
