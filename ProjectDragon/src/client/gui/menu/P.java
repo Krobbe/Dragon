@@ -44,7 +44,7 @@ public enum P {
 	}
 	
 	public String getBackgroundImage() {
-		return "lib/dragon.jpg";
+		return "lib/dragon_background.jpg";
 	}
 	
 	public float getTransparency() {
