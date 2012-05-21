@@ -408,6 +408,9 @@ public class RemoteGameController extends UnicastRemoteObject
 			for (IClientGame client : playerReferences.values()) {
 				try {
 					client.newRound();
+					for(IPlayer pl : gameController.getTable().getActivePlayers()) {
+						client.setActive(pl, true);
+					}
 				} catch (RemoteException e) {
 					e.printStackTrace();
 				}
@@ -590,12 +593,19 @@ public class RemoteGameController extends UnicastRemoteObject
 				gameOver();
 			}
 		}
+		System.out.println("---------TRY START GAME---------");
+		System.out.println("Gameplacements: " + gamePlacements);
+		System.out.println("__________________");
 
 	}
 	
 	private void gameOver() {
+		System.out.println("------------------");
+		System.out.println("GAME OVER!");
+		System.out.println("__________________");
+		
 		for(IPlayer player : gamePlacements) {
-			savePlacement("" + gameID, player, gamePlacements.indexOf(player));
+			savePlacement("" + gameID, player, (gamePlacements.indexOf(player) + 1));
 		}
 	}
 
@@ -625,7 +635,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		try {
 			myStmt = conn.createStatement();
 			int up = myStmt.executeUpdate("INSERT INTO PlayedGames VALUES('" + gameID + "', '"
-							+ player + "', '" + placement + "')");
+							+ player.getName() + "', '" + placement + "')");
 			if(up == 0) {
 				System.out.println("Game with gameID" + gameID + " has already" +
 						"saved a placement for " + player);

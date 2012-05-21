@@ -15,7 +15,7 @@ public enum P {
 	}
 	
 	public int getFrameWidth() {
-		return 900;
+		return 750;
 	}
 	
 	public int getButtonHeight() {
