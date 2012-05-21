@@ -151,7 +151,7 @@ public class StatisticsPanel extends JPanel implements ActionListener,
 			myStmt = conn.createStatement();
 			ResultSet rs = myStmt
 					.executeQuery("SELECT * FROM PlayedGames WHERE gameID = '"
-							+ gameID + "'");
+							+ gameID + "' ORDER BY placement");
 			Map<Integer, String> placements = new TreeMap<Integer, String>();
 			while (rs.next()) {
 				String placement = rs.getString(3);
