@@ -294,6 +294,8 @@ public class RemoteGameController extends UnicastRemoteObject
 				Integer amount = (Integer) evt.getValue();
 				IPlayer user = gameController.getUser();
 				bet = new Bet(user, gameController.getCurrentBet().getValue() + amount);
+				System.out.println("**** currentbetvalue:" + gameController.getCurrentBet().getValue());
+				System.out.println("**** amount:" + amount);
 				requestRaise(bet);
 			}
 			break;

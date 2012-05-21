@@ -200,9 +200,11 @@ public class UserBetPanel extends JPanel implements ActionListener {
 			EventBus.publish(new Event(Event.Tag.REQUEST_CALL,1));
 		
 		} else if (e.getSource().equals(raiseButton)) {
-			
+			SpinnerNumberModel model = (SpinnerNumberModel)betSpinner.getModel();
+			int value = model.getNumber().intValue();
+			System.out.println("-----------------RAISE REQUESTED, Val: " + value);
 			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE,
-					(Integer)betSpinner.getValue()));
+					value));
 		} else if (e.getSource().equals(leaveTableButton)) {
 			EventBus.publish(new Event(Event.Tag.LEAVE_TABLE, 1));
 		}

@@ -267,12 +267,13 @@ public class GameController {
 	public void newRound() {
 		table.getCommunityCards().clear();
 		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, ""));
-		for (IPlayer p : table.getActivePlayers()) {
+		for (IPlayer p : table.getPlayers() /* TODO: getActivePlayers() innan*/) {
 			p.getHand().discard();
 			p.setOwnCurrentBet(0);
 			EventBus.publish(new Event(Event.Tag.HAND_DISCARDED, p));
 			if (p.getBalance().getValue() != 0) {
 				p.setActive(true);
+				System.out.println(">>>>" + p.getName() + " got active");
 			}
 		}
 		distributeInvisibleCards();

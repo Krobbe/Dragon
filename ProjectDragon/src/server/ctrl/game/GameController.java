@@ -532,6 +532,7 @@ public class GameController {
 			return false;
 		}
 		IPlayer currentPlayer = table.getCurrentPlayer();
+		
 	
 		int raiseValue = bet.getValue() - currentPlayer.getOwnCurrentBet();
 		System.out.println("---------------RAISEVALUE = " + raiseValue);
