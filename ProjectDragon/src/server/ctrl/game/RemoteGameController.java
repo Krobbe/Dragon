@@ -450,7 +450,7 @@ public class RemoteGameController extends UnicastRemoteObject
 		case SERVER_ADD_TABLE_CARD:
 			ICard card;
 
-			if (!(evt.getValue() instanceof List)) {
+			if (!(evt.getValue() instanceof ICard)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
 						+ evt.getTag());
 			} else {
@@ -478,6 +478,9 @@ public class RemoteGameController extends UnicastRemoteObject
 
 					try {
 						client.showdownDone(winners);
+						for(IPlayer pl : gameController.getTable().getPlayers()) {
+							client.setHand(pl, pl.getHand());
+						}
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}

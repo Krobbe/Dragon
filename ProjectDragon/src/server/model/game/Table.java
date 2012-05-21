@@ -213,7 +213,9 @@ public class Table {
 			List<IPlayer> winners = rankedPlayers.get(handValue);
 			distributePot(winners, potAmount);
 			setShowdownDone(true);
-			EventBus.publish(new Event(Event.Tag.SERVER_SHOWDOWN_DONE, winners));
+			
+			publishShowdown(winners);
+			
 			/* utskrift fšr kontroll */
 			System.out.println("\n\n-------------------------------\n"
 					+ "SHOWDOWN RESULT:\n");
@@ -237,6 +239,10 @@ public class Table {
 		}
 	}
 
+	private void publishShowdown(List<IPlayer> winners) {
+		EventBus.publish(new Event(Event.Tag.SERVER_SHOWDOWN_DONE, winners));
+	}
+	
 	/**
 	 * This method finds and returns the index of the next active player,
 	 * counted after the currentPlayerIndex, which is a parameter provided to
