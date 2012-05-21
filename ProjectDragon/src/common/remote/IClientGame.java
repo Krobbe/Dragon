@@ -163,5 +163,11 @@ public interface IClientGame extends Remote {
 	 * @param bet The blind
 	 */
 	public void postBlind(Bet bet) throws RemoteException;
+	
+	/**
+	 * Clears the current bet
+	 * @throws RemoteException
+	 */
+	public void clearCurrentBet() throws RemoteException;
 
 }

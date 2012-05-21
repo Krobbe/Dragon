@@ -125,11 +125,11 @@ public class GameController {
 	 * @throws IllegalCallException
 	 */
 	public boolean call(Bet bet) {
-		System.out.println("CALL_ANROPAD");
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
 
 		if(!table.getCurrentPlayer().equals(bet.getOwner())) {
+			System.out.println("------------------UNVALID BET---------------------");
 			return false;
 		} else if (currentBetValue <= 0) {
 			throw new IllegalCallException(
@@ -145,6 +145,7 @@ public class GameController {
 	 * @throws IllegalCheckException 
 	 */
 	public boolean check(Bet bet) {
+		System.out.println("------------------UNVALID BET---------------------");
 		if(!isValidPlayerAction(bet.getOwner())) {
 			return false;
 		}
@@ -229,6 +230,7 @@ public class GameController {
 	 */
 	public boolean fold(IPlayer player) {
 		if(!isValidPlayerAction(player)) {
+			System.out.println("------------------UNVALID BET---------------------");
 			return false;
 		}
 		
@@ -322,6 +324,8 @@ public class GameController {
 		for (int i = 0; i < 2; i++) {
 			table.nextPlayer();
 		}
+		
+		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN, table.getCurrentPlayer()));
 		
 		nextGameAction();
 	}
@@ -484,6 +488,7 @@ public class GameController {
 	 */
 	private void playersInitial() {
 		table.getRound().getBettingRound().setCurrentBet(new Bet());
+		EventBus.publish(new Event(Event.Tag.SERVER_CLEAR_CURRENT_BET,""));
 		for (IPlayer p : table.getPlayers()) {
 			p.setOwnCurrentBet(0);
 			EventBus.publish(new Event(Event.Tag.SERVER_SET_OWN_CURRENT_BET, new Bet(p,0)));
@@ -521,6 +526,7 @@ public class GameController {
 	 */
 	public boolean raise(Bet bet) {
 		if(!isValidPlayerAction(bet.getOwner())) {
+			System.out.println("------------------UNVALID BET---------------------");
 			return false;
 		}
 		IPlayer currentPlayer = table.getCurrentPlayer();
@@ -549,7 +555,7 @@ public class GameController {
 		//currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
 		//				theRaise + currentPlayer.getOwnCurrentBet()));
 		
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(bet.getOwner(),raiseValue)));
 		progressTurn();
 		return true;
 	}

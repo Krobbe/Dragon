@@ -321,15 +321,22 @@ public class RemoteGameController extends UnicastRemoteObject
 					client = playerReferences.get(p);
 					try {
 						client.setHand(p, hand);
-						System.out.println("--------------------SETHAND_CALLED_IN_SERVER-------------");
-						System.out.println("HAND_SENT: " + hand.toString());
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}
 				}
 			}
-
 			break;
+			
+		case SERVER_CLEAR_CURRENT_BET:
+			for (IClientGame client : playerReferences.values()) {
+				try {
+					client.clearCurrentBet();
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}		
+			}
+		break;
 
 // TODO Remove this case if safe, also remove newTable(players, meIndex) in
 // clients remoteGameController

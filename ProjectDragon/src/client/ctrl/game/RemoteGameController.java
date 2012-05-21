@@ -228,7 +228,6 @@ public class RemoteGameController extends UnicastRemoteObject
 	@Override
 	public void addCommunityCard(ICard card) {
 		gameController.addCommunityCard(card);
-
 	}
 
 	@Override
@@ -329,10 +328,14 @@ public class RemoteGameController extends UnicastRemoteObject
 		EventBus.publish(new Event(Event.Tag.PUBLISH_SHOWDOWN, winners));
 	}
 
+	@Override
 	public void postBlind(Bet bet) {
 		gameController.postBlind(bet);
 	}
 
-
+	@Override
+	public void clearCurrentBet() {
+		gameController.clearCurrentBet();
+	}
 	
 }

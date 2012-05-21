@@ -90,8 +90,23 @@ public class GameController {
 				.getValue()));
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	//TODO: borde denna inte vara i table?
 	public Bet getCurrentBet() {
 		return table.getRound().getBettingRound().getCurrentBet();
+	}
+	
+	/**
+	 * Clears the current bet
+	 */
+	public void clearCurrentBet() {
+		Bet bet = new Bet();
+		table.getRound().getBettingRound().setCurrentBet(bet);
+		EventBus.publish(new Event(Event.Tag.CURRENT_BET_CHANGED, bet
+				.getValue()));
 	}
 	
 	/**

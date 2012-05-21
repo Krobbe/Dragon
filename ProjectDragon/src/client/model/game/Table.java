@@ -101,6 +101,7 @@ public class Table {
 		indexOfCurrentPlayer = findIndexOfNextActivePlayer(indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,
 				getCurrentPlayer()));
+		System.out.println(this.toString());
 		return players.get(indexOfCurrentPlayer);
 
 		// TODO: gammal kod, ta bort om nya funkar

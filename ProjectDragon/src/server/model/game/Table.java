@@ -505,6 +505,8 @@ public class Table {
 		indexOfCurrentPlayer = findIndexOfNextActivePlayer(indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,
 				getCurrentPlayer()));
+		//TODO: ta bort undre raden sen
+		System.out.println(this.toString());
 		return players.get(indexOfCurrentPlayer);
 
 		// TODO: gammal kod, ta bort om nya funkar
@@ -570,6 +572,7 @@ public class Table {
 	 */
 	public void setIndexOfCurrentPlayer(int index) {
 		indexOfCurrentPlayer = index;
+		EventBus.publish(new Event(Event.Tag.SERVER_SET_TURN, index));
 	}
 	
 	/**
