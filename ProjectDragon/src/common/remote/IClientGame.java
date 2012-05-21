@@ -150,6 +150,12 @@ public interface IClientGame extends Remote {
 	 */
 	public void removePlayer(IPlayer player) throws RemoteException;
 	
-	
+	/**
+	 * Publishes the winner(s)
+	 * 
+	 * @param winners
+	 * @throws RemoteException
+	 */
+	public void showdownDone(List<IPlayer> winners) throws RemoteException;
 
 }

@@ -319,6 +319,12 @@ public class RemoteGameController extends UnicastRemoteObject
 		} // switch(Evt.getTag())
 	} // OnEvent(Event evt)
 
+	@Override
+	public void showdownDone(List<IPlayer> winners) throws RemoteException {
+		EventBus.publish(new Event(Event.Tag.PUBLISH_SHOWDOWN, winners));
+		
+	}
+
 
 	
 }

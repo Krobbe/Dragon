@@ -448,6 +448,24 @@ public class RemoteGameController extends UnicastRemoteObject
 				}
 			}
 			break;
+			
+		case SERVER_SHOWDOWN_DONE:
+			List<IPlayer> winners;
+			if (!(evt.getValue() instanceof List)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				winners = (List<IPlayer>)evt.getValue();
+				for (IClientGame client : playerReferences.values()) {
+
+					try {
+						client.showdownDone(winners);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			break;
 
 		default:
 			break;

@@ -103,8 +103,6 @@ public class PlayerPanel extends JPanel {
 			System.out.println("--------------------------------");
 			card1Label.setIcon(new ImageIcon(path + card1.getRank()
 					+ card1.getSuit() + ".gif"));
-			System.out.println("Path1: " + path + card1.getRank()
-					+ card1.getSuit() + ".gif");
 			card2Label.setIcon(new ImageIcon(path + card2.getRank()
 					+ card2.getSuit() + ".gif"));
 		}

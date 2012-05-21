@@ -41,6 +41,7 @@ public class Event {
     	POT_CHANGED,				//getValue(): int
     	PUBLISH_ACTIVE_GAMES,		//getValue(): List<IServerGame>
     	PUBLISH_ACCOUNT_INFORMATION,//getValue(): Account
+    	PUBLISH_SHOWDOWN,
     	REGISTER_SUCCESS,
     	REGISTER_BACK,
     	REGISTER_FAILED,

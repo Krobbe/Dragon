@@ -123,10 +123,14 @@ public class TableInfoPanel extends JPanel {
 	}
 	
 	/**
-	 * Shows the cards that the dealer has placed on the table
+	 * Shows the cards that the dealer has placed on the table.
+	 * 
 	 * @param list The list of the cards that should be shown
 	 */
 	public void showCards(List<ICard> list) {
+		System.out.println();
+		System.out.println("showcards in tableinfopanel");
+		System.out.println();
 		if(list.size() == 3) {
 			card1Label.setIcon(new ImageIcon(path + list.get(0).getRank() + list.get(0).getSuit() + ".gif"));
 			card2Label.setIcon(new ImageIcon(path + list.get(1).getRank() + list.get(1).getSuit() + ".gif"));

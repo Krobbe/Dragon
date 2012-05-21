@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -36,7 +37,8 @@ public class TableView implements EventHandler, ActionListener{
 	private JPanel backPanel;
 	private JPanel foundationPanel;
 	
-	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel, isReadyPanel, cardLayoutPanel;
+	private JPanel northPanel, southPanel, westPanel, eastPanel, centerPanel, 
+	isReadyPanel, showdownPanel, cardLayoutPanel;
 	
 	private CardLayout cardLayout;
 	
@@ -49,6 +51,7 @@ public class TableView implements EventHandler, ActionListener{
 	private List<PlayerPanel> playerPanelList;
 	
 	private JButton isReadyButton;
+	private JButton nextRoundButton;
 	
 	private int frameHeight = P.INSTANCE.getFrameHeight();
 	private int frameWidth = P.INSTANCE.getFrameWidth();
@@ -85,12 +88,20 @@ public class TableView implements EventHandler, ActionListener{
 		eastPanel = new JPanel();
 		centerPanel = new JPanel();
 		isReadyPanel = new JPanel();
+		showdownPanel = new JPanel();
 		
 		isReadyButton = new JButton("Click if ready");
 		isReadyButton.setPreferredSize(new Dimension(418, 144));
 		isReadyButton.addActionListener(this);
 		
 		isReadyPanel.add(isReadyButton);
+		
+		nextRoundButton = new JButton();
+		nextRoundButton.setPreferredSize(new Dimension(418, 144));
+		nextRoundButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		nextRoundButton.addActionListener(this);
+		
+		showdownPanel.add(nextRoundButton);
 		
 		cardLayout = new CardLayout();
 		cardLayoutPanel = new JPanel(cardLayout);
@@ -142,6 +153,7 @@ public class TableView implements EventHandler, ActionListener{
 		
 		cardLayoutPanel.add(isReadyPanel, "isReadyPanel");
 		cardLayoutPanel.add(centerPanel, "centerPanel");
+		cardLayoutPanel.add(showdownPanel, "showdownPanel");
 		
 		backPanel.add(cardLayoutPanel, BorderLayout.CENTER);
 		backPanel.add(northPanel, BorderLayout.NORTH);
@@ -231,10 +243,14 @@ public class TableView implements EventHandler, ActionListener{
 		case TURN_CHANGED:
 			int turnIndex = (Integer) evt.getValue();
 			playerPanelList.get(turnIndex).setBackground(Color.green);
+			int lastTurnIndex;
 			if(turnIndex == 0) {
-				playerPanelList.get(allPlayers.size()-1).setBackground(Color.gray);
+				lastTurnIndex = allPlayers.size()-1;
 			} else {
-				playerPanelList.get(turnIndex-1).setBackground(Color.gray);
+				lastTurnIndex = turnIndex-1;
+			}
+			if(allPlayers.get(lastTurnIndex).isActive()) {
+				playerPanelList.get(lastTurnIndex).setBackground(Color.gray);
 			}
 			List<String> legalButtons = table.getLegalButtons();
 			if(legalButtons.contains("check") || legalButtons.contains("call")) {
@@ -275,12 +291,32 @@ public class TableView implements EventHandler, ActionListener{
 		case LEAVE_TABLE:
 			frame.dispose();
 			EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));
+			break;
+		
+		case PUBLISH_SHOWDOWN:
+			List<IPlayer> winners;
+			if (!(evt.getValue() instanceof List)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				winners = (List<IPlayer>)evt.getValue();
+				String s = "<html><b>Showdown done.</b> Winner(s): <br>";
+				for(IPlayer p : winners) {
+					s = s + p.getName() + ", ";
+				}
+				s = s + "<br><br>Click if ready for nextround</html>";
+				nextRoundButton.setText(s);
+				cardLayout.show(cardLayoutPanel, "showdownPanel");
+			}
 		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(isReadyButton)) {
 			EventBus.publish(new Event(Event.Tag.PLAYER_SET_ACTIVE, true));
+			cardLayout.show(cardLayoutPanel, "centerPanel");
+		} else if(e.getSource().equals(nextRoundButton)) {
+			//EventBus.publish(new Event(Event.Tag.NEXT_ROUND, "");
 			cardLayout.show(cardLayoutPanel, "centerPanel");
 		}
 	}

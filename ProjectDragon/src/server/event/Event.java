@@ -23,7 +23,7 @@ public class Event {
     	SERVER_SET_TURN,			//getValue(): iPlayer
     	SERVER_UPDATE_BET,			//getValue(): Bet
     	SERVER_UPDATE_POT,			//getValue(): Pot
-    	SHOWDOWN_DONE //ej mottaget eller publicerat någonstans
+    	SERVER_SHOWDOWN_DONE //ej mottaget eller publicerat någonstans
     }
     private final Tag tag;
     // The new value 

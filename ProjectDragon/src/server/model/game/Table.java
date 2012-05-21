@@ -212,9 +212,8 @@ public class Table {
 			// Get players with winning hand value.
 			List<IPlayer> winners = rankedPlayers.get(handValue);
 			distributePot(winners, potAmount);
-
 			setShowdownDone(true);
-
+			EventBus.publish(new Event(Event.Tag.SERVER_SHOWDOWN_DONE, winners));
 			/* utskrift fšr kontroll */
 			System.out.println("\n\n-------------------------------\n"
 					+ "SHOWDOWN RESULT:\n");
@@ -447,7 +446,7 @@ public class Table {
 		List<IPlayer> activePlayers = getActivePlayers();
 
 		for (IPlayer ap : activePlayers) {
-			if (!ap.hasDoneFirstTurn()) {
+			if (!ap.hasDoneFirstTurn() && activePlayers.size() != 1) {
 				return false;
 			}
 
