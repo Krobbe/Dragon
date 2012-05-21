@@ -33,6 +33,7 @@ import client.model.game.*;
 public class TableView implements EventHandler, ActionListener{
 	
 	private Table table;
+	private int maxPlayers;
 	private JFrame frame;
 	private JPanel backPanel;
 	private JPanel foundationPanel;
@@ -64,6 +65,7 @@ public class TableView implements EventHandler, ActionListener{
 	 */
 	public TableView(Table table) {
 		this.table = table;
+		maxPlayers = table.getMaxPlayers();
 		user = table.getPlayers().get(table.getMeIndex());
 		init();
 		EventBus.register(this);

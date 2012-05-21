@@ -359,4 +359,8 @@ public class Table {
 		return !(getRound().getBettingRound().getCurrentBet().getValue() <= 0);
 	}
 
+
+	public int getMaxPlayers() {
+		return maxPlayers;
+	}
 }
