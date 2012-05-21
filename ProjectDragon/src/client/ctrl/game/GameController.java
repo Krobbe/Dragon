@@ -94,7 +94,6 @@ public class GameController {
 	 * 
 	 * @return
 	 */
-	//TODO: borde denna inte vara i table? då måste rgc ha referens till tabel
 	public Bet getCurrentBet() {
 		return table.getRound().getBettingRound().getCurrentBet();
 	}
@@ -159,14 +158,6 @@ public class GameController {
 		}
 		IPlayer p = table.getCurrentPlayer();
 		int ownCurrentBet = p.getOwnCurrentBet();
-		System.out.println("----------------------------------------");
-		System.out.println("BET OCCURED");
-		System.out.println("MADE BY "+ bet.getOwner() + " = " + table.getCurrentPlayer());
-		System.out.println("SET OWN CURRENT BET TO: " + (bet.getValue() + ownCurrentBet));
-		System.out.println("REMOVE FROM BALANCE: " + bet.getValue());
-		System.out.println("SET THE NEW CURRENT BET TO: " + (bet.getValue() + ownCurrentBet));
-		System.out.println("ADD TO POT: " + bet.getValue());
-		System.out.println("---------------------------------------");
 		//int tmp = bet.getValue() - p.getOwnCurrentBet();
 		p.getBalance().removeFromBalance(bet.getValue());
 		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, p));
@@ -267,7 +258,7 @@ public class GameController {
 	public void newRound() {
 		table.getCommunityCards().clear();
 		EventBus.publish(new Event(Event.Tag.COMMUNITY_CARDS_CHANGED, ""));
-		for (IPlayer p : table.getPlayers() /* TODO: getActivePlayers() innan*/) {
+		for (IPlayer p : table.getPlayers()) {
 			p.getHand().discard();
 			p.setOwnCurrentBet(0);
 			EventBus.publish(new Event(Event.Tag.HAND_DISCARDED, p));
