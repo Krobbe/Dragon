@@ -128,7 +128,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	 */
 	public void updateSpinner(int currentBet) {
 		int minRaise = bigblind + (currentBet - user.getOwnCurrentBet());
-		if(minRaise < user.getBalance().getValue()) {
+		if(minRaise <= user.getBalance().getValue()) {
 			SpinnerModel model = new SpinnerNumberModel(minRaise, minRaise, user.getBalance().getValue(), 10);
 			betSpinner = new JSpinner(model);
 		} else {
