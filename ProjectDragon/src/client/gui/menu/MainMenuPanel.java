@@ -6,12 +6,15 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import client.event.*;
@@ -23,13 +26,15 @@ import client.event.*;
  *
  */
 @SuppressWarnings("serial")
-public class MainMenuPanel extends JPanel implements ActionListener {
+public class MainMenuPanel extends JPanel implements ActionListener, MouseListener {
 
 	private JButton mainLogoutButton;
 	private JButton mainJoinTableButton;
 	private JButton mainCreateTableButton;
 	private JButton mainStatisticsButton;
 	private JButton mainAccountButton;
+	
+	private JLabel invisibleLabel;
 	
 	private String background = P.INSTANCE.getBackgroundImage();
 	private float transparency = P.INSTANCE.getTransparency();
@@ -98,6 +103,12 @@ public class MainMenuPanel extends JPanel implements ActionListener {
 		mainAccountButton.setBounds(760, 292, 200, 146);
 		mainAccountButton.addActionListener(this);
 		this.add(mainAccountButton);
+		
+		invisibleLabel = new JLabel();
+		invisibleLabel.setOpaque(false);
+		invisibleLabel.setBounds(730, 500, 100, 100);
+		invisibleLabel.addMouseListener(this);
+		this.add(invisibleLabel);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -130,5 +141,37 @@ public class MainMenuPanel extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		System.out.println(e.getSource());
+		if(e.getSource() == invisibleLabel) {
+			EventBus.publish(new Event(Event.Tag.TRY_LOGOUT, 1));
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
