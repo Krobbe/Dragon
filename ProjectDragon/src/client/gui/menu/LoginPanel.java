@@ -34,6 +34,8 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 
 	private JTextField loginNameField;
 	private JPasswordField loginPasswordField;
+	private JTextField IpAdressField;
+	private JTextField portField;
 	private JButton loginButton;
 	private JButton loginRegisterButton;
 	private JLabel errorLabel;
@@ -68,10 +70,7 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == loginButton) {
-			ArrayList<char[]> loginInfo = new ArrayList<char[]>();
-			loginInfo.add(loginNameField.getText().toCharArray());
-			loginInfo.add(loginPasswordField.getPassword());
-			EventBus.publish(new Event(Event.Tag.TRY_LOGIN, loginInfo));
+			tryLogin();
 		} else if (e.getSource() == loginRegisterButton) {
 			EventBus.publish(new Event(Event.Tag.GO_TO_REGISTER, 1));
 		}
@@ -102,6 +101,26 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 		loginPasswordField.setBounds(447, 355, 113, 20);
 		loginPasswordField.addKeyListener(this);
 		this.add(loginPasswordField);
+		
+		JLabel IpAdressLabel = new JLabel("Server IP");
+		IpAdressLabel.setBounds(417, 426, 108, 14);
+		this.add(IpAdressLabel);
+		IpAdressLabel.setFont(P.INSTANCE.getLabelFont());
+		
+		IpAdressField = new JTextField();
+		IpAdressField.setBounds(417, 451, 113, 20);
+		IpAdressField.addKeyListener(this);
+		this.add(IpAdressField);
+		
+		JLabel portLabel = new JLabel("Port");
+		portLabel.setBounds(530, 426, 108, 14);
+		this.add(portLabel);
+		portLabel.setFont(P.INSTANCE.getLabelFont());
+		
+		portField = new JTextField();
+		portField.setBounds(530, 451, 40, 20);
+		portField.addKeyListener(this);
+		this.add(portField);
 
 		loginButton = new JButton("Login");
 		loginButton.setBounds(frameWidth - buttonWidth - margin, 
@@ -111,14 +130,18 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 		loginButton.setFont(P.INSTANCE.getLabelFont());
 
 		JLabel noAccountLabel = new JLabel("Don't have an account?" + "\n" + "");
-		noAccountLabel.setBounds(447, 386, 113, 14);
+		noAccountLabel.setBounds(447, 686, 113, 14);
 		noAccountLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		this.add(noAccountLabel);
 
 		loginRegisterButton = new JButton("Register");
-		loginRegisterButton.setBounds(447, 401, 113, 23);
+		loginRegisterButton.setBounds(447, 701, 113, 23);
 		loginRegisterButton.addActionListener(this);
 		this.add(loginRegisterButton);
+		
+		
+		
+
 		
 		errorLabel = new JLabel();
 		errorLabel.setBounds(447, 249, 208, 14);
@@ -130,11 +153,17 @@ public class LoginPanel extends JPanel implements KeyListener, ActionListener, c
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyChar() == KeyEvent.VK_ENTER) {
-			ArrayList<char[]> loginInfo = new ArrayList<char[]>();
-			loginInfo.add(loginNameField.getText().toCharArray());
-			loginInfo.add(loginPasswordField.getPassword());
-			EventBus.publish(new Event(Event.Tag.TRY_LOGIN, loginInfo));
+			tryLogin();
 		}
+	}
+	
+	private void tryLogin() {
+		ArrayList<char[]> loginInfo = new ArrayList<char[]>();
+		loginInfo.add(loginNameField.getText().toCharArray());
+		loginInfo.add(loginPasswordField.getPassword());
+		loginInfo.add(IpAdressField.getText().toCharArray());
+		loginInfo.add(portField.getText().toCharArray());
+		EventBus.publish(new Event(Event.Tag.TRY_LOGIN, loginInfo));
 	}
 
 	@Override

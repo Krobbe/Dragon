@@ -49,7 +49,7 @@ public class Event {
     	REQUEST_CHECK,
     	REQUEST_FOLD,
     	REQUEST_RAISE,
-    	TRY_LOGIN, //The string is in the form "username password"
+    	TRY_LOGIN, //The string is in the form "username, password, ip, port"
     	TRY_LOGOUT,
     	TRY_REGISTER, //ArrayList<char[]>
     	TURN_CHANGED,	// getValue(): int, index of the new player

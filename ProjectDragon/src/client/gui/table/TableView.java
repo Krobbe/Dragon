@@ -181,6 +181,7 @@ public class TableView implements EventHandler, ActionListener{
 		case PLAYERS_CHANGED:
 			int index = 0;
 			for(PlayerPanel p : playerPanelList) {
+				p.setFont(new Font("Tahoma", Font.PLAIN, 16));
 				p.setName("No Player");
 				p.setBalance("xxx");
 			}

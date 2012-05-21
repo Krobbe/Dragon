@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,7 +64,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	 * @return The reference to the server
 	 */
 	public IServer connectToServer(){
-		return connectToServer(Registry.REGISTRY_PORT);
+		return connectToServer("", Registry.REGISTRY_PORT);
 	}
 	
 	/** 
@@ -73,17 +74,29 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	 * @param port The port number of the searched server
 	 * @return The reference to the server
 	 */
-	public IServer connectToServer(int port){
+	public IServer connectToServer(String ipAdress, int port){
 		IServer server = null;
+		Registry registry;
 		
 	    try {
-	    	//Registry registry = LocateRegistry.getRegistry(IServer.REMOTE_NAME, port);
-	        //Registry registry = LocateRegistry.getRegistry("129.16.184.157", port);
-	        Registry registry = LocateRegistry.getRegistry(port);
+	    	if(ipAdress.equals("") && port == 0) {
+	    		ipAdress = "localhost";
+	    		port = Registry.REGISTRY_PORT;
+	    	}
+	    	else if(port == 0) {
+	    		port = Registry.REGISTRY_PORT;
+	    	}
+	    	
+	    	else if(ipAdress.equals("")) {
+	    		ipAdress = "localhost";
+	    	}
+	    		registry = LocateRegistry.getRegistry(ipAdress, port);
+	    	
+	        //Registry registry = LocateRegistry.getRegistry(port);
 
 	        server = (IServer) registry.lookup(IServer.REMOTE_NAME);
 	        System.out.println("*** Connection established on port: " + port
-	        														+ " ***");
+	        								+ " at IP: " + ipAdress + " ***");
 	    }
 	    
 	    catch (Exception e) {
@@ -107,10 +120,10 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	 * @return The Account instance containing useful information and used as
 	 * security clearance
 	 */
-	public boolean login(IClient client, String accountName,
-													String accountPassword){
+	public boolean login(IClient client, String accountName, 
+			String accountPassword, String ipAdress, int port){
 		
-		serverComm = connectToServer();
+		serverComm = connectToServer(ipAdress, port);
 		
 		if(serverComm != null){
 			
@@ -167,12 +180,15 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	
 	private boolean tryRegisterAccount(String userName, String firstName, 
 			String lastName, String passWord) {
+		
+		// TODO Use ip in port and registerPanel!! Also uncomment todo below
 		serverComm = connectToServer();
 
 		Account tmp = new Account(firstName, lastName, userName, passWord);
 		try {
 			if (serverComm.createAccount(tmp)) {
-				login(this, tmp.getUserName(), tmp.getPassWord());
+				// TODO Login after register? Needs ip and port
+				//				login(this, tmp.getUserName(), tmp.getPassWord());
 				EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
 				return true;
 			} else {
@@ -331,10 +347,18 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 						+ evt.getTag());
 			} else {
 				login = (ArrayList<char[]>)evt.getValue();
-				String userName, passWord;
+				String userName, passWord, ipAdress;
+				int port = 0;
 				userName = new String(login.get(0));
 				passWord = new String(login.get(1));
-				login(this, userName, passWord);
+				ipAdress = new String(login.get(2));
+				try {
+					port = Integer.parseInt(new String(login.get(3)));
+				} catch(NumberFormatException e) {
+					System.out.println("Wrong evt.getValue() for evt.getTag(): "
+							+ evt.getTag());
+				}
+				login(this, userName, passWord, ipAdress, port);
 			}
 			break;
 			
