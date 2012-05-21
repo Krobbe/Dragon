@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -21,6 +22,7 @@ import javax.swing.ListSelectionModel;
 import client.event.Event;
 
 import common.remote.IServerGame;
+import common.utilities.IllegalCallException;
 
 
 /**
@@ -62,7 +64,12 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 			model.clear();
 			int i = 1;
 			for(IServerGame isg : availableGamesLists) {
-				model.addElement("Table " + i);
+				try {
+					model.addElement("Table " + i + "          Players: " + isg.getPlayers().size() + "/" + isg.getMaxPlayers() +
+								"          Entrance fee: " + isg.getEntranceFee());
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
 				i++;
 			}
 		}
@@ -73,7 +80,8 @@ public class JoinTablePanel extends JScrollPane implements ActionListener,
 		// TODO Have to send what table to join
 		if (e.getSource() == joinTableJoinButton) {
 			String s = (String)joinTableList.getSelectedValue();
-			int i = Integer.parseInt(s.substring(6));
+			//TODO Ugly solution but works for the scope of this application
+			int i = Integer.parseInt(s.substring(6, 10).trim());
 			client.event.EventBus.publish(new Event(Event.Tag.JOIN_TABLE, i));
 		} else if (e.getSource() == joinTableBackButton) {
 			client.event.EventBus.publish(new Event(Event.Tag.GO_TO_MAIN, 1));

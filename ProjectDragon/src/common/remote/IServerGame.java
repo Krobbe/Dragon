@@ -63,8 +63,7 @@ public interface IServerGame extends Remote {
 	 * @return The list with players in the game
 	 * @throws IllegalCallException, RemoteException
 	 */
-	public List<IPlayer> getPlayers() throws IllegalCallException,
-																RemoteException;
+	public List<IPlayer> getPlayers() throws RemoteException;
 
 	public int getGameID() throws RemoteException;
 	
