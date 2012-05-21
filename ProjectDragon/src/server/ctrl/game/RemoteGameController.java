@@ -264,6 +264,24 @@ public class RemoteGameController extends UnicastRemoteObject
 			}
 			break;
 			
+		case SERVER_POST_BLIND:
+			Bet blindBet;
+			if (!(evt.getValue() instanceof Bet)) {
+				System.out.println("Wrong evt.getValue() for evt.getTag(): "
+						+ evt.getTag());
+			} else {
+				blindBet = (Bet) evt.getValue();
+				for (IClientGame client : playerReferences.values()) {
+					try {
+						client.postBlind(blindBet);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+				
+			}
+			break;
+			
 		case SERVER_DISTRIBUTE_CARDS:
 			System.out.println("---------------SERVER_DIST_CRD_CAUGHT--------");
 			Map<IPlayer, IHand> playerHands;

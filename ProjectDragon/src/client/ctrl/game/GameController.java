@@ -148,7 +148,7 @@ public class GameController {
 		int tmp = bet.getValue() - p.getOwnCurrentBet();
 		p.getBalance().removeFromBalance(tmp);
 		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, p));
-		p.setOwnCurrentBet(bet.getValue());
+		p.setOwnCurrentBet(bet.getValue() + p.getOwnCurrentBet());
 		EventBus.publish(new Event(Event.Tag.OWN_CURRENT_BET_CHANGED, new Bet(
 				p, bet.getValue())));
 
@@ -211,11 +211,8 @@ public class GameController {
 	 * @throws RemoteException
 	 */
 	public void setHand(IPlayer player, IHand hand) {
-		System.out.println("--------------SET_HAND_ANROPAD!!!----------");
 		for (IPlayer clientPlayer : table.getActivePlayers()) {
-			System.out.println("Kom in i gc:n");
 			if (clientPlayer.equals(player)) {
-				System.out.println("HITTADE_PLAYERN: " + clientPlayer.toString());
 				IHand playerHand = clientPlayer.getHand();
 				playerHand.discard();
 				for (ICard card : hand.getCards()) {
@@ -333,6 +330,42 @@ public class GameController {
 	 */
 	private boolean validPlayerAction(IPlayer player) {
 		return player.equals(table.getCurrentPlayer());
+	}
+	
+	/**
+	 * Posts a blind. A lot like the betOccured method but doesn't make any
+	 * check if the owner of the bet is the current player
+	 * @param bet The blind posted
+	 */
+	public void postBlind(Bet bet) {
+		IPlayer owner = bet.getOwner();
+		for (IPlayer p : table.getPlayers()) {
+			if (p.equals(owner)) {
+				int tmp = bet.getValue() - p.getOwnCurrentBet();
+				p.getBalance().removeFromBalance(tmp);
+				EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, p));
+				p.setOwnCurrentBet(bet.getValue());
+				EventBus.publish(new Event(Event.Tag.OWN_CURRENT_BET_CHANGED, new Bet(
+						p, bet.getValue())));
+
+				/*
+				 * Make sure that the new bet is not smaller than the current one (this
+				 * might occur if player with big blind moves all in when this i
+				 * posted). If so the new bet should not be set as a the current bet
+				 */
+				if (bet.getValue() >= table.getRound().getBettingRound()
+						.getCurrentBet().getValue()) {
+					table.getRound().getBettingRound().setCurrentBet(bet);
+					EventBus.publish(new Event(Event.Tag.CURRENT_BET_CHANGED, bet
+							.getValue()));
+				}
+
+				table.getRound().getPot().addToPot(bet.getValue());
+				EventBus.publish(new Event(Event.Tag.POT_CHANGED, table.getRound()
+						.getPot().getValue()));
+				
+			}
+		}
 	}
 		
 }

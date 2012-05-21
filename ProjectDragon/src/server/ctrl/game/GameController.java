@@ -127,6 +127,7 @@ public class GameController {
 	 * @throws IllegalCallException
 	 */
 	public boolean call(Bet bet) {
+		System.out.println("CALL_ANROPAD");
 		int currentBetValue = 
 				table.getRound().getBettingRound().getCurrentBet().getValue();
 
@@ -137,7 +138,6 @@ public class GameController {
 					"Not possible to call since no bet has been posted");
 		} else {
 			doCall();
-			EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, bet));
 		}
 		return true;
 	}
@@ -221,7 +221,8 @@ public class GameController {
 		//currentPlayer.setOwnCurrentBet(currentBetValue);
 		//currentPlayer.getBalance().removeFromBalance(currentBetValue 
 		//		- playersOwnCurrentBet);
-		
+		//TODO:fusk?
+		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(currentPlayer,currentBetValue)));
 		progressTurn();
 	}
 	
@@ -467,8 +468,8 @@ public class GameController {
 		performPlayerBet(new Bet(smallBlindPlayer, smallBlind));
 		performPlayerBet(new Bet(bigBlindPlayer, bigBlind));
 		
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(smallBlindPlayer,smallBlind)));
-		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(bigBlindPlayer,bigBlind)));
+		EventBus.publish(new Event(Event.Tag.SERVER_POST_BLIND, new Bet(smallBlindPlayer,smallBlind)));
+		EventBus.publish(new Event(Event.Tag.SERVER_POST_BLIND, new Bet(bigBlindPlayer,bigBlind)));
 		
 		/* if a player has gone all-in he shall not be able to act */
 		if (bigBlindPlayer.isAllIn()) {

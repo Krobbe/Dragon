@@ -236,6 +236,7 @@ public class TableView implements EventHandler, ActionListener{
 				IPlayer betOwner = ownCurrentBet.getOwner();
 				if(betOwner.equals(user)) {
 					userBetPanel.updateOwnCurrentBet();
+					userBetPanel.updateAvailableCredits();
 				}
 			}
 			break;
@@ -267,6 +268,11 @@ public class TableView implements EventHandler, ActionListener{
 				userBetPanel.setRaiseEnabled(true);
 			} else {
 				userBetPanel.setRaiseEnabled(false);
+			}
+			if(legalButtons.contains("call")) {
+				userBetPanel.setCallEnabled(true);
+			} else {
+				userBetPanel.setCallEnabled(false);
 			}
 			break;
 			

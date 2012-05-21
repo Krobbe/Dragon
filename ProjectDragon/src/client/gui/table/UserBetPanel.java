@@ -30,6 +30,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	private JButton leaveTableButton;
 	private JSpinner betSpinner;
 	private JLabel ownCurrentBetLabel;
+	private JButton callButton;
 	
 	private IPlayer user;
 	private int bigblind = common.model.game.P.INSTANCE.getBigBlindValue();
@@ -66,6 +67,14 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		foldButton.setBackground(Color.red);
 		foldButton.setOpaque(true);
 		foldButton.addActionListener(this);
+		
+		callButton = new JButton("Call");
+		callButton.setEnabled(false);
+		callButton.setSize(buttonWidth, buttonHeight);
+		callButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		callButton.setBackground(Color.red);
+		callButton.setOpaque(true);
+		callButton.addActionListener(this);
 
 		checkButton = new JButton("Check");
 		checkButton.setEnabled(false);
@@ -94,6 +103,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		this.add(leaveTableButton);
 		this.add(foldButton);
 		this.add(checkButton);
+		this.add(callButton);
 		this.add(raiseButton);
 		this.add(betSpinner);
 		this.add(creditsLabel);
@@ -106,6 +116,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	 * @author lisastenberg
 	 */
 	public void updateAvailableCredits() {
+		System.out.println("-----------------------" + user.getBalance().getValue());
 		availableCreditsLabel.setText("" + user.getBalance().getValue());
 		updateSpinner(user.getOwnCurrentBet());
 	}
@@ -164,6 +175,15 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	public void setRaiseEnabled(boolean b) {
 		raiseButton.setEnabled(b);
 	}
+	
+	/**
+	 * Set Callbutton enabled.
+	 * @param b true if the button should be enabled.
+	 * @author mattiashenriksson
+	 */
+	public void setCallEnabled(boolean b) {
+		callButton.setEnabled(b);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -175,6 +195,10 @@ public class UserBetPanel extends JPanel implements ActionListener {
 			
 			EventBus.publish(new Event(Event.Tag.REQUEST_FOLD, 1));
 			
+		} else if (e.getSource().equals(callButton)) {
+			
+			EventBus.publish(new Event(Event.Tag.REQUEST_CALL,1));
+		
 		} else if (e.getSource().equals(raiseButton)) {
 			
 			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE,

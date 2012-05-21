@@ -158,4 +158,10 @@ public interface IClientGame extends Remote {
 	 */
 	public void showdownDone(List<IPlayer> winners) throws RemoteException;
 
+	/**
+	 * Posts a blind on the table
+	 * @param bet The blind
+	 */
+	public void postBlind(Bet bet) throws RemoteException;
+
 }

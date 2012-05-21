@@ -234,7 +234,6 @@ public class RemoteGameController extends UnicastRemoteObject
 	@Override
 	public void setHand(IPlayer player, IHand hand) {
 		gameController.setHand(player, hand);
-		System.out.println("HAND_CAUGHT_IN_CLIENT: " + hand.toString());
 	}
 
 	@Override
@@ -274,16 +273,10 @@ public class RemoteGameController extends UnicastRemoteObject
 		
 		switch(evt.getTag()) {
 		case REQUEST_CALL:
-			requestCall(new Bet(gameController.getUser(), gameController.getCurrentBet().getValue()));
+			requestCall(new Bet(gameController.getUser(), 0));
 			break;
 		case REQUEST_CHECK:
-			if(gameController.getCurrentBet().getValue() == 0) {
-				requestCheck(new Bet(gameController.getUser(), 0));
-			} else {
-				//if currentBet != 0 this is a call
-				EventBus.publish(new Event(Event.Tag.REQUEST_CALL, 1));
-			}
-			
+			requestCheck(new Bet(gameController.getUser(), 0));
 			break;
 		case REQUEST_FOLD:
 			requestFold(gameController.getUser());
@@ -322,7 +315,10 @@ public class RemoteGameController extends UnicastRemoteObject
 	@Override
 	public void showdownDone(List<IPlayer> winners) throws RemoteException {
 		EventBus.publish(new Event(Event.Tag.PUBLISH_SHOWDOWN, winners));
-		
+	}
+
+	public void postBlind(Bet bet) {
+		gameController.postBlind(bet);
 	}
 
 
