@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="model.player.hand.HandValueType"/>
-<fullyQualifiedTypeName name="model.player.Account"/>
-<fullyQualifiedTypeName name="model.player.Player"/>
 <fullyQualifiedTypeName name="utilities.IllegalCallException"/>
 <fullyQualifiedTypeName name="model.card.Card"/>
 <fullyQualifiedTypeName name="model.game.Round"/>
@@ -46,7 +43,6 @@
 <fullyQualifiedTypeName name="java.awt.ComponentOrientation"/>
 <fullyQualifiedTypeName name="common.model.player.Balance"/>
 <fullyQualifiedTypeName name="common.model.player.hand.Hand"/>
-<fullyQualifiedTypeName name="common.model.player.IPlayer"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="client.event.EventBus"/>
@@ -56,8 +52,12 @@
 <fullyQualifiedTypeName name="common.model.game.P"/>
 <fullyQualifiedTypeName name="common.model.player.Bet"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
-<fullyQualifiedTypeName name="client.event.Event.Tag"/>
 <fullyQualifiedTypeName name="javax.swing.JPasswordField"/>
-<fullyQualifiedTypeName name="java.awt.Font"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="server.event.EventBus"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="server.event.Event.Tag"/>
+<fullyQualifiedTypeName name="client.event.Event.Tag"/>
+<fullyQualifiedTypeName name="java.awt.Font"/>
+<fullyQualifiedTypeName name="common.model.player.IPlayer"/>
 </qualifiedTypeNameHistroy>

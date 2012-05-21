@@ -22,6 +22,7 @@ import server.model.game.Table;
 public class Main {
 	
 	public static void main(String[] args) {
+		
 		//new MainView();
 		try {
 			new Main().run();

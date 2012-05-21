@@ -52,6 +52,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	private GameController gameController;
 	private RemoteCommunicationController serverComm;
 	private DatabaseCommunicator dbc = DatabaseCommunicator.getInstance();
+	private LinkedList<IPlayer> gamePlacements = new LinkedList<IPlayer>();
 	
 	/* A map containing all logged in players and another map containing their
 	 * active players and references to every respective player objects remote
@@ -175,17 +176,20 @@ public class RemoteGameController extends UnicastRemoteObject
 			IPlayer player = new Player(new Hand(),
 					account.getUserName(), new Balance());
 			
-			System.out.println(playerReferences.containsKey(player));
-			playerReferences.remove(player);
-			System.out.println(playerReferences.containsKey(player));
-			gameController.removePlayer(player);
-			
-			for(IClientGame clientGame : playerReferences.values()) {
-				clientGame.removePlayer(player);
-			}
+			leaveGame(player);
 
 		}
+	}
+	// TODO Javadoc
+	public void leaveGame(IPlayer player) throws RemoteException {
+		IPlayer playerToLeave = player;
 		
+		playerReferences.remove(playerToLeave);
+		gameController.removePlayer(playerToLeave);
+		
+		for(IClientGame clientGame : playerReferences.values()) {
+			clientGame.removePlayer(playerToLeave);
+		}
 	}
 	
 	@Override
@@ -565,15 +569,34 @@ public class RemoteGameController extends UnicastRemoteObject
 					if (!player.isStillInGame()) {
 						allReady = false;
 					}
+					
+					if(player.getBalance().getValue() == 0 && !gamePlacements.contains(player)) {
+						gamePlacements.addFirst(player);
+						leaveGame(player);
+					}
 				}
-				
 				if(allReady) {
 					// TODO Handle start game scenario
 					gameController.nextRound();
 				}
+			} else if(!gamePlacements.isEmpty()) {
+				IPlayer winner = null;
+				for(IPlayer player : playerReferences.keySet()) {
+					if(player.getBalance().getValue() != 0) {
+						winner = player;
+					}
+				}
+				gamePlacements.addFirst(winner);
+				gameOver();
 			}
 		}
 
+	}
+	
+	private void gameOver() {
+		for(IPlayer player : gamePlacements) {
+			savePlacement("" + gameID, player, gamePlacements.indexOf(player));
+		}
 	}
 
 	@Override
@@ -596,7 +619,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	}
 
 	@Override
-	public void savePlacement(String gameID, Player player, int placement) {
+	public void savePlacement(String gameID, IPlayer player, int placement) {
 		Connection conn = dbc.getConnection();
 		Statement myStmt;
 		try {

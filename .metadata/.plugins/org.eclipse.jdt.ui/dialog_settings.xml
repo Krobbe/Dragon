@@ -13,20 +13,44 @@
 	<section name="JavaSearchPage">
 		<item value="false" key="CASE_SENSITIVE"/>
 		<item value="11" key="INCLUDE_MASK"/>
-		<item value="3" key="HISTORY_SIZE"/>
-		<section name="HISTORY2">
+		<item value="12" key="HISTORY_SIZE"/>
+		<section name="HISTORY11">
 			<item value="11" key="includeMask"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="scope"/>
 			<item value="" key="javaElement"/>
-			<item value="PUBLISH_ACCOUNT_INFORMATION" key="pattern"/>
+			<item value="client.event.Event.Tag.GET_ACCOUNT_INFORMATION" key="pattern"/>
 			<item value="0" key="matchLocations"/>
 			<item value="4" key="searchFor"/>
 			<item value="false" key="isCaseSensitive"/>
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY0">
+		<section name="HISTORY2">
+			<item value="11" key="includeMask"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="scope"/>
+			<item value="" key="javaElement"/>
+			<item value="NEXT_TURN" key="pattern"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<item value="false" key="isCaseSensitive"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY3">
+			<item value="11" key="includeMask"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="scope"/>
+			<item value="" key="javaElement"/>
+			<item value="forloop" key="pattern"/>
+			<item value="0" key="matchLocations"/>
+			<item value="1" key="searchFor"/>
+			<item value="false" key="isCaseSensitive"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY10">
 			<item value="11" key="includeMask"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="scope"/>
@@ -38,12 +62,96 @@
 			<list key="workingSets">
 			</list>
 		</section>
+		<section name="HISTORY0">
+			<item value="11" key="includeMask"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="scope"/>
+			<item value="=ProjectDragon/src&lt;client.event{Event.java[Event[Tag^COMMUNITY_CARDS_CHANGED" key="javaElement"/>
+			<item value="client.event.Event.Tag.COMMUNITY_CARDS_CHANGED" key="pattern"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<item value="true" key="isCaseSensitive"/>
+			<list key="workingSets">
+			</list>
+		</section>
 		<section name="HISTORY1">
 			<item value="11" key="includeMask"/>
 			<item value="2" key="limitTo"/>
 			<item value="0" key="scope"/>
+			<item value="=ProjectDragon/src&lt;server.event{Event.java[Event[Tag^SERVER_NEXT_TURN" key="javaElement"/>
+			<item value="server.event.Event.Tag.SERVER_NEXT_TURN" key="pattern"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<item value="true" key="isCaseSensitive"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY9">
+			<item value="11" key="includeMask"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="scope"/>
+			<item value="=ProjectDragon/src&lt;client.event{Event.java[Event[Tag^CREATE_TABLE" key="javaElement"/>
+			<item value="client.event.Event.Tag.CREATE_TABLE" key="pattern"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<item value="true" key="isCaseSensitive"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY8">
+			<item value="11" key="includeMask"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="scope"/>
 			<item value="" key="javaElement"/>
-			<item value="client.event.Event.Tag.GET_ACCOUNT_INFORMATION" key="pattern"/>
+			<item value="GO_TO_TABLE" key="pattern"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<item value="false" key="isCaseSensitive"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY5">
+			<item value="11" key="includeMask"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="scope"/>
+			<item value="=ProjectDragon/src&lt;client.event{Event.java[Event[Tag^TURN_CHANGED" key="javaElement"/>
+			<item value="client.event.Event.Tag.TURN_CHANGED" key="pattern"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<item value="true" key="isCaseSensitive"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY4">
+			<item value="11" key="includeMask"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="scope"/>
+			<item value="=ProjectDragon/src&lt;client.event{Event.java[Event[Tag^BALANCE_CHANGED" key="javaElement"/>
+			<item value="client.event.Event.Tag.BALANCE_CHANGED" key="pattern"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<item value="true" key="isCaseSensitive"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY7">
+			<item value="11" key="includeMask"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="scope"/>
+			<item value="" key="javaElement"/>
+			<item value="TURN_CHANGED" key="pattern"/>
+			<item value="0" key="matchLocations"/>
+			<item value="0" key="searchFor"/>
+			<item value="false" key="isCaseSensitive"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY6">
+			<item value="11" key="includeMask"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="scope"/>
+			<item value="" key="javaElement"/>
+			<item value="ProjectDragon" key="pattern"/>
 			<item value="0" key="matchLocations"/>
 			<item value="4" key="searchFor"/>
 			<item value="false" key="isCaseSensitive"/>

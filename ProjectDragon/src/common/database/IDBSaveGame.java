@@ -1,6 +1,6 @@
 package common.database;
 
-import common.model.player.Player;
+import common.model.player.IPlayer;
 
 /**
  * An interface that need to be implemented to save data about games into the 
@@ -26,7 +26,7 @@ public interface IDBSaveGame {
 	 * @param userName	The player 
 	 * @param placement	The placement the player got in the game.
 	 */
-	public void savePlacement(String gameID, Player player, int placement);
+	public void savePlacement(String gameID, IPlayer player, int placement);
 	
 	/**
 	 * Calculates what gameID a game should have. It does this by checking what 
