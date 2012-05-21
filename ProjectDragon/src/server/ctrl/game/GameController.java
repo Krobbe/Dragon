@@ -221,6 +221,8 @@ public class GameController {
 		//currentPlayer.getBalance().removeFromBalance(currentBetValue 
 		//		- playersOwnCurrentBet);
 		//TODO:fusk?
+		System.out.println("----------------------");
+		System.out.println("SENDING CALL VALUE: " + (currentBetValue - playersOwnCurrentBet));
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(currentPlayer,currentBetValue - playersOwnCurrentBet)));
 		progressTurn();
 	}
@@ -530,8 +532,9 @@ public class GameController {
 			return false;
 		}
 		IPlayer currentPlayer = table.getCurrentPlayer();
-		
+	
 		int raiseValue = bet.getValue() - currentPlayer.getOwnCurrentBet();
+		System.out.println("---------------RAISEVALUE = " + raiseValue);
 		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
 
 		if(raiseValue > currentPlayer.getBalance().getValue()) {
@@ -543,17 +546,18 @@ public class GameController {
 					"than the current bet plus big blind.");
 		}
 		
-		performPlayerBet(new Bet(currentPlayer,raiseValue));
-		currentPlayer.setDoneFirstTurn(true);
+		//performPlayerBet(new Bet(currentPlayer,raiseValue));
 		
 		//TODO: gammal kod, ta bort om nya funkar
 		/* arrange the player's balance, bet and the pot according to the raise 
 		 */
-		//table.getRound().getPot().addToPot(theRaise);
-		//currentPlayer.getBalance().removeFromBalance(theRaise);
-		//currentPlayer.setOwnCurrentBet(theRaise + currentPlayer.getOwnCurrentBet());
-		//currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
-		//				theRaise + currentPlayer.getOwnCurrentBet()));
+		table.getRound().getPot().addToPot(raiseValue);
+		currentPlayer.getBalance().removeFromBalance(raiseValue);
+		currentPlayer.setOwnCurrentBet(raiseValue + currentPlayer.getOwnCurrentBet());
+		currentBettingRound.setCurrentBet( new Bet(table.getCurrentPlayer(),
+						bet.getValue()/*raiseValue + currentPlayer.getOwnCurrentBet()*/));
+		
+		currentPlayer.setDoneFirstTurn(true);
 		
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(bet.getOwner(),raiseValue)));
 		progressTurn();

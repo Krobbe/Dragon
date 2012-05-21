@@ -94,7 +94,7 @@ public class GameController {
 	 * 
 	 * @return
 	 */
-	//TODO: borde denna inte vara i table?
+	//TODO: borde denna inte vara i table? dŒ mŒste rgc ha referens till tabel
 	public Bet getCurrentBet() {
 		return table.getRound().getBettingRound().getCurrentBet();
 	}
@@ -158,10 +158,19 @@ public class GameController {
 			return false;
 		}
 		IPlayer p = table.getCurrentPlayer();
+		int ownCurrentBet = p.getOwnCurrentBet();
+		System.out.println("----------------------------------------");
+		System.out.println("BET OCCURED");
+		System.out.println("MADE BY "+ bet.getOwner() + " = " + table.getCurrentPlayer());
+		System.out.println("SET OWN CURRENT BET TO: " + (bet.getValue() + ownCurrentBet));
+		System.out.println("REMOVE FROM BALANCE: " + bet.getValue());
+		System.out.println("SET THE NEW CURRENT BET TO: " + (bet.getValue() + ownCurrentBet));
+		System.out.println("ADD TO POT: " + bet.getValue());
+		System.out.println("---------------------------------------");
 		//int tmp = bet.getValue() - p.getOwnCurrentBet();
 		p.getBalance().removeFromBalance(bet.getValue());
 		EventBus.publish(new Event(Event.Tag.BALANCE_CHANGED, p));
-		p.setOwnCurrentBet(bet.getValue() + p.getOwnCurrentBet());
+		p.setOwnCurrentBet(bet.getValue() + ownCurrentBet);
 		EventBus.publish(new Event(Event.Tag.OWN_CURRENT_BET_CHANGED, new Bet(
 				p, bet.getValue())));
 
@@ -172,7 +181,7 @@ public class GameController {
 		 */
 		if (bet.getValue() >= table.getRound().getBettingRound()
 				.getCurrentBet().getValue()) {
-			table.getRound().getBettingRound().setCurrentBet(bet);
+			table.getRound().getBettingRound().setCurrentBet(new Bet(table.getCurrentPlayer(), bet.getValue() + ownCurrentBet));
 			EventBus.publish(new Event(Event.Tag.CURRENT_BET_CHANGED, bet
 					.getValue()));
 		}

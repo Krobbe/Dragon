@@ -563,6 +563,7 @@ public class Table {
 		if (bet.getValue() >= currentBet.getValue()) {
 			getRound().getBettingRound().setCurrentBet(bet);
 		}
+		System.out.println("-------------------CURRENTBET ON SERVER SET TO: " + bet.getValue());
 	}
 	
 	/**

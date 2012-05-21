@@ -143,6 +143,9 @@ public class RemoteGameController extends UnicastRemoteObject
 		if(serverGame != null){
 			
 			try {
+				System.out.println("-------------------------------");
+				System.out.println("CALL SENT BY " + bet.getOwner());
+				System.out.println("-------------------------------");
 				return serverGame.call(bet);
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -174,6 +177,9 @@ public class RemoteGameController extends UnicastRemoteObject
 		if(serverGame != null){
 			
 			try {
+				System.out.println("-------------------------------");
+				System.out.println("CALL SENT BY " + bet.getOwner() + ", Value: " + bet.getValue());
+				System.out.println("-------------------------------");
 				return serverGame.raise(bet);
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -287,7 +293,7 @@ public class RemoteGameController extends UnicastRemoteObject
 			} else {
 				Integer amount = (Integer) evt.getValue();
 				IPlayer user = gameController.getUser();
-				bet = new Bet(user, user.getOwnCurrentBet() + amount);
+				bet = new Bet(user, gameController.getCurrentBet().getValue() + amount);
 				requestRaise(bet);
 			}
 			break;
