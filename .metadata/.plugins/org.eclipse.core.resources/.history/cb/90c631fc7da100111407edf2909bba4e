@@ -1,7 +1,0 @@
-package client.gui.table;
-
-import javax.swing.JPanel;
-
-public class PlayerPanel extends JPanel {
-
-}
