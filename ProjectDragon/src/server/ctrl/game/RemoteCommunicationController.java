@@ -57,6 +57,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		int port = Registry.REGISTRY_PORT;
 		boolean correctValue = false;
 		
+		// Prompts the user for port number to open the RMI-registry on
 		while(!correctValue) {
 			
 			System.out.println("Input port to open RMI-registry." +

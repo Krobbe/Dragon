@@ -56,9 +56,10 @@ public class MainView implements client.event.EventHandler {
 
 	@Override
 	public void onEvent(client.event.Event evt) {
-		if (evt.getTag().equals(client.event.Event.Tag.LOGIN_SUCCESS)
-				|| evt.getTag().equals(client.event.Event.Tag.REGISTER_SUCCESS)) {
+		if (evt.getTag().equals(client.event.Event.Tag.LOGIN_SUCCESS)) {
 			layout.show(frame.getContentPane(), "mainMenuPanel");
+		} else if(evt.getTag().equals(client.event.Event.Tag.REGISTER_SUCCESS)) {
+			layout.show(frame.getContentPane(), "loginPanel");
 		} else if(evt.getTag().equals(Event.Tag.GO_TO_ACCOUNTINFO)) {
 			layout.show(frame.getContentPane(), "accountPanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_REGISTER)) {
@@ -71,7 +72,7 @@ public class MainView implements client.event.EventHandler {
 			layout.show(frame.getContentPane(), "statisticsPanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_MAIN)) {
 			layout.show(frame.getContentPane(), "mainMenuPanel");
-		} else if (evt.getTag().equals(client.event.Event.Tag.REGISTER_BACK)) {
+		} else if (evt.getTag().equals(client.event.Event.Tag.GO_TO_LOGIN)) {
 			layout.show(frame.getContentPane(), "loginPanel");
 		} else if (evt.getTag().equals(client.event.Event.Tag.LOGOUT_SUCCESS)) {
 			layout.show(frame.getContentPane(), "loginPanel");

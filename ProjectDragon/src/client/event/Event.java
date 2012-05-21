@@ -43,7 +43,7 @@ public class Event {
     	PUBLISH_ACCOUNT_INFORMATION,//getValue(): Account
     	PUBLISH_SHOWDOWN,
     	REGISTER_SUCCESS,
-    	REGISTER_BACK,
+    	GO_TO_LOGIN,
     	REGISTER_FAILED,
     	REQUEST_CALL,
     	REQUEST_CHECK,

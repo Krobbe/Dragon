@@ -162,7 +162,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	public boolean logout() {
 		
 		try {
-			System.out.println("Hejj");
 			serverComm.logout(this.account);
 			return true;
 		} catch (RemoteException e) {
@@ -181,19 +180,18 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	private boolean tryRegisterAccount(String userName, String firstName, 
 			String lastName, String passWord) {
 		
-		// TODO Use ip in port and registerPanel!! Also uncomment todo below
 		serverComm = connectToServer();
 
 		Account tmp = new Account(firstName, lastName, userName, passWord);
 		try {
+			
 			if (serverComm.createAccount(tmp)) {
-				// TODO Login after register? Needs ip and port
-				//				login(this, tmp.getUserName(), tmp.getPassWord());
 				EventBus.publish(new Event(Event.Tag.REGISTER_SUCCESS, ""));
 				return true;
 			} else {
 				EventBus.publish(new Event(Event.Tag.REGISTER_FAILED, ""));
 			}
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

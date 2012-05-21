@@ -78,7 +78,7 @@ public class RegisterPanel extends JPanel implements ActionListener,
 			registerInfo.add(registerPasswordAgainField.getPassword());
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.TRY_REGISTER, registerInfo));
 		} else if (e.getSource() == registerBackButton) {
-			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.REGISTER_BACK, 1));
+			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.GO_TO_LOGIN, 1));
 		}
 	}
 
