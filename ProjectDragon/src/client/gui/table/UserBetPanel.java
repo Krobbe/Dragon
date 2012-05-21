@@ -31,6 +31,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	private JSpinner betSpinner;
 	private JLabel ownCurrentBetLabel;
 	private JButton callButton;
+	private JLabel nameLabel;
 	
 	private IPlayer user;
 	private int bigblind = common.model.game.P.INSTANCE.getBigBlindValue();
@@ -72,7 +73,6 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		callButton.setEnabled(false);
 		callButton.setSize(buttonWidth, buttonHeight);
 		callButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		callButton.setBackground(Color.red);
 		callButton.setOpaque(true);
 		callButton.addActionListener(this);
 
@@ -95,8 +95,12 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		creditsLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		ownCurrentBetLabel = new JLabel("Own Current Bet: " + user.getOwnCurrentBet());
-		ownCurrentBetLabel.setSize(buttonWidth, buttonHeight);
+		ownCurrentBetLabel.setSize(buttonWidth + 50, buttonHeight);
 		ownCurrentBetLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		nameLabel = new JLabel("<html><b>Player: </b>" + user.getName() + "</html>");
+		nameLabel.setSize(buttonWidth, buttonHeight);
+		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		updateSpinner(0);
 		
@@ -109,6 +113,7 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		this.add(creditsLabel);
 		this.add(availableCreditsLabel);
 		this.add(ownCurrentBetLabel);
+		this.add(nameLabel);
 	}
 	
 	/**
