@@ -61,21 +61,6 @@ public class RemoteGameController extends UnicastRemoteObject
 	
 	private int gameID;
 	
-	// TODO Implement gameOpenForPlayers!
-	// A variable that determines if new players are allowed to join. Observe
-	// that games that has been started doesn't necessarily have to bee closed
-	// for new players depending on the type of game (tournament/drop-in)
-	private boolean gameOpenForPlayers;
-	
-	// TODO Simpler (less parameters) constructors?
-	// - Convention? Only two constructors?
-	public RemoteGameController(
-				RemoteCommunicationController remoteCommunicationController)
-													throws RemoteException {
-		
-		this(remoteCommunicationController, 8, 0, 1000);
-	}
-	
 	public RemoteGameController(
 			RemoteCommunicationController remoteCommunicationController,
 			int maxPlayers,	int entranceFee, int startingChips)
@@ -92,7 +77,6 @@ public class RemoteGameController extends UnicastRemoteObject
 		this.serverComm = remoteCommunicationController;
 		this.gameController = gameController;
 		playerReferences = new TreeMap<IPlayer, IClientGame>();
-		gameOpenForPlayers = true;
 		
 		gameID = calculateGameID();
 		Calendar cal = Calendar.getInstance();
