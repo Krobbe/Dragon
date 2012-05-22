@@ -67,7 +67,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == createTableCreateButton) {
 			ArrayList<String> list = new ArrayList<String>();
-//			list.add(costToEnterField.getText());
+			list.add("0");
 			list.add(numberOfChipsField.getText());
 			list.add(createTablePlayersSpinner.getSelectedItem().toString());
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, list));
@@ -80,16 +80,6 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	private void init() {
 		this.setLayout(null);
 		this.setOpaque(false);
-		
-		JLabel costToEnterLabel = new JLabel("Cost to enter?");
-		costToEnterLabel.setBounds(416, 262, 176, 20);
-		costToEnterLabel.setFont(P.INSTANCE.getLabelFont());
-		this.add(costToEnterLabel);
-
-//		costToEnterField = new JTextField();
-//		costToEnterField.setBounds(416, 293, 176, 20);
-//		this.add(costToEnterField);
-//		costToEnterField.setColumns(10);
 
 		JLabel numberOfChipsLabel = new JLabel("Number of chips?");
 		numberOfChipsLabel.setBounds(416, 324, 176, 20);
