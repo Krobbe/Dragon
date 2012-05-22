@@ -205,14 +205,6 @@ public class GameController {
 
 		performPlayerBet(new Bet(currentPlayer,currentBetValue - playersOwnCurrentBet));
 		currentPlayer.setDoneFirstTurn(true);
-		/* gammal kod, ta bort om nya funkar... */
-		/* arrange the player's balance, bet and the pot according to the call 
-		 */
-		//table.getRound().getPot().addToPot(currentBetValue - playersOwnCurrentBet);
-		//currentPlayer.setOwnCurrentBet(currentBetValue);
-		//currentPlayer.getBalance().removeFromBalance(currentBetValue 
-		//		- playersOwnCurrentBet);
-		//TODO:fusk?
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(currentPlayer,currentBetValue - playersOwnCurrentBet)));
 		progressTurn();
 	}
@@ -441,23 +433,6 @@ public class GameController {
 			bigBlindPlayer.setDoneFirstTurn(true);
 		}
 		
-		/* post blinds */ /* TODO: gammal kod, ta bort om nya funkar...
-		smallBlindPlayer.getBalance().removeFromBalance(smallBlind);
-		smallBlindPlayer.setOwnCurrentBet(smallBlind);
-		bigBlindPlayer.getBalance().removeFromBalance(bigBlind);
-		bigBlindPlayer.setOwnCurrentBet(bigBlind);
-
-		/* add blinds to pot and current bet */ /*
-		table.getRound().getPot().addToPot(smallBlind + bigBlind);
-		if (bigBlind >= smallBlind) {
-			table.getRound().getBettingRound().setCurrentBet(
-				new Bet(bigBlindPlayer,bigBlind));
-		} else {
-			table.getRound().getBettingRound().setCurrentBet(
-					new Bet(smallBlindPlayer,smallBlind));
-		}
-		*/
-		
 		performPlayerBet(new Bet(smallBlindPlayer, smallBlind));
 		performPlayerBet(new Bet(bigBlindPlayer, bigBlind));
 		
@@ -533,10 +508,6 @@ public class GameController {
 			throw new IllegalRaiseException("The raise have to be bigger" +
 					"than the current bet plus big blind.");
 		}
-		
-		//performPlayerBet(new Bet(currentPlayer,raiseValue));
-		
-		//TODO: gammal kod, ta bort om nya funkar
 		/* arrange the player's balance, bet and the pot according to the raise 
 		 */
 		table.getRound().getPot().addToPot(raiseValue);
