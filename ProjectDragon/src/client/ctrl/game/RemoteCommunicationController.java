@@ -322,7 +322,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	
 	public void terminateGame(RemoteGameController clientGame) {
 		activeGames.remove(clientGame);
-		System.out.println("Left a game");
 	}
 	
 	private void updateAccount() {
@@ -409,11 +408,7 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 						createGame(tableInfoParsed.get(0),
 						tableInfoParsed.get(1), tableInfoParsed.get(2))) {
 					EventBus.publish(new Event(Event.Tag.PLAYERS_CHANGED, ""));
-				} else {
-					System.out.println(" Couldn't create table!");
 				}
-				
-				
 			}
 			
 			break;

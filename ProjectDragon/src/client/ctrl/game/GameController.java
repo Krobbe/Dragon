@@ -210,7 +210,6 @@ public class GameController {
 	 */
 	public void setTurn(int indexOfCurrentPlayer) {
 		table.setIndexOfCurrentPlayer(indexOfCurrentPlayer);
-		System.out.println("index : " + indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.TURN_CHANGED, table
 				.getIndexOfCurrentPlayer()));
 	}
@@ -230,7 +229,6 @@ public class GameController {
 				playerHand.discard();
 				for (ICard card : hand.getCards()) {
 					playerHand.addCard(card);
-					System.out.println(clientPlayer.getHand().toString());
 				}
 				EventBus.publish(new Event(Event.Tag.HANDS_CHANGED,
 						clientPlayer));
@@ -264,7 +262,6 @@ public class GameController {
 			EventBus.publish(new Event(Event.Tag.HAND_DISCARDED, p));
 			if (p.getBalance().getValue() != 0) {
 				p.setActive(true);
-				System.out.println(">>>>" + p.getName() + " got active");
 			}
 		}
 		distributeInvisibleCards();

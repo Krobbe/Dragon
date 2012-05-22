@@ -101,7 +101,6 @@ public class Table {
 		indexOfCurrentPlayer = findIndexOfNextActivePlayer(indexOfCurrentPlayer);
 		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,
 				getCurrentPlayer()));
-		System.out.println(this.toString());
 		return players.get(indexOfCurrentPlayer);
 
 		// TODO: gammal kod, ta bort om nya funkar
@@ -129,7 +128,6 @@ public class Table {
 		/* if none is active at the table, do nothing */
 		if (getActivePlayers().size() == 0) {
 			//TODO: ta bort kontrollutskrift
-			System.out.println("---------------- none is active-----------------");
 			return getIndexOfCurrentPlayer();
 		}
 		

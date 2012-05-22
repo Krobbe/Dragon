@@ -132,7 +132,6 @@ public class GameController {
 				table.getRound().getBettingRound().getCurrentBet().getValue();
 
 		if(!table.getCurrentPlayer().equals(bet.getOwner())) {
-			System.out.println("------------------UNVALID BET---------------------");
 			return false;
 		} else if (currentBetValue <= 0) {
 			throw new IllegalCallException(
@@ -148,7 +147,6 @@ public class GameController {
 	 * @throws IllegalCheckException 
 	 */
 	public boolean check(Bet bet) {
-		System.out.println("------------------UNVALID BET---------------------");
 		if(!isValidPlayerAction(bet.getOwner())) {
 			return false;
 		}
@@ -182,15 +180,6 @@ public class GameController {
 		table.getSidePots().add(
 				new SidePotHandler(table.getActivePlayers(), new Pot(
 						sidePotValue)));
-
-		/* controll prints */
-		System.out.println("\n\n-------------------------------\n"
-				+ "SIDEPOT ADDED\n");
-		System.out.println("sidePotValue: " + sidePotValue + "\n");
-		System.out.println("ADDED PLAYERS:");
-		for (IPlayer ap : table.getActivePlayers())
-			System.out.println(ap.getName());
-		System.out.println("\n-----------------------------------\n");
 	}
 	
 	/**
@@ -224,8 +213,6 @@ public class GameController {
 		//currentPlayer.getBalance().removeFromBalance(currentBetValue 
 		//		- playersOwnCurrentBet);
 		//TODO:fusk?
-		System.out.println("----------------------");
-		System.out.println("SENDING CALL VALUE: " + (currentBetValue - playersOwnCurrentBet));
 		EventBus.publish(new Event(Event.Tag.SERVER_UPDATE_BET, new Bet(currentPlayer,currentBetValue - playersOwnCurrentBet)));
 		progressTurn();
 	}
@@ -235,7 +222,6 @@ public class GameController {
 	 */
 	public boolean fold(IPlayer player) {
 		if(!isValidPlayerAction(player)) {
-			System.out.println("------------------INVALID BET---------------------");
 			return false;
 		}
 		
@@ -531,14 +517,12 @@ public class GameController {
 	 */
 	public boolean raise(Bet bet) {
 		if(!isValidPlayerAction(bet.getOwner())) {
-			System.out.println("------------------UNVALID BET---------------------");
 			return false;
 		}
 		IPlayer currentPlayer = table.getCurrentPlayer();
 		
 	
 		int raiseValue = bet.getValue() - currentPlayer.getOwnCurrentBet();
-		System.out.println("---------------RAISEVALUE = " + raiseValue);
 		BettingRound currentBettingRound = table.getRound().getBettingRound(); 
 
 		if(raiseValue > currentPlayer.getBalance().getValue()) {

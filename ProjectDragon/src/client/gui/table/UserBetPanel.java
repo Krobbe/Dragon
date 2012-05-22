@@ -121,7 +121,6 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	 * @author lisastenberg
 	 */
 	public void updateAvailableCredits() {
-		System.out.println("-----------------------" + user.getBalance().getValue());
 		availableCreditsLabel.setText("" + user.getBalance().getValue());
 		updateSpinner(user.getOwnCurrentBet());
 	}
@@ -150,7 +149,6 @@ public class UserBetPanel extends JPanel implements ActionListener {
 	 */
 	public void updateOwnCurrentBet() {
 		ownCurrentBetLabel.setText("Own Current Bet: " + user.getOwnCurrentBet());
-		System.out.println(user + "Owncurrentbet: " + user.getOwnCurrentBet());
 		updateSpinner(user.getOwnCurrentBet());
 	}
 	
@@ -207,7 +205,6 @@ public class UserBetPanel extends JPanel implements ActionListener {
 		} else if (e.getSource().equals(raiseButton)) {
 			SpinnerNumberModel model = (SpinnerNumberModel)betSpinner.getModel();
 			int value = model.getNumber().intValue();
-			System.out.println("-----------------RAISE REQUESTED, Val: " + value);
 			EventBus.publish(new Event(Event.Tag.REQUEST_RAISE,
 					value));
 		} else if (e.getSource().equals(leaveTableButton)) {

@@ -82,35 +82,20 @@ public class Table {
 	 * @throws PlayersFullException if there already is 10 players at the table.
 	 *        
 	 */
-	public void addPlayer(IPlayer player) throws PlayersFullException {
-
-		System.out.println();
-		System.out.println("-------ADD PLAYER--------");
-		System.out.println();
-		
+	public void addPlayer(IPlayer player) throws PlayersFullException {		
 		for(int i = 0; i < players.size(); i++) {
 			IPlayer playerSeat = players.get(i);
-			System.out.println(playerSeat);
 			if(playerSeat == null) {
-				System.out.println("set an already added seat");
-				System.out.println(players.get(i));
 				players.set(i, player);
-				System.out.println(players.get(i));
-				
 				return;
 			}
 		}
 		
 		if(players.size() < maxPlayers) {
-			System.out.println("added at the end");
 			players.add(player);
 		} else {
 			throw new PlayersFullException();
 		}
-		
-		System.out.println();
-		System.out.println("-------END ADD PLAYER-------");
-		System.out.println();
 	}
 
 	/**
@@ -126,15 +111,7 @@ public class Table {
 	}
 	
 	public void removePlayer(IPlayer player) {
-		System.out.println();
-		System.out.println("------REMOVE PLAYER------");
-		System.out.println();
-		System.out.println(getPlayers());
-		System.out.println("-----------------------------------");
 		getPlayers().set(getPlayers().indexOf(player), null);
-		System.out.println(getPlayers());
-		System.out.println();
-		System.out.println("----END REMOVE PLAYER-----");
 	}
 
 	/**
@@ -238,25 +215,7 @@ public class Table {
 			List<IPlayer> winners = rankedPlayers.get(handValue);
 			distributePot(winners, potAmount);
 			setShowdownDone(true);
-			
 			publishShowdown(winners);
-			
-			/* utskrift fšr kontroll */
-			System.out.println("\n\n-------------------------------\n"
-					+ "SHOWDOWN RESULT:\n");
-			for (IPlayer p : winners) {
-				System.out.println("\nWinner: " + p.getName());
-				HandValueType hvt = getHandTypes().get(p);
-				System.out.print(hvt);
-				System.out.println(getHandTypes().toString());
-			}
-			System.out.println("potamount: " + potAmount);
-			System.out.println("Players:");
-			for (IPlayer p : plrs) {
-				System.out.println(p.getName());
-			}
-			System.out.println("\n-----------------------------------\n");
-
 			// TODO: riktigt ful lšsning. borde gšras bšttre. ingen loop behšvs
 			// utan innehŒllet borde bara gšras fšr fšrsta vŠrdet i
 			// rankedPlayers
@@ -283,7 +242,6 @@ public class Table {
 		/* if none is active at the table, do nothing */
 		if (getActivePlayers().size() == 0) {
 			//TODO: ta bort kontrollutskrift
-			System.out.println("---------------- none is active-----------------");
 			return getIndexOfCurrentPlayer();
 		}
 		
@@ -506,7 +464,6 @@ public class Table {
 		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,
 				getCurrentPlayer()));
 		//TODO: ta bort undre raden sen
-		System.out.println(this.toString());
 		return players.get(indexOfCurrentPlayer);
 
 		// TODO: gammal kod, ta bort om nya funkar
@@ -563,7 +520,6 @@ public class Table {
 		if (bet.getValue() >= currentBet.getValue()) {
 			getRound().getBettingRound().setCurrentBet(bet);
 		}
-		System.out.println("-------------------CURRENTBET ON SERVER SET TO: " + bet.getValue());
 	}
 	
 	/**

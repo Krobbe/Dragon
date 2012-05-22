@@ -316,7 +316,6 @@ public class RemoteGameController extends UnicastRemoteObject
 			break;
 			
 		case SERVER_DISTRIBUTE_CARDS:
-			System.out.println("---------------SERVER_DIST_CRD_CAUGHT--------");
 			Map<IPlayer, IHand> playerHands;
 			if (!(evt.getValue() instanceof Map)) {
 				System.out.println("Wrong evt.getValue() for evt.getTag(): "
@@ -598,17 +597,9 @@ public class RemoteGameController extends UnicastRemoteObject
 				gameOver();
 			}
 		}
-		System.out.println("---------TRY START GAME---------");
-		System.out.println("Gameplacements: " + gamePlacements);
-		System.out.println("__________________");
-
 	}
 	
 	private void gameOver() {
-		System.out.println("------------------");
-		System.out.println("GAME OVER!");
-		System.out.println("__________________");
-		
 		for(IPlayer player : gamePlacements) {
 			savePlacement("" + gameID, player, (gamePlacements.indexOf(player) + 1));
 		}
@@ -661,7 +652,6 @@ public class RemoteGameController extends UnicastRemoteObject
 					myStmt.executeQuery("SELECT max(gameID) FROM Games");
 			if(rs.next()) {
 				int max = Integer.parseInt(rs.getString(1));
-				System.out.println(max);
 				return (max + 1);
 			}
 		} catch (SQLException e) {

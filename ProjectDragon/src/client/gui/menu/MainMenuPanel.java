@@ -145,7 +145,6 @@ public class MainMenuPanel extends JPanel implements ActionListener, MouseListen
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println(e.getSource());
 		if(e.getSource() == invisibleLabel) {
 			EventBus.publish(new Event(Event.Tag.TRY_LOGOUT, 1));
 		}
