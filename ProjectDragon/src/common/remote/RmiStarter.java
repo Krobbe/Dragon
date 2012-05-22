@@ -25,10 +25,6 @@ public abstract class RmiStarter {
      */
     public RmiStarter(Class classToAddToServerCodebase, int registryPort) {
     	
-    	/**
-    	 * @author robinandersson 
-    	 */
-    	
 		/*
 		 * Starts the rmi-process. Also returns it so that it may be
 		 * terminated when shutting down the server 
@@ -66,11 +62,7 @@ public abstract class RmiStarter {
     		e.printStackTrace();
     		System.exit(0);
     	}
-    	
-    	/**
-    	 * @author srasul 
-    	 */
-    	
+
     	String urlString = classToAddToServerCodebase
                 .getProtectionDomain().getCodeSource().getLocation().toString();
     	

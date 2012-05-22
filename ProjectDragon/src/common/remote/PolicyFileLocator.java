@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 //TODO Do more to point out that this is not my (robinandersson) code (although I adapted it to fit the project)? (Code taken from http://code.nomad-labs.com/2010/03/26/an-improved-rmi-tutorial-with-eclipse/)
 /**
- * class to locate our most "secure" policy file
+ * class to locate the most "secure" policy file
  *
  * @author srasul
  * @author robinandersson

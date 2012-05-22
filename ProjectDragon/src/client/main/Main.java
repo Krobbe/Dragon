@@ -12,8 +12,6 @@ import client.gui.menu.MainView;
  * The main class for the client
  */
 public class Main {
-
-	//Varför går det inte att sätta private? Lika i kontrollerna för servern
 	
 	public static void main(String[] args) {
 		

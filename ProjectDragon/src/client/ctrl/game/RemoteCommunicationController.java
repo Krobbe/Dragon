@@ -7,7 +7,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +51,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 		activeGames = new HashMap<RemoteGameController, IPlayer>();
 		account = null;
 		// TODO Set where to search for server. Comment that son'uvabitch
-		//System.setProperty("java.naming.provider.url", "rmi://129.16.184.157:1099");
 
 		EventBus.register(this);
 	}
@@ -91,8 +89,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 	    		ipAdress = "localhost";
 	    	}
 	    		registry = LocateRegistry.getRegistry(ipAdress, port);
-	    	
-	        //Registry registry = LocateRegistry.getRegistry(port);
 
 	        server = (IServer) registry.lookup(IServer.REMOTE_NAME);
 	        System.out.println("*** Connection established on port: " + port

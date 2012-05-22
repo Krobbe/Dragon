@@ -5,7 +5,6 @@ package client.ctrl.game;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Collection;
 import java.util.List;
 
 import common.model.card.ICard;
@@ -37,31 +36,6 @@ public class RemoteGameController extends UnicastRemoteObject
 	
 	private RemoteCommunicationController clientComm;
 	private GameController gameController;
-	
-	/* Old constructors
-	public RemoteGameController(RemoteCommunicationController clientComm,
-			IPlayer user) throws RemoteException{
-		this.clientComm = clientComm;
-		this.user = user;
-		gameController = new GameController();
-		EventBus.register(this);
-	}
-	
-	public RemoteGameController(RemoteCommunicationController clientComm,
-			IPlayer user, Table table) throws RemoteException{
-		this(clientComm, user, new GameController(table));
-	}
-	
-	public RemoteGameController(RemoteCommunicationController clientComm, 
-					IPlayer user, GameController gameController) throws RemoteException{
-		this.clientComm = clientComm;
-		this.gameController = gameController;
-		this.user = user;
-		this.gameController.addPlayer(user);
-		
-		EventBus.register(this);
-	}
-	*/
 	
 	public RemoteGameController(RemoteCommunicationController clientComm)
 			throws RemoteException{
@@ -109,7 +83,7 @@ public class RemoteGameController extends UnicastRemoteObject
 	}
 	
 	/**
-	 * Try start a game.
+	 * Try to start a game.
 	 */
 	public void tryStartGame() {
 		try {
@@ -252,18 +226,19 @@ public class RemoteGameController extends UnicastRemoteObject
 	public void balanceChanged(Bet bet) {
 		gameController.balanceChanged(bet);
 	}
-
-	// TODO Not needed? Delete!
-	@Override
-	public void newTable(List<IPlayer> players, int meIndex) {
-//		gameController.newTable(players, meIndex);
-	}
-	
+	/**
+	 * Creates a new table
+	 * 
+	 * @param players A list with players that will be added to the table
+	 * @param user The object representing the client's own player
+	 * @param meIndex The index of where the client's own player is seated at
+	 * the table
+	 * @param maxPlayers The maximum allowed players at the table
+	 */
 	public void newTable(List<IPlayer> players, IPlayer user, int meIndex,
 			int maxPlayers) {
 		gameController.newTable(players, user, meIndex, maxPlayers);
 	}
-	
 
 	@Override
 	public void onEvent(Event evt) {

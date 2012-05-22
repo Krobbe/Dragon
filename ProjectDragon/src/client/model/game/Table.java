@@ -1,7 +1,6 @@
 package client.model.game;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -102,15 +101,6 @@ public class Table {
 		EventBus.publish(new Event(Event.Tag.SERVER_NEXT_TURN,
 				getCurrentPlayer()));
 		return players.get(indexOfCurrentPlayer);
-
-		// TODO: gammal kod, ta bort om nya funkar
-		/*
-		 * indexOfCurrentPlayer = (indexOfCurrentPlayer + 1) % players.size();
-		 * 
-		 * if (getCurrentPlayer().isActive()) { EventBus.publish(new
-		 * Event(Event.Tag.SERVER_NEXT_TURN, getCurrentPlayer())); return
-		 * getCurrentPlayer(); } return nextPlayer();
-		 */
 	}
 	
 	/**
@@ -145,27 +135,12 @@ public class Table {
 	 * @author robinandersson
 	 * @author mattiashenriksson
 	 */
-	// TODO Test nextDealerButtonPlayer()
-	// TODO Discuss and implement a possible better solution to dealer button
 	public int nextDealerButtonIndex() {
 		indexOfDealerButton = findIndexOfNextActivePlayer(indexOfDealerButton);
-
-		// TODO: gammal kod, ta bort om nya funkar
-		/*
-		 * do { indexOfDealerButton = (indexOfDealerButton + 1) %
-		 * players.size(); } while
-		 * (!players.get(indexOfDealerButton).isActive());
-		 */
 
 		// TODO Determine what happens if a player has lost recently.
 		// If the dealer button only should be set to players still in the game
 		// or if lost players should be "ghosts"
-
-		// The dealer button is set to a player that is still in the game.
-		/*
-		 * while(!players.get(indexOfDealerButton).isStillInGame()){
-		 * indexOfDealerButton++; return nextDealerButtonIndex()? }
-		 */
 		return indexOfDealerButton;
 	}
 	
@@ -314,8 +289,8 @@ public class Table {
 		return (o == this);
 	}
 	
-	//Since we at the current state aren't planning on using any hashtables this code was added
-	//for the cause of good practice
+	// Since we at the current state aren't planning on using any hashtables this
+	// code was added for the cause of good practice
 	public int hashCode() {
 		  assert false : "hashCode not designed";
 		  return 42; // any arbitrary constant will do

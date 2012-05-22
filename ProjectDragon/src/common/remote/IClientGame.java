@@ -3,7 +3,6 @@
  */
 package common.remote;
 
-import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -17,18 +16,11 @@ import common.model.player.hand.IHand;
 
 
 /**
+  * Interface for method calls concerning game functions to the Client. 
  * @author robinandersson
  * @author lisastenberg
  */
 public interface IClientGame extends Remote {
-	
-	/**
-	 * Creates a new table.
-	 * 
-	 * @param players The players at the table.
-	 * @param meIndex The index in the list of players that is the user.
-	 */
-	public void newTable(List<IPlayer> players, int meIndex) throws RemoteException;
 	
 	/**
 	 * Set the pot.
