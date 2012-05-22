@@ -304,8 +304,6 @@ public class RemoteCommunicationController extends UnicastRemoteObject
 			clientGame.setServerGame(serverGame);
 			clientGame.newTable(playerList, user, userIndex,
 					serverGame.getMaxPlayers());
-			// TODO Is addPlayers needed?
-			//clientGame.addPlayers(playerList);
 			activeGames.put(clientGame, user);
 			
 		} catch (RemoteException e1) {

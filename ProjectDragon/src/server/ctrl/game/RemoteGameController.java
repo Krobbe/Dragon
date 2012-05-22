@@ -116,42 +116,6 @@ public class RemoteGameController extends UnicastRemoteObject
 		}
 	}
 	
-	/**
-	 * Removes a player from the game and the reference to the player's client
-	 * 
-	 * @param player The player to be removed from the game
-	 */
-	/* TODO remove if not used
-	public void removePlayer(IPlayer player) {
-		// TODO Check if the logout-method in RemoteComm.Ctrl works as it should
-		// Remove the commented rows below when done
-		//System.out.println(playerReferences.size());
-		playerReferences.remove(player);
-		//System.out.println(playerReferences.size());
-	}
-	*/
-	
-	/**
-	 * Removes a player from the game and the reference to the player's client
-	 * 
-	 * @param player The player to be removed from the game
-	 */
-	/* TODO remove if not used
-	public void removePlayer(String userName) {
-		IPlayer playerToBeRemoved = null;
-		
-		for(IPlayer player : playerReferences.keySet()){
-			if(player.getName().equals(userName)) {
-				playerToBeRemoved = player;
-				break;
-			}
-		}
-		
-		removePlayer(playerToBeRemoved);
-		
-	}
-	*/
-	
 	@Override
 	public void leaveGame(Account account) throws RemoteException {
 		if(serverComm.isLoggedIn(account)) {
@@ -328,31 +292,6 @@ public class RemoteGameController extends UnicastRemoteObject
 				}		
 			}
 		break;
-
-// TODO Remove this case if safe, also remove newTable(players, meIndex) in
-// clients remoteGameController
-/*
-		case SERVER_CREATE_TABLE:
-			List<IPlayer> players;
-			if (!(evt.getValue() instanceof List)) {
-				System.out.println("Wrong evt.getValue() for evt.getTag(): "
-						+ evt.getTag());
-			} else {
-				players = (List<IPlayer>)evt.getValue();
-				IClientGame client;
-				int meIndex = 0;
-				for(IPlayer p: players) {
-					client = playerReferences.get(p);
-					try {
-						client.newTable(players, meIndex);
-					} catch (RemoteException e) {
-						e.printStackTrace();
-					}
-					meIndex ++;
-				}
-			}
-			break;
-*/
 			
 		case SERVER_DISTRIBUTE_POT:
 
