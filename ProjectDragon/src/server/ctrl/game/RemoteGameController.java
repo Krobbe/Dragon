@@ -180,7 +180,12 @@ public class RemoteGameController extends UnicastRemoteObject
 
 		}
 	}
-	// TODO Javadoc
+	
+	/**
+	 * Leave a game
+	 * @param player
+	 * @throws RemoteException
+	 */
 	public void leaveGame(IPlayer player) throws RemoteException {
 		IPlayer playerToLeave = player;
 		

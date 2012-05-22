@@ -28,9 +28,6 @@ public class GameController {
 
 	public GameController() {
 		// TODO: Request for newTable?
-
-		// TODO Constructor without parameters plz!
-		
 	}
 
 	public GameController(Table table) {
@@ -75,7 +72,10 @@ public class GameController {
 		this.table.addPlayers(players);
 	}
 	
-	// TODO Javadoc
+	/**
+	 * Removes a player
+	 * @param player
+	 */
 	public void removePlayer(IPlayer player) {
 		table.removePlayer(player);
 	}

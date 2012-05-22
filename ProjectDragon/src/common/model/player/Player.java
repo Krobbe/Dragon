@@ -104,7 +104,6 @@ public class Player implements IPlayer {
 		return this.getName().compareTo(o.getName());
 	}
 	
-	// TODO Is this a correct equals method? (Symmetry etc.)
 	/**
 	 * Equals method for the Player class. Two objects are deemed equal if their
 	 * user-names match 

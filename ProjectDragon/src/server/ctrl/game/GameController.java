@@ -62,7 +62,10 @@ public class GameController {
 		table.addPlayers(player);
 	}
 	
-	//TODO Javadoc
+	/**
+	 * Removes a player
+	 * @param player
+	 */
 	public void removePlayer(IPlayer player) {
 		table.removePlayer(player);
 	}
