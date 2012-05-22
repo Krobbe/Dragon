@@ -1,7 +1,6 @@
 package common.model.player;
 
 import java.io.Serializable;
-import java.util.Comparator;
 
 import common.model.player.hand.IHand;
 

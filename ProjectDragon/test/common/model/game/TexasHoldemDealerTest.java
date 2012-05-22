@@ -1,12 +1,10 @@
 package common.model.game;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import common.model.card.Card;
 import common.model.card.ICard;
-import common.model.game.TexasHoldemDealer;
 /**
  * A test for Dealer.
  * 

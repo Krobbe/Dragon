@@ -22,7 +22,6 @@ import javax.swing.ListSelectionModel;
 import client.event.Event;
 
 import common.remote.IServerGame;
-import common.utilities.IllegalCallException;
 
 
 /**

@@ -13,14 +13,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import client.event.Event;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import client.event.Event;
 
 /**
  * The RegisterPanel is the panel where users can type in their details and register for an account.

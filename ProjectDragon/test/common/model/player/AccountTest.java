@@ -1,12 +1,8 @@
 package common.model.player;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import common.model.player.Account;
-import common.model.player.Balance;
 /**
  * Test for Account.
  * @author lisastenberg

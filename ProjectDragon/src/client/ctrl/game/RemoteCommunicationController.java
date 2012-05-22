@@ -12,6 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import client.event.Event;
+import client.event.EventBus;
+import client.event.EventHandler;
+import client.model.game.Table;
 
 import common.model.player.Account;
 import common.model.player.Balance;
@@ -22,9 +26,6 @@ import common.model.player.hand.Hand;
 import common.remote.IClient;
 import common.remote.IServer;
 import common.remote.IServerGame;
-
-import client.event.*;
-import client.model.game.Table;
 
 
 

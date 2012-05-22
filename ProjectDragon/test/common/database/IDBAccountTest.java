@@ -1,17 +1,14 @@
 package common.database;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 import org.junit.Test;
 
-import common.database.DatabaseCommunicator;
-import common.database.IDBAccount;
 import common.model.player.Account;
 
 

@@ -8,15 +8,10 @@ package common.model.player;
  * @author mattiashenriksson
  */
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import common.model.card.Card;
-import common.model.player.Balance;
-import common.model.player.Player;
-import common.model.player.User;
 import common.model.player.hand.TexasHoldemHand;
 
 public class UserTest {

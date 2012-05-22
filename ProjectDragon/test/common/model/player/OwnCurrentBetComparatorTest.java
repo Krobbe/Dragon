@@ -1,11 +1,11 @@
 package common.model.player;
 
-import static org.junit.Assert.*;
-
-import common.model.player.hand.*;
-import common.utilities.OwnCurrentBetComparator;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import common.model.player.hand.TexasHoldemHand;
+import common.utilities.OwnCurrentBetComparator;
 
 public class OwnCurrentBetComparatorTest {
 	OwnCurrentBetComparator comp = new OwnCurrentBetComparator();

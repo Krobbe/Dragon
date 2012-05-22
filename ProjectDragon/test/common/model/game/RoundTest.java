@@ -1,10 +1,8 @@
 package common.model.game;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import common.model.game.Round;
 /**
  * A test for round. 
  * @author lisastenberg

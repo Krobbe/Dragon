@@ -4,11 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import common.model.card.Card;
-import common.model.card.Deck;
-import common.model.card.ICard;
-import common.model.card.IDeck;
-
 /**
  * A test for Deck.
  * @author lisastenberg

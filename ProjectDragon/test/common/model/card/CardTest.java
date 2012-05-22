@@ -4,10 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import common.model.card.Card;
-import common.model.card.Rank;
-import common.model.card.Suit;
 /**
  * A test for Card.
  * @author lisastenberg

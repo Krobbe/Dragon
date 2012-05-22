@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import server.event.Event;
+import server.event.EventBus;
+import server.event.EventHandler;
+
 import common.database.DatabaseCommunicator;
 import common.database.IDBSaveGame;
 import common.model.card.ICard;
@@ -28,13 +32,8 @@ import common.model.player.hand.Hand;
 import common.model.player.hand.IHand;
 import common.remote.IClientGame;
 import common.remote.IServerGame;
-import common.utilities.IllegalCallException;
 import common.utilities.IllegalCheckException;
 import common.utilities.IllegalRaiseException;
-
-import server.event.Event;
-import server.event.EventBus;
-import server.event.EventHandler;
 
 /**
  * This serverside class manages all game communication to and from the client.

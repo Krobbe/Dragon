@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import server.event.Event;
+import server.event.EventBus;
 
 import common.model.card.ICard;
 import common.model.game.IDealer;
@@ -20,10 +22,6 @@ import common.model.player.hand.HandValueType;
 import common.model.player.hand.IHand;
 import common.utilities.CommunityCardsFullException;
 import common.utilities.PlayersFullException;
-
-
-import server.event.Event;
-import server.event.EventBus;
 
 /**
  * A class that represent a table at which a poker game takes place. This class

@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 import client.event.Event;
 import client.event.EventBus;
 import client.gui.table.TableView;
-import client.model.game.*;
+import client.model.game.Table;
 
 /**
  * CreateTablePanel is the panel in which the user can create a table

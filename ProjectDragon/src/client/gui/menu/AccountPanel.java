@@ -20,11 +20,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import common.model.player.Account;
-
 import client.event.Event;
 import client.event.EventBus;
 import client.event.EventHandler;
+
+import common.model.player.Account;
 /**
  * The panel that shows information about the account. It's possible to add
  * balance to the account in this panel.

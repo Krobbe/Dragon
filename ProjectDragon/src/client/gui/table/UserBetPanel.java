@@ -7,11 +7,17 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+
+import client.event.Event;
+import client.event.EventBus;
 
 import common.model.player.IPlayer;
-
-import client.event.*;
 
 /**
  * The panel that has all the options that the player can do such as make a call or a bet

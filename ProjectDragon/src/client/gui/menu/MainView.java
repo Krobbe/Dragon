@@ -1,10 +1,10 @@
 package client.gui.menu;
 
+import java.awt.CardLayout;
+
 import javax.swing.JFrame;
 
 import client.event.Event;
-
-import java.awt.CardLayout;
 
 /**
  * The MainView class uses a cardlayout to store all the other panels. It is in this class

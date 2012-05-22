@@ -1,11 +1,9 @@
 package common.model.game;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import common.model.game.Pot;
 /**
  * A test for pot.
  * @author lisastenberg

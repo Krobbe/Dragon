@@ -3,12 +3,10 @@
  */
 package common.model.player.hand;
 
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-
-import common.model.card.*;
+import common.model.card.ICard;
 
 /**
  * @author robinandersson

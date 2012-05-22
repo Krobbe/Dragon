@@ -28,11 +28,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import client.event.Event;
+
 import common.database.DatabaseCommunicator;
 import common.database.IDBLoadGame;
 import common.model.player.Account;
-
-import client.event.Event;
 
 /**
  * The StatisticsPanel has information about the logged in user. The information is retrieved from the DB.

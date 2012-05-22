@@ -1,6 +1,5 @@
 package common.model.game;
 
-import java.io.Serializable;
 
 /**
  * A class that simulates a Round in a pokergame. 

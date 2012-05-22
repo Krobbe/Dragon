@@ -7,14 +7,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 
-
 import org.junit.Test;
 
 import common.model.card.Card;
 import common.model.card.Rank;
 import common.model.card.Suit;
-import common.model.player.hand.Hand;
-import common.model.player.hand.IHand;
 
 /**
  * Test for the Hand class.

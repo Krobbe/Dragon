@@ -3,11 +3,6 @@ package common.model.card;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import common.model.card.Card;
-import common.model.card.CardComparator;
-import common.model.card.Rank;
-import common.model.card.Suit;
 /**
  * A test for CardComparator.
  * 

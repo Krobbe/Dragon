@@ -22,7 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import client.event.*;
+import client.event.Event;
+import client.event.EventBus;
 
 /**
  * LoginPanel is the panel in which users can login to the application

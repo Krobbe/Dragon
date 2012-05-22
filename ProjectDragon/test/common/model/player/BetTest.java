@@ -1,10 +1,8 @@
 package common.model.player;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
-import common.model.player.Bet;
-import common.model.player.User;
+import org.junit.Test;
 /**
  * A test for Bet.
  * @author lisastenberg

@@ -17,7 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import client.event.*;
+import client.event.Event;
+import client.event.EventBus;
 
 /**
  * The MainMenuPanel is the panel that the user is sent to after logging in. Has buttons for

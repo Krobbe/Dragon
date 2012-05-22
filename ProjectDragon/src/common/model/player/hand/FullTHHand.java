@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-
-import common.model.card.*;
+import common.model.card.CardComparator;
+import common.model.card.ICard;
 /**
  * A class that simulates a full Texas Hold'em Hand. 
  * 

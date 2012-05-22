@@ -11,17 +11,18 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import client.event.Event;
+import client.event.EventBus;
+import client.event.EventHandler;
+import client.model.game.Table;
 
 import common.model.card.ICard;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
-import common.model.player.Player;
-
-
-import client.event.*;
-
-import client.model.game.*;
 
 /**
  * This is the main table panel. It is in this panel that all other panels are created and added.

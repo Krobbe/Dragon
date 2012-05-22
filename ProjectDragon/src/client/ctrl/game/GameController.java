@@ -3,6 +3,10 @@ package client.ctrl.game;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import client.event.Event;
+import client.event.EventBus;
+import client.model.game.Table;
+
 import common.model.card.Card;
 import common.model.card.ICard;
 import common.model.card.Rank;
@@ -11,10 +15,6 @@ import common.model.game.Pot;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
 import common.model.player.hand.IHand;
-
-import client.event.Event;
-import client.event.EventBus;
-import client.model.game.Table;
 
 /**
  * This class contains methods that handles the application during game mode.

@@ -4,15 +4,15 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
 
+import server.model.game.Table;
+
 import common.model.card.Card;
 import common.model.card.Rank;
 import common.model.card.Suit;
-import common.model.game.Pot;
 import common.model.player.Balance;
 import common.model.player.Bet;
 import common.model.player.IPlayer;
@@ -23,9 +23,6 @@ import common.utilities.IllegalCallException;
 import common.utilities.IllegalCheckException;
 import common.utilities.IllegalRaiseException;
 import common.utilities.PlayersFullException;
-
-import server.ctrl.game.GameController;
-import server.model.game.Table;
 
 /**
  * A class containing methods testing the GameController class.

@@ -1,11 +1,9 @@
 package common.model.player;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import common.model.player.Balance;
-import common.model.player.Player;
+
 import common.model.player.hand.TexasHoldemHand;
 
 /**

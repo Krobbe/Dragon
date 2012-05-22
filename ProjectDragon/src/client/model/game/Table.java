@@ -7,10 +7,10 @@ import java.util.List;
 import server.event.Event;
 import server.event.EventBus;
 
-import common.model.card.*;
+import common.model.card.ICard;
 import common.model.game.Round;
 import common.model.player.IPlayer;
-import common.utilities.*;
+import common.utilities.CommunityCardsFullException;
 
 /**
  * A class that represent table at which a poker game takes place. This class 
