@@ -34,7 +34,7 @@ import client.model.game.*;
 public class CreateTablePanel extends JPanel implements ActionListener,
 		client.event.EventHandler {
 
-	private JTextField costToEnterField;
+//	private JTextField costToEnterField;
 	private JTextField numberOfChipsField;
 	private JComboBox createTablePlayersSpinner;
 	private JButton createTableBackButton;
@@ -67,7 +67,7 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == createTableCreateButton) {
 			ArrayList<String> list = new ArrayList<String>();
-			list.add(costToEnterField.getText());
+//			list.add(costToEnterField.getText());
 			list.add(numberOfChipsField.getText());
 			list.add(createTablePlayersSpinner.getSelectedItem().toString());
 			client.event.EventBus.publish(new client.event.Event(client.event.Event.Tag.CREATE_TABLE, list));
@@ -86,10 +86,10 @@ public class CreateTablePanel extends JPanel implements ActionListener,
 		costToEnterLabel.setFont(P.INSTANCE.getLabelFont());
 		this.add(costToEnterLabel);
 
-		costToEnterField = new JTextField();
-		costToEnterField.setBounds(416, 293, 176, 20);
-		this.add(costToEnterField);
-		costToEnterField.setColumns(10);
+//		costToEnterField = new JTextField();
+//		costToEnterField.setBounds(416, 293, 176, 20);
+//		this.add(costToEnterField);
+//		costToEnterField.setColumns(10);
 
 		JLabel numberOfChipsLabel = new JLabel("Number of chips?");
 		numberOfChipsLabel.setBounds(416, 324, 176, 20);
